@@ -19,7 +19,7 @@
      </tran_glyph>
     </tran>
     <tran trig="eof" target="..">
-     <tran_glyph conn="4,8,3,1,108">
+     <tran_glyph conn="4,8,3,1,134">
       <action box="0,-2,10,2"/>
      </tran_glyph>
     </tran>
@@ -246,89 +246,111 @@
         <action box="0,-4,10,2"/>
        </tran_glyph>
       </tran>
-      <tran trig="&quot;live&quot;+ white_space" target="../17">
+      <tran trig="&quot;live&quot;+ white_space" target="../32">
        <tran_glyph conn="36,100,3,3,18">
         <action box="0,-2,15,2"/>
        </tran_glyph>
       </tran>
-      <tran trig="&quot;fork&quot;+ white_space" target="../17">
+      <tran trig="&quot;fork&quot;+ white_space" target="../32">
        <tran_glyph conn="36,96,3,3,18">
         <action box="0,-2,16,2"/>
        </tran_glyph>
       </tran>
-      <tran trig="&quot;lfork&quot;+ white_space" target="../17">
+      <tran trig="&quot;lfork&quot;+ white_space" target="../32">
        <tran_glyph conn="36,98,3,3,18">
         <action box="0,-2,15,2"/>
        </tran_glyph>
       </tran>
-      <tran trig="&quot;zjmp&quot;+ white_space" target="../17">
+      <tran trig="&quot;zjmp&quot;+ white_space" target="../32">
        <tran_glyph conn="36,102,3,3,18">
         <action box="0,-2,15,2"/>
        </tran_glyph>
       </tran>
-      <tran trig="&quot;aff&quot;+ white_space" target="../18">
+      <tran trig="&quot;aff&quot;+ white_space" target="../22">
        <tran_glyph conn="36,110,3,3,18">
         <action box="0,-2,15,2"/>
        </tran_glyph>
       </tran>
-      <tran trig="&quot;ld&quot;+ white_space" target="../19">
+      <tran trig="&quot;ld&quot;+ white_space" target="../23">
        <tran_glyph conn="36,122,3,3,18">
         <action box="0,-2,16,2"/>
        </tran_glyph>
       </tran>
-      <tran trig="&quot;lld&quot;+ white_space" target="../19">
+      <tran trig="&quot;lld&quot;+ white_space" target="../23">
        <tran_glyph conn="36,124,3,3,18">
         <action box="0,-2,15,2"/>
        </tran_glyph>
       </tran>
-      <tran trig="&quot;st&quot;+ white_space" target="../20">
+      <tran trig="&quot;st&quot;+ white_space" target="../24">
        <tran_glyph conn="36,134,3,3,18">
         <action box="0,-2,16,2"/>
        </tran_glyph>
       </tran>
-      <tran trig="&quot;add&quot; + white_space" target="../21">
+      <tran trig="&quot;add&quot; + white_space" target="../25">
        <tran_glyph conn="36,146,3,3,18">
         <action box="0,-2,16,2"/>
        </tran_glyph>
       </tran>
-      <tran trig="&quot;sub&quot;+ white_space" target="../21">
+      <tran trig="&quot;sub&quot;+ white_space" target="../25">
        <tran_glyph conn="36,148,3,3,18">
         <action box="0,-2,15,2"/>
        </tran_glyph>
       </tran>
-      <tran trig="&quot;ldi&quot;+ white_space" target="../22">
+      <tran trig="&quot;ldi&quot;+ white_space" target="../26">
        <tran_glyph conn="36,158,3,3,18">
         <action box="0,-2,15,2"/>
        </tran_glyph>
       </tran>
-      <tran trig="&quot;lldi&quot;+ white_space" target="../22">
+      <tran trig="&quot;lldi&quot;+ white_space" target="../26">
        <tran_glyph conn="36,160,3,3,18">
         <action box="0,-2,15,2"/>
        </tran_glyph>
       </tran>
-      <tran trig="&quot;and&quot;+ white_space" target="../23">
+      <tran trig="&quot;and&quot;+ white_space" target="../27">
        <tran_glyph conn="36,170,3,3,18">
         <action box="0,-2,16,2"/>
        </tran_glyph>
       </tran>
-      <tran trig="&quot;or&quot;+ white_space" target="../23">
+      <tran trig="&quot;or&quot;+ white_space" target="../27">
        <tran_glyph conn="36,172,3,3,18">
         <action box="0,-2,15,2"/>
        </tran_glyph>
       </tran>
-      <tran trig="&quot;xor&quot;+ white_space" target="../23">
+      <tran trig="&quot;xor&quot;+ white_space" target="../27">
        <tran_glyph conn="36,174,3,3,18">
         <action box="0,-2,15,2"/>
        </tran_glyph>
       </tran>
-      <tran trig="&quot;sti&quot;+ white_space" target="../24">
+      <tran trig="&quot;sti&quot;+ white_space" target="../28">
        <tran_glyph conn="36,182,3,3,18">
         <action box="0,-2,16,2"/>
        </tran_glyph>
       </tran>
-      <state name="op_life_name">
-       <state_glyph node="54,94,16,10"/>
-      </state>
+      <tran trig="register_char" target="../29">
+       <tran_glyph conn="76,88,0,3,8,18">
+        <action box="0,6,10,2"/>
+       </tran_glyph>
+      </tran>
+      <tran trig="digit_sign" target="../29">
+       <tran_glyph conn="76,88,0,3,10,18">
+        <action box="0,8,10,2"/>
+       </tran_glyph>
+      </tran>
+      <tran trig="digit" target="../29">
+       <tran_glyph conn="76,88,0,3,12,18">
+        <action box="0,10,10,2"/>
+       </tran_glyph>
+      </tran>
+      <tran trig="label_char" target="../29">
+       <tran_glyph conn="76,88,0,3,14,18">
+        <action box="0,12,10,2"/>
+       </tran_glyph>
+      </tran>
+      <tran trig="direct_char" target="../29">
+       <tran_glyph conn="76,88,0,3,16,18">
+        <action box="0,14,10,2"/>
+       </tran_glyph>
+      </tran>
       <state name="op_affect_name">
        <state_glyph node="54,108,16,8"/>
       </state>
@@ -350,7 +372,110 @@
       <state name="op_store_i_name">
        <state_glyph node="54,180,16,8"/>
       </state>
-      <state_glyph node="36,88,62,110"/>
+      <smstate name="" submachine="../../../../2">
+       <tran trig="separator_char" target="../../30">
+        <tran_glyph conn="112,104,1,1,2,4,-38,4,18">
+         <action box="-36,6,11,2"/>
+        </tran_glyph>
+       </tran>
+       <tran trig="not_separator" target="../..">
+        <tran_glyph conn="112,96,1,1,18">
+         <action box="0,-2,10,2"/>
+        </tran_glyph>
+       </tran>
+       <smstate_glyph node="94,94,18,12"/>
+      </smstate>
+      <state name="separator_1">
+       <tran trig="register_char" target="../../31">
+        <tran_glyph conn="112,112,1,3,2,12,-38,4,18">
+         <action box="-36,14,10,2"/>
+        </tran_glyph>
+       </tran>
+       <tran trig="digit_sign" target="../../31">
+        <tran_glyph conn="112,114,1,3,2,10,-38,6,18">
+         <action box="-36,14,10,2"/>
+        </tran_glyph>
+       </tran>
+       <tran trig="digit" target="../../31">
+        <tran_glyph conn="112,116,1,3,2,8,-38,8,18">
+         <action box="-36,14,10,2"/>
+        </tran_glyph>
+       </tran>
+       <tran trig="label_char" target="../../31">
+        <tran_glyph conn="112,118,1,3,2,6,-38,10,18">
+         <action box="-36,14,10,2"/>
+        </tran_glyph>
+       </tran>
+       <tran trig="direct_c" target="../../31">
+        <tran_glyph conn="112,120,1,3,2,4,-38,12,18">
+         <action box="-36,14,10,2"/>
+        </tran_glyph>
+       </tran>
+       <tran trig="white_space">
+        <tran_glyph conn="96,122,2,-1,-2,14">
+         <action box="0,-4,10,2"/>
+        </tran_glyph>
+       </tran>
+       <state_glyph node="94,110,18,12"/>
+      </state>
+      <smstate name="" submachine="../../../../2">
+       <tran trig="not_separator" target="../..">
+        <tran_glyph conn="112,128,1,1,18">
+         <action box="0,-2,10,2"/>
+        </tran_glyph>
+       </tran>
+       <tran trig="separator_char" target="../../33">
+        <tran_glyph conn="112,136,1,3,2,4,-38,4,18">
+         <action box="-36,6,11,2"/>
+        </tran_glyph>
+       </tran>
+       <smstate_glyph node="94,126,18,12"/>
+      </smstate>
+      <state name="op_life_name">
+       <state_glyph node="54,94,16,10"/>
+      </state>
+      <state name="separator_1">
+       <tran trig="register_char" target="../../34">
+        <tran_glyph conn="112,144,1,3,2,12,-38,4,18">
+         <action box="-36,14,10,2"/>
+        </tran_glyph>
+       </tran>
+       <tran trig="digit_sign" target="../../34">
+        <tran_glyph conn="112,146,1,3,2,10,-38,6,18">
+         <action box="-36,14,10,2"/>
+        </tran_glyph>
+       </tran>
+       <tran trig="digit" target="../../34">
+        <tran_glyph conn="112,148,1,3,2,8,-38,8,18">
+         <action box="-36,14,10,2"/>
+        </tran_glyph>
+       </tran>
+       <tran trig="label_char" target="../../34">
+        <tran_glyph conn="112,150,1,3,2,6,-38,10,18">
+         <action box="-36,14,10,2"/>
+        </tran_glyph>
+       </tran>
+       <tran trig="direct_c" target="../../34">
+        <tran_glyph conn="112,152,1,3,2,4,-38,12,18">
+         <action box="-36,14,10,2"/>
+        </tran_glyph>
+       </tran>
+       <tran trig="white_space">
+        <tran_glyph conn="96,154,2,-1,-2,14">
+         <action box="0,-4,10,2"/>
+        </tran_glyph>
+       </tran>
+       <state_glyph node="94,142,18,12"/>
+      </state>
+      <smstate name="state1">
+       <tran trig="any_char" target="../..">
+        <tran_glyph conn="112,160,1,1,18">
+         <action box="0,-2,10,2"/>
+        </tran_glyph>
+       </tran>
+       <smstate_glyph node="94,158,18,12"/>
+      </smstate>
+      <state_glyph node="36,88,94,110"/>
      </state>
      <state name="label_word_unit">
       <entry brief="store">symbols from (a..z || 1..9)</entry>
@@ -378,69 +503,321 @@
        <entry box="1,2,6,3"/>
       </state_glyph>
      </state>
-     <state_glyph node="20,82,84,146"/>
+     <state_glyph node="20,82,114,146"/>
     </state>
-    <state_glyph node="4,4,108,226"/>
+    <state_glyph node="4,4,134,226"/>
    </state>
-   <state name="t_reg">
-    <tran trig="register_char" target="../1">
-     <tran_glyph conn="116,100,3,3,16">
+   <state name="argument_unit">
+    <tran trig="digit" target="../7">
+     <tran_glyph conn="142,38,3,3,16">
       <action box="0,-2,10,2"/>
      </tran_glyph>
     </tran>
-    <state name="state1">
-     <tran trig="natural_number" target="../..">
-      <tran_glyph conn="144,100,1,1,18">
-       <action box="0,-2,10,2"/>
-      </tran_glyph>
-     </tran>
-     <state_glyph node="132,98,12,6"/>
-    </state>
-    <state_glyph node="116,92,46,16"/>
-   </state>
-   <state name="t_dir">
-    <state_glyph node="116,148,46,18"/>
-   </state>
-   <state name="t_ind">
-    <tran trig="integer" target="../3">
-     <tran_glyph conn="116,120,3,3,16">
+    <tran trig="label_char" target="../7">
+     <tran_glyph conn="142,40,3,3,16">
       <action box="0,-2,10,2"/>
      </tran_glyph>
     </tran>
-    <tran trig="label_char" target="../4">
-     <tran_glyph conn="116,132,3,3,16">
+    <tran trig="direct_char" target="../8">
+     <tran_glyph conn="142,72,3,3,16">
       <action box="0,-2,10,2"/>
+     </tran_glyph>
+    </tran>
+    <tran trig="register_char" target="../9">
+     <tran_glyph conn="142,26,3,3,16">
+      <action box="0,-2,10,2"/>
+     </tran_glyph>
+    </tran>
+    <tran trig="separator_char" target="..">
+     <tran_glyph conn="238,118,2,1,-2,16">
+      <action box="0,-4,11,2"/>
      </tran_glyph>
     </tran>
     <tran trig="white_space" target="..">
-     <tran_glyph conn="152,144,2,1,-2,18">
-      <action box="0,-4,10,2"/>
+     <tran_glyph conn="236,118,2,1,-4,18">
+      <action box="0,-6,10,2"/>
      </tran_glyph>
     </tran>
-    <state name="number_value">
-     <state_glyph node="132,118,18,8"/>
-    </state>
-    <state name="label_ptr">
-     <tran trig="small_letter">
-      <tran_glyph conn="132,134,3,-1,16">
+    <tran trig="digit_sign" target="../7">
+     <tran_glyph conn="142,36,3,3,16">
+      <action box="0,-2,10,2"/>
+     </tran_glyph>
+    </tran>
+    <state name="t_ind">
+     <tran trig="digit" target="../3">
+      <tran_glyph conn="158,44,3,3,16">
        <action box="0,-2,10,2"/>
       </tran_glyph>
      </tran>
+     <tran trig="label_char" target="../4">
+      <tran_glyph conn="158,54,3,3,16">
+       <action box="0,-2,10,2"/>
+      </tran_glyph>
+     </tran>
+     <tran trig="digit_sign" target="../3">
+      <tran_glyph conn="158,42,3,3,16">
+       <action box="0,-2,10,2"/>
+      </tran_glyph>
+     </tran>
+     <state name="number_value">
+      <tran trig="digit">
+       <tran_glyph conn="176,48,2,-1,-2,14">
+        <action box="0,-4,13,2"/>
+       </tran_glyph>
+      </tran>
+      <state_glyph node="174,40,18,8"/>
+     </state>
+     <state name="label_ptr">
+      <tran trig="small_letter">
+       <tran_glyph conn="174,56,3,-1,16">
+        <action box="0,-2,10,2"/>
+       </tran_glyph>
+      </tran>
+      <tran trig="digit">
+       <tran_glyph conn="174,58,3,-1,16">
+        <action box="0,-2,10,2"/>
+       </tran_glyph>
+      </tran>
+      <tran trig="under_score">
+       <tran_glyph conn="174,60,3,-1,16">
+        <action box="0,-2,10,2"/>
+       </tran_glyph>
+      </tran>
+      <state_glyph node="174,52,18,10"/>
+     </state>
+     <state_glyph node="158,34,38,32"/>
+    </state>
+    <state name="t_dir">
+     <tran trig="direct_char" target="../2">
+      <tran_glyph conn="158,78,3,3,16">
+       <action box="0,-2,10,2"/>
+      </tran_glyph>
+     </tran>
+     <state name="t_ind">
+      <tran trig="digit" target="../4">
+       <tran_glyph conn="208,86,3,3,16">
+        <action box="0,-2,10,2"/>
+       </tran_glyph>
+      </tran>
+      <tran trig="label_char" target="../3">
+       <tran_glyph conn="208,96,3,3,16">
+        <action box="0,-2,10,2"/>
+       </tran_glyph>
+      </tran>
+      <tran trig="digit_sign" target="../4">
+       <tran_glyph conn="208,84,3,3,16">
+        <action box="0,-2,10,2"/>
+       </tran_glyph>
+      </tran>
+      <state name="label_ptr">
+       <tran trig="small_letter">
+        <tran_glyph conn="224,98,3,-1,16">
+         <action box="0,-2,10,2"/>
+        </tran_glyph>
+       </tran>
+       <tran trig="digit">
+        <tran_glyph conn="224,100,3,-1,16">
+         <action box="0,-2,10,2"/>
+        </tran_glyph>
+       </tran>
+       <tran trig="under_score">
+        <tran_glyph conn="224,102,3,-1,16">
+         <action box="0,-2,10,2"/>
+        </tran_glyph>
+       </tran>
+       <state_glyph node="224,94,18,10"/>
+      </state>
+      <state name="number_value">
+       <tran trig="digit">
+        <tran_glyph conn="226,90,2,-1,-2,14">
+         <action box="0,-4,13,2"/>
+        </tran_glyph>
+       </tran>
+       <state_glyph node="224,82,18,8"/>
+      </state>
+      <state_glyph node="208,76,38,32"/>
+     </state>
+     <state name="whait_for_t_dir">
+      <tran trig="integer" target="../../1">
+       <tran_glyph conn="192,78,1,3,16">
+        <action box="0,-2,10,2"/>
+       </tran_glyph>
+      </tran>
+      <tran trig="label_char" target="../../1">
+       <tran_glyph conn="192,80,1,3,16">
+        <action box="0,-2,10,2"/>
+       </tran_glyph>
+      </tran>
+      <state_glyph node="174,76,18,6"/>
+     </state>
+     <state_glyph node="158,70,92,42"/>
+    </state>
+    <state name="t_reg">
      <tran trig="digit">
-      <tran_glyph conn="132,136,3,-1,16">
-       <action box="0,-2,10,2"/>
+      <tran_glyph conn="160,30,2,-1,-2,16">
+       <action box="0,-4,12,2"/>
       </tran_glyph>
      </tran>
-     <tran trig="under_score">
-      <tran_glyph conn="132,138,3,-1,16">
-       <action box="0,-2,10,2"/>
-      </tran_glyph>
-     </tran>
-     <state_glyph node="132,130,18,10"/>
+     <state_glyph node="158,24,20,6"/>
     </state>
-    <state_glyph node="116,112,54,32"/>
+    <state_glyph node="142,4,112,114"/>
    </state>
-   <state_diagram size="186,231"/>
+   <submachine name="argument_unit">
+    <tran trig="digit" target="../7">
+     <tran_glyph conn="2,36,3,3,16">
+      <action box="0,-2,10,2"/>
+     </tran_glyph>
+    </tran>
+    <tran trig="label_char" target="../7">
+     <tran_glyph conn="2,38,3,3,16">
+      <action box="0,-2,10,2"/>
+     </tran_glyph>
+    </tran>
+    <tran trig="direct_char" target="../8">
+     <tran_glyph conn="2,70,3,3,16">
+      <action box="0,-2,10,2"/>
+     </tran_glyph>
+    </tran>
+    <tran trig="register_char" target="../9">
+     <tran_glyph conn="2,24,3,3,16">
+      <action box="0,-2,10,2"/>
+     </tran_glyph>
+    </tran>
+    <tran trig="separator_char" target="..">
+     <tran_glyph conn="98,116,2,1,-2,16">
+      <action box="0,-4,11,2"/>
+     </tran_glyph>
+    </tran>
+    <tran trig="white_space" target="..">
+     <tran_glyph conn="96,116,2,1,-4,18">
+      <action box="0,-6,10,2"/>
+     </tran_glyph>
+    </tran>
+    <tran trig="digit_sign" target="../7">
+     <tran_glyph conn="2,34,3,3,16">
+      <action box="0,-2,10,2"/>
+     </tran_glyph>
+    </tran>
+    <state name="t_ind">
+     <tran trig="digit" target="../3">
+      <tran_glyph conn="18,42,3,3,16">
+       <action box="0,-2,10,2"/>
+      </tran_glyph>
+     </tran>
+     <tran trig="label_char" target="../4">
+      <tran_glyph conn="18,52,3,3,16">
+       <action box="0,-2,10,2"/>
+      </tran_glyph>
+     </tran>
+     <tran trig="digit_sign" target="../3">
+      <tran_glyph conn="18,40,3,3,16">
+       <action box="0,-2,10,2"/>
+      </tran_glyph>
+     </tran>
+     <state name="number_value">
+      <tran trig="digit">
+       <tran_glyph conn="36,46,2,-1,-2,14">
+        <action box="0,-4,13,2"/>
+       </tran_glyph>
+      </tran>
+      <state_glyph node="34,38,18,8"/>
+     </state>
+     <state name="label_ptr">
+      <tran trig="small_letter">
+       <tran_glyph conn="34,54,3,-1,16">
+        <action box="0,-2,10,2"/>
+       </tran_glyph>
+      </tran>
+      <tran trig="digit">
+       <tran_glyph conn="34,56,3,-1,16">
+        <action box="0,-2,10,2"/>
+       </tran_glyph>
+      </tran>
+      <tran trig="under_score">
+       <tran_glyph conn="34,58,3,-1,16">
+        <action box="0,-2,10,2"/>
+       </tran_glyph>
+      </tran>
+      <state_glyph node="34,50,18,10"/>
+     </state>
+     <state_glyph node="18,32,38,32"/>
+    </state>
+    <state name="t_dir">
+     <tran trig="direct_char" target="../2">
+      <tran_glyph conn="18,76,3,3,16">
+       <action box="0,-2,10,2"/>
+      </tran_glyph>
+     </tran>
+     <state name="t_ind">
+      <tran trig="digit" target="../4">
+       <tran_glyph conn="68,84,3,3,16">
+        <action box="0,-2,10,2"/>
+       </tran_glyph>
+      </tran>
+      <tran trig="label_char" target="../3">
+       <tran_glyph conn="68,94,3,3,16">
+        <action box="0,-2,10,2"/>
+       </tran_glyph>
+      </tran>
+      <tran trig="digit_sign" target="../4">
+       <tran_glyph conn="68,82,3,3,16">
+        <action box="0,-2,10,2"/>
+       </tran_glyph>
+      </tran>
+      <state name="label_ptr">
+       <tran trig="small_letter">
+        <tran_glyph conn="84,96,3,-1,16">
+         <action box="0,-2,10,2"/>
+        </tran_glyph>
+       </tran>
+       <tran trig="digit">
+        <tran_glyph conn="84,98,3,-1,16">
+         <action box="0,-2,10,2"/>
+        </tran_glyph>
+       </tran>
+       <tran trig="under_score">
+        <tran_glyph conn="84,100,3,-1,16">
+         <action box="0,-2,10,2"/>
+        </tran_glyph>
+       </tran>
+       <state_glyph node="84,92,18,10"/>
+      </state>
+      <state name="number_value">
+       <tran trig="digit">
+        <tran_glyph conn="86,88,2,-1,-2,14">
+         <action box="0,-4,13,2"/>
+        </tran_glyph>
+       </tran>
+       <state_glyph node="84,80,18,8"/>
+      </state>
+      <state_glyph node="68,74,38,32"/>
+     </state>
+     <state name="whait_for_t_dir">
+      <tran trig="integer" target="../../1">
+       <tran_glyph conn="52,76,1,3,16">
+        <action box="0,-2,10,2"/>
+       </tran_glyph>
+      </tran>
+      <tran trig="label_char" target="../../1">
+       <tran_glyph conn="52,78,1,3,16">
+        <action box="0,-2,10,2"/>
+       </tran_glyph>
+      </tran>
+      <state_glyph node="34,74,18,6"/>
+     </state>
+     <state_glyph node="18,68,92,42"/>
+    </state>
+    <state name="t_reg">
+     <tran trig="digit">
+      <tran_glyph conn="20,28,2,-1,-2,16">
+       <action box="0,-4,12,2"/>
+      </tran_glyph>
+     </tran>
+     <state_glyph node="18,22,20,6"/>
+    </state>
+    <submachine_diagram size="112,114"/>
+   </submachine>
+   <state_diagram size="272,231"/>
   </statechart>
  </class>
  <class name="Class1" superclass="qpc::QHsm">
