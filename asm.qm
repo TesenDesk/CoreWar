@@ -2,6 +2,7 @@
 <model version="4.6.0" links="0">
  <framework name="qpc"/>
  <package name="asm" stereotype="0x02">
+  <package file="./automata_diagrams/aut_lvl2_lvl_3.qmp"/>
   <class name="Class1" superclass="qpc::QHsm">
    <statechart properties="0x01">
     <state name="word">
