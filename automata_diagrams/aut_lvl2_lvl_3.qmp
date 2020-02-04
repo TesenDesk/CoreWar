@@ -149,7 +149,7 @@
        </tran_glyph>
       </tran>
       <tran trig="quotation_mark" target="../../5">
-       <tran_glyph conn="54,66,1,3,14,0,2">
+       <tran_glyph conn="54,66,1,3,16">
         <action box="0,-2,10,2"/>
        </tran_glyph>
       </tran>
@@ -276,6 +276,11 @@
        <tran trig="direct_char" target="../../2/7/1">
         <tran_glyph conn="46,144,1,3,48">
          <action box="0,-2,10,2"/>
+        </tran_glyph>
+       </tran>
+       <tran trig="white_space">
+        <tran_glyph conn="28,164,2,-1,-2,16">
+         <action box="0,-4,10,2"/>
         </tran_glyph>
        </tran>
        <state_glyph node="26,96,20,68">
