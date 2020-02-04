@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 18:35:16 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/04 15:43:59 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/02/04 17:25:28 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@
 #define COMMENT_CMD_STRING		".comment"
 #define WHITE_SPACE				" \t"
 
+/*
+** Operation names.
+*/
 #define ADD_NAME				"add"
 #define AFF_NAME				"aff"
 #define AND_NAME				"and"
@@ -43,6 +46,22 @@
 #define SUB_NAME				"sub"
 #define XOR_NAME				"xor"
 #define ZJMP_NAME				"zjmp"
+
+#define QUOTATION_MARK			'\"'
+
+enum							e_words
+{
+	UNDEFINED_TOKEN = -1,
+	EOF_WORD,
+	LINE_FEED,
+	CH_NAME,
+	CH_COMMENT,
+	LABEL_WORD,
+	OP_NAME,
+	T_REG,
+	T_IND,
+	T_DIR
+};
 
 /*
 ** The attribute structure with no disclosed attribute.
