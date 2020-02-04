@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 16:51:57 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/04 17:34:24 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/02/04 18:29:55 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,8 @@ void			lexer_ch_name(t_lexer *lexer, const char *str)
 		lexer->token = UNDEFINED_TOKEN;
 		return ;
 	}	
-	if (!(lexer->str = (char *)ft_memalloc(end - str + 1)))
-	{
-		lexer->token = UNDEFINED_TOKEN;
-		return ;
-	}
-	ft_strncpy(lexer->str, str, end - str);
+	lexer->str = str;
+	lexer->len = end - str;;
 	lexer->token = CH_NAME;
 	return ;
 }
@@ -73,13 +69,9 @@ void			lexer_ch_comment(t_lexer *lexer, const char *str)
 	{
 		lexer->token = UNDEFINED_TOKEN;
 		return ;
-	}	
-	if (!(lexer->str = (char *)ft_memalloc(end - str + 1)))
-	{
-		lexer->token = UNDEFINED_TOKEN;
-		return ;
 	}
-	ft_strncpy(lexer->str, str, end - str);
+	lexer->str = str;
+	lexer->len = end - str;
 	lexer->token = CH_COMMENT;
 	return ;
 }

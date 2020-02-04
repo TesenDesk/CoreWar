@@ -6,13 +6,14 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 18:39:31 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/04 15:42:43 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/02/04 18:29:53 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 typedef struct 	s_lexer
 {
 	char		*str;
+	size_t		len;
 	int			token;
 }				t_lexer;
 
