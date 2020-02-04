@@ -2,28 +2,8 @@
 // Created by Mudcrab Stygg on 04/02/2020.
 //
 
-//typedef struct 	    s_lexer
-//{
-//    int             state;
-//    void            *cur_token;
-//    void            (*fptr_form_token)(struct s_lexer *lexer, char **str);
-//}				    t_lexer;
-
-
-typedef struct 	    s_lexer
-{
-    int             state;
-    t_token         (*fptr_form_token)(struct s_lexer *lexer, char **str);
-}				    t_lexer;
-
-
-typedef struct 	    s_token
-{
-    int             tkn_type;
-    void		    *tkn_begin;
-    void		    *tkn_end;
-    size_t		    tkn_len;
-}				    t_token;
+typedef struct 	    s_lexer t_lexer;
+typedef struct 	    s_token t_token;
 
 
 void                construct_lexer(t_lexer **lexer);
@@ -51,17 +31,6 @@ void                get_term_label_word_unit(char**str);
  * op_name_terms
  */
 void                get_term_opx_name(char**str);
-
-
-
-
-void                construct_lexer(t_lexer **lexer)
-{
-    if (!(*lexer = (t_lexer*)malloc(sizeof(t_lexer))))
-        error();
-
-
-
-}
+void                get_term_argument_unit(char **str);
 
 
