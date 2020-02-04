@@ -66,7 +66,7 @@ enum							e_words
 /*
 ** The attribute structure with no disclosed attribute.
 */
-struct s_lexer;
+struct                          s_lexer;
 typedef struct s_lexer          t_lexer;
 
 /*
@@ -80,5 +80,10 @@ void			lexer_dtor(t_lexer *lexer);
 */
 int				lexer_get_token_id(t_lexer *lexer);
 char			*lexer_get_token_str(t_lexer *lexer);
+
+/*
+** Inner tokenizing functions
+*/
+int             lexer_switcher(char *str);
 
 #endif
