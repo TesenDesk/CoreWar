@@ -6,17 +6,28 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 16:51:57 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/04 18:29:55 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/02/05 17:32:12 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
+#include "token.h"
 
-typedef struct 	s_lexer
+#define SUCCESS		0
+#define FAILURE		(-1)
+
+typedef struct 	    s_token
 {
-	char		*str;
-	int			token;
-}				t_lexer;
+    int             token_type;
+    void		    *tkn_begin;
+    size_t		    tkn_len;
+}				    t_token;
+
+typedef struct 	    s_lexer
+{
+    int             state;
+    t_token         (*fptr_form_token)(struct s_lexer *lexer, char **str);
+}				    t_lexer;
 
 static int		is_white_space(char c)
 {
@@ -26,52 +37,43 @@ static int		is_white_space(char c)
 	return (result);
 }
 
-void			lexer_ch_name(t_lexer *lexer, const char *str)
+static int		markout_token(t_token *token, const char *str)
 {
 	char			*end;
 
-	str += ft_strlen(NAME_CMD_STRING);
 	while (is_white_space(*str))
 		++str;
 	if (*str == QUOTATION_MARK)
 		++str;
 	else
 	{
-		lexer->token = UNDEFINED_TOKEN;
-		return ;
+		token->token_type = UNDEFINED_TOKEN;
+		return (FAILURE);
 	}
 	if (!(end = ft_strchr(str, QUOTATION_MARK)))
 	{
-		lexer->token = UNDEFINED_TOKEN;
-		return ;
+		token->token_type = UNDEFINED_TOKEN;
+		return (FAILURE);
 	}	
-	lexer->str = str;
-	lexer->len = end - str;;
-	lexer->token = CH_NAME;
+	token->tkn_begin = str;
+	token->tkn_len = end - str;
+	return (SUCCESS);
+}
+
+void			lexer_ch_name(t_token *token, const char *str)
+{
+	str += ft_strlen(NAME_CMD_STRING) - 1;
+	if (markout_token(token, *str) == FAILURE)
+		return ;
+	token->token_type = CH_NAME;
 	return ;
 }
 
-void			lexer_ch_comment(t_lexer *lexer, const char *str)
+void			lexer_ch_comment(t_token *token, const char *str)
 {
-	char			*end;
-
-	str += ft_strlen(NAME_CMD_STRING);
-	while (is_white_space(*str))
-		++str;
-	if (*str == QUOTATION_MARK)
-		++str;
-	else
-	{
-		lexer->token = UNDEFINED_TOKEN;
+	str += ft_strlen(COMMENT_CMD_STRING) - 1;
+	if (markout_token(token, *str) == FAILURE)
 		return ;
-	}
-	if (!(end = ft_strchr(str, QUOTATION_MARK)))
-	{
-		lexer->token = UNDEFINED_TOKEN;
-		return ;
-	}
-	lexer->str = str;
-	lexer->len = end - str;
-	lexer->token = CH_COMMENT;
+	token->token_type = CH_COMMENT;
 	return ;
 }
