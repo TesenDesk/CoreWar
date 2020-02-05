@@ -13,7 +13,7 @@
 typedef struct 	    s_lexer
 {
     int             state;
-    t_token*        (*form_token)(textuct s_lexer *lexer, char **text);
+    t_token*        (*form_token)(t_lexer *lexer, char **text);
 }				    t_lexer;
 
 
