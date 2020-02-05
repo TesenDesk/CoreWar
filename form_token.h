@@ -22,6 +22,7 @@ t_token*            form_token(t_lexer  *lexer, char **text);
  */
 void                (*fptr_init_term_switch)(t_token *token, char **text, void (*fptr)(t_token *token,char**)[4]);
 void                tkn_get_term_init_state(t_token *token, char**text);
+
 /*
  * 1lvl token substates
  */
