@@ -6,22 +6,20 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 16:51:57 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/05 17:32:12 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/02/05 17:47:11 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 #include "token.h"
 
+#include "lexer_private.h"
+#include "token_private.h"
+
 #define SUCCESS		0
 #define FAILURE		(-1)
 
-typedef struct 	    s_token
-{
-    int             token_type;
-    void		    *tkn_begin;
-    size_t		    tkn_len;
-}				    t_token;
+
 
 typedef struct 	    s_lexer
 {
