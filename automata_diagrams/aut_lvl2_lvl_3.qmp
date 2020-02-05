@@ -201,32 +201,17 @@
      </state_glyph>
     </state>
     <state name="comment_unit">
-     <tran trig="white_space">
-      <tran_glyph conn="20,20,3,-1,18">
-       <action box="0,-2,10,2"/>
-      </tran_glyph>
-     </tran>
-     <tran trig="letter">
-      <tran_glyph conn="20,22,3,-1,18">
-       <action box="0,-2,10,2"/>
-      </tran_glyph>
-     </tran>
-     <tran trig="symbol">
-      <tran_glyph conn="20,26,3,-1,18">
-       <action box="0,-2,10,2"/>
-      </tran_glyph>
-     </tran>
-     <tran trig="digit">
-      <tran_glyph conn="20,24,3,-1,18">
-       <action box="0,-2,10,2"/>
-      </tran_glyph>
-     </tran>
      <tran trig="&quot;\n&quot;" target="..">
-      <tran_glyph conn="22,30,2,1,-2,18">
+      <tran_glyph conn="22,24,2,1,-2,18">
        <action box="0,-4,10,2"/>
       </tran_glyph>
      </tran>
-     <state_glyph node="20,14,20,16"/>
+     <tran trig="not_eof_lfeed_qmark">
+      <tran_glyph conn="20,20,3,-1,16">
+       <action box="0,-2,14,2"/>
+      </tran_glyph>
+     </tran>
+     <state_glyph node="20,14,20,10"/>
     </state>
     <state name="code_unit">
      <state name="label_word_unit">
