@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "lexer_private.h"
+#include
 
 void                lexer_constructor(t_lexer **lexer)
 {
@@ -30,18 +31,17 @@ void                lexer_destructor(t_lexer **lexer)
 }
 
 
-void                token_constructor(t_token **token)
+t_token*            lexer_get_token(t_lexer *lexer)
 {
-	if (!(*token = (t_token*)malloc(sizeof(t_token))))
-	{
-		printf("error\n");
-		exit(-1);
-	}
-	(*token)->tkn_type = 0;
-	(*token)->tkn_begin = NULL;
-	(*token)->tkn_end = NULL;
-	(*token)->tkn_len = 0;
+
+
 }
+
+int                 lexer_state_switcher(char *str)
+{
+
+}
+
 //
 //int				lexer_get_token_id(t_lexer *lexer)
 //{
