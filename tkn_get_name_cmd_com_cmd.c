@@ -10,8 +10,12 @@
 /*   Updated: 2020/02/05 18:55:45 by cmissy           ###   ########.fr       */
 =======
 /*   Created: 2020/02/05 19:39:17 by ftothmur          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/02/05 19:40:12 by ftothmur         ###   ########.fr       */
 >>>>>>> 7e4ecc40a260cfb339a0a83c53971cfb4862d4cc:tkn_get_name_cmd_com_cmd.c
+=======
+/*   Updated: 2020/02/06 17:29:35 by ftothmur         ###   ########.fr       */
+>>>>>>> 2f9bacd8923984f8e7b35a17de83916e0767b773
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +25,7 @@
 #define SUCCESS		0
 #define FAILURE		(-1)
 
-static int			is_white_space(char c)
+int					is_white_space(char c)
 {
 	int			result;
 
