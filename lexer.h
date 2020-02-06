@@ -72,8 +72,9 @@ typedef struct s_lexer          t_lexer;
 /*
 ** Constructor and destructor functions.
 */
-void			lexer_ctor(t_lexer *lexer);
-void			lexer_dtor(t_lexer *lexer);
+
+void                lexer_constructor(t_lexer **lexer);
+void                lexer_destructor(t_lexer **lexer);
 
 /*
 ** Public behavioral functions.
