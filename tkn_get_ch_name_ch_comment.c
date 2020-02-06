@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 16:51:57 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/05 19:40:09 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/02/06 17:59:33 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 #define SUCCESS		0
 #define FAILURE		(-1)
 
-static int			mark_out_token(t_token *token, const char *text, char *end)
+static int			tkn_mark_out_token
+					(t_token *token, const char *text, char *end)
 {
 	while (is_white_space(**text))
 		++(*text);
