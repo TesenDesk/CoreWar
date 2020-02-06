@@ -75,6 +75,7 @@ typedef struct s_lexer          t_lexer;
 
 void                lexer_constructor(t_lexer **lexer);
 void                lexer_destructor(t_lexer **lexer);
+ //form_token
 
 /*
 ** Public behavioral functions.
