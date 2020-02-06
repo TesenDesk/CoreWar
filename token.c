@@ -1,3 +1,4 @@
+
 #include "token_private.h"
 
 void                token_constructor(t_token **token)
@@ -18,3 +19,4 @@ void                token_destructor(t_token **token)
 	free(*token);
 	*token = NULL;
 }
+

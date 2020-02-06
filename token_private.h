@@ -50,7 +50,10 @@ typedef struct 	    s_token
     int             token_type;
     void		    *tkn_begin;
     size_t		    tkn_len;
+    void            (*form_token)(t_token *token, char **text);
 }				    t_token;
+
+
 
 void                (*fptr_init_term_switch)(t_token *token, char **text, void (*fptr)(t_token *token,char**)[4]);
 void                tkn_get_term_init_state(t_token *token, char**text);

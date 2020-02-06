@@ -19,6 +19,6 @@ typedef struct 	    s_lexer
     t_token         (*fptr_form_token)(struct s_lexer *lexer, char **str);
 }				    t_lexer;
 
+int                 lexer_state_switcher(char *str);
 
-t_token*             lexer_form_token(t_lexer *lexer);
 #endif

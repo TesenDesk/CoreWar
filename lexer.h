@@ -72,20 +72,18 @@ typedef struct s_lexer          t_lexer;
 ** Constructor and destructor functions.
 */
 
-void                lexer_constructor(t_lexer **lexer);
-void                lexer_destructor(t_lexer **lexer);
- //form_token
- t_token*              lexer_form_token(t_lexer *lexer);
-
+void             lexer_constructor(t_lexer **lexer);
+void             lexer_destructor(t_lexer **lexer);
 /*
 ** Public behavioral functions.
 */
-int				lexer_get_token_id(t_lexer *lexer);
-char			*lexer_get_token_str(t_lexer *lexer);
+t_token*        lexer_form_token(t_lexer *lexer);
+//int				lexer_get_token_id(t_lexer *lexer);
+//char			*lexer_get_token_str(t_lexer *lexer);
 
 /*
 ** Inner tokenizing functions
 */
-int             lexer_switcher(char *str);
+int             lexer_state_switcher(char *str);
 
 #endif
