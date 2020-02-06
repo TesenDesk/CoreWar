@@ -307,14 +307,14 @@
         <state_glyph node="105,105,20,27"/>
        </state>
        <state name="t_reg">
-        <entry brief="return">object &quot;t_reg&quot;</entry>
+        <exit brief="return ">object &quot;t_reg&quot;</exit>
         <tran trig="natural_number" target="../../5">
          <tran_glyph conn="88,117,2,3,-2,17">
           <action box="1,-4,12,2"/>
          </tran_glyph>
         </tran>
         <state_glyph node="80,105,20,12">
-         <entry box="1,2,9,2"/>
+         <exit box="1,2,6,2"/>
         </state_glyph>
        </state>
        <state name="t_ind">
