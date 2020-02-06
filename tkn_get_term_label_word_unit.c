@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 16:41:31 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/06 17:27:54 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/02/06 17:32:53 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 
 #define SUCCESS		0
 #define FAILURE		(-1)
-
-int						is_underscore(char c)
-{
-	return (c == '_');
-}
 
 int						is_line_feed(char c)
 {
