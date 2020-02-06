@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 17:44:55 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/05 17:46:09 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/02/06 17:27:27 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,9 @@ void                tkn_get_term_label_word_unit(t_token *token, char **text);
 void                tkn_get_term_opx_name(t_token *token, char **text);
 void                tkn_get_label_word_unitt (t_token *token, char **text);
 
+
+int					is_white_space(char c);
+int					is_line_feed(char c);
+int					is_of_label_chars(char c);
 
 #endif
