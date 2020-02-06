@@ -80,6 +80,7 @@ typedef struct s_lexer          t_lexer;
 void                lexer_constructor(t_lexer **lexer);
 void                lexer_destructor(t_lexer **lexer);
  //form_token
+ t_token*              lexer_form_token(t_lexer *lexer);
 
 /*
 ** Public behavioral functions.
