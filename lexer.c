@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer_private.h.h"
+#include "lexer_private.h"
 
 void                lexer_constructor(t_lexer **lexer)
 {
