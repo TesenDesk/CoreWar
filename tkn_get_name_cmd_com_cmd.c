@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 19:39:17 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/05 19:40:12 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/02/06 17:04:23 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #define SUCCESS		0
 #define FAILURE		(-1)
 
-static int			is_white_space(char c)
+int					is_white_space(char c)
 {
 	int			result;
 
