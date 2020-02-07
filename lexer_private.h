@@ -50,5 +50,38 @@ typedef struct 	    s_lexer
     t_token         (*fptr_lexer_form_token(t_lexer *lexer, char **text));
 }				    t_lexer;
 
+void                (*fptr_init_term_switch)(t_lexer *lexer, char **text, void (*fptr)(t_lexer *lexer,char**)[4]);
+void                lxr_get_term_init_state(t_lexer *lexer, char**text);
+
+/*
+ * 1lvl token substates
+ */
+
+void                (*fptr_1sub_term_switch)(t_lexer *lexer, char **text,(void) (*fptr)(t_lexer *lexer, char**)[2] );
+void                lxr_get_term_comment_unit(t_lexer *lexer, char **text);
+void                lxr_get_term_line_feed_unit(t_lexer *lexer, char **text);
+void                lxr_get_term_champion_unit(t_lexer *lexer, char **text);
+void                lxr_get_term_code_unit(t_lexer *lexer, char **text);
+
+/*
+ * code_state_terms
+ */
+
+void                (*fptr_code_state_term_switch)(t_lexer *lexer, char **text, (void) (*fptr)(char**)[2]);
+void                lxr_get_term_op_name_unit(t_lexer *lexer, char **text);
+void                lxr_get_term_label_word_unit(t_lexer *lexer, char **text);
+
+/*
+ * op_name_terms
+ */
+
+void                lxr_get_term_opx_name(t_lexer *lexer, char **text);
+void                lxr_get_label_word_unit(t_lexer *lexer, char **text);
+
+
+int					is_white_space(char c);
+int					is_line_feed(char c);
+int					is_of_label_chars(char c);
+
 
 #endif
