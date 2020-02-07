@@ -79,6 +79,6 @@ void             lexer_destructor(t_lexer **lexer);
 ** Public behavioral functions.
 */
 
-t_token*        lexer_get_token(t_lexer *lexer);
+t_token             *lexer_form_token(t_lexer *lexer, char **text);
 
 #endif

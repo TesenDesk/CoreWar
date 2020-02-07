@@ -30,25 +30,8 @@ void                lexer_destructor(t_lexer **lexer)
 	*lexer = NULL;
 }
 
-
-t_token*            lexer_get_token(t_lexer *lexer)
+t_token             *lexer_form_token(t_lexer *lexer, char **text)
 {
-
+	;
 
 }
-
-int                 lexer_state_switcher(char *str)
-{
-
-}
-
-//
-//int				lexer_get_token_id(t_lexer *lexer)
-//{
-//	return ();
-//}
-//
-//char			*lexer_get_token_str(t_lexer *lexer)
-//{
-//	return ();
-//}
