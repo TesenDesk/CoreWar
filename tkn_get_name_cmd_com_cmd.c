@@ -24,14 +24,14 @@ int					tkn_is_white_space(char c)
 	return (result);
 }
 
-static void			run_through_spaces(const char **text)
+static void			run_through_spaces(char const **text)
 {
 	while (is_white_space(**text))
 		++(*text);
 	return ;
 }
 
-void				tkn_get_name_cmd(t_token *token, const char **text)
+void				lexer_get_term_name_cmd(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2])
 {
 	while (is_white_space(*str))
 		++(*str);
@@ -41,7 +41,7 @@ void				tkn_get_name_cmd(t_token *token, const char **text)
 	return ;
 }
 
-void				tkn_get_com_cmd(t_token *token, const char **text)
+void				tkn_get_com_cmd(t_token *token, char const **text)
 {
 	while (is_white_space(*str))
 		++(*str);

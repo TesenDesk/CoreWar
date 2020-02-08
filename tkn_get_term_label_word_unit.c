@@ -27,7 +27,7 @@ int						tkn_is_of_label_chars(char c)
 }
 
 void					tkn_get_term_label_word_unit
-						(t_token *token, const char **text)
+						(t_token *token, char const **text)
 {
 	token->token_ptr[0] = *text;
 	while (tkn_is_of_label_chars(**text))

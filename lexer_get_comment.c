@@ -10,13 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "token.h"
+#include "lexer.h"
+#include "lexer_private.h"
 
-void		tkn_get_comment(t_token *token, const char **text)
+
+void		lexer_get_term_comment(t_lexer *lexer, const char const **text, int *token_type, void *token_ptr[2])
 {
 	if (!**text)
-		token->token_type = UNDEFINED_TOKEN;
-	while (!**text && **text != '\n')
+	{
+        *token_type = UNDEFINED_TOKEN;
+        *(token->token_ptr) = NULL;
+        *(token->token_ptr + 1) = NULL;
+        return ;
+    }
+	while (!**text || **text != '\n')
 		++(*text);
 	return ;
 }

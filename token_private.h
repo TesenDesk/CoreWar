@@ -12,7 +12,8 @@
 
 #ifndef TOKEN_PRIVATE_H
 #define TOKEN_PRIVATE_H
-
+#include <stdio.h>
+#include <stdlib.h>
 
 typedef struct 	    s_token
 {
