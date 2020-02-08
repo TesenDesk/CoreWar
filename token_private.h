@@ -16,10 +16,10 @@
 
 typedef struct 	    s_token
 {
-    int             token_type;
-    void		    *tkn_begin;
-    size_t		    tkn_len;
-    void            (*form_token)(t_token *token, char **text);
+    int const       token_type;
+    void const		*tkn_begin;
+    size_t const    tkn_len;
+//    void            (*form_token)(t_token *token, char **text);
 }				    t_token;
 
 
