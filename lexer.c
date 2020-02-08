@@ -48,11 +48,26 @@ void                lexer_destructor(t_lexer **lexer)
 t_token             *lexer_form_token(t_lexer *lexer, char **text)
 {
     int             token_type;
-    void            *token_begin;
-    size_t          token_len;
+    void            *token_ptr[2];
 
+    token_type = -1;
+    token_ptr[0] = NULL;
+    token_ptr[1] = NULL;
+    lexer->lexer_switcher[lexer_find_method(lexer->state)](lexer, text, &token_type, token_ptr);
+    return (token_constructor(token_type, token_ptr));
 
+}
 
-    return (token_constructor(token_type, token_begin, token_len));
-
+int                 lexer_find_method(t_lexer *lexer, char *text)
+{
+    if (lexer->state == init_st)
+        return (lexer_find_init_method(text));
+    else if (lexer->state == comment_st)
+        return (GET_COMMENT);
+    else if (lexer->state == line_feed_st)
+        return (LINE_FEED);
+    else if (lexer->state >=name_cmd_st && lexer->state <= ch_comm_st)
+        return (lexer_find_champion_method(text));
+    else if (lexer->state >=opx_name_st && lexer->state <= arg_break_st)
+        return (lexer_find_code_method(text);
 }

@@ -17,8 +17,9 @@
  * STATE MACHINE STATEs
  */
 
-#define comment_unit_st 0
-#define line_feed_unit_st 1
+#define init_st 0
+#define comment_st 1
+#define line_feed_unit_st 2
 
 /*
  * champ_unit_states
@@ -39,9 +40,10 @@
  */
 
 #define t_reg_st        8
-#define t_ind_st        9
-#define t_dir_int_st    10
-#define t_dir_lab_st    11
+#define t_ind_int_st    9
+#define t_ind_label_st  10
+#define t_dir_int_st    11
+#define t_dir_lab_st    12
 #defien arg_break_st    13
 
 /*
@@ -50,14 +52,13 @@
 //#define INIT        0
 #define GET_COMMENT 0
 #define LINE_FEED 1
-#define CHAMPION 2
+//#define CHAMPION 2
 #define OPX 4
 #define LABEL_WORD 5
-#define OPX 6
-#define ARG_REG 7
-#define ARG_IND_INT 8
-#define ARG_IND_LABEL 9
-#define ARG_DIR_INT 10
+#define ARG_REG 6
+#define ARG_IND_INT 7
+#define ARG_IND_LABEL 8
+#define ARG_DIR_INT 9
 #define ARG_DIR_LABEL 10
 #define ARG_BREAK 11
 
