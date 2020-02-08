@@ -7,7 +7,7 @@ int main()
 {
     t_lexer *lex;
     lexer_constructor(&lex);
-    char const *str = "     \n";
+    char const *str = "     #\n";
     printf("sasas\n");
     t_token *token = lexer_form_token(lex, &str);
     printf("sasas\n");

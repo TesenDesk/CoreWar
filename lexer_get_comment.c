@@ -23,7 +23,7 @@ int		lexer_get_term_comment(t_lexer *lexer, char const **text, int *token_type, 
         *(token_ptr + 1) = NULL;
         return (0);
     }
-	while (!**text || **text != '\n')
+	while (!**text && **text != '\n')
 		++(*text);
 	return (0);
 }

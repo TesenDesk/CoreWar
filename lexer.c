@@ -54,10 +54,15 @@ static int                  lexer_find_init_method(char const *text)
     // else if (strnstr())
 
 }
-static int                 lexer_find_method(t_lexer *lexer, char const *text)
+static int                 lexer_find_method(t_lexer *lexer, char const **text)
 {
     if (lexer->state == INIT)
-        return (lexer_find_init_method(text));
+    {
+        //переделать
+        while (**text == ' ')
+            ++(*text);
+        return (lexer_find_init_method(*text));
+    }
     else if (lexer->state == COMMENT)
         return (COMMENT);
 //    else if (lexer->state == line_feed_st)
@@ -78,7 +83,7 @@ t_token             *lexer_form_token(t_lexer *lexer, char const **text)
     token_type = -1;
     token_ptr[0] = NULL;
     token_ptr[1] = NULL;
-    lexer->lexer_switcher[lexer_find_method(lexer, *text)](lexer, text, &token_type, token_ptr);
+    lexer->lexer_switcher[lexer_find_method(lexer, text)](lexer, text, &token_type, token_ptr);
     return (token_constructor(token_type, token_ptr));
 
 }
