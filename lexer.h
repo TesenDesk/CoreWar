@@ -12,7 +12,7 @@
 #ifndef LEXER_H
 #define LEXER_H
 
-#include "lexer_private.h"
+//#include "lexer_private.h"
 #include "token.h"
 
 
@@ -69,7 +69,7 @@
 /*
 ** The attribute structure with no disclosed attribute.
 */
-struct                          s_lexer;
+//struct                          s_lexer;
 typedef struct s_lexer          t_lexer;
 
 /*

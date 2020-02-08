@@ -17,8 +17,8 @@
 
 typedef struct 	    s_token
 {
-    int const       token_type;
-    void const		*token_ptr[2];
+    int             token_type;
+    void		    *token_ptr[2];
 }				    t_token;
 
 

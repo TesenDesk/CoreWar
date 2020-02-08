@@ -14,16 +14,16 @@
 #include "lexer_private.h"
 
 
-void		lexer_get_term_comment(t_lexer *lexer, const char const **text, int *token_type, void *token_ptr[2])
+int		lexer_get_term_comment(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2])
 {
 	if (!**text)
 	{
-        *token_type = UNDEFINED_TOKEN;
-        *(token->token_ptr) = NULL;
-        *(token->token_ptr + 1) = NULL;
-        return ;
+        *token_type = -1;
+        *(token_ptr) = NULL;
+        *(token_ptr + 1) = NULL;
+        return (0);
     }
 	while (!**text || **text != '\n')
 		++(*text);
-	return ;
+	return (0);
 }
