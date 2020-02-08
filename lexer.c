@@ -27,9 +27,16 @@ void                lexer_constructor(t_lexer **lexer)
 	}
 	*lexer->state = 0;
 	*lexer->form_token = lexer_form_token;
-	*lexer->lexer_switcher[GET_COMMENT] = lexer_get_term_comment_unit;
-    *lexer->lexer_switcher[LINE_FEED] = lexer_get_term_comment_unit;
-
+	*lexer->lexer_switcher[GET_COMMENT] = lexer_get_term_comment;
+    *lexer->lexer_switcher[LINE_FEED] = lexer_get_term_line_feed;
+    *lexer->lexer_switcher[CHAMPION] = lexer_get_term_champion;
+//    *lexer->lexer_switcher[OPX] = lexer_get_term_opx;
+//    *lexer->lexer_switcher[ARG_REG] = lexer_get_term_arg_reg;
+//    *lexer->lexer_switcher[ARG_IND_INT] = lexer_get_term_arg_dir_int;
+//    *lexer->lexer_switcher[ARG_IND_LABEL] = lexer_get_term_arg_ind_label;
+//    *lexer->lexer_switcher[ARG_DIR_INT] = lexer_get_term_arg_dir_int;
+//    *lexer->lexer_switcher[ARG_DIR_LABEL] = lexer_get_term_arg_dir_label;
+//    *lexer->lexer_switcher[ARG_BREAK] = lexer_get_term_arg_break;
 }
 
 void                lexer_destructor(t_lexer **lexer)
@@ -43,10 +50,6 @@ t_token             *lexer_form_token(t_lexer *lexer, char **text)
     int             token_type;
     void            *token_begin;
     size_t          token_len;
-
-
-
-    lxr_init_term_switch(lexer, text, )
 
 
 

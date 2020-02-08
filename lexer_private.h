@@ -51,48 +51,54 @@
 #define GET_COMMENT 0
 #define LINE_FEED 1
 #define CHAMPION 2
-#define CODE 3
-#define OPX_NAME 4
+#define OPX 4
 #define LABEL_WORD 5
+#define OPX 6
+#define ARG_REG 7
+#define ARG_IND_INT 8
+#define ARG_IND_LABEL 9
+#define ARG_DIR_INT 10
+#define ARG_DIR_LABEL 10
+#define ARG_BREAK 11
 
-
-typedef int         (*fptr_init_term_switch)(t_lexer *lexer, char **text, void (*fptr)(t_lexer *lexer,char**)[4]);
-typedef int         (*fptr_1sub_term_switch)(t_lexer *lexer, char **text,(void) (*fptr)(t_lexer *lexer, char**)[2]);
-typedef int         (*fptr_code_state_term_switch)(t_lexer *lexer, char **text, (void) (*fptr)(char**)[2]);
 typedef struct 	    s_lexer
 {
     int             state;
     t_token         (*lexer_form_token)(t_lexer *lexer, char **text);
-    int             (*lexer_switcher)(int (*fptr1)[8](t_lexer *lexer, char **text));
+    int             (*lexer_switcher)(int (*fptr1)[12](t_lexer *lexer, char **text));
 }				    t_lexer;
 
-int                 (*fptr_init_term_switch)(t_lexer *lexer, char **text, void (*fptr)(t_lexer *lexer,char**)[4]);
-int                lxr_get_term_init_state(t_lexer *lexer, char**text);
+//int                 (*fptr_init_term_switch)(t_lexer *lexer, char **text, void (*fptr)(t_lexer *lexer,char**)[4]);
+//int                lxr_get_term_init_state(t_lexer *lexer, char**text);
 
 /*
  * 1lvl token substates
  */
 
-int                 (*fptr_1sub_term_switch)(t_lexer *lexer, char **text,(void) (*fptr)(t_lexer *lexer, char**)[2] );
-int                lxr_get_term_comment_unit(t_lexer *lexer, char **text);
-int                lxr_get_term_line_feed_unit(t_lexer *lexer, char **text);
-int                lxr_get_term_champion_unit(t_lexer *lexer, char **text);
-int                lxr_get_term_code_unit(t_lexer *lexer, char **text);
+//int                 (*fptr_1sub_term_switch)(t_lexer *lexer, char **text,(void) (*fptr)(t_lexer *lexer, char**)[2] );
+int                lexer_get_term_comment(t_lexer *lexer, char **text);
+int                lexer_get_term_line_feed(t_lexer *lexer, char **text);
+int                lexer_get_term_champion(t_lexer *lexer, char **text);
+//int                lexer_get_term_ch(t_lexer *lexer, char **text);
+//int                lxr_get_term_code_unit(t_lexer *lexer, char **text);
 
 /*
  * code_state_terms
  */
 
-int                 (*fptr_code_state_term_switch)(t_lexer *lexer, char **text, (void) (*fptr)(char**)[2]);
-int                lxr_get_term_op_name_unit(t_lexer *lexer, char **text);
-int                lxr_get_term_label_word_unit(t_lexer *lexer, char **text);
+int                lexer_get_term_opx(t_lexer *lexer, char **text);
+int                lexer_get_term_label_word_unit(t_lexer *lexer, char **text);
+int                lexer_get_term_arg_reg(t_lexer *lexer, char **text);
+int                lexer_get_term_arg_ind_int(t_lexer *lexer, char **text);
+int                lexer_get_term_arg_ind_label(t_lexer *lexer, char **text);
+int                lexer_get_term_arg_dir_int(t_lexer *lexer, char **text);
+int                lexer_get_term_arg_dir_label(t_lexer *lexer, char **text);
+int                lexer_get_term_arg_break(t_lexer *lexer, char **text);
+
 
 /*
- * op_name_terms
+ * utilities
  */
-
-void                lxr_get_term_opx_name_unit(t_lexer *lexer, char **text);
-void                lxr_get_label_word_unit(t_lexer *lexer, char **text);
 
 
 int					is_white_space(char c);
