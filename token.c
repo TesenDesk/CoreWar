@@ -1,6 +1,7 @@
 
 #include "token.h"
 #include "token_private.h"
+#include "token_defines.h"
 
 t_token*               token_constructor(int type,void *ptr[2])
 {

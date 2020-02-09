@@ -12,8 +12,8 @@
 #ifndef LEXER_H
 #define LEXER_H
 
-//#include "lexer_private.h"
 #include "token.h"
+#include "token_defines.h"
 
 
 #define COMMENT_CHAR			'#'

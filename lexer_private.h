@@ -14,6 +14,7 @@
 #define LEXER_PRIVATE_H
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "token.h"
 /*
  * STATE MACHINE STATEs
