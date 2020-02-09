@@ -10,29 +10,46 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-typedef struct 	s_lexer
-{
-	char		*str;
-	size_t		len;
-	int			token;
-}				t_lexer;
+#include "lexer.h"
+#include "lexer_private.h"
+#include "token.h"
 
-void			lexer_ctor(t_lexer *lexer)
+#define
+
+
+
+void                lexer_constructor(t_lexer **lexer)
 {
-	return ;
+	if (!(*lexer = (t_lexer*)malloc(sizeof(t_lexer))))
+	{
+		printf("error\n");
+		exit(-1);
+	}
+	*lexer->state = 0;
+	*lexer->form_token = lexer_form_token;
+	*lexer->lexer_switcher[GET_COMMENT] = lexer_get_term_comment_unit;
+    *lexer->lexer_switcher[LINE_FEED] = lexer_get_term_comment_unit;
+
 }
 
-void			lexer_dtor(t_lexer *lexer)
+void                lexer_destructor(t_lexer **lexer)
 {
-	return ;
+	free(*lexer);
+	*lexer = NULL;
 }
 
-int				lexer_get_token_id(t_lexer *lexer)
+t_token             *lexer_form_token(t_lexer *lexer, char **text)
 {
-	return ();
-}
+    int             token_type;
+    void            *token_begin;
+    size_t          token_len;
 
-char			*lexer_get_token_str(t_lexer *lexer)
-{
-	return ();
+
+
+    lxr_init_term_switch(lexer, text, )
+
+
+
+    return (token_constructor(token_type, token_begin, token_len));
+
 }

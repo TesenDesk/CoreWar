@@ -6,11 +6,6 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 18:35:16 by ftothmur          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2020/02/05 18:44:25 by cmissy           ###   ########.fr       */
-=======
-/*   Updated: 2020/02/05 19:33:06 by ftothmur         ###   ########.fr       */
->>>>>>> 7e4ecc40a260cfb339a0a83c53971cfb4862d4cc
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,18 +71,14 @@ typedef struct s_lexer          t_lexer;
 /*
 ** Constructor and destructor functions.
 */
-void			lexer_ctor(t_lexer *lexer);
-void			lexer_dtor(t_lexer *lexer);
+
+void             lexer_constructor(t_lexer **lexer);
+void             lexer_destructor(t_lexer **lexer);
 
 /*
 ** Public behavioral functions.
 */
-int				lexer_get_token_id(t_lexer *lexer);
-char			*lexer_get_token_str(t_lexer *lexer);
 
-/*
-** Inner tokenizing functions
-*/
-int             lexer_switcher(char *str);
+t_token             *lexer_form_token(t_lexer *lexer, char **text);
 
 #endif

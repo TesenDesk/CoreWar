@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 18:05:13 by cmissy            #+#    #+#             */
-/*   Updated: 2020/02/07 18:34:23 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/02/07 19:59:12 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void		tkn_get_arg_t_reg(t_token *token, const char **text)
 {
 	int		num_of_reg;
 
-	*text += 1;
 	if (!ft_isdigit(**text) ||
 	(num_of_reg = ft_atoi(*text)) > 16 || num_of_reg < 1)
 	{
@@ -41,9 +40,12 @@ void		tkn_get_arg_t_reg(t_token *token, const char **text)
 	return ;
 }
 
-void		tkn_get_arg_t_ind(t_token *token, const char **text)
+void		tkn_get_arg_t_ind_int(t_token *token, const char **text)
+{}
+
+void		tkn_get_arg_t_ind_lbl(t_token *token, const char **text)
 {
-	*text += 1;
+
 	if 
 }
 // void		tkn_get_break(t_token *token, const char **text)

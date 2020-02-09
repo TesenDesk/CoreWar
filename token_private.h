@@ -13,15 +13,14 @@
 #ifndef TOKEN_PRIVATE_H
 #define TOKEN_PRIVATE_H
 
+
 typedef struct 	    s_token
 {
-    int             token_type;
-    void		    *tkn_begin;
-    size_t		    tkn_len;
+    int const       token_type;
+    void const		*tkn_begin;
+    size_t const    tkn_len;
+//    void            (*form_token)(t_token *token, char **text);
 }				    t_token;
 
-int					is_white_space(char c);
-int					is_line_feed(char c);
-int					is_of_label_chars(char c);
 
 #endif
