@@ -68,8 +68,20 @@ typedef struct 	    s_lexer
 {
     int             state;
     t_token*        (*lexer_form_token)(struct s_lexer *lexer, char const **text);
-    int             (*lexer_switcher[12])(struct s_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
+    void            (*change_state)(struct s_lexer *lexer, char const **text);
+    int             (*get_term[12])(struct s_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
 }				    t_lexer;
+
+/*
+ * change_state methods
+ */
+
+void                lexer_change_state(t_lexer *lexer, char const **text);
+
+/*
+ * init state methods
+ */
+int		lexer_get_term_init(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
 
 /*
  * 1lvl comment/feed methods
