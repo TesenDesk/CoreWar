@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tkn_get_ch_name_ch_comment.c                       :+:      :+:    :+:   */
+/*   lexer_get_term_ch_name_ch_comment.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -37,14 +37,14 @@ static int			tkn_mark_out_token
 	return (SUCCESS);
 }
 
-void				tkn_get_ch_name(t_token *token, const char **text)
+void				lexer_get_term_ch_name(t_token *token, char const **text)
 {
 	if (mark_out_token(token, text) == FAILURE)
 		return ;
 	return ;
 }
 
-void				tkn_get_ch_comment(t_token *token, const char **text)
+void				tkn_get_ch_comment(t_token *token, char const **text)
 {
 	if (mark_out_token(token, text) == FAILURE)
 		return ;

@@ -12,14 +12,15 @@
 
 #ifndef TOKEN_PRIVATE_H
 #define TOKEN_PRIVATE_H
+#include <stdio.h>
+#include <stdlib.h>
 
+//#define UNDEF_TOKEN -1
 
 typedef struct 	    s_token
 {
-    int const       token_type;
-    void const		*tkn_begin;
-    size_t const    tkn_len;
-//    void            (*form_token)(t_token *token, char **text);
+    int             token_type;
+    void		    *token_ptr[2];
 }				    t_token;
 
 
