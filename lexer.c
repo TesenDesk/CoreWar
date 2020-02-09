@@ -77,6 +77,15 @@ static int                  lexer_op_found(char const **text)
     );
 }
 
+//static int                  lexer_find_next_to_com_lf(t_lexer *lexer, char const **text)
+//{
+//    if (lexer->state == COMMENT)
+//    {
+//        if (**text == '\n')
+//
+//    }
+//}
+
 static int                  lexer_find_next_to_init(char const **text)
 {
     if (**text == COMMENT_CHAR || **text == ALT_COMMENT_CHAR)
@@ -87,17 +96,21 @@ static int                  lexer_find_next_to_init(char const **text)
         return (NAME_CMD);
     else if (strnstr(*text, ".comment", 8))
         return (COMM_CMD);
-    else if (lexer_op_found(*text))
+    else if (lexer_op_found(text))
         return (OPX);
 //    else if (strchr(LABEL_CHARS, **text))
 //        return (LA)
     return (1);
 }
 
-void                lexer_change_state(t_lexer *lexer, char const **text)
+void                lexer_change_state(t_lexer *lexer, int term_type)
 {
-    if (lexer->state == INIT)
-        lexer->state = lexer_find_next_to_init(text);
+    if (lexer->state == INIT) {
+        ;
+//        lexer->state = lexer_find_next_to_init(text);
+//        return ;
+    }
+
 //    else
 //    {
 
@@ -116,8 +129,9 @@ t_token             *lexer_form_token(t_lexer *lexer, char const **text)
     token_ptr[1] = NULL;
     token_complete = 0;
     while (!(token_complete = lexer->get_term[lexer->state](lexer, text, &token_type, token_ptr)))
-        lexer_change_state(lexer, text);
-    lexer_change_state(lexer, text);
+        ;
+//        lexer_change_state(lexer, text);
+//    lexer_change_state(lexer, text);
     return (token_constructor(token_type, token_ptr));
 }
 
