@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define UNDEF_TOKEN -1
+//#define UNDEF_TOKEN -1
 
 typedef struct 	    s_token
 {

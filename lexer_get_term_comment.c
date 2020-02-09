@@ -21,8 +21,10 @@ int		lexer_get_term_comment(t_lexer *lexer, char const **text, int *token_type, 
         *token_type = TOKEN_UNDEF;
         return (1);
     }
-	while (!(**text == '\0' || **text == '\n'))
-	    printf("%s\n", *text);
-		++(*text);
-	return (0);
+//    while (!**text && **text != '\n') {
+//        printf("%p\n", *text);
+    while (!(**text == '\0' || **text == '\n'))
+        ++(*text);
+//    }
+    return (0);
 }

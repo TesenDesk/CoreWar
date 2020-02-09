@@ -9,7 +9,7 @@
   <item name="backups">0</item>
  </group>
  <group name="windows">
-  <item id="asm::asm::Class2::SM">0,0,1092,643,*</item>
+  <item id="asm::asm::Class2::SM">0,0,1948,998,*</item>
  </group>
  <group name="search">
   <item name="options">2032128</item>
