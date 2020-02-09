@@ -51,9 +51,11 @@ static int                  lexer_find_next_to_init(char const **text)
         return (COMMENT);
     else if (**text == '\n')
         return (LINE_FEED);
-    else
-        return (-1);
-
+//    else if (strnstr(*text, ".name", 5) || strnstr(*text, ".comment", 8))
+//        ;
+//    else if (strnstr(*text, ".comment", 8)))
+//    return (-1);
+    return (1);
 }
 
 void                lexer_change_state(t_lexer *lexer, char const **text)
@@ -79,6 +81,7 @@ t_token             *lexer_form_token(t_lexer *lexer, char const **text)
     token_complete = 0;
     while (!(token_complete = lexer->get_term[lexer->state](lexer, text, &token_type, token_ptr)))
         lexer_change_state(lexer, text);
+    lexer_change_state(lexer, text);
     return (token_constructor(token_type, token_ptr));
 
 }
