@@ -27,7 +27,7 @@
 
 #define SEPARATOR_CHAR			','
 
-#define LABEL_CHARS				"abcdefghijklmnopqrstuvwxyz_0123456789"
+#define LABEL_CHARS				"abcdefghijklmnopqrstuvwxyz_0123456789" // 17
 #define NAME_CMD_STRING			".name"
 #define COMMENT_CMD_STRING		".comment"
 #define WHITE_SPACE				" \t"

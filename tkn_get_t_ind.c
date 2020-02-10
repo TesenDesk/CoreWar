@@ -17,10 +17,11 @@ int		lexer_get_t_ind_integer(t_lexer *lexer, char const **text, int *token_type,
 	while (ft_isdig(**text))
 		++(*text);
 	token_ptr[1] = *text - 1;
-	return (1);
+	return (INTEGER_CODE);
 }
 
-int		lexer_get_t_ind_label(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2])
+int		lexer_get_t_ind_label(t_lexer *lexer, char const **text,
+		int *token_type, void *token_ptr[2])
 {
 	void	*t;
 
@@ -36,5 +37,16 @@ int		lexer_get_t_ind_label(t_lexer *lexer, char const **text, int *token_type, v
 			++(*text);
 		token_ptr[1] = *text - 1;
 	}
-	return (1);
+	return (LABEL_CHARS_CODE);
+}
+
+int			tkn_get_break(t_lexer *lexer, char const **text,
+			int *token_type, void *token_ptr[2])
+{
+	if (ft_strchr(WHITE_SPACE, **text))
+		return ();
+	if (**text == SEPARATOR_CHAR)
+		return ();
+	if (**text == '\n')
+		return ();
 }
