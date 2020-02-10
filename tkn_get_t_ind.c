@@ -27,13 +27,11 @@ int		lexer_get_t_ind_label(t_lexer *lexer, char const **text,
 {
 	void	*t;
 
-	t = (void*)lexer;
 	token_ptr[0] = *text;
-	++(*text);
 	if (!ft_strchr(LABEL_CHARS, **text))
 	{
 		*token_type = TOKEN_UNDEF;
-		return (TERM_UNDEFINED)
+		return (TERM_UNDEFINED);
 	}
 	else
 	{
@@ -41,8 +39,8 @@ int		lexer_get_t_ind_label(t_lexer *lexer, char const **text,
 		while (ft_strchr(LABEL_CHARS, **text))
 			++(*text);
 		token_ptr[1] = *text - 1;
+		return (LABEL_CHARS_CODE);
 	}
-	return (LABEL_CHARS_CODE);
 }
 
 int			tkn_get_break(t_lexer *lexer, char const **text,
@@ -51,12 +49,12 @@ int			tkn_get_break(t_lexer *lexer, char const **text,
 	if (ft_strchr(WHITE_SPACE, **text)
 	{
 		(*text)++;
-		return ();
+		return (WHITE_SPACE_CODE);
 	}
 	if (**text == SEPARATOR_CHAR)
 	{
 		(*text)++;
-		return ();
+		return (SEPARATOR_CHAR_CODE);
 	}
 	if (**text == LINE_END)
 	{
@@ -67,5 +65,4 @@ int			tkn_get_break(t_lexer *lexer, char const **text,
 		return ();
 	else
 		return (TERM_UNDEFINED)
-	
 }
