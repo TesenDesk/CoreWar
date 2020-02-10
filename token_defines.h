@@ -94,6 +94,10 @@
 #define ZJMP_NAME_CODE			26
 
 #define QUOTATION_MARK_CODE		27
+
+#define LINE_END_CODE           28
+#define EOF_CODE                29
+
 #
 
 
