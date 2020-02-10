@@ -15,7 +15,7 @@
 #define TOKEN_TIND_LAB 7
 
 /*
- * TOKEN TERMS
+ * TERM LITERALS
  */
 
 #define COMMENT_CHAR			'#'
@@ -54,6 +54,49 @@
 #define ZJMP_NAME				"zjmp"
 
 #define QUOTATION_MARK			'\"'
+
+/*
+ * TERM CODES
+ */
+
+#define COMMENT_CHAR_CODE		1
+#define ALT_COMMENT_CHAR_CODE   2
+
+#define REGISTER_CHAR_CODE      3
+#define LABEL_CHAR_CODE         4
+#define DIRECT_CHAR_CODE        5
+
+#define SEPARATOR_CHAR_CODE     6
+
+#define LABEL_CHARS_CODE		7
+#define NAME_CMD_STRING_CODE	8
+#define COMMENT_CMD_STRING_CODE	9
+#define WHITE_SPACE_CODE        10
+
+
+#define ADD_NAME_CODE			11
+#define AFF_NAME_CODE			12
+#define AND_NAME_CODE			13
+#define FORK_NAME_CODE		    14
+#define LD_NAME_CODE			15
+#define LDI_NAME_CODE		    16
+#define LFORK_NAME_CODE		    17
+#define LIVE_NAME_CODE		    18
+#define LLD_NAME_CODE		    19
+#define LLDI_NAME_CODE			20
+#define OR_NAME_CODE		    21
+#define ST_NAME_CODE		    22
+#define STI_NAME_CODE		    23
+#define SUB_NAME_CODE	        24
+#define XOR_NAME_CODE			25
+#define ZJMP_NAME_CODE			26
+
+#define QUOTATION_MARK_CODE		27
+#
+
+
+
+
 
 //enum							e_words
 //{
