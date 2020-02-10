@@ -59,6 +59,8 @@
  * TERM CODES
  */
 
+#define TERM_UNDEFINED          -1
+#define INTEGER_CODE            0
 #define COMMENT_CHAR_CODE		1
 #define ALT_COMMENT_CHAR_CODE   2
 
@@ -92,6 +94,10 @@
 #define ZJMP_NAME_CODE			26
 
 #define QUOTATION_MARK_CODE		27
+
+#define LINE_END_CODE           28
+#define EOF_CODE                29
+
 #
 
 
