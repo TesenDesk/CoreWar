@@ -44,11 +44,12 @@
  */
 
 #define T_REG           8
-#define T_IND           9
+#define T_IND_INT       9
 #define T_IND_LABEL     10
 #define T_DIR_INT       11
 #define T_DIR_LAB       12
 #define ARG_BRK         13
+#define MULTI_ARG       14
 
 /*
  * switcher_method constants

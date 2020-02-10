@@ -9,7 +9,7 @@ int		lexer_get_term_init(t_lexer *lexer, char const **text, int *token_type, voi
     if (!(**text))
     {
         *token_type = TOKEN_EOF;
-        return (1);
+        return (EOF_CODE);
     }
     return (0);
 }

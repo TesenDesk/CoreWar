@@ -62,29 +62,6 @@ void                lexer_destructor(t_lexer **lexer)
 #define XOR_NAME				"xor"
 #define ZJMP_NAME				"zjmp"
 
-//static int                  lexer_op_found(char const **text)
-//{
-//    //сюда впилить хешмапу, в нее вставить 2 или 3 или 4 или 5 символов текста как ключ. вернуть значение мапы(по этим ключам в мапе 1).
-//    return (
-//    strnstr(*text, ADD_NAME, 3) || strnstr(*text, AFF_NAME, 3) ||
-//    strnstr(*text, AND_NAME, 3) || strnstr(*text, FORK_NAME, 4) ||
-//    strnstr(*text, LD_NAME, 2) || strnstr(*text, LDI_NAME, 3) ||
-//    strnstr(*text, LFORK_NAME, 5) || strnstr(*text, LIVE_NAME, 4) ||
-//    strnstr(*text, LLD_NAME, 3) || strnstr(*text, LLDI_NAME, 4) ||
-//    strnstr(*text, OR_NAME, 2) || strnstr(*text, ST_NAME, 2) ||
-//    strnstr(*text, STI_NAME, 3) || strnstr(*text, SUB_NAME, 3) ||
-//    strnstr(*text, XOR_NAME, 3) || strnstr(*text, ZJMP_NAME, 4)
-//    );
-//}
-
-//static int                  lexer_find_next_to_com_lf(t_lexer *lexer, char const **text)
-//{
-//    if (lexer->state == COMMENT)
-//    {
-//        if (**text == '\n')
-//
-//    }
-//}
 
 static int                  lexer_find_next_to_init(int term_type)
 {
@@ -100,47 +77,78 @@ static int                  lexer_find_next_to_init(int term_type)
         return (OPX);
 }
 
+static int          lexer_find_champ_state(t_lexer *lexer, int term_type)
+{
+
+    if (lexer->state == NAME_CMD) {
+        if (term_type == QUOTATION_MARK_CODE)
+            return (CH_NAME);
+    } else if (lexer->state == COMM_CMD) {
+        if (term_type == QUOTATION_MARK_CODE)
+            return (CH_COMM);
+    } else if (lexer->state == CH_NAME || lexer->state == CH_COMM) {
+        if (term_type == QUOTATION_MARK_CODE)
+            return (INIT);
+    }
+}
+
+static int          lexer_find_op_arg_state(t_lexer *lexer, int term_type)
+{
+    if (lexer->state == T_IND_INT)
+    {
+        if (term_type == SEPARATOR_CHAR_CODE)
+            return (MULTI_ARG);
+        else if (term_type == WHITE_SPACE_CODE)
+            return (INIT);
+    }
+    else if ((lexer->state == T_REG && term_type == INTEGER_CODE))
+            return (ARG_BRK);
+    else if ((lexer->state == T_IND_LABEL || lexer->state == T_DIR_LAB)
+    && term_type == LABEL_CHARS_CODE)
+            return (ARG_BRK);
+    else if (lexer->state == T_DIR_INT)
+    {
+        if (term_type == INTEGER_CODE)
+            return (ARG_BRK);
+        else if (term_type == LABEL_CHAR_CODE)
+            return (T_DIR_LAB);
+    }
+}
+
 void                lexer_change_state(t_lexer *lexer, int term_type)
 {
-    if (lexer->state == INIT) {
-        lexer->state = lexer_find_next_to_init(text);
+    if (lexer->state == INIT)
+        lexer->state = lexer_find_next_to_init(term_type);
+    else if (lexer->state >= NAME_CMD && lexer->state <= CH_COMM)
+            lexer->state = lexer_find_champ_state(lexer, term_type);
+    else if (lexer->state == OPX) {
+        if (term_type == REGISTER_CHAR_CODE)
+            lexer->state = T_REG;
+        else if (term_type == INTEGER_CODE)
+            lexer->state = T_IND_INT;
+        else if (term_type == LABEL_CHAR_CODE)
+            lexer->state = T_IND_LABEL;
+        else if (term_type == DIRECT_CHAR_CODE)
+            lexer->state = T_DIR_INT;
     }
-    else if (lexer->state == NAME_CMD)
-    {
-        if (term_type == QUOTATION_MARK_CODE)
-            lexer->state == CH_NAME;
-    }
-    else if (lexer->state == COMM_CMD)
-    {
-        if (term_type == QUOTATION_MARK_CODE)
-            lexer ->state == CH_COMM;
-    }
-    else if (term_type == CH_NAME)
-    {
-
-    }
-
-//    else
-//    {
-
-//    }
+    else if (lexer->state >= T_REG && lexer->state <= ARG_BRK)
+        lexer->state = lexer_find_op_arg_state(lexer, term_type);
 
 }
+
 
 t_token             *lexer_form_token(t_lexer *lexer, char const **text)
 {
     int             token_type;
     void            *token_ptr[2];
-    int             token_complete;
 
-    token_type = -1;
+    token_type = TOKEN_INIT;
     token_ptr[0] = NULL;
     token_ptr[1] = NULL;
-    token_complete = 0;
-    while (!(token_complete = lexer->get_term[lexer->state](lexer, text, &token_type, token_ptr)))
-        ;
-//        lexer_change_state(lexer, text);
-//    lexer_change_state(lexer, text);
+    while (token_type == TOKEN_INIT) {
+        printf("1111\n");
+        lexer->change_state(lexer, lexer->get_term[lexer->state](lexer, text, &token_type, token_ptr));
+    }
     return (token_constructor(token_type, token_ptr));
 }
 
