@@ -62,20 +62,20 @@ void                lexer_destructor(t_lexer **lexer)
 #define XOR_NAME				"xor"
 #define ZJMP_NAME				"zjmp"
 
-static int                  lexer_op_found(char const **text)
-{
-    //сюда впилить хешмапу, в нее вставить 2 или 3 или 4 или 5 символов текста как ключ. вернуть значение мапы(по этим ключам в мапе 1).
-    return (
-    strnstr(*text, ADD_NAME, 3) || strnstr(*text, AFF_NAME, 3) ||
-    strnstr(*text, AND_NAME, 3) || strnstr(*text, FORK_NAME, 4) ||
-    strnstr(*text, LD_NAME, 2) || strnstr(*text, LDI_NAME, 3) ||
-    strnstr(*text, LFORK_NAME, 5) || strnstr(*text, LIVE_NAME, 4) ||
-    strnstr(*text, LLD_NAME, 3) || strnstr(*text, LLDI_NAME, 4) ||
-    strnstr(*text, OR_NAME, 2) || strnstr(*text, ST_NAME, 2) ||
-    strnstr(*text, STI_NAME, 3) || strnstr(*text, SUB_NAME, 3) ||
-    strnstr(*text, XOR_NAME, 3) || strnstr(*text, ZJMP_NAME, 4)
-    );
-}
+//static int                  lexer_op_found(char const **text)
+//{
+//    //сюда впилить хешмапу, в нее вставить 2 или 3 или 4 или 5 символов текста как ключ. вернуть значение мапы(по этим ключам в мапе 1).
+//    return (
+//    strnstr(*text, ADD_NAME, 3) || strnstr(*text, AFF_NAME, 3) ||
+//    strnstr(*text, AND_NAME, 3) || strnstr(*text, FORK_NAME, 4) ||
+//    strnstr(*text, LD_NAME, 2) || strnstr(*text, LDI_NAME, 3) ||
+//    strnstr(*text, LFORK_NAME, 5) || strnstr(*text, LIVE_NAME, 4) ||
+//    strnstr(*text, LLD_NAME, 3) || strnstr(*text, LLDI_NAME, 4) ||
+//    strnstr(*text, OR_NAME, 2) || strnstr(*text, ST_NAME, 2) ||
+//    strnstr(*text, STI_NAME, 3) || strnstr(*text, SUB_NAME, 3) ||
+//    strnstr(*text, XOR_NAME, 3) || strnstr(*text, ZJMP_NAME, 4)
+//    );
+//}
 
 //static int                  lexer_find_next_to_com_lf(t_lexer *lexer, char const **text)
 //{
@@ -86,22 +86,22 @@ static int                  lexer_op_found(char const **text)
 //    }
 //}
 
-static int                  lexer_find_next_to_init(char const **text)
-{
-    if (**text == COMMENT_CHAR || **text == ALT_COMMENT_CHAR)
-        return (COMMENT);
-    else if (**text == '\n')
-        return (LINE_FEED);
-    else if (strnstr(*text, ".name", 5))
-        return (NAME_CMD);
-    else if (strnstr(*text, ".comment", 8))
-        return (COMM_CMD);
-    else if (lexer_op_found(text))
-        return (OPX);
-//    else if (strchr(LABEL_CHARS, **text))
-//        return (LA)
-    return (1);
-}
+//static int                  lexer_find_next_to_init(char const **text)
+//{
+//    if (**text == COMMENT_CHAR || **text == ALT_COMMENT_CHAR)
+//        return (COMMENT);
+//    else if (**text == '\n')
+//        return (LINE_FEED);
+//    else if (strnstr(*text, ".name", 5))
+//        return (NAME_CMD);
+//    else if (strnstr(*text, ".comment", 8))
+//        return (COMM_CMD);
+//    else if (lexer_op_found(text))
+//        return (OPX);
+////    else if (strchr(LABEL_CHARS, **text))
+////        return (LA)
+//    return (1);
+//}
 
 void                lexer_change_state(t_lexer *lexer, int term_type)
 {

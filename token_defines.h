@@ -59,6 +59,8 @@
  * TERM CODES
  */
 
+#define TERM_UNDEFINED          -1
+#define INTEGER_CODE            0
 #define COMMENT_CHAR_CODE		1
 #define ALT_COMMENT_CHAR_CODE   2
 
