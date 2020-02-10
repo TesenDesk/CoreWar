@@ -14,7 +14,9 @@
 #define LEXER_PRIVATE_H
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "token.h"
+
 /*
  * STATE MACHINE STATEs
  */
@@ -24,7 +26,7 @@
 #define LINE_FEED 2
 
 /*
- * champ_unit_states
+ * CHAMP_UNIT STATES
 */
 
 #define NAME_CMD 3
@@ -33,7 +35,7 @@
 #define CH_COMM 6
 
 /*
- * code_unit_states
+ * CODE_UNIT STATES
 */
 #define OPX 7
 
@@ -68,7 +70,7 @@ typedef struct 	    s_lexer
 {
     int             state;
     t_token*        (*lexer_form_token)(struct s_lexer *lexer, char const **text);
-    void            (*change_state)(struct s_lexer *lexer, char const **text);
+    void            (*change_state)(struct s_lexer *lexer, int term_type);
     int             (*get_term[12])(struct s_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
 }				    t_lexer;
 
@@ -76,12 +78,12 @@ typedef struct 	    s_lexer
  * change_state methods
  */
 
-void                lexer_change_state(t_lexer *lexer, char const **text);
+void                lexer_change_state(t_lexer *lexer, int term_type);
 
 /*
  * init state methods
  */
-int		lexer_get_term_init(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
+int		            lexer_get_term_init(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
 
 /*
  * 1lvl comment/feed methods

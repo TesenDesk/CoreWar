@@ -13,6 +13,7 @@
 #include "lexer.h"
 #include "lexer_private.h"
 #include "token.h"
+#include "token_defines.h"
 
 void                lexer_constructor(t_lexer **lexer)
 {
@@ -44,6 +45,46 @@ void                lexer_destructor(t_lexer **lexer)
 	*lexer = NULL;
 }
 
+#define ADD_NAME				"add"
+#define AFF_NAME				"aff"
+#define AND_NAME				"and"
+#define FORK_NAME				"fork"
+#define LD_NAME					"ld"
+#define LDI_NAME				"ldi"
+#define LFORK_NAME				"lfork"
+#define LIVE_NAME				"live"
+#define LLD_NAME				"lld"
+#define LLDI_NAME				"lldi"
+#define OR_NAME					"or"
+#define ST_NAME					"st"
+#define STI_NAME				"sti"
+#define SUB_NAME				"sub"
+#define XOR_NAME				"xor"
+#define ZJMP_NAME				"zjmp"
+
+static int                  lexer_op_found(char const **text)
+{
+    //сюда впилить хешмапу, в нее вставить 2 или 3 или 4 или 5 символов текста как ключ. вернуть значение мапы(по этим ключам в мапе 1).
+    return (
+    strnstr(*text, ADD_NAME, 3) || strnstr(*text, AFF_NAME, 3) ||
+    strnstr(*text, AND_NAME, 3) || strnstr(*text, FORK_NAME, 4) ||
+    strnstr(*text, LD_NAME, 2) || strnstr(*text, LDI_NAME, 3) ||
+    strnstr(*text, LFORK_NAME, 5) || strnstr(*text, LIVE_NAME, 4) ||
+    strnstr(*text, LLD_NAME, 3) || strnstr(*text, LLDI_NAME, 4) ||
+    strnstr(*text, OR_NAME, 2) || strnstr(*text, ST_NAME, 2) ||
+    strnstr(*text, STI_NAME, 3) || strnstr(*text, SUB_NAME, 3) ||
+    strnstr(*text, XOR_NAME, 3) || strnstr(*text, ZJMP_NAME, 4)
+    );
+}
+
+//static int                  lexer_find_next_to_com_lf(t_lexer *lexer, char const **text)
+//{
+//    if (lexer->state == COMMENT)
+//    {
+//        if (**text == '\n')
+//
+//    }
+//}
 
 static int                  lexer_find_next_to_init(char const **text)
 {
@@ -51,17 +92,25 @@ static int                  lexer_find_next_to_init(char const **text)
         return (COMMENT);
     else if (**text == '\n')
         return (LINE_FEED);
-//    else if (strnstr(*text, ".name", 5) || strnstr(*text, ".comment", 8))
-//        ;
-//    else if (strnstr(*text, ".comment", 8)))
-//    return (-1);
+    else if (strnstr(*text, ".name", 5))
+        return (NAME_CMD);
+    else if (strnstr(*text, ".comment", 8))
+        return (COMM_CMD);
+    else if (lexer_op_found(text))
+        return (OPX);
+//    else if (strchr(LABEL_CHARS, **text))
+//        return (LA)
     return (1);
 }
 
-void                lexer_change_state(t_lexer *lexer, char const **text)
+void                lexer_change_state(t_lexer *lexer, int term_type)
 {
-    if (lexer->state == INIT)
-        lexer->state = lexer_find_next_to_init(text);
+    if (lexer->state == INIT) {
+        ;
+//        lexer->state = lexer_find_next_to_init(text);
+//        return ;
+    }
+
 //    else
 //    {
 
@@ -80,9 +129,9 @@ t_token             *lexer_form_token(t_lexer *lexer, char const **text)
     token_ptr[1] = NULL;
     token_complete = 0;
     while (!(token_complete = lexer->get_term[lexer->state](lexer, text, &token_type, token_ptr)))
-        lexer_change_state(lexer, text);
-    lexer_change_state(lexer, text);
+        ;
+//        lexer_change_state(lexer, text);
+//    lexer_change_state(lexer, text);
     return (token_constructor(token_type, token_ptr));
-
 }
 
