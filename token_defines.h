@@ -26,6 +26,7 @@
 #define DIRECT_CHAR				'%'
 
 #define SEPARATOR_CHAR			','
+#define LINE_FEED               '\n'
 
 #define LABEL_CHARS				"abcdefghijklmnopqrstuvwxyz_0123456789"
 #define NAME_CMD_STRING			".name"
