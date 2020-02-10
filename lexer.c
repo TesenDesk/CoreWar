@@ -86,29 +86,38 @@ void                lexer_destructor(t_lexer **lexer)
 //    }
 //}
 
-//static int                  lexer_find_next_to_init(char const **text)
-//{
-//    if (**text == COMMENT_CHAR || **text == ALT_COMMENT_CHAR)
-//        return (COMMENT);
-//    else if (**text == '\n')
-//        return (LINE_FEED);
-//    else if (strnstr(*text, ".name", 5))
-//        return (NAME_CMD);
-//    else if (strnstr(*text, ".comment", 8))
-//        return (COMM_CMD);
-//    else if (lexer_op_found(text))
-//        return (OPX);
-////    else if (strchr(LABEL_CHARS, **text))
-////        return (LA)
-//    return (1);
-//}
+static int                  lexer_find_next_to_init(int term_type)
+{
+    if (term_type == COMMENT_CHAR_CODE || term_type == ALT_COMMENT_CHAR_CODE)
+        return (COMMENT);
+    else if (term_type == LINE_FEED_CODE)
+        return (LINE_FEED);
+    else if (term_type == NAME_CMD_STRING_CODE)
+        return (NAME_CMD);
+    else if (term_type == COMMENT_CMD_STRING_CODE)
+        return (COMM_CMD);
+    else if (term_type >= ADD_NAME_CODE && term_type <= ZJMP_NAME_CODE)
+        return (OPX);
+}
 
 void                lexer_change_state(t_lexer *lexer, int term_type)
 {
     if (lexer->state == INIT) {
-        ;
-//        lexer->state = lexer_find_next_to_init(text);
-//        return ;
+        lexer->state = lexer_find_next_to_init(text);
+    }
+    else if (lexer->state == NAME_CMD)
+    {
+        if (term_type == QUOTATION_MARK_CODE)
+            lexer->state == CH_NAME;
+    }
+    else if (lexer->state == COMM_CMD)
+    {
+        if (term_type == QUOTATION_MARK_CODE)
+            lexer ->state == CH_COMM;
+    }
+    else if (term_type == CH_NAME)
+    {
+
     }
 
 //    else

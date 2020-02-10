@@ -95,7 +95,7 @@
 
 #define QUOTATION_MARK_CODE		27
 
-#define LINE_END_CODE           28
+#define LINE_FEED_CODE           28
 #define EOF_CODE                29
 
 #
