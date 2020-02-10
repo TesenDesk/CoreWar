@@ -1,3 +1,5 @@
+#include "token_defines.h"
+
 int		lexer_get_t_ind_integer(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2])
 {
 	void	*t;
@@ -9,11 +11,11 @@ int		lexer_get_t_ind_integer(t_lexer *lexer, char const **text, int *token_type,
 		++(*text);
 		if (!ft_isdigit(**text))
 		{
-			token_type = UNDEFINED_TOKEN;
-			return (1);
+			token_type = TOKEN_UNDEF;
+			return (TERM_UNDEFINED);
 		}
 	}
-	token_type = T_IND_INT;
+	token_type = TOKEN_TIND_INT;
 	while (ft_isdig(**text))
 		++(*text);
 	token_ptr[1] = *text - 1;
@@ -29,10 +31,13 @@ int		lexer_get_t_ind_label(t_lexer *lexer, char const **text,
 	token_ptr[0] = *text;
 	++(*text);
 	if (!ft_strchr(LABEL_CHARS, **text))
-		*token_type = UNDEFINED_TOKEN;
+	{
+		*token_type = TOKEN_UNDEF;
+		return (TERM_UNDEFINED)
+	}
 	else
 	{
-		token_type = T_IND_LABEL;
+		token_type = TOKEN_TIND_LAB;
 		while (ft_strchr(LABEL_CHARS, **text))
 			++(*text);
 		token_ptr[1] = *text - 1;
@@ -43,10 +48,24 @@ int		lexer_get_t_ind_label(t_lexer *lexer, char const **text,
 int			tkn_get_break(t_lexer *lexer, char const **text,
 			int *token_type, void *token_ptr[2])
 {
-	if (ft_strchr(WHITE_SPACE, **text))
+	if (ft_strchr(WHITE_SPACE, **text)
+	{
+		(*text)++;
 		return ();
+	}
 	if (**text == SEPARATOR_CHAR)
+	{
+		(*text)++;
 		return ();
-	if (**text == '\n')
+	}
+	if (**text == LINE_END)
+	{
+		(*text)++;
 		return ();
+	}
+	if (**text == '\0')
+		return ();
+	else
+		return (TERM_UNDEFINED)
+	
 }
