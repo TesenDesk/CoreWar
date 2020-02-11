@@ -27,11 +27,13 @@ int		lexer_get_t_ind_label(t_lexer *lexer, char const **text,
 {
 	void	*t;
 
+	t = (void*)lexer;
+	++(*text);
 	token_ptr[0] = *text;
 	if (!ft_strchr(LABEL_CHARS, **text))
 	{
 		*token_type = TOKEN_UNDEF;
-		return (TERM_UNDEFINED);
+		return (TERM_UNDEFINED)
 	}
 	else
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tkn_get_term_label_word_unit.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 16:41:31 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/06 17:59:12 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/02/10 19:38:06 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void					tkn_get_term_label_word_unit
 	}
 	else
 	{
-		token->token_type = UNDEFINED_TOKEN;	
+		token->token_type = UNDEFINED_TOKEN;
 	}
 	return ;
 }
