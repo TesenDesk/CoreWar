@@ -29,7 +29,8 @@ int				lexer_get_term_ch_comment(t_lexer *lexer, char const **text,
 	lexer_utils_trim_not_eof_not_line_feed_not_quotatuion_mark(text);
 	if (lexer_utils_is_quotation_mark(**text))
 	{
-		token_ptr[TOKEN_END_PTR] = *text;
+		*token_type = TOKEN_CHCOM;
+		token_ptr[TOKEN_END_PTR] = *(text - 1);
 		++(*text);
 		return (QUOTATION_MARK_CODE);
 	}

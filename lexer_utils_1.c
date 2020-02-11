@@ -37,7 +37,7 @@ int				lexer_utils_is_of_label_chars(char c)
 {
 	int			decision;
 
-	decision = (ft_strchr(LABEL_CHARS, c) != NULL);
+	decision = (strchr(LABEL_CHARS, c) != NULL);
 	return (decision);
 }
 
@@ -65,7 +65,7 @@ int				lexer_utils_is_whitespace(char c)
 {
 	int			decision;
 
-	decision = (ft_strchr(WHITE_SPACE, c) != NULL);
+	decision = (strchr(WHITE_SPACE, c) != NULL);
 	return (decision);
 }
 
