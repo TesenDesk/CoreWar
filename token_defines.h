@@ -5,7 +5,7 @@
  */
 
 #define TOKEN_UNDEF -1
-#define TOKEN_INIT 0
+#define TOKEN_INIT_ST 0
 #define TOKEN_EOF 1
 #define TOKEN_LFEED 2
 #define TOKEN_CHNAME 3
@@ -78,6 +78,7 @@
 #define WHITE_SPACE_CODE        10
 
 
+
 #define ADD_NAME_CODE			11
 #define AFF_NAME_CODE			12
 #define AND_NAME_CODE			13
@@ -95,10 +96,12 @@
 #define XOR_NAME_CODE			25
 #define ZJMP_NAME_CODE			26
 
-#define QUOTATION_MARK_CODE		27
+#define OPX_CODE                27
 
-#define LINE_FEED_CODE          28
-#define EOF_CODE                29
+#define QUOTATION_MARK_CODE		28
+
+#define LINE_FEED_CODE          29
+#define EOF_CODE                30
 #
 
 

@@ -31,7 +31,7 @@ int				lexer_get_term_ch_comment(t_lexer *lexer, char const **text,
 	{
 		token_ptr[TOKEN_END_PTR] = *text;
 		++(*text);
-		return (COMM_CMD);
+		return (QUOTATION_MARK_CODE);
 	}
 	return (TERM_UNDEFINED);
 }

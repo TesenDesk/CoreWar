@@ -25,40 +25,40 @@
  * STATE MACHINE STATEs
  */
 
-#define INIT 0
-#define COMMENT 1
-#define LINE_FEED 2
+#define INIT_ST 0
+#define COMMENT_ST 1
+#define LINE_FEED_ST 2
 
 /*
  * CHAMP_UNIT STATES
 */
 
-#define NAME_CMD 3
-#define CH_NAME 4
-#define COMM_CMD 5
-#define CH_COMM 6
+#define NAME_CMD_ST 3
+#define CH_NAME_ST 4
+#define COMM_CMD_ST 5
+#define CH_COMM_ST 6
 
 /*
  * CODE_UNIT STATES
 */
-#define OPX 7
+#define OPX_ST 7
 
 /*
  * augment_unit_substates
  */
 
-#define T_REG           8
-#define T_IND_INT       9
-#define T_IND_LABEL     10
-#define T_DIR_INT       11
-#define T_DIR_LAB       12
-#define ARG_BRK         13
-#define MULTI_ARG       14
+#define T_REG_ST           8
+#define T_IND_INT_ST       9
+#define T_IND_LABEL_ST     10
+#define T_DIR_INT_ST       11
+#define T_DIR_LAB_ST       12
+#define ARG_BRK_ST         13
+#define MULTI_ARG_ST       14
 
 /*
  * switcher_method constants
  */
-////#define INIT        0
+////#define INIT_ST        0
 //#define GET_COMMENT 0
 //#define LINE_FEED 1
 ////#define CHAMPION 2
@@ -86,7 +86,7 @@ typedef struct 	    s_lexer
 void                lexer_change_state(t_lexer *lexer, int term_type);
 
 /*
- * init state methods
+ * INIT_ST state methods
  */
 int		            lexer_get_term_init(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
 
@@ -109,6 +109,7 @@ int 			   lexer_get_term_ch_comment(t_lexer *lexer, char const **text, int *toke
 /*
  * opx/args methods
  */
+
 
 int                lexer_get_term_opx(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
 int                lexer_get_term_label_word_unit(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);

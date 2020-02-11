@@ -13,6 +13,7 @@
 #include "lexer.h"
 #include "lexer_private.h"
 #include "lexer_utils_private.h"
+#include "token_defines.h"
 
 /*
 **	The function determins if this part of text is appropriate term for
@@ -31,7 +32,7 @@ int				lexer_get_term_ch_name(t_lexer *lexer, char const **text,
 	{
 		token_ptr[TOKEN_END_PTR] = *text;
 		++(*text);
-		return (CH_NAME);
+		return (QUOTATION_MARK_CODE);
 	}
 	return (TERM_UNDEFINED);
 }

@@ -22,14 +22,14 @@ void                lexer_constructor(t_lexer **lexer)
 		printf("error\n");
 		exit(-1);
 	}
-    (*lexer)->state = INIT;
+    (*lexer)->state = INIT_ST;
     (*lexer)->change_state = lexer_change_state;
     (*lexer)->lexer_form_token = lexer_form_token;
-    (*lexer)->get_term[INIT] = lexer_get_term_init;
-    (*lexer)->get_term[COMMENT] = lexer_get_term_comment;
-//    (*lexer)->get_term[LINE_FEED] = lexer_get_term_line_feed;
-//    (*lexer)->get_term[NAME_CMD] = lexer_get_term_name_cmd;
-//    (*lexer)->get_term[CH_NAME] = lexer_get_
+    (*lexer)->get_term[INIT_ST] = lexer_get_term_init;
+    (*lexer)->get_term[COMMENT_ST] = lexer_get_term_comment;
+//    (*lexer)->get_term[LINE_FEED_ST] = lexer_get_term_line_feed;
+    (*lexer)->get_term[NAME_CMD_ST] = lexer_get_term_name_cmd;
+    (*lexer)->get_term[CH_NAME_ST] = lexer_get_term_ch_name;
 //    *lexer->get_term[OPX] = lexer_get_term_opx;
 //    *lexer->get_term[ARG_REG] = lexer_get_term_arg_reg;
 //    *lexer->get_term[ARG_IND_INT] = lexer_get_term_arg_dir_int;
@@ -63,76 +63,82 @@ void                lexer_destructor(t_lexer **lexer)
 #define ZJMP_NAME				"zjmp"
 
 
-static int                  lexer_find_next_to_init(int term_type)
+static int                  lexer_find_next_to_INIT_ST(int term_type)
 {
     if (term_type == COMMENT_CHAR_CODE || term_type == ALT_COMMENT_CHAR_CODE)
-        return (COMMENT);
+        return (COMMENT_ST);
     else if (term_type == LINE_FEED_CODE)
-        return (LINE_FEED);
+        return (LINE_FEED_ST);
     else if (term_type == NAME_CMD_STRING_CODE)
-        return (NAME_CMD);
+        return (NAME_CMD_ST);
     else if (term_type == COMMENT_CMD_STRING_CODE)
-        return (COMM_CMD);
+        return (COMM_CMD_ST);
     else if (term_type >= ADD_NAME_CODE && term_type <= ZJMP_NAME_CODE)
-        return (OPX);
+        return (OPX_ST);
+    else
+        return (INIT_ST);
 }
 
 static int          lexer_find_champ_state(t_lexer *lexer, int term_type)
 {
 
-    if (lexer->state == NAME_CMD) {
+    if (lexer->state == NAME_CMD_ST) {
         if (term_type == QUOTATION_MARK_CODE)
-            return (CH_NAME);
-    } else if (lexer->state == COMM_CMD) {
+            return (CH_NAME_ST);
+    } else if (lexer->state == COMM_CMD_ST) {
         if (term_type == QUOTATION_MARK_CODE)
-            return (CH_COMM);
-    } else if (lexer->state == CH_NAME || lexer->state == CH_COMM) {
+            return (CH_COMM_ST);
+    } else if (lexer->state == CH_NAME_ST || lexer->state == CH_COMM_ST) {
         if (term_type == QUOTATION_MARK_CODE)
-            return (INIT);
+            return (INIT_ST);
     }
 }
 
 static int          lexer_find_op_arg_state(t_lexer *lexer, int term_type)
 {
-    if (lexer->state == T_IND_INT)
+    if (lexer->state == T_IND_INT_ST)
     {
         if (term_type == SEPARATOR_CHAR_CODE)
-            return (MULTI_ARG);
+            return (MULTI_ARG_ST);
         else if (term_type == WHITE_SPACE_CODE)
-            return (INIT);
+            return (INIT_ST);
     }
-    else if ((lexer->state == T_REG && term_type == INTEGER_CODE))
-            return (ARG_BRK);
-    else if ((lexer->state == T_IND_LABEL || lexer->state == T_DIR_LAB)
+    else if ((lexer->state == T_REG_ST && term_type == INTEGER_CODE))
+            return (ARG_BRK_ST);
+    else if ((lexer->state == T_IND_LABEL_ST || lexer->state == T_DIR_LAB_ST)
     && term_type == LABEL_CHARS_CODE)
-            return (ARG_BRK);
-    else if (lexer->state == T_DIR_INT)
+            return (ARG_BRK_ST);
+    else if (lexer->state == T_DIR_INT_ST)
     {
         if (term_type == INTEGER_CODE)
-            return (ARG_BRK);
+            return (ARG_BRK_ST);
         else if (term_type == LABEL_CHAR_CODE)
-            return (T_DIR_LAB);
+            return (T_DIR_LAB_ST);
     }
+    else
+        return (INIT_ST);
 }
 
 void                lexer_change_state(t_lexer *lexer, int term_type)
 {
-    if (lexer->state == INIT)
-        lexer->state = lexer_find_next_to_init(term_type);
-    else if (lexer->state >= NAME_CMD && lexer->state <= CH_COMM)
+    if (lexer->state == INIT_ST)
+        lexer->state = lexer_find_next_to_INIT_ST(term_type);
+    else if (lexer->state >= NAME_CMD_ST && lexer->state <= CH_COMM_ST)
             lexer->state = lexer_find_champ_state(lexer, term_type);
-    else if (lexer->state == OPX) {
+    else if (lexer->state == OPX_ST) {
         if (term_type == REGISTER_CHAR_CODE)
-            lexer->state = T_REG;
+            lexer->state = T_REG_ST;
         else if (term_type == INTEGER_CODE)
-            lexer->state = T_IND_INT;
+            lexer->state = T_IND_INT_ST;
         else if (term_type == LABEL_CHAR_CODE)
-            lexer->state = T_IND_LABEL;
+            lexer->state = T_IND_LABEL_ST;
         else if (term_type == DIRECT_CHAR_CODE)
-            lexer->state = T_DIR_INT;
+            lexer->state = T_DIR_INT_ST;
     }
-    else if (lexer->state >= T_REG && lexer->state <= ARG_BRK)
+    else if (lexer->state >= T_REG_ST && lexer->state <= ARG_BRK_ST)
         lexer->state = lexer_find_op_arg_state(lexer, term_type);
+    else
+        lexer->state = INIT_ST;
 
 }
 
@@ -142,10 +148,10 @@ t_token             *lexer_form_token(t_lexer *lexer, char const **text)
     int             token_type;
     void            *token_ptr[2];
 
-    token_type = TOKEN_INIT;
+    token_type = TOKEN_INIT_ST;
     token_ptr[0] = NULL;
     token_ptr[1] = NULL;
-    while (token_type == TOKEN_INIT) {
+    while (token_type == TOKEN_INIT_ST) {
         printf("1111\n");
         lexer->change_state(lexer, lexer->get_term[lexer->state](lexer, text, &token_type, token_ptr));
     }
