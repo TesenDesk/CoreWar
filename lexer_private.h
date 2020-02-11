@@ -6,16 +6,20 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 17:46:31 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/05 17:48:57 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/02/10 20:42:40 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_PRIVATE_H
 #define LEXER_PRIVATE_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "token.h"
+
+#define TOKEN_START_PTR	0
+#define TOKEN_END_PTR	1
 
 /*
  * STATE MACHINE STATEs
@@ -44,11 +48,12 @@
  */
 
 #define T_REG           8
-#define T_IND           9
+#define T_IND_INT       9
 #define T_IND_LABEL     10
 #define T_DIR_INT       11
 #define T_DIR_LAB       12
 #define ARG_BRK         13
+#define MULTI_ARG       14
 
 /*
  * switcher_method constants
@@ -68,10 +73,10 @@
 
 typedef struct 	    s_lexer
 {
-    int             state;
-    t_token*        (*lexer_form_token)(struct s_lexer *lexer, char const **text);
-    void            (*change_state)(struct s_lexer *lexer, int term_type);
-    int             (*get_term[12])(struct s_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
+	int             state;
+	t_token*        (*lexer_form_token)(struct s_lexer *lexer, char const **text);
+	void            (*change_state)(struct s_lexer *lexer, int term_type);
+	int             (*get_term[12])(struct s_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
 }				    t_lexer;
 
 /*

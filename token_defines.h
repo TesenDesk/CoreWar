@@ -5,14 +5,15 @@
  */
 
 #define TOKEN_UNDEF -1
-#define TOKEN_EOF 0
-#define TOKEN_LFEED 1
-#define TOKEN_CHNAME 2
-#define TOKEN_CHCOM 3
-#define TOKEN_OPX 4
-#define TOKEN_TREG 5
-#define TOKEN_TIND_INT 6
-#define TOKEN_TIND_LAB 7
+#define TOKEN_INIT 0
+#define TOKEN_EOF 1
+#define TOKEN_LFEED 2
+#define TOKEN_CHNAME 3
+#define TOKEN_CHCOM 4
+#define TOKEN_OPX 5
+#define TOKEN_TREG 6
+#define TOKEN_TIND_INT 7
+#define TOKEN_TIND_LAB 8
 
 /*
  * TERM LITERALS
@@ -26,6 +27,7 @@
 #define DIRECT_CHAR				'%'
 
 #define SEPARATOR_CHAR			','
+#define LINE_FEED               '\n'
 
 #define LABEL_CHARS				"abcdefghijklmnopqrstuvwxyz_0123456789" // 17
 #define NAME_CMD_STRING			".name"
@@ -95,9 +97,8 @@
 
 #define QUOTATION_MARK_CODE		27
 
-#define LINE_END_CODE           28
+#define LINE_FEED_CODE          28
 #define EOF_CODE                29
-
 #
 
 
