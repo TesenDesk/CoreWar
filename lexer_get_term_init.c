@@ -69,6 +69,11 @@ int             lexer_get_term_init(t_lexer *lexer, char const **text, int *toke
     	*(token_ptr + 1) = (void*)(*text);
     	return (LABEL_CHARS_CODE);
     }
-    //!!!
-    return (1);
+    else if (**text == 0)
+    {
+    	*token_type = TOKEN_EOF;
+    	*token_ptr = *text;
+    	*(token_ptr + 1) = *text;
+    	return (EOF_CODE);
+    }
 }

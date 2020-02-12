@@ -44,6 +44,10 @@
 #define OPX_ST 7
 
 /*
+ * EOF_ST
+ */
+#defin EOF_ST 8
+/*
  * augment_unit_substates
  */
 
