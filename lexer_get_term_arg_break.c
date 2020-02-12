@@ -30,5 +30,5 @@ int			lexer_get_term_arg_break(t_lexer *lexer, char const **text,
 		return (LINE_FEED_CODE);
 	}
 	else
-		return (TERM_UNDEFINED);
+		return (TERM_UNDEFINED_CODE);
 }

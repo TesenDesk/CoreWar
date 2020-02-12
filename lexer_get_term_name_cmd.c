@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_get_term_name_cmd.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 19:30:10 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/10 20:20:28 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/02/12 22:05:12 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ int				lexer_get_term_name_cmd(t_lexer *lexer, char const **text,
 		printf("now:%s\n",  *text);
 		return (QUOTATION_MARK_CODE);
 	}
-	return (TERM_UNDEFINED);
+	return (TERM_UNDEFINED_CODE);
 }

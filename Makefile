@@ -52,7 +52,7 @@ $(NAME): $(SRC) #$(HEADER)
 		@printf "$(PREFIX)📦  Building $(NAME)...\n"
 #		@gcc $(FLAGS) -o $(NAME) $(SRC) $(LIBFLAGS) -I$(HEADERDIR)
 		# @cc $(FLAGS) -o $(NAME) $(SRC) $(MLX_FLAGS) -I$(HEADERDIR) ##todo: add '$(LIBFLAGS)'
-		@cc $(FLAGS) -o $(NAME) $(SRC) -I$(HEADERDIR) $(LIBFLAGS)
+		@cc $(FLAGS) -o $(NAME) $(SRC) -I$(HEADERDIR) $(LIBFLAGS) -g
 
 liba:
 		@printf "$(PREFIX)$(BOLD)🔎  Checkig \

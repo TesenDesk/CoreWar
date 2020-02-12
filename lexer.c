@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 18:39:31 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/12 19:50:14 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/02/12 22:42:20 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void                lexer_constructor(t_lexer **lexer)
     (*lexer)->get_term[CH_NAME_ST] = lexer_get_term_ch_name;
 
 // TESTING
-   (*lexer)->get_term[ARG_IND_INT] = lexer_get_term_arg_ind_int;
-   (*lexer)->get_term[ARG_IND_LABEL] = lexer_get_term_arg_ind_label;
-   (*lexer)->get_term[ARG_BREAK] = lexer_get_term_arg_break;
-   (*lexer)->get_term[OPX] = lexer_get_term_opx;
+   (*lexer)->get_term[T_IND_INT_ST] = lexer_get_term_arg_ind_int;
+   (*lexer)->get_term[T_IND_LABEL_ST] = lexer_get_term_arg_ind_label;
+   (*lexer)->get_term[ARG_BRK_ST] = lexer_get_term_arg_break;
+   (*lexer)->get_term[OPX_ST] = lexer_get_term_opx;
 //    (*lexer)->get_term[ARG_DIR_INT] = lexer_get_term_arg_dir_int;
 //    (*lexer)->get_term[ARG_DIR_LABEL] = lexer_get_term_arg_ind_label;
 //    *lexer->get_term[ARG_REG] = lexer_get_term_arg_reg;
@@ -75,8 +75,11 @@ static int                  lexer_find_next_to_INIT_ST(int term_type)
         return (NAME_CMD_ST);
     else if (term_type == COMMENT_CMD_STRING_CODE)
         return (COMM_CMD_ST);
-    else if (term_type >= ADD_NAME_CODE && term_type <= ZJMP_NAME_CODE)
+    else if (term_type == OPX_CODE)
+    {
+        printf("tut2\n");
         return (OPX_ST);
+    }
     else
     {
         return (INIT_ST);

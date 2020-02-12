@@ -27,6 +27,9 @@ int             lexer_get_term_init(t_lexer *lexer, char const **text, int *toke
 	op_len = 0;
     while (**text == ' ' || **text == '\t')
         ++(*text);
+    // printf("now %s\n", *text);
+    // printf("state %d\n", lexer->state);
+    // getchar();
     if (!(**text))
     {
         *token_type = TOKEN_EOF;
@@ -55,7 +58,7 @@ int             lexer_get_term_init(t_lexer *lexer, char const **text, int *toke
     }
     else if ((op_len = term_is_op(*text)))
     {
-    	*token_type = TOKEN_OPX;
+        printf("tut\n");
     	*token_ptr = (void*)(*text);
     	*(token_ptr + 1) =  (void*)(*(text + op_len));
 	    *text += op_len;
@@ -64,11 +67,13 @@ int             lexer_get_term_init(t_lexer *lexer, char const **text, int *toke
     else if (strchr(LABEL_CHARS, **text))
     {
     	*token_ptr = (void*)(*text);
-    	while (strchr(LABEL_CHARS, *(*text + 1)))
+    	while (strchr(LABEL_CHARS, *(*text)))
     		++(*text);
-    	*(token_ptr + 1) = (void*)(*text);
+    	*(token_ptr) = (void*)(*text - 1);
+        // printf("final %s\n", *text);
     	return (LABEL_CHARS_CODE);
     }
-    //!!!
-    return (1);
+    *token_type = TOKEN_UNDEF;
+    ++(*text);
+    return (TERM_UNDEFINED_CODE);
 }

@@ -41,5 +41,5 @@ int				lexer_get_term_label_word(t_lexer *lexer, char const **text,
 >>>>>>> 43073a5d83d33d9c85cdc87e695a204330ec7eba:lexer_get_term_label_word_unit.c
 	}
 	*token_type = TOKEN_UNDEF;
-	return (TERM_UNDEFINED);
+	return (TERM_UNDEFINED_CODE);
 }
