@@ -9,11 +9,16 @@ int				lexer_get_term_arg_ind_int(t_lexer *lexer, char const **text,
 	(void)token_ptr;
 	(void)token_type;
 	*token_type = TOKEN_TIND_INT;
-	++(*text);
 	if (ft_strchr(WHITE_SPACE, **text))
+	{
+		++(*text);
 		return (WHITE_SPACE_CODE);
+	}
 	else if (**text == SEPARATOR_CHAR)
+	{
+		++(*text);
 		return (SEPARATOR_CHAR_CODE);
+	}
 	return (TERM_UNDEFINED_CODE);
 }
 
