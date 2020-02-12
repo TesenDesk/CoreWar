@@ -1,5 +1,4 @@
 #include "lexer.h"
-#include "lexer_private.h"
 #include "token_defines.h"
 
 /*
@@ -9,13 +8,13 @@
 **	OUTPUT:	type of term.
 */
 
-int			tkn_get_break(t_lexer *lexer, char const **text,
+int			lexer_get_term_arg_break(t_lexer *lexer, char const **text,
 			int *token_type, void *token_ptr[2])
 {
 	(void)lexer;
 	(void)token_ptr;
 	(void)token_type;
-	if (**text == WHITE_SPACE)
+	if (ft_strchr(WHITE_SPACE, **text))
 	{
 		(*text)++;
 		return (WHITE_SPACE_CODE);
@@ -31,5 +30,5 @@ int			tkn_get_break(t_lexer *lexer, char const **text,
 		return (LINE_FEED_CODE);
 	}
 	else
-		return (TERM_UNDEFINED)
+		return (TERM_UNDEFINED);
 }

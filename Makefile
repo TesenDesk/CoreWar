@@ -13,7 +13,8 @@ HEADERDIR =	$(WORKDIR)#includes/
 LIB =		$(LIBDIR)libft.a
 SRC =		lexer_get_term_ch_name.c lexer_get_term_name_cmd.c main.c \
 			lexer_get_term_com_cmd.c lexer.c lexer_get_term_comment.c \
-			lexer_utils_1.c token.c lexer_get_term_init.c lexer_utils_2.c
+			lexer_utils_1.c token.c lexer_get_term_init.c lexer_utils_2.c\
+			lexer_get_term_opx.c lexer_get_term_arg_ind.c lexer_get_term_arg_break.c\
 
 CFLAGS =	-Wall -Wextra -Werror
 LIBFLAGS =	-L$(LIBDIR) -lft
@@ -50,7 +51,8 @@ debmsg:
 $(NAME): $(SRC) #$(HEADER)
 		@printf "$(PREFIX)📦  Building $(NAME)...\n"
 #		@gcc $(FLAGS) -o $(NAME) $(SRC) $(LIBFLAGS) -I$(HEADERDIR)
-		@cc $(FLAGS) -o $(NAME) $(SRC) $(MLX_FLAGS) -I$(HEADERDIR) ##todo: add '$(LIBFLAGS)'
+		# @cc $(FLAGS) -o $(NAME) $(SRC) $(MLX_FLAGS) -I$(HEADERDIR) ##todo: add '$(LIBFLAGS)'
+		@cc $(FLAGS) -o $(NAME) $(SRC) -I$(HEADERDIR) $(LIBFLAGS)
 
 liba:
 		@printf "$(PREFIX)$(BOLD)🔎  Checkig \

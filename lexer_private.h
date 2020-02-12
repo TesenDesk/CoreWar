@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_private.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 17:46:31 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/10 20:42:40 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/02/12 18:53:44 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,14 @@
 //#define GET_COMMENT 0
 //#define LINE_FEED 1
 ////#define CHAMPION 2
-//#define OPX 4
+#define OPX 4
 //#define LABEL_WORD 5
 //#define ARG_REG 6
-//#define ARG_IND_INT 7
-//#define ARG_IND_LABEL 8
+#define ARG_IND_INT 7
+#define ARG_IND_LABEL 8
 //#define ARG_DIR_INT 9
 //#define ARG_DIR_LABEL 10
-//#define ARG_BREAK 11
+#define ARG_BREAK 11
 
 typedef struct 	    s_lexer
 {

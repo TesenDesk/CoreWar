@@ -8,8 +8,10 @@ int main()
 {
     t_lexer *lex;
     lexer_constructor(&lex);
-    char const *str = ".name\"ab\"";
+    char const *str = "+45454\n";
     t_token *token = lexer_form_token(lex, &str);
-    printf("%s\n", token->token_type ==  TOKEN_CHNAME ? "YES": "NO");
+
+    printf("%i\n", token->token_type);
+    printf("%s\n", token->token_type ==  TOKEN_TIND_INT ? "YES": "NO");
 
 }
