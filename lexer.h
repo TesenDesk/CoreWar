@@ -10,8 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef LEXER_H
 #define LEXER_H
 
+#include <string.h>
 #include "token.h"
 #include "token_defines.h"
 

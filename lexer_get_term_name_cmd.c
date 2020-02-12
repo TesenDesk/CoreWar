@@ -26,11 +26,15 @@ int				lexer_get_term_name_cmd(t_lexer *lexer, char const **text,
 {
 	(void)lexer;
 	(void)token_ptr;
+
+	printf("now:%s\n",  *text);
 	lexer_utils_trim_whitespace(text);
+	printf("now:%s\n",  *text);
 	if (lexer_utils_is_quotation_mark(**text))
 	{
 		++(*text);
-		return (NAME_CMD_STRING_CODE);
+		printf("now:%s\n",  *text);
+		return (QUOTATION_MARK_CODE);
 	}
 	return (TERM_UNDEFINED);
 }

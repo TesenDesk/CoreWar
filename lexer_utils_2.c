@@ -42,7 +42,7 @@ int				lexer_utils_is_eof(char c)
 }
 
 void			lexer_utils_trim_not_eof_not_line_feed_not_quotatuion_mark(
-				const char **text);
+				const char **text)
 {
 	while (
 		!lexer_utils_is_eof(**text) &&
