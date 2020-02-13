@@ -114,7 +114,10 @@ static int          lexer_find_op_arg_state(t_lexer *lexer, int term_type)
             return (ARG_BRK_ST);
     else if ((lexer->state == T_IND_LABEL_ST || lexer->state == T_DIR_LAB_ST)
     && term_type == LABEL_CHARS_CODE)
-            return (ARG_BRK_ST);
+    {
+        printf("aaaaaaaaaaaaa\n");
+            return (ARG_BRK_ST);}
+
     else if (lexer->state == T_DIR_INT_ST)
     {
         if (term_type == INTEGER_CODE)
@@ -122,8 +125,14 @@ static int          lexer_find_op_arg_state(t_lexer *lexer, int term_type)
         else if (term_type == LABEL_CHAR_CODE)
             return (T_DIR_LAB_ST);
     }
-    else
-        return (INIT_ST);
+    else if (lexer->state == ARG_BRK_ST)
+    {
+        if (term_type == SEPARATOR_CHAR_CODE)
+            return (MULTI_ARG_ST);
+        else if (term_type == WHITE_SPACE_CODE)
+            return (INIT_ST);
+    }
+    return (INIT_ST);
 }
 
 void                lexer_change_state(t_lexer *lexer, int term_type)
@@ -132,7 +141,7 @@ void                lexer_change_state(t_lexer *lexer, int term_type)
         lexer->state = lexer_find_next_to_INIT_ST(term_type);
     else if (lexer->state >= NAME_CMD_ST && lexer->state <= CH_COMM_ST)
             lexer->state = lexer_find_champ_state(lexer, term_type);
-    else if (lexer->state == OPX_ST) {
+    else if (lexer->state == OPX_ST || lexer->state == MULTI_ARG_ST) {
         if (term_type == REGISTER_CHAR_CODE)
             lexer->state = T_REG_ST;
         else if (term_type == INTEGER_CODE)
@@ -160,6 +169,8 @@ t_token             *lexer_form_token(t_lexer *lexer, char const **text)
     while (token_type == TOKEN_INIT_ST) {
         printf("1111\n");
         lexer->change_state(lexer, lexer->get_term[lexer->state](lexer, text, &token_type, token_ptr));
+        printf("%s\n", lexer->state == ARG_BRK_ST ? "ss" : "z");
+        printf("%s\n", *text);
         // printf("token_type = %i\n", token_type);
     }
     return (token_constructor(token_type, token_ptr));

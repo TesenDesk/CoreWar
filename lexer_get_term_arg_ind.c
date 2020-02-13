@@ -40,6 +40,7 @@ int					lexer_get_term_arg_ind_label(t_lexer *lexer, char const **text,
 		while (ft_strchr(LABEL_CHARS, **text))
 			++(*text);
 		token_ptr[TOKEN_END_PTR] = (void*)(*text - 1);
+		printf("!!! %d\n", lexer->state);
 		return (LABEL_CHARS_CODE);
 	}
 }
