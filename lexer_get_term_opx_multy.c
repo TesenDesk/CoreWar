@@ -7,7 +7,7 @@ int					lexer_get_term_opx(t_lexer *lexer, char const **text,
 	int sign = 0;
 
 	(void*)lexer;
-	*token_type = TOKEN_OPX;
+	// *token_type = TOKEN_OPX;
 	while (**text != '\0' && (ft_strchr(WHITE_SPACE, **text) || **text == '\n'))
 		++(*text);
 	if (**text == REGISTER_CHAR)
@@ -24,7 +24,11 @@ int					lexer_get_term_opx(t_lexer *lexer, char const **text,
 	if (ft_isdigit(**text))
 	{
 		if (!(sign))
+		{
+			printf("YOYOYOYOYOYOYOYOYOYOYOYOYOYOYOYOYOYOYOYO\n");
+			printf("%s\n", *text);
 			*token_ptr = *text;
+		}
 		while (ft_isdigit(**text))
 			++(*text);
 		*(token_ptr + 1) = *text - 1;
@@ -53,6 +57,8 @@ int					lexer_get_term_opx(t_lexer *lexer, char const **text,
 int					lexer_get_term_multi_arg(t_lexer *lexer, char const **text,
 					int *token_type, void *token_ptr[2])
 {
+	int sign = 0;
+
 	(void*)token_type;
 	(void*)lexer;
 	while (**text != '\0' && (ft_strchr(WHITE_SPACE, **text) || **text == '\n'))
@@ -62,7 +68,6 @@ int					lexer_get_term_multi_arg(t_lexer *lexer, char const **text,
 		(*text) += 1;
 		return (REGISTER_CHAR_CODE);
 	}
-	int sign = 0;
 	if ((**text == '+' || **text == '-'))
 	{
 		sign = **text == '+' ? 1 : -1;

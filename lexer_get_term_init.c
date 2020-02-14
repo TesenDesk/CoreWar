@@ -55,6 +55,7 @@ int             lexer_get_term_init(t_lexer *lexer, char const **text, int *toke
     }
     else if ((op_len = term_is_op(*text)))
     {
+        *token_type = TOKEN_OPX;
     	*token_ptr = (void*)(*text);
     	*(token_ptr + 1) =  (void*)(*(text + op_len));
 	    *text += op_len;
