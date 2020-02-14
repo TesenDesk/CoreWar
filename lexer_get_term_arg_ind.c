@@ -19,28 +19,23 @@ int				lexer_get_term_arg_ind_int(t_lexer *lexer, char const **text,
 		++(*text);
 		return (SEPARATOR_CHAR_CODE);
 	}
+	// *token_type = TOKEN_UNDEF;
 	return (TERM_UNDEFINED_CODE);
 }
 
 int					lexer_get_term_arg_ind_label(t_lexer *lexer, char const **text,
 					int *token_type, void *token_ptr[2])
 {
-	printf("inside lexer_get_term_arg_ind_label\n");
-
 	(void)lexer;
 	if (!ft_strchr(LABEL_CHARS, **text))
 	{
 		*token_type = TOKEN_UNDEF;
 		return (TERM_UNDEFINED_CODE);
 	}
-	else
-	{
-		token_ptr[TOKEN_START_PTR] = (void*)*text;
-		*token_type = TOKEN_TIND_LAB;
-		while (ft_strchr(LABEL_CHARS, **text))
-			++(*text);
-		token_ptr[TOKEN_END_PTR] = (void*)(*text - 1);
-		printf("!!! %d\n", lexer->state);
-		return (LABEL_CHARS_CODE);
-	}
+	token_ptr[TOKEN_START_PTR] = (void*)*text;
+	*token_type = TOKEN_TIND_LAB;
+	while (ft_strchr(LABEL_CHARS, **text))
+		++(*text);
+	token_ptr[TOKEN_END_PTR] = (void*)(*text - 1);
+	return (LABEL_CHARS_CODE);
 }

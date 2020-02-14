@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 17:46:31 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/12 18:53:44 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/02/14 22:47:19 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct 	    s_lexer
 	int             state;
 	t_token*        (*lexer_form_token)(struct s_lexer *lexer, char const **text);
 	void            (*change_state)(struct s_lexer *lexer, int term_type);
-	int             (*get_term[15])(struct s_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
+	int             (*get_term[20])(struct s_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
 }				    t_lexer;
 
 /*
@@ -119,6 +119,7 @@ int                lexer_get_term_arg_ind_label(t_lexer *lexer, char const **tex
 int                lexer_get_term_arg_dir_int(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
 int                lexer_get_term_arg_dir_label(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
 int                lexer_get_term_arg_break(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
+int					lexer_get_term_multi_arg(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
 
 
 /*

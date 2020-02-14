@@ -11,7 +11,6 @@
 int			lexer_get_term_arg_break(t_lexer *lexer, char const **text,
 			int *token_type, void *token_ptr[2])
 {
-	printf("HELLOW THERE\n");
 	(void)lexer;
 	(void)token_ptr;
 	(void)token_type;
@@ -22,7 +21,6 @@ int			lexer_get_term_arg_break(t_lexer *lexer, char const **text,
 	}
 	if (**text == SEPARATOR_CHAR)
 	{
-	    printf("separatoe\n");
 		(*text)++;
 		return (SEPARATOR_CHAR_CODE);
 	}

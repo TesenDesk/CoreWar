@@ -13,10 +13,11 @@ HEADERDIR =	$(WORKDIR)#includes/
 LIB =		$(LIBDIR)libft.a
 SRC =		lexer_get_term_ch_name.c lexer_get_term_name_cmd.c main.c \
 			lexer_get_term_com_cmd.c lexer.c lexer_get_term_comment.c \
-			lexer_utils_1.c token.c lexer_get_term_init.c lexer_utils_2.c\
-			lexer_get_term_opx.c lexer_get_term_arg_ind.c lexer_get_term_arg_break.c\
+			lexer_utils_1.c token.c lexer_get_term_init.c lexer_utils_2.c \
+			lexer_get_term_opx_multy.c lexer_get_term_arg_ind.c lexer_get_term_arg_break.c \
+			lexer_get_term_ch_comment.c lexer_get_term_arg_reg.c lexer_get_term_line_feed.c\
 
-CFLAGS =	-Wall -Wextra -Werror
+CFLAGS =	-Wall -Wextra -Werror -g
 LIBFLAGS =	-L$(LIBDIR) -lft
 HEADER =	$(HEADERDIR)ms.h
 
@@ -31,7 +32,7 @@ PREFIX =	[$(CYAN)$(LABEL)$(RST)]:\t
 #======================Debug & Flags===========================================#
 # -- WARN! Delete this message from rules if you using library from another prj#
 ifeq ($(DEBUGMODE), 1)
-	FLAGS		:= $(CFLAGS) -g
+	FLAGS		:= $(CFLAGS)
 	DEBUGMSG	:= $(PREFIX)⚠️  \033[1;33mDebug mode $(GREEN)enabled.$(RST)\n
 else
 	FLAGS		:= #$(CFLAGS)
@@ -52,7 +53,7 @@ $(NAME): $(SRC) #$(HEADER)
 		@printf "$(PREFIX)📦  Building $(NAME)...\n"
 #		@gcc $(FLAGS) -o $(NAME) $(SRC) $(LIBFLAGS) -I$(HEADERDIR)
 		# @cc $(FLAGS) -o $(NAME) $(SRC) $(MLX_FLAGS) -I$(HEADERDIR) ##todo: add '$(LIBFLAGS)'
-		@cc $(FLAGS) -o $(NAME) $(SRC) -I$(HEADERDIR) $(LIBFLAGS) -g
+		@cc $(FLAGS) -g -o $(NAME) $(SRC) -I$(HEADERDIR) $(LIBFLAGS)
 
 liba:
 		@printf "$(PREFIX)$(BOLD)🔎  Checkig \
