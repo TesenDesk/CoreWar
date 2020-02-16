@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 17:46:31 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/14 22:47:19 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/02/15 22:10:15 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,6 @@ int 			   lexer_get_term_ch_comment(t_lexer *lexer, char const **text, int *toke
 /*
  * opx/args methods
  */
-
-
 int                lexer_get_term_opx(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
 int                lexer_get_term_label_word_unit(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
 int                lexer_get_term_arg_reg(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);

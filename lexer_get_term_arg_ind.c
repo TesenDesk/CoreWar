@@ -19,6 +19,11 @@ int				lexer_get_term_arg_ind_int(t_lexer *lexer, char const **text,
 		++(*text);
 		return (SEPARATOR_CHAR_CODE);
 	}
+	// else if (**text == LINE_FEED)
+	// {
+	// 	++(*text);
+	// 	return (LINE_FEED_CODE);
+	// }
 	// *token_type = TOKEN_UNDEF;
 	return (TERM_UNDEFINED_CODE);
 }

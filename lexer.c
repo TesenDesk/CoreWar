@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 18:39:31 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/14 23:03:03 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/02/15 22:00:43 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void                lexer_constructor(t_lexer **lexer)
    (*lexer)->get_term[T_IND_INT_ST] = lexer_get_term_arg_ind_int;
    (*lexer)->get_term[T_IND_LABEL_ST] = lexer_get_term_arg_ind_label;
    (*lexer)->get_term[ARG_BRK_ST] = lexer_get_term_arg_break;
-//    (*lexer)->get_term[T_DIR_INT_ST] = lexer_get_term_ch_name;
-//   (*lexer)->get_term[T_DIR_LAB_ST] = lexer_get_term_ch_comment;
+   (*lexer)->get_term[T_DIR_INT_ST] = lexer_get_term_arg_dir_int;
+  (*lexer)->get_term[T_DIR_LAB_ST] = lexer_get_term_arg_dir_label   ;
    (*lexer)->get_term[MULTI_ARG_ST] = lexer_get_term_multi_arg;
 }
 

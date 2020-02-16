@@ -24,11 +24,7 @@ int					lexer_get_term_opx(t_lexer *lexer, char const **text,
 	if (ft_isdigit(**text))
 	{
 		if (!(sign))
-		{
-			printf("YOYOYOYOYOYOYOYOYOYOYOYOYOYOYOYOYOYOYOYO\n");
-			printf("%s\n", *text);
 			*token_ptr = *text;
-		}
 		while (ft_isdigit(**text))
 			++(*text);
 		*(token_ptr + 1) = *text - 1;

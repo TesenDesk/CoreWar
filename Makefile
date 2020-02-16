@@ -16,6 +16,7 @@ SRC =		lexer_get_term_ch_name.c lexer_get_term_name_cmd.c main.c \
 			lexer_utils_1.c token.c lexer_get_term_init.c lexer_utils_2.c \
 			lexer_get_term_opx_multy.c lexer_get_term_arg_ind.c lexer_get_term_arg_break.c \
 			lexer_get_term_ch_comment.c lexer_get_term_arg_reg.c lexer_get_term_line_feed.c\
+			lexer_get_term_arg_dir.c\
 
 CFLAGS =	-Wall -Wextra -Werror -g
 LIBFLAGS =	-L$(LIBDIR) -lft
