@@ -46,7 +46,7 @@
 /*
  * EOF_ST
  */
-#defin EOF_ST 8
+#define EOF_ST 8
 /*
  * augment_unit_substates
  */

@@ -11,5 +11,4 @@ int main()
     char const *str = ".name\"ab\"";
     t_token *token = lexer_form_token(lex, &str);
     printf("%s\n", token->token_type ==  TOKEN_CHNAME ? "YES": "NO");
-
 }

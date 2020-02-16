@@ -19,19 +19,6 @@
 
 
 
-//enum							e_words
-//{
-//	UNDEFINED_TOKEN = -1,
-//	EOF_WORD,
-//	LINE_FEED,
-//	CH_NAME,
-//	CH_COMMENT,
-//	LABEL_WORD,
-//	OP_NAME,
-//	T_REG,
-//	T_IND,
-//	T_DIR
-//};
 
 /*
 ** The attribute structure with no disclosed attribute.
