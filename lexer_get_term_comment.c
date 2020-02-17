@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 00:24:58 by nikita_toro       #+#    #+#             */
-/*   Updated: 2020/02/14 23:39:39 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/02/17 18:02:56 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int		lexer_get_term_comment(t_lexer *lexer, char const **text, int *token_type, 
 		}
 		if (**text == '\n')
 		{
+	printf("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT\n");
 			*token_type = LINE_FEED;
 			return (LINE_FEED_CODE);
 		}
