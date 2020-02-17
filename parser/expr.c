@@ -3,7 +3,7 @@
 #include "expr_private.h"
 #include "expr_defines.h"
 
-t_expr*               expr_constructor(int type)
+t_expr*               expr_constructor(int type, int size, void *begin)
 {
     t_expr         *expr;
     if (!(expr = (t_expr*)malloc(sizeof(t_expr))))
@@ -13,7 +13,7 @@ t_expr*               expr_constructor(int type)
     }
     expr->expr_type = type;
     expr->expr_size = size;
-    printf("ok?\n");
+    expr->begin = begin;
     return (expr);
 }
 

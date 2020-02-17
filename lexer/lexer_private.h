@@ -121,7 +121,7 @@ int                lexer_get_term_arg_ind_label(t_lexer *lexer, char const **tex
 int                lexer_get_term_arg_dir_int(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
 int                lexer_get_term_arg_dir_label(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
 int                lexer_get_term_arg_break(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
-int					lexer_get_term_multi_arg(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
+int				    lexer_get_term_multi_arg(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
 
 
 /*

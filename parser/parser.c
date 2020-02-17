@@ -12,10 +12,16 @@ void                parser_constructor(t_parser **parser)
     }
     (*parser)->state = INIT_ST;
     (*parser)->change_state = parser_change_state;
-    (*parser)->parser_form_expr = parser_form_expr;
+    (*parser)->form_expr = parser_form_expr;
     (*parser)->get_token[INIT_ST] = parser_get_token_init;
-    (*parser)->get_token[COMMENT_ST] = parser_get_token_comment;
-    (*parser)->get_token[LINE_FEED_ST] = parser_get_token_line_feed;
+    (*parser)->get_token[PRECODE_ST] = parser_get_token_comment;
+    (*parser)->get_token[CODE_COMMENT_ST] = parser_get_token_line_feed;
+    /*
+     *
+     *
+     */
+    (*parser)->get_token[LIFE_ST] = parser_get_token_line_feed;
+
 }
 
 void                parser_destructor(t_parser **parser)

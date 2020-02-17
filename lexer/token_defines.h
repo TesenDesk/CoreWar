@@ -1,5 +1,7 @@
 
 
+#ifndef TOKEN_DEFINES_H
+#define TOKEN_DEFINES_H
 /*
  * TOKEN TYPES
  */
@@ -39,6 +41,7 @@
 /*
 ** Operation names.
 */
+
 
 #define ADD_NAME				"add"
 #define AFF_NAME				"aff"
@@ -104,22 +107,6 @@
 
 #define LINE_FEED_CODE          29
 #define EOF_CODE                30
-#
 
+#endif
 
-
-
-
-//enum							e_words
-//{
-//	UNDEFINED_TOKEN = -1,
-//	EOF_WORD,
-//	LINE_FEED,
-//	CH_NAME,
-//	CH_COMMENT,
-//	LABEL_WORD,
-//	OP_NAME,
-//	T_REG,
-//	T_IND,
-//	T_DIR
-//};
