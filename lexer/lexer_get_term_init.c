@@ -27,6 +27,7 @@ int             lexer_get_term_init(t_lexer *lexer, char const **text, int *toke
 	op_len = 0;
     while (**text == ' ' || **text == '\t')
         ++(*text);
+    printf("text|%s\n", *text);
     if (!(**text))
     {
         *token_type = TOKEN_EOF;
@@ -41,7 +42,7 @@ int             lexer_get_term_init(t_lexer *lexer, char const **text, int *toke
 	    return (ALT_COMMENT_CHAR_CODE);
     }
     else if (**text == LINE_FEED) {
-    	*token_type = LINE_FEED;
+    	*token_type = TOKEN_LFEED;
     	++(*text);
 	    return (LINE_FEED_CODE);
     }

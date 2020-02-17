@@ -10,7 +10,7 @@ int main()
 {
     t_lexer *lex;
     lexer_constructor(&lex);
-    char const *str = "ld %45454, 45454, r5     ;blabla\n";
+    char const *str = "ld 45454, %:marker, r5     ;blabla\n";
     t_token *token1 = lexer_form_token(lex, &str);    
     printf("token_type %i\n", token1->token_type);
     printf("str %s\n\n", token1->token_ptr[0]);
