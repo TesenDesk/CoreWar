@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 18:39:31 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/04 18:29:53 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/02/17 18:44:26 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,31 @@ void                lexer_constructor(t_lexer **lexer)
 		printf("error\n");
 		exit(-1);
 	}
+    //переделать
+
+    // (*lexer)-> get_term = malloc(20 * sizeof(void *));
     (*lexer)->state = INIT_ST;
     (*lexer)->change_state = lexer_change_state;
     (*lexer)->lexer_form_token = lexer_form_token;
     (*lexer)->get_term[INIT_ST] = lexer_get_term_init;
     (*lexer)->get_term[COMMENT_ST] = lexer_get_term_comment;
+    (*lexer)->get_term[LINE_FEED_ST] = lexer_get_term_line_feed;
 //    (*lexer)->get_term[LINE_FEED_ST] = lexer_get_term_line_feed;
-    (*lexer)->get_term[NAME_CMD_ST] = lexer_get_term_name_cmd;
-    (*lexer)->get_term[CH_NAME_ST] = lexer_get_term_ch_name;
-//    *lexer->get_term[OPX] = lexer_get_term_opx;
-//    *lexer->get_term[ARG_REG] = lexer_get_term_arg_reg;
-//    *lexer->get_term[ARG_IND_INT] = lexer_get_term_arg_dir_int;
-//    *lexer->get_term[ARG_IND_LABEL] = lexer_get_term_arg_ind_label;
-//    *lexer->get_term[ARG_DIR_INT] = lexer_get_term_arg_dir_int;
-//    *lexer->get_term[ARG_DIR_LABEL] = lexer_get_term_arg_dir_label;
-//    *lexer->get_term[ARG_BREAK] = lexer_get_term_arg_break;
+ //   (*lexer)->get_term[NAME_CMD_ST] = lexer_get_term_name_cmd;
+ //   (*lexer)->get_term[CH_NAME_ST] = lexer_get_term_ch_name;
+ //   (*lexer)->get_term[COMM_CMD_ST] = lexer_get_term_name_cmd;
+ //   (*lexer)->get_term[CH_COMM_ST] = lexer_get_term_ch_name;
+
+
+// TESTING
+    (*lexer)->get_term[OPX_ST] = lexer_get_term_opx;
+   (*lexer)->get_term[T_REG_ST] = lexer_get_term_arg_reg;
+   (*lexer)->get_term[T_IND_INT_ST] = lexer_get_term_arg_ind_int;
+   (*lexer)->get_term[T_IND_LABEL_ST] = lexer_get_term_arg_ind_label;
+   (*lexer)->get_term[ARG_BRK_ST] = lexer_get_term_arg_break;
+   (*lexer)->get_term[T_DIR_INT_ST] = lexer_get_term_arg_dir_int;
+  (*lexer)->get_term[T_DIR_LAB_ST] = lexer_get_term_arg_dir_label   ;
+   (*lexer)->get_term[MULTI_ARG_ST] = lexer_get_term_multi_arg;
 }
 
 void                lexer_destructor(t_lexer **lexer)
@@ -73,7 +83,7 @@ static int                  lexer_find_next_to_INIT_ST(int term_type)
         return (NAME_CMD_ST);
     else if (term_type == COMMENT_CMD_STRING_CODE)
         return (COMM_CMD_ST);
-    else if (term_type >= ADD_NAME_CODE && term_type <= ZJMP_NAME_CODE)
+    else if (term_type == OPX_CODE)
         return (OPX_ST);
     else
         return (INIT_ST);
@@ -107,7 +117,10 @@ static int          lexer_find_op_arg_state(t_lexer *lexer, int term_type)
             return (ARG_BRK_ST);
     else if ((lexer->state == T_IND_LABEL_ST || lexer->state == T_DIR_LAB_ST)
     && term_type == LABEL_CHARS_CODE)
+    {
             return (ARG_BRK_ST);
+    }
+
     else if (lexer->state == T_DIR_INT_ST)
     {
         if (term_type == INTEGER_CODE)
@@ -115,8 +128,14 @@ static int          lexer_find_op_arg_state(t_lexer *lexer, int term_type)
         else if (term_type == LABEL_CHAR_CODE)
             return (T_DIR_LAB_ST);
     }
-    else
-        return (INIT_ST);
+    else if (lexer->state == ARG_BRK_ST)
+    {
+        if (term_type == SEPARATOR_CHAR_CODE)
+            return (MULTI_ARG_ST);
+        else if (term_type == WHITE_SPACE_CODE)
+            return (INIT_ST);
+    }
+    return (INIT_ST);
 }
 
 void                lexer_change_state(t_lexer *lexer, int term_type)
@@ -125,7 +144,7 @@ void                lexer_change_state(t_lexer *lexer, int term_type)
         lexer->state = lexer_find_next_to_INIT_ST(term_type);
     else if (lexer->state >= NAME_CMD_ST && lexer->state <= CH_COMM_ST)
             lexer->state = lexer_find_champ_state(lexer, term_type);
-    else if (lexer->state == OPX_ST) {
+    else if (lexer->state == OPX_ST || lexer->state == MULTI_ARG_ST) {
         if (term_type == REGISTER_CHAR_CODE)
             lexer->state = T_REG_ST;
         else if (term_type == INTEGER_CODE)
@@ -138,8 +157,10 @@ void                lexer_change_state(t_lexer *lexer, int term_type)
     else if (lexer->state >= T_REG_ST && lexer->state <= ARG_BRK_ST)
         lexer->state = lexer_find_op_arg_state(lexer, term_type);
     else
+    {
+        printf("LINE_FEED_CODE %i\n", lexer->state);
         lexer->state = INIT_ST;
-
+    }
 }
 
 
@@ -151,8 +172,9 @@ t_token             *lexer_form_token(t_lexer *lexer, char const **text)
     token_type = TOKEN_INIT_ST;
     token_ptr[0] = NULL;
     token_ptr[1] = NULL;
-    while (token_type == TOKEN_INIT_ST) {
-        printf("1111\n");
+    while (token_type == TOKEN_INIT_ST)
+    {
+        printf("111  lexer->state %i\n", lexer->state);
         lexer->change_state(lexer, lexer->get_term[lexer->state](lexer, text, &token_type, token_ptr));
     }
     return (token_constructor(token_type, token_ptr));

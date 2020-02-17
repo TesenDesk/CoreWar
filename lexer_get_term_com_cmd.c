@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_get_term_com_cmd.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 19:29:54 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/10 20:21:17 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/02/12 21:41:14 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ int				lexer_get_term_com_cmd(t_lexer *lexer, char const **text,
 		++(*text);
 		return (COMMENT_CMD_STRING_CODE);
 	}
-	return (TERM_UNDEFINED);
+	return (TERM_UNDEFINED_CODE);
 }

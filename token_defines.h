@@ -14,6 +14,8 @@
 #define TOKEN_TREG 6
 #define TOKEN_TIND_INT 7
 #define TOKEN_TIND_LAB 8
+#define TOKEN_TDIR_INT 9
+#define TOKEN_TDIR_LAB 10
 
 /*
  * TERM LITERALS
@@ -27,9 +29,9 @@
 #define DIRECT_CHAR				'%'
 
 #define SEPARATOR_CHAR			','
-#define LINE_FEED               '\n'
+#define LINE_FEED               	'\n'
 
-#define LABEL_CHARS				"abcdefghijklmnopqrstuvwxyz_0123456789"
+#define LABEL_CHARS				"abcdefghijklmnopqrstuvwxyz_0123456789" // 17
 #define NAME_CMD_STRING			".name"
 #define COMMENT_CMD_STRING		".comment"
 #define WHITE_SPACE				" \t"
@@ -61,7 +63,7 @@
  * TERM CODES
  */
 
-#define TERM_UNDEFINED          -1
+#define TERM_UNDEFINED_CODE    -1
 #define INTEGER_CODE            0
 #define COMMENT_CHAR_CODE		1
 #define ALT_COMMENT_CHAR_CODE   2
