@@ -21,8 +21,8 @@ t_token*               token_constructor(int type,void *ptr[2])
 void                token_destructor(t_token **token)
 {
 	free(*token);
-    (*token)->token_ptr[0] = NULL;
-    (*token)->token_ptr[1] = NULL;
+	(*token)->token_ptr[0] = NULL;
+	(*token)->token_ptr[1] = NULL;
 	*token = NULL;
 }
 

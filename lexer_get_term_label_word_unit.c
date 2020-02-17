@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_get_term_label_word_unit.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 16:41:31 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/10 20:31:08 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/02/15 21:18:37 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ int				lexer_get_term_label_word(t_lexer *lexer, char const **text,
 		return (LABEL_CHAR_CODE);
 	}
 	*token_type = TOKEN_UNDEF;
-	return (TERM_UNDEFINED);
+	return (TERM_UNDEFINED_CODE);
 }
