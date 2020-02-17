@@ -14,7 +14,7 @@
 #define TOKEN_TREG 6
 #define TOKEN_TIND_INT 7
 #define TOKEN_TIND_LAB 8
-#define TOKEN_ 
+#define TOKEN_TDIR_INT 9
 #define TOKEN_TDIR_LAB 10
 
 /*
