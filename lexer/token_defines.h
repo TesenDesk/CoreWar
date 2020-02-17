@@ -18,6 +18,7 @@
 #define TOKEN_TIND_LAB 8
 #define TOKEN_TDIR_INT 9
 #define TOKEN_TDIR_LAB 10
+#define TOKEN_LABEL_WORD 11
 
 /*
  * TERM LITERALS

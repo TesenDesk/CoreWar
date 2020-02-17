@@ -8,7 +8,7 @@ void     parser_change_state(t_parser *parser, int token_type)
     {
         if (token_type == TOKEN_CHNAME || token_type == TOKEN_CHCOM)
             parser->state = PRECODE_ST;
-      //  else if (token_type == LA)
+        else if (token_type == TOKEN_LABEL_WORD)
     }
 
 }

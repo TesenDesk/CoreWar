@@ -9,7 +9,7 @@ NAME        :=  corewar
 MAIN        :=  main.c
 LABEL       :=	CoreWar
 WORKDIR     :=  ./
-LIBDIR      :=	$(WORKDIR)libft/
+LIBDIR      :=	$(WORKDIR)libf/
 HEADERDIR   :=	$(WORKDIR)#includes/
 LIB         :=  $(LIBDIR)libft.a
 LEX_SRC     :=	lexer_get_term_ch_name.c lexer_get_term_name_cmd.c \
@@ -65,11 +65,11 @@ $(LEX_DIR_OBJ): %.o:  %.c
 		@cc -c $(FLAGS)  $< -o $@
 
 $(LIB):
-		make -C libft/
+		make -C libf/
 
-# libftliba:
-# 	libftliba	@printf "$(PREFIX)$(BOLD)🔎  Checkig \
-# for libft up-to-dateates...$(RST)\n"
+# libfliba:
+# 	libfliba	@printf "$(PREFIX)$(BOLD)🔎  Checkig \
+# for libf up-to-dateates...$(RST)\n"
 # 		@make -C $(LIBDIR) DEBUGMODE=$(DEBUGMODE)
 
 clean: deljunk
