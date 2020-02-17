@@ -5,22 +5,23 @@
 		makevisual
 
 #======================Folders & Files=========================================#
-NAME =		corewar
-LABEL =		CoreWar
-WORKDIR =	./
-LIBDIR =	$(WORKDIR)libft/
-HEADERDIR =	$(WORKDIR)#includes/
-LIB =		$(LIBDIR)libft.a
-SRC =		lexer_get_term_ch_name.c lexer_get_term_name_cmd.c main.c \
+NAME :=		corewar
+LABEL :=		CoreWar
+WORKDIR :=	./
+LIBDIR :=	$(WORKDIR)libft/
+HEADERDIR :=	$(WORKDIR)#includes/
+LIB :=		$(LIBDIR)libft.a
+LEX_SRC :=	lexer_get_term_ch_name.c lexer_get_term_name_cmd.c \
 			lexer_get_term_com_cmd.c lexer.c lexer_get_term_comment.c \
-			lexer_utils_1.c token.c lexer_get_term_init.c lexer_utils_2.c \
+			lexer_utils_1.c lexer_get_term_init.c lexer_utils_2.c \
 			lexer_get_term_opx_multy.c lexer_get_term_arg_ind.c lexer_get_term_arg_break.c \
-			lexer_get_term_ch_comment.c lexer_get_term_arg_reg.c lexer_get_term_line_feed.c\
-			lexer_get_term_arg_dir.c\
-
-CFLAGS =	-Wall -Wextra -Werror -g
-LIBFLAGS =	-L$(LIBDIR) -lft
-HEADER =	$(HEADERDIR)ms.h
+			lexer_get_term_ch_comment.c lexer_get_term_arg_reg.c lexer_get_term_line_feed.c \
+			lexer_get_term_arg_dir.c token.c
+LEX_OBJ :=  $(patsubst %.c, %.o, $(LEX_SRC))
+LEX_DIR_OBJ := $(addprefix ./lexer/, $(LEX_OBJ))
+CFLAGS :=   -Wall -Wextra -Werror -g
+LIBFLAGS := -L$(LIBDIR) -lft
+HEADER :=   $(HEADERDIR)ms.h
 
 #======================COLORS & Co=============================================#
 GREEN =		\033[1;32m
@@ -50,11 +51,21 @@ rebuilded.$(RST)"
 debmsg:
 		@printf "$(DEBUGMSG)"
 
-$(NAME): $(SRC) #$(HEADER)
+$(NAME): $(LEX_DIR_OBJ) main.c
 		@printf "$(PREFIX)📦  Building $(NAME)...\n"
-#		@gcc $(FLAGS) -o $(NAME) $(SRC) $(LIBFLAGS) -I$(HEADERDIR)
-		# @cc $(FLAGS) -o $(NAME) $(SRC) $(MLX_FLAGS) -I$(HEADERDIR) ##todo: add '$(LIBFLAGS)'
-		@cc $(FLAGS) -g -o $(NAME) $(SRC) -I$(HEADERDIR) $(LIBFLAGS)
+		@printf "Building $(LEX_DIR_OBJ).$(LEX_OBJ).\n"
+
+
+#		@gcc $(FLAGS) -o $(NAME) $(LEX_DIR_SRC) $(LIBFLAGS) -I$(HEADERDIR)
+		# @cc $(FLAGS) -o $(NAME) $(LEX_DIR_SRC) $(MLX_FLAGS) -I$(HEADERDIR) ##todo: add '$(LIBFLAGS)'
+		@cc $(CFLAGS)  -o $@ $^ -I$(HEADERDIR) $(LIBFLAGS)
+
+# $(LEX_DIR_OBJ) : %.o : %.c
+
+# $(LEX_DIR_OBJ) : $(LEX_DIR_SRC)
+$(LEX_DIR_OBJ): %.o:  %.c
+		@cc -c $(FLAGS)  $< -o $@
+
 
 liba:
 		@printf "$(PREFIX)$(BOLD)🔎  Checkig \
@@ -62,6 +73,7 @@ for libft updates...$(RST)\n"
 		#@make -C $(LIBDIR) DEBUGMODE=$(DEBUGMODE)
 
 clean: deljunk
+		rm -rf lexer/*.o
 		#@make -C $(LIBDIR) clean
 
 delfile:

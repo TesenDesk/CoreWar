@@ -1,9 +1,10 @@
-#include "token.h"
-#include "token_private.h"
-#include "lexer.h"
-#include "lexer_private.h"
+#include "lexer/lexer.h"
+#include "lexer/lexer_private.h"
+#include "lexer/lexer_utils_private.h"
 #include <stdio.h>
-#include "token_defines.h"
+#include "lexer/token.h"
+#include "lexer/token_defines.h"
+#include "lexer/token_private.h"
 
 int main()
 {
