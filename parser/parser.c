@@ -38,7 +38,7 @@ void     parser_change_state(t_parser *parser, int token_type)
 
 int     parser_get_token_init(t_parser *parser)
 {
-        ;
+        return (0);
 }
 
 
