@@ -4,6 +4,7 @@
 #include <string.h>
 #include "parser.h"
 #include "parser_private.h"
+#include "expr.h"
 
 
 
@@ -25,6 +26,7 @@ void			                parser_destructor(t_parser **parser);
 */
 
 t_expr			                *parser_form_expr(t_parser *parser, char const **text);
+
 
 
 #endif
