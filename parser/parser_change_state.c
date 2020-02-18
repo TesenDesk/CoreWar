@@ -10,5 +10,4 @@ void     parser_change_state(t_parser *parser, int token_type)
             parser->state = PRECODE_ST;
         else if (token_type == TOKEN_LABEL_WORD)
     }
-
 }
