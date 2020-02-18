@@ -15,7 +15,7 @@
 #include "token.h"
 #include "token_defines.h"
 
-void                lexer_constructor(t_lexer **lexer)
+void                _lexer_constructor(t_lexer **lexer)
 {
 	if (!(*lexer = (t_lexer*)malloc(sizeof(t_lexer))))
 	{
@@ -50,7 +50,7 @@ void                lexer_constructor(t_lexer **lexer)
 
 }
 
-void                lexer_destructor(t_lexer **lexer)
+void                _lexer_destructot(t_lexer **lexer)
 {
 	free(*lexer);
 	*lexer = NULL;

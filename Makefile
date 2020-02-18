@@ -14,7 +14,7 @@ HEADERDIR   :=	$(WORKDIR)#includes/
 LIB         :=  $(LIBDIR)libft.a
 LEX_SRC     :=	lexer_get_term_ch_name.c lexer_get_term_name_cmd.c \
 				lexer_get_term_com_cmd.c lexer.c lexer_get_term_comment.c \
-				lexer_utils_1.c lexer_get_term_init.c lexer_utils_2.c \
+				lexer_utils_1.c lexer_get_term_init.c lexer_utils_2.c lexer_singleton_instance.c \
 				lexer_get_term_opx_multy.c lexer_get_term_arg_ind.c lexer_get_term_arg_break.c \
 				lexer_get_term_ch_comment.c lexer_get_term_arg_reg.c lexer_get_term_line_feed.c \
 				lexer_get_term_arg_dir.c token.c
@@ -74,7 +74,7 @@ $(LIB):
 
 clean: deljunk
 		rm -rf lexer/*.o
-		#@make -C $(LIBDIR) clean
+		@make -C $(LIBDIR) clean
 
 delfile:
 		@echo "$(PREFIX)♻️  $(RED)Removing executable file...$(RST)"
