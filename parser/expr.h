@@ -1,5 +1,5 @@
 #ifndef EXPR_H
-#define EXPR_H
+# define EXPR_H
 
 //#include "expr_private.h"
 
@@ -21,6 +21,7 @@ typedef struct 	    s_expr t_expr;
 #define TOKEN_TIND_LAB 9
 #define TOKEN_TDIR_INT 10
 #define TOKEN_TDIR_LAB 11
+#define TOKEN_LAB_WO 12
 
 /*
  * construction/destruction

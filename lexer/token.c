@@ -27,7 +27,7 @@ void                token_destructor(t_token **token)
 	*token = NULL;
 }
 
-int                 get_token_type(t_token *token)
+int                 get_type(t_token *token)
 {
     if (token)
         return (token->type);

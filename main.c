@@ -12,7 +12,7 @@ int main()
     t_lexer *lex;
 //   _lexer_constructor(&lex);
 //    lex = lexer_is
-    lex = lexer_singleton_instance();
+    char const *str = "ld 45454, %:marker, r5     ;blabla\n";
     char const *str = "ld 45454, %:marker, r5     ;blabla\n";
     t_token *token1 = lexer_form_token(lex, &str);    
     printf("type %i\n", token1->type);

@@ -3,6 +3,8 @@
 		"lexer.h": "c",
 		"lexer_private.h": "c",
 		"token_defines.h": "c",
-		"parser_private.h": "c"
+		"parser_private.h": "c",
+		"expr.h": "c",
+		"expr_private.h": "c"
 	}
 }
