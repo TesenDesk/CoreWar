@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:14:25 by yurezz            #+#    #+#             */
-/*   Updated: 2020/02/18 17:26:48 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/02/18 17:42:43 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** Constructor and destructor functions.
 */
 
-void			lexer_ctor(t_lexer **lexer);
-void			lexer_dtor(t_lexer **lexer);
+void			_lexer_ctor(t_lexer **lexer);
+void			_lexer_dtor(t_lexer **lexer);
 
 #endif
