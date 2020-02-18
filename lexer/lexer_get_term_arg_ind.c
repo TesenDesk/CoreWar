@@ -3,12 +3,12 @@
 #include "lexer_private.h"
 
 int				lexer_get_term_arg_ind_int(t_lexer *lexer, char const **text,
-					int *token_type, void *token_ptr[2])
+					int *type, void *token_ptr[2])
 {
 	(void)lexer;
 	(void)token_ptr;
-	(void)token_type;
-	*token_type = TOKEN_TIND_INT;
+	(void)type;
+	*type = TOKEN_TIND_INT;
 	if (ft_strchr(WHITE_SPACE, **text))
 	{
 		++(*text);
@@ -24,21 +24,21 @@ int				lexer_get_term_arg_ind_int(t_lexer *lexer, char const **text,
 	// 	++(*text);
 	// 	return (LINE_FEED_CODE);
 	// }
-	// *token_type = TOKEN_UNDEF;
+	// *type = TOKEN_UNDEF;
 	return (TERM_UNDEFINED_CODE);
 }
 
 int					lexer_get_term_arg_ind_label(t_lexer *lexer, char const **text,
-					int *token_type, void *token_ptr[2])
+					int *type, void *token_ptr[2])
 {
 	(void)lexer;
 	if (!ft_strchr(LABEL_CHARS, **text))
 	{
-		*token_type = TOKEN_UNDEF;
+		*type = TOKEN_UNDEF;
 		return (TERM_UNDEFINED_CODE);
 	}
 	token_ptr[TOKEN_START_PTR] = (void*)*text;
-	*token_type = TOKEN_TIND_LAB;
+	*type = TOKEN_TIND_LAB;
 	while (ft_strchr(LABEL_CHARS, **text))
 		++(*text);
 	token_ptr[TOKEN_END_PTR] = (void*)(*text - 1);

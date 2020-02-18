@@ -47,6 +47,7 @@ void                lexer_constructor(t_lexer **lexer)
    (*lexer)->get_term[T_DIR_INT_ST] = lexer_get_term_arg_dir_int;
   (*lexer)->get_term[T_DIR_LAB_ST] = lexer_get_term_arg_dir_label   ;
    (*lexer)->get_term[MULTI_ARG_ST] = lexer_get_term_multi_arg;
+
 }
 
 void                lexer_destructor(t_lexer **lexer)
@@ -179,4 +180,5 @@ t_token             *lexer_form_token(t_lexer *lexer, char const **text)
     }
     return (token_constructor(token_type, token_ptr));
 }
+
 

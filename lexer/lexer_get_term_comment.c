@@ -21,7 +21,7 @@
 **	OUTPUT:	type of term.
 */
 
-int		lexer_get_term_comment(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2])
+int		lexer_get_term_comment(t_lexer *lexer, char const **text, int *type, void *token_ptr[2])
 {
 	(void)lexer;
 	(void)token_ptr;
@@ -40,6 +40,6 @@ int		lexer_get_term_comment(t_lexer *lexer, char const **text, int *token_type, 
 			return (LINE_FEED_CODE);
 		}
 	}
-	*token_type = TOKEN_UNDEF;
+	*type = TOKEN_UNDEF;
 	return (EOF_CODE);
 }

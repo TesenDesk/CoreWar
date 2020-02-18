@@ -2,12 +2,12 @@
 #include "token_defines.h"
 
 int					lexer_get_term_opx(t_lexer *lexer, char const **text,
-					int *token_type, void *token_ptr[2])
+					int *type, void *token_ptr[2])
 {
 	int sign = 0;
 
 	(void*)lexer;
-	// *token_type = TOKEN_OPX;
+	// *type = TOKEN_OPX;
 	while (**text != '\0' && (ft_strchr(WHITE_SPACE, **text) || **text == '\n'))
 		++(*text);
 	if (**text == REGISTER_CHAR)
@@ -33,7 +33,7 @@ int					lexer_get_term_opx(t_lexer *lexer, char const **text,
 	else if (sign)
 	{
 		++(*text);
-		*token_type = TOKEN_UNDEF;
+		*type = TOKEN_UNDEF;
 		return (TERM_UNDEFINED_CODE);
 	}
 	if (**text == LABEL_CHAR)
@@ -51,11 +51,11 @@ int					lexer_get_term_opx(t_lexer *lexer, char const **text,
 }
 
 int					lexer_get_term_multi_arg(t_lexer *lexer, char const **text,
-					int *token_type, void *token_ptr[2])
+					int *type, void *token_ptr[2])
 {
 	int sign = 0;
 
-	(void*)token_type;
+	(void*)type;
 	(void*)lexer;
 	while (**text != '\0' && (ft_strchr(WHITE_SPACE, **text) || **text == '\n'))
 		++(*text);
@@ -82,7 +82,7 @@ int					lexer_get_term_multi_arg(t_lexer *lexer, char const **text,
 	else if (sign)
 	{
 		++(*text);
-		*token_type = TOKEN_UNDEF;
+		*type = TOKEN_UNDEF;
 		return (TERM_UNDEFINED_CODE);
 	}
 	if (**text == LABEL_CHAR)

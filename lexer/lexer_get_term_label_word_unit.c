@@ -22,16 +22,16 @@
 */
 
 int				lexer_get_term_label_word(t_lexer *lexer, char const **text, 
-				int *token_type, void *token_ptr[2])
+				int *type, void *token_ptr[2])
 {
 	(void)lexer;
 	(void)token_ptr;
 	if (lexer_utils_is_label_char(**text))
 	{
-		*token_type = LABEL_WORD;
+		*type = LABEL_WORD;
 		++(*text);
 		return (LABEL_CHAR_CODE);
 	}
-	*token_type = TOKEN_UNDEF;
+	*type = TOKEN_UNDEF;
 	return (TERM_UNDEFINED_CODE);
 }

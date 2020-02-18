@@ -12,13 +12,14 @@
 
 #ifndef TOKEN_PRIVATE_H
 #define TOKEN_PRIVATE_H
-
+#include <stdio.h>
 //#define UNDEF_TOKEN -1
 
 typedef struct 	    s_token
 {
-    int             token_type;
+    int             type;
     void		    *token_ptr[2];
+    int             (*get_type)(t_token  *token);
 }				    t_token;
 
 
