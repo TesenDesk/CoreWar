@@ -23,8 +23,9 @@
 /*
 ** The attribute structure with no disclosed attribute.
 */
-//struct                          s_lexer;
+
 typedef struct s_lexer          t_lexer;
+
 
 /*
 ** Constructor and destructor functions.
@@ -38,6 +39,5 @@ void			lexer_destructor(t_lexer **lexer);
 */
 
 t_token			*lexer_form_token(t_lexer *lexer, char const **text);
-
 
 #endif
