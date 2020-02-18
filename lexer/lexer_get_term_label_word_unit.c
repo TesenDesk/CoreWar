@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_get_term_label_word_unit.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 16:41:31 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/15 21:18:37 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/02/18 19:53:52 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 #include "lexer_private.h"
-#include "lexer_utils.h"
+#include "lexer_utils_private.h"
 
 /*
 **	The function determins if this part of text is appropriate term for
@@ -22,16 +22,16 @@
 */
 
 int				lexer_get_term_label_word(t_lexer *lexer, char const **text, 
-				int *token_type, void *token_ptr[2])
+				int *type, void *token_ptr[2])
 {
 	(void)lexer;
 	(void)token_ptr;
 	if (lexer_utils_is_label_char(**text))
 	{
-		*token_type = LABEL_WORD;
+		*type = LABEL_WORD;
 		++(*text);
 		return (LABEL_CHAR_CODE);
 	}
-	*token_type = TOKEN_UNDEF;
+	*type = TOKEN_UNDEF;
 	return (TERM_UNDEFINED_CODE);
 }

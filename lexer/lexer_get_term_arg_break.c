@@ -9,11 +9,11 @@
 */
 
 int			lexer_get_term_arg_break(t_lexer *lexer, char const **text,
-			int *token_type, void *token_ptr[2])
+			int *type, void *token_ptr[2])
 {
 	(void)lexer;
 	(void)token_ptr;
-	(void)token_type;
+	(void)type;
 	if (ft_strchr(WHITE_SPACE, **text))
 	{
 	printf("BREAK BREAK BREAK BREAK BREAK BREAK\n");

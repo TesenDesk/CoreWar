@@ -80,7 +80,7 @@ typedef struct 	    s_lexer
 	int             state;
 	t_token*        (*lexer_form_token)(struct s_lexer *lexer, char const **text);
 	void            (*change_state)(struct s_lexer *lexer, int term_type);
-	int             (*get_term[20])(struct s_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
+	int             (*get_term[20])(struct s_lexer *lexer, char const **text, int *type, void *token_ptr[2]);
 }				    t_lexer;
 
 /*
@@ -92,36 +92,36 @@ void                lexer_change_state(t_lexer *lexer, int term_type);
 /*
  * INIT_ST state methods
  */
-int		            lexer_get_term_init(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
+int		            lexer_get_term_init(t_lexer *lexer, char const **text, int *type, void *token_ptr[2]);
 
 /*
  * 1lvl comment/feed methods
  */
 
-int                lexer_get_term_comment(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
-int                lexer_get_term_line_feed(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
+int                lexer_get_term_comment(t_lexer *lexer, char const **text, int *type, void *token_ptr[2]);
+int                lexer_get_term_line_feed(t_lexer *lexer, char const **text, int *type, void *token_ptr[2]);
 
 /*
  * champion term methods
  */
 
-int     		   lexer_get_term_name_cmd(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
-int    			   lexer_get_term_com_cmd(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
-int                lexer_get_term_ch_name(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
-int 			   lexer_get_term_ch_comment(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
+int     		   lexer_get_term_name_cmd(t_lexer *lexer, char const **text, int *type, void *token_ptr[2]);
+int    			   lexer_get_term_com_cmd(t_lexer *lexer, char const **text, int *type, void *token_ptr[2]);
+int                lexer_get_term_ch_name(t_lexer *lexer, char const **text, int *type, void *token_ptr[2]);
+int 			   lexer_get_term_ch_comment(t_lexer *lexer, char const **text, int *type, void *token_ptr[2]);
 
 /*
  * opx/args methods
  */
-int                lexer_get_term_opx(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
-int                lexer_get_term_label_word_unit(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
-int                lexer_get_term_arg_reg(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
-int                lexer_get_term_arg_ind_int(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
-int                lexer_get_term_arg_ind_label(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
-int                lexer_get_term_arg_dir_int(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
-int                lexer_get_term_arg_dir_label(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
-int                lexer_get_term_arg_break(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
-int				    lexer_get_term_multi_arg(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2]);
+int                lexer_get_term_opx(t_lexer *lexer, char const **text, int *type, void *token_ptr[2]);
+int                lexer_get_term_label_word_unit(t_lexer *lexer, char const **text, int *type, void *token_ptr[2]);
+int                lexer_get_term_arg_reg(t_lexer *lexer, char const **text, int *type, void *token_ptr[2]);
+int                lexer_get_term_arg_ind_int(t_lexer *lexer, char const **text, int *type, void *token_ptr[2]);
+int                lexer_get_term_arg_ind_label(t_lexer *lexer, char const **text, int *type, void *token_ptr[2]);
+int                lexer_get_term_arg_dir_int(t_lexer *lexer, char const **text, int *type, void *token_ptr[2]);
+int                lexer_get_term_arg_dir_label(t_lexer *lexer, char const **text, int *type, void *token_ptr[2]);
+int                lexer_get_term_arg_break(t_lexer *lexer, char const **text, int *type, void *token_ptr[2]);
+int				   lexer_get_term_multi_arg(t_lexer *lexer, char const **text, int *type, void *token_ptr[2]);
 
 
 /*
