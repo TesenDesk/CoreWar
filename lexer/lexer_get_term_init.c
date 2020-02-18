@@ -20,7 +20,7 @@ static int      term_is_op(char const *text)
     return (0);
 }
 
-int             lexer_get_term_init(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2])
+int             lexer_get_term_init(t_lexer *lexer, char const **text, int *type, void *token_ptr[2])
 {
 	int op_len;
 
@@ -30,7 +30,7 @@ int             lexer_get_term_init(t_lexer *lexer, char const **text, int *toke
     printf("text|%s\n", *text);
     if (!(**text))
     {
-        *token_type = TOKEN_EOF;
+        *type = TOKEN_EOF;
         return (EOF_CODE);
     }
     else if (**text == COMMENT_CHAR) {
@@ -42,7 +42,7 @@ int             lexer_get_term_init(t_lexer *lexer, char const **text, int *toke
 	    return (ALT_COMMENT_CHAR_CODE);
     }
     else if (**text == LINE_FEED) {
-    	*token_type = TOKEN_LFEED;
+    	*type = TOKEN_LFEED;
     	++(*text);
 	    return (LINE_FEED_CODE);
     }
@@ -56,7 +56,7 @@ int             lexer_get_term_init(t_lexer *lexer, char const **text, int *toke
     }
     else if ((op_len = term_is_op(*text)))
     {
-        *token_type = TOKEN_OPX;
+        *type = TOKEN_OPX;
     	*token_ptr = (void*)(*text);
     	*(token_ptr + 1) =  (void*)(*(text + op_len));
 	    *text += op_len;
@@ -70,7 +70,7 @@ int             lexer_get_term_init(t_lexer *lexer, char const **text, int *toke
     	*(token_ptr) = (void*)(*text - 1);
     	return (LABEL_CHARS_CODE);
     }
-    *token_type = TOKEN_UNDEF;
+    *type = TOKEN_UNDEF;
     ++(*text);
     return (TERM_UNDEFINED_CODE);
 }
