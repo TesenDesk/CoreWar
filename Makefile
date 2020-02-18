@@ -74,7 +74,7 @@ $(LIB):
 
 clean: deljunk
 		rm -rf lexer/*.o
-		#@make -C $(LIBDIR) clean
+		@make -C $(LIBDIR) clean
 
 delfile:
 		@echo "$(PREFIX)♻️  $(RED)Removing executable file...$(RST)"
