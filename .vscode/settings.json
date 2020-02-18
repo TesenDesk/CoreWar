@@ -2,6 +2,7 @@
 	"files.associations": {
 		"lexer.h": "c",
 		"lexer_private.h": "c",
-		"token_defines.h": "c"
+		"token_defines.h": "c",
+		"parser_private.h": "c"
 	}
 }
