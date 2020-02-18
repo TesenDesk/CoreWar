@@ -3,7 +3,7 @@
 #include "lexer_private.h"
 
 int				lexer_get_term_arg_dir_int(t_lexer *lexer, char const **text,
-				int *token_type, void *token_ptr[2])
+				int *type, void *token_ptr[2])
 {
 	int sign = 0;
 
@@ -25,27 +25,27 @@ int				lexer_get_term_arg_dir_int(t_lexer *lexer, char const **text,
 		while (ft_isdigit(**text))
 			++(*text);
 		*(token_ptr + 1) = *text - 1;
-		*token_type = TOKEN_TDIR_INT;
+		*type = TOKEN_TDIR_INT;
 		return (INTEGER_CODE);
 	}
 	else
 	{
-		*token_type = TOKEN_UNDEF;
+		*type = TOKEN_UNDEF;
 		return (LABEL_CHAR_CODE);
 	}
 }
 
 int				lexer_get_term_arg_dir_label(t_lexer *lexer, char const **text,
-				int *token_type, void *token_ptr[2])
+				int *type, void *token_ptr[2])
 {
 	(void)lexer;
 	if (!ft_strchr(LABEL_CHARS, **text))
 	{
-		*token_type = TOKEN_UNDEF;
+		*type = TOKEN_UNDEF;
 		return (TERM_UNDEFINED_CODE);
 	}
 	token_ptr[TOKEN_START_PTR] = (void*)*text;
-	*token_type = TOKEN_TDIR_LAB;
+	*type = TOKEN_TDIR_LAB;
 	while (ft_strchr(LABEL_CHARS, **text))
 		++(*text);
 	token_ptr[TOKEN_END_PTR] = (void*)(*text - 1);

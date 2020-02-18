@@ -31,13 +31,13 @@ static void			run_through_spaces(char const **text)
 	return ;
 }
 
-void				lexer_get_term_name_cmd(t_lexer *lexer, char const **text, int *token_type, void *token_ptr[2])
+void				lexer_get_term_name_cmd(t_lexer *lexer, char const **text, int *type, void *token_ptr[2])
 {
 	while (is_white_space(*str))
 		++(*str);
 	if (!**text)
-		token->token_type = UNDEFINED_TOKEN;
-	token->token_type = CH_NAME;
+		token->type = UNDEFINED_TOKEN;
+	token->type = CH_NAME;
 	return ;
 }
 
@@ -46,7 +46,7 @@ void				tkn_get_com_cmd(t_token *token, char const **text)
 	while (is_white_space(*str))
 		++(*str);
 	if (!**text)
-		token->token_type = UNDEFINED_TOKEN;
-	token->token_type = CH_COMMENT;
+		token->type = UNDEFINED_TOKEN;
+	token->type = CH_COMMENT;
 	return ;
 }

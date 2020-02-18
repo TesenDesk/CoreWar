@@ -23,7 +23,7 @@ void			                parser_destructor(t_parser **parser);
 /*
 ** Public behavioral functions.
 */
-
+int                             get_expr_type(t_expr *expr);
 t_expr			                *form_expr(t_parser *parser, char const **text);
 
 

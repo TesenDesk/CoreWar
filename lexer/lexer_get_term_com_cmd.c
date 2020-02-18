@@ -22,7 +22,7 @@
 */
 
 int				lexer_get_term_com_cmd(t_lexer *lexer, char const **text, 
-				int *token_type, void *token_ptr[2])
+				int *type, void *token_ptr[2])
 {
 	(void)lexer;
 	(void)token_ptr;
