@@ -36,7 +36,7 @@ typedef struct s_lexer          t_lexer;
 /*
 ** Public behavioral functions.
 */
-
+t_lexer         *lexer_singleton_instance(void);
 t_token			*lexer_form_token(t_lexer *lexer, char const **text);
 
 #endif
