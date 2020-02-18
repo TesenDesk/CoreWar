@@ -1,0 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   token_private.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/05 17:44:55 by ftothmur          #+#    #+#             */
+/*   Updated: 2020/02/09 19:33:44 by cmissy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef TOKEN_PRIVATE_H
+#define TOKEN_PRIVATE_H
+
+//#define UNDEF_TOKEN -1
+
+typedef struct 	    s_token
+{
+    int             token_type;
+    void		    *token_ptr[2];
+}				    t_token;
+
+
+#endif
