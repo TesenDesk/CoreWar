@@ -1,8 +1,0 @@
-{
-	"files.associations": {
-		"lexer.h": "c",
-		"lexer_private.h": "c",
-		"token_defines.h": "c",
-		"lexer_xtor_private.h": "c"
-	}
-}
