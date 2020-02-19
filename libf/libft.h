@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 15:05:36 by ftothmur          #+#    #+#             */
-/*   Updated: 2019/11/23 04:39:06 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/02/18 22:05:05 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 */
 # include <string.h>
 # include <stdlib.h>
+# include <stdint.h>
 # include <unistd.h>
 # include <limits.h>
 # include <wchar.h>
@@ -221,6 +222,8 @@
 */
 # define CMP(s1, s2) ft_strcmp(s1, s2)
 
+
+
 /*
 **	Data structures.
 */
@@ -346,8 +349,6 @@ typedef struct				s_udiv
 /*
 **	We have little endian machine (see ft_check_endiannes().
 **	Next 3 typedefs are for extracting doubles and their parts.
-** https://android.googlesource.com/platform/bionic/+/02c78a3/libc/\
-**arch-arm/include/machine/ieee.h
 */
 typedef struct				s_dbl80
 {
