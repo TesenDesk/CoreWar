@@ -1,4 +1,5 @@
 #include "lexer.h"
+#include "lexer_private.h"
 #include "token_defines.h"
 
 /*

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "lexer.h"
+#include "token_defines.h"
 #include "lexer_private.h"
 #include "lexer_utils_private.h"
 
@@ -30,7 +31,7 @@ int				lexer_get_term_ch_comment(t_lexer *lexer, char const **text,
 	if (lexer_utils_is_quotation_mark(**text))
 	{
 		*type = TOKEN_CHCOM;
-		token_ptr[TOKEN_END_PTR] = *(text - 1);
+		token_ptr[TOKEN_END_PTR] = (void*)*(text - 1);
 		++(*text);
 		return (QUOTATION_MARK_CODE);
 	}

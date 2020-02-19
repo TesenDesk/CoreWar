@@ -6,7 +6,7 @@ int					lexer_get_term_opx(t_lexer *lexer, char const **text,
 {
 	int sign = 0;
 
-	(void*)lexer;
+	(void)lexer;
 	// *type = TOKEN_OPX;
 	while (**text != '\0' && (ft_strchr(WHITE_SPACE, **text) || **text == '\n'))
 		++(*text);
@@ -24,10 +24,10 @@ int					lexer_get_term_opx(t_lexer *lexer, char const **text,
 	if (ft_isdigit(**text))
 	{
 		if (!(sign))
-			*token_ptr = *text;
+			*token_ptr = (void*)*text;
 		while (ft_isdigit(**text))
 			++(*text);
-		*(token_ptr + 1) = *text - 1;
+		*(token_ptr + 1) = (void*)(*text - 1);
 		return (INTEGER_CODE);
 	}
 	else if (sign)
@@ -55,8 +55,8 @@ int					lexer_get_term_multi_arg(t_lexer *lexer, char const **text,
 {
 	int sign = 0;
 
-	(void*)type;
-	(void*)lexer;
+	(void)type;
+	(void)lexer;
 	while (**text != '\0' && (ft_strchr(WHITE_SPACE, **text) || **text == '\n'))
 		++(*text);
 	if (**text == REGISTER_CHAR)
@@ -67,16 +67,16 @@ int					lexer_get_term_multi_arg(t_lexer *lexer, char const **text,
 	if ((**text == '+' || **text == '-'))
 	{
 		sign = **text == '+' ? 1 : -1;
-		*token_ptr = *text;
+		*token_ptr = (void*)*text;
 		++(*text);
 	}
 	if (ft_isdigit(**text))
 	{
 		if (!(sign))
-			*token_ptr = *text;
+			*token_ptr = (void*)*text;
 		while (ft_isdigit(**text))
 			++(*text);
-		*(token_ptr + 1) = *text - 1;
+		*(token_ptr + 1) = (void*)(*text - 1);
 		return (INTEGER_CODE);
 	}
 	else if (sign)

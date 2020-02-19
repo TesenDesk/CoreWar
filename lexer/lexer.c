@@ -62,6 +62,8 @@ static int          lexer_find_champ_state(t_lexer *lexer, int term_type)
         if (term_type == QUOTATION_MARK_CODE)
             return (INIT_ST);
     }
+    return (INIT_ST);
+    //?????
 }
 
 static int          lexer_find_op_arg_state(t_lexer *lexer, int term_type)
@@ -113,6 +115,8 @@ void                lexer_change_state(t_lexer *lexer, int term_type)
             lexer->state = T_IND_LABEL_ST;
         else if (term_type == DIRECT_CHAR_CODE)
             lexer->state = T_DIR_INT_ST;
+        else
+        	lexer->state = INIT_ST;
     }
     else if (lexer->state >= T_REG_ST && lexer->state <= ARG_BRK_ST)
         lexer->state = lexer_find_op_arg_state(lexer, term_type);
