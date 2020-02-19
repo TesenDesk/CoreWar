@@ -16,8 +16,10 @@ int			parser_get_token_init(t_parser *parser, t_lexer *lexer,
 		expr->token = EXPR_CH_COMMENT_LINE;
 	else if (token_type == TOKEN_LFEED)
 		expr->token = EXPR_PRECODE_COMMENT_LINE;
-	else if (token_type == TOKEN_OPX)
-		expr->token = ??????????;
+	// else if (token_type == TOKEN_OPX)
+	// {
+	// 	expr->token = ??????????;
+	// }
 	else if (token_type == TOKEN_LAB_WO)
 		expr->token = EXPR_CODE_COMMENT_LINE;
 	else
