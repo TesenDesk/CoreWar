@@ -14,7 +14,8 @@ t_token*               token_constructor(int type,void *ptr[2])
 	token->type = type;
 	token->token_ptr[0] = ptr[0];
 	token->token_ptr[1] = ptr[1];
-	token->get_type = get_token_type;
+	// token->get_type = get_token_type;
+	token->get_type = get_type;
 
 	return (token);
 }

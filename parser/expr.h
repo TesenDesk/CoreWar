@@ -16,12 +16,27 @@ typedef struct 	    s_expr t_expr;
 #define TOKEN_CHNAME 4
 #define TOKEN_CHCOM 5
 #define TOKEN_OPX 6
-#define TOKEN_TREG 7
-#define TOKEN_TIND_INT 8
-#define TOKEN_TIND_LAB 9
-#define TOKEN_TDIR_INT 10
-#define TOKEN_TDIR_LAB 11
-#define TOKEN_LAB_WO 12
+#define TOKEN_ADD 7
+#define TOKEN_AFF 8
+#define TOKEN_AND 9
+#define TOKEN_FORK 10
+#define TOKEN_LD 11
+#define TOKEN_LDI 12
+#define TOKEN_LFORK 13
+#define TOKEN_LIVE 14
+#define TOKEN_LLD 15
+#define TOKEN_LLDI 16
+#define TOKEN_OR 17
+#define TOKEN_ST 18
+#define TOKEN_STI 19
+#define TOKEN_SUB 20
+#define TOKEN_XOR 21
+#define TOKEN_ZJMP 22
+#define TOKEN_TREG 23
+#define TOKEN_TIND_INT 24
+#define TOKEN_TIND_LAB 25
+#define TOKEN_TDIR_INT 26
+#define TOKEN_TDIR_LAB 27
 
 /*
  * construction/destruction

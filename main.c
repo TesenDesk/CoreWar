@@ -13,17 +13,6 @@ int main()
 //    t_lexer *lex;
 //   _lexer_constructor(&lex);
 //    lex = lexer_is
-<<<<<<< HEAD
-    char const *str = "ld 45454, %:marker, r5     ;blabla\n";
-    char const *str = "ld 45454, %:marker, r5     ;blabla\n";
-    t_token *token1 = lexer_form_token(lex, &str);    
-    printf("type %i\n", token1->type);
-    printf("str %s\n\n", token1->token_ptr[0]);
-    
-    t_token *token2 = lexer_form_token(lex, &str);    
-    printf("type %i\n", token2->type);
-    printf("token2 str %s\n\n", token2->token_ptr[0]);
-=======
 //    lex = lexer_singleton_instance(LEXER_INSTANTIATE);
 //    char const *str = "add aff and fork ld ldi lfork live lld lldi or st sti sub xor zjmp";
 //    t_token *token1 = lexer_form_token(lex, &str);
@@ -87,7 +76,6 @@ int main()
 	t_token *token2 = lexer_form_token(lex, &str);
 	printf("type %i\n", token2->type);
 	printf("token2 str %s\n\n", (char *)token2->token_ptr[0]);
->>>>>>> c0318843471b756cea076cce7af0c41dea26b06a
 
 	t_token *token3 = lexer_form_token(lex, &str);
 	printf("type %i\n", token3->type);
