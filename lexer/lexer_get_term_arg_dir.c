@@ -15,16 +15,16 @@ int				lexer_get_term_arg_dir_int(t_lexer *lexer, char const **text,
 	if ((**text == '+' || **text == '-'))
 	{
 		sign = **text == '+' ? 1 : -1;
-		*token_ptr = *text;
+		*token_ptr = (void*)*text;
 		++(*text);
 	}
 	if (ft_isdigit(**text))
 	{
 		if (!(sign))
-			*token_ptr = *text;
+			*token_ptr = (void*)*text;
 		while (ft_isdigit(**text))
 			++(*text);
-		*(token_ptr + 1) = *text - 1;
+		*(token_ptr + 1) = (void*)(*text - 1);
 		*type = TOKEN_TDIR_INT;
 		return (INTEGER_CODE);
 	}

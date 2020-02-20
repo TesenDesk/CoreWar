@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<package name="asm" stereotype="0x02">
- <package file="./aut_lvl2_lvl_3.qmp"/>
-</package>
