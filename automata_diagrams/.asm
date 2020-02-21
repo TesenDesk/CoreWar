@@ -8,10 +8,7 @@
   <item name="grid">3</item>
   <item name="backups">0</item>
  </group>
- <group name="windows">
-  <item id="asm::lexer::SM">0,0,1232,695</item>
-  <item id="asm::parser lvl1::SM">0,0,1232,694,*</item>
- </group>
+ <group name="windows"/>
  <group name="search">
   <item name="options">2032128</item>
   <item name="replace">0</item>

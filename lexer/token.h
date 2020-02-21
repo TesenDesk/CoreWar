@@ -20,5 +20,6 @@ void                token_destructor(t_token **token);
  * public
  */
 int                 get_token_type(t_token *token);
+void*               get_begin(t_token *token);
 
 #endif
