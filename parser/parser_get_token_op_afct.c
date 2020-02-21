@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_get_token_op_load1.c                        :+:      :+:    :+:   */
+/*   parser_get_token_op_afct.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/21 15:43:04 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/21 17:12:36 by ftothmur         ###   ########.fr       */
+/*   Created: 2020/02/21 15:45:37 by ftothmur          #+#    #+#             */
+/*   Updated: 2020/02/21 17:12:38 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "expr_private.h"
 #include "parser_private.h"
 
-int				parser_get_token_op_load1(t_parser *parser, t_lexer *lexer,
+int				parser_get_token_op_afct(t_parser *parser, t_lexer *lexer,
 				t_expr *expr, char const **text)
 {
 	int		token_type;
