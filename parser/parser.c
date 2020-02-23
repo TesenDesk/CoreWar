@@ -86,7 +86,8 @@ static int  parser_find_next_to_init(int token_type)
 	if (token_type == TOKEN_CHNAME || token_type == TOKEN_CHCOM)
 		return (PARSER_PRECODE_LINE_ST);
 	else if (token_type >= TOKEN_ADD && token_type <= TOKEN_TIND_LAB)
-		return (find_parser_op0_state(token_type))
+		return (find_parser_op0_state(token_type));
+	else if (token_type == TOKEN_LABEL)
 }
 
 void        parser_change_state(t_parser *parser, int token_type)

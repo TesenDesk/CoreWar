@@ -11,8 +11,8 @@ t_expr*               expr_constructor(int type, int size, void *begin)
         printf("error\n");
         exit(-1);
     }
-    expr->expr_type = type;
-    expr->expr_size = size;
+    expr->type = type;
+    expr->size = size;
     expr->begin = begin;
     return (expr);
 }

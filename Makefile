@@ -35,7 +35,7 @@ LEX_DIR_OBJ :=  $(addprefix ./lexer/, $(LEX_OBJ))
 PARS_SRC     :=	expr.c \
 				parser.c \
 				parser_change_state.c \
-				parser_get_token.c
+				parser_get_token_init.c
 PARS_OBJ     :=  $(patsubst %.c, %.o, $(PARS_SRC))
 PARS_DIR_OBJ :=  $(addprefix ./parser/, $(PARS_OBJ))
 CFLAGS      :=  -Wall -Wextra -Werror -g
@@ -70,7 +70,7 @@ rebuilded.$(RST)"
 debmsg:
 		@printf "$(DEBUGMSG)"
 
-$(NAME): $(LEX_DIR_OBJ) $(MAIN) $(LIB)
+$(NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(MAIN) $(LIB)
 		@printf "$(PREFIX)📦  Building $(NAME)...\n"
 		@printf "Building $(LEX_DIR_OBJ).$(LEX_OBJ).\n"
 

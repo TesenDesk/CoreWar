@@ -10,7 +10,6 @@
 #include "expr.h"
 #include "../lexer/lexer.h"
 #include "../lexer/token.h"
-#include "../lexer/token_defines.h"
 
 /*
  * PARSER STATE MACHINE STATES
