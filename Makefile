@@ -70,7 +70,7 @@ rebuilded.$(RST)"
 debmsg:
 		@printf "$(DEBUGMSG)"
 
-$(NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(MAIN) $(LIB)
+$(NAME): $(LEX_DIR_OBJ) $(MAIN) $(LIB)
 		@printf "$(PREFIX)📦  Building $(NAME)...\n"
 		@printf "Building $(LEX_DIR_OBJ).$(LEX_OBJ).\n"
 
