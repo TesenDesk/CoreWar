@@ -18,23 +18,42 @@
 #define PARSER_PRECODE_LINE_ST 1
 #define PARSER_CODE_COMMENT_ST 2
 #define PARSER_LIFE_ST 3
-
-#define PARSER_OP0_ADD_ST				4
-#define PARSER_OP0_AFF_ST				5
-#define PARSER_OP0_AND_ST				6
-#define PARSER_OP0_FORK_ST				7
-#define PARSER_OP0_LD_ST				8
-#define PARSER_OP0_LDI_ST				9
-#define PARSER_OP0_LFORK_ST				10
-#define PARSER_OP0_LIVE_ST				11
-#define PARSER_OP0_LLD_ST				12
-#define PARSER_OP0_LLDI_ST				13
-#define PARSER_OP0_OR_ST				14
-#define PARSER_OP0_ST_ST				15
-#define PARSER_OP0_STI_ST				16
-#define PARSER_OP0_SUB_ST				17
-#define PARSER_OP0_XOR_ST				18
-#define PARSER_OP0_ZJMP_ST				19
+/*
+ * OP_LIFE_ST(1lvl)  op_life_name = live_name | zjmp_name | fork_name | lfork_name, {white_space};
+ */
+#define PARSER_OP0_LIFE_ST              10
+/*
+ * OP_AFFCT_ST(1lvl) op_affect_name = aff_name, {white_space};
+ */
+#define PARSER_OP0_AFFECT_ST		    11
+/*
+ * OP_LOAD_ST(2lvl) op_load_name = ld_name | lld_name, {white_space};
+ */
+#define PARSER_OP0_LOAD_ST				12
+/*
+ *OP_ST_ST(2lvl) op_store_name = st_name, {white_space};
+ */
+#define PARSER_OP0_STORE_ST				13
+/*
+ * OP_ARITHM_ST(3lvl) op_arithm_name = add_name | sub_name, {white_space};*
+ */
+#define PARSER_OP0_ARITHM_ST            14
+/*
+ * OP_LOADI_ST(3lvl) op_load_i_name = ldi_name | lldi_name, {white_space};
+ */
+#define PARSER_OP0_LOADI_ST             15
+/*
+ * OP_LOGIC_ST(3lvl) op_logic_name = and_name | or_name | xor_name, {white_space};
+ */
+#define PARSER_OP0_LOGIC_ST             16
+/*
+ * OP_STORI_ST(3lvl) op_store_i_name = sti_name, {white_space};
+ */
+#define PARSER_OP0_STORI_ST				25
+/*
+ * OP_WAIT_LE
+ */
+#define PARSER_LINE_END_ST              100
 
 typedef struct 	    s_parser
 {
