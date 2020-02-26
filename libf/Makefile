@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+         #
+#    By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/01 10:04:16 by ftothmur          #+#    #+#              #
-#    Updated: 2019/11/23 03:38:32 by ftothmur         ###   ########.fr        #
+#    Updated: 2020/02/26 19:36:55 by cmissy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -230,7 +230,8 @@ EXPANSION =	ft_isspace.c \
 			ft_strclen.c \
 			ft_strrejoin.c \
 			ft_str_to_uintmax.c \
-			ft_str_to_intmax.c 
+			ft_str_to_intmax.c \
+			ft_keystr_avl_tree_traversal.c \
 
 #--------------------COMPILER_OPTIONS--------------------#
 ifeq ($(DEBUG), 1)

@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 15:05:36 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/26 16:29:06 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/02/26 19:36:16 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -658,9 +658,11 @@ char						*ft_strrejoin(char const *s1, char const *s2);
 int							ft_strsearch(char const *str, char c);
 size_t						ft_strclen(char const *str, char c);
 int							ft_str_to_uintmax(char *str, char **endptr,
-								int radix, uintmax_t *nbr);
+							int radix, uintmax_t *nbr);
 int							ft_str_to_intmax(char *str, char **endptr,
-								int radix, intmax_t *nbr);
+							int radix, intmax_t *nbr);
+void						ft_keystr_avl_tree_traversal(t_keystr_avl_t *root,
+							void f(t_keystr_avl_t *vertex));
 
 /*
 ** Forbidden in libft project
