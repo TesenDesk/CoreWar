@@ -1,5 +1,6 @@
 #include "token_defines.h"
 #include "lexer_private.h"
+// #include "lexer.h"
 
 static int      term_is_op(char const *text)
 {

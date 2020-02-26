@@ -1,16 +1,25 @@
 #include "libft.h"
 
-void	init_map(t_hash_map *map)
+void		print_hashmap(t_hash_map *map)
 {
-	
+	size_t		i;
+
+	i = 0;
+	while (i < HASH_CONST)
+	{
+		if (map->)
+	}
 }
 
-int		main(int c, char **v)
+int			main(int c, char **v)
 {
-	t_hash_map		map;
+	t_hash_map		*map;
+	int				i;
 
-	init_map(&map);
-	// label_checker_put_to_map();
-
-	return (0)
+	map = create_hashmap(HASH_CONST);
+	i = 1;
+	while (i < c)
+		label_checker_put_to_map(&map, v[i]);
+	print_hashmap(map);
+	return (0);
 }
