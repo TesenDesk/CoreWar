@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 23:42:54 by mstygg            #+#    #+#             */
-/*   Updated: 2019/11/05 15:24:54 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/02/26 17:12:26 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int					push_to_map(t_hash_map **map_input, t_pair *pair)
 	map = *map_input;
 	index = hashcode((U_CHAR*)pair->key) % map->arr_size;
 	if (!(map->data[index] = ft_keystr_avl_insert(map->data[index], pair)))
-		return (0);
+		return (FAILURE);
 	++map->map_size;
-	return (1);
+	return (SUCCESS);
 }
 
 int					hm_put(t_hash_map **map, void *key, void *content)
