@@ -71,12 +71,12 @@
 #define COMMENT_CHAR			'#'
 #define ALT_COMMENT_CHAR		';'
 
-#define REGISTER_CHAR           'r'
+#define REGISTER_CHAR			'r'
 #define LABEL_CHAR				':'
 #define DIRECT_CHAR				'%'
 
 #define SEPARATOR_CHAR			','
-#define LINE_FEED               	'\n'
+#define LINE_FEED				'\n'
 
 #define LABEL_CHARS				"abcdefghijklmnopqrstuvwxyz_0123456789" // 17
 #define NAME_CMD_STRING			".name"
@@ -116,7 +116,7 @@
 #define COMMENT_CHAR_CODE		1
 #define ALT_COMMENT_CHAR_CODE   2
 
-#define REGISTER_CHAR_CODE      3
+#define REGISTER_CHAR_CODE		3
 #define LABEL_CHAR_CODE         4
 #define DIRECT_CHAR_CODE        5
 
