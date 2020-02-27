@@ -1,13 +1,23 @@
 #include "libft.h"
 
+void		print_vert(t_keystr_avl_t *vert)
+{
+	printf("============ label_name = %s ============\n", vert->pair->key);
+	printf("label_content = %s\n", vert->pair->content);
+	printf("==========================================\n");
+}
+
 void		print_hashmap(t_hash_map *map)
 {
 	size_t		i;
 
 	i = 0;
-	while (i < HASH_CONST)
+	while (i < map->map_size)
 	{
-		if (map->)
+		if (map->data[i] != NULL)
+		{
+			ft_keystr_avl_tree_traversal(map->data[i], print_vert);
+		}
 	}
 }
 
