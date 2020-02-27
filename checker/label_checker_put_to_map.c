@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 15:33:48 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/26 18:53:33 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/02/27 16:20:11 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,11 @@ static int		deallocate_pair_key_return_failure(t_pair *pair)
 */
 
 int				label_checker_put_to_map_label_word(
-				t_hash_map **map_of_label_words, char const **text)
+				t_hash_map **map_of_label_words, char const **text,
+				size_t label_len)
 {
-	size_t		label_len;
 	t_pair		pair;
 
-	label_len = ft_strchr(*text, LABEL_CHAR) - *text;
 	if (!(pair.key = ft_strsub(*text, *text, label_len - 1)))
 		return (FAILURE);
 	pair.content = NULL;
@@ -52,12 +51,11 @@ int				label_checker_put_to_map_label_word(
 */
 
 int				label_checker_put_to_map_label_ptr(
-				t_hash_map **map_of_label_ptrs, char const **text)
+				t_hash_map **map_of_label_ptrs, char const **text,
+				size_t label_len)
 {
-	size_t		label_len;
 	t_pair		pair;
 
-	label_len = ft_strchr(*text, WHITE_SPACE) - *text;
 	if (!(pair.key = ft_strsub(*text, *text, label_len - 1)))
 		return (FAILURE);
 	pair.content = NULL;
