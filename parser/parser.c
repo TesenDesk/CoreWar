@@ -62,16 +62,21 @@ static int  parser_find_next_to_init_st(int token_type)
 		return (find_parser_op0_state(token_type));
 }
 
-
+int         find_1_0_layer_op(t_ , int token_type)
+{
+    return ()
+}
 
 static int  parser_find_next_to_op0_st(t_parser  *parser, int token_type)
 {
-	if (parser->state >= PARSER_OP0_ADD_ST &&
-	parser->state <= PARSER_OP0_LIVE_ST)
-		parser->state = find_op0f_st(token_type);
-	else if (parser->state > PARSER_OP0_LIVE_ST &&
-	    parser->state <= PARSER_OP0_ZJMP_ST)
-		parser->state = find_op0l_st(token_type);
+//		parser->state = find_op0f_st(token_type);
+//	else if (parser->state > PARSER_OP0_LIVE_ST &&
+//	    parser->state <= PARSER_OP0_ZJMP_ST)
+//		parser->state = find_op0l_st(token_type);
+        if (parser->state == PARSER_OP0_LIFE_ST || parser->state == PARSER_OP0_AFFECT_ST)
+            parser->state = find_1_0_layer_op(token_type);
+        else
+            parser->state = find_1_1_layer_op(token_type);
 }
 
 void        parser_change_state(t_parser *parser, int token_type)
@@ -80,7 +85,7 @@ void        parser_change_state(t_parser *parser, int token_type)
 		parser->state = parser_find_next_to_init_st(token_type);
 	else if (parser->state >= PARSER_OP0_LIFE_ST
 	&& parser->state <= PARSER_OP0_STORI_ST)
-		parser->state = parser_find_next_to_op0_st(token_type);
+		parser->state = parser_find_next_to_op0_st(parser,token_type);
 }
 
 
