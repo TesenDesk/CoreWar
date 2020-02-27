@@ -6,13 +6,13 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 15:33:48 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/27 16:20:11 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/02/27 19:52:33 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "label_checker_private.h"
 
-static int		deallocate_pair_key_return_failure(t_pair *pair)
+static int			deallocate_pair_key_return_failure(t_pair *pair)
 {
 	free(pair->key);
 	return (FAILURE);
@@ -25,20 +25,20 @@ static int		deallocate_pair_key_return_failure(t_pair *pair)
 **	OUTPUT:	did the operation succeed.
 */
 
-int				label_checker_put_to_map_label_word(
-				t_hash_map **map_of_label_words, char const **text,
-				size_t label_len)
+int					label_checker_put_to_map_label_word(
+					t_hash_map **map_of_label_words, char const **text,
+					size_t label_len)
 {
-	t_pair		pair;
+	t_pair			pair;
 
 	if (!(pair.key = ft_strsub(*text, *text, label_len - 1)))
 		return (FAILURE);
-	pair.content = NULL;
+	pair.content = pair.key;
 	if (hm_find(*map_of_label_words, pair.key))
 		return (deallocate_pair_key_return_failure(&pair));
 	if (hm_put(map_of_label_words, pair.key, pair.content) == FAILURE)
 		return (deallocate_pair_key_return_failure(&pair));
-	free(pair.key);
+	// free(pair.key);
 	return (SUCCESS);
 }
 
@@ -50,18 +50,28 @@ int				label_checker_put_to_map_label_word(
 **	OUTPUT:	did the operation succeed.
 */
 
-int				label_checker_put_to_map_label_ptr(
-				t_hash_map **map_of_label_ptrs, char const **text,
-				size_t label_len)
+int					label_checker_put_to_map_label_ptr(
+					t_hash_map **map_of_label_ptrs, t_vector *added_label_ptrs,
+					char const **text, size_t label_len)
 {
-	t_pair		pair;
-
+	t_pair			pair;
+	
 	if (!(pair.key = ft_strsub(*text, *text, label_len - 1)))
 		return (FAILURE);
-	pair.content = NULL;
+	pair.content = pair.key;
 	if (hm_find(*map_of_label_ptrs, pair.key) == NULL)
+	{
 		if (hm_put(map_of_label_ptrs, pair.key, pair.content) == FAILURE)
 			return (deallocate_pair_key_return_failure(&pair));
-	free(pair.key);
+		if (ft_vector_add(added_label_ptrs, (void *)hm_find(*map_of_label_ptrs,
+			pair.key)) == FAILURE)
+			return (deallocate_pair_key_return_failure(&pair));
+	}
+	else
+	{
+		ft_memdel(&pair.key);
+		pair.content = NULL;
+	}
+	// free(pair.key);
 	return (SUCCESS);
 }
