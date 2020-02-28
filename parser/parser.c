@@ -149,6 +149,29 @@ static int 	_find_2_1_layer_op(t_parser *parser, int token_type)
 }
 
 
+
+static int 	_find_3_0_layer_op(t_parser *parser, int token_type)
+{
+    if (token_type == TOKEN_TREG)
+    {
+        if (parser->state == PARSER_OP2_ARITHM_ST
+        || parser->state == PARSER_OP2_LOADI_ST
+        || parser->state == PARSER_OP2_LOGIC_ST
+        || parser->state == PARSER_OP2_STORI_ST)
+            return (PARSER_LINE_END_ST);
+    }
+    else if (token_type == TOKEN_TDIR_LAB
+    || token_type == TOKEN_TDIR_INT)
+    {
+        if (parser->state == PARSER_OP2_STORI_ST)
+            return (PARSER_LINE_END_ST);
+    }
+    return (PARSER_INIT_ST);
+
+}
+
+
+
 static int  _parser_find_next_to_op0_st(t_parser  *parser, int token_type)
 {
         if (parser->state == PARSER_OP0_LIFE_ST || parser->state == PARSER_OP0_AFFECT_ST)
@@ -166,7 +189,9 @@ static int  _parser_find_next_to_op0_st(t_parser  *parser, int token_type)
 		else if (parser->state == PARSER_OP1_ARITHM_ST || parser->state == PARSER_OP1_LOADI_ST
 	   || parser->state == PARSER_OP1_LOGIC_ST || parser->state == PARSER_OP1_STORI_ST)
 			parser->state = _find_2_1_layer_op(parser, token_type);
-//		else if (parser->stte == PAR)
+		else if (parser->state == PARSER_OP2_ARITHM_ST || parser->state == PARSER_OP2_LOADI_ST
+		|| parser->state == PARSER_OP2_LOGIC_ST || parser->state == PARSER_OP2_STORI_ST)
+		    parser->state = _find_3_0_layer_op(parser, token_type);
 }
 
 void        parser_change_state(t_parser *parser, int token_type)
