@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+         #
+#    By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/01 10:04:16 by ftothmur          #+#    #+#              #
-#    Updated: 2020/02/26 19:36:55 by cmissy           ###   ########.fr        #
+#    Updated: 2020/02/28 15:07:26 by ftothmur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -225,6 +225,7 @@ EXPANSION =	ft_isspace.c \
 			ft_vector_total.c \
 			ft_void_arithm.c \
 			ft_vector_get_curr.c \
+			ft_vector_traversal.c \
 			ft_strsearch.c \
 			ft_linedelone.c \
 			ft_strclen.c \

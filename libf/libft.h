@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 15:05:36 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/26 19:36:16 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/02/28 15:06:57 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -653,6 +653,8 @@ int							ft_vector_add(t_vector *v, void *item);
 int							ft_vector_resize(t_vector *v, ssize_t capacity);
 int							ft_vector_total(t_vector *v);
 int							ft_vector_init(t_vector *v);
+int							ft_vector_traversal(t_vector *v,
+								int (*fptr)(void *specific_item));
 void						**ft_void_arithm(void **ptr, int offset);
 char						*ft_strrejoin(char const *s1, char const *s2);
 int							ft_strsearch(char const *str, char c);

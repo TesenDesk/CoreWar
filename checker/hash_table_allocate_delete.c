@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hash_table_allocate_delete.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 14:58:16 by ftothmur          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2020/02/26 16:32:19 by cmissy           ###   ########.fr       */
-=======
-/*   Updated: 2020/02/26 18:55:14 by ftothmur         ###   ########.fr       */
->>>>>>> 0b27b04186b0daeaf4e27ee7b7c3c340860ed1c8
+/*   Updated: 2020/02/27 19:39:24 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
