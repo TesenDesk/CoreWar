@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 15:33:48 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/27 19:52:33 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/02/28 16:31:14 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int					label_checker_put_to_map_label_word(
 	if (!(pair.key = ft_strsub(*text, *text, label_len - 1)))
 		return (FAILURE);
 	pair.content = pair.key;
-	if (hm_find(*map_of_label_words, pair.key))
+	if (ft_hash_map_get(*map_of_label_words, pair.key))
 		return (deallocate_pair_key_return_failure(&pair));
-	if (hm_put(map_of_label_words, pair.key, pair.content) == FAILURE)
+	if (ft_hash_map_set(map_of_label_words, pair.key, pair.content) == FAILURE)
 		return (deallocate_pair_key_return_failure(&pair));
 	// free(pair.key);
 	return (SUCCESS);
@@ -59,12 +59,12 @@ int					label_checker_put_to_map_label_ptr(
 	if (!(pair.key = ft_strsub(*text, *text, label_len - 1)))
 		return (FAILURE);
 	pair.content = pair.key;
-	if (hm_find(*map_of_label_ptrs, pair.key) == NULL)
+	if (ft_hash_map_get(*map_of_label_ptrs, pair.key) == NULL)
 	{
-		if (hm_put(map_of_label_ptrs, pair.key, pair.content) == FAILURE)
+		if (ft_hash_map_set(map_of_label_ptrs, pair.key, pair.content)
+			== FAILURE)
 			return (deallocate_pair_key_return_failure(&pair));
-		if (ft_vector_add(added_label_ptrs, (void *)hm_find(*map_of_label_ptrs,
-			pair.key)) == FAILURE)
+		if (ft_vector_add(added_label_ptrs, (void *)pair.key)) == FAILURE)
 			return (deallocate_pair_key_return_failure(&pair));
 	}
 	else

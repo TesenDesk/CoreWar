@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hash_table_allocate_delete.c                       :+:      :+:    :+:   */
+/*   ft_hash_map_dtor.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/05 14:58:16 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/28 16:06:05 by cmissy           ###   ########.fr       */
+/*   Created: 2020/02/28 15:26:51 by ftothmur          #+#    #+#             */
+/*   Updated: 2020/02/28 15:44:59 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_hash_map			*create_hashmap(size_t vertices_num)
-{
-	t_hash_map		*new_map;
-	size_t			i;
-
-	i = 0;
-	if (!(new_map = (t_hash_map *)malloc(sizeof(t_hash_map))))
-		return (NULL);
-	if (!(new_map->data = ft_memalloc(vertices_num * sizeof(t_keystr_avl_t*))))
-		return (NULL);
-	new_map->arr_size = vertices_num;
-	new_map->map_size = 0;
-	return (new_map);
-}
-
-void				hm_del(t_hash_map **map_input)
+void				ft_hash_map_dtor(t_hash_map **map_input)
 {
 	t_hash_map		*map;
 	size_t			i;

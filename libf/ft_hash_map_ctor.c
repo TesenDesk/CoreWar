@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hash_table_allocate_delete.c                       :+:      :+:    :+:   */
+/*   ft_hashmap_ctor.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/05 14:58:16 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/28 16:06:05 by cmissy           ###   ########.fr       */
+/*   Created: 2020/02/28 15:22:41 by ftothmur          #+#    #+#             */
+/*   Updated: 2020/02/28 15:44:33 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_hash_map			*create_hashmap(size_t vertices_num)
+t_hash_map			*ft_hash_map_ctor(size_t arr_size)
 {
 	t_hash_map		*new_map;
 	size_t			i;
@@ -20,25 +20,9 @@ t_hash_map			*create_hashmap(size_t vertices_num)
 	i = 0;
 	if (!(new_map = (t_hash_map *)malloc(sizeof(t_hash_map))))
 		return (NULL);
-	if (!(new_map->data = ft_memalloc(vertices_num * sizeof(t_keystr_avl_t*))))
+	if (!(new_map->data = ft_memalloc(arr_size * sizeof(t_keystr_avl_t*))))
 		return (NULL);
-	new_map->arr_size = vertices_num;
+	new_map->arr_size = arr_size;
 	new_map->map_size = 0;
 	return (new_map);
-}
-
-void				hm_del(t_hash_map **map_input)
-{
-	t_hash_map		*map;
-	size_t			i;
-
-	map = *map_input;
-	i = 0;
-	while (i < map->arr_size)
-		ft_keystr_avl_del(&(map->data[i++]));
-	free(map->data);
-	map->data = NULL;
-	free(map);
-	*map_input = NULL;
-	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 15:05:36 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/28 15:06:57 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/02/28 15:51:29 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,7 +282,7 @@ typedef struct				s_keystr_avl_t
 	struct s_keystr_avl_t	*right;
 }							t_keystr_avl_t;
 
-typedef struct				s_hashmap
+typedef struct				s_hash_map
 {
 	t_keystr_avl_t			**data;
 	size_t					map_size;
@@ -641,6 +641,8 @@ t_keystr_avl_t				*ft_keystr_avl_insert(t_keystr_avl_t *p,
 t_keystr_avl_t				*ft_keystr_avl_search(t_keystr_avl_t *p, void *key);
 t_keystr_avl_t				*ft_keystr_avl_findmin(t_keystr_avl_t *p);
 t_keystr_avl_t				*ft_keystr_avl_remove(t_keystr_avl_t *p, void *key);
+void						ft_keystr_avl_tree_traversal(t_keystr_avl_t *root,
+								void f(t_keystr_avl_t *vertex));
 void						ft_keystr_avl_del(t_keystr_avl_t **root_input);
 void						ft_vector_free(t_vector *v);
 void						ft_vector_free_data(t_vector *v,
@@ -660,11 +662,15 @@ char						*ft_strrejoin(char const *s1, char const *s2);
 int							ft_strsearch(char const *str, char c);
 size_t						ft_strclen(char const *str, char c);
 int							ft_str_to_uintmax(char *str, char **endptr,
-							int radix, uintmax_t *nbr);
+								int radix, uintmax_t *nbr);
 int							ft_str_to_intmax(char *str, char **endptr,
-							int radix, intmax_t *nbr);
-void						ft_keystr_avl_tree_traversal(t_keystr_avl_t *root,
-							void f(t_keystr_avl_t *vertex));
+								int radix, intmax_t *nbr);
+t_hash_map					*ft_hash_map_ctor(size_t arr_size);
+void						ft_hash_map_dtor(t_hash_map **map_input);
+void						*ft_hash_map_get(t_hash_map *map, void *key);
+unsigned long long			ft_hash_map_hashcode(unsigned char *str);
+int							ft_hash_map_set(t_hash_map **map, void *key,
+								void *content);
 
 /*
 ** Forbidden in libft project

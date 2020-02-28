@@ -6,7 +6,7 @@
 #    By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/01 10:04:16 by ftothmur          #+#    #+#              #
-#    Updated: 2020/02/28 15:07:26 by ftothmur         ###   ########.fr        #
+#    Updated: 2020/02/28 17:05:19 by ftothmur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -233,7 +233,11 @@ EXPANSION =	ft_isspace.c \
 			ft_str_to_uintmax.c \
 			ft_str_to_intmax.c \
 			ft_keystr_avl_tree_traversal.c \
-
+			ft_hash_map_ctor.c \
+			ft_hash_map_dtor.c \
+			ft_hash_map_get.c \
+			ft_hash_map_hashcode.c \
+			ft_hash_map_set.c
 #--------------------COMPILER_OPTIONS--------------------#
 ifeq ($(DEBUG), 1)
 	CC_FLAGS =	-Wall -Wextra -Werror -g
