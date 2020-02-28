@@ -30,26 +30,40 @@
  * OP_LOAD_ST(2lvl) op_load_name = ld_name | lld_name, {white_space};
  */
 #define PARSER_OP0_LOAD_ST				12
+
+
+#define PARSER_OP1_LOAD_ST				22
 /*
  *OP_ST_ST(2lvl) op_store_name = st_name, {white_space};
  */
 #define PARSER_OP0_STORE_ST				13
+
+
+#define PARSER_OP1_STORE_ST				23
 /*
  * OP_ARITHM_ST(3lvl) op_arithm_name = add_name | sub_name, {white_space};*
  */
 #define PARSER_OP0_ARITHM_ST            14
+#define PARSER_OP1_ARITHM_ST            24
+#define PARSER_OP2_ARITHM_ST            34
 /*
  * OP_LOADI_ST(3lvl) op_load_i_name = ldi_name | lldi_name, {white_space};
  */
 #define PARSER_OP0_LOADI_ST             15
+#define PARSER_OP1_LOADI_ST             25
+#define PARSER_OP2_LOADI_ST             35
 /*
  * OP_LOGIC_ST(3lvl) op_logic_name = and_name | or_name | xor_name, {white_space};
  */
 #define PARSER_OP0_LOGIC_ST             16
+#define PARSER_OP1_LOGIC_ST             26
+#define PARSER_OP2_LOGIC_ST             36
 /*
  * OP_STORI_ST(3lvl) op_store_i_name = sti_name, {white_space};
  */
-#define PARSER_OP0_STORI_ST				25
+#define PARSER_OP0_STORI_ST				17
+#define PARSER_OP1_STORI_ST				27
+#define PARSER_OP2_STORI_ST				37
 /*
  * OP_WAIT_LE
  */
