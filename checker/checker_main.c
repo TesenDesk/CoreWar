@@ -23,13 +23,13 @@ void		print_hashmap(t_hash_map *map)
 
 int			main(int c, char **v)
 {
-	t_hash_map		*map_lw;
-	t_hash_map		*map_lp;
+	t_hash_map		*map_label_word;
+	t_hash_map		*map_label_pointer;
 	t_vector		vector;
 	int				i;
 
-	map_lw = create_hashmap(HASH_CONST);
-	map_lp = create_hashmap(HASH_CONST);
+	map_label_pointer = create_hashmap(HASH_CONST);
+	map_label_word = create_hashmap(HASH_CONST);
 	i = 1;
 	while (i < c)
 	{
