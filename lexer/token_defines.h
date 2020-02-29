@@ -20,7 +20,7 @@
 #define TOKEN_FORK 8
 #define TOKEN_LFORK 9
 /*
- *TOKEN_AFFCT_OP
+ *TOKEN_AFFCt_arg
  */
 #define TOKEN_AFF 10
 /*
@@ -29,7 +29,7 @@
 #define TOKEN_LD 11
 #define TOKEN_LLD 12
 /*
- *TOKEN_ST_OP
+ *TOKEN_St_arg
  */
 #define TOKEN_ST 13
 /*

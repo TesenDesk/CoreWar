@@ -371,7 +371,7 @@
    </statechart>
   </class>
   <class name="parser lvl1" superclass="qpc::QHsm">
-   <statechart properties="0x00">
+   <statechart properties="0x01">
     <state name="parser_lvl_1_lines">
      <tran trig="ch_name" target="../4">
       <tran_glyph conn="4,12,3,3,16">
@@ -534,7 +534,7 @@
       </state>
       <state name="affect_0">
        <tran trig="t_reg" target="../../17">
-        <tran_glyph conn="86,124,1,3,46,0,34">
+        <tran_glyph conn="86,124,1,3,80">
          <action box="0,-2,10,2"/>
         </tran_glyph>
        </tran>
@@ -614,12 +614,12 @@
       </state>
       <state name="store_1">
        <tran trig="t_reg" target="../../23">
-        <tran_glyph conn="118,114,1,3,14,0,34">
+        <tran_glyph conn="118,114,1,3,48">
          <action box="0,-2,10,2"/>
         </tran_glyph>
        </tran>
        <tran trig="t_ind" target="../../23">
-        <tran_glyph conn="118,116,1,3,14,0,34">
+        <tran_glyph conn="118,116,1,3,48">
          <action box="0,-2,10,2"/>
         </tran_glyph>
        </tran>
@@ -859,7 +859,7 @@
        </tran>
        <state_glyph node="134,92,16,10"/>
       </state>
-      <state name="store_i_1">
+      <state name="store_i_2">
        <tran trig="t_dir" target="../../22">
         <tran_glyph conn="150,104,1,3,16">
          <action box="0,-2,10,2"/>

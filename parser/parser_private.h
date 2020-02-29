@@ -10,6 +10,7 @@
 #include "expr.h"
 #include "../lexer/lexer.h"
 #include "../lexer/token.h"
+#include "parser.h"
 
 /*
  * PARSER STATE MACHINE STATES
@@ -73,20 +74,20 @@ typedef struct 	    s_parser
 {
     int             state;
     t_lexer         *lexer;
-    t_token*        (*parser_form_expr)(struct s_parser *parser, t_lexer *lexer, char const **text);
-    void            (*change_state)(struct s_parser *parser, int token_type);
+    t_expr*        	(*form_expr)(struct s_parser *parser, char const **text);
+    void            (*_change_state)(struct s_parser *parser, int token_type);
     /*
      *сколько состояний?
      */
 
-    int             (*get_token[11][4])(struct s_parser *parser, t_lexer *lexer, t_expr *expr, char const **text);
+    int             (*get_token[40])(struct s_parser *parser, t_lexer *lexer, t_expr *expr, char const **text);
 }				    t_parser;
 
 /*
  * change_state methods
  */
 
-void                parser_change_state(t_parser *parser, int token_type);
+void                _parser_change_state(t_parser *parser, int token_type);
 
 /*
  * INIT_ST state methods
