@@ -6,12 +6,15 @@
 #define CODEGEN_PROTOTYPE_H
 
 #include "libft.h"
+#include "junk/op.h"
 
 #define CG_STATE_UNDEFINED -1
 #define CG_STAGE_INIT 0
 #define CG_STAGE_SETLABEL 1
 #define CG_STAGE_GETLABEL 2
 #define CG_STAGE_UNKNOWN 99
+
+#define COREWAR_MAGIC_SIZE 4
 
 typedef enum			e_commands
 {

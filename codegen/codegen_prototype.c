@@ -8,14 +8,16 @@ struct s_codegen
 {
 	int stage;
 	int add;
-	char
+	int *code;
+	int *exec;
+	int code_size;
 	struct s_labelmap *labels_free;
 	struct s_labelmap *labels_queue;
 };
 
 typedef struct s_codegen t_codegen;
 
-void set_label( t_codegen *code, sequenced_text *seq)
+void set_label(t_codegen *code, sequenced_text *seq)
 {
 	if (seq->unit == FREE_LABEL) //todo: функция добавления??? Как устроена label_map?
 		add_address(code->labels_free, code->add);
@@ -23,7 +25,7 @@ void set_label( t_codegen *code, sequenced_text *seq)
 		add_address(code->labels_queue, code->add);
 }
 
-t_codegen *codegen_constructor(struct s_labelmap *labels_free, struct s_labelmap *labels_queue)
+t_codegen *codegen_ctor(struct s_labelmap *labels_free, struct s_labelmap *labels_queue)
 {
 	t_codegen *code;
 
@@ -33,7 +35,7 @@ t_codegen *codegen_constructor(struct s_labelmap *labels_free, struct s_labelmap
 	return (code);
 }
 
-void codegen_destructor(t_codegen *code)
+void codegen_dtor(t_codegen *code)
 {
 	if (code)
 	{
@@ -45,31 +47,17 @@ void codegen_destructor(t_codegen *code)
 		code = NULL;
 	}
 }
-
-char *codegen_generate_magic(void)
+/*
+void codegen_generate_magic(int *dst)
 {
-	char *magic;
-	size_t size;
-
-	size = sizeof(COREWAR_EXEC_MAGIC);
-	if (!(magic = ft_memalloc(size)))
-	{
-		return (NULL);
-	}
-	ft_memcpy(magic, COREWAR_EXEC_MAGIC, size);
-	return (magic);
+	ft_memcpy(dst, COREWAR_EXEC_MAGIC, COREWAR_MAGIC_SIZE);
 }
-
-char *codegen_generate_champ_name_null(t_sequenced_text *champ_name)
+*/
+static void codegen_add_champ_name(char *dst, t_sequenced_text *champ_name)
 {
-	char *name;
-
-	if (!(name = ft_memalloc(PROG_NAME_LENGTH + 4)))
-		return (NULL);
-	ft_memcpy(name, champ_name->content, sizeof(champ_name->content));
-	return (name);
+	ft_memcpy(dst, champ_name->content, sizeof(champ_name->content));
 }
-
+/*
 char *codegen_generate_champ_code_size(int code_size)
 {
 	char *result;
@@ -79,17 +67,28 @@ char *codegen_generate_champ_code_size(int code_size)
 		return (NULL);
 	return (result);
 }
-
-char *codegen_generate_champ_comment_null(const char *comment)
+*/
+static void codegen_add_champ_comment(int *dst, const char *comment)
 {
-	char *result;
+	ft_memcpy(dst, comment, sizeof(char) * ft_strlen(comment));
+}
 
-	if (!(result = ft_memalloc(COMMENT_LENGTH + 4)))
-	{
+void champ_exec_constructor(t_codegen *data)
+{
+	size_t total_size;
+	int i;
+
+	i = 0;
+	total_size = PROG_NAME_LENGTH + COMMENT_LENGTH + 16 + data->code_size;
+	if (!(data->exec = ft_memalloc(total_size)))
 		return (NULL);
-	}
-	ft_memcpy(result, comment, sizeof(comment));
-	return (result);
+	data->exec[i++] = COREWAR_EXEC_MAGIC;
+	codegen_add_champ_name(&data->exec[i], champ_name_generic); //todo add struct
+	i += (PROG_NAME_LENGTH / 4) + 1;
+	data->exec[i++] = data->code_size;
+	codegen_add_champ_comment(&data[i], champ_comment_generic->content); //todo ?????
+	i += (COMMENT_LENGTH / 4) + 1;
+	ft_memcpy(&data->exec[i], data->code, data->code_size);
 }
 
 void codegen(t_codegen *code)
