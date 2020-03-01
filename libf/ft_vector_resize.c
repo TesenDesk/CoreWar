@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 21:28:48 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/28 19:13:22 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/03/01 16:49:22 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int					ft_vector_resize(t_vector *v, ssize_t capacity)
 {
-	write(1, "   there", 8);
 	if (v && capacity * (sizeof(*v->items)) <= INT_MAX &&
 			!ft_realloc_safe((void **)&v->items,
 				sizeof(*v->items) * v->capacity,
