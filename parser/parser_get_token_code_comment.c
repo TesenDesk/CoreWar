@@ -11,5 +11,5 @@ int			parser_get_token_code_comment(t_parser *parser, t_lexer *lexer,
 	token_type = get_type(lexer_form_token(lexer, text));
 	if (token_type != TOKEN_LFEED)
 		expr->type = EXPR_UNDEF;
-	return (token_tupe);
+	return (token_type);
 }

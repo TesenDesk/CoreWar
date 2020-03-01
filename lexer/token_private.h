@@ -20,6 +20,7 @@ typedef struct 	    s_token
     int             type;
     void		    *token_ptr[2];
     int             (*get_type)(t_token  *token);
+    void*            (*get_begin)(t_token *token);
 }				    t_token;
 
 

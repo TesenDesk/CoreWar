@@ -3,6 +3,7 @@
 #ifndef EXPR_DEFINES_H
 #define EXPR_DEFINES_H
 
+
 /*
  * EXPR_DEFINES
  */
@@ -21,6 +22,13 @@
 #define EXPR_OP_ARIT 10
 #define EXPR_OP_LODI 11
 #define EXPR_OP_LOGC 12
+
+#define ARG_INIT	0
+#define ARG_TREG	1
+#define ARG_DIR_LAB	2
+#define ARG_DIR_INT	3
+#define ARG_IND_LAB	4
+#define ARG_IND_INT	5
 
 
 /*

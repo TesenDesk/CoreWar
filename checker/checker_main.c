@@ -1,18 +1,18 @@
 #include "label_checker.h"
 
-// void		test_maps(t_hash_map *map_of_label_words,
-// 			t_hash_map *map_of_label_ptrs, t_vector *added_label_ptrs,
-// 			char **argv, int argc)
-// {
-// 	int		i;
 
-// 	i = 1;
-// 	while (i < argc)
-// 	{
-// 		if ()
-// 		++i;
-// 	}
-// }
+void		print_map_of_label_words(t_hash_map *map_of_label_words)
+{
+	size_t		i;
+
+	i = 0;
+	while (i < map_of_label_words->arr_size)
+	{
+		if (map_of_label_words->data[i] != NULL)
+			ft_key
+		i++;
+	}
+}
 
 int			main(int argc, char **argv)
 {
@@ -24,6 +24,7 @@ int			main(int argc, char **argv)
 
 	map_of_label_words = create_hashmap(HASH_CONST);
 	map_of_label_ptrs = create_hashmap(HASH_CONST);
+	ft_vector_init(&added_label_ptrs);
 	i = argc;
 	i = 1;
 	while (argv[i])
@@ -37,6 +38,7 @@ int			main(int argc, char **argv)
 			printf("problems with map_of_label_words\n argv[i] == \"%s\"\n", argv[i]);
 		++i;
 	}
-	// test_maps(map_of_label_words, map_of_label_ptrs, &added_label_ptrs, argv, argc);
+	print_map_of_label_words(map_of_label_words);
+	// print_map_of_label_ptrs(map_of_label_words);
 	return (0);
 }
