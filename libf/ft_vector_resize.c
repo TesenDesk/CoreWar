@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_vector_resize.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 21:28:48 by ftothmur          #+#    #+#             */
-/*   Updated: 2019/11/23 04:39:48 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/02/28 19:13:22 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int					ft_vector_resize(t_vector *v, ssize_t capacity)
 {
+	write(1, "   there", 8);
 	if (v && capacity * (sizeof(*v->items)) <= INT_MAX &&
 			!ft_realloc_safe((void **)&v->items,
 				sizeof(*v->items) * v->capacity,

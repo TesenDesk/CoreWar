@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 15:33:48 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/28 18:25:40 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/02/28 18:57:38 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,14 @@ int					label_checker_put_to_map_label_ptr(
 {
 	t_pair			pair;
 	
+	
 	// if (!(pair.key = ft_strsub(*text, *text, label_len - 1)))
-	if (!(pair.key = ft_strsub(*text, 0, label_len - 1)))
+	if (!(pair.key = ft_strsub(*text, 0, label_len)))
 		return (FAILURE);
 	pair.content = pair.key;
 	if (ft_hash_map_get(*map_of_label_ptrs, pair.key) == NULL)
 	{
+	// printf("%s\n", pair.key);
 		if (ft_hash_map_set(map_of_label_ptrs, pair.key, pair.content)
 			== FAILURE)
 			return (deallocate_pair_key_return_failure(&pair));

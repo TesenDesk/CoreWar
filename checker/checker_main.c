@@ -24,8 +24,9 @@ int			main(int argc, char **argv)
 
 	map_of_label_words = create_hashmap(HASH_CONST);
 	map_of_label_ptrs = create_hashmap(HASH_CONST);
+	i = argc;
 	i = 1;
-	while (i < argc)
+	while (argv[i])
 	{
 		len = ft_strlen(argv[i]);
 		if (label_checker_put_to_map_label_ptr(&map_of_label_ptrs,
