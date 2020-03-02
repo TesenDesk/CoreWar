@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_get_token_op_stor0.c                        :+:      :+:    :+:   */
+/*   _parser_get_token_op0_stor.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 15:45:37 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/21 17:05:50 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/03/02 20:53:46 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "expr.h"
-#include "expr_defines.h"
-#include "expr_private.h"
+// #include "expr.h"
+// #include "expr_defines.h"
+// #include "expr_private.h"
 #include "parser_private.h"
 
-int				parser_get_token_op_stor0(t_parser *parser, t_lexer *lexer,
+int				_parser_get_token_op0_stor(t_parser *parser, t_lexer *lexer,
 				t_expr *expr, char const **text)
 {
 	int		token_type;
 
-	token_type = get_type(lexer_form_token(lexer, text));
+	token_type = token_get_type(lexer_form_token(lexer, text));
 	if (!(token_type == TOKEN_TREG))
-		expr->token = EXPR_UNDEF;
+		expr->type = EXPR_UNDEF;
 	return (token_type);
 }

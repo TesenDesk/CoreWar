@@ -8,10 +8,16 @@
 #include <stdlib.h>
 #include <string.h>
 #include "expr.h"
+#include "expr_private.h"
+#include "expr_defines.h"
 #include "../lexer/lexer.h"
 #include "../lexer/token.h"
 #include "parser.h"
 #include "../lexer/token_defines.h"
+
+
+
+
 
 
 /*
