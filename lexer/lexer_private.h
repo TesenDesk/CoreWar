@@ -17,6 +17,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "token.h"
+#include "lexer.h"
+#include "token_defines.h"
+
 
 #define TOKEN_START_PTR	0
 #define TOKEN_END_PTR	1

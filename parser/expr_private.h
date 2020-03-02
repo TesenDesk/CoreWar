@@ -7,7 +7,7 @@
 #include <stdlib.h>
 
 
-typedef struct		s_op
+typedef struct		s_arg
 {
 	int 			type;
 	void 			*value;
@@ -18,8 +18,10 @@ typedef struct 	    s_expr
 {
     int             type;
     int             size;
-    t_arg            *args;
-    int             ar_size;
+    void			*name;
+    t_arg           *args;
+    //t_arg			args[3]
+////    int             ar_size;
 
     //изменить на индекс
 }				    t_expr;

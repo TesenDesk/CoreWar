@@ -22,6 +22,6 @@ int				parser_get_token_op_afct(t_parser *parser, t_lexer *lexer,
 
 	token_type = get_type(lexer_form_token(lexer, text));
 	if (!(token_type == TOKEN_TREG))
-		expr->token = EXPR_UNDEF;
+		expr->type = EXPR_UNDEF;
 	return (token_type);
 }

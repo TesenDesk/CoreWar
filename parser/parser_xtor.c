@@ -16,8 +16,13 @@ void                parser_ctor(t_parser **parser)
 	(*parser)->form_expr = parser_form_expr;
 	(*parser)->get_token[PARSER_INIT_ST] = parser_get_token_init;
 //	(*parser)->get_token[PARSER_LINE_END_ST] = parser_get_token_l;
-	( *parser)->get_token[PARSER_OP0_AFFECT_ST] = parser_get_token_op_afct;
-	( *parser)->get_token[PARSER_OP0_AFFECT_ST] = parser_get_token_op_afct;
+	(*parser)->get_token[PARSER_OP0_AFFECT_ST] = parser_get_token_op_afct;
+//	(*parser)->get_token[PARSER_OP0_AFFECT_ST] = parser_get_token_op_afct;
+//	(*parser)->get_token[PARSER_OP0_ARITHM_ST] = parser_get_token_op_arit0;
+//	(*parser)->get_token[PARSER_OP1_ARITHM_ST] = parser_get_token_op_arit1;
+//	(*parser)->get_token[PARSER_OP2_ARITHM_ST] = parser_get_token_op_arit2;
+//	(*parser)->get_token[PARSER_OP0_LOAD_ST] = parser_get_token_op_arit2;
+
 //    (*parser)->get_token[PARSER_PRECODE_LINE_ST] = parser_get_token_comment;
 //    (*parser)->get_token[PARSER_CODE_COMMENT_ST] = parser_get_token_line_feed;
 	/*

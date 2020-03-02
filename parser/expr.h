@@ -4,7 +4,7 @@
 //#include "expr_private.h"
 
 typedef struct 	    s_expr t_expr;
-typedef struct		s_op	t_arg;
+typedef struct		s_arg	t_arg;
 
 /*
  * TOKEN TYPES

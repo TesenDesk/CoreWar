@@ -23,6 +23,11 @@ t_expr             *parser_form_expr(t_parser  *parser,  char const **text)
 		 * заменить expr_type на expr. там где обрабатываем аргументы операций добавить соответствующие
 		 * операции в expr->args (с указанием типа)
 		 */
+		//token = parser-get
+		//if (token_type == LA__WO)
+		//if (!//token_check)
+		//parser->change_state(parser, token);
+
 		parser->_change_state(parser, parser->get_token[parser->state](parser, lexer, expr, text));
 		if (parser->state == PARSER_INIT_ST)
 			break ;

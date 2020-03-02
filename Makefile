@@ -37,6 +37,7 @@ PARS_SRC     :=	expr.c \
 				parser_change_state.c \
 				parser_get_token_init.c \
 				parser_get_token_code_comment.c \
+				parser_get_token_op_afct.c  \
 				parser_get_token_op_logc0.c \
 				parser_get_token_op_logc1.c \
 				parser_get_token_op_logc2.c \
