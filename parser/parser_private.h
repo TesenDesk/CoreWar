@@ -11,6 +11,8 @@
 #include "../lexer/lexer.h"
 #include "../lexer/token.h"
 #include "parser.h"
+#include "../lexer/token_defines.h"
+
 
 /*
  * PARSER STATE MACHINE STATES
@@ -72,15 +74,16 @@
 
 typedef struct 	    s_parser
 {
-    int             state;
-    t_lexer         *lexer;
-    t_expr*        	(*form_expr)(struct s_parser *parser, char const **text);
-    void            (*_change_state)(struct s_parser *parser, int token_type);
-    /*
-     *сколько состояний?
-     */
+	int             state;
+	t_lexer         *lexer;
+	t_expr*        	(*form_expr)(struct s_parser *parser, char const **text);
+	void            (*_change_state)(struct s_parser *parser, int token_type);
+	/*
+	 *сколько состояний?
+	 */
 
-    int             (*get_token[40])(struct s_parser *parser, t_lexer *lexer, t_expr *expr, char const **text);
+	int             (*get_token[40])(struct s_parser *parser, t_lexer *lexer,
+						t_expr *expr, char const **text);
 }				    t_parser;
 
 /*
@@ -100,30 +103,50 @@ int		            parser_get_token_init(t_parser *parser, t_lexer *lexer, t_expr 
  * precode_inner_methods
  */
 
-int                 parser_get_token_precode(t_parser *parser, t_lexer *lexer, t_expr *expr, char const **text);
-int                 parser_get_token_code_comment(t_parser *parser, t_lexer *lexer, t_expr *expr, char const **text);
+int					parser_get_token_precode(t_parser *parser, t_lexer *lexer,
+						t_expr *expr, char const **text);
+int					parser_get_token_code_comment(t_parser *parser,
+						t_lexer *lexer, t_expr *expr, char const **text);
 
 /*
  * op_inner_methods
  */
 
-int                 parser_get_token_op_life(t_parser *parser, t_lexer *lexer, t_expr *expr, char const **text);
-int                 parser_get_token_op_load0(t_parser *parser, t_lexer *lexer, t_expr *expr, char const **text);
-int                 parser_get_token_op_load1(t_parser *parser, t_lexer *lexer, t_expr *expr, char const **text);
-int                 parser_get_token_op_arit0(t_parser *parser, t_lexer *lexer, t_expr *expr, char const **text);
-int                 parser_get_token_op_arit1(t_parser *parser, t_lexer *lexer, t_expr *expr, char const **text);
-int                 parser_get_token_op_arit2(t_parser *parser, t_lexer *lexer, t_expr *expr, char const **text);
-int                 parser_get_token_op_lodi0(t_parser *parser, t_lexer *lexer, t_expr *expr, char const **text);
-int                 parser_get_token_op_lodi1(t_parser *parser, t_lexer *lexer, t_expr *expr, char const **text);
-int                 parser_get_token_op_lodi2(t_parser *parser, t_lexer *lexer, t_expr *expr, char const **text);
-int                 parser_get_token_op_logc0(t_parser *parser, t_lexer *lexer, t_expr *expr, char const **text);
-int                 parser_get_token_op_logc1(t_parser *parser, t_lexer *lexer, t_expr *expr, char const **text);
-int                 parser_get_token_op_logc2(t_parser *parser, t_lexer *lexer, t_expr *expr, char const **text);
-int                 parser_get_token_op_stri0(t_parser *parser, t_lexer *lexer, t_expr *expr, char const **text);
-int                 parser_get_token_op_stri1(t_parser *parser, t_lexer *lexer, t_expr *expr, char const **text);
-int                 parser_get_token_op_stri2(t_parser *parser, t_lexer *lexer, t_expr *expr, char const **text);
-int                 parser_get_token_op_stor0(t_parser *parser, t_lexer *lexer, t_expr *expr, char const **text);
-int                 parser_get_token_op_stor1(t_parser *parser, t_lexer *lexer, t_expr *expr, char const **text);
-int                 parser_get_token_op_afct(t_parser *parser, t_lexer *lexer, t_expr *expr, char const **text);
+int					_parser_get_token_op_life(t_parser *parser, t_lexer *lexer,
+						t_expr *expr, char const **text);
+int					_parser_get_token_op0_load(t_parser *parser, t_lexer *lexer,
+						t_expr *expr, char const **text);
+int					_parser_get_token_op1_load(t_parser *parser, t_lexer *lexer,
+						t_expr *expr, char const **text);
+int					_parser_get_token_op0_arit(t_parser *parser, t_lexer *lexer,
+						t_expr *expr, char const **text);
+int					_parser_get_token_op1_arit(t_parser *parser, t_lexer *lexer,
+						t_expr *expr, char const **text);
+int					_parser_get_token_op2_arit(t_parser *parser, t_lexer *lexer,
+						t_expr *expr, char const **text);
+int					_parser_get_token_op0_lodi(t_parser *parser, t_lexer *lexer,
+						t_expr *expr, char const **text);
+int					_parser_get_token_op1_lodi(t_parser *parser, t_lexer *lexer,
+						t_expr *expr, char const **text);
+int					_parser_get_token_op2_lodi(t_parser *parser, t_lexer *lexer,
+						t_expr *expr, char const **text);
+int					_parser_get_token_op0_logc(t_parser *parser, t_lexer *lexer,
+						t_expr *expr, char const **text);
+int					_parser_get_token_op1_logc(t_parser *parser, t_lexer *lexer,
+						t_expr *expr, char const **text);
+int					_parser_get_token_op2_logc(t_parser *parser, t_lexer *lexer,
+						t_expr *expr, char const **text);
+int					_parser_get_token_op0_stri(t_parser *parser, t_lexer *lexer,
+						t_expr *expr, char const **text);
+int					_parser_get_token_op1_stri(t_parser *parser, t_lexer *lexer,
+						t_expr *expr, char const **text);
+int					_parser_get_token_op2_stri(t_parser *parser, t_lexer *lexer,
+						t_expr *expr, char const **text);
+int					_parser_get_token_op0_stor(t_parser *parser, t_lexer *lexer,
+						t_expr *expr, char const **text);
+int					_parser_get_token_op1_stor(t_parser *parser, t_lexer *lexer,
+						t_expr *expr, char const **text);
+int					_parser_get_token_op_afct(t_parser *parser, t_lexer *lexer,
+						t_expr *expr, char const **text);
 
 #endif
