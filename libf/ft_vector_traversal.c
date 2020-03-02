@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vector_add.c                                    :+:      :+:    :+:   */
+/*   ft_vector_traversal.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/09 21:30:23 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/01 16:49:30 by cmissy           ###   ########.fr       */
+/*   Created: 2020/02/28 14:58:59 by ftothmur          #+#    #+#             */
+/*   Updated: 2020/02/28 15:05:47 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int					ft_vector_add(t_vector *v, void *item)
+int			ft_vector_traversal(t_vector *v, int (*fptr)(void *specific_item))
 {
-	if (!v ||
-			(v->capacity == v->total &&
-			ft_vector_resize(v, (ssize_t)v->capacity * 2) == FAILURE))
-		return (FAILURE);
-	v->items[v->total++] = item;
+	int		index;
+
+	index = 0;
+	while (index < v->total)
+	{
+		if (fptr(v->items[index]) == FAILURE)
+			return (FAILURE);
+		++index;
+	}
 	return (SUCCESS);
 }

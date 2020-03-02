@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vector_add.c                                    :+:      :+:    :+:   */
+/*   ft_hash_map_dtor.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/09 21:30:23 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/01 16:49:30 by cmissy           ###   ########.fr       */
+/*   Created: 2020/02/28 15:26:51 by ftothmur          #+#    #+#             */
+/*   Updated: 2020/02/28 15:44:59 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int					ft_vector_add(t_vector *v, void *item)
+void				ft_hash_map_dtor(t_hash_map **map_input)
 {
-	if (!v ||
-			(v->capacity == v->total &&
-			ft_vector_resize(v, (ssize_t)v->capacity * 2) == FAILURE))
-		return (FAILURE);
-	v->items[v->total++] = item;
-	return (SUCCESS);
+	t_hash_map		*map;
+	size_t			i;
+
+	map = *map_input;
+	i = 0;
+	while (i < map->arr_size)
+		ft_keystr_avl_del(&(map->data[i++]));
+	free(map->data);
+	map->data = NULL;
+	free(map);
+	*map_input = NULL;
+	return ;
 }

@@ -9,7 +9,7 @@ int			parser_get_token_precode(t_parser *parser, t_lexer *lexer,
 	int		token_type;
 
 	token_type = get_type(lexer_form_token(lexer, text));
-	if (toke_type != TOKEN_LFEED)
+	if (token_type != TOKEN_LFEED)
 		expr->type = EXPR_UNDEF;
 	return (token_type);
 }

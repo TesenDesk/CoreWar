@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vector_add.c                                    :+:      :+:    :+:   */
+/*   label_checker_inclusion_of_maps.c                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/09 21:30:23 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/01 16:49:30 by cmissy           ###   ########.fr       */
+/*   Created: 2020/02/27 16:54:02 by ftothmur          #+#    #+#             */
+/*   Updated: 2020/02/28 18:21:56 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "label_checker_private.h"
 
-int					ft_vector_add(t_vector *v, void *item)
+int					label_checker_inclusion_of_maps(t_vector *label_ptr_keys, t_hash_map *map_of_label_words)
 {
-	if (!v ||
-			(v->capacity == v->total &&
-			ft_vector_resize(v, (ssize_t)v->capacity * 2) == FAILURE))
-		return (FAILURE);
-	v->items[v->total++] = item;
+	int				i;
+	void			*curr_label_name;
+
+	i = 0;
+	while (i < label_ptr_keys->total)
+	{
+		curr_label_name = label_ptr_keys->items[i];
+		if (ft_hash_map_get(map_of_label_words, curr_label_name) == NULL)
+			return (FAILURE);
+		++i;
+	}	
 	return (SUCCESS);
 }

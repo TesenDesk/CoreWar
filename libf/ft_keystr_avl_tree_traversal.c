@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vector_add.c                                    :+:      :+:    :+:   */
+/*   ft_keystr_avl_tree_traversal.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/09 21:30:23 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/01 16:49:30 by cmissy           ###   ########.fr       */
+/*   Created: 2020/02/26 19:33:20 by cmissy            #+#    #+#             */
+/*   Updated: 2020/03/01 17:09:25 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int					ft_vector_add(t_vector *v, void *item)
+void		ft_keystr_avl_tree_traversal(t_keystr_avl_t *root,
+			void f(t_keystr_avl_t *vertex))
 {
-	if (!v ||
-			(v->capacity == v->total &&
-			ft_vector_resize(v, (ssize_t)v->capacity * 2) == FAILURE))
-		return (FAILURE);
-	v->items[v->total++] = item;
-	return (SUCCESS);
+	if (root != NULL)
+	{
+		ft_keystr_avl_tree_traversal(root->left, f);
+		ft_keystr_avl_tree_traversal(root->right, f);
+	}
+	if (f && root)
+		f(root);
 }

@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vector_add.c                                    :+:      :+:    :+:   */
+/*   ft_hash_map_hashcode.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/09 21:30:23 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/01 16:49:30 by cmissy           ###   ########.fr       */
+/*   Created: 2020/02/28 15:28:25 by ftothmur          #+#    #+#             */
+/*   Updated: 2020/02/28 15:45:41 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int					ft_vector_add(t_vector *v, void *item)
+unsigned long long		ft_hash_map_hashcode(unsigned char *str)
 {
-	if (!v ||
-			(v->capacity == v->total &&
-			ft_vector_resize(v, (ssize_t)v->capacity * 2) == FAILURE))
-		return (FAILURE);
-	v->items[v->total++] = item;
-	return (SUCCESS);
+	unsigned long long	hash;
+	int					c;
+
+	c = 0;
+	hash = HASH_CONST;
+	while ((c = (int)*str++))
+		hash = ((hash << 5) + hash) ^ c;
+	return (hash);
 }
