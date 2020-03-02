@@ -28,7 +28,7 @@ int				lexer_get_term_label_word(t_lexer *lexer, char const **text,
 	(void)token_ptr;
 	if (lexer_utils_is_label_char(**text))
 	{
-		*type = LABEL_WORD;
+		*type = TOKEN_LABEL_WORD;
 		++(*text);
 		return (LABEL_CHAR_CODE);
 	}

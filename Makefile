@@ -32,6 +32,20 @@ LEX_SRC     :=	lexer_get_term_name_cmd.c \
 				lexer_xtor_private.c
 LEX_OBJ     :=  $(patsubst %.c, %.o, $(LEX_SRC))
 LEX_DIR_OBJ :=  $(addprefix ./lexer/, $(LEX_OBJ))
+PARS_SRC     :=	expr.c \
+				parser.c \
+				parser_change_state.c \
+				parser_get_token_init.c \
+				parser_get_token_code_comment.c \
+				parser_get_token_op_logc0.c \
+				parser_get_token_op_logc1.c \
+				parser_get_token_op_logc2.c \
+				parser_get_token_op_stri0.c \
+				parser_get_token_op_stri1.c \
+				parser_get_token_op_stri2.c \
+				parser_xtor.c
+PARS_OBJ     :=  $(patsubst %.c, %.o, $(PARS_SRC))
+PARS_DIR_OBJ :=  $(addprefix ./parser/, $(PARS_OBJ))
 CFLAGS      :=  -Wall -Wextra -Werror -g
 LIBFLAGS    :=  -L$(LIBDIR) -lft
 HEADER      :=  $(HEADERDIR)ms.h
@@ -64,7 +78,7 @@ rebuilded.$(RST)"
 debmsg:
 		@printf "$(DEBUGMSG)"
 
-$(NAME): $(LEX_DIR_OBJ) $(MAIN) $(LIB)
+$(NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(MAIN) $(LIB)
 		@printf "$(PREFIX)📦  Building $(NAME)...\n"
 		@printf "Building $(LEX_DIR_OBJ).$(LEX_OBJ).\n"
 
@@ -75,6 +89,12 @@ $(NAME): $(LEX_DIR_OBJ) $(MAIN) $(LIB)
 
 $(LEX_DIR_OBJ): %.o:  %.c
 		@cc -c $(FLAGS)  $< -o $@
+
+$(PARS_DIR_OBJ): %.o: %.c
+		@cc -c $(FLAGS)  $< -o $@
+
+# $(PARS_DIR_OBJ): %.o:  %.c
+# 		@cc -c $(FLAGS)  $< -o $@
 
 $(LIB):
 		make -C libf/

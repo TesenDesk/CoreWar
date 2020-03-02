@@ -12,28 +12,57 @@
 #define TOKEN_LFEED 3
 #define TOKEN_CHNAME 4
 #define TOKEN_CHCOM 5
-#define TOKEN_OPX 6
-#define TOKEN_ADD 7
-#define TOKEN_AFF 8
-#define TOKEN_AND 9
-#define TOKEN_FORK 10
+/*
+ * TOKEN_LIFE_OP
+ */
+#define TOKEN_LIVE 6
+#define TOKEN_ZJMP 7
+#define TOKEN_FORK 8
+#define TOKEN_LFORK 9
+/*
+ *TOKEN_AFFCt_arg
+ */
+#define TOKEN_AFF 10
+/*
+ * TOKEN_LOAD_OP
+ */
 #define TOKEN_LD 11
-#define TOKEN_LDI 12
-#define TOKEN_LFORK 13
-#define TOKEN_LIVE 14
-#define TOKEN_LLD 15
-#define TOKEN_LLDI 16
-#define TOKEN_OR 17
-#define TOKEN_ST 18
-#define TOKEN_STI 19
-#define TOKEN_SUB 20
-#define TOKEN_XOR 21
-#define TOKEN_ZJMP 22
-#define TOKEN_TREG 23
-#define TOKEN_TIND_INT 24
-#define TOKEN_TIND_LAB 25
-#define TOKEN_TDIR_INT 26
-#define TOKEN_TDIR_LAB 27
+#define TOKEN_LLD 12
+/*
+ *TOKEN_St_arg
+ */
+#define TOKEN_ST 13
+/*
+ * TOKEN_ARITHM_OP
+ */
+#define TOKEN_ADD 14
+#define TOKEN_SUB 15
+/*
+ * TOKEN_LOADI_OP
+ */
+#define TOKEN_LDI 16
+#define TOKEN_LLDI 17
+/*
+ * TOKEN_LOGIC_OP
+ */
+#define TOKEN_AND 18
+#define TOKEN_OR 19
+#define TOKEN_XOR 20
+/*
+ * TOKEN_STI_OP
+ */
+#define TOKEN_STI 21
+/*
+ * TOKEN_ARGS
+ */
+#define TOKEN_TREG 22
+#define TOKEN_TIND_INT 23
+#define TOKEN_TIND_LAB 24
+#define TOKEN_TDIR_INT 25
+#define TOKEN_TDIR_LAB 26
+
+
+#define TOKEN_LABEL_WORD 27
 
 /*
  * TERM LITERALS
@@ -42,12 +71,12 @@
 #define COMMENT_CHAR			'#'
 #define ALT_COMMENT_CHAR		';'
 
-#define REGISTER_CHAR           'r'
+#define REGISTER_CHAR			'r'
 #define LABEL_CHAR				':'
 #define DIRECT_CHAR				'%'
 
 #define SEPARATOR_CHAR			','
-#define LINE_FEED               	'\n'
+#define LINE_FEED				'\n'
 
 #define LABEL_CHARS				"abcdefghijklmnopqrstuvwxyz_0123456789" // 17
 #define NAME_CMD_STRING			".name"
@@ -87,7 +116,7 @@
 #define COMMENT_CHAR_CODE		1
 #define ALT_COMMENT_CHAR_CODE   2
 
-#define REGISTER_CHAR_CODE      3
+#define REGISTER_CHAR_CODE		3
 #define LABEL_CHAR_CODE         4
 #define DIRECT_CHAR_CODE        5
 

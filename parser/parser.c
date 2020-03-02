@@ -1,48 +1,66 @@
-#include "parser.h"
 #include "parser_private.h"
 
 
 
-void                parser_constructor(t_parser **parser)
-{
-    if (!(*parser = (t_parser*)malloc(sizeof(t_parser))))
-    {
-        printf("error\n");
-        exit(-1);
-    }
-    (*parser)->state = INIT_ST;
-    (*parser)->change_state = parser_change_state;
-    (*parser)->form_expr = parser_form_expr;
-    (*parser)->get_token[INIT_ST] = parser_get_token_init;
-    (*parser)->get_token[PRECODE_ST] = parser_get_token_comment;
-    (*parser)->get_token[CODE_COMMENT_ST] = parser_get_token_line_feed;
-    /*
-     *
-     *
-     */
-    (*parser)->get_token[LIFE_ST] = parser_get_token_line_feed;
+//void                parser_ctor(t_parser **parser)
+//{
+//    if (!(*parser = (t_parser*)malloc(sizeof(t_parser))))
+//    {
+//        printf("error\n");
+//        exit(-1);
+//    }
+//	(*parser)->lexer = lexer_singleton_instance(LEXER_INSTANTIATE);
+//    (*parser)->state = PARSER_INIT_ST;
+//    (*parser)->_change_state = _parser_change_state;
+//    (*parser)->form_expr = parser_form_expr;
+//    (*parser)->get_token[PARSER_INIT_ST] = parser_get_token_init;
+////    (*parser)->get_token[PARSER_PRECODE_LINE_ST] = parser_get_token_comment;
+////    (*parser)->get_token[PARSER_CODE_COMMENT_ST] = parser_get_token_line_feed;
+//    /*
+//     *
+//     *
+//     */
+////    (*parser)->get_token[LIFE_ST] = parser_get_token_line_feed;
+//
+//}
+//
+//void                parser_dtor(t_parser **parser)
+//{
+//    free(*parser);
+//    *parser = NULL;
+//}
 
+
+
+
+t_expr             *parser_form_expr(t_parser  *parser,  char const **text)
+{
+	t_expr			*expr;
+	int 			expr_type;
+	t_lexer 		*lexer;
+
+	/*
+	 * лексер есть в парсере
+	 */
+	lexer = lexer_singleton_instance(LEXER_INSTANTIATE);
+	expr = expr_ctor();
+	while(1)
+	{
+		/*
+		 * заменить expr_type на expr. там где обрабатываем аргументы операций добавить соответствующие
+		 * операции в expr->args (с указанием типа)
+		 */
+		parser->_change_state(parser, parser->get_token[parser->state](parser, lexer, expr, text));
+		if (parser->state == PARSER_INIT_ST)
+			break ;
+	}
+	return (expr);
 }
 
-void                parser_destructor(t_parser **parser)
-{
-    free(*parser);
-    *parser = NULL;
-}
 
 
-void     parser_change_state(t_parser *parser, int token_type)
-{
-    ;
-}
 
-int     parser_get_token_init(t_parser *parser)
-{
-        return (0);
-}
-
-
-int     parser_get_token_precode(t_parser *parser)
-{
-    ;
-}
+//int     parser_get_token_precode(t_parser *parser)
+//{
+//    ;
+//}
