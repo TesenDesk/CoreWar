@@ -8,27 +8,55 @@
  * EXPR_DEFINES
  */
 
-#define EXPR_UNDEF -1
-#define EXPR_INIT 0
-#define EXPR_CH_NAME_LINE 1
-#define EXPR_CH_COMMENT_LINE 2
-#define EXPR_PRECODE_COMMENT_LINE 3
-#define EXPR_CODE_COMMENT_LINE 4
-#define EXPR_OP_LIFE 5
-#define EXPR_OP_AFCT 6
-#define EXPR_OP_STOR 7
-#define EXPR_OP_LOAD 8
-#define EXPR_OP_STRI 9
-#define EXPR_OP_ARIT 10
-#define EXPR_OP_LODI 11
-#define EXPR_OP_LOGC 12
+// #define EXPR_UNDEF -1
+// #define EXPR_INIT 0
+// #define EXPR_CH_NAME_LINE 1
+// #define EXPR_CH_COMMENT_LINE 2
+// #define EXPR_PRECODE_COMMENT_LINE 3
+// #define EXPR_CODE_COMMENT_LINE 4
+// #define EXPR_OP_LIFE 5
+// #define EXPR_OP_AFCT 6
+// #define EXPR_OP_STOR 7
+// #define EXPR_OP_LOAD 8
+// #define EXPR_OP_STRI 9
+// #define EXPR_OP_ARIT 10
+// #define EXPR_OP_LODI 11
+// #define EXPR_OP_LOGC 12
 
-#define ARG_INIT	0
-#define ARG_TREG	1
-#define ARG_DIR_LAB	2
-#define ARG_DIR_INT	3
-#define ARG_IND_LAB	4
-#define ARG_IND_INT	5
+typedef enum		e_expr_defines
+{
+	EXPR_UNDEF = -1,
+	EXPR_INIT,
+	EXPR_CH_NAME_LINE,
+	EXPR_CH_COMMENT_LINE,
+	EXPR_PRECODE_COMMENT_LINE,
+	EXPR_CODE_COMMENT_LINE,
+	EXPR_OP_LIFE,
+	EXPR_OP_AFCT,
+	EXPR_OP_STOR,
+	EXPR_OP_LOAD,
+	EXPR_OP_STRI,
+	EXPR_OP_ARIT,
+	EXPR_OP_LODI,
+	EXPR_OP_LOGC	
+};
+
+// #define ARG_INIT	0
+// #define ARG_TREG	1
+// #define ARG_DIR_LAB	2
+// #define ARG_DIR_INT	3
+// #define ARG_IND_LAB	4
+// #define ARG_IND_INT	5
+
+typedef enum		e_arg_defines
+{
+	ARG_INIT = 0,
+	ARG_TREG,
+	ARG_DIR_LAB,
+	ARG_DIR_INT,
+	ARG_IND_LAB,
+	ARG_IND_INT,	
+};
 
 
 /*
