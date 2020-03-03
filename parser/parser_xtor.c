@@ -17,8 +17,8 @@ void                parser_ctor(t_parser **parser)
 	// (*parser)->get_token[PARSER_PRECODE_LINE_ST] = parser_get_token_l;
 	// (*parser)->get_token[PARSER_CODE_COMMENT_ST] = parser_get_token_op_afct;
 	// (*parser)->get_token[PARSER_LIFE_ST] = parser_get_token_op_afct;
-	(*parser)->get_token[PARSER_OP0_LIFE_ST] = _parser_get_token_op_life;
-	(*parser)->get_token[PARSER_OP0_AFFECT_ST] = _parser_get_token_op_afct;
+	(*parser)->get_token[PARSER_OP0_LIFE_ST] = _parser_get_token_op0_life;
+	(*parser)->get_token[PARSER_OP0_AFFECT_ST] = _parser_get_token_op0_afct;
 	(*parser)->get_token[PARSER_OP0_LOAD_ST] = _parser_get_token_op0_load;
 	(*parser)->get_token[PARSER_OP1_LOAD_ST] = _parser_get_token_op1_load;
 	(*parser)->get_token[PARSER_OP0_STORE_ST] = _parser_get_token_op0_stor;

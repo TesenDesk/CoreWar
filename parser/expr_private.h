@@ -3,6 +3,7 @@
 #define EXPR_PRIVATE_H
 
 #include "expr.h"
+#include "../lexer/token.h"
 #include <stdio.h>
 #include <stdlib.h>
 

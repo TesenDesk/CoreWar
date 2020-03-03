@@ -23,7 +23,10 @@ typedef struct		s_arg	t_arg;
 //#define TOKEN_TDIR_INT 10
 //#define TOKEN_TDIR_LAB 11
 
-t_expr*            expr_ctor(void);
-void               expr_dtor(t_expr **expr);
+t_expr				*expr_ctor(void);
+void				expr_dtor(t_expr **expr);
+
+void				expr_set_arg(t_expr *expr, t_token *token,
+						int args_number, int arg_type);
 
 #endif
