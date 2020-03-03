@@ -24,19 +24,19 @@ typedef struct s_param
 {
 	char type;
 	unsigned int content;
-}				t_param;
+}				t_arg;
 
-struct s_sequence
+struct s_expr
 {
-	char command;
+	char type;
 	char dir_type;
 	int params_count;
-	t_param *param1;
-	t_param *param2;
-	t_param *param3;
+	t_arg *param1;
+	t_arg *param2;
+	t_arg *param3;
 };
 
-typedef struct s_sequence t_seq;
+typedef struct s_expr t_expr;
 
 // seq->param1->content == 1;
 
@@ -92,7 +92,7 @@ static void codegen_add_champ_comment(char *dst, header_t *header)
 	ft_memcpy(dst, header->comment, sizeof(char) * ft_strlen(header->comment));
 }
 // NOTE: NEED CAST TYPES LIKE TYPES TABLE!!!!!!!!
-static void add_params_types(t_codegen *data, t_seq *q)
+static void add_params_types(t_codegen *data, t_expr *q)
 {
 	int res;
 
@@ -103,7 +103,7 @@ static void add_params_types(t_codegen *data, t_seq *q)
 	data->code[data->add++] = (char)res;
 }
 
-static void recast_params_types(t_seq *q)
+static void recast_params_types(t_expr *q)
 {
 	if (q->param1->type == T_IND)
 		q->param1->type = T_IND_CODE;
@@ -113,16 +113,16 @@ static void recast_params_types(t_seq *q)
 		q->param3->type = T_IND_CODE;
 }
 
-static void dir_type_detector(t_seq *q)
+static void dir_type_detector(t_expr *q)
 {
-	if (q->command < COM_ZJMP || q->command > COM_LFORK ||
-			q->command == COM_LLD)
+	if (q->type < COM_ZJMP || q->type > COM_LFORK ||
+		q->type == COM_LLD)
 		q->dir_type = 1;
 	else
 		q->dir_type = 2;
 }
 
-static void add_param(t_codegen *data, t_param *param, char dir_type)
+static void add_param(t_codegen *data, t_arg *param, char dir_type)
 {
 	if (param->type == LABEL_WORD)
 		(void)param; // aka 'do nothing' todo: add labels manipulation.
@@ -148,16 +148,16 @@ static void add_param(t_codegen *data, t_param *param, char dir_type)
 	}
 }
 
-static void codegen_codegen(t_codegen *data, t_seq *q)
+static void codegen_codegen(t_codegen *data, t_expr *q)
 {
-	if (q->command == LABEL_WORD)
+	if (q->type == LABEL_WORD)
 		(void)q; // aka 'do nothing' todo: add labels manipulation.
 	else
 	{
 		add_params_types(data, q);
 		recast_params_types(q);
 		dir_type_detector(q);
-		data->code[data->add++] = q->command;
+		data->code[data->add++] = q->type;
 		if (q->params_count)
 			add_param(data, q->param1, q->dir_type);
 		if (q->params_count > 1)

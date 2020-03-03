@@ -1,4 +1,5 @@
-#include "lexer.h"
+//#include "lexer.h"
+#include "lexer_private.h"
 #include "token_defines.h"
 
 int					lexer_get_term_opx(t_lexer *lexer, char const **text,
