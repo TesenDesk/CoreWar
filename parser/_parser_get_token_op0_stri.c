@@ -6,10 +6,14 @@
 int					_parser_get_token_op0_stri(t_parser *parser, t_lexer *lexer,
 					t_expr *expr, char const **text)
 {
-	int			token_type;
+	t_token			*token;
+	int				token_type;
 
-	token_type = token_get_type(lexer_form_token(lexer, text));
+	if ((token = lexer_form_token(lexer, text)) == NULL)
+		return (NO_TOKEN);
+	token_type = token_get_type(token);
 	if (token_type != TOKEN_TREG)
 		expr->type = EXPR_UNDEF;
+	expr_set_arg(expr, token, FIRST_ARG, token_type);
 	return (token_type);
 }
