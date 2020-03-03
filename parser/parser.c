@@ -28,7 +28,8 @@ t_expr             *parser_form_expr(t_parser  *parser,  char const **text)
 		//if (!//token_check)
 		//parser->change_state(parser, token);
 
-		parser->_change_state(parser, parser->get_token[parser->state](parser, lexer, expr, text));
+		parser->change_state(parser, parser->get_token[parser->state](parser,
+			lexer, expr, text));
 		if (parser->state == PARSER_INIT_ST)
 			break ;
 	}

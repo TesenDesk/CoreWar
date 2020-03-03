@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "expr.h"
 #include "expr_private.h"
 #include "expr_defines.h"
@@ -18,15 +19,13 @@
 
 
 
-
-
 /*
  * PARSER STATE MACHINE STATES
  */
 #define PARSER_INIT_ST					0
-#define PARSER_PRECODE_LINE_ST			1
-#define PARSER_CODE_COMMENT_ST			2
-#define PARSER_LIFE_ST					3
+// #define PARSER_PRECODE_LINE_ST			1
+// #define PARSER_CODE_COMMENT_ST			2
+// #define PARSER_LIFE_ST					3
 /*
  * OP_LIFE_ST(1lvl)  op_life_name = live_name | zjmp_name | fork_name | lfork_name, {white_space};
  */
@@ -39,15 +38,11 @@
  * OP_LOAD_ST(2lvl) op_load_name = ld_name | lld_name, {white_space};
  */
 #define PARSER_OP0_LOAD_ST				12
-
-
 #define PARSER_OP1_LOAD_ST				22
 /*
  *OP_ST_ST(2lvl) op_store_name = st_name, {white_space};
  */
 #define PARSER_OP0_STORE_ST				13
-
-
 #define PARSER_OP1_STORE_ST				23
 /*
  * OP_ARITHM_ST(3lvl) op_arithm_name = add_name | sub_name, {white_space};*
@@ -83,7 +78,7 @@ typedef struct		s_parser
 	int				state;
 	t_lexer			*lexer;
 	t_expr			*(*form_expr)(struct s_parser *parser, char const **text);
-	void			(*_change_state)(struct s_parser *parser, int token_type);
+	void			(*change_state)(struct s_parser *parser, int token_type);
 	/*
 	 *сколько состояний?
 	 */
@@ -110,16 +105,16 @@ int					_parser_get_token_init(t_parser *parser, t_lexer *lexer,
  * precode_inner_methods
  */
 
-int					_parser_get_token_precode(t_parser *parser, t_lexer *lexer,
-						t_expr *expr, char const **text);
-int					_parser_get_token_code_comment(t_parser *parser,
-						t_lexer *lexer, t_expr *expr, char const **text);
+// int					_parser_get_token_precode(t_parser *parser, t_lexer *lexer,
+// 						t_expr *expr, char const **text);
+// int					_parser_get_token_code_comment(t_parser *parser,
+// 						t_lexer *lexer, t_expr *expr, char const **text);
 
 /*
  * op_inner_methods
  */
 
-int					_parser_get_token_op_life(t_parser *parser, t_lexer *lexer,
+int					_parser_get_token_op0_life(t_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
 int					_parser_get_token_op0_load(t_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
@@ -153,7 +148,9 @@ int					_parser_get_token_op0_stor(t_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
 int					_parser_get_token_op1_stor(t_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
-int					_parser_get_token_op_afct(t_parser *parser, t_lexer *lexer,
+int					_parser_get_token_op0_afct(t_parser *parser, t_lexer *lexer,
+						t_expr *expr, char const **text);
+int					_parser_get_token_line_end(t_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
 
 #endif

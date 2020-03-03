@@ -6,6 +6,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef enum		e_arg_number
+{
+	FIRST_ARG = 0,
+	SECOND_ARG,
+	THIRD_ARG
+}					t_arg_number;
 
 typedef struct		s_arg
 {
@@ -16,14 +22,14 @@ typedef struct		s_arg
 
 typedef struct 	    s_expr
 {
-    int             type;
-    int             size;
-    void			*name;
-    t_arg           *args;
-    //t_arg			args[3]
+	int             type;
+	int             size;
+	void			*name;
+	// t_arg           *args;
+	t_arg			args[3]
 ////    int             ar_size;
 
-    //изменить на индекс
+	//изменить на индекс
 }				    t_expr;
 
 #endif

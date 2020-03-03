@@ -27,6 +27,22 @@ typedef enum		e_expr_defines
 {
 	EXPR_UNDEF = -1,
 	EXPR_INIT,
+	COM_LIVE,
+	COM_LD,
+	COM_ST,
+	COM_ADD,
+	COM_SUB,
+	COM_AND,
+	COM_OR,
+	COM_XOR,
+	COM_ZJMP,
+	COM_LDI,
+	COM_STI,
+	COM_FORK,
+	COM_LLD,
+	COM_LLDI,
+	COM_LFORK,
+	COM_AFF,
 	EXPR_CH_NAME_LINE,
 	EXPR_CH_COMMENT_LINE,
 	EXPR_PRECODE_COMMENT_LINE,
@@ -39,7 +55,8 @@ typedef enum		e_expr_defines
 	EXPR_OP_ARIT,
 	EXPR_OP_LODI,
 	EXPR_OP_LOGC	
-};
+}					t_expr_defines;
+
 
 // #define ARG_INIT	0
 // #define ARG_TREG	1
@@ -56,7 +73,7 @@ typedef enum		e_arg_defines
 	ARG_DIR_INT,
 	ARG_IND_LAB,
 	ARG_IND_INT,	
-};
+}					t_arg_defines;
 
 
 /*

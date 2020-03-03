@@ -5,7 +5,7 @@
 
 t_token				*token_constructor(int type,void *ptr[2])
 {
-	t_token         *token;
+	t_token			*token;
 	if (!(token = (t_token*)malloc(sizeof(t_token))))
 	{
 		printf("error\n");
@@ -29,16 +29,16 @@ void				token_destructor(t_token **token)
 
 int					token_get_type(t_token *token)
 {
-    if (token)
-        return (token->type);
-    return (NO_TOKEN);
+	if (token)
+		return (token->type);
+	return (NO_TOKEN);
 }
 
 void				*token_get_value(t_token *token)
 {
-    if (token)
-        return (token->val);
-    return (NO_TOKEN);
+	if (token)
+		return (token->val);
+	return (NO_TOKEN);
 }
 
 void				*get_begin(t_token *token)
