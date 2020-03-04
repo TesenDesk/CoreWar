@@ -8,37 +8,32 @@
 enum			e_token_types
 {
 	NO_TOKEN = -1,
-	TOKEN_UNDEF,
-	TOKEN_INIT_ST,
-	TOKEN_EOF,
 	TOKEN_LFEED,
+	TOKEN_LABEL_WORD,
 	TOKEN_CHNAME,
 	TOKEN_CHCOM,
-	/*
-	* TOKEN_LIFE_OP
-	*/
-	TOKEN_LIVE,
-	TOKEN_ZJMP,
-	TOKEN_FORK,
-	TOKEN_LFORK,
 	/*
 	*TOKEN_AFFCt_arg
 	*/
 	TOKEN_AFF,
 	/*
-	* TOKEN_LOAD_OP
-	*/
-	TOKEN_LD,
-	TOKEN_LLD,
-	/*
 	*TOKEN_St_arg
 	*/
 	TOKEN_ST,
+	/*
+	* TOKEN_STI_OP
+	*/
+	TOKEN_STI,
 	/*
 	* TOKEN_ARITHM_OP
 	*/
 	TOKEN_ADD,
 	TOKEN_SUB,
+	/*
+	* TOKEN_LOAD_OP
+	*/
+	TOKEN_LD,
+	TOKEN_LLD,
 	/*
 	* TOKEN_LOADI_OP
 	*/
@@ -51,11 +46,12 @@ enum			e_token_types
 	TOKEN_OR,
 	TOKEN_XOR,
 	/*
-	* TOKEN_STI_OP
+	* TOKEN_LIFE_OP
 	*/
-	TOKEN_STI,
-	
-	TOKEN_LABEL_WORD,
+	TOKEN_LIVE,
+	TOKEN_ZJMP,
+	TOKEN_FORK,
+	TOKEN_LFORK,
 	/*
 	* TOKEN_ARGS
 	*/
@@ -64,7 +60,11 @@ enum			e_token_types
 	TOKEN_TIND_LAB,
 	TOKEN_TDIR_INT,
 	TOKEN_TDIR_LAB,
-}
+
+	TOKEN_UNDEF,
+	TOKEN_INIT_ST,
+	TOKEN_EOF,
+};
 
 // #define NO_TOKEN -1
 // #define TOKEN_UNDEF 0
