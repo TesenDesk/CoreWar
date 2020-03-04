@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hash_map_get.c                                  :+:      :+:    :+:   */
+/*   ft_hash_map_put_to_map.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/28 15:33:41 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/04 16:51:29 by ftothmur         ###   ########.fr       */
+/*   Created: 2020/03/04 16:43:19 by ftothmur          #+#    #+#             */
+/*   Updated: 2020/03/04 17:01:30 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void					*ft_hash_map_get(t_hash_map *map, void *key)
+int						ft_hash_map_put_to_map(t_hash_map **map_input,
+							t_pair *pair)
 {
 	unsigned long long	index;
-	t_keystr_avl_t		*avl_tmp;
+	t_hash_map			*map;
 
-	index = ft_hash_map_hashcode((unsigned char *)key) % map->arr_size;
-	if (!map->data[index])
-		return (NULL);
-	if (!(avl_tmp = ft_keystr_avl_search(map->data[index], key)))
-		return (NULL);
-	return (avl_tmp->pair->content);
+	map = *map_input;
+	index = ft_hash_map_hashcode((U_CHAR*)pair->key) % map->arr_size;
+	if (!(map->data[index] = ft_keystr_avl_insert(map->data[index], pair)))
+		return (FAILURE);
+	++map->map_size;
+	return (SUCCESS);
 }

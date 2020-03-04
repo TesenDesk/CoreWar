@@ -6,7 +6,7 @@
 #    By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/01 10:04:16 by ftothmur          #+#    #+#              #
-#    Updated: 2020/02/28 17:05:19 by ftothmur         ###   ########.fr        #
+#    Updated: 2020/03/04 17:01:46 by ftothmur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -237,7 +237,9 @@ EXPANSION =	ft_isspace.c \
 			ft_hash_map_dtor.c \
 			ft_hash_map_get.c \
 			ft_hash_map_hashcode.c \
-			ft_hash_map_set.c
+			ft_hash_map_set.c \
+			ft_hash_map_set_content.c \
+			ft_hash_map_put_to_map.c
 #--------------------COMPILER_OPTIONS--------------------#
 ifeq ($(DEBUG), 1)
 	CC_FLAGS =	-Wall -Wextra -Werror -g

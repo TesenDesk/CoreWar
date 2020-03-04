@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 15:05:36 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/28 15:51:29 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/03/04 16:59:56 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -671,7 +671,10 @@ void						*ft_hash_map_get(t_hash_map *map, void *key);
 unsigned long long			ft_hash_map_hashcode(unsigned char *str);
 int							ft_hash_map_set(t_hash_map **map, void *key,
 								void *content);
-
+int							ft_hash_map_set_content(t_hash_map *map, void *key,
+								void *new_content);
+int							ft_hash_map_put_to_map(t_hash_map **map_input,
+								t_pair *pair);
 /*
 ** Forbidden in libft project
 */
