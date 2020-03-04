@@ -178,6 +178,7 @@ void codegen_ending(t_codegen *data)
 			tmp = (int) (tmp ^ 0xFFFFFFFF);
 			++tmp;
 		}
+		data->code[tmp] = (char)tmp;
 	}
 }
 
