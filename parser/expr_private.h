@@ -9,7 +9,8 @@
 
 typedef enum		e_arg_number
 {
-	FIRST_ARG = 0,
+	OP_NAME = 0,
+	FIRST_ARG,
 	SECOND_ARG,
 	THIRD_ARG,
 	LINE_END_ARG
@@ -28,7 +29,7 @@ typedef struct		s_expr
 	int				size;
 	void			*name;
 	// t_arg			*args;
-	t_arg			args[4]
+	t_arg			args[5];
 ////	int				ar_size;
 
 	//изменить на индекс

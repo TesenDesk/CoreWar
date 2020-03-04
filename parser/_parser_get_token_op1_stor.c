@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _parser_get_token_op1_stor.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 17:08:14 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/03 18:15:51 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/03/03 18:57:10 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // #include "expr_private.h"
 #include "parser_private.h"
 
-int				_parser_get_token_op1_lodi(t_parser *parser, t_lexer *lexer,
+int				_parser_get_token_op1_stor(t_parser *parser, t_lexer *lexer,
 				t_expr *expr, char const **text)
 {
 	t_token		*token;

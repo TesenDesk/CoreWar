@@ -2,6 +2,7 @@
 # define EXPR_H
 
 //#include "expr_private.h"
+#include "../lexer/token.h"
 
 typedef struct 	    s_expr t_expr;
 typedef struct		s_arg	t_arg;
