@@ -36,11 +36,16 @@ static int  _find_parser_op0_state(int token_type)
 
 static int  _parser_find_next_to_init_st(int token_type)
 {
-	if (token_type == TOKEN_CHNAME || token_type == TOKEN_CHCOM
-		|| token_type == TOKEN_LABEL_WORD)
+	// if (token_type == TOKEN_CHNAME || token_type == TOKEN_CHCOM)
+	// 	|| token_type == TOKEN_LABEL_WORD)
+	if (token_type == TOKEN_CHNAME || token_type == TOKEN_CHCOM)
 		return (PARSER_LINE_END_ST);
 	else if (token_type >= TOKEN_LIVE && token_type <= TOKEN_STI)
 		return (_find_parser_op0_state(token_type));
+	else if (token_type == NO_TOKEN || token_type == TOKEN_UNDEF)
+		return (PARSER_ERROR);
+	// else if (token_type == TOKEN_EOF)
+	// 	return (PARSER_EOF);
 	else
 		return (PARSER_INIT_ST);
 }

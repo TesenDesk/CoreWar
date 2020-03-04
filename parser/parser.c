@@ -1,15 +1,11 @@
 #include "parser_private.h"
 
-
-
-
-
-
-
-t_expr             *parser_form_expr(t_parser  *parser,  char const **text)
+t_expr				*parser_form_expr(t_parser *parser, char const **text,
+					t_hash_map *map, t_vector *vector)
 {
 	t_expr			*expr;
 	int 			expr_type;
+	int 			token_type;
 	t_lexer 		*lexer;
 
 	/*
@@ -17,7 +13,7 @@ t_expr             *parser_form_expr(t_parser  *parser,  char const **text)
 	 */
 	lexer = lexer_singleton_instance(LEXER_INSTANTIATE);
 	expr = expr_ctor();
-	while(1)
+	while(TRUE)
 	{
 		/*
 		 * заменить expr_type на expr. там где обрабатываем аргументы операций добавить соответствующие
@@ -28,8 +24,20 @@ t_expr             *parser_form_expr(t_parser  *parser,  char const **text)
 		//if (!//token_check)
 		//parser->change_state(parser, token);
 
-		parser->change_state(parser, parser->get_token[parser->state](parser,
-			lexer, expr, text));
+		token_type =
+			parser->get_token[parser->state](parser, lexer, expr, text);
+		if (token_type == TOKEN_LABEL_WORD)
+		{
+			if (label_checker_put_to_map_label_word(map, expr) ==
+					FAILURE)
+				return (NULL);
+		}
+		else if (token_type == TOKEN_TIND_LAB || token_type == TOKEN_TDIR_LAB)
+		{
+			if (label_checker_put_to_map_label_ptr(vector, expr) == FAILURE)
+				return (NULL);
+		}
+		parser->change_state(parser, token_type);
 		if (parser->state == PARSER_INIT_ST)
 			break ;
 	}

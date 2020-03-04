@@ -50,8 +50,8 @@ typedef enum		e_expr_defines
 	EXPR_OP_AFCT,
 	EXPR_OP_STOR,
 	EXPR_OP_STRI,
-	EXPR_OP_LOAD,
 	EXPR_OP_ARIT,
+	EXPR_OP_LOAD,
 	EXPR_OP_LODI,
 	EXPR_OP_LOGC,
 	EXPR_OP_LIFE,
@@ -74,7 +74,7 @@ typedef enum		e_arg_defines
 	ARG_DIR_LAB,
 	ARG_DIR_INT,
 	ARG_IND_LAB,
-	ARG_IND_INT,	
+	ARG_IND_INT,
 }					t_arg_defines;
 
 

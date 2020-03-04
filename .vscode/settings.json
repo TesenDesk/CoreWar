@@ -8,6 +8,8 @@
 		"expr_private.h": "c",
 		"label_checker.h": "c",
 		"libft.h": "c",
-		"expr_defines.h": "c"
+		"expr_defines.h": "c",
+		"label_checker_private.h": "c",
+		"parser.h": "c"
 	}
 }

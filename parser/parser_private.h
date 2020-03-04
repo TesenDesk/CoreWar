@@ -9,12 +9,14 @@
 #include <string.h>
 
 #include "expr.h"
+#include "../libf/libft.h"
 #include "expr_private.h"
 #include "expr_defines.h"
 #include "../lexer/lexer.h"
 #include "../lexer/token.h"
 #include "parser.h"
 #include "../lexer/token_defines.h"
+#include "../checker/label_checker.h"
 
 
 
@@ -22,6 +24,7 @@
 /*
  * PARSER STATE MACHINE STATES
  */
+#define PARSER_ERROR					-1
 #define PARSER_INIT_ST					0
 // #define PARSER_PRECODE_LINE_ST			1
 // #define PARSER_CODE_COMMENT_ST			2
@@ -72,6 +75,7 @@
  * OP_WAIT_LE
  */
 #define PARSER_LINE_END_ST				100
+#define PARSER_EOF						200
 
 typedef struct		s_parser
 {
