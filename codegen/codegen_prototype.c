@@ -9,60 +9,30 @@
 
 #include <fcntl.h>
 
-struct s_codegen
+typedef struct		s_label_data
 {
-	int add;
-	int *code;
-	char *exec;
-	unsigned int code_size;
-	struct s_labelmap *labels_free;
-	struct s_labelmap *labels_queue;
-	header_t *header;
-};
-
-typedef struct s_param
-{
-	char type;
-	unsigned int content;
-}				t_arg;
-
-struct s_expr
-{
-	char type;
-	char dir_type;
-	int params_count;
-	t_arg *param1;
-	t_arg *param2;
-	t_arg *param3;
-};
-
-typedef struct s_expr t_expr;
-
-// seq->param1->content == 1;
-
-typedef struct s_codegen t_codegen;
-/*
-void set_label(t_codegen *code, sequenced_text *seq)
-{
-	if (seq->unit == FREE_LABEL) //todo: функция добавления??? Как устроена label_map?
-		add_address(code->labels_free, code->add);
-	else
-		add_address(code->labels_queue, code->add);
-}
-*/
+	char			*name;
+	unsigned int	add;
+}					t_label_data;
 
 static void rotate_four_bytes(unsigned int *p)
 {
 	*p = *p << 24 | *p >> 24 | (*p & 0xff00) << 8 | (*p & 0xff0000) >> 8;
 }
 
-t_codegen *codegen_ctor(struct s_labelmap *labels_free, struct s_labelmap *labels_queue, header_t *header)
+t_codegen *codegen_ctor(t_hash_map *labels_free, t_vector *labels_ptrs, header_t *header)
 {
 	t_codegen *code;
 
 	code = ft_memalloc(sizeof(t_codegen));
 	code->labels_free = labels_free;
-	code->labels_queue = labels_queue;
+	if (!labels_ptrs)
+	{
+		if (!(labels_ptrs = ft_memalloc(sizeof(t_vector))))
+			return (NULL);
+		ft_vector_init(labels_ptrs);
+	}
+	code->labels_ptrs = labels_ptrs;
 	code->header = header;
 	return (code);
 }
@@ -73,8 +43,8 @@ void codegen_dtor(t_codegen *code)
 	{
 		if (code->labels_free)
 			free(code->labels_free); //todo: заменить на норм очистку.
-		if (code->labels_queue)
-			free(code->labels_queue); //todo: заменить на норм очистку.
+		if (code->labels_ptrs)
+			free(code->labels_ptrs); //todo: заменить на норм очистку.
 		if (code->header)
 			free(code->header);
 		free(code);
@@ -91,58 +61,83 @@ static void codegen_add_champ_comment(char *dst, header_t *header)
 {
 	ft_memcpy(dst, header->comment, sizeof(char) * ft_strlen(header->comment));
 }
+
 // NOTE: NEED CAST TYPES LIKE TYPES TABLE!!!!!!!!
 static void add_params_types(t_codegen *data, t_expr *q)
 {
 	int res;
 
 	res = 0;
-	res = (res + q->param1->type) << 2;
-	res = (res + q->param2->type) << 2;
-	res = (res + q->param3->type) << 2;
+	res = (res + q->args[0].type) << 2;
+	res = (res + q->args[1].type) << 2;
+	res = (res + q->args[2].type) << 2;
 	data->code[data->add++] = (char)res;
 }
 
 static void recast_params_types(t_expr *q)
 {
-	if (q->param1->type == T_IND)
-		q->param1->type = T_IND_CODE;
-	if (q->param2->type == T_IND)
-		q->param2->type = T_IND_CODE;
-	if (q->param3->type == T_IND)
-		q->param3->type = T_IND_CODE;
+	if (q->args[0].type == T_IND)
+		q->args[0].type = T_IND_CODE;
+	if (q->args[1].type == T_IND)
+		q->args[1].type = T_IND_CODE;
+	if (q->args[2].type == T_IND)
+		q->args[2].type = T_IND_CODE;
 }
 
 static void dir_type_detector(t_expr *q)
 {
 	if (q->type < COM_ZJMP || q->type > COM_LFORK ||
 		q->type == COM_LLD)
-		q->dir_type = 1;
+		q->size = 1;
 	else
-		q->dir_type = 2;
+		q->size = 2;
+}
+
+typedef union			u_code_addr
+{
+	void				*content;
+	unsigned int		addr;
+}						t_code_addr;
+
+static void write_address_to_free_label(t_codegen *data, t_expr *label)
+{
+	t_code_addr	tmp;
+
+	tmp.addr = data->add;
+	ft_hash_map_set_content(data->labels_free, label->name, tmp);
+}
+
+
+static void add_address_to_arg_label(t_codegen *data, t_arg *arg)
+{
+	t_label_data label;
+
+	label.name = arg->value;
+	label.add = data->add;
+	ft_vector_add(data->labels_ptrs, &label);
 }
 
 static void add_param(t_codegen *data, t_arg *param, char dir_type)
 {
 	if (param->type == LABEL_WORD)
-		(void)param; // aka 'do nothing' todo: add labels manipulation.
-	else //todo: Нужно ли указыать размеры из хедера, или лучше указать здесь?
+		add_address_to_arg_label(data, param);
+	else
 	{
 		if (param->type == T_IND_CODE)
 		{
-			rotate_four_bytes(&param->content);
-			ft_memcpy(&data->code[data->add], &param->content, IND_SIZE);
-			data->add += IND_SIZE;
+			rotate_four_bytes(param->value);
+			ft_memcpy(&data->code[data->add], param->value, IND_PARAM_SIZE);
+			data->add += IND_PARAM_SIZE;
 		}
 		else if (param->type == T_DIR)
 		{
-			rotate_four_bytes(&param->content);
-			ft_memcpy(&data->code[data->add], &param->content, T_DIR / dir_type);
-			data->add += T_DIR / dir_type;
+			rotate_four_bytes(param->value);
+			ft_memcpy(&data->code[data->add], param->value, DIR_PARAM_SIZE / dir_type);
+			data->add += DIR_PARAM_SIZE / dir_type;
 		}
 		else if (param->type == T_REG)
 		{
-			data->code[data->add] = (char)param->content;
+			data->code[data->add] = (char)param->value;
 			++(data->add);
 		}
 	}
@@ -150,20 +145,39 @@ static void add_param(t_codegen *data, t_arg *param, char dir_type)
 
 static void codegen_codegen(t_codegen *data, t_expr *q)
 {
+	int i;
+
+	i = -1;
 	if (q->type == LABEL_WORD)
-		(void)q; // aka 'do nothing' todo: add labels manipulation.
+		write_address_to_free_label(data, q);
 	else
 	{
 		add_params_types(data, q);
 		recast_params_types(q);
 		dir_type_detector(q);
 		data->code[data->add++] = q->type;
-		if (q->params_count)
-			add_param(data, q->param1, q->dir_type);
-		if (q->params_count > 1)
-			add_param(data, q->param2, q->dir_type);
-		if (q->params_count > 2)
-			add_param(data, q->param3, q->dir_type);
+		while (++i < 3 && q->args[i].type)
+			add_param(data, &q->args[i], q->size);
+	}
+}
+
+void codegen_ending(t_codegen *data)
+{
+	int				i;
+	t_label_data	*ld; // huh????????
+	unsigned int	add;
+	int				tmp;
+
+	i = -1;
+	while ((ld = ft_vector_get(data->labels_ptrs, ++i))) //🤔🤔🤔🤔🤔🤔
+	{
+		add = (unsigned int)ft_hash_map_get(data->labels_free, ld->name);
+		tmp = (int)(add - ld->add);
+		if (tmp < 0)
+		{
+			tmp = (int) (tmp ^ 0xFFFFFFFF);
+			++tmp;
+		}
 	}
 }
 
@@ -191,25 +205,14 @@ int champ_exec_constructor(t_codegen *data)
 	ft_memcpy(&data->exec[i], data->code, data->code_size);
 	return (total_size);
 }
-/*
-void codegen(t_codegen *code)
-{
-	sequenced_text *seq;
-
-	seq = get_sequence();
-	if (seq->type == LABEL_WORD)
-		set_label(code, seq);
-	else
-	{
-		//todo: add to code using code table.
-		code->add++;
-	}
-}*/
 
 
 /*
 ** ========== DEBUG ZONE =========== TODO: Delete all data beyond this point
 */
+
+// WARN: IF YOU WANT DELETE THIS, PLEASE ASK A DEVELOPER.
+// OR YOU CAN COMMENT CODEGEN_DEBUGGER DEFINITION ON .h FILE
 
 #ifdef CODEGEN_DEBUGGER
 
@@ -245,6 +248,6 @@ int main(void)
 	return  (0);
 }
 
-#endif
+#endif // CODEGEN_DEBUGGER
 
 #pragma clang diagnostic pop
