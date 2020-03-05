@@ -14,6 +14,20 @@
 
 #define LABEL_WORD 99 //todo: need write what you need to do with it?
 
+#include <fcntl.h>
+
+typedef struct		s_label_data
+{
+	char			*name;
+	unsigned int	add;
+}					t_label_data;
+
+typedef union			u_code_addr
+{
+	void				*content;
+	unsigned int		addr;
+}						t_code_addr;
+
 typedef enum			e_commands
 {
 	COM_LIVE = 1,

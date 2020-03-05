@@ -1,5 +1,6 @@
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "hicpp-signed-bitwise" // todo: Hey? Delete this!
+
 //
 // Created by Jhiqui Jerde on 21/02/2020.
 //
@@ -7,22 +8,15 @@
 #include "codegen_prototype.h"
 #include "codegen_private.h"
 
-#include <fcntl.h>
-
-typedef struct		s_label_data
-{
-	char			*name;
-	unsigned int	add;
-}					t_label_data;
-
-static void rotate_four_bytes(unsigned int *p)
+static void		rotate_four_bytes(unsigned int *p)
 {
 	*p = *p << 24 | *p >> 24 | (*p & 0xff00) << 8 | (*p & 0xff0000) >> 8;
 }
 
-t_codegen *codegen_ctor(t_hash_map *labels_free, t_vector *labels_ptrs, header_t *header)
+t_codegen		*codegen_ctor(t_hash_map *labels_free, t_vector *labels_ptrs,
+									header_t *header)
 {
-	t_codegen *code;
+	t_codegen	*code;
 
 	code = ft_memalloc(sizeof(t_codegen));
 	code->labels_free = labels_free;
@@ -37,7 +31,7 @@ t_codegen *codegen_ctor(t_hash_map *labels_free, t_vector *labels_ptrs, header_t
 	return (code);
 }
 
-void codegen_dtor(t_codegen *code)
+void			codegen_dtor(t_codegen *code)
 {
 	if (code)
 	{
@@ -48,22 +42,25 @@ void codegen_dtor(t_codegen *code)
 		if (code->header)
 			free(code->header);
 		free(code);
-		//code = NULL;
+		code = NULL;
 	}
 }
 
-static void codegen_add_champ_name(char *dst, header_t *header)
+static void		codegen_add_champ_name(char *dst, header_t *header)
 {
-	ft_memcpy(dst, header->prog_name, sizeof(char) * ft_strlen(header->prog_name));
+	ft_memcpy(dst, header->prog_name,
+			sizeof(char) * ft_strlen(header->prog_name));
 }
 
-static void codegen_add_champ_comment(char *dst, header_t *header)
+static void		codegen_add_champ_comment(char *dst, header_t *header)
 {
-	ft_memcpy(dst, header->comment, sizeof(char) * ft_strlen(header->comment));
+	ft_memcpy(dst, header->comment,
+			sizeof(char) * ft_strlen(header->comment));
 }
 
 // NOTE: NEED CAST TYPES LIKE TYPES TABLE!!!!!!!!
-static void add_params_types(t_codegen *data, t_expr *q)
+
+static void		add_params_types(t_codegen *data, t_expr *q)
 {
 	int res;
 
@@ -74,7 +71,7 @@ static void add_params_types(t_codegen *data, t_expr *q)
 	data->code[data->add++] = (char)res;
 }
 
-static void recast_params_types(t_expr *q)
+static void		recast_params_types(t_expr *q)
 {
 	if (q->args[0].type == T_IND)
 		q->args[0].type = T_IND_CODE;
@@ -84,7 +81,7 @@ static void recast_params_types(t_expr *q)
 		q->args[2].type = T_IND_CODE;
 }
 
-static void dir_type_detector(t_expr *q)
+static void		dir_type_detector(t_expr *q)
 {
 	if (q->type < COM_ZJMP || q->type > COM_LFORK ||
 		q->type == COM_LLD)
@@ -93,22 +90,15 @@ static void dir_type_detector(t_expr *q)
 		q->size = 2;
 }
 
-typedef union			u_code_addr
-{
-	void				*content;
-	unsigned int		addr;
-}						t_code_addr;
-
-static void write_address_to_free_label(t_codegen *data, t_expr *label)
+static void		write_address_to_free_label(t_codegen *data, t_expr *label)
 {
 	t_code_addr	tmp;
 
 	tmp.addr = data->add;
-	ft_hash_map_set_content(data->labels_free, label->name, tmp);
+	ft_hash_map_set_content(data->labels_free, label->name, &tmp);
 }
 
-
-static void add_address_to_arg_label(t_codegen *data, t_arg *arg)
+static void		add_address_to_arg_label(t_codegen *data, t_arg *arg)
 {
 	t_label_data label;
 
@@ -117,7 +107,7 @@ static void add_address_to_arg_label(t_codegen *data, t_arg *arg)
 	ft_vector_add(data->labels_ptrs, &label);
 }
 
-static void add_param(t_codegen *data, t_arg *param, char dir_type)
+static void		add_param(t_codegen *data, t_arg *param, char dir_type)
 {
 	if (param->type == LABEL_WORD)
 		add_address_to_arg_label(data, param);
@@ -132,7 +122,8 @@ static void add_param(t_codegen *data, t_arg *param, char dir_type)
 		else if (param->type == T_DIR)
 		{
 			rotate_four_bytes(param->value);
-			ft_memcpy(&data->code[data->add], param->value, DIR_PARAM_SIZE / dir_type);
+			ft_memcpy(&data->code[data->add], param->value,
+					DIR_PARAM_SIZE / dir_type);
 			data->add += DIR_PARAM_SIZE / dir_type;
 		}
 		else if (param->type == T_REG)
@@ -143,7 +134,7 @@ static void add_param(t_codegen *data, t_arg *param, char dir_type)
 	}
 }
 
-static void codegen_codegen(t_codegen *data, t_expr *q)
+static void		codegen_codegen(t_codegen *data, t_expr *q)
 {
 	int i;
 
@@ -161,7 +152,7 @@ static void codegen_codegen(t_codegen *data, t_expr *q)
 	}
 }
 
-void codegen_ending(t_codegen *data)
+void			codegen_ending(t_codegen *data)
 {
 	int				i;
 	t_label_data	*ld; // huh????????
@@ -169,24 +160,24 @@ void codegen_ending(t_codegen *data)
 	int				tmp;
 
 	i = -1;
-	while ((ld = ft_vector_get(data->labels_ptrs, ++i))) //🤔🤔🤔🤔🤔🤔
+	while ((ld = ft_vector_get(data->labels_ptrs, ++i)))
 	{
 		add = (unsigned int)ft_hash_map_get(data->labels_free, ld->name);
 		tmp = (int)(add - ld->add);
 		if (tmp < 0)
 		{
-			tmp = (int) (tmp ^ 0xFFFFFFFF);
+			tmp = (int)(tmp ^ 0xFFFFFFFF);
 			++tmp;
 		}
 		data->code[tmp] = (char)tmp;
 	}
 }
 
-int champ_exec_constructor(t_codegen *data)
+int				champ_exec_constructor(t_codegen *data)
 {
-	size_t total_size;
-	int i;
-	unsigned int tmp_size;
+	size_t			total_size;
+	int				i;
+	unsigned int	tmp_size;
 
 	i = 0;
 	total_size = PROG_NAME_LENGTH + COMMENT_LENGTH + 16 + data->code_size;
@@ -207,7 +198,6 @@ int champ_exec_constructor(t_codegen *data)
 	return (total_size);
 }
 
-
 /*
 ** ========== DEBUG ZONE =========== TODO: Delete all data beyond this point
 */
@@ -217,12 +207,12 @@ int champ_exec_constructor(t_codegen *data)
 
 #ifdef CODEGEN_DEBUGGER
 
-int main(void)
+int				main(void)
 {
-	t_codegen *code;
-	header_t header;
-	char cod[8];
-	int fd;
+	t_codegen	*code;
+	header_t	header;
+	char		cod[8];
+	int			fd;
 
 	ft_bzero(&header.comment, COMMENT_LENGTH + 1);
 	ft_bzero(&header.prog_name, PROG_NAME_LENGTH + 1);
