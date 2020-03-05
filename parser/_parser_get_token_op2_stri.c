@@ -13,6 +13,7 @@ int					_parser_get_token_op2_stri(t_parser *parser, t_lexer *lexer,
 	if (token_type != TOKEN_TREG ||
 			token_type != TOKEN_TDIR_INT || token_type != TOKEN_TDIR_LAB)
 		expr->type = EXPR_UNDEF;
-	expr_set_arg(expr, token, THIRD_ARG, token_type);
+	if (expr_set_arg(expr, token, OP_NAME, token_type) == FAILURE)
+		return (NO_TOKEN);
 	return (token_type);
 }

@@ -3,7 +3,14 @@
 #define TOKEN_H
 
 #include <stdlib.h>
+#include "libft.h"
 
+
+enum				e_t_ptr_tips
+{
+	TOKEN_TEXT_START_INDX = 0,
+	TOKEN_TEXT_END_INDX,
+};
 
 typedef struct		s_token t_token;
 
@@ -21,6 +28,7 @@ void				token_destructor(t_token **token);
  */
 int					token_get_type(t_token *token);
 void				*token_get_value(t_token *token);
+int					token_name_init(t_token *t);
 
 
 #endif

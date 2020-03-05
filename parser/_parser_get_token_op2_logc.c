@@ -16,6 +16,7 @@ int			_parser_get_token_op2_logc(t_parser *parser, t_lexer *lexer,
 	token_type != TOKEN_TIND_INT && token_type != TOKEN_TIND_LAB &&
 	token_type != TOKEN_TREG)
 		expr->type = EXPR_UNDEF;
-	expr_set_arg(expr, token, THIRD_ARG, token_type);
+	if (expr_set_arg(expr, token, OP_NAME, token_type) == FAILURE)
+		return (NO_TOKEN);
 	return (token_type);
 }

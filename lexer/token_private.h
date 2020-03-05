@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_private.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 17:44:55 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/09 19:33:44 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/03/05 21:22:19 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,16 @@
 #include <stdio.h>
 //#define UNDEF_TOKEN -1
 
-typedef struct 	    s_token
+
+typedef struct		s_token
 {
-    int             type;
-    void			*val;
-    void		    *token_ptr[2];
-    int             (*get_type)(t_token  *token);
-    void*           (*get_begin)(t_token *token);
-    void*			(*get_val)(t_token *token);
-}				    t_token;
+	int				type;
+	void			*val;
+	void			*token_ptr[2];
+	int				(*get_type)(t_token  *token);
+	void			*(*get_begin)(t_token *token);
+	void			*(*get_val)(t_token *token);
+}					t_token;
 
 
 #endif

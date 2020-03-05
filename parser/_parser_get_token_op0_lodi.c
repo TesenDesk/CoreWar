@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 15:52:53 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/02 20:53:37 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/03/05 21:42:16 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,17 @@
 int				_parser_get_token_op0_lodi(t_parser *parser, t_lexer *lexer,
 				t_expr *expr, char const **text)
 {
-	int		token_type;
+	t_token		*token;
+	int			token_type;
 
-	token_type = token_get_type(lexer_form_token(lexer, text));
+	if ((token = lexer_form_token(lexer, text)) == NULL)
+		return (NO_TOKEN);
+	token_type = token_get_type(token);
 	if (!(token_type == TOKEN_TREG ||
 			token_type == TOKEN_TDIR_INT || token_type == TOKEN_TDIR_LAB ||
 			token_type == TOKEN_TIND_INT || token_type == TOKEN_TIND_LAB))
 		expr->type = EXPR_UNDEF;
+	if (expr_set_arg(expr, token, OP_NAME, token_type) == FAILURE)
+		return (NO_TOKEN);
 	return (token_type);
 }
