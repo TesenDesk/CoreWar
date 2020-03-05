@@ -14,6 +14,7 @@ int					_parser_get_token_op0_stri(t_parser *parser, t_lexer *lexer,
 	token_type = token_get_type(token);
 	if (token_type != TOKEN_TREG)
 		expr->type = EXPR_UNDEF;
-	expr_set_arg(expr, token, FIRST_ARG, token_type);
+	if (expr_set_arg(expr, token, OP_NAME, token_type) == FAILURE)
+		return (NO_TOKEN);
 	return (token_type);
 }

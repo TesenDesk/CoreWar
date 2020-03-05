@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _parser_get_token_eof.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 17:08:14 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/04 20:37:49 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/03/05 21:46:56 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int				_parser_get_token_eof(t_parser *parser, t_lexer *lexer,
 	token_type = token_get_type(token);
 	if (!(token_type == TOKEN_EOF))
 		expr->type = EXPR_UNDEF;
-	expr_set_arg(expr, token, OP_NAME, token_type);
+	if (expr_set_arg(expr, token, OP_NAME, token_type) == FAILURE)
+		return (NO_TOKEN);
 	return (token_type);
 }

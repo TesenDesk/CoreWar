@@ -1,8 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   _parser_xtor.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/05 19:42:19 by ftothmur          #+#    #+#             */
+/*   Updated: 2020/03/05 19:42:28 by ftothmur         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parser_private.h"
 
-
-
-void                parser_ctor(t_parser **parser)
+void				_parser_ctor(t_parser **parser)
 {
 	if (!(*parser = (t_parser*)malloc(sizeof(t_parser))))
 	{
@@ -45,7 +55,7 @@ void                parser_ctor(t_parser **parser)
 
 }
 
-void                parser_dtor(t_parser **parser)
+void				_parser_dtor(t_parser **parser)
 {
 	// free(*parser);
 	// *parser = NULL;

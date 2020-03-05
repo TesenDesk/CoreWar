@@ -3,17 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jjerde <jjerde@student.42.fr>              +#+  +:+       +#+         #
+#    By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/15 15:17:26 by jjerde            #+#    #+#              #
-#    Updated: 2020/03/05 22:04:21 by jjerde           ###   ########.fr        #
+#    Updated: 2020/03/05 22:11:56 by ftothmur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # =====================P̶O̶N̶Y̶ PHONY========================================= #
 .PHONY: all clean fclean liba re debug delfile checkdir redebug d rd deljunk \
-
-
 # ===================== Preferences & Directories ============================ #
 NAME =		asm
 LABEL =		CoreWar
@@ -74,7 +72,8 @@ PRS_FILES =	_parser_change_state.c \
 			_parser_get_token_op0_life.c \
 			_parser_get_token_op1_load.c \
 			_parser_get_token_op2_logc.c \
-			parser.c
+			parser.c \
+			parser_singleton_instance.c
 CHK_FILES =	label_checker_inclusion_of_maps.c \
 			label_checker_put_to_map.c
 SRC_LXR =	$(addprefix $(LXR_FLDR), $(LXR_FILES)) #-I$(H_DIR_LXR)
