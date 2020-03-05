@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+         #
+#    By: jjerde <jjerde@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/15 15:17:26 by jjerde            #+#    #+#              #
-#    Updated: 2020/03/05 22:11:56 by ftothmur         ###   ########.fr        #
+#    Updated: 2020/03/05 22:22:05 by jjerde           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,8 @@ LXR_FILES =	lexer.c \
 			lexer_get_term_line_feed.c \
 			lexer_get_term_ch_comment.c \
 			lexer_get_term_name_cmd.c \
-			lexer_xtor_private.c
+			lexer_xtor_private.c \
+			token_name_init.c
 PRS_FILES =	_parser_change_state.c \
 			_parser_get_token_op0_load.c \
 			_parser_get_token_op1_lodi.c \
@@ -58,7 +59,7 @@ PRS_FILES =	_parser_change_state.c \
 			_parser_get_token_init.c \
 			_parser_get_token_op0_logc.c \
 			_parser_get_token_op1_stor.c \
-			parser_xtor.c \
+			_parser_xtor.c \
 			_parser_get_token_line_end.c \
 			_parser_get_token_op0_stor.c \
 			_parser_get_token_op1_stri.c \
@@ -116,15 +117,15 @@ rebuilded.$(RST)"
 # --------- Object files rules ----------------------------------------------- #
 $(CHK_FLDR)%.o: $(CHK_FLDR)%.c
 	@printf "%-70c\r$(PREFIX)🕐 Compiling file:\t\t%-25s\r" ' ' "$@"
-	@gcc -c -I$(H_DIR_CHK) -o $@ $< #TODO: ADD $(FLAGS)
+	@gcc -c -I$(H_DIR_CHK) -I$(H_DIR_LIB) -o $@ $< #TODO: ADD $(FLAGS)
 
 $(LXR_FLDR)%.o: $(LXR_FLDR)%.c
 	@printf "%-70c\r$(PREFIX)🕐 Compiling file:\t\t%-25s\r" ' ' "$@"
-	@gcc -c -I$(H_DIR_LXR) -o $@ $< #TODO: ADD $(FLAGS)
+	@gcc -c -I$(H_DIR_LXR) -I$(H_DIR_LIB) -o $@ $< #TODO: ADD $(FLAGS)
 
 $(PRS_FLDR)%.o: $(PRS_FLDR)%.c
 	@printf "%-70c\r$(PREFIX)🕐 Compiling file:\t\t%-25s\r" ' ' "$@"
-	@gcc -c -I$(H_DIR_PRS) -o $@ $< #TODO: ADD $(FLAGS)
+	@gcc -c -I$(H_DIR_PRS) -I$(H_DIR_LIB) -o $@ $< #TODO: ADD $(FLAGS)
 
 main.o: main.c
 	@gcc -c -I$(H_DIR_CHK) -o $@ $< #TODO: ADD $(FLAGS)

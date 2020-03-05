@@ -32,6 +32,7 @@ static int  _find_parser_op0_state(int token_type)
 		return (PARSER_OP0_LOGIC_ST);
 	else if (token_type == TOKEN_STI)
 		return (PARSER_OP0_STORI_ST);
+	return (0); //TODO: Не было return - исправьте)
 }
 
 static int  _parser_find_next_to_init_st(int token_type)
@@ -148,14 +149,15 @@ static int  _parser_find_next_to_op0_st(t_parser  *parser, int token_type)
 		parser->state = _find_1_1_layer_op(parser, token_type);
 	else if (parser->state == PARSER_OP1_LOAD_ST || parser->state == PARSER_OP1_STORE_ST)
 		parser->state = _find_2_0_layer_op(parser, token_type);
-	else if (parser->state == PARSER_OP1_LOAD_ST
+	/*else if (parser->state == PARSER_OP1_LOAD_ST
 			 || parser->state == PARSER_OP1_STORE_ST)
-		parser->state = _find_2_0_layer_op(parser, token_type);
+		parser->state = _find_2_0_layer_op(parser, token_type); TODO: Повторяющееся условие*/
 	else if (parser->state == PARSER_OP1_ARITHM_ST || parser->state == PARSER_OP1_LOADI_ST
 			 || parser->state == PARSER_OP1_LOGIC_ST || parser->state == PARSER_OP1_STORI_ST)
 		parser->state = _find_2_1_layer_op(parser, token_type);
 	else if (parser->state == PARSER_LINE_END_ST)
 		parser->state = PARSER_INIT_ST;
+	return (0); //TODO: Не было return - исправьте)
 }
 
 void        _parser_change_state(t_parser *parser, int token_type)

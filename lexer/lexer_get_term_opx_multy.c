@@ -19,7 +19,7 @@ int					lexer_get_term_opx(t_lexer *lexer, char const **text,
 	if ((**text == '+' || **text == '-'))
 	{
 		sign = **text == '+' ? 1 : -1;
-		token_ptr[TOKEN_TEXT_START_INDX] = *text;
+		token_ptr[TOKEN_TEXT_START_INDX] = (void*)*text;
 		++(*text);
 	}
 	if (ft_isdigit(**text))

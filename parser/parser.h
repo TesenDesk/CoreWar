@@ -5,7 +5,7 @@
 #include "expr.h"
 #include "expr_defines.h"
 
-enum							e_lexer_instantiation_status
+enum							e_parser_instantiation_status
 {
 	PARSER_INSTANTIATE,
 	PARSER_DESTRUCT

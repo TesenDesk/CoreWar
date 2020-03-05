@@ -38,7 +38,7 @@ void				*token_get_value(t_token *token)
 {
 	if (token)
 		return (token->val);
-	return (NO_TOKEN);
+	return (NULL);
 }
 
 void				*get_begin(t_token *token)

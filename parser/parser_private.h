@@ -9,7 +9,7 @@
 #include <string.h>
 
 #include "expr.h"
-#include "../libf/libft.h"
+#include "libft.h"
 #include "expr_private.h"
 #include "expr_defines.h"
 #include "../lexer/lexer.h"
@@ -21,73 +21,134 @@
 
 
 
+///*
+// * PARSER STATE MACHINE STATES
+// */
+//#define PARSER_ERROR					-1
+//#define PARSER_INIT_ST					0
+//// #define PARSER_PRECODE_LINE_ST			1
+//// #define PARSER_CODE_COMMENT_ST			2
+//// #define PARSER_LIFE_ST					3
+///*
+// * OP_LIFE_ST(1lvl)  op_life_name = live_name | zjmp_name | fork_name | lfork_name, {white_space};
+// */
+//#define PARSER_OP0_LIFE_ST				10
+///*
+// * OP_AFFCT_ST(1lvl) op_affect_name = aff_name, {white_space};
+// */
+//#define PARSER_OP0_AFFECT_ST		    11
+///*
+// * OP_LOAD_ST(2lvl) op_load_name = ld_name | lld_name, {white_space};
+// */
+//#define PARSER_OP0_LOAD_ST				12
+//#define PARSER_OP1_LOAD_ST				22
+///*
+// *OP_ST_ST(2lvl) op_store_name = st_name, {white_space};
+// */
+//#define PARSER_OP0_STORE_ST				13
+//#define PARSER_OP1_STORE_ST				23
+///*
+// * OP_ARITHM_ST(3lvl) op_arithm_name = add_name | sub_name, {white_space};*
+// */
+//#define PARSER_OP0_ARITHM_ST			14
+//#define PARSER_OP1_ARITHM_ST			24
+//#define PARSER_OP2_ARITHM_ST			34
+///*
+// * OP_LOADI_ST(3lvl) op_load_i_name = ldi_name | lldi_name, {white_space};
+// */
+//#define PARSER_OP0_LOADI_ST				15
+//#define PARSER_OP1_LOADI_ST				25
+//#define PARSER_OP2_LOADI_ST				35
+///*
+// * OP_LOGIC_ST(3lvl) op_logic_name = and_name | or_name | xor_name, {white_space};
+// */
+//#define PARSER_OP0_LOGIC_ST				16
+//#define PARSER_OP1_LOGIC_ST				26
+//#define PARSER_OP2_LOGIC_ST				36
+///*
+// * OP_STORI_ST(3lvl) op_store_i_name = sti_name, {white_space};
+// */
+//#define PARSER_OP0_STORI_ST				17
+//#define PARSER_OP1_STORI_ST				27
+//#define PARSER_OP2_STORI_ST				37
+///*
+// * OP_WAIT_LE
+// */
+//#define PARSER_LINE_END_ST				39
+//#define PARSER_EOF						200
+
+enum 				e_parser_defines {
 /*
  * PARSER STATE MACHINE STATES
  */
-#define PARSER_ERROR					-1
-#define PARSER_INIT_ST					0
-// #define PARSER_PRECODE_LINE_ST			1
-// #define PARSER_CODE_COMMENT_ST			2
-// #define PARSER_LIFE_ST					3
+ PARSER_ERROR = -1,
+ PARSER_INIT_ST,
+// 	PARSER_PRECODE_LINE_ST			1,
+// 	PARSER_CODE_COMMENT_ST			2,
+// 	PARSER_LIFE_ST					3,
 /*
  * OP_LIFE_ST(1lvl)  op_life_name = live_name | zjmp_name | fork_name | lfork_name, {white_space};
  */
-#define PARSER_OP0_LIFE_ST				10
+	PARSER_OP0_LIFE_ST,
 /*
  * OP_AFFCT_ST(1lvl) op_affect_name = aff_name, {white_space};
  */
-#define PARSER_OP0_AFFECT_ST		    11
+	PARSER_OP0_AFFECT_ST,
 /*
  * OP_LOAD_ST(2lvl) op_load_name = ld_name | lld_name, {white_space};
  */
-#define PARSER_OP0_LOAD_ST				12
-#define PARSER_OP1_LOAD_ST				22
+	PARSER_OP0_LOAD_ST,
+	PARSER_OP1_LOAD_ST,
 /*
  *OP_ST_ST(2lvl) op_store_name = st_name, {white_space};
  */
-#define PARSER_OP0_STORE_ST				13
-#define PARSER_OP1_STORE_ST				23
+	PARSER_OP0_STORE_ST,
+	PARSER_OP1_STORE_ST,
 /*
  * OP_ARITHM_ST(3lvl) op_arithm_name = add_name | sub_name, {white_space};*
  */
-#define PARSER_OP0_ARITHM_ST			14
-#define PARSER_OP1_ARITHM_ST			24
-#define PARSER_OP2_ARITHM_ST			34
+	PARSER_OP0_ARITHM_ST,
+	PARSER_OP1_ARITHM_ST,
+	PARSER_OP2_ARITHM_ST,
 /*
  * OP_LOADI_ST(3lvl) op_load_i_name = ldi_name | lldi_name, {white_space};
  */
-#define PARSER_OP0_LOADI_ST				15
-#define PARSER_OP1_LOADI_ST				25
-#define PARSER_OP2_LOADI_ST				35
+	PARSER_OP0_LOADI_ST,
+	PARSER_OP1_LOADI_ST,
+	PARSER_OP2_LOADI_ST,
 /*
  * OP_LOGIC_ST(3lvl) op_logic_name = and_name | or_name | xor_name, {white_space};
  */
-#define PARSER_OP0_LOGIC_ST				16
-#define PARSER_OP1_LOGIC_ST				26
-#define PARSER_OP2_LOGIC_ST				36
+	PARSER_OP0_LOGIC_ST,
+	PARSER_OP1_LOGIC_ST,
+	PARSER_OP2_LOGIC_ST,
 /*
  * OP_STORI_ST(3lvl) op_store_i_name = sti_name, {white_space};
  */
-#define PARSER_OP0_STORI_ST				17
-#define PARSER_OP1_STORI_ST				27
-#define PARSER_OP2_STORI_ST				37
+	PARSER_OP0_STORI_ST,
+	PARSER_OP1_STORI_ST,
+	PARSER_OP2_STORI_ST,
 /*
  * OP_WAIT_LE
  */
-#define PARSER_LINE_END_ST				100
-#define PARSER_EOF						200
+	PARSER_LINE_END_ST,
+	PARSER_EOF,
+	PARSER_AR_SIZE,
+};
 
 typedef struct		s_parser
 {
 	int				state;
 	t_lexer			*lexer;
-	t_expr			*(*form_expr)(struct s_parser *parser, char const **text);
+	t_expr			*(*form_expr)(t_parser *parser,
+									char const **text, t_hash_map *map,
+									t_vector *vector);
 	void			(*change_state)(struct s_parser *parser, int token_type);
 	/*
 	 *сколько состояний?
 	 */
 
-	int				(*get_token[40])(struct s_parser *parser, t_lexer *lexer,
+	int				(*get_token[PARSER_AR_SIZE])(struct s_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
 }					t_parser;
 

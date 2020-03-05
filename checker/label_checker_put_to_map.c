@@ -25,7 +25,7 @@ int					label_checker_put_to_map_label_word(
 	t_pair			pair;
 
 	pair.key = token_get_value((t_token *)(expr->args[OP_NAME].value));
-	pair.content = TRUE;
+	pair.content = (void *)TRUE;
 	if (ft_hash_map_get(*map_of_label_words, pair.key))
 		return (FAILURE);
 	if (ft_hash_map_set(map_of_label_words, pair.key, pair.content) == FAILURE)
@@ -47,7 +47,7 @@ int					label_checker_put_to_map_label_ptr(
 	t_pair			pair;
 	
 	pair.key = token_get_value((t_token *)(expr->args[OP_NAME].value));
-	pair.content = TRUE;
+	pair.content = (void *)TRUE;
 	if (ft_vector_add(added_label_ptrs, (void *)pair.key) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);

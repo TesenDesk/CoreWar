@@ -4,7 +4,7 @@ t_expr				*parser_form_expr(t_parser *parser, char const **text,
 					t_hash_map *map, t_vector *vector)
 {
 	t_expr			*expr;
-	int 			expr_type;
+	//int 			expr_type; //TODO: UNUSED
 	int 			token_type;
 	t_lexer 		*lexer;
 
@@ -28,7 +28,7 @@ t_expr				*parser_form_expr(t_parser *parser, char const **text,
 			parser->get_token[parser->state](parser, lexer, expr, text);
 		if (token_type == TOKEN_LABEL_WORD)
 		{
-			if (label_checker_put_to_map_label_word(map, expr) ==
+			if (label_checker_put_to_map_label_word(&map, expr) ==
 					FAILURE)
 				return (NULL);
 		}
