@@ -116,15 +116,15 @@ rebuilded.$(RST)"
 
 # --------- Object files rules ----------------------------------------------- #
 $(CHK_FLDR)%.o: $(CHK_FLDR)%.c
-	@printf "%-70c\r$(PREFIX)🕐 Compiling file:\t\t%-25s\r" ' ' "$@"
+	@printf "%-95c\r$(PREFIX)🕐 Compiling file:\t\t%-25s\r" ' ' "$@"
 	@gcc -c -I$(H_DIR_CHK) -I$(H_DIR_LIB) -o $@ $< #TODO: ADD $(FLAGS)
 
 $(LXR_FLDR)%.o: $(LXR_FLDR)%.c
-	@printf "%-70c\r$(PREFIX)🕐 Compiling file:\t\t%-25s\r" ' ' "$@"
+	@printf "%-95c\r$(PREFIX)🕐 Compiling file:\t\t%-25s\r" ' ' "$@"
 	@gcc -c -I$(H_DIR_LXR) -I$(H_DIR_LIB) -o $@ $< #TODO: ADD $(FLAGS)
 
 $(PRS_FLDR)%.o: $(PRS_FLDR)%.c
-	@printf "%-70c\r$(PREFIX)🕐 Compiling file:\t\t%-25s\r" ' ' "$@"
+	@printf "%-95c\r$(PREFIX)🕐 Compiling file:\t\t%-25s\r" ' ' "$@"
 	@gcc -c -I$(H_DIR_PRS) -I$(H_DIR_LIB) -o $@ $< #TODO: ADD $(FLAGS)
 
 main.o: main.c
@@ -145,13 +145,13 @@ $(NAME): builder main.o
 
 # --------- Additional messages rules ---------------------------------------- #
 l_msg:
-	@printf "$(PREFIX)$(BOLD)🔎 Checkig lexer... ✅  $(GREEN)Done!$(RST)%20c\n" ' '
+	@printf "$(PREFIX)$(BOLD)🔎 Checkig lexer... ✅  $(GREEN)Done!$(RST)%45c\n" ' '
 
 p_msg:
-	@printf "$(PREFIX)$(BOLD)🔎 Checkig parser... ✅  $(GREEN)Done!$(RST)%20c\n" ' '
+	@printf "$(PREFIX)$(BOLD)🔎 Checkig parser... ✅  $(GREEN)Done!$(RST)%45c\n" ' '
 
 c_msg:
-	@printf "$(PREFIX)$(BOLD)🔎 Checkig checker... ✅  $(GREEN)Done!$(RST)%20c\n" ' '
+	@printf "$(PREFIX)$(BOLD)🔎 Checkig checker... ✅  $(GREEN)Done!$(RST)%45c\n" ' '
 
 debmsg:
 		@printf "$(DEBUGMSG)"
