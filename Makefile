@@ -56,7 +56,8 @@ PARS_SRC	:=	_parser_change_state.c \
 				expr.c \
 				expr_set_arg.c \
 				parser.c \
-				parser_xtor.c
+				parser_xtor.c \
+				parser_singleton_instance.c
 PARS_OBJ :=		$(patsubst %.c, %.o, $(PARS_SRC))
 PARS_DIR_OBJ :=	$(addprefix ./parser/, $(PARS_OBJ))
 LB_CH_SRC :=	label_checker_inclusion_of_maps.c \
