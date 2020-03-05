@@ -155,7 +155,7 @@ static void		codegen_codegen(t_codegen *data, t_expr *q)
 void			codegen_ending(t_codegen *data)
 {
 	int				i;
-	t_label_data	*ld; // huh????????
+	t_label_data	*ld;
 	unsigned int	add;
 	int				tmp;
 
