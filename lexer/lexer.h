@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 18:35:16 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/18 20:22:17 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/03/06 19:56:10 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 #define LEXER_H
 
 #include <string.h>
+
 #include "token.h"
 #include "token_defines.h"
 
-enum							e_lexer_instantiation_status
+enum					e_lexer_instantiation_status
 {
 	LEXER_INSTANTIATE,
 	LEXER_DESTRUCT
@@ -27,8 +28,7 @@ enum							e_lexer_instantiation_status
 ** The attribute structure with no disclosed attribute.
 */
 
-typedef struct s_lexer			t_lexer;
-
+typedef struct s_lexer	t_lexer;
 
 /*
 ** Constructor and destructor functions.
@@ -37,14 +37,13 @@ typedef struct s_lexer			t_lexer;
 ** Pass LEXER_INSTANTIATE to construct or to get existatant lexer instance.
 ** Pass LEXER_DESTRUCT to destrust lexer instance if there is any.
 */
-t_lexer							*lexer_singleton_instance(
-								int instantiation_status);
+
+t_lexer					*lexer_singleton_instance(int instantiation_status);
 
 /*
 ** Public behavioral functions.
 */
 
-t_token							*lexer_form_token(t_lexer *lexer,
-								char const **text);
+t_token					*lexer_form_token(t_lexer *lexer, char const **text);
 
 #endif
