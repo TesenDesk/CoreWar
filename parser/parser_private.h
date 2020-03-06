@@ -23,9 +23,6 @@
 
 #include "label_checker.h"
 
-
-
-
 ///*
 // * PARSER STATE MACHINE STATES
 // */
@@ -82,60 +79,43 @@
 //#define PARSER_LINE_END_ST				39
 //#define PARSER_EOF						200
 
-enum 				e_parser_defines {
 /*
- * PARSER STATE MACHINE STATES
- */
- PARSER_ERROR = -1,
- PARSER_INIT_ST,
-// 	PARSER_PRECODE_LINE_ST			1,
-// 	PARSER_CODE_COMMENT_ST			2,
-// 	PARSER_LIFE_ST					3,
-/*
- * OP_LIFE_ST(1lvl)  op_life_name = live_name | zjmp_name | fork_name | lfork_name, {white_space};
- */
+** PARSER STATE MACHINE STATES
+**	OP_LIFE_ST(1lvl)  op_life_name = live_name | zjmp_name | fork_name |
+** lfork_name, {white_space};
+**	OP_AFFCT_ST(1lvl) op_affect_name = aff_name, {white_space};
+**	OP_LOAD_ST(2lvl) op_load_name = ld_name | lld_name, {white_space};
+**	OP_ST_ST(2lvl) op_store_name = st_name, {white_space};
+**	OP_ARITHM_ST(3lvl) op_arithm_name = add_name | sub_name, {white_space};
+**	OP_LOADI_ST(3lvl) op_load_i_name = ldi_name | lldi_name, {white_space};
+**	OP_LOGIC_ST(3lvl) op_logic_name = and_name | or_name | xor_name,
+** {white_space};
+**	OP_STORI_ST(3lvl) op_store_i_name = sti_name, {white_space};
+**	OP_WAIT_LE
+*/
+
+enum 				e_parser_defines
+{
+	PARSER_ERROR = -1,
+	PARSER_INIT_ST,
 	PARSER_OP0_LIFE_ST,
-/*
- * OP_AFFCT_ST(1lvl) op_affect_name = aff_name, {white_space};
- */
 	PARSER_OP0_AFFECT_ST,
-/*
- * OP_LOAD_ST(2lvl) op_load_name = ld_name | lld_name, {white_space};
- */
 	PARSER_OP0_LOAD_ST,
 	PARSER_OP1_LOAD_ST,
-/*
- *OP_ST_ST(2lvl) op_store_name = st_name, {white_space};
- */
 	PARSER_OP0_STORE_ST,
 	PARSER_OP1_STORE_ST,
-/*
- * OP_ARITHM_ST(3lvl) op_arithm_name = add_name | sub_name, {white_space};*
- */
 	PARSER_OP0_ARITHM_ST,
 	PARSER_OP1_ARITHM_ST,
 	PARSER_OP2_ARITHM_ST,
-/*
- * OP_LOADI_ST(3lvl) op_load_i_name = ldi_name | lldi_name, {white_space};
- */
 	PARSER_OP0_LOADI_ST,
 	PARSER_OP1_LOADI_ST,
 	PARSER_OP2_LOADI_ST,
-/*
- * OP_LOGIC_ST(3lvl) op_logic_name = and_name | or_name | xor_name, {white_space};
- */
 	PARSER_OP0_LOGIC_ST,
 	PARSER_OP1_LOGIC_ST,
 	PARSER_OP2_LOGIC_ST,
-/*
- * OP_STORI_ST(3lvl) op_store_i_name = sti_name, {white_space};
- */
 	PARSER_OP0_STORI_ST,
 	PARSER_OP1_STORI_ST,
 	PARSER_OP2_STORI_ST,
-/*
- * OP_WAIT_LE
- */
 	PARSER_LINE_END_ST,
 	PARSER_EOF,
 	PARSER_AR_SIZE,

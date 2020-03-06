@@ -2,10 +2,12 @@
 #ifndef EXPR_PRIVATE_H
 #define EXPR_PRIVATE_H
 
-#include "expr.h"
-#include "../lexer/token.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "token.h"
+
+#include "expr.h"
 
 typedef enum		e_arg_number
 {
