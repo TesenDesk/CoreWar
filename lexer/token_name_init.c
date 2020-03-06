@@ -6,13 +6,13 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 20:25:30 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/05 21:06:33 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/03/06 21:23:57 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "token.h"
+// #include "token.h"
 #include "token_private.h"
-#include "token_defines.h"
+// #include "token_defines.h"
 
 int				token_name_init(t_token *t)
 {

@@ -6,12 +6,14 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 18:09:16 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/06 19:57:38 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/03/06 21:22:39 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_UTILS_PRIVATE_H
 # define LEXER_UTILS_PRIVATE_H
+
+#include "lexer.h"
 
 int				lexer_utils_is_line_feed(char c);
 int				lexer_utils_is_of_label_chars(char c);

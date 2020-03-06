@@ -6,6 +6,8 @@
 #include <stdio.h>
 
 #include "libft.h"
+#include "token_defines.h"
+
 
 enum				e_t_ptr_tips
 {

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_get_term_comment.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 00:24:58 by nikita_toro       #+#    #+#             */
-/*   Updated: 2020/02/17 18:45:06 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/03/06 21:21:28 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+// #include "lexer.h"
 #include "lexer_private.h"
-#include "token_defines.h"
+// #include "token_defines.h"
 
 /*
 **	The function determins if this part of text is appropriate term for

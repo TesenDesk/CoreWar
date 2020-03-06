@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_get_term_name_cmd.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 19:30:10 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/14 22:16:01 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/03/06 21:21:51 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+// #include "lexer.h"
 #include "lexer_private.h"
-#include "lexer_utils_private.h"
+// #include "lexer_utils_private.h"
 
 /*
 **	The function determins if this part of text is appropriate term for

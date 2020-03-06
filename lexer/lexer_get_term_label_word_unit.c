@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_get_term_label_word_unit.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 16:41:31 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/18 19:53:52 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/03/06 21:21:41 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+// #include "lexer.h"
 #include "lexer_private.h"
-#include "lexer_utils_private.h"
+// #include "lexer_utils_private.h"
 
 /*
 **	The function determins if this part of text is appropriate term for

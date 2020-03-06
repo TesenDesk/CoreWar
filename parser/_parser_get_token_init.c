@@ -1,5 +1,5 @@
 // #include "expr.h"
-#include "expr_defines.h"
+// #include "expr_defines.h"
 // #include "expr_private.h"
 #include "parser_private.h"
 
@@ -23,7 +23,6 @@ static void		fill_expr_types(int expr_types[TOKEN_LABEL_WORD + 2])
 	while (index_token <= TOKEN_LFORK && value_expr == EXPR_OP_LIFE)
 		expr_types[index_token++] = value_expr;
 }
-
 
 int				_parser_get_token_init(t_parser *parser, t_lexer *lexer,
 				t_expr *expr, char const **text)

@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 17:46:31 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/06 20:50:37 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/03/06 21:21:01 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define LEXER_PRIVATE_H
 
 #include "lexer.h"
+#include "lexer_utils_private.h"
 
 #define TOKEN_START_PTR	0
 #define TOKEN_END_PTR	1

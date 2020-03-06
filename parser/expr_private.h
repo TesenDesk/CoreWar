@@ -10,7 +10,6 @@ typedef struct		s_arg
 	void 			*value;
 }					t_arg;
 
-
 typedef struct		s_expr
 {
 	int				type;

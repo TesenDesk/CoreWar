@@ -1,5 +1,5 @@
-#include "lexer.h"
-#include "token_defines.h"
+// #include "lexer.h"
+// #include "token_defines.h"
 #include "lexer_private.h"
 
 int					lexer_get_term_line_feed(t_lexer *lexer, char const **text,
