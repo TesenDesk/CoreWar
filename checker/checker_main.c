@@ -44,8 +44,8 @@ int			main(int argc, char **argv)
 	int				i;
 	size_t			len;
 
-	map_of_label_words = create_hashmap(HASH_CONST);
-	map_of_label_ptrs = create_hashmap(HASH_CONST);
+	map_of_label_words = ft_hash_map_ctor(HASH_CONST);
+	map_of_label_ptrs = ft_hash_map_ctor(HASH_CONST);
 	ft_vector_init(&added_label_ptrs);
 	i = argc;
 	i = 1;
