@@ -6,19 +6,12 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 17:46:31 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/06 20:15:35 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/03/06 20:50:37 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_PRIVATE_H
 #define LEXER_PRIVATE_H
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-#include "token.h"
-#include "token_defines.h"
 
 #include "lexer.h"
 

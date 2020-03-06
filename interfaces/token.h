@@ -3,9 +3,9 @@
 #define TOKEN_H
 
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "libft.h"
-
 
 enum				e_t_ptr_tips
 {
@@ -20,7 +20,6 @@ typedef struct		s_token t_token;
  * construction/destruction
 */
 
-
 t_token				*token_constructor(int token_type,void *token_ptr[2]);
 void				token_destructor(t_token **token);
 
@@ -30,6 +29,5 @@ void				token_destructor(t_token **token);
 int					token_get_type(t_token *token);
 void				*token_get_value(t_token *token);
 int					token_name_init(t_token *t);
-
 
 #endif

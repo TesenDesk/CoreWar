@@ -2,21 +2,7 @@
 #ifndef EXPR_PRIVATE_H
 #define EXPR_PRIVATE_H
 
-#include <stdio.h>
-#include <stdlib.h>
-
-#include "token.h"
-
 #include "expr.h"
-
-typedef enum		e_arg_number
-{
-	OP_NAME = 0,
-	FIRST_ARG,
-	SECOND_ARG,
-	THIRD_ARG,
-	LINE_END_ARG
-}					t_arg_number;
 
 typedef struct		s_arg
 {

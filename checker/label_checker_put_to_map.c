@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   label_checker_put_to_map.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 15:33:48 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/04 19:51:44 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/03/06 21:12:45 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int					label_checker_put_to_map_label_word(
 {
 	t_pair			pair;
 
-	pair.key = token_get_value((t_token *)(expr->args[OP_NAME].value));
+	pair.key = token_get_value((t_token *)(expr_get_arg_value(expr, OP_NAME)));
 	pair.content = (void *)TRUE;
 	if (ft_hash_map_get(*map_of_label_words, pair.key))
 		return (FAILURE);
@@ -46,7 +46,7 @@ int					label_checker_put_to_map_label_ptr(
 {
 	t_pair			pair;
 	
-	pair.key = token_get_value((t_token *)(expr->args[OP_NAME].value));
+	pair.key = token_get_value((t_token *)(expr_get_arg_value(expr, OP_NAME)));
 	pair.content = (void *)TRUE;
 	if (ft_vector_add(added_label_ptrs, (void *)pair.key) == FAILURE)
 		return (FAILURE);
