@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jjerde <jjerde@student.42.fr>              +#+  +:+       +#+         #
+#    By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/15 15:17:26 by jjerde            #+#    #+#              #
-#    Updated: 2020/03/05 22:22:05 by jjerde           ###   ########.fr        #
+#    Updated: 2020/03/06 19:39:49 by ftothmur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ H_DIR_CHK =	$(WORKDIR)checker/
 H_DIR_LXR =	$(WORKDIR)lexer/
 H_DIR_PRS =	$(WORKDIR)parser/
 H_DIR_LIB = $(LIBDIR)
+#H_DIR =		$(H_DIR_CHK) $(H_DIR_LXR) $(H_DIR_PRS) $(H_DIR_LIB)
 
 # ===================== LIBs & Source Files ================================== #
 LIB =		$(LIBDIR)libft.a
@@ -128,7 +129,8 @@ $(PRS_FLDR)%.o: $(PRS_FLDR)%.c
 	@gcc -c -I$(H_DIR_PRS) -I$(H_DIR_LIB) -o $@ $< #TODO: ADD $(FLAGS)
 
 main.o: main.c
-	@gcc -c -I$(H_DIR_CHK) -o $@ $< #TODO: ADD $(FLAGS)
+	gcc -c -I$(H_DIR_CHK) -I$(H_DIR_LXR) -I$(H_DIR_PRS) -I$(H_DIR_LIB) \
+-o $@ $< #TODO: ADD $(FLAGS)
 
 lexer: $(OBJ_LXR) l_msg
 

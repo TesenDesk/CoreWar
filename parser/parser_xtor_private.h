@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 19:39:41 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/05 19:41:54 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/03/06 18:57:34 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 */
 
 void			_parser_ctor(t_parser **parser);
-void				_parser_dtor(t_parser **parser);
+void			_parser_dtor(t_parser **parser);
 
 #endif

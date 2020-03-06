@@ -8,15 +8,20 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "expr.h"
 #include "libft.h"
-#include "expr_private.h"
-#include "expr_defines.h"
-#include "../lexer/lexer.h"
-#include "../lexer/token.h"
+
+#include "token.h"
+#include "token_defines.h"
+
+#include "lexer.h"
+
 #include "parser.h"
-#include "../lexer/token_defines.h"
-#include "../checker/label_checker.h"
+
+#include "expr.h"
+#include "expr_defines.h"
+#include "expr_private.h"
+
+#include "label_checker.h"
 
 
 
