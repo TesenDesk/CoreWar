@@ -10,6 +10,8 @@
 		"libft.h": "c",
 		"expr_defines.h": "c",
 		"label_checker_private.h": "c",
-		"parser.h": "c"
+		"parser.h": "c",
+		"token.h": "c",
+		"token_private.h": "c"
 	}
 }

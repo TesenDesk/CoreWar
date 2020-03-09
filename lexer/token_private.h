@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 17:44:55 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/09 19:33:44 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/03/05 20:34:00 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 typedef struct 	    s_token
 {
     int             type;
-    void			*val;
+    void			*val; // ?????????
     void		    *token_ptr[2];
     int             (*get_type)(t_token  *token);
     void*           (*get_begin)(t_token *token);
