@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 15:28:05 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/03 18:07:33 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/03/05 21:35:51 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int				_parser_get_token_op0_life(t_parser *parser, t_lexer *lexer,
 	token_type = token_get_type(token);
 	if (!(token_type == TOKEN_TDIR_INT || token_type == TOKEN_TDIR_LAB))
 		expr->type = EXPR_UNDEF;
-	expr_set_arg(expr, token, FIRST_ARG, token_type);
+	if (expr_set_arg(expr, token, OP_NAME, token_type) == FAILURE)
+		return (NO_TOKEN);
 	return (token_type);
 }

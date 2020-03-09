@@ -21,7 +21,7 @@ int				lexer_utils_is_quotation_mark(char c);
 int				lexer_utils_is_eof(char c);
 
 void			lexer_utils_trim_whitespace(const char **text);
-void			lexer_utils_trim_not_eof_line_feed_quotatuion_mark(
+void			lexer_utils_trim_not_eof_not_line_feed_not_quotatuion_mark(
 				const char **text);
 
 #endif

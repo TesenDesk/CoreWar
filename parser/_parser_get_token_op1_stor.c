@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _parser_get_token_op1_stor.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 17:08:14 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/03 18:57:10 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/03/05 21:43:10 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int				_parser_get_token_op1_stor(t_parser *parser, t_lexer *lexer,
 	if (!(token_type == TOKEN_TREG ||
 			token_type == TOKEN_TIND_INT || token_type == TOKEN_TIND_LAB))
 		expr->type = EXPR_UNDEF;
-	expr_set_arg(expr, token, SECOND_ARG, token_type);
+	if (expr_set_arg(expr, token, OP_NAME, token_type) == FAILURE)
+		return (NO_TOKEN);
 	return (token_type);
 }

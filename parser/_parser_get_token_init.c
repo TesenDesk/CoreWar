@@ -41,6 +41,7 @@ int				_parser_get_token_init(t_parser *parser, t_lexer *lexer,
 		expr->type = expr_types[token_type];
 	else
 		expr->type = EXPR_UNDEF;
-	expr_set_arg(expr, token, OP_NAME, token_type);
+	if (expr_set_arg(expr, token, OP_NAME, token_type) == FAILURE)
+		return (NO_TOKEN);
 	return (token_type);
 }

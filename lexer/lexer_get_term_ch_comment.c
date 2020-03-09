@@ -26,12 +26,12 @@ int				lexer_get_term_ch_comment(t_lexer *lexer, char const **text,
 				int *type, void *token_ptr[2])
 {
 	(void)lexer;
-	token_ptr[TOKEN_START_PTR] = *text;	
+	token_ptr[TOKEN_START_PTR] = (void *)*text;
 	lexer_utils_trim_not_eof_not_line_feed_not_quotatuion_mark(text);
 	if (lexer_utils_is_quotation_mark(**text))
 	{
 		*type = TOKEN_CHCOM;
-		token_ptr[TOKEN_END_PTR] = (void*)*(text - 1);
+		token_ptr[TOKEN_END_PTR] = (void *)*(text - 1);
 		++(*text);
 		return (QUOTATION_MARK_CODE);
 	}
