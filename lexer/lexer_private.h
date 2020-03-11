@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 17:46:31 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/06 21:21:01 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/03/11 15:07:46 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,21 +54,21 @@ enum				e_lexer_states
 **	______switcher_method constants______
 */
 
-enum				e_switcher_method_constants
-{
-////	INIT_ST,
-//	GET_COMMENT,
-//	LINE_FEED,
-////	CHAMPION,
-	OPX,
-//	LABEL_WORD,
-//	ARG_REG,
-	ARG_IND_INT,
-	ARG_IND_LABEL,
-//	ARG_DIR_INT,
-//	ARG_DIR_LABEL,
-	ARG_BREAK,
-};
+// enum				e_switcher_method_constants
+// {
+// ////	INIT_ST,
+// //	GET_COMMENT,
+// //	LINE_FEED,
+// ////	CHAMPION,
+// 	OPX,
+// //	LABEL_WORD,
+// //	ARG_REG,
+// 	ARG_IND_INT,
+// 	ARG_IND_LABEL,
+// //	ARG_DIR_INT,
+// //	ARG_DIR_LABEL,
+// 	ARG_BREAK,
+// };
 
 
 // /*
