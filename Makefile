@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+         #
+#    By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/15 15:17:26 by jjerde            #+#    #+#              #
-#    Updated: 2020/03/06 20:40:27 by ftothmur         ###   ########.fr        #
+#    Updated: 2020/03/11 14:00:20 by cmissy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ WORKDIR =	./
 LXR_FLDR =	$(WORKDIR)lexer/
 PRS_FLDR =	$(WORKDIR)parser/
 CHK_FLDR =	$(WORKDIR)checker/
-LIBDIR =	$(WORKDIR)libf/
+LIBDIR =	$(WORKDIR)libft/
 H_DIR_CHK =	$(WORKDIR)checker/
 H_DIR_LXR =	$(WORKDIR)lexer/
 H_DIR_PRS =	$(WORKDIR)parser/
