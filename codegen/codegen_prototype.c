@@ -152,7 +152,7 @@ static void		codegen_codegen(t_codegen *data, t_expr *q)
 	}
 }
 
-void			codegen_ending(t_codegen *data)
+static void			codegen_ending(t_codegen *data)
 {
 	int				i;
 	t_label_data	*ld;
@@ -180,6 +180,7 @@ int				champ_exec_constructor(t_codegen *data)
 	unsigned int	tmp_size;
 
 	i = 0;
+	codegen_ending(data);
 	total_size = PROG_NAME_LENGTH + COMMENT_LENGTH + 16 + data->code_size;
 	if (!(data->exec = ft_memalloc(total_size)))
 		return (0);
@@ -211,26 +212,22 @@ int				main(void)
 {
 	t_codegen	*code;
 	header_t	header;
-	char		cod[8];
 	int			fd;
+	t_expr		*q;
 
 	ft_bzero(&header.comment, COMMENT_LENGTH + 1);
 	ft_bzero(&header.prog_name, PROG_NAME_LENGTH + 1);
+	q = ft_memalloc(sizeof(t_expr));
 	ft_memcpy(&header.prog_name, "Batman", 4*6);
 	ft_memcpy(&header.comment, "This city needs me", 4*6);
 	code = codegen_ctor(NULL, NULL, &header);
-	code->code_size = 22;
-	code->code = ft_memalloc(8);
+	//code->code_size = 22;
+	//code->code = ft_memalloc(8);
 	code->header->magic = COREWAR_EXEC_MAGIC;
-	cod[0] = 1;
-	cod[1] = 1;
-	cod[2] = 1;
-	cod[3] = 0;
-	cod[4] = 1;
-	cod[5] = 2;
-	cod[6] = 0;
-	cod[7] = 0;
-	ft_memcpy(code->code, &cod, 8);
+
+
+	codegen_codegen(code, q);
+
 	code->header->prog_size = champ_exec_constructor(code);
 	fd = open("test.cmp", O_WRONLY);
 	//fprintf(fp, "%s", code->exec);
