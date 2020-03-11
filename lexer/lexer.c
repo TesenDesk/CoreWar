@@ -3,34 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 18:39:31 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/18 20:20:36 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/03/06 21:23:46 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+// #include "lexer.h"
 #include "lexer_private.h"
-#include "token.h"
-#include "token_defines.h"
+// #include "token.h"
+// #include "token_defines.h"
 
-#define ADD_NAME				"add"
-#define AFF_NAME				"aff"
-#define AND_NAME				"and"
-#define FORK_NAME				"fork"
-#define LD_NAME					"ld"
-#define LDI_NAME				"ldi"
-#define LFORK_NAME				"lfork"
-#define LIVE_NAME				"live"
-#define LLD_NAME				"lld"
-#define LLDI_NAME				"lldi"
-#define OR_NAME					"or"
-#define ST_NAME					"st"
-#define STI_NAME				"sti"
-#define SUB_NAME				"sub"
-#define XOR_NAME				"xor"
-#define ZJMP_NAME				"zjmp"
+// #define ADD_NAME				"add"
+// #define AFF_NAME				"aff"
+// #define AND_NAME				"and"
+// #define FORK_NAME				"fork"
+// #define LD_NAME					"ld"
+// #define LDI_NAME				"ldi"
+// #define LFORK_NAME				"lfork"
+// #define LIVE_NAME				"live"
+// #define LLD_NAME				"lld"
+// #define LLDI_NAME				"lldi"
+// #define OR_NAME					"or"
+// #define ST_NAME					"st"
+// #define STI_NAME				"sti"
+// #define SUB_NAME				"sub"
+// #define XOR_NAME				"xor"
+// #define ZJMP_NAME				"zjmp"
 
 
 static int                  lexer_find_next_to_INIT_ST(int term_type)

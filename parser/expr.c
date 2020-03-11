@@ -1,10 +1,10 @@
 
 #include "expr_private.h"
-#include "expr_defines.h"
 
-t_expr*               expr_ctor(void)
+
+t_expr					*expr_ctor(void)
 {
-	t_expr         *expr;
+	t_expr				*expr;
 	if (!(expr = (t_expr*)ft_memalloc(sizeof(t_expr))))
 	{
 		printf("error\n");
@@ -17,9 +17,14 @@ t_expr*               expr_ctor(void)
 	return (expr);
 }
 
-void                expr_dtor(t_expr **expr)
+void				expr_dtor(t_expr **expr)
 {
 	free(*expr);
 	*expr = NULL;
+}
+
+void				*expr_get_arg_value(t_expr *expr, int index)
+{
+	return (expr->args[index].value);
 }
 

@@ -6,7 +6,7 @@
 #    By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/15 15:17:26 by jjerde            #+#    #+#              #
-#    Updated: 2020/03/09 17:37:25 by cmissy           ###   ########.fr        #
+#    Updated: 2020/03/11 13:49:31 by cmissy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,8 @@ H_DIR_CHK =	$(WORKDIR)checker/
 H_DIR_LXR =	$(WORKDIR)lexer/
 H_DIR_PRS =	$(WORKDIR)parser/
 H_DIR_LIB = $(LIBDIR)
+INTERFACE =	$(WORKDIR)interfaces/ 
+#H_DIR =		$(H_DIR_CHK) $(H_DIR_LXR) $(H_DIR_PRS) $(H_DIR_LIB)
 
 # ===================== LIBs & Source Files ================================== #
 LIB =		$(LIBDIR)libft.a
@@ -117,18 +119,22 @@ rebuilded.$(RST)"
 # --------- Object files rules ----------------------------------------------- #
 $(CHK_FLDR)%.o: $(CHK_FLDR)%.c
 	@printf "%-95c\r$(PREFIX)🕐 Compiling file:\t\t%-25s\r" ' ' "$@"
-	@gcc -c -I$(H_DIR_CHK) -I$(H_DIR_LIB) -o $@ $< #TODO: ADD $(FLAGS)
+	@gcc -c -I$(INTERFACE) -I$(H_DIR_CHK) -I$(H_DIR_LIB) -o $@ $< \
+#TODO: ADD $(FLAGS)
 
 $(LXR_FLDR)%.o: $(LXR_FLDR)%.c
 	@printf "%-95c\r$(PREFIX)🕐 Compiling file:\t\t%-25s\r" ' ' "$@"
-	@gcc -c -I$(H_DIR_LXR) -I$(H_DIR_LIB) -o $@ $< #TODO: ADD $(FLAGS)
+	@gcc -c -I$(INTERFACE) -I$(H_DIR_LXR) -I$(H_DIR_LIB) -o $@ $< \
+#TODO: ADD $(FLAGS)
 
 $(PRS_FLDR)%.o: $(PRS_FLDR)%.c
 	@printf "%-95c\r$(PREFIX)🕐 Compiling file:\t\t%-25s\r" ' ' "$@"
-	@gcc -c -I$(H_DIR_PRS) -I$(H_DIR_LIB) -o $@ $< #TODO: ADD $(FLAGS)
+	@gcc -c -I$(INTERFACE) -I$(H_DIR_PRS) -I$(H_DIR_LIB) -o $@ $< \
+#TODO: ADD $(FLAGS)
 
 main.o: main.c
-	@gcc -c -I$(H_DIR_CHK) -o $@ $< #TODO: ADD $(FLAGS)
+	gcc -c -I$(INTERFACE) -I$(H_DIR_CHK) -I$(H_DIR_LXR) -I$(H_DIR_PRS) \
+-I$(H_DIR_LIB) -o $@ $< #TODO: ADD $(FLAGS)
 
 lexer: $(OBJ_LXR) l_msg
 

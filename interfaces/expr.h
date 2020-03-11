@@ -2,10 +2,24 @@
 # define EXPR_H
 
 //#include "expr_private.h"
-#include "../lexer/token.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-typedef struct 	    s_expr t_expr;
-typedef struct		s_arg	t_arg;
+#include "token.h"
+#include "expr_defines.h"
+
+typedef struct s_expr		t_expr;
+typedef struct s_arg		t_arg;
+
+
+typedef enum		e_arg_number
+{
+	OP_NAME = 0,
+	FIRST_ARG,
+	SECOND_ARG,
+	THIRD_ARG,
+	LINE_END_ARG
+}					t_arg_number;
 
 /*
  * TOKEN TYPES
@@ -29,5 +43,6 @@ void				expr_dtor(t_expr **expr);
 
 int					expr_set_arg(t_expr *expr, t_token *token,
 						int args_number, int arg_type);
+void				*expr_get_arg_value(t_expr *expr, int index);
 
 #endif

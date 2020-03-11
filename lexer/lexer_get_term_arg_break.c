@@ -1,6 +1,6 @@
-#include "lexer.h"
+// #include "lexer.h"
 #include "lexer_private.h"
-#include "token_defines.h"
+// #include "token_defines.h"
 
 /*
 **	The function determins if this part of text is appropriate term for

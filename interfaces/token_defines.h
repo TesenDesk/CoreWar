@@ -147,7 +147,6 @@ enum			e_token_types
 ** Operation names.
 */
 
-
 #define ADD_NAME				"add"
 #define AFF_NAME				"aff"
 #define AND_NAME				"and"
@@ -170,48 +169,82 @@ enum			e_token_types
 /*
  * TERM CODES
  */
+enum							e_term_codes
+{
+	TERM_UNDEFINED_CODE = -1,
+	INTEGER_CODE,
+	COMMENT_CHAR_CODE,
+	ALT_COMMENT_CHAR_CODE,
+	REGISTER_CHAR_CODE,
+	LABEL_CHAR_CODE,
+	DIRECT_CHAR_CODE,
+	SEPARATOR_CHAR_CODE,
+	LABEL_CHARS_CODE,
+	NAME_CMD_STRING_CODE,
+	COMMENT_CMD_STRING_CODE,
+	WHITE_SPACE_CODE,
+	ADD_NAME_CODE,
+	AFF_NAME_CODE,
+	AND_NAME_CODE,
+	FORK_NAME_CODE,
+	LD_NAME_CODE,
+	LDI_NAME_CODE,
+	LFORK_NAME_CODE,
+	LIVE_NAME_CODE,
+	LLD_NAME_CODE,
+	LLDI_NAME_CODE,
+	OR_NAME_CODE,
+	ST_NAME_CODE,
+	STI_NAME_CODE,
+	SUB_NAME_CODE,
+	XOR_NAME_CODE,
+	ZJMP_NAME_CODE,
+	OPX_CODE,
+	QUOTATION_MARK_CODE,
+	LINE_FEED_CODE,
+	EOF_CODE,
+};
+// #define TERM_UNDEFINED_CODE    -1
+// #define INTEGER_CODE            0
+// #define COMMENT_CHAR_CODE		1
+// #define ALT_COMMENT_CHAR_CODE   2
 
-#define TERM_UNDEFINED_CODE    -1
-#define INTEGER_CODE            0
-#define COMMENT_CHAR_CODE		1
-#define ALT_COMMENT_CHAR_CODE   2
+// #define REGISTER_CHAR_CODE		3
+// #define LABEL_CHAR_CODE         4
+// #define DIRECT_CHAR_CODE        5
 
-#define REGISTER_CHAR_CODE		3
-#define LABEL_CHAR_CODE         4
-#define DIRECT_CHAR_CODE        5
+// #define SEPARATOR_CHAR_CODE     6
 
-#define SEPARATOR_CHAR_CODE     6
-
-#define LABEL_CHARS_CODE		7
-#define NAME_CMD_STRING_CODE	8
-#define COMMENT_CMD_STRING_CODE	9
-#define WHITE_SPACE_CODE        10
+// #define LABEL_CHARS_CODE		7
+// #define NAME_CMD_STRING_CODE	8
+// #define COMMENT_CMD_STRING_CODE	9
+// #define WHITE_SPACE_CODE        10
 
 
 
-#define ADD_NAME_CODE			11
-#define AFF_NAME_CODE			12
-#define AND_NAME_CODE			13
-#define FORK_NAME_CODE		    14
-#define LD_NAME_CODE			15
-#define LDI_NAME_CODE		    16
-#define LFORK_NAME_CODE		    17
-#define LIVE_NAME_CODE		    18
-#define LLD_NAME_CODE		    19
-#define LLDI_NAME_CODE			20
-#define OR_NAME_CODE		    21
-#define ST_NAME_CODE		    22
-#define STI_NAME_CODE		    23
-#define SUB_NAME_CODE	        24
-#define XOR_NAME_CODE			25
-#define ZJMP_NAME_CODE			26
+// #define ADD_NAME_CODE			11
+// #define AFF_NAME_CODE			12
+// #define AND_NAME_CODE			13
+// #define FORK_NAME_CODE		    14
+// #define LD_NAME_CODE			15
+// #define LDI_NAME_CODE		    16
+// #define LFORK_NAME_CODE		    17
+// #define LIVE_NAME_CODE		    18
+// #define LLD_NAME_CODE		    19
+// #define LLDI_NAME_CODE			20
+// #define OR_NAME_CODE		    21
+// #define ST_NAME_CODE		    22
+// #define STI_NAME_CODE		    23
+// #define SUB_NAME_CODE	        24
+// #define XOR_NAME_CODE			25
+// #define ZJMP_NAME_CODE			26
 
-#define OPX_CODE                27
+// #define OPX_CODE                27
 
-#define QUOTATION_MARK_CODE		28
+// #define QUOTATION_MARK_CODE		28
 
-#define LINE_FEED_CODE          29
-#define EOF_CODE                30
+// #define LINE_FEED_CODE          29
+// #define EOF_CODE                30
 
 #endif
 

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_singleton_instance.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:13:41 by yurezz            #+#    #+#             */
-/*   Updated: 2020/02/18 19:57:24 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/03/06 21:22:01 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+// #include "lexer.h"
 #include "lexer_private.h"
 #include "lexer_xtor_private.h"
 

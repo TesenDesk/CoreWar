@@ -44,9 +44,6 @@ t_expr				*parser_form_expr(t_parser *parser, char const **text,
 	return (expr);
 }
 
-
-
-
 //int     parser_get_token_precode(t_parser *parser)
 //{
 //    ;

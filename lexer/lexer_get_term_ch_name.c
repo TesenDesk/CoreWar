@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_get_term_ch_name.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 20:13:53 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/12 21:41:10 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/03/06 21:21:16 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+// #include "lexer.h"
 #include "lexer_private.h"
-#include "lexer_utils_private.h"
-#include "token_defines.h"
+// #include "lexer_utils_private.h"
+// #include "token_defines.h"
 
 /*
 **	The function determins if this part of text is appropriate term for
