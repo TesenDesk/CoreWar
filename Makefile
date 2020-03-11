@@ -6,12 +6,12 @@
 #    By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/15 15:17:26 by jjerde            #+#    #+#              #
-#    Updated: 2020/03/11 14:00:20 by cmissy           ###   ########.fr        #
+#    Updated: 2020/03/11 14:34:07 by cmissy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # =====================P̶O̶N̶Y̶ PHONY========================================= #
-.PHONY: all clean fclean liba re debug delfile checkdir redebug d rd deljunk \
+.PHONY: all clean fclean liba re debug delfile checkdir redebug d rd deljunk force \
 # ===================== Preferences & Directories ============================ #
 NAME =		asm
 LABEL =		CoreWar
@@ -145,7 +145,7 @@ checker: $(OBJ_CHK) c_msg
 builder: debmsg lexer parser checker
 
 # --------- Exec files rules ------------------------------------------------- #
-$(NAME): builder main.o
+$(NAME): liba builder main.o
 	@gcc $(FLAGS) $(LIBFLAGS) -o $(NAME) $(OBJ) main.o
 	@printf "$(PREFIX)📦  Building $(NAME)...\n"
 
@@ -163,7 +163,7 @@ debmsg:
 		@printf "$(DEBUGMSG)"
 
 # --------- Libs rules ------------------------------------------------------- #
-liba:
+liba: force
 		@printf "$(PREFIX)$(BOLD)🔎 Checkig \
 for libft updates...$(RST)\n"
 		@make -C $(LIBDIR) DEBUGMODE=$(DEBUGMODE)
