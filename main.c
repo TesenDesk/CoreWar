@@ -122,7 +122,7 @@ int main()
 	*/
 
 	t_parser		*prs;
-	char const		*str;
+	//char const		*str;
 	t_hash_map		*map;
 	t_vector		vtr;
 
@@ -142,7 +142,7 @@ int main()
 	map = ft_hash_map_ctor(HASH_CONST);
 	ft_vector_init(&vtr);
 
-	t_expr *expr1 = parser_form_expr(prs, &str, map, &vtr);
+	t_expr *expr1 = parser_form_expr(prs, &str, map, &vtr); // запись в карту
 	arg = expr1->args;
 	printf("expr.type %i\n", expr1->type);
 	printf("expr.size %i\n", expr1->size);
