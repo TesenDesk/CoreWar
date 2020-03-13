@@ -6,7 +6,7 @@
 /*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 18:39:31 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/12 21:30:39 by nikita_toro      ###   ########.fr       */
+/*   Updated: 2020/03/13 13:07:57 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,10 +135,8 @@ void                lexer_change_state(t_lexer *lexer, int term_type)
         lexer->state = lexer_find_op_arg_state(lexer, term_type);
     else
     {
-        printf("LINE_FEED_CODE %i\n", lexer->state);
         lexer->state = INIT_ST;
     }
-    printf("lexer->state = %i\n", lexer->state);
 }
 
 
@@ -153,7 +151,6 @@ t_token             *lexer_form_token(t_lexer *lexer, char const **text)
     while (token_type == TOKEN_INIT_ST)
     {
         printf("111  lexer->state %i\n", lexer->state);
-        printf("\n\ntoken_type %i\n", token_type);
         lexer->change_state(lexer, lexer->get_term[lexer->state](lexer, text, &token_type, token_ptr));
     }
     return (token_constructor(token_type, token_ptr));

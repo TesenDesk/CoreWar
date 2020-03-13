@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_get_term_comment.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 00:24:58 by nikita_toro       #+#    #+#             */
-/*   Updated: 2020/03/06 21:21:28 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/03/13 13:10:49 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ int		lexer_get_term_comment(t_lexer *lexer, char const **text, int *type, void *
 		}
 		if (**text == '\n')
 		{
-			printf("LINE_FEED_CODE LINE_FEED_CODE\n");
-
 			return (LINE_FEED_CODE);
 		}
 	}

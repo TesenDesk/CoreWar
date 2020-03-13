@@ -6,7 +6,7 @@
 /*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:40:45 by yurezz            #+#    #+#             */
-/*   Updated: 2020/03/12 21:23:44 by nikita_toro      ###   ########.fr       */
+/*   Updated: 2020/03/13 13:07:29 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void			_lexer_ctor(t_lexer **lexer)
 {
 	if (!(*lexer = (t_lexer*)malloc(sizeof(t_lexer))))
 	{
-		printf("error\n");
+		("error\n");
 		exit(-1);
 	}
 	//переделать
