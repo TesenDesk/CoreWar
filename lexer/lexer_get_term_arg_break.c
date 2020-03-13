@@ -17,8 +17,6 @@ int			lexer_get_term_arg_break(t_lexer *lexer, char const **text,
 	(void)type;
 	if (ft_strchr(WHITE_SPACE, **text))
 	{
-	printf("BREAK BREAK BREAK BREAK BREAK BREAK\n");
-
 		(*text)++;
 		return (WHITE_SPACE_CODE);
 	}

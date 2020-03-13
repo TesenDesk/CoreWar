@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 18:39:31 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/06 21:23:46 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/03/13 13:07:57 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,29 @@
 static int                  lexer_find_next_to_INIT_ST(int term_type)
 {
     if (term_type == COMMENT_CHAR_CODE || term_type == ALT_COMMENT_CHAR_CODE)
+    {
         return (COMMENT_ST);
+    }
     else if (term_type == LINE_FEED_CODE)
+    {
         return (LINE_FEED_ST);
+    }
     else if (term_type == NAME_CMD_STRING_CODE)
+    {
         return (NAME_CMD_ST);
+    }
     else if (term_type == COMMENT_CMD_STRING_CODE)
+    {
         return (COMM_CMD_ST);
+    }
     else if (term_type == OPX_CODE)
+    {
         return (OPX_ST);
+    }
     else
+    {
         return (INIT_ST);
+    }
 }
 
 static int          lexer_find_champ_state(t_lexer *lexer, int term_type)
@@ -102,6 +114,7 @@ static int          lexer_find_op_arg_state(t_lexer *lexer, int term_type)
 
 void                lexer_change_state(t_lexer *lexer, int term_type)
 {
+
     if (lexer->state == INIT_ST)
         lexer->state = lexer_find_next_to_INIT_ST(term_type);
     else if (lexer->state >= NAME_CMD_ST && lexer->state <= CH_COMM_ST)
@@ -122,7 +135,6 @@ void                lexer_change_state(t_lexer *lexer, int term_type)
         lexer->state = lexer_find_op_arg_state(lexer, term_type);
     else
     {
-        printf("LINE_FEED_CODE %i\n", lexer->state);
         lexer->state = INIT_ST;
     }
 }

@@ -92,7 +92,6 @@ int             lexer_get_term_init(t_lexer *lexer, char const **text, int *type
 	op_len = 0;
     while (**text == ' ' || **text == '\t')
         ++(*text);
-    printf("text|%s\n", *text);
     if (!(**text))
     {
         *type = TOKEN_EOF;
@@ -135,7 +134,12 @@ int             lexer_get_term_init(t_lexer *lexer, char const **text, int *type
     	*(token_ptr) = (void*)(*text - 1);
     	return (LABEL_CHARS_CODE);
     }
-    *type = TOKEN_UNDEF;
+	else if (**text == TOKEN_EOF)
+	{
+		*type = TOKEN_EOF;
+		return (EOF_CODE);
+	}
+    *type = (TOKEN_UNDEF);
     ++(*text);
     return (TERM_UNDEFINED_CODE);
 }

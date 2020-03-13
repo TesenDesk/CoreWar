@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+         #
+#    By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/15 15:17:26 by jjerde            #+#    #+#              #
-#    Updated: 2020/03/11 14:34:07 by cmissy           ###   ########.fr        #
+#    Updated: 2020/03/12 15:02:05 by nikita_toro      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,7 +90,7 @@ OBJ_PRS =	$(SRC_PRS:.c=.o)
 OBJ_CHK =	$(SRC_CHK:.c=.o)
 OBJ =		$(OBJ_CHK) $(OBJ_LXR) $(OBJ_PRS)
 LIBFLAGS =	-L$(LIBDIR) -lft
-CFLAGS =	-Wall -Wextra -Werror
+CFLAGS =	-Wall -Wextra -Werror -g
 
 # ===================== COLORS & Co ========================================== #
 GREEN =		\033[1;32m
