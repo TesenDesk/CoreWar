@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 18:39:31 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/06 21:23:46 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/03/12 21:30:39 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,29 @@
 static int                  lexer_find_next_to_INIT_ST(int term_type)
 {
     if (term_type == COMMENT_CHAR_CODE || term_type == ALT_COMMENT_CHAR_CODE)
+    {
         return (COMMENT_ST);
+    }
     else if (term_type == LINE_FEED_CODE)
+    {
         return (LINE_FEED_ST);
+    }
     else if (term_type == NAME_CMD_STRING_CODE)
+    {
         return (NAME_CMD_ST);
+    }
     else if (term_type == COMMENT_CMD_STRING_CODE)
+    {
         return (COMM_CMD_ST);
+    }
     else if (term_type == OPX_CODE)
+    {
         return (OPX_ST);
+    }
     else
+    {
         return (INIT_ST);
+    }
 }
 
 static int          lexer_find_champ_state(t_lexer *lexer, int term_type)
@@ -102,6 +114,7 @@ static int          lexer_find_op_arg_state(t_lexer *lexer, int term_type)
 
 void                lexer_change_state(t_lexer *lexer, int term_type)
 {
+
     if (lexer->state == INIT_ST)
         lexer->state = lexer_find_next_to_INIT_ST(term_type);
     else if (lexer->state >= NAME_CMD_ST && lexer->state <= CH_COMM_ST)
@@ -125,6 +138,7 @@ void                lexer_change_state(t_lexer *lexer, int term_type)
         printf("LINE_FEED_CODE %i\n", lexer->state);
         lexer->state = INIT_ST;
     }
+    printf("lexer->state = %i\n", lexer->state);
 }
 
 
@@ -139,6 +153,7 @@ t_token             *lexer_form_token(t_lexer *lexer, char const **text)
     while (token_type == TOKEN_INIT_ST)
     {
         printf("111  lexer->state %i\n", lexer->state);
+        printf("\n\ntoken_type %i\n", token_type);
         lexer->change_state(lexer, lexer->get_term[lexer->state](lexer, text, &token_type, token_ptr));
     }
     return (token_constructor(token_type, token_ptr));

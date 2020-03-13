@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_get_term_name_cmd.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 19:30:10 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/06 21:21:51 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/03/12 21:15:18 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ int				lexer_get_term_name_cmd(t_lexer *lexer, char const **text,
 	(void)lexer;
 	(void)token_ptr;
 
-	printf("now:%s\n",  *text);
 	lexer_utils_trim_whitespace(text);
-	printf("now:%s\n",  *text);
 	if (lexer_utils_is_quotation_mark(**text))
 	{
 		++(*text);

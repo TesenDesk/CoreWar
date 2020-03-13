@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_xtor_private.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:40:45 by yurezz            #+#    #+#             */
-/*   Updated: 2020/02/18 19:45:40 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/03/12 21:23:44 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void			_lexer_ctor(t_lexer **lexer)
 	(*lexer)->get_term[COMMENT_ST] = lexer_get_term_comment;
 	(*lexer)->get_term[LINE_FEED_ST] = lexer_get_term_line_feed;
 //    (*lexer)->get_term[LINE_FEED_ST] = lexer_get_term_line_feed;
- //   (*lexer)->get_term[NAME_CMD_ST] = lexer_get_term_name_cmd;
- //   (*lexer)->get_term[CH_NAME_ST] = lexer_get_term_ch_name;
+   (*lexer)->get_term[NAME_CMD_ST] = lexer_get_term_name_cmd;
+   (*lexer)->get_term[CH_NAME_ST] = lexer_get_term_ch_name;
  //   (*lexer)->get_term[COMM_CMD_ST] = lexer_get_term_name_cmd;
  //   (*lexer)->get_term[CH_COMM_ST] = lexer_get_term_ch_name;
 

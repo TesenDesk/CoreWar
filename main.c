@@ -71,15 +71,6 @@ int main()
 	// char const *str = "ld 45454, %:marker, r5     ;blabla\n";
 	char const *str = ".name    \"Batman\"\n";
 
-
-
-
-
-
-
-
-
-
 	t_token *token1 = lexer_form_token(lex, &str);
 	printf("type %i\n", token1->type);
 	printf("str %s\n\n", (char *)token1->token_ptr[0]);
@@ -92,13 +83,13 @@ int main()
 	printf("type %i\n", token3->type);
 	printf("token3 str %s\n\n", (char *)token3->token_ptr[0]);
 
-	t_token *token4 = lexer_form_token(lex, &str);
-	printf("type %i\n", token4->type);
-	printf("token4 str %s\n\n", (char *)token4->token_ptr[0]);
+	// t_token *token4 = lexer_form_token(lex, &str);
+	// printf("type %i\n", token4->type);
+	// printf("token4 str %s\n\n", (char *)token4->token_ptr[0]);
 
-	t_token *token5 = lexer_form_token(lex, &str);
-	printf("type %i\n", token5->type);
-	printf("token5 str %s\n\n", (char *)token5->token_ptr[0]);
+	// t_token *token5 = lexer_form_token(lex, &str);
+	// printf("type %i\n", token5->type);
+	// printf("token5 str %s\n\n", (char *)token5->token_ptr[0]);
 
 
 
