@@ -91,7 +91,7 @@ OBJ_PRS =	$(SRC_PRS:.c=.o)
 OBJ_CHK =	$(SRC_CHK:.c=.o)
 OBJ =		$(OBJ_CHK) $(OBJ_LXR) $(OBJ_PRS)
 LIBFLAGS =	-L$(LIBDIR) -lft
-CFLAGS =	-Wall -Wextra -Werror -g
+CFLAGS =	-Wall -Wextra -Werror
 
 # ===================== COLORS & Co ========================================== #
 GREEN =		\033[1;32m
@@ -104,10 +104,10 @@ PREFIX =	[$(CYAN)$(LABEL)$(RST)]:\t
 # ===================== Debug ================================================ #
 # -- WARN! Delete this message from rules if you using library from another prj#
 ifeq ($(DEBUGMODE), 1)
-	FLAGS		:= $(CFLAGS) -g
+	FLAGS		:= -g #TODO: ADD $(CFLAGS)
 	DEBUGMSG	:= $(PREFIX)⚠️  \033[1;33mDebug mode $(GREEN)enabled.$(RST)\n
 else
-	FLAGS		:= $(CFLAGS)
+	FLAGS		:= #TODO: ADD $(CFLAGS)
 	DEBUGMSG	:= $(PREFIX)⚠️  \033[1;33mDebug mode $(RED)disabled.$(RST)\n
 endif
 
@@ -119,22 +119,19 @@ all: debmsg $(NAME)
 # --------- Object files rules ----------------------------------------------- #
 $(CHK_FLDR)%.o: $(CHK_FLDR)%.c
 	@printf "%-95c\r$(PREFIX)🕐  Compiling file:\t\t%-25s\r" ' ' "$@"
-	@gcc -c -I$(INTERFACE) -I$(H_DIR_CHK) -I$(H_DIR_LIB) -o $@ $< \
-#TODO: ADD $(FLAGS)
+	@gcc -c $(FLAGS) -I$(INTERFACE) -I$(H_DIR_CHK) -I$(H_DIR_LIB) -o $@ $< \
 
 $(LXR_FLDR)%.o: $(LXR_FLDR)%.c
 	@printf "%-95c\r$(PREFIX)🕐  Compiling file:\t\t%-25s\r" ' ' "$@"
-	@gcc -c -I$(INTERFACE) -I$(H_DIR_LXR) -I$(H_DIR_LIB) -o $@ $< \
-#TODO: ADD $(FLAGS)
+	@gcc -c $(FLAGS) -I$(INTERFACE) -I$(H_DIR_LXR) -I$(H_DIR_LIB) -o $@ $< \
 
 $(PRS_FLDR)%.o: $(PRS_FLDR)%.c
 	@printf "%-95c\r$(PREFIX)🕐  Compiling file:\t\t%-25s\r" ' ' "$@"
-	@gcc -c -I$(INTERFACE) -I$(H_DIR_PRS) -I$(H_DIR_LIB) -o $@ $< \
-#TODO: ADD $(FLAGS)
+	@gcc -c $(FLAGS) -I$(INTERFACE) -I$(H_DIR_PRS) -I$(H_DIR_LIB) -o $@ $< \
 
 main.o: main.c
-	@gcc -c -I$(INTERFACE) -I$(H_DIR_CHK) -I$(H_DIR_LXR) -I$(H_DIR_PRS) \
--I$(H_DIR_LIB) -o $@ $< #TODO: ADD $(FLAGS)
+	@gcc -c $(FLAGS) -I$(INTERFACE) -I$(H_DIR_CHK) -I$(H_DIR_LXR) -I$(H_DIR_PRS) \
+-I$(H_DIR_LIB) -o $@ $<
 
 lexer: $(OBJ_LXR) l_msg
 
