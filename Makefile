@@ -11,7 +11,8 @@
 # **************************************************************************** #
 
 # =====================P̶O̶N̶Y̶ PHONY========================================= #
-.PHONY: all clean fclean liba re debug delfile checkdir redebug d rd deljunk force \
+.PHONY: all clean fclean liba re debug delfile checkdir redebug d rd red \
+deljunk force
 # ===================== Preferences & Directories ============================ #
 NAME =		asm
 LABEL =		CoreWar
@@ -90,7 +91,7 @@ OBJ_PRS =	$(SRC_PRS:.c=.o)
 OBJ_CHK =	$(SRC_CHK:.c=.o)
 OBJ =		$(OBJ_CHK) $(OBJ_LXR) $(OBJ_PRS)
 LIBFLAGS =	-L$(LIBDIR) -lft
-CFLAGS =	-Wall -Wextra -Werror -g
+CFLAGS =	-Wall -Wextra -Werror
 
 # ===================== COLORS & Co ========================================== #
 GREEN =		\033[1;32m
@@ -103,38 +104,34 @@ PREFIX =	[$(CYAN)$(LABEL)$(RST)]:\t
 # ===================== Debug ================================================ #
 # -- WARN! Delete this message from rules if you using library from another prj#
 ifeq ($(DEBUGMODE), 1)
-	FLAGS		:= $(CFLAGS) -g
-	DEBUGMSG	:= $(PREFIX)⚠️ \033[1;33mDebug mode $(GREEN)enabled.$(RST)\n
+	FLAGS		:= -g #TODO: ADD $(CFLAGS)
+	DEBUGMSG	:= $(PREFIX)⚠️  \033[1;33mDebug mode $(GREEN)enabled.$(RST)\n
 else
-	FLAGS		:= $(CFLAGS)
-	DEBUGMSG	:= $(PREFIX)⚠️ \033[1;33mDebug mode $(RED)disabled.$(RST)\n
+	FLAGS		:= #TODO: ADD $(CFLAGS)
+	DEBUGMSG	:= $(PREFIX)⚠️  \033[1;33mDebug mode $(RED)disabled.$(RST)\n
 endif
 
 # ==================== Rules ================================================= #
 # --------- Main Rule -------------------------------------------------------- #
-all: $(NAME)
-	@echo "$(PREFIX)✅ $(GREEN)All files up-to-date or \
-rebuilded.$(RST)"
+all: debmsg $(NAME)
+	@echo "$(PREFIX)✅  $(GREEN)All files up-to-date or rebuilded.$(RST)"
 
 # --------- Object files rules ----------------------------------------------- #
 $(CHK_FLDR)%.o: $(CHK_FLDR)%.c
-	@printf "%-95c\r$(PREFIX)🕐 Compiling file:\t\t%-25s\r" ' ' "$@"
-	@gcc -c -I$(INTERFACE) -I$(H_DIR_CHK) -I$(H_DIR_LIB) -o $@ $< \
-#TODO: ADD $(FLAGS)
+	@printf "%-95c\r$(PREFIX)🕐  Compiling file:\t\t%-25s\r" ' ' "$@"
+	@gcc -c $(FLAGS) -I$(INTERFACE) -I$(H_DIR_CHK) -I$(H_DIR_LIB) -o $@ $< \
 
 $(LXR_FLDR)%.o: $(LXR_FLDR)%.c
-	@printf "%-95c\r$(PREFIX)🕐 Compiling file:\t\t%-25s\r" ' ' "$@"
-	@gcc -c -I$(INTERFACE) -I$(H_DIR_LXR) -I$(H_DIR_LIB) -o $@ $< \
-#TODO: ADD $(FLAGS)
+	@printf "%-95c\r$(PREFIX)🕐  Compiling file:\t\t%-25s\r" ' ' "$@"
+	@gcc -c $(FLAGS) -I$(INTERFACE) -I$(H_DIR_LXR) -I$(H_DIR_LIB) -o $@ $< \
 
 $(PRS_FLDR)%.o: $(PRS_FLDR)%.c
-	@printf "%-95c\r$(PREFIX)🕐 Compiling file:\t\t%-25s\r" ' ' "$@"
-	@gcc -c -I$(INTERFACE) -I$(H_DIR_PRS) -I$(H_DIR_LIB) -o $@ $< \
-#TODO: ADD $(FLAGS)
+	@printf "%-95c\r$(PREFIX)🕐  Compiling file:\t\t%-25s\r" ' ' "$@"
+	@gcc -c $(FLAGS) -I$(INTERFACE) -I$(H_DIR_PRS) -I$(H_DIR_LIB) -o $@ $< \
 
 main.o: main.c
-	gcc -c -I$(INTERFACE) -I$(H_DIR_CHK) -I$(H_DIR_LXR) -I$(H_DIR_PRS) \
--I$(H_DIR_LIB) -o $@ $< #TODO: ADD $(FLAGS)
+	@gcc -c $(FLAGS) -I$(INTERFACE) -I$(H_DIR_CHK) -I$(H_DIR_LXR) -I$(H_DIR_PRS) \
+-I$(H_DIR_LIB) -o $@ $<
 
 lexer: $(OBJ_LXR) l_msg
 
@@ -142,7 +139,7 @@ parser: $(OBJ_PRS) p_msg
 
 checker: $(OBJ_CHK) c_msg
 
-builder: debmsg lexer parser checker
+builder: lexer parser checker
 
 # --------- Exec files rules ------------------------------------------------- #
 $(NAME): liba builder main.o
@@ -151,40 +148,40 @@ $(NAME): liba builder main.o
 
 # --------- Additional messages rules ---------------------------------------- #
 l_msg:
-	@printf "$(PREFIX)$(BOLD)🔎 Checkig lexer... ✅  $(GREEN)Done!$(RST)%45c\n" ' '
+	@printf "$(PREFIX)$(BOLD)🔎  Checkig lexer files... ✅  $(GREEN)Done!$(RST)%40c\n" ' '
 
 p_msg:
-	@printf "$(PREFIX)$(BOLD)🔎 Checkig parser... ✅  $(GREEN)Done!$(RST)%45c\n" ' '
+	@printf "$(PREFIX)$(BOLD)🔎  Checkig parser files... ✅  $(GREEN)Done!$(RST)%40c\n" ' '
 
 c_msg:
-	@printf "$(PREFIX)$(BOLD)🔎 Checkig checker... ✅  $(GREEN)Done!$(RST)%45c\n" ' '
+	@printf "$(PREFIX)$(BOLD)🔎  Checkig checker files... ✅  $(GREEN)Done!$(RST)%40c\n" ' '
 
 debmsg:
 		@printf "$(DEBUGMSG)"
 
 # --------- Libs rules ------------------------------------------------------- #
 liba: force
-		@printf "$(PREFIX)$(BOLD)🔎 Checkig \
+		@printf "$(PREFIX)$(BOLD)🔎  Checkig \
 for libft updates...$(RST)\n"
-		@make -C $(LIBDIR) DEBUGMODE=$(DEBUGMODE)
+		@make -C $(LIBDIR) DEBUG=$(DEBUGMODE)
 
 # --------- Mandatory rules -------------------------------------------------- #
 clean: deljunk
 		@make -C $(LIBDIR) clean
 
-fclean: clean delfile
-		#@make -C $(LIBDIR) dellib
+fclean: delfile deljunk
+		@make -C $(LIBDIR) fclean
 
 re: fclean
 		@make all
 
 # --------- Other rules ------------------------------------------------------ #
 delfile:
-		@echo "$(PREFIX)♻️ $(RED)Removing executable file...$(RST)"
+		@echo "$(PREFIX)♻️  $(RED)Removing executable file...$(RST)"
 		@rm -f $(NAME)
 
 deljunk:
-		@echo "$(PREFIX)♻️ $(RED)Removing obj-files...$(RST)"
+		@echo "$(PREFIX)♻️  $(RED)Removing obj-files...$(RST)"
 		@rm -f $(OBJ)
 
 debnolib:
@@ -193,13 +190,13 @@ debnolib:
 debug:
 		@make all DEBUGMODE=1
 
-d: debug
 
-relib:
-		@make -C $(LIBDIR) re DEBUGMODE=1
+d: debug
 
 redebug: fclean debug
 
 rd: redebug
+
+red: redebug
 
 # ===================== End! Thanks for reading! Have a nice day! :) ========= #
