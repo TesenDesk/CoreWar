@@ -122,7 +122,7 @@ int main()
 	prs = parser_singleton_instance(PARSER_INSTANTIATE);
 	str = 	".name	\"Batman\"\n"
 			".comment	\"Batman rules!\"\n"
-			"ld %0, r2    # And it is located in UNIT City"
+			"ld %0, r2    # And it is located in UNIT City\n"
 			"sti r1, %:live, %1    ; UNIT City is placed in Kyiv, Ukraine\n"
 			"loop:\n"
 			"sti r1, %:live, %1\n"

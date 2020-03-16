@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 18:39:31 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/13 13:07:57 by nikita_toro      ###   ########.fr       */
+/*   Updated: 2020/03/16 20:26:08 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,6 @@ void                lexer_change_state(t_lexer *lexer, int term_type)
     }
 }
 
-
 t_token             *lexer_form_token(t_lexer *lexer, char const **text)
 {
     int             token_type;
@@ -152,6 +151,8 @@ t_token             *lexer_form_token(t_lexer *lexer, char const **text)
     {
         printf("111  lexer->state %i\n", lexer->state);
         lexer->change_state(lexer, lexer->get_term[lexer->state](lexer, text, &token_type, token_ptr));
+    	printf("THERE.      token_type = %i\n", token_type);
+
     }
     return (token_constructor(token_type, token_ptr));
 }
