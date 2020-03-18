@@ -10,19 +10,20 @@
 
 #define ANALYSER_AR_SIZE 20
 
-typedef struct		s_analyser
+typedef struct s_analyser t_analyser;
+struct s_analyser
 {
 	int				state;
-	t_text*			(*form_text)(struct s_analyser *analyser,
+	t_text*			(*form_text)(t_analyser *analyser,
 									char const **text, t_hash_map *map,
 									t_vector *vector);
-	void			(*_change_state)(struct s_analyser *analyser, int expr_type);
+	void			(*_change_state)(t_analyser *analyser, int expr_type);
 	/*
 	 *сколько состояний?
 	 */
 
-	int				(*get_expr[ANALYSER_AR_SIZE])(struct s_analyser *analyser, t_analyser *analyser,
+	int				(*get_expr[ANALYSER_AR_SIZE])(t_analyser *analyser, t_analyser *analy,
 												   t_expr *expr, char const **text);
-}					t_analyser;
+};
 
 #endif //CORE_ANALYSER_PRIVATE_H

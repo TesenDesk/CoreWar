@@ -11,5 +11,4 @@
 void		change_state(t_analyser *analyser, int expr_type)
 {
 	;
-
 }
