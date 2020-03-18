@@ -143,7 +143,7 @@ builder: lexer parser checker
 
 # --------- Exec files rules ------------------------------------------------- #
 $(NAME): liba builder main.o
-	@gcc $(FLAGS) $(LIBFLAGS) -o $(NAME) $(OBJ) main.o
+	@gcc $(FLAGS) -o $(NAME) $(OBJ) main.o $(LIBFLAGS)
 	@printf "$(PREFIX)📦  Building $(NAME)...\n"
 
 # --------- Additional messages rules ---------------------------------------- #
