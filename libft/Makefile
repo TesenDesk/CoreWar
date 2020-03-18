@@ -266,7 +266,7 @@ deb_msg:
 
 %.o : 		$(SRC_DIR)/%.c
 		@printf "%-95c\r$(PREFIX)" ' '
-		@printf "🕐  Compiling file:\t %-25s=>\t%-25s\r" "$<" "$@"
+		@printf "🕐  Compiling file:\t%-30s\r" "$@"
 		@gcc -c $(CC_FLAGS) $< -I$(HDR_DIR)
 
 clean:
