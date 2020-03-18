@@ -264,7 +264,7 @@ $(NAME):	$(OBJ) $(HEADER)
 deb_msg:
 		@printf "$(DEBUGMSG)"
 
-%.o : 		$(SRC_DIR)/%.c
+%.o : 		%.c
 		@printf "%-95c\r$(PREFIX)" ' '
 		@printf "🕐  Compiling file:\t%-30s\r" "$@"
 		@gcc -c $(CC_FLAGS) $< -I$(HDR_DIR)

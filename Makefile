@@ -119,7 +119,7 @@ all: debmsg $(NAME)
 # --------- Object files rules ----------------------------------------------- #
 $(CHK_FLDR)%.o: $(CHK_FLDR)%.c
 	@printf "%-95c\r$(PREFIX)🕐  Compiling file:\t\t%-25s\r" ' ' "$@"
-	@gcc -c $(FLAGS) -I$(INTERFACE) -I$(H_DIR_CHK) -I$(H_DIR_LIB) -o $@ $< \
+	gcc -c $(FLAGS) -I$(INTERFACE) -I$(H_DIR_CHK) -I$(H_DIR_LIB) -o $@ $< \
 
 $(LXR_FLDR)%.o: $(LXR_FLDR)%.c
 	@printf "%-95c\r$(PREFIX)🕐  Compiling file:\t\t%-25s\r" ' ' "$@"
