@@ -28,6 +28,7 @@ t_codegen		*codegen_ctor(t_hash_map *labels_free, t_vector *labels_ptrs,
 	}
 	code->labels_ptrs = labels_ptrs;
 	code->header = header;
+	code->code = ft_memalloc(sizeof(char) * 32);
 	return (code);
 }
 
@@ -95,7 +96,7 @@ static void		write_address_to_free_label(t_codegen *data, t_expr *label)
 	t_code_addr	tmp;
 
 	tmp.addr = data->add;
-	ft_hash_map_set_content(data->labels_free, label->name, &tmp);
+	ft_hash_map_set_content(data->labels_free, label->args[0].value, &tmp);
 }
 
 static void		add_address_to_arg_label(t_codegen *data, t_arg *arg)
@@ -215,6 +216,8 @@ int				main(void)
 	int			fd;
 	t_expr		*q;
 	t_hash_map	*map;
+	t_pair      *new_item;
+	int int_ptr[10];
 
 	ft_bzero(&header.comment, COMMENT_LENGTH + 1);
 	ft_bzero(&header.prog_name, PROG_NAME_LENGTH + 1);
@@ -223,11 +226,30 @@ int				main(void)
 	ft_memcpy(&header.comment, "This city needs me", 4*6);
 	code = codegen_ctor(NULL, NULL, &header);
 	map = ft_hash_map_ctor(5);
-	//code->code_size = 22;
+	new_item = ft_memalloc(sizeof(t_pair));
+	new_item->key = "loop";
+	ft_hash_map_put_to_map(&map, new_item);
+	new_item = ft_memalloc(sizeof(t_pair));
+	new_item->key = "live";
+	ft_hash_map_put_to_map(&map, new_item);
+	code->labels_free = map;
+	code->code_size = 22;
 	//code->code = ft_memalloc(8);
 	code->header->magic = COREWAR_EXEC_MAGIC;
+	q->type = LABEL_WORD;
+	q->args[0].value = "loop";
+	codegen_codegen(code, q);
 
-
+	q->type = COM_STI;
+	int_ptr[0] = 1;
+	q->args[0].type = T_REG;
+	q->args[0].value = &int_ptr[0];
+	q->args[1].type = T_DIR;
+	q->args[2].type = T_DIR;
+	int_ptr[1] = LABEL_WORD;
+	q->args[1].value = &int_ptr[1];
+	int_ptr[2] = 1;
+	q->args[2].value = &int_ptr[2];
 	codegen_codegen(code, q);
 
 	code->header->prog_size = champ_exec_constructor(code);
