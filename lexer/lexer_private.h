@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_private.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 17:46:31 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/16 18:33:16 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/03/21 03:01:27 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ enum				e_lexer_states
 	T_DIR_LAB_ST,
 	ARG_BRK_ST,
 	MULTI_ARG_ST,
+	LABEL_WORD_ST
 };
 
 /*

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _parser_get_token_eof.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 17:08:14 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/05 21:46:56 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/03/20 21:30:28 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -12,7 +12,7 @@ t_expr				*parser_form_expr(t_parser *parser, char const **text,
 	 * лексер есть в парсере
 	 */
 	lexer = lexer_singleton_instance(LEXER_INSTANTIATE);
-	expr = expr_ctor();
+	expr = expr_ctor(); 
 	while(TRUE)
 	{
 		/*
@@ -43,6 +43,8 @@ t_expr				*parser_form_expr(t_parser *parser, char const **text,
 		}
 		parser->change_state(parser, token_type);
 		if (parser->state == PARSER_INIT_ST)
+			break ;
+		if (parser->state == PARSER_EOF)
 			break ;
 	}
 	return (expr);

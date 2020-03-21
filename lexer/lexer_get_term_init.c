@@ -131,7 +131,7 @@ int             lexer_get_term_init(t_lexer *lexer, char const **text, int *type
     	*token_ptr = (void*)(*text);
     	while (strchr(LABEL_CHARS, *(*text)))
     		++(*text);
-    	*(token_ptr) = (void*)(*text - 1);
+    	*(token_ptr + 1) = (void*)(*text - 1);
     	return (LABEL_CHARS_CODE);
     }
 	else if (**text == TOKEN_EOF)
