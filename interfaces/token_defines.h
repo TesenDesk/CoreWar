@@ -147,6 +147,22 @@ enum			e_token_types
 ** Operation names.
 */
 
+// #define ADD_NAME				"add "
+// #define AFF_NAME				"aff "
+// #define AND_NAME				"and "
+// #define FORK_NAME				"fork "
+// #define LD_NAME					"ld "
+// #define LDI_NAME				"ldi "
+// #define LFORK_NAME				"lfork "
+// #define LIVE_NAME				"live "
+// #define LLD_NAME				"lld "
+// #define LLDI_NAME				"lldi "
+// #define OR_NAME					"or "
+// #define ST_NAME					"st "
+// #define STI_NAME				"sti "
+// #define SUB_NAME				"sub "
+// #define XOR_NAME				"xor "
+// #define ZJMP_NAME				"zjmp "
 #define ADD_NAME				"add"
 #define AFF_NAME				"aff"
 #define AND_NAME				"and"

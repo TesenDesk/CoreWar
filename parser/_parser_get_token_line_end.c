@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _parser_get_token_line_end.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 17:08:14 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/16 20:26:00 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/03/23 13:56:52 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int				_parser_get_token_line_end(t_parser *parser, t_lexer *lexer,
 	token_type = token_get_type(token);
 	if (!(token_type == TOKEN_LFEED))
 		expr->type = EXPR_UNDEF;
-
 	if (expr_set_arg(expr, token, OP_NAME, token_type) == FAILURE)
 	{
 		return (NO_TOKEN);
