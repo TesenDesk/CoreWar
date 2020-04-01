@@ -6,9 +6,12 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/03/26 15:29:33 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/01 17:14:10 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef OP_H
+# define OP_H
 
 #define IND_SIZE				2
 #define REG_SIZE				4
@@ -67,3 +70,5 @@ typedef struct					header_s
   unsigned int					prog_size;
   char							comment[COMMENT_LENGTH + 1];
 }								header_t;
+
+#endif
