@@ -6,11 +6,16 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:04:08 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/01 17:11:26 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/01 18:10:50 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VM_H
 # define VM_H
+
+typedef struct s_vm	t_vm;
+
+t_vm			*vm_ctor(int argc, char **argv);
+void			vm_dtor(t_vm **self);
 
 #endif
