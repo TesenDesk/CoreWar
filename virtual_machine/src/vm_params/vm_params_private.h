@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:15:50 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/01 20:48:37 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/01 20:52:35 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 
 typedef struct s_player	t_player;
 
-typedef struct		s_vm_params
+typedef struct			s_vm_params
 {
 	int				is_set_dump;
 	int				nb_cycles;
 	t_list			*id_player_head;
 	t_list			*no_id_player_head;
-}					t_vm_params;
+}						t_vm_params;
 
 
 #endif
