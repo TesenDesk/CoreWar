@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<session version="4.6.0">
+<session version="5.0.0">
  <item name="license"></item>
  <group name="locked"/>
  <group name="settings">
@@ -8,7 +8,9 @@
   <item name="grid">3</item>
   <item name="backups">0</item>
  </group>
- <group name="windows"/>
+ <group name="windows">
+  <item id="asm::parser lvl1::SM">0,0,828,538,*</item>
+ </group>
  <group name="search">
   <item name="options">2032128</item>
   <item name="replace">0</item>
