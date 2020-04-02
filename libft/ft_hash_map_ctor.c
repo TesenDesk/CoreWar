@@ -15,9 +15,7 @@
 t_hash_map			*ft_hash_map_ctor(size_t arr_size)
 {
 	t_hash_map		*new_map;
-	size_t			i;
 
-	i = 0;
 	if (!(new_map = (t_hash_map *)malloc(sizeof(t_hash_map))))
 		return (NULL);
 	if (!(new_map->data = ft_memalloc(arr_size * sizeof(t_keystr_avl_t*))))
