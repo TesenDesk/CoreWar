@@ -6,8 +6,17 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:27:54 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/01 17:28:15 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/03 18:39:13 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm_params_private.h"
+
+t_vm_params			*vm_params_xtor(int argc, char **argv)
+{
+	t_vm_params		*self;
+
+	if (argc < 2)
+		errors(__FILE__, __LINE__, EINVALARG);
+	return (self);
+}

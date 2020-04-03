@@ -6,13 +6,13 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:03:13 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/02 18:27:46 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/03 19:11:34 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm_private.h"
 
-t_vm			*vm_ctor(int argc, char **argv)
+static t_vm		*_vm_ctor(int argc, char **argv)
 {
 	t_vm		*self;
 
@@ -29,8 +29,26 @@ t_vm			*vm_ctor(int argc, char **argv)
 	return (self);
 }
 
-void			vm_dtor(t_vm **self)
+static void		_vm_dtor(t_vm **self)
 {
 
 	return ;
+}
+
+t_vm				*vm_singleton(int instantiation_status,
+						int argc, char **argv)
+{
+	static t_vm		*vm;
+
+	if (instantiation_status == VM_INSTANTIATE)
+	{
+		if (!vm)
+			vm = _vm_ctor(argc, argv);
+	}
+	else if (instantiation_status == VM_DESTRUCT)
+	{
+		if (vm)
+			_vm_dtor(&vm);
+	}
+	return (vm);
 }
