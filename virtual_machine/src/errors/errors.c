@@ -6,11 +6,11 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 21:07:20 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/03 23:12:44 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/03 23:22:43 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "errors_private.h"
+#include "_errors.h"
 
 static char		*error_messages[] =
 {

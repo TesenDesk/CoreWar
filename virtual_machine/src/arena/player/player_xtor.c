@@ -6,8 +6,8 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:30:11 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/01 17:30:24 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/03 23:26:41 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "player_private.h"
+#include "_player.h"

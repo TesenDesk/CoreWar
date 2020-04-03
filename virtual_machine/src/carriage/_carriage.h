@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   carriage_private.h                                 :+:      :+:    :+:   */
+/*   _carriage.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:18:37 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/02 18:26:33 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/03 23:24:09 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CARIAGE_PRIVATE_H
-# define CARIAGE_PRIVATE_H
+#ifndef _CARIAGE_H
+# define _CARIAGE_H
 
 #include "op.h"
 #include "operation.h"

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_private.h                                       :+:      :+:    :+:   */
+/*   _vm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:22:30 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/02 18:27:45 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/03 23:21:33 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VM_PRIVATE_H
-# define VM_PRIVATE_H
+#ifndef _VM_H
+# define _VM_H
 
 #include "libft.h"
 #include "vm.h"
@@ -31,7 +31,6 @@ typedef struct s_carriage t_carriage;
 
 typedef struct	s_vm
 {
-	t_errors	*errors;
 	t_params	*params;
 	t_arena		*arena;
 	t_list		*carriage_head;

@@ -1,13 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   carriage_xtor.c                                    :+:      :+:    :+:   */
+/*   _player.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/01 17:28:46 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/03 23:23:30 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/01 17:10:36 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/03 23:26:33 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_carriage.h"
+#ifndef _PALYER_H
+# define _PLAYER_H
+
+typedef struct s_code	t_code;
+
+typedef struct		s_player
+{
+	int				id;
+	char			*text_name;
+	char			*text_comment;
+	t_code			*code;
+}					t_player;
+
+
+#endif

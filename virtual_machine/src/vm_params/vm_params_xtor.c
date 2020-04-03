@@ -6,11 +6,11 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:27:54 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/03 18:39:13 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/03 23:22:27 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm_params_private.h"
+#include "_vm_params.h"
 
 t_vm_params			*vm_params_xtor(int argc, char **argv)
 {

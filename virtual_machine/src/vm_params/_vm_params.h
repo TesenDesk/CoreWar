@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_params_private.h                                :+:      :+:    :+:   */
+/*   _vm_params.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:15:50 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/03 18:39:42 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/03 23:27:38 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VM_PARAMS_PRIVATE_H
-# define VM_PARAMS_PRIVATE_H
+#ifndef _VM_PARAMS_H
+# define _VM_PARAMS_H
 
 #include "libft.h"
 #include "error.h"

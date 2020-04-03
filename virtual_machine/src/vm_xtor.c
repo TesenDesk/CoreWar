@@ -6,11 +6,11 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:03:13 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/03 22:02:42 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/03 23:21:49 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm_private.h"
+#include "_vm.h"
 
 static t_vm		*_vm_ctor(int argc, char **argv)
 {

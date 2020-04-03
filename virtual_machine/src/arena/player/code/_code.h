@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors_private.h                                   :+:      :+:    :+:   */
+/*   _code.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/01 17:10:49 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/03 19:28:56 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/01 17:10:32 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/03 23:26:09 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERRORS_PRIVATE_H
-# define ERRORS_PRIVATE_H
+#ifndef _CODE_H
+# define _CODE_H
 
-#include "libft.h"
-#include "errors.h"
-#include "vm.h"
+typedef struct			s_code
+{
+	void			*data;
+	int				size;
+}						t_code;
+
 
 #endif
