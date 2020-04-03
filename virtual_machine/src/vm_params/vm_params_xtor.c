@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:27:54 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/03 23:58:52 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/04 00:08:23 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_vm_params			*vm_params_xtor(int argc, char *argv[])
 	if (argc < 2)
 		errors(__FILE__, __LINE__, EINVALARG);
 	params = argv;
-	while (TRUE)
+	while (self.state != ENDSTATE)
 		(*vm_params_states(self.state))(self, params);
 	return (self);
 }
