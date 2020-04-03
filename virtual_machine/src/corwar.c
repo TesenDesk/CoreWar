@@ -1,14 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm.c                                               :+:      :+:    :+:   */
+/*   corwar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/02 21:13:45 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/03 22:35:17 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/03 22:35:40 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/03 23:08:22 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm_private.h"
+#include "corwar.h"
 
+int				main(int argc, char *argv[])
+{
+	t_vm		*vm;
+
+	vm = vm_singletone(VM_INSTANTIATE, argc, argv);
+	vm_play();
+	(void)vm_singletone(VM_DESTRUCT, 0, NULL);
+	return (SUCCESS);
+}
