@@ -6,13 +6,13 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:03:13 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/03 23:21:49 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/03 23:39:22 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "_vm.h"
 
-static t_vm		*_vm_ctor(int argc, char **argv)
+static t_vm		*_vm_ctor(int argc, char *argv[])
 {
 	t_vm		*self;
 
@@ -40,7 +40,7 @@ static void		_vm_dtor(t_vm **self)
 	return ;
 }
 
-t_vm			*vm_singleton(int instantiation_status, int argc, char **argv)
+t_vm			*vm_singleton(int instantiation_status, int argc, char *argv[])
 {
 	static t_vm		*vm;
 

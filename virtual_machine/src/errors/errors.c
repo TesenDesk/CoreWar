@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 21:07:20 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/03 23:22:43 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/03 23:38:21 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static char		*error_messages[] =
 {
-	"Usage: ./corewar [-dump nbr_cycles] [[-n number] player1.cor ...]\n"
+	"Usage: ./corewar [-d nbr_cycles] [[-n number] player1.cor ...]\n"
 	"\n"
 	"Here is the text about the programm."
 	"\n"
 	"Options:\n"
 	"\t"	"-n, --number\t"	"& means ...\n"
 	"\t"	"-d, --dump\t"		"& means ...\n",
-	"Could not allocate vm.",
+	"Could not allocate memory.",
 	""
 };
 

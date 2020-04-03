@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:04:08 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/03 19:06:44 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/03 23:39:33 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ enum			e_vm_xtor
 
 typedef struct s_vm	t_vm;
 
-t_vm			*vm_singleton(int instantiation_status, int argc, char **argv);
+t_vm			*vm_singleton(int instantiation_status, int argc, char *argv[]);
 
 #endif
