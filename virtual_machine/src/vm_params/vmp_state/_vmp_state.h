@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_params_xtor.c                                   :+:      :+:    :+:   */
+/*   _vmp_state.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/01 17:27:54 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/04 13:28:23 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/01 17:18:37 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/04 13:24:02 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_vm_params.h"
+#ifndef _VMP_STATE_H
+# define _VMP_STATE_H
 
-static void			_vm_params_parse(t_vm_params *self, char **params)
-{
-	int				curr_player_name;
+# include "libft.h"
+# include "vmp_state.h"
 
-	while (vm_params_state(*params) != VMP_STOP)
-		vparams_vtable(params);
-	return ;
-}
+# define P_SHORT_NAME	"-n"
+# define P_LONG_NAME	"--name"
+# define P_SHORT_DUMP	"-d"
+# define P_LONG_DUMP	"--dump"
 
-t_vm_params			*vm_params_xtor(int argc, char *argv[])
-{
-	t_vm_params		*self;
-
-	if (argc < 2)
-		errors(__FILE__, __LINE__, EINVALARG);
-	_vm_params_parse(self, argv);
-	return (self);
-}
+#endif

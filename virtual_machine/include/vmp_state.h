@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_params_xtor.c                                   :+:      :+:    :+:   */
+/*   vmp_state.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/01 17:27:54 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/04 13:28:23 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/04 13:12:02 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/04 13:27:35 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_vm_params.h"
+#ifndef VMP_STATE_H
+# define VMP_STATE_H
 
-static void			_vm_params_parse(t_vm_params *self, char **params)
+enum					e_vmp_states
 {
-	int				curr_player_name;
+	VMP_INITIAL,
+	SET_NBR_CYCLES,
+	SET_PLAYER_NAME,
+	SET_FILE_NAME,
+	INCREMENT_PARAMS,
+	VMP_STOP,
+};
 
-	while (vm_params_state(*params) != VMP_STOP)
-		vparams_vtable(params);
-	return ;
-}
-
-t_vm_params			*vm_params_xtor(int argc, char *argv[])
-{
-	t_vm_params		*self;
-
-	if (argc < 2)
-		errors(__FILE__, __LINE__, EINVALARG);
-	_vm_params_parse(self, argv);
-	return (self);
-}
+#endif
