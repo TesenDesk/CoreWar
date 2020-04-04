@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:09:54 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/04 14:33:49 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/04 17:04:52 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@ enum					e_error_id
 	ENOMEMORY,
 	EINVALARG,
 	ENOARGVAL,
+	EBADFILENAME,
+	ECANNOTCLOSE,
+	ECANNOTREAD,
+	
+	
+	
+	
 	ERRMSGCOUNT,
 };
 

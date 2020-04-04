@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:03:13 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/04 16:04:31 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/04 16:16:40 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_vm			*vm_singleton(int instantiation_status, int argc, char *argv[])
 
 	if (instantiation_status == VM_INSTANTIATE)
 	{
-		if (!vm)
+		if (vm == NULL)
 			vm = _vm_ctor(argc, argv);
 	}
 	else if (instantiation_status == VM_DESTRUCT)

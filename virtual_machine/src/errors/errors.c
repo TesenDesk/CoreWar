@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 21:07:20 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/04 14:34:08 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/04 16:42:48 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ static char		*error_messages[ERRMSGCOUNT] =
 	"\t"	"-d, --dump\t"		"& means ...\n",
 	"Could not allocate memory.",
 	"Invalid argument.",
-	"Invalid command line argument. Option flag is set but its value is absent."
+	"Invalid command line argument. "
+		"Option flag is set but its value is absent.",
+	"Bad filename.",
+	"Can not close the file.",
+	"Can not read the file."
 };
 
 int				errors(char *file_name, int line_nb, int errmsg_index)
