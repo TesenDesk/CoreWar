@@ -6,17 +6,26 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 21:07:27 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/04 13:21:39 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/04 15:00:27 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "_vmp_state.h"
 
-int					vm_params_state(char *param)
+int					vmp_state(char *param)
 {
 	static int		state;
 
-	if (*param == "-")
+	if (param == NULL)
+	{
+		if (SET_NBR_CYCLES <= state && state <= SET_FILE_NAME)
+			errors(__FILE__, __LINE__, ENOARGVAL);
+		else
+			state = VMP_STOP;
+	}
+	else if (SET_NBR_CYCLES <= state && state <= SET_FILE_NAME)
+		state = state == SET_PLAYER_NAME ? SET_FILE_NAME : VMP_INITIAL;
+	else
 	{
 		if (
 			ft_strequ(P_SHORT_DUMP, param) || ft_strequ(P_LONG_DUMP, param))

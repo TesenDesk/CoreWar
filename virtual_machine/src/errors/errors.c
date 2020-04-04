@@ -6,13 +6,13 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 21:07:20 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/03 23:38:21 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/04 14:34:08 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "_errors.h"
 
-static char		*error_messages[] =
+static char		*error_messages[ERRMSGCOUNT] =
 {
 	"Usage: ./corewar [-d nbr_cycles] [[-n number] player1.cor ...]\n"
 	"\n"
@@ -22,7 +22,8 @@ static char		*error_messages[] =
 	"\t"	"-n, --number\t"	"& means ...\n"
 	"\t"	"-d, --dump\t"		"& means ...\n",
 	"Could not allocate memory.",
-	""
+	"Invalid argument.",
+	"Invalid command line argument. Option flag is set but its value is absent."
 };
 
 int				errors(char *file_name, int line_nb, int errmsg_index)

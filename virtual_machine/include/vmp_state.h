@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 13:12:02 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/04 13:27:35 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/04 14:43:30 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ enum					e_vmp_states
 	SET_NBR_CYCLES,
 	SET_PLAYER_NAME,
 	SET_FILE_NAME,
-	INCREMENT_PARAMS,
 	VMP_STOP,
 };
 

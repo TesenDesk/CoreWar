@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:27:54 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/04 13:28:23 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/04 14:03:51 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 static void			_vm_params_parse(t_vm_params *self, char **params)
 {
 	int				curr_player_name;
+	int				state;
 
-	while (vm_params_state(*params) != VMP_STOP)
-		vparams_vtable(params);
+	while ((state = vmp_state(*params)) != VMP_STOP)
+		vmp_vtable(state, params);
 	return ;
 }
 

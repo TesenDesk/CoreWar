@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:03:13 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/03 23:39:22 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/04 16:04:31 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,11 @@ static t_vm		*_vm_ctor(int argc, char *argv[])
 static void		_vm_dtor(t_vm **self)
 {
 	if((*self)->params != NULL)
-	{
 		vm_params_dtor(&(*self)->params);
-		if ((*self)->arena != NULL)
-		{
-			vm_arena_dtor(&(*self)->arena);
-			if((*self)->carriage_head != NULL)
-				vm_carriage_list_destruct(&(*self)->arena);
-		}
-	}
+	if ((*self)->arena != NULL)
+		vm_arena_dtor(&(*self)->arena);
+	if((*self)->carriage_head != NULL)
+		vm_carriage_list_destruct(&(*self)->arena);
 	ft_memdel((void **)self);
 	return ;
 }
