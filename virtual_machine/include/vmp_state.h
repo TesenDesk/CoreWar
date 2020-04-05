@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 13:12:02 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/06 00:53:30 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/06 01:26:15 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ enum					e_vmp_states
 	SET_FILE_NAME_WITHOUT_ID,
 	SET_NBR_CYCLES,
 	SET_FILE_NAME_WITH_ID,
-	NBR_OF_VIRTUAL_FUNCTIONS,
+	NBR_OF_VIRTUAL_METHODS,
 };
 
 #endif
