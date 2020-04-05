@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "libft.h"
+#include "../libft/libft.h"
 #include "token_defines.h"
 
 

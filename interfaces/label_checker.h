@@ -13,7 +13,7 @@
 #ifndef LABEL_CHECKER_H
 # define LABEL_CHECKER_H
 
-#include "libft.h"
+//#include "libft.h"
 
 #include "token_defines.h"
 #include "token.h"

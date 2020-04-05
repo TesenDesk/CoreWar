@@ -34,7 +34,7 @@ LEX_OBJ     :=  $(patsubst %.c, %.o, $(LEX_SRC))
 LEX_DIR_OBJ :=  $(addprefix ./lexer/, $(LEX_OBJ))
 PARS_SRC     :=	expr.c \
 				parser.c \
-				parser_change_state.c \
+				_parser_change_state.c \
 				parser_get_token_init.c \
 				parser_get_token_code_comment.c \
 				parser_get_token_op_afct.c  \
@@ -50,6 +50,7 @@ PARS_DIR_OBJ :=  $(addprefix ./parser/, $(PARS_OBJ))
 CFLAGS      :=  -Wall -Wextra -Werror -g
 LIBFLAGS    :=  -L$(LIBDIR) -lft
 HEADER      :=  $(HEADERDIR)ms.h
+INTERFACE =	$(WORKDIR)interfaces/
 
 #======================COLORS & Co=============================================#
 GREEN =		\033[1;32m
@@ -86,13 +87,13 @@ $(NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(MAIN) $(LIB)
 
 #		@gcc $(FLAGS) -o $(NAME) $(LEX_DIR_SRC) $(LIBFLAGS) -I$(HEADERDIR)
 		# @cc $(FLAGS) -o $(NAME) $(LEX_DIR_SRC) $(MLX_FLAGS) -I$(HEADERDIR) ##todo: add '$(LIBFLAGS)'
-		@cc $(CFLAGS)  -o $@ $^ -I$(HEADERDIR) $(LIBFLAGS)
+		gcc $(CFLAGS)  -o $@ $^ -I$(HEADERDIR) $(LIBFLAGS)
 
 $(LEX_DIR_OBJ): %.o:  %.c
-		@cc -c $(FLAGS)  $< -o $@
+		gcc -c $(FLAGS)  -I$(INTERFACE) $(LIBFLAGS) $<  -o $@
 
 $(PARS_DIR_OBJ): %.o: %.c
-		@cc -c $(FLAGS)  $< -o $@
+		gcc -c $(FLAGS) -I$(INTERFACE) $(LIBFLAGS)  $<  -o $@
 
 # $(PARS_DIR_OBJ): %.o:  %.c
 # 		@cc -c $(FLAGS)  $< -o $@

@@ -8,18 +8,18 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "libft.h"
+//#include "libft.h"
 
-#include "token.h"
-#include "token_defines.h"
+//#include "token.h"
+//#include "token_defines.h"
 
 #include "lexer.h"
 
 #include "parser.h"
 
-#include "expr.h"
-#include "expr_defines.h"
-#include "expr_private.h"
+//#include "expr.h"
+//#include "expr_defines.h"
+//#include "expr_private.h"
 
 #include "label_checker.h"
 
