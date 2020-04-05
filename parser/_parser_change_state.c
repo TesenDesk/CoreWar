@@ -45,8 +45,8 @@ static int  _parser_find_next_to_init_st(int token_type)
 		return (_find_parser_op0_state(token_type));
 	else if (token_type == NO_TOKEN || token_type == TOKEN_UNDEF)
 		return (PARSER_ERROR);
-	// else if (token_type == TOKEN_EOF)
-	// 	return (PARSER_EOF);
+	else if (token_type == TOKEN_EOF)
+		return (PARSER_EOF);
 	else
 		return (PARSER_INIT_ST);
 }
@@ -167,5 +167,12 @@ void        _parser_change_state(t_parser *parser, int token_type)
 	else if (parser->state >= PARSER_OP0_LIFE_ST
 			 && parser->state <= PARSER_OP0_STORI_ST)
 		parser->state = _parser_find_next_to_op0_st(parser,token_type);
+
+		// new rule by cmissy:
+	// else
+	// {
+	// 	parser->state = PARSER_INIT_ST;
+	// }
+	
 //	else if ()
 }

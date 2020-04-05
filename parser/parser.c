@@ -12,7 +12,7 @@ t_expr				*parser_form_expr(t_parser *parser, char const **text,
 	 * лексер есть в парсере
 	 */
 	lexer = lexer_singleton_instance(LEXER_INSTANTIATE);
-	expr = expr_ctor();
+	expr = expr_ctor(); 
 	while(TRUE)
 	{
 		/*
@@ -24,8 +24,12 @@ t_expr				*parser_form_expr(t_parser *parser, char const **text,
 		//if (!//token_check)
 		//parser->change_state(parser, token);
 
+		printf("====================================================================\nparser_state = %i\nSTR = %s\n\n", parser->state, *text);
 		token_type =
 			parser->get_token[parser->state](parser, lexer, expr, text);
+
+		printf("token->type = %i\n====================================================================\n", token_type);
+
 		if (token_type == TOKEN_LABEL_WORD)
 		{
 			if (label_checker_put_to_map_label_word(&map, expr) ==
@@ -39,6 +43,8 @@ t_expr				*parser_form_expr(t_parser *parser, char const **text,
 		}
 		parser->change_state(parser, token_type);
 		if (parser->state == PARSER_INIT_ST)
+			break ;
+		if (parser->state == PARSER_EOF)
 			break ;
 	}
 	return (expr);

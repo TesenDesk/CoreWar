@@ -36,7 +36,7 @@ int				_parser_get_token_init(t_parser *parser, t_lexer *lexer,
 	token_type = token_get_type(token);
 	if (!expr_types[TOKEN_LFORK])
 		fill_expr_types(expr_types);
-	if (token_type >= TOKEN_LFEED && token_type <= TOKEN_LFORK)
+	else if (token_type >= TOKEN_LFEED && token_type <= TOKEN_LFORK)
 		expr->type = expr_types[token_type];
 	else
 		expr->type = EXPR_UNDEF;
