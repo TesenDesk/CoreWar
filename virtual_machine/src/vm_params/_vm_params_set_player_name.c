@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vmp_state.h                                        :+:      :+:    :+:   */
+/*   _vm_params_set_player_name.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/04 13:12:02 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/06 00:53:30 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/06 00:43:59 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/06 01:11:25 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VMP_STATE_H
-# define VMP_STATE_H
+#include "_vm_params.h"
 
-enum					e_vmp_states
+void				_vm_params_set_player_name(t_vm_params *self,
+						char *player_name_str)
 {
-	VMP_STOP = -1,
-	VMP_INITIAL,
-	IS_DUMP,
-	SET_PLAYER_NAME,
-	SET_FILE_NAME_WITHOUT_ID,
-	SET_NBR_CYCLES,
-	SET_FILE_NAME_WITH_ID,
-	NBR_OF_VIRTUAL_FUNCTIONS,
-};
-
-#endif
+	int					player_name;
+	t_vmp_player		*player;
+	
+	if (ft_strint_ou_flow(player_name_str, player_name) == FAILURE)
+		raise(__FILE__, __LINE__, EINTOUFLOW);
+	player = vmp_player_ctor(player_name, PFILE_MOCK);
+	vm_params_add_player_name_node(self, player);
+	return;
+}

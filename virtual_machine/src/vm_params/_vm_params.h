@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:15:50 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/05 21:16:30 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/06 01:19:00 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,17 @@ typedef struct					s_vm_params
 	t_list			*id_player_head;
 	t_list			*no_id_player_head;
 }								t_vm_params;
+void		_vm_params_parse(t_vm_params *self, char **params);
+void		_vm_params_add_player_node(t_vm_params *self, char *file_name);
+
+void		_vm_params_set_player_name(t_vm_params *self,
+				char *player_name_str);
+void		_vm_params_set_file_name_with_id(t_vm_params *self,
+				char *file_name);
+void		_vm_params_set_file_name_without_id(t_vm_params *self,
+				char *file_name);
+void		_vm_params_set_nbr_cycles(t_vm_params *self, char *nbr_sycles_str);
+void		_vm_params_set_is_dump(t_vm_params *self, char *useless);
+void		_vm_params_set_mock(t_vm_params *never_passed, char *usless);
 
 #endif
