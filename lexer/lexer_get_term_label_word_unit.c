@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_get_term_label_word_unit.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 16:41:31 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/06 21:21:41 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/03/21 03:03:06 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 **	OUTPUT:	type of term.
 */
 
-int				lexer_get_term_label_word(t_lexer *lexer, char const **text, 
+int				lexer_get_term_label_word_unit(t_lexer *lexer, char const **text, 
 				int *type, void *token_ptr[2])
 {
 	(void)lexer;
