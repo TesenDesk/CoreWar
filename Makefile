@@ -32,19 +32,33 @@ LEX_SRC     :=	lexer_get_term_name_cmd.c \
 				lexer_xtor_private.c
 LEX_OBJ     :=  $(patsubst %.c, %.o, $(LEX_SRC))
 LEX_DIR_OBJ :=  $(addprefix ./lexer/, $(LEX_OBJ))
-PARS_SRC     :=	expr.c \
-				parser.c \
-				_parser_change_state.c \
-				parser_get_token_init.c \
-				parser_get_token_code_comment.c \
-				parser_get_token_op_afct.c  \
-				parser_get_token_op_logc0.c \
-				parser_get_token_op_logc1.c \
-				parser_get_token_op_logc2.c \
-				parser_get_token_op_stri0.c \
-				parser_get_token_op_stri1.c \
-				parser_get_token_op_stri2.c \
-				parser_xtor.c
+PRS_FILES =	_parser_change_state.c \
+			_parser_get_token_op0_load.c \
+			_parser_get_token_op1_lodi.c \
+			_parser_get_token_op2_stri.c \
+			_parser_get_token_eof.c \
+			_parser_get_token_op0_lodi.c \
+			_parser_get_token_op1_logc.c \
+			expr.c \
+			_parser_get_token_init.c \
+			_parser_get_token_op0_logc.c \
+			_parser_get_token_op1_stor.c \
+			_parser_xtor.c \
+			_parser_get_token_line_end.c \
+			_parser_get_token_op0_stor.c \
+			_parser_get_token_op1_stri.c \
+			_parser_get_token_op0_afct.c \
+			_parser_get_token_op0_stri.c \
+			_parser_get_token_op2_arit.c \
+			_parser_get_token_op0_arit.c \
+			_parser_get_token_op1_arit.c \
+			_parser_get_token_op2_lodi.c \
+			expr_set_arg.c \
+			_parser_get_token_op0_life.c \
+			_parser_get_token_op1_load.c \
+			_parser_get_token_op2_logc.c \
+			parser.c \
+			parser_singleton_instance.c
 PARS_OBJ     :=  $(patsubst %.c, %.o, $(PARS_SRC))
 PARS_DIR_OBJ :=  $(addprefix ./parser/, $(PARS_OBJ))
 CFLAGS      :=  -Wall -Wextra -Werror -g
