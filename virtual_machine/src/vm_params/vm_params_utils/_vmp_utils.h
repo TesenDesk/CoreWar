@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corwar.c                                           :+:      :+:    :+:   */
+/*   _vmp_utils.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/03 22:35:40 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/05 20:32:24 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/01 17:18:37 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/05 18:52:22 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_corwar.h"
+#ifndef _VM_PARAMS_UTILS_H
+# define _VM_PARAMS_UTILS_H
 
-int				main(int argc, char *argv[])
-{
-	t_vm		*this;
+# include <fcntl.h>
+# include "libft.h"
+# include "errors.h"
+# include "vmp_utils.h"
 
-	this = vm_singletone(VM_INSTANTIATE, argc, argv);
-	vm_play(this);
-	(void)vm_singletone(VM_DESTRUCT, 0, NULL);
-	return (SUCCESS);
-}
+#endif

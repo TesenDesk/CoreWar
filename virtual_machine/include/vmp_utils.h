@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corwar.c                                           :+:      :+:    :+:   */
+/*   vmp_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/03 22:35:40 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/05 20:32:24 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/05 18:39:54 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/05 18:52:45 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_corwar.h"
+#ifndef VM_PARAMS_UTILS_H
 
-int				main(int argc, char *argv[])
-{
-	t_vm		*this;
+# define VM_PARAMS_UTILS_H
 
-	this = vm_singletone(VM_INSTANTIATE, argc, argv);
-	vm_play(this);
-	(void)vm_singletone(VM_DESTRUCT, 0, NULL);
-	return (SUCCESS);
-}
+void			vmp_utils_check_if_file_is_available(char *file_name);
+
+#endif

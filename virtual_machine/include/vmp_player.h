@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corwar.c                                           :+:      :+:    :+:   */
+/*   vmp_player.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/03 22:35:40 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/05 20:32:24 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/05 19:32:47 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/05 20:49:19 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_corwar.h"
+#ifndef VM_PLAYER_H
 
-int				main(int argc, char *argv[])
-{
-	t_vm		*this;
+# define VM_PLAYER_H
 
-	this = vm_singletone(VM_INSTANTIATE, argc, argv);
-	vm_play(this);
-	(void)vm_singletone(VM_DESTRUCT, 0, NULL);
-	return (SUCCESS);
-}
+# define PNAME_MOCK	0
+# define PFILE_MOCK	(void *)0
+
+typedef struct s_vmp_player t_vmp_player;
+
+t_vmp_player	*vmp_player_ctor(int player_name, char *player_file);
+void			vmp_player_dtor(t_vmp_player **self);
+
+void			vmp_player_set_file_name(t_vmp_player *self, char *file_name);
+
+#endif

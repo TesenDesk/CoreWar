@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:09:54 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/05 11:49:20 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/05 20:34:05 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ enum					e_error_id
 	EBADFILENAME,
 	ECANNOTCLOSE,
 	ECANNOTREAD,
-	
+	EINTOUFLOW,
 	
 	
 	

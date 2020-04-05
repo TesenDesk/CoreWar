@@ -6,14 +6,11 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 22:37:19 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/03 22:45:24 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/05 20:32:40 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CORWAR_H
 # define CORWAR_H
-
-#include "libft.h"
-#include "vm.h"
 
 #endif
