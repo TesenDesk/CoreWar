@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 21:07:27 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/04 15:00:27 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/05 11:48:07 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int					vmp_state(char *param)
 	if (param == NULL)
 	{
 		if (SET_NBR_CYCLES <= state && state <= SET_FILE_NAME)
-			errors(__FILE__, __LINE__, ENOARGVAL);
+			raise(__FILE__, __LINE__, ENOARGVAL);
 		else
 			state = VMP_STOP;
 	}

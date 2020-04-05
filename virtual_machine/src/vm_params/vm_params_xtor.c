@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:27:54 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/04 21:11:53 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/05 11:46:51 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ static void			_check_if_file_is_available(char *file_name)
 	int				fd;
 
 	if ((fd = open(file_name, O_RDONLY)) == FAILURE)
-		errors(__FILE__, __LINE__, EBADFILENAME);
+		raise(__FILE__, __LINE__, EBADFILENAME);
 	if (read(fd, NULL, 0) == FAILURE)
 	{
 		if (close(fd) == FAILURE)
-			errors(__FILE__, __LINE__, ECANNOTCLOSE);
-		errors(__FILE__, __LINE__, ECANNOTREAD);
+			raise(__FILE__, __LINE__, ECANNOTCLOSE);
+		raise(__FILE__, __LINE__, ECANNOTREAD);
 	}
 	if (close(fd) == FAILURE)
-		errors(__FILE__, __LINE__, ECANNOTCLOSE);
+		raise(__FILE__, __LINE__, ECANNOTCLOSE);
 	return;
 }
 void				vm_params_add_player_node(t_vm_params *self,
@@ -34,7 +34,7 @@ void				vm_params_add_player_node(t_vm_params *self,
 	t_list			*new_node;
 
 	if ((new_node = ft_lstnew((void *)file_name, ft_strlen(file_name))) == NULL)
-		errors(__FILE__, __LINE__, ENOMEMORY);
+		raise(__FILE__, __LINE__, ENOMEMORY);
 	ft_lstadd(self->id_player_head, new_node);
 	return;
 }
@@ -86,7 +86,7 @@ t_vm_params			*vm_params_xtor(int argc, char *argv[])
 	t_vm_params		*self;
 
 	if (argc < 2)
-		errors(__FILE__, __LINE__, EINVALARG);
+		raise(__FILE__, __LINE__, EINVALARG);
 	_vm_params_parse(self, argv);
 	return (self);
 }

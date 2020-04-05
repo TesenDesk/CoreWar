@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 21:07:20 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/04 16:42:48 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/05 11:48:34 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char		*error_messages[ERRMSGCOUNT] =
 	"Can not read the file."
 };
 
-int				errors(char *file_name, int line_nb, int errmsg_index)
+int				raise(char *file_name, int line_nb, int errmsg_index)
 {
 	(void)vm_singleton(VM_DESTRUCT, 0, NULL);
 	ft_putstr_fd("Error! File: ", STDERR);
