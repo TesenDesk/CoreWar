@@ -94,6 +94,21 @@ rebuilded.$(RST)"
 debmsg:
 		@printf "$(DEBUGMSG)"
 
+# $(NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(MAIN) $(LIB)
+# 		@printf "$(PREFIX)📦  Building $(NAME)...\n"
+# 		@printf "Building $(LEX_DIR_OBJ).$(LEX_OBJ).\n"
+#
+#
+# #		@gcc $(FLAGS) -o $(NAME) $(LEX_DIR_SRC) $(LIBFLAGS) -I$(HEADERDIR)
+# 		# @cc $(FLAGS) -o $(NAME) $(LEX_DIR_SRC) $(MLX_FLAGS) -I$(HEADERDIR) ##todo: add '$(LIBFLAGS)'
+# 		@cc $(CFLAGS)  -o $@ $^ -I$(HEADERDIR) $(LIBFLAGS)
+#
+# $(LEX_DIR_OBJ): %.o:  %.c
+# 		@cc -c $(FLAGS)  $< -o $@
+#
+# $(PARS_DIR_OBJ): %.o: %.c
+# 		@cc -c $(FLAGS)  $< -o $@
+
 $(NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(MAIN) $(LIB)
 		@printf "$(PREFIX)📦  Building $(NAME)...\n"
 		@printf "Building $(LEX_DIR_OBJ).$(LEX_OBJ).\n"
@@ -101,7 +116,7 @@ $(NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(MAIN) $(LIB)
 
 #		@gcc $(FLAGS) -o $(NAME) $(LEX_DIR_SRC) $(LIBFLAGS) -I$(HEADERDIR)
 		# @cc $(FLAGS) -o $(NAME) $(LEX_DIR_SRC) $(MLX_FLAGS) -I$(HEADERDIR) ##todo: add '$(LIBFLAGS)'
-		gcc $(CFLAGS)  -o $@ $^ -I$(HEADERDIR) $(LIBFLAGS)
+		gcc $(CFLAGS)  -o $@ $^ -I$(HEADERDIR) $(LIBFLAGS) -I$(INTERFACE)
 
 $(LEX_DIR_OBJ): %.o:  %.c
 		gcc -c $(FLAGS)  -I$(INTERFACE) $(LIBFLAGS) $<  -o $@
