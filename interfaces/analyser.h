@@ -16,6 +16,13 @@
 
 typedef struct s_analyser t_analyser;
 
+
+enum					e_analyser_instantiation_status
+{
+	ANALYSER_INSTANTIATE,
+	ANALYSER_DESTRUCT
+};
+
 t_text*			form_text(t_analyser *analyser,
 						 char const **text, t_hash_map *map,
 						 t_vector *vector);

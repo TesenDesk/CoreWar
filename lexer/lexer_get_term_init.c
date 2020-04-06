@@ -132,11 +132,11 @@ int             lexer_get_term_init(t_lexer *lexer, char const **text, int *type
 		++(*text);
 		return (LINE_FEED_CODE);
 	}
-	else if (ft_strnstr(*text, ".name", 5)) {
+	else if (ft_strnstr(*text, NAME_CMD_STRING, 5)) {
 		(*text) += 5;
 		return (NAME_CMD_STRING_CODE);
 	}
-	else if (ft_strnstr(*text, ".comment", 8)){
+	else if (ft_strnstr(*text, COMMENT_CMD_STRING, 8)){
 		(*text) += 8;
 		return (COMMENT_CMD_STRING_CODE);
 	}

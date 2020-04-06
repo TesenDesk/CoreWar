@@ -44,8 +44,6 @@ t_expr				*parser_form_expr(t_parser *parser, char const **text,
 		parser->change_state(parser, token_type);
 		if (parser->state == PARSER_INIT_ST)
 			break ;
-		if (parser->state == PARSER_EOF)
-			break ;
 	}
 	return (expr);
 }

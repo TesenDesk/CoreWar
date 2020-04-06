@@ -25,6 +25,7 @@ typedef struct s_parser			t_parser;
 ** Pass PARSER_DESTRUCT to destrust lexer instance if there is any
 */
 
+
 t_parser			*parser_singleton_instance(int instantiation_status);
 
 /*
