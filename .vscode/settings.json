@@ -11,6 +11,7 @@
 		"expr_defines.h": "c",
 		"label_checker_private.h": "c",
 		"parser.h": "c",
-		"lexer_utils_private.h": "c"
+		"lexer_utils_private.h": "c",
+		"lexer_xtor_private.h": "c"
 	}
 }
