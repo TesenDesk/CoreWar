@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/05 19:32:47 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/05 20:49:19 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/06 17:33:08 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@ t_vmp_player	*vmp_player_ctor(int player_name, char *player_file);
 void			vmp_player_dtor(t_vmp_player **self);
 
 void			vmp_player_set_file_name(t_vmp_player *self, char *file_name);
-
+void			vmp_player_check_if_readable(t_vmp_player *self);
+void			vmp_player_open(t_vmp_player *self);
+void			vmp_player_close(t_vmp_player *self);
 #endif

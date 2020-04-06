@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:15:50 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/06 01:19:00 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/06 17:33:19 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "errors.h"
 # include "vm_params.h"
 # include "vmp_state.h"
-# include "vmp_utils.h"
 # include "vmp_player.h"
 
 typedef struct s_player			t_player;

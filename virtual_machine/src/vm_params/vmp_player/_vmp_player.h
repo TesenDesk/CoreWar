@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:18:37 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/05 20:26:14 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/06 17:18:45 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 typedef struct			s_vmp_player
 {
 	int			player_name;
+	int			fd;
 	char		*file_name;
+	int			is_opened;
 }						t_vmp_player;
 
 

@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:09:54 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/05 20:34:05 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/06 17:36:15 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ enum					e_error_id
 	ECANNOTCLOSE,
 	ECANNOTREAD,
 	EINTOUFLOW,
+	EREADNOTOPENED,
+	EDOUBLEOPENNING,
+	EDOUBLECLOSE,
 	
 	
 	

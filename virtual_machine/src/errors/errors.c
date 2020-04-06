@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 21:07:20 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/05 20:33:51 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/06 17:36:01 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ static char		*error_messages[ERRMSGCOUNT] =
 	"Bad filename.",
 	"Can not close the file.",
 	"Can not read the file.",
-	"Integer over- / underflow."
+	"Integer over- / underflow.",
+	"Try to read not opend file.",
+	"Try to open alredy opened file.",
+	"Try to close not opened file.",
 };
 
 int				raise(char *file_name, int line_nb, int errmsg_index)
