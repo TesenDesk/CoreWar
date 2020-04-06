@@ -6,11 +6,13 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:10:20 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/01 17:13:21 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/06 21:41:04 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VM_PARAMS_H
 # define VM_PARAMS_H
+
+typedef struct s_vm_params	t_vm_params;
 
 #endif

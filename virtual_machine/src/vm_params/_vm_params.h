@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:15:50 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/06 17:33:19 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/06 21:59:20 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,16 @@
 # include "vmp_state.h"
 # include "vmp_player.h"
 
-typedef struct s_player			t_player;
-typedef struct s_vmp_state		t_vmp_state;
-typedef struct s_parsed_player	t_parsed_player;
-
 typedef (*t_sm_parser)(t_vm_params *self, char **params);
 
 typedef struct					s_vm_params
 {
-	t_vmp_state		*state;
 	int				is_set_dump;
 	int				nb_cycles;
 	t_list			*id_player_head;
-	t_list			*no_id_player_head;
+	int				nb_players;
 }								t_vm_params;
+
 void		_vm_params_parse(t_vm_params *self, char **params);
 void		_vm_params_add_player_node(t_vm_params *self, char *file_name);
 

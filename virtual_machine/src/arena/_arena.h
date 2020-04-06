@@ -6,14 +6,16 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:10:42 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/03 23:25:43 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/06 21:53:20 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef _ARENA_H
 # define _ARENA_H
 
-typedef struct s_player	t_player;
+# include "op.h"
+# include "vm_params.h"
+# include "player.h"
 
 typedef struct			s_arena
 {

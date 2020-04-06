@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 21:07:20 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/06 17:36:01 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/06 22:06:18 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static char		*error_messages[ERRMSGCOUNT] =
 	"Try to read not opend file.",
 	"Try to open alredy opened file.",
 	"Try to close not opened file.",
+	"Forbidden ivocation of mock method.",
+	"There is not a player passed to the programm.",
 };
 
 int				raise(char *file_name, int line_nb, int errmsg_index)
