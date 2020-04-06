@@ -28,11 +28,13 @@ LEX_SRC     :=	lexer_get_term_name_cmd.c \
 				lexer_get_term_ch_comment.c \
 				lexer_get_term_line_feed.c \
 				lexer_get_term_arg_reg.c \
+				lexer_get_term_label_word_unit.c \
 				token.c \
+				token_name_init.c \
 				lexer_xtor_private.c
 LEX_OBJ     :=  $(patsubst %.c, %.o, $(LEX_SRC))
 LEX_DIR_OBJ :=  $(addprefix ./lexer/, $(LEX_OBJ))
-PRS_FILES =	_parser_change_state.c \
+PARS_SRC =	_parser_change_state.c \
 			_parser_get_token_op0_load.c \
 			_parser_get_token_op1_lodi.c \
 			_parser_get_token_op2_stri.c \
@@ -61,6 +63,15 @@ PRS_FILES =	_parser_change_state.c \
 			parser_singleton_instance.c
 PARS_OBJ     :=  $(patsubst %.c, %.o, $(PARS_SRC))
 PARS_DIR_OBJ :=  $(addprefix ./parser/, $(PARS_OBJ))
+
+
+CHK_SRC =	label_checker_inclusion_of_maps.c \
+			label_checker_put_to_map.c
+CHK_OBJ     :=  $(patsubst %.c, %.o, $(CHK_SRC))
+CHK_DIR_OBJ :=  $(addprefix ./checker/, $(CHK_OBJ))
+
+
+
 CFLAGS      :=  -Wall -Wextra -Werror -g
 LIBFLAGS    :=  -L$(LIBDIR) -lft
 HEADER      :=  $(HEADERDIR)ms.h
@@ -109,20 +120,24 @@ debmsg:
 # $(PARS_DIR_OBJ): %.o: %.c
 # 		@cc -c $(FLAGS)  $< -o $@
 
-$(NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(MAIN) $(LIB)
+$(NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(CHK_DIR_OBJ) $(MAIN) $(LIB)
 		@printf "$(PREFIX)📦  Building $(NAME)...\n"
 		@printf "Building $(LEX_DIR_OBJ).$(LEX_OBJ).\n"
 
 
 #		@gcc $(FLAGS) -o $(NAME) $(LEX_DIR_SRC) $(LIBFLAGS) -I$(HEADERDIR)
 		# @cc $(FLAGS) -o $(NAME) $(LEX_DIR_SRC) $(MLX_FLAGS) -I$(HEADERDIR) ##todo: add '$(LIBFLAGS)'
-		gcc $(CFLAGS)  -o $@ $^ -I$(HEADERDIR) $(LIBFLAGS) -I$(INTERFACE)
+		gcc  -I$(INTERFACE) $(LIBFLAGS)  $^ -o $@
 
 $(LEX_DIR_OBJ): %.o:  %.c
 		gcc -c $(FLAGS)  -I$(INTERFACE) $(LIBFLAGS) $<  -o $@
 
 $(PARS_DIR_OBJ): %.o: %.c
 		gcc -c $(FLAGS) -I$(INTERFACE) $(LIBFLAGS)  $<  -o $@
+
+$(CHK_DIR_OBJ): %.o: %.c
+		gcc -c $(FLAGS) -I$(INTERFACE) $(LIBFLAGS)  $<  -o $@
+
 
 # $(PARS_DIR_OBJ): %.o:  %.c
 # 		@cc -c $(FLAGS)  $< -o $@

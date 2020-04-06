@@ -2,20 +2,20 @@
 
 #include "token.h"
 #include "token_defines.h"
-#include "token_private.h"
+//#include "token_private.h"
 
 #include "lexer.h"
-#include "lexer_private.h"
-#include "lexer_private.h"
+//#include "lexer_private.h"
+#include "./lexer/lexer_private.h"
 
-#include "lexer_utils_private.h"
+#include "./lexer/lexer_utils_private.h"
 
 #include "expr.h"
 #include "expr_defines.h"
-#include "expr_private.h"
+#include "./parser/expr_private.h"
 
 #include "parser.h"
-#include "parser_private.h"
+#include "./parser/parser_private.h"
 
 int main()
 {
@@ -134,6 +134,8 @@ int main()
 	ft_vector_init(&vtr);
 
 	t_expr *expr1 = parser_form_expr(prs, &str, map, &vtr); // запись в карту
+//	expr1 += 1;
+
 	// arg = expr1->args;
 	// printf("expr.type %i\n", expr1->type);
 	// printf("expr.size %i\n", expr1->size);

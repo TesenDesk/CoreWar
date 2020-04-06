@@ -17,9 +17,9 @@
 
 #include "parser.h"
 
-//#include "expr.h"
-//#include "expr_defines.h"
-//#include "expr_private.h"
+#include "expr.h"
+#include "expr_defines.h"
+#include "expr_private.h"
 
 #include "label_checker.h"
 

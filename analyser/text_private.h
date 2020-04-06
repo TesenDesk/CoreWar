@@ -10,7 +10,7 @@
 
 typedef struct s_text
 {
-	t_expr		*exprs;
+	t_expr		**exprs;
 
 }				t_text;
 
