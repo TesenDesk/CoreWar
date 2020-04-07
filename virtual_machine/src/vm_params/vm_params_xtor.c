@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:27:54 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/07 13:10:19 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/07 16:59:35 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ static void				_vm_params_precondition_check(int argc)
 
 static void				_vm_params_postcondition_check(t_vm_params *self)
 {
-	if (self->nb_players <= 0)
+	if (
+			self->nb_players <= 0 ||
+			(self->noid_player_head || self->id_player_head) == FALSE)
 		raise(__FILE__, __LINE__, ENOPLAYERS);
 	return;
 }
@@ -40,7 +42,7 @@ t_vm_params				*vm_params_ctor(int argc, char *argv[])
 
 void					vm_params_dtor(t_vm_params **self)
 {
-	vm_params_destroy_players(*self);
+	vm_params_destroy_players_lists(*self);
 	ft_memdel((void **)self);
 	return;
 }

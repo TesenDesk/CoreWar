@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 12:57:53 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/07 13:11:34 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/07 16:59:43 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ static void			_vm_params_destroy_player(void *_player, size_t mock)
 	return;
 }
 
-void				vm_params_destroy_players(t_vm_params *self)
+void				vm_params_destroy_players_lists(t_vm_params *self)
 {
-	ft_lstdel(&self->nb_players, _vm_params_destroy_player);
+	ft_lstdel(&self->id_player_head, _vm_params_destroy_player);
+	ft_lstdel(&self->noid_player_head, _vm_params_destroy_player);
 	return;
 }

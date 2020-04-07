@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:10:42 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/06 22:34:00 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/07 14:04:43 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 typedef struct			s_arena
 {
-	t_player		*players;
+	t_player		**players;
 	int				nb_players;
 	void			*data;
 	int				size;
