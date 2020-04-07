@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 21:07:20 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/06 22:27:03 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/07 20:12:43 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,14 @@ static char		*error_messages[ERRMSGCOUNT] =
 	"Can not read the file.",
 	"Integer over- / underflow.",
 	"Try to read not opend file.",
-	"Try to open alredy opened file.",
+	"Try to open already opened file.",
 	"Try to close not opened file.",
 	"Forbidden ivocation of mock method.",
 	"There is not a player passed to the programm.",
 	"Invalid constats at interface file. (Probably at op.h).",
+	"Player name exсeedes number of players. "
+		"Or is invalid to some other reasons.",
+	"Repetition of the parameter -n value.",
 };
 
 int				raise(char *file_name, int line_nb, int errmsg_index)

@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:29:47 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/07 14:05:44 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/07 17:06:35 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ static void			_arena_ctor_precondition_check(void)
 
 t_arena				*arena_ctor(t_vm_params *params)
 {
-	t_arena			*new;
+	t_arena			*self;
 
 	_arena_ctor_precondition_check();
-	if ((new = (t_arena *)ft_memalloc(sizeof(*new))) == NULL)
+	if ((self = (t_arena *)ft_memalloc(sizeof(*self))) == NULL)
 		raise(__FILE__, __LINE__, ENOMEMORY);
-	new->nb_players = vm_params_nb_players(params);
-	new->players = arena_players_new(new->nb_players);
-	vm_params_named_sorted_array_of_players(params);
+	self->nb_players = vm_params_nb_players(params);
+	self->players = arena_players_new(self->nb_players);
+	vm_params_named_sorted_array_of_players(params, self);
 	vm_params_destroy_players(params);
-	return (new);
+	return (self);
 }
 
 void				arena_dtor(t_arena **self)
