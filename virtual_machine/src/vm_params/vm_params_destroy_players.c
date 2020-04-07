@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_params.h                                        :+:      :+:    :+:   */
+/*   vm_params_destroy_players.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/01 17:10:20 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/07 13:10:42 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/07 12:57:53 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/07 13:11:34 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VM_PARAMS_H
-# define VM_PARAMS_H
+#include "_vm_params.h"
 
-typedef struct s_vm_params	t_vm_params;
+static void			_vm_params_destroy_player(void *_player, size_t mock)
+{
+	t_vmp_player	*player;
 
-t_vm_params		*vm_params_ctor(int argc, char *argv[]);
-void			vm_params_dtor(t_vm_params **self);
+	player = (t_vmp_player *)_player;
+	vmp_player_dtor(&player);
+	(void)mock;
+	return;
+}
 
-void			vm_params_destroy_players(t_vm_params *params);
-int				vm_params_nb_players(t_vmp_player *params);
-
-#endif
+void				vm_params_destroy_players(t_vm_params *self)
+{
+	ft_lstdel(&self->nb_players, _vm_params_destroy_player);
+	return;
+}

@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:27:54 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/06 22:16:24 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/07 13:10:19 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,9 @@ t_vm_params				*vm_params_ctor(int argc, char *argv[])
 	return (self);
 }
 
-static void				_vm_params_destroy_player(void *_player, size_t mock)
-{
-	t_vmp_player		*player;
-
-	player = (t_vmp_player *)_player;
-	vmp_player_dtor(&player);
-	(void)mock;
-	return;
-}
-
 void					vm_params_dtor(t_vm_params **self)
 {
-	ft_lstdel(&(*self)->nb_players, _vm_params_destroy_player);
+	vm_params_destroy_players(*self);
 	ft_memdel((void **)self);
 	return;
 }

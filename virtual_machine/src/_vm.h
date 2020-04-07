@@ -6,15 +6,16 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:22:30 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/03 23:21:33 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/06 22:42:24 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef _VM_H
 # define _VM_H
 
-#include "libft.h"
-#include "vm.h"
+# include "libft.h"
+# include "vm.h"
+# include "errors.h"
 
 /*
 **	Limit individual processes in the allocated memory.
