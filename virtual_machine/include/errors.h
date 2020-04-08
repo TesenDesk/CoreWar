@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:09:54 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/05 11:49:20 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/08 04:32:06 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 enum					e_error_id
 {
 	EUSAGE,
+	EINVALARG,	
 	ENOMEMORY,
-	EINVALARG,
-	ENOARGVAL,
 	EBADFILENAME,
+	ENOARGVAL,
 	ECANNOTCLOSE,
 	ECANNOTREAD,
 	
