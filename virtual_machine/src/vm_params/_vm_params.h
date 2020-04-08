@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:15:50 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/07 16:12:17 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/09 00:08:57 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,8 @@ void		_vm_params_set_file_name_without_id(t_vm_params *self,
 void		_vm_params_set_nbr_cycles(t_vm_params *self, char *nbr_sycles_str);
 void		_vm_params_set_is_dump(t_vm_params *self, char *useless);
 void		_vm_params_set_mock(t_vm_params *never_passed, char *usless);
+void		_vm_params_map_players_to_arena(t_list *id_players,
+				t_arena *arena, void (*arena_set_player)(t_arena *arena,
+				t_player *new_player));
 
 #endif
