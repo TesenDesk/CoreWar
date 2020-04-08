@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _read_data.h                                       :+:      :+:    :+:   */
+/*   vmp_player_set_file_name.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/01 17:18:37 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 19:50:36 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/02 21:07:27 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/08 21:35:18 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _READ_DATA_H
-# define _READ_DATA_H
+#include "_vmp_player.h"
 
-# include "libft.h"
-# include "errors.h"
-# include "read_data.h"
-
-# define INITIAL_CHUNK	128
-
-typedef struct	s_read_data
+void			vmp_player_set_file_name(t_vmp_player *self, char *file_name)
 {
-	void		*data;
-	ssize_t		total;
-	ssize_t		capacity;
-	int			is_read;
-}				t_read_data;
-
-#endif
+	self->file_name = file_name;
+	return;
+}

@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_data_xtor.c                                   :+:      :+:    :+:   */
+/*   file_xtor.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:28:46 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 19:58:53 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/08 21:29:08 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_read_data.h"
+#include "_file.h"
 
-static void			_read_data_get_chunk(t_read_data *self, int fd)
+static void			_file_get_chunk(t_file *self)
 {
 	ssize_t			chunk;
 
-	if ((chunk = read(fd, self->data, INITIAL_CHUNK)) == NULL)
+	if ((chunk = read(self->fd, self->data, INITIAL_CHUNK)) == NULL)
 		raise(__FILE__, __LINE__, ECANNOTREAD);
 	self->total += chunk;
 	if (chunk == 0)
@@ -24,7 +24,7 @@ static void			_read_data_get_chunk(t_read_data *self, int fd)
 	return;
 }
 
-static void			_read_data_reallocate_value(t_read_data *self)
+static void			_file_reallocate_value(t_file *self)
 {
 	ssize_t			new_capacity;
 
@@ -37,37 +37,38 @@ static void			_read_data_reallocate_value(t_read_data *self)
 	return;
 }
 
-static void			_read_data_allocate_intitial_value(t_read_data *self)
+static void			_file_allocate_intitial_value(t_file *self)
 {
 	if ((self->data = ft_memalloc(INITIAL_CHUNK * sizeof(char))) == NULL)
 		raise(__FILE__, __LINE__, ENOMEMORY);
 	return;
 }
 
-static void			_read_data_fill(t_read_data *self, int fd)
+static void			_file_read(t_file *self)
 {
-	_read_data_allocate_intitial_value(self);
-	_read_data_get_chunk(self, fd);
+	_file_allocate_intitial_value(self);
+	_file_get_chunk(self);
 	while (self->is_read == FALSE)
 	{
 		if (self->total + INITIAL_CHUNK > self->capacity)
-			_read_data_reallocate_value(self);
-		_read_data_get_chunk(self, fd);
+			_file_reallocate_value(self);
+		_file_get_chunk(self);
 	}
 	return;
 }
 
-t_read_data			read_data_ctor(int fd)
+t_file			*file_ctor(char *file_name)
 {
-	t_read_data		*self;
+	t_file		*self;
 
-	if ((self = (t_read_data *)ft_memalloc(sizeof(*self))) == NULL)
+	if ((self = (t_file *)ft_memalloc(sizeof(*self))) == NULL)
 		raise(__FILE__, __LINE__, ENOMEMORY);
-	_read_data_fill(self);
+	
+	_file_read(self);
 	return (self);
 }
 
-void				read_data_dtor(t_read_data **self)
+void				file_dtor(t_file **self)
 {
 	ft_memdel((void **)self);
 	return;
