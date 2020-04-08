@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:10:42 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 18:53:14 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/08 23:08:21 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ typedef struct			s_arena
 	void			*data;
 	int				size;
 }						t_arena;
+
+void		_arena_set_smallest_unoccupied_name(t_arena *self);
 
 #endif

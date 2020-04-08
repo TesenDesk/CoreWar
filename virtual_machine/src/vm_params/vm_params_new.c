@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_params_ctor.c                                   :+:      :+:    :+:   */
+/*   vm_params_new.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:27:54 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 22:08:22 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/08 22:47:15 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "_vm_params.h"
 
-static void				_vm_params_precondition_check(int argc)
+static void				_vm_params_new_precondition_check(int argc)
 {
 	if (argc < 2)
 		raise(__FILE__, __LINE__, EINVALARG);
 	return;
 }
 
-static void				_vm_params_postcondition_check(t_vm_params *self)
+static void				_vm_params_new_postcondition_check(t_vm_params *self)
 {
 	if (
 			self->nb_players <= 0 ||
@@ -28,14 +28,14 @@ static void				_vm_params_postcondition_check(t_vm_params *self)
 	return;
 }
 
-t_vm_params				*vm_params_ctor(int argc, char *argv[])
+t_vm_params				*vm_params_new(int argc, char *argv[])
 {
 	t_vm_params			*self;
 
-	_vm_params_precondition_check(argc);
+	_vm_params_new_precondition_check(argc);
 	if ((self = (t_vm_params *)ft_memalloc(sizeof(*self))) == NULL)
 		raise(__FILE__, __LINE__, ENOMEMORY);
 	_vm_params_parse(self, argv);
-	_vm_params_postcondition_check(self);
+	_vm_params_new_postcondition_check(self);
 	return (self);
 }

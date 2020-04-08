@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _vmp_state.h                                       :+:      :+:    :+:   */
+/*   _vm_new.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/01 17:18:37 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 22:17:22 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/08 22:40:44 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/08 22:48:48 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _VMP_STATE_H
-# define _VMP_STATE_H
+#include "_vm.h"
 
-# include "libft.h"
-# include "errors.h"
-# include "vmp_state.h"
+t_vm		*_vm_new(int argc, char *argv[])
+{
+	t_vm		*self;
 
-# define P_SHORT_NAME	"-n"
-# define P_LONG_NAME	"--name"
-# define P_SHORT_DUMP	"-d"
-# define P_LONG_DUMP	"--dump"
-
-int			_vmp_state_due_to_state(int state);
-int			_vmp_state_due_to_param(char *param);
-
-#endif
+	if ((self = (t_vm *)ft_memalloc(sizeof(*self))) == NULL)
+		raise(__FILE__, __LINE__, ENOMEMORY);
+	self->params = vm_params_new(argc, argv);
+	self->arena = arena_new(&self->params);
+	self->carriage_head = vm_carriage_list_constructed_new(self->arena);
+	return (self);
+}

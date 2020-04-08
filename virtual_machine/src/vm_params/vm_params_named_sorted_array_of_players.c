@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 13:30:27 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/07 17:41:06 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/08 22:49:31 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void			_vm_params_map_players_to_arena(t_list *id_players,
 	while (id_players != NULL)
 	{
 		curr_vmp_player = (t_vmp_player *)id_players->content;
-		new_player = player_ctor(curr_vmp_player);
+		new_player = player_new(curr_vmp_player);
 		(*arena_set_player)(arena, new_player);
 		id_players = id_players->next;
 	}

@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_xtor.c                                        :+:      :+:    :+:   */
+/*   _file_get_chunk.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/01 17:28:46 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 21:48:47 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/08 22:55:59 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/08 22:56:24 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "_file.h"
 
-t_file			*file_ctor(char *file_name)
+void			_file_get_chunk(t_file *self)
 {
-	t_file		*self;
+	ssize_t			chunk;
 
-	if ((self = (t_file *)ft_memalloc(sizeof(*self))) == NULL)
-		raise(__FILE__, __LINE__, ENOMEMORY);
-	self->file_name = file_name;
-	_file_open(self);	
-	_file_read(self);
-	_file_close(self);
-	return (self);
+	if ((chunk = read(self->fd, self->data, INITIAL_CHUNK)) == NULL)
+		raise(__FILE__, __LINE__, ECANNOTREAD);
+	self->total += chunk;
+	if (chunk == 0)
+		self->is_read = TRUE;
+	return;
 }
-

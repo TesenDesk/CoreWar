@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 21:07:20 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/07 20:12:43 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/08 22:30:23 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static char		*error_messages[ERRMSGCOUNT] =
 	"Player name exсeedes number of players. "
 		"Or is invalid to some other reasons.",
 	"Repetition of the parameter -n value.",
+	"Try to replace pointer to memory not being freed.",
 };
 
 int				raise(char *file_name, int line_nb, int errmsg_index)

@@ -1,13 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operation_xtor.c                                   :+:      :+:    :+:   */
+/*   vm_singleton.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/01 17:29:27 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/03 23:25:08 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/01 17:03:13 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/08 22:42:34 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_operation.h"
+#include "_vm.h"
+
+t_vm			*vm_singleton(int instantiation_status, int argc, char *argv[])
+{
+	static t_vm		*vm;
+
+	if (instantiation_status == VM_INSTANTIATE)
+	{
+		if (vm == NULL)
+			vm = _vm_new(argc, argv);
+	}
+	else if (instantiation_status == VM_DESTRUCT)
+	{
+		if (vm)
+			_vm_destroy(&vm);
+	}
+	return (vm);
+}

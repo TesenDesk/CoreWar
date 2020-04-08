@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:22:30 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 18:55:30 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/08 22:40:01 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,8 @@ typedef struct	s_vm
 	t_arena		*arena;
 	t_list		*carriage_head;
 }				t_vm;
+
+t_vm		*_vm_new(int argc, char *argv[]);
+void		_vm_destroy(t_vm **self);
 
 #endif

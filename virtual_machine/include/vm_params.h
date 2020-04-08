@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:10:20 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/07 17:00:13 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/08 22:46:08 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 typedef struct s_vm_params	t_vm_params;
 
-t_vm_params		*vm_params_ctor(int argc, char *argv[]);
-void			vm_params_dtor(t_vm_params **self);
+t_vm_params		*vm_params_new(int argc, char *argv[]);
+void			vm_params_destroy(t_vm_params **self);
 
 void			vm_params_destroy_players_lists(t_vm_params *params);
 int				vm_params_nb_players(t_vm_params *params);

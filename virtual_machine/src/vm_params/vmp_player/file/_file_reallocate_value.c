@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vmp_params_dtor.c                                  :+:      :+:    :+:   */
+/*   _file_reallocate_value.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/08 21:50:06 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 21:53:14 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/08 22:54:49 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/08 22:55:32 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_vm_params.h"
+#include "_file.h"
 
-void					vm_params_dtor(t_vm_params **self)
+void			_file_reallocate_value(t_file *self)
 {
-	_vm_params_destroy_players_lists(*self);
-	ft_memdel((void **)self);
+	ssize_t			new_capacity;
+
+	new_capacity = 2 * self->capacity;
+	if (new_capacity > INT_MAX)
+		raise(__FILE__, __LINE__, ENOMEMORY);
+	if (ft_realloc_safe(&self->data, self->capacity, new_capacity) == FAILURE)
+		raise(__FILE__, __LINE__, ENOMEMORY);
+	self->capacity = new_capacity;
 	return;
 }

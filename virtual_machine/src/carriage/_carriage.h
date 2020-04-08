@@ -6,15 +6,16 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:18:37 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/03 23:24:09 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/08 23:00:00 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef _CARIAGE_H
 # define _CARIAGE_H
 
-#include "op.h"
-#include "operation.h"
+# include "op.h"
+# include "operation.h"
+# include "carriage.h"
 
 typedef						(*t_operation)();
 

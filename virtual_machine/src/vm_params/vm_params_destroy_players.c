@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 12:57:53 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 21:54:15 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/08 22:48:08 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void			_vm_params_destroy_player(void *_player, size_t mock)
 	t_vmp_player	*player;
 
 	player = (t_vmp_player *)_player;
-	vmp_player_dtor(&player);
+	vmp_player_destroy(&player);
 	(void)mock;
 	return;
 }
