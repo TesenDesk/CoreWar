@@ -5,124 +5,124 @@
 /*
  * TOKEN TYPES
  */
-enum			e_token_types
-{
-	NO_TOKEN = -1,
-	TOKEN_LFEED,
-	TOKEN_LABEL_WORD,
-	TOKEN_CHNAME,
-	TOKEN_CHCOM,
-	/*
-	*TOKEN_AFFCt_arg
-	*/
-	TOKEN_AFF,
-	/*
-	*TOKEN_St_arg
-	*/
-	TOKEN_ST,
-	/*
-	* TOKEN_STI_OP
-	*/
-	TOKEN_STI,
-	/*
-	* TOKEN_ARITHM_OP
-	*/
-	TOKEN_ADD,
-	TOKEN_SUB,
-	/*
-	* TOKEN_LOAD_OP
-	*/
-	TOKEN_LD,
-	TOKEN_LLD,
-	/*
-	* TOKEN_LOADI_OP
-	*/
-	TOKEN_LDI,
-	TOKEN_LLDI,
-	/*
-	* TOKEN_LOGIC_OP
-	*/
-	TOKEN_AND,
-	TOKEN_OR,
-	TOKEN_XOR,
-	/*
-	* TOKEN_LIFE_OP
-	*/
-	TOKEN_LIVE,
-	TOKEN_ZJMP,
-	TOKEN_FORK,
-	TOKEN_LFORK,
-	/*
-	* TOKEN_ARGS
-	*/
-	TOKEN_TREG,
-	TOKEN_TIND_INT,
-	TOKEN_TIND_LAB,
-	TOKEN_TDIR_INT,
-	TOKEN_TDIR_LAB,
+//enum			e_token_types
+//{
+//	NO_TOKEN = -1,
+//	TOKEN_LFEED,
+//	TOKEN_LABEL_WORD,
+//	TOKEN_CHNAME,
+//	TOKEN_CHCOM,
+//	/*
+//	*TOKEN_AFFCt_arg
+//	*/
+//	TOKEN_AFF,
+//	/*
+//	*TOKEN_St_arg
+//	*/
+//	TOKEN_ST,
+//	/*
+//	* TOKEN_STI_OP
+//	*/
+//	TOKEN_STI,
+//	/*
+//	* TOKEN_ARITHM_OP
+//	*/
+//	TOKEN_ADD,
+//	TOKEN_SUB,
+//	/*
+//	* TOKEN_LOAD_OP
+//	*/
+//	TOKEN_LD,
+//	TOKEN_LLD,
+//	/*
+//	* TOKEN_LOADI_OP
+//	*/
+//	TOKEN_LDI,
+//	TOKEN_LLDI,
+//	/*
+//	* TOKEN_LOGIC_OP
+//	*/
+//	TOKEN_AND,
+//	TOKEN_OR,
+//	TOKEN_XOR,
+//	/*
+//	* TOKEN_LIFE_OP
+//	*/
+//	TOKEN_LIVE,
+//	TOKEN_ZJMP,
+//	TOKEN_FORK,
+//	TOKEN_LFORK,
+//	/*
+//	* TOKEN_ARGS
+//	*/
+//	TOKEN_TREG,
+//	TOKEN_TIND_INT,
+//	TOKEN_TIND_LAB,
+//	TOKEN_TDIR_INT,
+//	TOKEN_TDIR_LAB,
+//
+//	TOKEN_UNDEF,
+//	TOKEN_INIT_ST,
+//	TOKEN_EOF,
+//};
 
-	TOKEN_UNDEF,
-	TOKEN_INIT_ST,
-	TOKEN_EOF,
-};
+ #define NO_TOKEN -1
+ #define TOKEN_UNDEF 0
+ #define TOKEN_INIT_ST 1
+ #define TOKEN_EOF 2
+ #define TOKEN_LFEED 3
+ #define TOKEN_CHNAME 4
+ #define TOKEN_CHCOM 5
+ /*
+  * TOKEN_LIFE_OP
+  */
+ #define TOKEN_LIVE 6
+ #define TOKEN_ZJMP 7
+ #define TOKEN_FORK 8
+ #define TOKEN_LFORK 9
+ /*
+  *TOKEN_AFFCt_arg
+  */
+ #define TOKEN_AFF 10
+ /*
+  * TOKEN_LOAD_OP
+  */
+ #define TOKEN_LD 11
+ #define TOKEN_LLD 12
+ /*
+  *TOKEN_St_arg
+  */
+ #define TOKEN_ST 13
+ /*
+  * TOKEN_ARITHM_OP
+  */
+ #define TOKEN_ADD 14
+ #define TOKEN_SUB 15
+ /*
+  * TOKEN_LOADI_OP
+  */
+ #define TOKEN_LDI 16
+ #define TOKEN_LLDI 17
+ /*
+  * TOKEN_LOGIC_OP
+  */
+ #define TOKEN_AND 18
+ #define TOKEN_OR 19
+ #define TOKEN_XOR 20
+ /*
+  * TOKEN_STI_OP
+  */
+ #define TOKEN_STI 21
+ /*
+  * TOKEN_ARGS
+  */
+ #define TOKEN_TREG 22
+ #define TOKEN_TIND_INT 23
+ #define TOKEN_TIND_LAB 24
+ #define TOKEN_TDIR_INT 25
+ #define TOKEN_TDIR_LAB 26
 
-// #define NO_TOKEN -1
-// #define TOKEN_UNDEF 0
-// #define TOKEN_INIT_ST 1
-// #define TOKEN_EOF 2
-// #define TOKEN_LFEED 3
-// #define TOKEN_CHNAME 4
-// #define TOKEN_CHCOM 5
-// /*
-//  * TOKEN_LIFE_OP
-//  */
-// #define TOKEN_LIVE 6
-// #define TOKEN_ZJMP 7
-// #define TOKEN_FORK 8
-// #define TOKEN_LFORK 9
-// /*
-//  *TOKEN_AFFCt_arg
-//  */
-// #define TOKEN_AFF 10
-// /*
-//  * TOKEN_LOAD_OP
-//  */
-// #define TOKEN_LD 11
-// #define TOKEN_LLD 12
-// /*
-//  *TOKEN_St_arg
-//  */
-// #define TOKEN_ST 13
-// /*
-//  * TOKEN_ARITHM_OP
-//  */
-// #define TOKEN_ADD 14
-// #define TOKEN_SUB 15
-// /*
-//  * TOKEN_LOADI_OP
-//  */
-// #define TOKEN_LDI 16
-// #define TOKEN_LLDI 17
-// /*
-//  * TOKEN_LOGIC_OP
-//  */
-// #define TOKEN_AND 18
-// #define TOKEN_OR 19
-// #define TOKEN_XOR 20
-// /*
-//  * TOKEN_STI_OP
-//  */
-// #define TOKEN_STI 21
-// /*
-//  * TOKEN_ARGS
-//  */
-// #define TOKEN_TREG 22
-// #define TOKEN_TIND_INT 23
-// #define TOKEN_TIND_LAB 24
-// #define TOKEN_TDIR_INT 25
-// #define TOKEN_TDIR_LAB 26
-
-// #define TOKEN_LABEL_WORD 27
+ #define TOKEN_LABEL_WORD 27
 
 /*
  * TERM LITERALS

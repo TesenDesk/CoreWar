@@ -14,21 +14,33 @@
 
 #define ANALYSER_AR_SIZE 20
 
+
+
+enum 				e_analyser_defines
+{
+	COANALYSER_ERROR_ST = -1,
+	ANALYSER_INIT_ST,
+	ANALYSER_PRECODE_NAME_ST,
+	ANALYSER_PRECODE_COMMENT_ST,
+	ANALYSER_CODE_ST
+};
+
 typedef struct s_analyser t_analyser;
 struct s_analyser
 {
 	int				state;
 	t_parser 		*parser;
-	t_text*			(*form_text)(t_analyser *analyser,
-									char const **text, t_hash_map *map,
-									t_vector *vector);
-	void			(*_change_state)(t_analyser *analyser, int expr_type);
+	int 			(*analyse_text)(t_analyser *analyser,
+								   char const **text);
+//	t_expr 			(*analyser_get_expr)(t_analyser *analyser);
+
+	void			(*_change_state)(t_analyser *analyser,  int expr_type);
+	int				(*_get_expr[ANALYSER_AR_SIZE])(struct s_analyser *analyser, t_parser *parser,
+						char const **text);
 	/*
 	 *сколько состояний?
 	 */
 
-	int				(*get_expr[ANALYSER_AR_SIZE])(t_analyser *analyser, t_analyser *analy,
-												   t_expr *expr, char const **text);
 };
 
 
