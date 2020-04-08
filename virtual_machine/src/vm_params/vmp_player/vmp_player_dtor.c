@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _vmp_player.h                                      :+:      :+:    :+:   */
+/*   vmp_player_dtor.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/01 17:18:37 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 21:51:39 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/08 22:04:06 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/08 22:04:20 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _VM_PARAMS_PLAYER_H
-# define _VM_PARAMS_PLAYER_H
+#include "_vmp_player.h"
 
-# include "libft.h"
-# include "errors.h"
-# include "vmp_player.h"
-# include "file.h"
-
-typedef struct			s_vmp_player
+void				vmp_player_dtor(t_vmp_player **self)
 {
-	int			player_name;
-	t_file		*file;
-}						t_vmp_player;
-
-
-#endif
+	if ((*self)->file != PFILE_MOCK)
+		file_dtor(&(*self)->file);
+	ft_memdel((void **)self);
+	return;
+}

@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _vmp_player.h                                      :+:      :+:    :+:   */
+/*   vmp_params_dtor.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/01 17:18:37 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 21:51:39 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/08 21:50:06 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/08 21:53:14 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _VM_PARAMS_PLAYER_H
-# define _VM_PARAMS_PLAYER_H
+#include "_vm_params.h"
 
-# include "libft.h"
-# include "errors.h"
-# include "vmp_player.h"
-# include "file.h"
-
-typedef struct			s_vmp_player
+void					vm_params_dtor(t_vm_params **self)
 {
-	int			player_name;
-	t_file		*file;
-}						t_vmp_player;
-
-
-#endif
+	_vm_params_destroy_players_lists(*self);
+	ft_memdel((void **)self);
+	return;
+}

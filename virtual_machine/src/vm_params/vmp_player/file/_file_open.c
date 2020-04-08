@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _vmp_player.h                                      :+:      :+:    :+:   */
+/*   _file_open.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/01 17:18:37 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 21:51:39 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/08 21:33:46 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/08 21:48:49 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _VM_PARAMS_PLAYER_H
-# define _VM_PARAMS_PLAYER_H
+#include "_file.h"
 
-# include "libft.h"
-# include "errors.h"
-# include "vmp_player.h"
-# include "file.h"
-
-typedef struct			s_vmp_player
+void			_file_open(t_file *self)
 {
-	int			player_name;
-	t_file		*file;
-}						t_vmp_player;
-
-
-#endif
+	if (self->is_opened == TRUE)
+		raise(__FILE__, __LINE__, EDOUBLEOPENNING);
+	if ((self->fd = open(self->file_name, O_RDONLY)) == FAILURE)
+		raise(__FILE__, __LINE__, EBADFILENAME);
+	self->is_opened = TRUE;
+	return;
+}

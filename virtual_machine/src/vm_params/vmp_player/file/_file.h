@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:18:37 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 21:37:36 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/08 22:08:16 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,14 @@ typedef struct	s_file
 	void		*data;
 	ssize_t		total;
 	ssize_t		capacity;
+	char		*file_name;
 	int			fd;
 	int			is_opened;
 	int			is_read;
 }				t_file;
+
+void			_file_read(t_file *self);
+void			_file_open(t_file *self);
+void			_file_close(t_file *self);
 
 #endif

@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_open.c                                        :+:      :+:    :+:   */
+/*   vmp_player_set_file_name.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/08 21:33:46 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 21:34:21 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/02 21:07:27 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/08 22:05:47 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_file.h"
+#include "_vmp_player.h"
 
-void			file_open(t_file *self)
+void			vmp_player_set_file(t_vmp_player *self, char *file_name)
 {
-	if (self->is_opened == TRUE)
-		raise(__FILE__, __LINE__, EDOUBLEOPENNING);
-	if ((self->fd = open(self->file_name, O_RDONLY)) == FAILURE)
-		raise(__FILE__, __LINE__, EBADFILENAME);
-	self->is_opened = TRUE;
+	self->file = file_ctor(file_name);
 	return;
 }
