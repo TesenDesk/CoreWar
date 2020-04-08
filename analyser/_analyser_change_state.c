@@ -4,7 +4,7 @@
 
 
 #include "analyser_private.h"
-#include "text_private.h"
+//#include "text_private.h"
 
 
 

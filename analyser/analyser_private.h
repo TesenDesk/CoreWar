@@ -5,9 +5,12 @@
 #ifndef CORE_ANALYSER_PRIVATE_H
 #define CORE_ANALYSER_PRIVATE_H
 
-#include "text.h"
+//#include "text.h"
 #include "parser.h"
 #include "analyser.h"
+#include "lexer.h"
+#include "token.h"
+#include "token_defines.h"
 
 #define ANALYSER_AR_SIZE 20
 
@@ -28,4 +31,8 @@ struct s_analyser
 												   t_expr *expr, char const **text);
 };
 
-#endif //CORE_ANALYSER_PRIVATE_H
+
+void		change_state(t_analyser *analyser, int expr_type);
+
+#endif
+

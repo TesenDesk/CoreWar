@@ -34,7 +34,7 @@ LEX_SRC     :=	lexer_get_term_name_cmd.c \
 				lexer_xtor_private.c
 LEX_OBJ     :=  $(patsubst %.c, %.o, $(LEX_SRC))
 LEX_DIR_OBJ :=  $(addprefix ./lexer/, $(LEX_OBJ))
-PARS_SRC =	_parser_change_state.c \
+PARS_SRC :=	_parser_change_state.c \
 			_parser_get_token_op0_load.c \
 			_parser_get_token_op1_lodi.c \
 			_parser_get_token_op2_stri.c \
@@ -65,10 +65,17 @@ PARS_OBJ     :=  $(patsubst %.c, %.o, $(PARS_SRC))
 PARS_DIR_OBJ :=  $(addprefix ./parser/, $(PARS_OBJ))
 
 
-CHK_SRC =	label_checker_inclusion_of_maps.c \
+CHK_SRC :=	label_checker_inclusion_of_maps.c \
 			label_checker_put_to_map.c
 CHK_OBJ     :=  $(patsubst %.c, %.o, $(CHK_SRC))
 CHK_DIR_OBJ :=  $(addprefix ./checker/, $(CHK_OBJ))
+
+ANALYSER_SRC := _analyser_change_state.c \
+                _analyser_xtor.c \
+                analyser.c \
+                analyser_singleton_instance.c
+ANALYSER_OBJ :=  $(patsubst %.c, %.o, $(ANALYSER_SRC))
+ANALYSER_DIR_OBJ :=  $(addprefix ./analyser/, $(ANALYSER_OBJ))
 
 
 
@@ -120,7 +127,7 @@ debmsg:
 # $(PARS_DIR_OBJ): %.o: %.c
 # 		@cc -c $(FLAGS)  $< -o $@
 
-$(NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(CHK_DIR_OBJ) $(MAIN) $(LIB)
+$(NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(CHK_DIR_OBJ) $(ANALYSER_DIR_OBJ) $(MAIN) $(LIB)
 		@printf "$(PREFIX)📦  Building $(NAME)...\n"
 		@printf "Building $(LEX_DIR_OBJ).$(LEX_OBJ).\n"
 
@@ -136,6 +143,9 @@ $(PARS_DIR_OBJ): %.o: %.c
 		gcc -c $(FLAGS) -I$(INTERFACE) $(LIBFLAGS)  $<  -o $@
 
 $(CHK_DIR_OBJ): %.o: %.c
+		gcc -c $(FLAGS) -I$(INTERFACE) $(LIBFLAGS)  $<  -o $@
+
+$(ANALYSER_DIR_OBJ): %.o: %.c
 		gcc -c $(FLAGS) -I$(INTERFACE) $(LIBFLAGS)  $<  -o $@
 
 
