@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:18:37 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/04 14:26:17 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/08 18:54:55 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define _VMP_STATE_H
 
 # include "libft.h"
-# include "vmp_state.h"
 # include "errors.h"
+# include "vmp_state.h"
 
 # define P_SHORT_NAME	"-n"
 # define P_LONG_NAME	"--name"

@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _arena.h                                           :+:      :+:    :+:   */
+/*   _read_data.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/01 17:10:42 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 18:53:14 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/01 17:18:37 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/08 19:50:36 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _ARENA_H
-# define _ARENA_H
+#ifndef _READ_DATA_H
+# define _READ_DATA_H
 
 # include "libft.h"
-# include "op.h"
 # include "errors.h"
-# include "arena.h"
-# include "vm_params.h"
-# include "player.h"
+# include "read_data.h"
 
-typedef struct			s_arena
+# define INITIAL_CHUNK	128
+
+typedef struct	s_read_data
 {
-	t_player		**players;
-	int				smallest_unoccupied_name;
-	int				nb_players;
-	void			*data;
-	int				size;
-}						t_arena;
+	void		*data;
+	ssize_t		total;
+	ssize_t		capacity;
+	int			is_read;
+}				t_read_data;
 
 #endif
