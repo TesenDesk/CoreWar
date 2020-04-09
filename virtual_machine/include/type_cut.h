@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _corwar.h                                          :+:      :+:    :+:   */
+/*   type_cut.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/03 22:37:19 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 18:55:22 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/09 23:14:20 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/09 23:29:22 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _CORWAR_H
-# define _CORWAR_H
+#ifndef TYPE_CUT_H
 
-# include "libft.h"
-# include "corwar.h"
-# include "vm.h"
+# define TYPE_CUT_H
+
+void						type_cut_dispatched(long int *registers);
 
 #endif

@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corwar.c                                           :+:      :+:    :+:   */
+/*   _type_cut_short.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/03 22:35:40 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/05 20:32:24 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/09 23:55:48 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/09 23:56:09 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_corwar.h"
+#include "_type_cut.h"
 
-int				main(int argc, char *argv[])
+void						_type_cut_short(long int *registers)
 {
-	t_vm		*this;
-
-	this = vm_singletone(VM_INSTANTIATE, argc, argv);
-	vm_play(this);
-	(void)vm_singletone(VM_DESTRUCT, 0, NULL);
-	return (SUCCESS);
+	*registers = (short)*registers;
+	return;
 }

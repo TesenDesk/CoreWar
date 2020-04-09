@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:15:50 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/07 16:12:17 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/10 00:19:58 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "errors.h"
+# include "op.h"
 # include "vm_params.h"
 # include "vmp_state.h"
 # include "vmp_player.h"

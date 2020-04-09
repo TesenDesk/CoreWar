@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:27:54 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 22:47:15 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/10 00:25:25 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static void				_vm_params_new_postcondition_check(t_vm_params *self)
 			self->nb_players <= 0 ||
 			(self->noid_player_head || self->id_player_head) == FALSE)
 		raise(__FILE__, __LINE__, ENOPLAYERS);
+	if (self->nb_players > REG_SIZE * (BITS_AT_BYTE / 2) - 1)
+		raise(__FILE__, __LINE__, EDATALOSS);
 	return;
 }
 

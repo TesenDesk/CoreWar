@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:09:54 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 22:30:43 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/10 00:25:45 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ enum					e_error_id
 	EBADPLAYERNAME,
 	EDOUBLENAME,
 	EDANGLINGPTR,
+	EDATALOSS,
 	
 	
 	

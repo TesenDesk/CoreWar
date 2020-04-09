@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   carriage_destroy.c                                 :+:      :+:    :+:   */
+/*   _type_cut_char.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/08 22:59:21 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/10 00:31:28 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/09 23:56:34 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/09 23:56:52 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_carriage.h"
+#include "_type_cut.h"
 
-void		carriage_destroy(t_carriage **self)
+void						_type_cut_char(long int *registers)
 {
-	ft_memdel((void **)self);
+	*registers = (char)*registers;
 	return;
 }
