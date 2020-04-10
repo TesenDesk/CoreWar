@@ -179,6 +179,13 @@ void        _parser_change_state(t_parser *parser, int token_type)
 	&& parser->state <= PARSER_OP2_STORI_ST)
 		parser->state = _parser_find_next_to_op2_st(parser, token_type);
 //	else if ()
+	else if (parser->state == PARSER_LINE_END_ST)
+	{
+		if (token_type == TOKEN_LFEED)
+			parser->state = PARSER_INIT_ST;
+		else
+			parser->state = PARSER_ERROR;
+	}
 }
 //PARSER_ERROR = -1,
 //		PARSER_INIT_ST,

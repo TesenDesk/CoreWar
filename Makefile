@@ -162,6 +162,8 @@ $(LIB):
 
 clean: deljunk
 		rm -rf lexer/*.o
+		rm -rf parser/*.o
+		rm -rf analyser/*.o
 		@make -C $(LIBDIR) clean
 
 delfile:
