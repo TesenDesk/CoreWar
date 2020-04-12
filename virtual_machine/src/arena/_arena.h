@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:10:42 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 23:08:21 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/12 17:33:41 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "arena.h"
 # include "vm_params.h"
 # include "player.h"
+
 
 typedef struct			s_arena
 {

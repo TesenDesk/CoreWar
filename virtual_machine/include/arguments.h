@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_singleton.c                                     :+:      :+:    :+:   */
+/*   arguments.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/01 17:03:13 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/12 13:34:00 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/01 17:10:32 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/12 13:31:16 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_vm.h"
+#ifndef ARGUMENTS_H
+# define ARGUMENTS_H
 
-t_vm			*vm_singleton(int instantiation_status, int argc, char *argv[])
+# include "libft.h"
+# include "error.h"
+
+enum			e_arguments_singleton
 {
-	static t_vm		*self;
+	ARGUMENTS_INSTANTIATE,
+	ARGUMENTS_DESTRUCT,
+};
 
-	if (instantiation_status == VM_INSTANTIATE)
-	{
-		if (self == NULL)
-			self = _vm_new(argc, argv);
-	}
-	else if (instantiation_status == VM_DESTRUCT)
-	{
-		if (self != NULL)
-			_vm_destroy(&self);
-	}
-	return (self);
-}
+typedef struct s_arguments		t_arguments;
+
+t_arguments			*arguments_singleton(int instantiation_status);
+
+#endif

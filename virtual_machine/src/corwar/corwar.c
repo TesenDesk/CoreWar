@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 22:35:40 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/09 23:23:57 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/10 15:53:04 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 // TODO: Добавить проверку REG_SIZE. Видио  в классе corwar.
 static void		_corwar_precondition_check()
 {
-	if (REG_SIZE < sizeof(char) || sizeof(long) < REG_SIZE)
+	if (
+		(REG_SIZE < sizeof(char) || sizeof(long) < REG_SIZE) ||
+		IDX_MOD < 1 ||
+		DIR_SIZE != REG_SIZE)
 		raise(__FILE__, __LINE__, EINVALCONSTANTS);
 	return;
 }

@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_singleton.c                                     :+:      :+:    :+:   */
+/*   arguments_singletone.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/01 17:03:13 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/12 13:34:00 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/08 23:12:16 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/12 13:33:11 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_vm.h"
+#include "_arguments.h"
 
-t_vm			*vm_singleton(int instantiation_status, int argc, char *argv[])
+t_arguments					*arguments_singleton(int instantiation_status)
 {
-	static t_vm		*self;
+	static t_arguments		*self;
 
-	if (instantiation_status == VM_INSTANTIATE)
+	if (instantiation_status == ARGUMENTS_INSTANTIATE)
 	{
 		if (self == NULL)
-			self = _vm_new(argc, argv);
+			self = _arguments_new();
 	}
-	else if (instantiation_status == VM_DESTRUCT)
+	else if (instantiation_status == ARGUMENTS_DESTRUCT)
 	{
 		if (self != NULL)
-			_vm_destroy(&self);
+			_arguments_destroy(&self);
 	}
 	return (self);
 }

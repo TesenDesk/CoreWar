@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _carriage.h                                        :+:      :+:    :+:   */
+/*   _arguments.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/01 17:18:37 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/12 17:36:57 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/01 17:10:32 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/12 17:29:22 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _CARIAGE_H
-# define _CARIAGE_H
+#ifndef _ARGUMENTS_H
+# define _ARGUMENTS_H
 
 # include "libft.h"
 # include "errors.h"
-# include "op.h"
-# include "operation.h"
-# include "carriage.h"
+# include "arguments.h"
 # include "arena.h"
+# include "operation.h"
 
-typedef struct				s_carriage
+# define NO_ARGUMENT_TYPES	0x0
+
+typedef struct			s_arguments
 {
-	t_arena			*arena;
-	int				player_name;
-	int				carry;
-	int				op_code;
-	int				is_correct_operation;
-	int				wait_so_many_cycles_to_perform_op;
-	t_operation		ops[NUMBER_OF_OPERATIONS];
-	int				announcment_cycle_that_live;
-	int				arena_position;
-	int				bytes_to_next_op;
-	long int		registers[REG_NUMBER];
-}							t_carriage;
+	int					op_code;
+	int					types;
+	int					are_match_operation_and_argument_types;
+	int					arg_len;
+	long				arg_1;
+	long				arg_2;
+	long				arg_3;
+}						t_arguments;
 
+ t_arguments			*_arguments_new(void);
+void					_arguments_destroy(t_arguments **self);
 
 
 #endif

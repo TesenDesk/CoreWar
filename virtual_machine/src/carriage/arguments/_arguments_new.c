@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_singleton.c                                     :+:      :+:    :+:   */
+/*   _arguments_new.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/01 17:03:13 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/12 13:34:00 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/01 17:30:29 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/12 13:17:55 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_vm.h"
+#include "_arguments.h"
 
-t_vm			*vm_singleton(int instantiation_status, int argc, char *argv[])
+t_arguments			*_arguments_new(void)
 {
-	static t_vm		*self;
+	t_arguments		*self;
 
-	if (instantiation_status == VM_INSTANTIATE)
-	{
-		if (self == NULL)
-			self = _vm_new(argc, argv);
-	}
-	else if (instantiation_status == VM_DESTRUCT)
-	{
-		if (self != NULL)
-			_vm_destroy(&self);
-	}
+	if ((self = (t_arguments *)ft_memalloc(sizeof(*self))) == NULL)
+		raise(__FILE__, __LINE__, ENOMEMORY);
 	return (self);
 }
