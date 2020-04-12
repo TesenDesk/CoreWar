@@ -6,7 +6,7 @@
 /*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:30:11 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/12 21:15:05 by nikita_toro      ###   ########.fr       */
+/*   Updated: 2020/04/12 21:17:43 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void		player_new_precondition_check(t_vmp_player *vmp_player)
 {
+	char	*text;
 	наличие magic header'а'
 	соответствие указанного размера кода реальному и так далее
 	максимальному размеру исполняемого кода
