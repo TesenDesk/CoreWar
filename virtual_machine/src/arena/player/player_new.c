@@ -6,7 +6,7 @@
 /*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:30:11 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/13 05:49:06 by nikita_toro      ###   ########.fr       */
+/*   Updated: 2020/04/13 06:00:07 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int				magic_header_check(t_vmp_player *vmp_player)
 		return (FAILURE);
 }
 
-int				file_size_check(t_vmp_player *vmp_player)
+int				code_size_check(t_vmp_player *vmp_player)
 {
 	char		*text;
 	int			champion_code_size;
@@ -50,7 +50,8 @@ int				file_size_check(t_vmp_player *vmp_player)
 		+ COMMENT_LENGTH
 		+ NULL_LENGTH
 		+ champion_code_size;
-	if (champion_file_size == vmp_player->file->file_size)
+	if (champion_code_size > CHAMP_MAX_SIZE &&
+	champion_file_size != vmp_player->file->file_size)
 		return (SUCCESS);
 	else
 		return (FAILURE);
@@ -58,14 +59,11 @@ int				file_size_check(t_vmp_player *vmp_player)
 
 static void		player_new_precondition_check(t_vmp_player *vmp_player)
 {
-	char	*text;
-
-	text = vmp_player->file->file;
 	// наличие magic header'а'
-	magic_header_check(text);
+	magic_header_check(vmp_player);
 	// соответствие указанного размера кода реальному и так далее
-	file_size_check(text, vmp_player);
-	максимальному размеру исполняемого кода
+	code_size_check(vmp_player);
+	// максимальному размеру исполняемого кода	
 	return;
 }
 
