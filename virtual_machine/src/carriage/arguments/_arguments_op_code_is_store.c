@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _arguments_op_code_is_op_life.c                    :+:      :+:    :+:   */
+/*   _argumtnts_op_code_is_store.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/13 01:01:37 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/14 22:31:58 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/14 22:24:51 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/14 22:25:03 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_arguments.h"
+#include "_types.h"
 
-int				_arguments_op_code_is_op_life(t_arguments *self)
+int				_argumtnts_op_code_is_store(t_arguments *self)
 {
 	int			conclusion;
 
-	if (
-		self->op_code == OP_LIVE ||
-		self->op_code == OP_ZJMP ||
-		self->op_code == OP_FORK ||
-		self->op_code == OP_LFORK)
-		conclusion = TRUE;
-	else
-		conclusion = FALSE;
+	conclusion = self->op_code == OP_ST;
 	return (conclusion);
 }
-

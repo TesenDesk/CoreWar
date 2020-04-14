@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _arguments_is_match_op_load.c                      :+:      :+:    :+:   */
+/*   _arguments_op_code_is_arithmetic.c                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/13 00:56:37 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/13 00:56:55 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/14 22:23:18 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/14 22:31:50 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "_arguments.h"
 
-int				_arguments_is_match_op_load(t_arguments *self)
+int				_arguments_op_code_is_arithmetic(t_arguments *self)
 {
 	int			conclusion;
 
-	conclusion = (self->op_code == OP_LD || self->op_code == OP_LLD) && 
-		(self->types == DIR_REG_NIL || self->types == IND_REG_NIL);
+	conclusion = (self->op_code == OP_ADD || self->op_code == OP_SUB);
 	return (conclusion);
 }

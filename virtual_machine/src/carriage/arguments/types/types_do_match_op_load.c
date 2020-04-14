@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _arguments_is_match_op_st.c                        :+:      :+:    :+:   */
+/*   types_do_match_op_load.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/13 00:57:55 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/13 00:58:06 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/13 00:56:37 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/14 22:28:19 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_arguments.h"
+#include "_types.h"
 
-int				_arguments_is_match_op_st(t_arguments *self)
+int				types_do_match_op_load(int self)
 {
 	int			conclusion;
 
-	conclusion = self->op_code == OP_ST &&
-		(self->types == REG_IND_NIL || self->types == REG_REG_NIL);
+	conclusion = (self == DIR_REG_NIL || self == IND_REG_NIL);
 	return (conclusion);
 }

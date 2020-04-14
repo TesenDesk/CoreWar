@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _arguments_op_code_is_op_life.c                    :+:      :+:    :+:   */
+/*   types_do_match_op_arithmetic.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/13 01:01:37 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/14 22:31:58 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/13 00:56:06 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/14 22:26:18 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_arguments.h"
+#include "_types.h"
 
-int				_arguments_op_code_is_op_life(t_arguments *self)
+int				types_do_match_op_arithmetic(int self)
 {
 	int			conclusion;
 
-	if (
-		self->op_code == OP_LIVE ||
-		self->op_code == OP_ZJMP ||
-		self->op_code == OP_FORK ||
-		self->op_code == OP_LFORK)
-		conclusion = TRUE;
-	else
-		conclusion = FALSE;
+	conclusion = self == REG_REG_REG;
 	return (conclusion);
 }
-

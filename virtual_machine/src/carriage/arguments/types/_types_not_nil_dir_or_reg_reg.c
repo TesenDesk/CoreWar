@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _arguments_is_match_op_logic.c                     :+:      :+:    :+:   */
+/*   _types_not_nil_dir_or_reg_reg.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/13 00:59:35 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/13 00:59:46 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/13 00:53:10 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/14 22:19:45 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_arguments.h"
+#include "_types.h"
 
-int				_arguments_is_match_op_logic(t_arguments *self)
+int				_types_not_nil_dir_or_reg_reg(int self)
 {
 	int			conclusion;
+	int			is_not_nil_arg_1;
+	int			is_not_nil_arg_2;
+	int			is_not_nil_arg_3;
 
-	conclusion = (self->op_code == OP_AND ||
-		self->op_code == OP_OR || self->op_code == OP_XOR) &&
-		_arguments_not_nil_not_nil_reg(self);
+	is_not_nil_arg_1 = self & IND_NIL_NIL;
+	is_not_nil_arg_2 = self & NIL_DIR_NIL || self & NIL_REG_NIL;
+	is_not_nil_arg_3 = self & NIL_NIL_REG;
 	return (conclusion);
 }

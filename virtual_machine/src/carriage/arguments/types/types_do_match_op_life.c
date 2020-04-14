@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _arguments_op_code_is_op_life.c                    :+:      :+:    :+:   */
+/*   types_do_match_op_life.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/13 01:01:37 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/14 22:31:58 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/13 00:54:19 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/14 22:28:02 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_arguments.h"
+#include "_types.h"
 
-int				_arguments_op_code_is_op_life(t_arguments *self)
+int				types_do_match_op_life(int self)
 {
 	int			conclusion;
 
-	if (
-		self->op_code == OP_LIVE ||
-		self->op_code == OP_ZJMP ||
-		self->op_code == OP_FORK ||
-		self->op_code == OP_LFORK)
-		conclusion = TRUE;
-	else
-		conclusion = FALSE;
+	(void)self;
+	conclusion = TRUE;
 	return (conclusion);
 }
-
