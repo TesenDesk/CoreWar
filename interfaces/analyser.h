@@ -23,9 +23,9 @@ enum					e_analyser_instantiation_status
 	ANALYSER_DESTRUCT
 };
 
+t_analyser *analyser_singleton_instance(int instatiation_status);
 
-int 			analyse_text(t_analyser *analyser,
-							   char const **text);
-
+int 			analyse_text(t_analyser *analyser, t_vector *vector,
+							   t_hash_map  *map, char const **text);
 
 #endif //CORE_ANALYSER_H

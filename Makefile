@@ -72,6 +72,7 @@ CHK_DIR_OBJ :=  $(addprefix ./checker/, $(CHK_OBJ))
 
 ANALYSER_SRC := _analyser_change_state.c \
                 _analyser_xtor.c \
+                _analyser_get_expr.c \
                 analyser.c \
                 analyser_singleton_instance.c
 ANALYSER_OBJ :=  $(patsubst %.c, %.o, $(ANALYSER_SRC))

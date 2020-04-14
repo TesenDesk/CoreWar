@@ -16,6 +16,7 @@
 
 #include "parser.h"
 #include "./parser/parser_private.h"
+#include "analyser.h"
 
 int main()
 {
@@ -133,180 +134,15 @@ int main()
 	map = ft_hash_map_ctor(HASH_CONST);
 	ft_vector_init(&vtr);
 
-	t_expr *expr1 = parser_form_expr(prs, &str, map, &vtr); // запись в карту
-//	expr1 += 1;
+//	t_expr *expr1 = parser_form_expr(prs, &str, map, &vtr); // запись в карту
+//	t_expr *expr2 = parser_form_expr(prs, &str, map, &vtr);
+//	t_expr *expr3 = parser_form_expr(prs, &str, map, &vtr);
+	t_analyser *analyser;
 
-	// arg = expr1->args;
-	// printf("expr.type %i\n", expr1->type);
-	// printf("expr.size %i\n", expr1->size);
-	// printf("expr.name %p\n", expr1->name);
-	// printf("expr.args: "
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]\n",
-	// 			arg[0].type, arg[0].value ? (char *)(arg[0].value) : "(NULL)",
-	// 			arg[1].type, arg[1].value ? (char *)(arg[1].value) : "(NULL)",
-	// 			arg[2].type, arg[2].value ? (char *)(arg[2].value) : "(NULL)",
-	// 			arg[3].type, arg[3].value ? (char *)(arg[3].value) : "(NULL)",
-	// 			arg[4].type, arg[4].value ? (char *)(arg[4].value) : "(NULL)");
+	analyser = analyser_singleton_instance(ANALYSER_INSTANTIATE);
 
-	// t_expr *expr2 = parser_form_expr(prs, &str, map, &vtr);
-	// arg = expr2->args;
-	// printf("expr.type %i\n", expr2->type);
-	// printf("expr.size %i\n", expr2->size);
-	// printf("expr.name %p\n", expr2->name);
-	// printf("expr.args: "
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]\n",
-	// 			arg[0].type, arg[0].value ? (char *)(arg[0].value) : "(NULL)",
-	// 			arg[1].type, arg[1].value ? (char *)(arg[1].value) : "(NULL)",
-	// 			arg[2].type, arg[2].value ? (char *)(arg[2].value) : "(NULL)",
-	// 			arg[3].type, arg[3].value ? (char *)(arg[3].value) : "(NULL)",
-	// 			arg[4].type, arg[4].value ? (char *)(arg[4].value) : "(NULL)");
-
-	// t_expr *expr3 = parser_form_expr(prs, &str, map, &vtr);
-	// arg = expr3->args;
-	// printf("expr.type %i\n", expr3->type);
-	// printf("expr.size %i\n", expr3->size);
-	// printf("expr.name %p\n", expr3->name);
-	// printf("expr.args: "
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]\n",
-	// 			arg[0].type, arg[0].value ? (char *)(arg[0].value) : "(NULL)",
-	// 			arg[1].type, arg[1].value ? (char *)(arg[1].value) : "(NULL)",
-	// 			arg[2].type, arg[2].value ? (char *)(arg[2].value) : "(NULL)",
-	// 			arg[3].type, arg[3].value ? (char *)(arg[3].value) : "(NULL)",
-	// 			arg[4].type, arg[4].value ? (char *)(arg[4].value) : "(NULL)");
-
-	// t_expr *expr4 = parser_form_expr(prs, &str, map, &vtr);
-	// arg = expr4->args;
-	// printf("expr.type %i\n", expr4->type);
-	// printf("expr.size %i\n", expr4->size);
-	// printf("expr.name %p\n", expr4->name);
-	// printf("expr.args: "
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]\n",
-	// 			arg[0].type, arg[0].value ? (char *)(arg[0].value) : "(NULL)",
-	// 			arg[1].type, arg[1].value ? (char *)(arg[1].value) : "(NULL)",
-	// 			arg[2].type, arg[2].value ? (char *)(arg[2].value) : "(NULL)",
-	// 			arg[3].type, arg[3].value ? (char *)(arg[3].value) : "(NULL)",
-	// 			arg[4].type, arg[4].value ? (char *)(arg[4].value) : "(NULL)");
-
-	// t_expr *expr5 = parser_form_expr(prs, &str, map, &vtr);
-	// arg = expr5->args;
-	// printf("expr.type %i\n", expr5->type);
-	// printf("expr.size %i\n", expr5->size);
-	// printf("expr.name %p\n", expr5->name);
-	// printf("expr.args: "
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]\n",
-	// 			arg[0].type, arg[0].value ? (char *)(arg[0].value) : "(NULL)",
-	// 			arg[1].type, arg[1].value ? (char *)(arg[1].value) : "(NULL)",
-	// 			arg[2].type, arg[2].value ? (char *)(arg[2].value) : "(NULL)",
-	// 			arg[3].type, arg[3].value ? (char *)(arg[3].value) : "(NULL)",
-	// 			arg[4].type, arg[4].value ? (char *)(arg[4].value) : "(NULL)");
-
-	// t_expr *expr6 = parser_form_expr(prs, &str, map, &vtr);
-	// arg = expr6->args;
-	// printf("expr.type %i\n", expr6->type);
-	// printf("expr.size %i\n", expr6->size);
-	// printf("expr.name %p\n", expr6->name);
-	// printf("expr.args: "
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]\n",
-	// 			arg[0].type, arg[0].value ? (char *)(arg[0].value) : "(NULL)",
-	// 			arg[1].type, arg[1].value ? (char *)(arg[1].value) : "(NULL)",
-	// 			arg[2].type, arg[2].value ? (char *)(arg[2].value) : "(NULL)",
-	// 			arg[3].type, arg[3].value ? (char *)(arg[3].value) : "(NULL)",
-	// 			arg[4].type, arg[4].value ? (char *)(arg[4].value) : "(NULL)");
-
-	// t_expr *expr7 = parser_form_expr(prs, &str, map, &vtr);
-	// arg = expr7->args;
-	// printf("expr.type %i\n", expr7->type);
-	// printf("expr.size %i\n", expr7->size);
-	// printf("expr.name %p\n", expr7->name);
-	// printf("expr.args: "
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]\n",
-	// 			arg[0].type, arg[0].value ? (char *)(arg[0].value) : "(NULL)",
-	// 			arg[1].type, arg[1].value ? (char *)(arg[1].value) : "(NULL)",
-	// 			arg[2].type, arg[2].value ? (char *)(arg[2].value) : "(NULL)",
-	// 			arg[3].type, arg[3].value ? (char *)(arg[3].value) : "(NULL)",
-	// 			arg[4].type, arg[4].value ? (char *)(arg[4].value) : "(NULL)");
-
-	// t_expr *expr8 = parser_form_expr(prs, &str, map, &vtr);
-	// arg = expr8->args;
-	// printf("expr.type %i\n", expr8->type);
-	// printf("expr.size %i\n", expr8->size);
-	// printf("expr.name %p\n", expr8->name);
-	// printf("expr.args: "
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]\n",
-	// 			arg[0].type, arg[0].value ? (char *)(arg[0].value) : "(NULL)",
-	// 			arg[1].type, arg[1].value ? (char *)(arg[1].value) : "(NULL)",
-	// 			arg[2].type, arg[2].value ? (char *)(arg[2].value) : "(NULL)",
-	// 			arg[3].type, arg[3].value ? (char *)(arg[3].value) : "(NULL)",
-	// 			arg[4].type, arg[4].value ? (char *)(arg[4].value) : "(NULL)");
-
-	// t_expr *expr9 = parser_form_expr(prs, &str, map, &vtr);
-	// arg = expr9->args;
-	// printf("expr.type %i\n", expr9->type);
-	// printf("expr.size %i\n", expr9->size);
-	// printf("expr.name %p\n", expr9->name);
-	// printf("expr.args: "
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]\n",
-	// 			arg[0].type, arg[0].value ? (char *)(arg[0].value) : "(NULL)",
-	// 			arg[1].type, arg[1].value ? (char *)(arg[1].value) : "(NULL)",
-	// 			arg[2].type, arg[2].value ? (char *)(arg[2].value) : "(NULL)",
-	// 			arg[3].type, arg[3].value ? (char *)(arg[3].value) : "(NULL)",
-	// 			arg[4].type, arg[4].value ? (char *)(arg[4].value) : "(NULL)");
-
-	// t_expr *expr10 = parser_form_expr(prs, &str, map, &vtr);
-	// arg = expr10->args;
-	// printf("expr.type %i\n", expr10->type);
-	// printf("expr.size %i\n", expr10->size);
-	// printf("expr.name %p\n", expr10->name);
-	// printf("expr.args: "
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]"
-	// 			"\n\t[a.type: %i;\ta.value: %s]\n",
-	// 			arg[0].type, arg[0].value ? (char *)(arg[0].value) : "(NULL)",
-	// 			arg[1].type, arg[1].value ? (char *)(arg[1].value) : "(NULL)",
-	// 			arg[2].type, arg[2].value ? (char *)(arg[2].value) : "(NULL)",
-	// 			arg[3].type, arg[3].value ? (char *)(arg[3].value) : "(NULL)",
-	// 			arg[4].type, arg[4].value ? (char *)(arg[4].value) : "(NULL)");
-	// printf("\n__________\n");
-	// printf("map.arr_size = %zu\t - number of map entries\n", map->arr_size);
-	// printf("vector.total = %i\t - number of vtr entries\n", vtr.total);
+	analyse_text(analyser, &vtr, map, &str);
+	printf("state:%d\n", prs->state);
 
 	return (SUCCESS);
 }

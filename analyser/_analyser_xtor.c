@@ -13,9 +13,9 @@ t_analyser 			*_analyser_ctor(t_analyser **analyser) {
 		printf("error\n");
 		exit(-1);
 	}
-	(*analyser)->parser = parser_singleton_instance(PARSER_INSTANTIATE);
-	(*analyser)->state = 0;
-//	(*analyser)->change_state = _analyser_change_state;
+	(*analyser)->state = ANALYSER_INIT_ST;
+	(*analyser)->_change_state = _analyser_change_state;
+	(*analyser)->_get_expr = _analyser_get_expr;
 	return (*analyser);
 }
 

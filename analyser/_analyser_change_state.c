@@ -4,6 +4,7 @@
 
 
 #include "analyser_private.h"
+#include "expr.h"
 //#include "text_private.h"
 
 static		void _change_init_state(t_analyser *analyser, int expr_type)
@@ -14,7 +15,7 @@ static		void _change_init_state(t_analyser *analyser, int expr_type)
 	else if (expr_type == EXPR_CH_COMMENT_LINE)
 		analyser->state = ANALYSER_PRECODE_COMMENT_ST;
 	else
-		analyser->state = COANALYSER_ERROR_ST;
+		analyser->state = ANALYSER_ERROR_ST;
 }
 
 static 		void _change_precode_state(t_analyser *analyser,
@@ -27,12 +28,12 @@ static 		void _change_precode_state(t_analyser *analyser,
 		&& expr_type == EXPR_CH_COMMENT_LINE)
 		analyser->state = ANALYSER_CODE_ST;
 	else
-		analyser->state = COANALYSER_ERROR_ST;
+		analyser->state = ANALYSER_ERROR_ST;
 }
 
-void		_change_state(t_analyser *analyser, int expr_type)
+void		_analyser_change_state(t_analyser *analyser, int expr_type)
 {
-	if (analyser->state = ANALYSER_INIT_ST)
+	if (analyser->state == ANALYSER_INIT_ST)
 		_change_init_state(analyser, expr_type);
 	else if (analyser->state >= ANALYSER_PRECODE_NAME_ST
 		&& analyser->state <= ANALYSER_PRECODE_COMMENT_ST)

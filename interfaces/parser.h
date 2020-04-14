@@ -33,7 +33,6 @@ t_parser			*parser_singleton_instance(int instantiation_status);
 */
 int								get_expr_type(t_expr *expr);
 t_expr							*parser_form_expr(t_parser *parser,
-									char const **text, t_hash_map *map,
-									t_vector *vector);
+									char const **text, t_hash_map *map, t_vector *vector);
 
 #endif

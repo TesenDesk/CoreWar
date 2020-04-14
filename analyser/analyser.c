@@ -6,22 +6,22 @@
 
 
 
-int					analyse_text(t_analyser *analyser, char const **text)
+int					analyse_text(t_analyser *analyser, t_vector *vector,t_hash_map  *map,
+		char const **text)
 {
 	int 			expr_type;
 	t_parser		*parser;
 
 
 	parser = parser_singleton_instance(PARSER_INSTANTIATE);
-	while(TRUE)
+	while(analyser->state != ANALYSER_FINISH_ST)
 	{
-		expr_type = analyser->_get_expr[analyser->state](analyser, parser, text);
+		expr_type = analyser->_get_expr(parser, vector, text);
 		analyser->_change_state(analyser, expr_type);
-		if (analyser->state == 1)
-			return (1);
-		else if (analyser->state == -1)
+		if (analyser->state == ANALYSER_ERROR_ST)
 			return (-1);
 	}
+	return (0);
 }
 
 
