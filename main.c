@@ -117,6 +117,7 @@ int main()
 	char const		*str;
 	t_hash_map		*map;
 	t_vector		vtr;
+	t_vector		*text;
 
 	t_arg			*arg;
 	
@@ -141,7 +142,7 @@ int main()
 
 	analyser = analyser_singleton_instance(ANALYSER_INSTANTIATE);
 
-	analyse_text(analyser, &vtr, map, &str);
+	text = analyse_text(analyser, &vtr, map, &str);
 	printf("state:%d\n", prs->state);
 
 	return (SUCCESS);

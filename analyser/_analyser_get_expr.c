@@ -6,14 +6,15 @@
 #include "../parser/expr_private.h"
 //#include "expr.h"
 
-int 			_analyser_get_expr(t_vector *vector, char const ** text, t_hash_map *map)
+
+t_expr 		*_analyser_get_expr(t_vector *label_vector, t_hash_map *map,
+								  char const **text)
 {
 
 	t_parser 	*parser;
 	t_expr		*expr;
 
 	parser = parser_singleton_instance(PARSER_INSTANTIATE);
-	expr = parser_form_expr(parser, text, map, vector);
-	return expr->type;
-
+	expr = parser_form_expr(parser, text, map, label_vector);
+	return expr;
 }

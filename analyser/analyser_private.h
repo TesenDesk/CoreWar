@@ -36,8 +36,8 @@ struct s_analyser
 //	t_expr 			(*analyser_get_expr)(t_analyser *analyser);
 
 	void			(*_change_state)(t_analyser *analyser,  int expr_type);
-	int				(*_get_expr)(t_vector *vector,
-						char const **text, t_hash_map *map);
+	t_expr			*(*_get_expr)(t_vector *vector, t_hash_map *map,
+						char const **text);
 	/*
 	 *сколько состояний?
 	 */
@@ -46,7 +46,8 @@ struct s_analyser
 
 
 void		_analyser_change_state(t_analyser *analyser, int expr_type);
-int 		_analyser_get_expr(t_vector *vector, char const ** text, t_hash_map *map);
+t_expr 		*_analyser_get_expr(t_vector *label_vector, t_hash_map *map,
+							  char const **text);
 
 
 #endif
