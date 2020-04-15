@@ -6,7 +6,7 @@
 /*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:30:11 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/13 06:00:07 by nikita_toro      ###   ########.fr       */
+/*   Updated: 2020/04/15 04:15:31 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,21 @@ static void		player_new_precondition_check(t_vmp_player *vmp_player)
 	// наличие magic header'а'
 	magic_header_check(vmp_player);
 	// соответствие указанного размера кода реальному и так далее
+	// максимальному размеру исполняемого кода
 	code_size_check(vmp_player);
-	// максимальному размеру исполняемого кода	
-	return;
+	return ;
+}
+
+char			*_player_text_name_from_vmp_player(t_vmp_player *vmp_player)
+{
+	char		*name_in_text;
+	size_t		len;
+
+	name_in_text = vmp_player->file->file;
+	name_in_text += COREWAR_EXEC_MAGIC_LENGTH;
+	len = ft_strlen(name_in_text);
+	vmp_player->player_name = ft_strnew(len);
+	ft_strcpy(vmp_player->player_name, name_in_text);
 }
 
 t_player		*player_new(t_vmp_player *vmp_player)
@@ -76,7 +88,7 @@ t_player		*player_new(t_vmp_player *vmp_player)
 		raise(__FILE__, __LINE__, ENOMEMORY);
 	self->name = _player_name_from_vmp_player(vmp_player);
 	self->text_name = _player_text_name_from_vmp_player(vmp_player);
-	self->text_name = _player_text_comment_from_vmp_player(vmp_player);
+	self->text_comment = _player_text_comment_from_vmp_player(vmp_player);
 	self->text_name = code_new(vmp_player);
 	return (self);
 }
