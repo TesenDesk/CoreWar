@@ -17,7 +17,7 @@ t_vector		*analyse_text(t_analyser *analyser, t_vector *vector,t_hash_map  *map,
 	expr_type = 0;
 	expr_text = NULL;
 	parser = NULL;
-	if (!(ft_vector_init(expr_text)))
+	if (ft_vector_init(expr_text) == FAILURE)
 		exit(-1);
 	parser = parser_singleton_instance(PARSER_INSTANTIATE);
 	while(analyser->state != ANALYSER_FINISH_ST)
