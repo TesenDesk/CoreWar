@@ -23,7 +23,8 @@ t_vector		*analyse_text(t_analyser *analyser, t_vector *vector,t_hash_map  *map,
 	parser = parser_singleton_instance(PARSER_INSTANTIATE);
 	while(analyser->state != ANALYSER_FINISH_ST)
 	{
-		if (!(ft_vector_add(expr_text, (void*)analyser->_get_expr(vector, map, text))))
+		if (ft_vector_add(expr_text, (void*)analyser->_get_expr(vector, map, text))
+			== FAILURE)
 			exit(-1);
 		expr_type = ((t_expr*)ft_vector_get_curr(expr_text))->type;
 		analyser->_change_state(analyser, expr_type);
