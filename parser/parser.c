@@ -27,7 +27,7 @@ t_expr				*parser_form_expr(t_parser *parser, char const **text,
 		token_type =
 				parser->get_token[parser->state](parser, lexer, expr, text);
 
-		printf("token->type = %i\n====================================================================\n", token_type);
+		printf("!!!token->type = %i\n\n", token_type);
 
 		if (token_type == TOKEN_LABEL_WORD) {
 			if (label_checker_put_to_map_label_word(&map, expr) ==
@@ -39,10 +39,13 @@ t_expr				*parser_form_expr(t_parser *parser, char const **text,
 		}
 		parser->change_state(parser, token_type);
 		if (parser->state == PARSER_INIT_ST || parser->state == PARSER_ERROR) {
-			if (parser->state == PARSER_ERROR)
+			if (parser->state == PARSER_ERROR) {
 				expr->type = EXPR_UNDEF;
+			}
+
 			break;
 		}
 	}
+	printf("expr->type:%d", expr->type);
 	return (expr);
 }

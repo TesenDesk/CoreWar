@@ -41,7 +41,7 @@ static int  _parser_find_next_to_init_st(int token_type)
 	// 	|| token_type == TOKEN_LABEL_WORD)
 	if (token_type == TOKEN_CHNAME || token_type == TOKEN_CHCOM)
 		return (PARSER_LINE_END_ST);
-	else if (token_type >= TOKEN_LIVE && token_type <= TOKEN_STI)
+	else if (token_type >= TOKEN_AFF && token_type <= TOKEN_LFORK)
 		return (_find_parser_op0_state(token_type));
 	else if (token_type == TOKEN_EOF)
 		return (PARSER_INIT_ST);
@@ -152,19 +152,37 @@ static int  _parser_find_next_to_op01_st(t_parser  *parser, int token_type)
 		parser->state = _find_2_1_layer_op(parser, token_type);
 	else if (parser->state == PARSER_LINE_END_ST)
 		parser->state = PARSER_INIT_ST;
-	return (0); //TODO: Не было return - исправьте)
+	else
+		parser->state = PARSER_ERROR;
+//	return (0); //TODO: Не было return - исправьте)
 }
 
 
 static int  _parser_find_next_to_op2_st(t_parser  *parser, int token_type)
 {
-	if (token_type == TOKEN_LFEED) {
-		parser->state = PARSER_INIT_ST;
-	}
-	else{
-		parser->state = PARSER_ERROR;
-	}
-	return (0);
+	if (token_type == TOKEN_TREG)
+		return (PARSER_LINE_END_ST);
+	else if (token_type == TOKEN_TDIR_INT || token_type == TOKEN_TDIR_LAB)
+		if (parser->state == PARSER_OP2_STORI_ST)
+			return (PARSER_LINE_END_ST);
+	return (PARSER_ERROR);
+
+//	if (parser->state == PARSER_OP2_ARITHM_ST) {
+//		if (token_type == TOKEN_);
+//	}
+//	if (parser->state == PARSER_OP2_LOADI_ST)
+//		;
+//	else if (parser->state == PARSER_OP2_LOGIC_ST)
+//		;
+//	else if (parser->state == PARSER_OP2_STORI_ST)
+//		;
+//	if (token_type == TOKEN_LFEED) {
+//		parser->state = PARSER_INIT_ST;
+//	}
+//	else{
+//		parser->state = PARSER_ERROR;
+//	}
+//	return (0);
 }
 
 
@@ -172,13 +190,32 @@ void        _parser_change_state(t_parser *parser, int token_type)
 {
 	if (parser->state == PARSER_INIT_ST)
 		parser->state = _parser_find_next_to_init_st(token_type);
-	else if (parser->state >= PARSER_OP0_LIFE_ST
-			 && parser->state <= PARSER_OP1_STORI_ST)
-		parser->state = _parser_find_next_to_op01_st(parser,token_type);
-	else if (parser->state >= PARSER_OP2_ARITHM_ST
-	&& parser->state <= PARSER_OP2_STORI_ST)
+	else if (
+			parser->state == PARSER_OP0_LIFE_ST
+			|| 	parser->state == PARSER_OP0_AFFECT_ST
+			||  parser->state == PARSER_OP0_LOAD_ST
+			|| 	parser->state == PARSER_OP1_LOAD_ST
+			||	parser->state == PARSER_OP0_STORE_ST
+			||  parser->state == PARSER_OP1_STORE_ST
+			|| 	parser->state == PARSER_OP0_ARITHM_ST
+			||  parser->state == PARSER_OP1_ARITHM_ST
+			|| 	parser->state == PARSER_OP0_LOADI_ST
+			||  parser->state == PARSER_OP1_LOADI_ST
+			||	parser->state == PARSER_OP0_LOGIC_ST
+			||  parser->state == PARSER_OP1_LOGIC_ST
+			||	parser->state == PARSER_OP0_STORI_ST
+			||  parser->state == PARSER_OP1_STORI_ST
+			)
+		_parser_find_next_to_op01_st(parser,token_type);
+//	else if (parser->state >= PARSER_OP2_ARITHM_ST
+//	&& parser->state <= PARSER_OP2_STORI_ST)
+	else if (
+			parser->state == PARSER_OP2_ARITHM_ST
+		  	||  parser->state == PARSER_OP2_LOADI_ST
+		  	||	parser->state == PARSER_OP2_LOGIC_ST
+		  	||  parser->state == PARSER_OP2_STORI_ST
+			)
 		parser->state = _parser_find_next_to_op2_st(parser, token_type);
-//	else if ()
 	else if (parser->state == PARSER_LINE_END_ST)
 	{
 		if (token_type == TOKEN_LFEED)

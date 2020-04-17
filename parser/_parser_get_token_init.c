@@ -27,6 +27,9 @@ static void		fill_expr_types(int expr_types[TOKEN_LABEL_WORD + 2])
 int				_parser_get_token_init(t_parser *parser, t_lexer *lexer,
 				t_expr *expr, char const **text)
 {
+	/*
+	 * здесь работает неправильно
+	 */
 	t_token		*token;
 	int			token_type;
 	static int	expr_types[TOKEN_LFORK + 1];
@@ -36,7 +39,7 @@ int				_parser_get_token_init(t_parser *parser, t_lexer *lexer,
 	token_type = token_get_type(token);
 	if (!expr_types[TOKEN_LFORK])
 		fill_expr_types(expr_types);
-	else if (token_type >= TOKEN_LFEED && token_type <= TOKEN_LFORK)
+	if (token_type >= TOKEN_LFEED && token_type <= TOKEN_LFORK)
 		expr->type = expr_types[token_type];
 	else
 		expr->type = EXPR_UNDEF;

@@ -33,6 +33,10 @@ static 		void _change_precode_state(t_analyser *analyser,
 
 void		_analyser_change_state(t_analyser *analyser, int expr_type)
 {
+	if (expr_type == EXPR_UNDEF) {
+		analyser->state = ANALYSER_ERROR_ST;
+		return ;
+	}
 	if (analyser->state == ANALYSER_INIT_ST)
 		_change_init_state(analyser, expr_type);
 	else if (analyser->state >= ANALYSER_PRECODE_NAME_ST
