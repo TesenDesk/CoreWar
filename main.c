@@ -1,6 +1,8 @@
 #include <stdio.h>
-
+#include <unistd.h>
+#include <fcntl.h>
 #include "token.h"
+#include <errno.h>
 #include "token_defines.h"
 //#include "token_private.h"
 
@@ -114,24 +116,36 @@ int main()
 	*/
 
 	t_parser		*prs;
-	char const		*str;
+	char			*str = malloc(1000);
 	t_hash_map		*map;
 	t_vector		vtr;
 	t_vector		*text;
 
 	t_arg			*arg;
-	
+	int i = 0;
+	while (i < 1000)
+		str[i++] = 0;
+//	int fd = open( av[1], O_RDONLY);
+	int fd = open( "example_text" , O_RDONLY);
+
+	int errsv = errno;
+	printf("somecall() %d, %d\n", errsv, fd);
+	int chunk = 100;
+	int cur = 0;
+	while (read(fd,str + cur, chunk))
+		cur += chunk;
 	prs = parser_singleton_instance(PARSER_INSTANTIATE);
-	str = 	".name	\"Batman\"\n"
-			".comment	\"Batman rules!\"\n"
-			"ld %0, r2    # And it is located in UNIT City\n"
-			"sti r1, %:live, %1    ; UNIT City is placed in Kyiv, Ukraine\n"
-			"loop:\n"
-			"sti r1, %:live, %1\n"
-			"live:\n"
-			"live %0\n"
-			"ld %0, r2\n"
-			"zjmp %:loop\n";
+//	str =
+//			".name	\"Batman\"\n"
+//			".comment	\"Batman rules!\"\n"
+//			"ld %0, r2\n"
+//			"sti r1, %:live, %1\n"
+//			"loop:\n"
+//			"sti r1, %:live, %1\n"
+//			"live:\n"
+//			"live %0\n"
+//			"ld %0, r2\n"
+//			"zjmp %:loop\n";
 	map = ft_hash_map_ctor(HASH_CONST);
 	ft_vector_init(&vtr);
 
@@ -141,7 +155,7 @@ int main()
 	t_analyser *analyser;
 
 	analyser = analyser_singleton_instance(ANALYSER_INSTANTIATE);
-
+	printf("|sasadsdddddddddddddddddddddddddddddddddddddddddddd\n");
 	text = analyse_text(analyser, &vtr, map, &str);
 	printf("state:%d\n", prs->state);
 

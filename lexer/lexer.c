@@ -158,9 +158,11 @@ t_token             *lexer_form_token(t_lexer *lexer, char const **text)
 	token_ptr[1] = NULL;
 	while (token_type == TOKEN_INIT_ST)
 	{
-//		printf("111  lexer->state %i\n", lexer->state);
+		printf("111  lexer->state %i\n", lexer->state);
+		printf("text:%s\n", *text);
 		lexer->change_state(lexer, lexer->get_term[lexer->state](lexer, text, &token_type, token_ptr));
-//		printf("THERE.      token_type = %i\n", token_type);
+		printf("TEXT:%s\n", *text);
+		printf("THERE.      token_type = %i\n", token_type);
 
 	}
 	return (token_constructor(token_type, token_ptr));

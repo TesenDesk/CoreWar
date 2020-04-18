@@ -28,6 +28,7 @@ int			lexer_get_term_arg_break(t_lexer *lexer, char const **text,
 	if (**text == LINE_FEED)
 	{
 		(*text)++;
+		*type = TOKEN_LFEED;
 		return (LINE_FEED_CODE);
 	}
 	else
