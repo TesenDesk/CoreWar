@@ -12,6 +12,7 @@ int			_parser_get_token_op1_logc(t_parser *parser, t_lexer *lexer,
 
 	if ((token = lexer_form_token(lexer, text)) == NULL)
 		return (NO_TOKEN);
+	token_type = token_get_type(token);
 	if (token_type != TOKEN_TDIR_INT && token_type != TOKEN_TDIR_LAB &&
 			token_type != TOKEN_TIND_INT && token_type != TOKEN_TIND_LAB &&
 			token_type != TOKEN_TREG)
