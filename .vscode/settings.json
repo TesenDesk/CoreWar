@@ -13,6 +13,12 @@
 		"parser.h": "c",
 		"lexer_utils_private.h": "c",
 		"lexer_xtor_private.h": "c",
-		"_player.h": "c"
-	}
+		"_player.h": "c",
+		"_vmp_player.h": "c",
+		"errors.h": "c",
+		"file.h": "c",
+		"vmp_player.h": "c",
+		"_file.h": "c"
+	},
+	"C_Cpp.errorSquiggles": "Disabled"
 }

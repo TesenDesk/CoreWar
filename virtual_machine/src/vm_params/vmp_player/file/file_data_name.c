@@ -1,0 +1,13 @@
+#include "_file.h"
+# define COREWAR_EXEC_MAGIC_LENGTH	4
+
+char		*file_data_name(t_file *self)
+{
+	char		*name_in_data;
+	char		*name;
+
+	name_in_data = self->data
+		+ COREWAR_EXEC_MAGIC_LENGTH;
+	name = ft_strdup(name_in_data);
+	return (name);
+}

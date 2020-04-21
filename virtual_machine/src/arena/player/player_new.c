@@ -6,7 +6,7 @@
 /*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:30:11 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/15 04:15:31 by nikita_toro      ###   ########.fr       */
+/*   Updated: 2020/04/21 21:00:44 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,24 +59,15 @@ int				code_size_check(t_vmp_player *vmp_player)
 
 static void		player_new_precondition_check(t_vmp_player *vmp_player)
 {
+	// расположение NULL байтов. после champion_name и champion_comment
+	check_nulls(vmp_player);
 	// наличие magic header'а'
 	magic_header_check(vmp_player);
+	
 	// соответствие указанного размера кода реальному и так далее
 	// максимальному размеру исполняемого кода
 	code_size_check(vmp_player);
 	return ;
-}
-
-char			*_player_text_name_from_vmp_player(t_vmp_player *vmp_player)
-{
-	char		*name_in_text;
-	size_t		len;
-
-	name_in_text = vmp_player->file->file;
-	name_in_text += COREWAR_EXEC_MAGIC_LENGTH;
-	len = ft_strlen(name_in_text);
-	vmp_player->player_name = ft_strnew(len);
-	ft_strcpy(vmp_player->player_name, name_in_text);
 }
 
 t_player		*player_new(t_vmp_player *vmp_player)
@@ -86,7 +77,7 @@ t_player		*player_new(t_vmp_player *vmp_player)
 	player_new_precondition_check(vmp_player);
 	if ((self = (t_player *)ft_memalloc(sizeof(*self))) == NULL)
 		raise(__FILE__, __LINE__, ENOMEMORY);
-	self->name = _player_name_from_vmp_player(vmp_player);
+	self->name = _player_name_from_vmp_player(vmp_player); // fil
 	self->text_name = _player_text_name_from_vmp_player(vmp_player);
 	self->text_comment = _player_text_comment_from_vmp_player(vmp_player);
 	self->text_name = code_new(vmp_player);
