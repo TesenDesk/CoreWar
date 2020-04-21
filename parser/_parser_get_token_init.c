@@ -8,8 +8,8 @@ static void		fill_expr_types(int expr_types[TOKEN_LABEL_WORD + 2])
 	size_t		index_token;
 	size_t		value_expr;
 
-	index_token = TOKEN_LFEED;
-	value_expr = EXPR_LFEED;
+	index_token = TOKEN_CHNAME;
+	value_expr = EXPR_CH_NAME_LINE;
 	while (index_token <= TOKEN_STI && value_expr <= EXPR_OP_STRI)
 		expr_types[index_token++] = value_expr++;
 	while (index_token <= TOKEN_LLDI && value_expr <= EXPR_OP_LODI)
@@ -29,17 +29,22 @@ int				_parser_get_token_init(t_parser *parser, t_lexer *lexer,
 {
 	t_token		*token;
 	int			token_type;
-	static int	expr_types[TOKEN_LFORK + 1];
+	static int	expr_types[50];
 
 	if ((token = lexer_form_token(lexer, text)) == NULL)
 		return (NO_TOKEN);
 	token_type = token_get_type(token);
 	if (!expr_types[TOKEN_LFORK])
 		fill_expr_types(expr_types);
-	if (token_type >= TOKEN_LFEED && token_type <= TOKEN_LFORK)
+	if (token_type >= TOKEN_CHNAME && token_type <= TOKEN_LFORK)
 		expr->type = expr_types[token_type];
-	else if (token_type == TOKEN_EOF)
+	else if (token_type == TOKEN_EOF) {
 		expr->type = EXPR_EOF;
+		parser->state = PARSER_FINISH_ST;
+	}
+	else if (token_type == TOKEN_LFEED ||
+		token_type == TOKEN_LABEL_WORD)
+		;
 	else
 		expr->type = EXPR_UNDEF;
 	if (expr_set_arg(expr, token, OP_NAME, token_type) == FAILURE)

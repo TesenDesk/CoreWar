@@ -24,14 +24,13 @@ t_vector		*analyse_text(t_analyser *analyser, t_vector *vector,t_hash_map  *map,
 	while(analyser->state != ANALYSER_FINISH_ST)
 	{
 		expr = analyser->_get_expr(vector, map, text);
-//		printf("bb_type:%d\n", expr->type);
 		if (ft_vector_add(expr_text, expr)
 			== FAILURE)
 			exit(-1);
 		expr_type = ((t_expr*)ft_vector_get_curr(expr_text))->type;
 //		printf("type:%d\n", expr_type);
 		analyser->_change_state(analyser, expr_type);
-//		printf("type:%d, state:%d\n", expr_type, analyser->state);
+		printf("type:%d, state:%d\n", expr_type, analyser->state);
 		if (analyser->state == ANALYSER_ERROR_ST)
 			exit(-1);
 //		if (expr_type == 29)

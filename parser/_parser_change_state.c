@@ -150,7 +150,7 @@ static int  _parser_find_next_to_op01_st(t_parser  *parser, int token_type)
 			 || parser->state == PARSER_OP1_LOGIC_ST || parser->state == PARSER_OP1_STORI_ST)
 		parser->state = _find_2_1_layer_op(parser, token_type);
 	else if (parser->state == PARSER_LINE_END_ST)
-		parser->state = PARSER_INIT_ST;
+		parser->state = PARSER_FINISH_ST;
 	else
 		parser->state = PARSER_ERROR;
 //	return (0); //TODO: Не было return - исправьте)
@@ -218,7 +218,7 @@ void        _parser_change_state(t_parser *parser, int token_type)
 	else if (parser->state == PARSER_LINE_END_ST)
 	{
 		if (token_type == TOKEN_LFEED)
-			parser->state = PARSER_INIT_ST;
+			parser->state = PARSER_FINISH_ST;
 		else
 			parser->state = PARSER_ERROR;
 	}
