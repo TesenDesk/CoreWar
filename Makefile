@@ -1,57 +1,40 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/05/15 15:17:26 by jjerde            #+#    #+#              #
-#    Updated: 2020/03/12 15:02:05 by nikita_toro      ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+### TODO :Insert 42 header here
 
-# =====================P̶O̶N̶Y̶ PHONY========================================= #
-.PHONY: all clean fclean liba re debug delfile checkdir redebug d rd red \
-deljunk force
-# ===================== Preferences & Directories ============================ #
-NAME =		asm
-LABEL =		CoreWar
-WORKDIR =	./
-LXR_FLDR =	$(WORKDIR)lexer/
-PRS_FLDR =	$(WORKDIR)parser/
-CHK_FLDR =	$(WORKDIR)checker/
-LIBDIR =	$(WORKDIR)libft/
-H_DIR_CHK =	$(WORKDIR)checker/
-H_DIR_LXR =	$(WORKDIR)lexer/
-H_DIR_PRS =	$(WORKDIR)parser/
-H_DIR_LIB = $(LIBDIR)
-INTERFACE =	$(WORKDIR)interfaces/ 
-#H_DIR =		$(H_DIR_CHK) $(H_DIR_LXR) $(H_DIR_PRS) $(H_DIR_LIB)
+#======================P̶O̶N̶Y̶ PHONY==========================================#
+.PHONY: all clean fclean liba re debug delfile checkdir redebug d rd deljunk \
+		makevisual
 
-# ===================== LIBs & Source Files ================================== #
-LIB =		$(LIBDIR)libft.a
-HEADERS =	## TODO: ADD HEADERS
-LXR_FILES =	lexer.c \
-			lexer_get_term_ch_name.c \
-			lexer_get_term_opx_multy.c \
-			lexer_get_term_com_cmd.c \
-			token.c \
-			lexer_get_term_arg_break.c \
-			lexer_get_term_comment.c \
-			lexer_singleton_instance.c \
-			lexer_get_term_arg_dir.c \
-			lexer_get_term_init.c \
-			lexer_utils_1.c \
-			lexer_get_term_arg_ind.c \
-			lexer_get_term_label_word_unit.c \
-			lexer_utils_2.c \
-			lexer_get_term_arg_reg.c \
-			lexer_get_term_line_feed.c \
-			lexer_get_term_ch_comment.c \
-			lexer_get_term_name_cmd.c \
-			lexer_xtor_private.c \
-			token_name_init.c
-PRS_FILES =	_parser_change_state.c \
+#======================Folders & Files=========================================#
+NAME        :=  corewar
+MAIN        :=  main.c
+LABEL       :=	CoreWar
+WORKDIR     :=  ./
+LIBDIR      :=	$(WORKDIR)libft/
+HEADERDIR   :=	$(WORKDIR)#includes/
+LIB         :=  $(LIBDIR)libft.a
+LEX_SRC     :=	lexer_get_term_name_cmd.c \
+				lexer_get_term_ch_name.c \
+				lexer_get_term_com_cmd.c \
+				lexer_get_term_comment.c \
+				lexer.c \
+				lexer_utils_1.c \
+				lexer_utils_2.c \
+				lexer_get_term_init.c \
+				lexer_singleton_instance.c \
+				lexer_get_term_opx_multy.c \
+				lexer_get_term_arg_dir.c \
+				lexer_get_term_arg_ind.c \
+				lexer_get_term_arg_break.c \
+				lexer_get_term_ch_comment.c \
+				lexer_get_term_line_feed.c \
+				lexer_get_term_arg_reg.c \
+				lexer_get_term_label_word_unit.c \
+				token.c \
+				token_name_init.c \
+				lexer_xtor_private.c
+LEX_OBJ     :=  $(patsubst %.c, %.o, $(LEX_SRC))
+LEX_DIR_OBJ :=  $(addprefix ./lexer/, $(LEX_OBJ))
+PARS_SRC :=	_parser_change_state.c \
 			_parser_get_token_op0_load.c \
 			_parser_get_token_op1_lodi.c \
 			_parser_get_token_op2_stri.c \
@@ -78,22 +61,31 @@ PRS_FILES =	_parser_change_state.c \
 			_parser_get_token_op2_logc.c \
 			parser.c \
 			parser_singleton_instance.c
-CHK_FILES =	label_checker_inclusion_of_maps.c \
+PARS_OBJ     :=  $(patsubst %.c, %.o, $(PARS_SRC))
+PARS_DIR_OBJ :=  $(addprefix ./parser/, $(PARS_OBJ))
+
+
+CHK_SRC :=	label_checker_inclusion_of_maps.c \
 			label_checker_put_to_map.c
-SRC_LXR =	$(addprefix $(LXR_FLDR), $(LXR_FILES)) #-I$(H_DIR_LXR)
-SRC_PRS =	$(addprefix $(PRS_FLDR), $(PRS_FILES)) #-I$(H_DIR_PRS)
-SRC_CHK =	$(addprefix $(CHK_FLDR), $(CHK_FILES)) #-I$(H_DIR_CHK)
-SRC =		$(SRC_CHK) $(SRC_LXR) $(SRC_PRS)
+CHK_OBJ     :=  $(patsubst %.c, %.o, $(CHK_SRC))
+CHK_DIR_OBJ :=  $(addprefix ./checker/, $(CHK_OBJ))
 
-# ===================== Object files & Comlpiler preferences ================= #
-OBJ_LXR =	$(SRC_LXR:.c=.o)
-OBJ_PRS =	$(SRC_PRS:.c=.o)
-OBJ_CHK =	$(SRC_CHK:.c=.o)
-OBJ =		$(OBJ_CHK) $(OBJ_LXR) $(OBJ_PRS)
-LIBFLAGS =	-L$(LIBDIR) -lft
-CFLAGS =	-Wall -Wextra -Werror
+ANALYSER_SRC := _analyser_change_state.c \
+                _analyser_xtor.c \
+                _analyser_get_expr.c \
+                analyser.c \
+                analyser_singleton_instance.c
+ANALYSER_OBJ :=  $(patsubst %.c, %.o, $(ANALYSER_SRC))
+ANALYSER_DIR_OBJ :=  $(addprefix ./analyser/, $(ANALYSER_OBJ))
 
-# ===================== COLORS & Co ========================================== #
+
+
+CFLAGS      :=  -Wall -Wextra -Werror -g
+LIBFLAGS    :=  -L$(LIBDIR) -lft
+HEADER      :=  $(HEADERDIR)ms.h
+INTERFACE =	$(WORKDIR)interfaces/
+
+#======================COLORS & Co=============================================#
 GREEN =		\033[1;32m
 RED =		\033[1;31m
 RST =		\033[0m
@@ -101,102 +93,86 @@ BOLD =		\033[1m
 CYAN =		\033[1;36m
 PREFIX =	[$(CYAN)$(LABEL)$(RST)]:\t
 
-# ===================== Debug ================================================ #
+#======================Debug & Flags===========================================#
 # -- WARN! Delete this message from rules if you using library from another prj#
 ifeq ($(DEBUGMODE), 1)
-	FLAGS		:= -g #TODO: ADD $(CFLAGS)
+	FLAGS		:= $(CFLAGS)
 	DEBUGMSG	:= $(PREFIX)⚠️  \033[1;33mDebug mode $(GREEN)enabled.$(RST)\n
 else
-	FLAGS		:= #TODO: ADD $(CFLAGS)
+	FLAGS		:= #$(CFLAGS)
 	DEBUGMSG	:= $(PREFIX)⚠️  \033[1;33mDebug mode $(RED)disabled.$(RST)\n
 endif
+MLX_FLAGS		:= -L./minilibx -lmlx  -framework OpenGL -framework AppKit
 
-# ==================== Rules ================================================= #
-# --------- Main Rule -------------------------------------------------------- #
-all: debmsg $(NAME)
-	@echo "$(PREFIX)✅  $(GREEN)All files up-to-date or rebuilded.$(RST)"
+#======================Rules===================================================#
 
-# --------- Object files rules ----------------------------------------------- #
-$(CHK_FLDR)%.o: $(CHK_FLDR)%.c
-	@printf "%-95c\r$(PREFIX)🕐  Compiling file:\t\t%-25s\r" ' ' "$@"
-	@gcc -c $(FLAGS) -I$(INTERFACE) -I$(H_DIR_CHK) -I$(H_DIR_LIB) -o $@ $< \
-
-$(LXR_FLDR)%.o: $(LXR_FLDR)%.c
-	@printf "%-95c\r$(PREFIX)🕐  Compiling file:\t\t%-25s\r" ' ' "$@"
-	@gcc -c $(FLAGS) -I$(INTERFACE) -I$(H_DIR_LXR) -I$(H_DIR_LIB) -o $@ $< \
-
-$(PRS_FLDR)%.o: $(PRS_FLDR)%.c
-	@printf "%-95c\r$(PREFIX)🕐  Compiling file:\t\t%-25s\r" ' ' "$@"
-	@gcc -c $(FLAGS) -I$(INTERFACE) -I$(H_DIR_PRS) -I$(H_DIR_LIB) -o $@ $< \
-
-main.o: main.c
-	@gcc -c $(FLAGS) -I$(INTERFACE) -I$(H_DIR_CHK) -I$(H_DIR_LXR) -I$(H_DIR_PRS) \
--I$(H_DIR_LIB) -o $@ $<
-
-lexer: $(OBJ_LXR) l_msg
-
-parser: $(OBJ_PRS) p_msg
-
-checker: $(OBJ_CHK) c_msg
-
-builder: lexer parser checker
-
-# --------- Exec files rules ------------------------------------------------- #
-$(NAME): liba builder main.o
-	@gcc $(FLAGS) $(LIBFLAGS) -o $(NAME) $(OBJ) main.o
-	@printf "$(PREFIX)📦  Building $(NAME)...\n"
-
-# --------- Additional messages rules ---------------------------------------- #
-l_msg:
-	@printf "$(PREFIX)$(BOLD)🔎  Checkig lexer files... ✅  $(GREEN)Done!$(RST)%40c\n" ' '
-
-p_msg:
-	@printf "$(PREFIX)$(BOLD)🔎  Checkig parser files... ✅  $(GREEN)Done!$(RST)%40c\n" ' '
-
-c_msg:
-	@printf "$(PREFIX)$(BOLD)🔎  Checkig checker files... ✅  $(GREEN)Done!$(RST)%40c\n" ' '
+all: debmsg $(NAME) ##Todo: Add 'liba' rule BEFORE '$(NAME)'
+		@echo "$(PREFIX)✅  $(GREEN)All files up-to-date or \
+rebuilded.$(RST)"
 
 debmsg:
 		@printf "$(DEBUGMSG)"
 
-# --------- Libs rules ------------------------------------------------------- #
-liba: force
-		@printf "$(PREFIX)$(BOLD)🔎  Checkig \
-for libft updates...$(RST)\n"
-		@make -C $(LIBDIR) DEBUG=$(DEBUGMODE)
+# $(NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(MAIN) $(LIB)
+# 		@printf "$(PREFIX)📦  Building $(NAME)...\n"
+# 		@printf "Building $(LEX_DIR_OBJ).$(LEX_OBJ).\n"
+#
+#
+# #		@gcc $(FLAGS) -o $(NAME) $(LEX_DIR_SRC) $(LIBFLAGS) -I$(HEADERDIR)
+# 		# @cc $(FLAGS) -o $(NAME) $(LEX_DIR_SRC) $(MLX_FLAGS) -I$(HEADERDIR) ##todo: add '$(LIBFLAGS)'
+# 		@cc $(CFLAGS)  -o $@ $^ -I$(HEADERDIR) $(LIBFLAGS)
+#
+# $(LEX_DIR_OBJ): %.o:  %.c
+# 		@cc -c $(FLAGS)  $< -o $@
+#
+# $(PARS_DIR_OBJ): %.o: %.c
+# 		@cc -c $(FLAGS)  $< -o $@
 
-# --------- Mandatory rules -------------------------------------------------- #
+$(NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(CHK_DIR_OBJ) $(ANALYSER_DIR_OBJ) $(MAIN) $(LIB)
+		@printf "$(PREFIX)📦  Building $(NAME)...\n"
+		@printf "Building $(LEX_DIR_OBJ).$(LEX_OBJ).\n"
+
+
+#		@gcc $(FLAGS) -o $(NAME) $(LEX_DIR_SRC) $(LIBFLAGS) -I$(HEADERDIR)
+		# @cc $(FLAGS) -o $(NAME) $(LEX_DIR_SRC) $(MLX_FLAGS) -I$(HEADERDIR) ##todo: add '$(LIBFLAGS)'
+		gcc  -I$(INTERFACE) $(LIBFLAGS)  $^ -o $@
+
+$(LEX_DIR_OBJ): %.o:  %.c
+		gcc -c $(FLAGS)  -I$(INTERFACE) $(LIBFLAGS) $<  -o $@
+
+$(PARS_DIR_OBJ): %.o: %.c
+		gcc -c $(FLAGS) -I$(INTERFACE) $(LIBFLAGS)  $<  -o $@
+
+$(CHK_DIR_OBJ): %.o: %.c
+		gcc -c $(FLAGS) -I$(INTERFACE) $(LIBFLAGS)  $<  -o $@
+
+$(ANALYSER_DIR_OBJ): %.o: %.c
+		gcc -c $(FLAGS) -I$(INTERFACE) $(LIBFLAGS)  $<  -o $@
+
+
+# $(PARS_DIR_OBJ): %.o:  %.c
+# 		@cc -c $(FLAGS)  $< -o $@
+
+$(LIB):
+		make -C libft/
+
+# libfliba:
+# 	libfliba	@printf "$(PREFIX)$(BOLD)🔎  Checkig \
+# for libf up-to-dateates...$(RST)\n"
+# 		@make -C $(LIBDIR) DEBUGMODE=$(DEBUGMODE)
+
 clean: deljunk
+		rm -rf lexer/*.o
+		rm -rf parser/*.o
+		rm -rf analyser/*.o
 		@make -C $(LIBDIR) clean
 
-fclean: delfile deljunk
-		@make -C $(LIBDIR) fclean
-
-re: fclean
-		@make all
-
-# --------- Other rules ------------------------------------------------------ #
 delfile:
 		@echo "$(PREFIX)♻️  $(RED)Removing executable file...$(RST)"
 		@rm -f $(NAME)
 
-deljunk:
-		@echo "$(PREFIX)♻️  $(RED)Removing obj-files...$(RST)"
-		@rm -f $(OBJ)
+fclean: clean delfile
+		#@make -C $(LIBDIR) dellib
 
-debnolib:
-		@make nolib DEBUGMODE=1
-
-debug:
-		@make all DEBUGMODE=1
-
-
-d: debug
-
-redebug: fclean debug
-
-rd: redebug
-
-red: redebug
-
-# ===================== End! Thanks for reading! Have a nice day! :) ========= #
+re: fclean
+		@make all

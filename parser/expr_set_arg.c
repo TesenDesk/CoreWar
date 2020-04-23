@@ -24,5 +24,7 @@ int			expr_set_arg(t_expr *expr, t_token *token,
 	if (arg_type == TOKEN_LABEL_WORD)
 		if (token_name_init((t_token *)token) == FAILURE)
 			return (FAILURE);
+//	if (args_number == OP_NAME)
+//		expr->type = arg_type;
 	return (SUCCESS);
 }

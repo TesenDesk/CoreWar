@@ -121,7 +121,7 @@ enum			e_token_types
 // #define TOKEN_TIND_LAB 24
 // #define TOKEN_TDIR_INT 25
 // #define TOKEN_TDIR_LAB 26
-
+//
 // #define TOKEN_LABEL_WORD 27
 
 /*

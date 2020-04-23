@@ -56,6 +56,7 @@ typedef enum		e_expr_defines
 	EXPR_OP_LIFE,
 	// EXPR_PRECODE_COMMENT_LINE,
 	// EXPR_CODE_COMMENT_LINE,
+	EXPR_EOF
 }					t_expr_defines;
 
 
