@@ -14,7 +14,7 @@
 
 void			player_destroy(t_player **self)
 {
-	code_destroy(&(*self)->code);
-	ft_memdel(self);
+//	code_destroy(&(*self)->code);
+	ft_memdel(*self);
 	return;
 }

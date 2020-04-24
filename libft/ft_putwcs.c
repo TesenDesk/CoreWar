@@ -17,7 +17,7 @@
 ** value stdout == 1.
 */
 
-void	ft_putwcs(wchar_t const *wcs)
+void	ft_putwcs(char const *wcs)
 {
 	ft_putwcs_fd(wcs, STDOUT);
 	return ;

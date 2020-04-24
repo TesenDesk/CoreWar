@@ -45,13 +45,13 @@
 /*
 ** Structure synonym for input file.
 */
-typedef struct				s_file
+typedef struct				ss_file
 {
 	int						fd;
 	char					*file;
 	ssize_t					file_size;
 	const char				*mark;
-}							t_file;
+}							tt_file;
 
 typedef struct				s_buffer
 {

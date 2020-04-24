@@ -35,7 +35,7 @@ void			_file_open(t_file *self);
 void			_file_close(t_file *self);
 
 void			_file_allocate_intitial_value(t_file *self);
-void			_file_reallocate_value(t_file *self)
+void			_file_reallocate_value(t_file *self);
 void			_file_get_chunk(t_file *self);
 
 #endif

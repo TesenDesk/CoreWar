@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "_arena.h"
+#include "vm_params.h"
+#include "vmp_player.h"
 
 static void			_arena_new_precondition_check(void)
 {
@@ -29,7 +31,7 @@ t_arena				*arena_new(t_vm_params *params)
 	self->nb_players = vm_params_nb_players(params);
 	self->players = _arena_players_new(self->nb_players);
 	vm_params_fill_and_sort_array_of_players(params, self);
-	vm_params_destroy_players(params);
-	arena_fill_in_the_data(self);
+	vm_params_destroy_players_lists(params);
+//	arena_fill_in_the_data(self);
 	return (self);
 }

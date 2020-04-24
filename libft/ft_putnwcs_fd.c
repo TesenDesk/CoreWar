@@ -17,7 +17,7 @@
 ** indicated by the file descriptor value.
 */
 
-void	ft_putnwcs_fd(wchar_t const *wcs, int fd, size_t len)
+void	ft_putnwcs_fd(char const *wcs, int fd, size_t len)
 {
 	len = ft_wcsnlen(wcs, len);
 	if (wcs)

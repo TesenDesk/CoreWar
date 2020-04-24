@@ -135,7 +135,7 @@
 # define EINOUT				2
 # define E2BIGENT			3
 # define EBADFD				4
-# define ENOMEMORY			5
+#define ENOMEMORY			5
 # define ENOACCES			6
 # define EINVALARG			7
 # define EFILE2BIG			8
@@ -569,12 +569,12 @@ wchar_t						*ft_wcsnew(size_t len);
 wchar_t						*ft_wcsdup(const wchar_t *str);
 void						ft_putwchar(wchar_t c);
 void						ft_putwchar_fd(wchar_t c, int fd);
-void						ft_putwcs(wchar_t const *wcs);
-void						ft_putwcs_fd(wchar_t const *wcs, int fd);
+void						ft_putwcs(char const *wcs);
+void						ft_putwcs_fd(char const *wcs, int fd);
 void						ft_putnstr(char const *str, size_t len);
 void						ft_putnstr_fd(char const *s, int fd, size_t len);
-void						ft_putnwcs(wchar_t const *str, size_t len);
-void						ft_putnwcs_fd(wchar_t const *wcs, int fd,
+void						ft_putnwcs(char const *str, size_t len);
+void						ft_putnwcs_fd(char const *wcs, int fd,
 								size_t len);
 int							ft_remove_sign_bit(unsigned char *nbr_ar, int size);
 void						ft_quicksort(int *arr, int size);

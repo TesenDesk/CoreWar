@@ -21,6 +21,8 @@
 # include "vmp_player.h"
 # include "player.h"
 # include "arena.h"
+# include "vm_params.h"
+//# include "vmp_player.h"
 
 typedef (*t_sm_parser)(t_vm_params *self, char **params);
 

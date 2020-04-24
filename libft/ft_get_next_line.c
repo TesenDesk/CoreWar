@@ -40,7 +40,7 @@
 ** the linked list from which the elements were taken to free up memory.
 */
 
-static void			*file_free(t_list **head, t_list *node, t_file *data)
+static void			*file_free(t_list **head, t_list *node, tt_file *data)
 {
 	if (data)
 	{
@@ -64,11 +64,11 @@ static void			*file_free(t_list **head, t_list *node, t_file *data)
 
 static void			*file_set(int fd, t_list **head, t_list *node)
 {
-	t_file			*data;
+	tt_file			*data;
 
 	if (!(node = ft_lstnew(NULL, 0)))
 		return (NULL);
-	if (!(data = (t_file *)ft_realloc(NULL, 0, sizeof(t_file))))
+	if (!(data = (tt_file *)ft_realloc(NULL, 0, sizeof(tt_file))))
 		return (file_free(head, node, NULL));
 	node->content = (void *)data;
 	ft_lstadd(head, node);
@@ -90,11 +90,11 @@ static void			*file_set(int fd, t_list **head, t_list *node)
 static int			file_cmp(const void *node_ptr, const void *fd_ptr)
 {
 	t_list			*node;
-	t_file			*data;
+	tt_file			*data;
 	int				fd;
 
 	node = (t_list *)node_ptr;
-	data = (t_file *)(node->content);
+	data = (tt_file *)(node->content);
 	fd = *(int *)fd_ptr;
 	return (data->fd != fd);
 }
@@ -112,13 +112,13 @@ static int			file_cmp(const void *node_ptr, const void *fd_ptr)
 static t_list		*file_get(int fd, t_list **head)
 {
 	t_list			*node;
-	t_file			*data;
+	tt_file			*data;
 
 	node = *head;
 	if (!node || !(node = ft_lstfind(*head, &fd, file_cmp)))
 		if (!(node = file_set(fd, head, node)))
 			return (NULL);
-	data = (t_file *)(node->content);
+	data = (tt_file *)(node->content);
 	if (!data->file)
 	{
 		if ((data->file_size = ft_read_file(fd, &data->file, BUFF_SIZE))
@@ -147,14 +147,14 @@ int					ft_get_next_line(int fd, char **line)
 {
 	static t_list	*head;
 	t_list			*node;
-	t_file			*data;
+	tt_file			*data;
 
 	if (!line || read(fd, NULL, 0) == EOF)
 		return (ERROR);
 	*line = NULL;
 	if (!(node = file_get(fd, &head)))
 		return (ERROR);
-	data = (t_file *)(node->content);
+	data = (tt_file *)(node->content);
 	if (!data->mark || data->file_size <= 1)
 		return (((int)(long int)(file_free(&head, node, data))) || NO_MORE_LINES);
 	data->mark = ft_delim(line, (char *)data->mark, '\n');

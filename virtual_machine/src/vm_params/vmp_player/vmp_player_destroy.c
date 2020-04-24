@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "_vmp_player.h"
+#include "file.h"
 
 void				vmp_player_destroy(t_vmp_player **self)
 {

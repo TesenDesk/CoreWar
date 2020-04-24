@@ -17,6 +17,7 @@
 # include "errors.h"
 # include "player.h"
 # include "vmp_player.h"
+# include "code/_code.h"
 
 typedef struct s_code	t_code;
 

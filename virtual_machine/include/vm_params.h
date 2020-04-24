@@ -13,6 +13,10 @@
 #ifndef VM_PARAMS_H
 # define VM_PARAMS_H
 
+#include "vmp_player.h"
+#include "arena.h"
+//#include "../src/arena/_arena.h"
+
 typedef struct s_vm_params	t_vm_params;
 
 t_vm_params		*vm_params_new(int argc, char *argv[]);

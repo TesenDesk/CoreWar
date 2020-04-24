@@ -17,7 +17,7 @@
 ** indicated by the file descriptor value.
 */
 
-void	ft_putstr_fd(wchar_t const *wcs, int fd)
+void	ft_putstr_fd(char const *wcs, int fd)
 {
 	int	len;
 

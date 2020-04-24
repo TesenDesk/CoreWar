@@ -30,6 +30,8 @@ typedef struct			s_arena
 	int				size;
 }						t_arena;
 
+
+t_player	**_arena_players_new(t_vm_params *params);
 void		_arena_set_smallest_unoccupied_name(t_arena *self);
 
 #endif

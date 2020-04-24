@@ -17,7 +17,7 @@
 ** value stdout == 1.
 */
 
-void	ft_putnwcs(wchar_t const *str, size_t len)
+void	ft_putnwcs(char const *str, size_t len)
 {
 	ft_putnwcs_fd(str, STDOUT, len);
 	return ;

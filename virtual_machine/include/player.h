@@ -13,6 +13,8 @@
 #ifndef PLAYER_H
 # define PLAYER_H
 
+#include "vmp_player.h"
+
 typedef struct s_player	t_player;
 
 void		player_set_name(t_player *self, int name);
