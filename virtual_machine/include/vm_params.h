@@ -6,7 +6,7 @@
 /*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:10:20 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/26 04:09:42 by nikita_toro      ###   ########.fr       */
+/*   Updated: 2020/04/26 21:40:12 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int				vm_params_nb_players(t_vm_params *params);
 void			*vm_params_fill_and_sort_array_of_players(t_vm_params *self,
 					t_arena *arena);
 void			vm_params_add_player_name_node(t_vm_params *self,
-					t_file *player);
-// void			vm_params_add_player_name_node(t_vm_params *self,
-// 					t_player *player);
+					t_vmp_player *player);
+
 #endif

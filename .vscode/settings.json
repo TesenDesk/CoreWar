@@ -20,7 +20,8 @@
 		"vmp_player.h": "c",
 		"_file.h": "c",
 		"_vmp_state.h": "c",
-		"_vm_params.h": "c"
+		"_vm_params.h": "c",
+		"_vm.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }
