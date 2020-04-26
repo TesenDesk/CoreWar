@@ -6,8 +6,9 @@ char		*file_data_name(t_file *self)
 	char		*name_in_data;
 	char		*name;
 
-	name_in_data = self->data
+	name_in_data = (char*)(self->data)
 		+ COREWAR_EXEC_MAGIC_LENGTH;
-	name = ft_strdup(name_in_data);
+	if (!(name = ft_strdup(name_in_data)))
+		raise(__FILE__, __LINE__, ENOMEMORY);
 	return (name);
 }

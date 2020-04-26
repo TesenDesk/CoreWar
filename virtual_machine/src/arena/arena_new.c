@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arena_new.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:29:47 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 23:06:13 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/24 20:31:19 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_arena				*arena_new(t_vm_params *params)
 	t_arena			*self;
 
 	_arena_new_precondition_check();
-	if ((self = (t_arena *)ft_memalloc(sizeof(*self))) == NULL)
+	if ((self = (t_arena *)ft_memalloc(sizeof(*self))) == NULL)c
 		raise(__FILE__, __LINE__, ENOMEMORY);
 	self->nb_players = vm_params_nb_players(params);
 	self->players = _arena_players_new(self->nb_players);

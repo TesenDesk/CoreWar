@@ -11,6 +11,7 @@ static int		file_check_data_size(t_file *self)
 {
 	ssize_t			min_size;
 	ssize_t			code_size;
+	char			*pointer_code_size;
 	ssize_t			data_file_size;
 	void			*code_size_in_data;
 
@@ -20,11 +21,11 @@ static int		file_check_data_size(t_file *self)
 		+ CHAMP_SIZE_LENGTH
 		+ COMMENT_LENGTH
 		+ NULL_LENGTH;
-	code_size = (ssize_t)(*(int*)
-		((char*)(self->data) // check code construction
+	pointer_code_size = (char*)(self->data)
 		+ COREWAR_EXEC_MAGIC_LENGTH
 		+ PROG_NAME_LENGTH
-		+ NULL_LENGTH));
+		+ NULL_LENGTH;
+	code_size = (ssize_t)*((int*)pointer_code_size);
 	data_file_size = min_size + code_size;
 	if (self->total < min_size
 	|| code_size > CHAMP_MAX_SIZE
@@ -35,18 +36,22 @@ static int		file_check_data_size(t_file *self)
 
 static int		file_data_check_nulls(t_file *self)
 {
+	char		*pointer_first_null;
+	char		*pointer_second_null;
 	int			first_null;
 	int			second_null;
 
-	first_null = *((int*)((char*)(self->data)
+	pointer_first_null = (char*)(self->data)
 		+ COREWAR_EXEC_MAGIC_LENGTH
-		+ PROG_NAME_LENGTH));
-	second_null = *((int*)((char*)(self->data)
+		+ PROG_NAME_LENGTH;
+	pointer_second_null = (char*)(self->data)
 		+ COREWAR_EXEC_MAGIC_LENGTH
 		+ PROG_NAME_LENGTH
 		+ NULL_LENGTH
 		+ CHAMP_SIZE_LENGTH
-		+ COMMENT_LENGTH));
+		+ COMMENT_LENGTH;
+	first_null = *((int*)pointer_first_null);
+	second_null = *((int*)pointer_second_null);
 	if (first_null || second_null)
 		return (1);
 	return (0);
@@ -64,10 +69,11 @@ static int		file_data_magic_header_check(t_file *self)
 
 int				file_data_precondition_check(t_file *self)
 {
-	int		result
+	int		result;
+	
 	if (file_check_data_size(t_file *self))
 	{
-		// error way
+
 	}
 	else if (file_data_check_nulls(t_file *self))
 	{

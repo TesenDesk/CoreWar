@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:10:07 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 23:15:07 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/26 03:56:29 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 
 typedef struct s_player	t_player;
 
-void		player_set_name(t_player *self, int name);
-int			player_name(t_player *self);
+// void		player_set_name(t_player *self, int name);
+// t_player	*player_new(t_vmp_player *vmp_player);
 
-t_player	*player_new(t_vmp_player *vmp_player);
-void		player_destroy(t_player **self);
+int				player_name(t_player *self);
+t_player		*player_new(t_file *file);
+void			player_destroy(t_player **self);
 
 #endif

@@ -12,13 +12,14 @@ void		*file_data_code(t_file *self)
 	char		*code_in_data;
 	void		*code;
 
-	code_in_data = self->data
+	code_in_data = (char*)(self->data)
 		+ COREWAR_EXEC_MAGIC_LENGTH
 		+ PROG_NAME_LENGTH
 		+ NULL_LENGTH
 		+ CHAMP_SIZE_LENGTH
 		+ COMMENT_LENGTH
 		+ NULL_LENGTH;
-	code = (void*)ft_strdup(code_in_data);
+	if (!(code = (void*)ft_strdup(code_in_data)))
+		raise(__FILE__, __LINE__, ENOMEMORY);
 	return (code);
 }

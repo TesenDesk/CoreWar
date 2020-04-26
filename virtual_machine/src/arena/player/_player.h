@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _player.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:10:36 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 18:53:31 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/26 21:14:57 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "errors.h"
 # include "player.h"
 # include "vmp_player.h"
+# include "file.h"  // ask about including this header
 
 typedef struct s_code	t_code;
 
