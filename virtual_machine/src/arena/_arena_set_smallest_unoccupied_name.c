@@ -11,11 +11,13 @@
 /* ************************************************************************** */
 
 #include "_arena.h"
-
+/*
+ *
+ */
 static void		_arena_set_smallest_unoccupied_name_postcondition_check(
 					t_arena *self)
 {
-	if (self->smallest_unoccupied_name >= self->nb_players)
+	if (self->smallest_unoccupied_name > self->nb_players)
 		raise(__FILE__, __LINE__, EBADPLAYERNAME);
 	return;
 }

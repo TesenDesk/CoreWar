@@ -16,9 +16,11 @@ void					_vm_params_parse(t_vm_params *self, char **params)
 {
 	int					curr_player_name;
 	int					state;
+
+	_vm_params_set_mock;
 	static t_sm_parser	vtable[NBR_OF_VIRTUAL_METHODS] =
 	{
-		_vm_params_set_mock,
+//		_vm_params_set_mock,
 		_vm_params_set_is_dump,
 		_vm_params_set_player_name,
 		_vm_params_set_file_name_without_id,
@@ -27,7 +29,7 @@ void					_vm_params_parse(t_vm_params *self, char **params)
 	};
 
 	while ((state = vmp_state(*params)) != VMP_STOP)
-	{
+		{
 		vtable[state](self, *params);
 		++(*params);
 	}

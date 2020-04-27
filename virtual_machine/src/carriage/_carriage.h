@@ -23,7 +23,8 @@
 typedef struct				s_carriage
 {
 	t_arena			*arena;
-	int				player_name;
+//	char 			*player_name;//добавить имя
+//	int				player_name;
 	int				carry;
 	int				op_code;
 	int				is_correct_operation;

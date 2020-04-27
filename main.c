@@ -4,9 +4,11 @@
 #include "token.h"
 #include <errno.h>
 #include "token_defines.h"
-//#include "token_private.h"
+//#include "virtual_machine/include/arena.h"
 
 #include "lexer.h"
+//#include "virtual_machine/src/vm_params/_vm_params.h"
+//#include "virtual_machine/include/vm_params.h"
 //#include "lexer_private.h"
 #include "./lexer/lexer_private.h"
 
@@ -30,6 +32,7 @@ int main()
 //    t_token *token1 = lexer_form_token(lex, &str);
 //    printf("type %s\n", token1->type  ? "token_add" : "nope");
 //    lex->state = INIT_ST;
+
 //	token1 = lexer_form_token(lex, &str);
 //	printf("type %s\n", token1->type == TOKEN_AFF ? "token_aff" : "nope");
 //	lex->state = INIT_ST;
@@ -132,6 +135,7 @@ int main()
 	printf("somecall() %d, %d\n", errsv, fd);
 	int chunk = 100;
 	int cur = 0;
+
 	while (read(fd,str + cur, chunk))
 		cur += chunk;
 	prs = parser_singleton_instance(PARSER_INSTANTIATE);
@@ -158,6 +162,13 @@ int main()
 	printf("|sasadsdddddddddddddddddddddddddddddddddddddddddddd\n");
 	text = analyse_text(analyser, &vtr, map, &str);
 	printf("state:%d\n", prs->state);
+//	t_vm_params vm_params;
+//	vm_params.is_set_dump = TRUE;
+//	vm_params.id_player_head = malloc(1000);
+//	vm_params.id_player_head->next = NULL;
+//	vm_params.id_player_head->content = malloc(1000);
 
+//	vm_params.id_player_head->content =
+//	t_arena *arena = arena_new(&vm_params);
 	return (SUCCESS);
 }
