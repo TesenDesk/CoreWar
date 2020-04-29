@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm_params_named_sorted_array_of_players.c          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 13:30:27 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 22:49:31 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/26 21:40:16 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

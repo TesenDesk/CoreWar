@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _vmp_player.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:18:37 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 21:51:39 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/26 21:13:02 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ typedef struct			s_vmp_player
 	int			player_name;
 	t_file		*file;
 }						t_vmp_player;
-
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _vm_params_set_file_name_with_id.c                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/06 00:47:10 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 22:07:50 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/26 21:44:34 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

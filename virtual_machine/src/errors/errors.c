@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 21:07:20 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/10 00:27:45 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/28 15:24:00 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,3 +54,5 @@ int				raise(char *file_name, int line_nb, int errmsg_index)
 	ft_putendl_fd(error_messages[errmsg_index], STDERR);
 	exit (FAILURE);
 }
+
+// add errors for "file_precondition_check"

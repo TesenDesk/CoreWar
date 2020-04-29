@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _vm_params_set_nbr_cycles.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/06 01:05:02 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/06 01:11:45 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/26 20:24:05 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ void					_vm_params_set_nbr_cycles(t_vm_params *self,
 {
 	if (ft_strint_ou_flow(*nbr_sycles_str, self->nb_cycles) == FAILURE)
 		raise(__FILE__, __LINE__, EINTOUFLOW);
-	self->is_set_dump == TRUE;
+	// self->is_set_dump = TRUE;
 	return;
 }

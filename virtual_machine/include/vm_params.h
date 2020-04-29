@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm_params.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:10:20 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 22:46:08 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/04/26 21:40:12 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ void			*vm_params_fill_and_sort_array_of_players(t_vm_params *self,
 					t_arena *arena);
 void			vm_params_add_player_name_node(t_vm_params *self,
 					t_vmp_player *player);
-					
+
 #endif

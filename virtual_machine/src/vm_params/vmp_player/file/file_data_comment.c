@@ -12,11 +12,12 @@ char		*file_data_comment(t_file *self)
 	char		*comment_in_data;
 	char		*comment;
 
-	comment_in_data = self->data
+	comment_in_data = (char*)(self->data)
 		+ COREWAR_EXEC_MAGIC_LENGTH
 		+ PROG_NAME_LENGTH
 		+ NULL_LENGTH
 		+ CHAMP_SIZE_LENGTH;
-	comment = ft_strdup(comment_in_data);
+	if (!(comment = ft_strdup(comment_in_data)))
+		raise(__FILE__, __LINE__, ENOMEMORY);
 	return (comment);
 }
