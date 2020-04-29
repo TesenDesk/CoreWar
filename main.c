@@ -7,9 +7,9 @@
 //#include "virtual_machine/include/arena.h"
 
 #include "lexer.h"
-//#include "virtual_machine/src/vm_params/_vm_params.h"
-//#include "virtual_machine/include/vm_params.h"
-//#include "lexer_private.h"
+#include "virtual_machine/src/vm_params/_vm_params.h"
+#include "virtual_machine/include/vm_params.h"
+#include "lexer_private.h"
 #include "./lexer/lexer_private.h"
 
 #include "./lexer/lexer_utils_private.h"
@@ -161,14 +161,22 @@ int main()
 	analyser = analyser_singleton_instance(ANALYSER_INSTANTIATE);
 	printf("|sasadsdddddddddddddddddddddddddddddddddddddddddddd\n");
 	text = analyse_text(analyser, &vtr, map, &str);
-	printf("state:%d\n", prs->state);
-//	t_vm_params vm_params;
-//	vm_params.is_set_dump = TRUE;
-//	vm_params.id_player_head = malloc(1000);
-//	vm_params.id_player_head->next = NULL;
-//	vm_params.id_player_head->content = malloc(1000);
+	printf("!state:%d\n", prs->state);
+	int fd2 = open('./bee_gees.cor', 'r');
+	t_vm_params vm_params;
+	printf("sasasasa\n");
+	vm_params.is_set_dump = TRUE;
+	vm_params.id_player_head = malloc(1000);
+	vm_params.id_player_head->next = NULL;
+	vm_params.id_player_head->content = malloc(1000);
+	vm_params.nb_players = 1;
+	vm_params.noid_player_head = NULL;
+	ft_bzero(vm_params.id_player_head->content, 1000);
+	read(fd2, vm_params.id_player_head->content, 1000);
+
+
 
 //	vm_params.id_player_head->content =
-//	t_arena *arena = arena_new(&vm_params);
+	t_arena *arena = arena_new(&vm_params);
 	return (SUCCESS);
 }

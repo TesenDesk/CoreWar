@@ -20,6 +20,7 @@ static void			_arena_new_precondition_check(void)
 		raise(__FILE__, __LINE__, EINVALCONSTANTS);
 	return;
 }
+
 static void			arena_fill_in_the_data(t_arena *self)
 {
 	char			*arena_field;
