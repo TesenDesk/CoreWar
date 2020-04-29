@@ -67,20 +67,20 @@ static int		file_data_magic_header_check(t_file *self)
 	return (0)
 }
 
-int				file_data_precondition_check(t_file *self)
+int				file_data_check_valid(t_file *self)
 {
 	int		result;
 	
 	if (file_check_data_size(t_file *self))
 	{
-
+		raise(__FILE__, __LINE__, ENOARGVAL);
 	}
 	else if (file_data_check_nulls(t_file *self))
 	{
-
+		raise(__FILE__, __LINE__, ENOARGVAL);
 	}
 	else if (file_data_magic_header_check(t_file *self))
 	{
-
+		raise(__FILE__, __LINE__, ENOARGVAL);
 	}
 }

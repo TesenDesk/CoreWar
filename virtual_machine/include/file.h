@@ -6,7 +6,7 @@
 /*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:18:37 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/26 03:28:27 by nikita_toro      ###   ########.fr       */
+/*   Updated: 2020/04/28 20:22:00 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void			*file_data_code(t_file *self);
 char			*file_data_comment(t_file *self);
 char			*file_data_name(t_file *self);
 int				file_player_name(t_file *self);
-int				file_data_precondition_check(t_file *self);
+int				file_data_check_valid(t_file *self);
 
 
 #endif

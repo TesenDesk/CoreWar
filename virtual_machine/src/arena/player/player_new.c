@@ -6,7 +6,7 @@
 /*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:30:11 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/26 21:36:24 by nikita_toro      ###   ########.fr       */
+/*   Updated: 2020/04/28 20:21:35 by nikita_toro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_player		*player_new(t_vmp_player *vmp_player)
 	t_file		*file;
 
 	file = vmp_player_file(vmp_player);
-	file_data_precondition_check(file);
+	file_data_check_valid(file);
 	if ((self = (t_player *)ft_memalloc(sizeof(*self))) == NULL)
 		raise(__FILE__, __LINE__, ENOMEMORY);
 	self->name = file_player_name(file);
