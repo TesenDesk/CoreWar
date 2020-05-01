@@ -44,7 +44,7 @@ t_arena				*arena_new(t_vm_params *params)
 	t_arena			*self;
 
 	_arena_new_precondition_check();
-	if ((self = (t_arena *)ft_memalloc(sizeof(*self))) == NULL)c
+	if ((self = (t_arena *)ft_memalloc(sizeof(*self))) == NULL)
 		raise(__FILE__, __LINE__, ENOMEMORY);
 	self->nb_players = vm_params_nb_players(params);
 	self->players = _arena_players_new(self->nb_players);

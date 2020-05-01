@@ -15,8 +15,7 @@
 
 typedef struct s_file	t_file;
 
-// t_file			*file_new(char *file_name);
-t_file			*file_new(int player_name, char *file_name);
+t_file			*file_new(char *file_name);
 void			file_destroy(t_file **self);
 void			*file_data_code(t_file *self);
 char			*file_data_comment(t_file *self);

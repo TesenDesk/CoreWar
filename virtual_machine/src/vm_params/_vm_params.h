@@ -13,15 +13,15 @@
 #ifndef _VM_PARAMS_H
 # define _VM_PARAMS_H
 
-# include "libft.h"
-# include "errors.h"
-# include "op.h"
-# include "vm_params.h"
-# include "vmp_state.h"
-# include "vmp_player.h"
-# include "player.h"
-# include "arena.h"
-# include "vm_params.h"
+    # include "../../../libft/libft.h" // changes by cmissy
+# include "../../include/errors.h"
+# include "../../include/op.h"
+# include "../../include/vm_params.h"
+# include "../../include/vmp_state.h"
+# include "../../include/vmp_player.h"
+# include "../../include/player.h"
+# include "../../include/arena.h"
+# include "../../include/vm_params.h"
 //# include "vmp_player.h"
 
 typedef (*t_sm_parser)(t_vm_params *self, char **params);

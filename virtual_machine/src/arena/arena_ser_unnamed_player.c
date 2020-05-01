@@ -16,7 +16,7 @@ void			arena_set_unnamed_player(t_arena *self,
 					t_player *unnamed_player)
 {
 	_arena_set_smallest_unoccupied_name(self);
-	player_set_name(unnamed_player, self->smallest_unoccupied_name);
+	(unnamed_player, self->smallest_unoccupied_name);
 	(self->players)[self->smallest_unoccupied_name] = unnamed_player;
 	return;
 }

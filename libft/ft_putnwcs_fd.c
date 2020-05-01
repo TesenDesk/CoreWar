@@ -19,7 +19,7 @@
 
 void	ft_putnwcs_fd(char const *wcs, int fd, size_t len)
 {
-	len = ft_wcsnlen(wcs, len);
+	len = ft_wcsnlen((wchar_t*)wcs, len);
 	if (wcs)
 		(void)write(fd, wcs, len * sizeof(wchar_t));
 	return ;

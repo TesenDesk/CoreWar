@@ -17,9 +17,7 @@
 
 typedef struct s_player	t_player;
 
-// t_player		*player_new(t_file *file);
-// void		player_set_name(t_player *self, int name);
-
+void    		player_set_name(t_player *self, int name);
 int				player_name(t_player *self);
 t_player		*player_new(t_vmp_player *vmp_player);
 void			player_destroy(t_player **self);
