@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "_vm_params.h"
+#include "vmp_player.h"
 
 void					_vm_params_set_file_name_without_id(t_vm_params *self,
 							char *file_name)
@@ -18,6 +19,7 @@ void					_vm_params_set_file_name_without_id(t_vm_params *self,
 	t_vmp_player		*player;
 
 	player = vmp_player_new(PNAME_MOCK, file_name);
-	_vm_params_add_unnanmed_player_node(self, player);
+//	_vm_params_add_unnanmed_player_node(self, player);
+
 	return;
 }

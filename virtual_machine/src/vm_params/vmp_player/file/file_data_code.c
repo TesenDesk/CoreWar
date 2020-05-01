@@ -7,7 +7,7 @@
 # define CHAMP_SIZE_LENGTH			4
 # define COMMENT_LENGTH				2048
 
-void		*file_data_code(t_file *self)
+void		*file_data_code(tt_file *self)
 {
 	char		*code_in_data;
 	void		*code;

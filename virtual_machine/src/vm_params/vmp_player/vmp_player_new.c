@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "_vmp_player.h"
+#include "file.h"
 
 t_vmp_player		*vmp_player_new(int player_name, char *file_name)
 {

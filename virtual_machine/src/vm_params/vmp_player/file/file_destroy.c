@@ -12,7 +12,7 @@
 
 #include "_file.h"
 
-void				file_destroy(t_file **self)
+void				file_destroy(tt_file **self)
 {
 	ft_memdel(&((*self)->data));
 	ft_memdel(&((*self)->file_name));

@@ -7,7 +7,7 @@
 # define CHAMP_SIZE_LENGTH			4
 # define COMMENT_LENGTH				2048
 
-static int		file_check_data_size(t_file *self)
+static int		file_check_data_size(tt_file *self)
 {
 	ssize_t			min_size;
 	ssize_t			code_size;
@@ -34,7 +34,7 @@ static int		file_check_data_size(t_file *self)
 	return (0);
 }
 
-static int		file_data_check_nulls(t_file *self)
+static int		file_data_check_nulls(tt_file *self)
 {
 	char		*pointer_first_null;
 	char		*pointer_second_null;
@@ -57,7 +57,7 @@ static int		file_data_check_nulls(t_file *self)
 	return (0);
 }
 
-static int		file_data_magic_header_check(t_file *self)
+static int		file_data_magic_header_check(tt_file *self)
 {
 	int			data_magic_header;
 
@@ -67,19 +67,19 @@ static int		file_data_magic_header_check(t_file *self)
 	return (0)
 }
 
-int				file_data_check_valid(t_file *self)
+int				file_data_check_valid(tt_file *self)
 {
 	int		result;
 	
-	if (file_check_data_size(t_file *self))
+	if (file_check_data_size(tt_file *self))
 	{
 		raise(__FILE__, __LINE__, ENOARGVAL);
 	}
-	else if (file_data_check_nulls(t_file *self))
+	else if (file_data_check_nulls(tt_file *self))
 	{
 		raise(__FILE__, __LINE__, ENOARGVAL);
 	}
-	else if (file_data_magic_header_check(t_file *self))
+	else if (file_data_magic_header_check(tt_file *self))
 	{
 		raise(__FILE__, __LINE__, ENOARGVAL);
 	}

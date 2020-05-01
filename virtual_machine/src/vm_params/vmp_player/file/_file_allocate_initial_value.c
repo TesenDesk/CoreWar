@@ -12,8 +12,9 @@
 
 #include "_file.h"
 
-void			_file_allocate_intitial_value(t_file *self)
+void			_file_allocate_intitial_value(tt_file *self)
 {
 	if ((self->data = ft_memalloc(INITIAL_CHUNK * sizeof(char))) == NULL)
 		raise(__FILE__, __LINE__, ENOMEMORY);
+	self->capacity = INITIAL_CHUNK;
 }

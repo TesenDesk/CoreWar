@@ -12,11 +12,11 @@
 
 #include "_file.h"
 
-t_file			*file_new(char *file_name)
+tt_file			*file_new(char *file_name)
 {
-	t_file		*self;
+	tt_file		*self;
 
-	if ((self = (t_file *)ft_memalloc(sizeof(*self))) == NULL)
+	if ((self = (tt_file *)ft_memalloc(sizeof(*self))) == NULL)
 		raise(__FILE__, __LINE__, ENOMEMORY);
 	self->file_name = file_name;
 	_file_open(self);
