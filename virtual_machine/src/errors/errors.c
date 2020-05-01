@@ -52,6 +52,7 @@ int				raise(char *file_name, int line_nb, int errmsg_index)
 	ft_putnbr_fd(line_nb, STDERR);
 	ft_putendl_fd(".", STDERR);
 	ft_putendl_fd(error_messages[errmsg_index], STDERR);
+	printf("wwww");
 	exit (FAILURE);
 }
 

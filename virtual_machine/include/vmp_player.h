@@ -17,13 +17,15 @@
 # define PNAME_MOCK	0
 # define PFILE_MOCK	(void *)0
 
+#include "file.h"
 typedef struct s_vmp_player t_vmp_player;
+
 
 t_vmp_player	*vmp_player_new(int player_name, char *player_file);
 void			vmp_player_destroy(t_vmp_player **self);
 void			vmp_player_set_file(t_vmp_player *self, char *file_name);
 
-t_file			*vmp_player_file(t_vmp_player *self); 
+tt_file			*vmp_player_file(t_vmp_player *self);
 	
 
 #endif

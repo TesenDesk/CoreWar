@@ -51,7 +51,7 @@ typedef struct				ss_file
 	char					*file;
 	ssize_t					file_size;
 	const char				*mark;
-}							tt_file;
+}							t_file;
 
 typedef struct				s_buffer
 {

@@ -13,16 +13,16 @@
 #ifndef FILE_H
 # define FILE_H
 
-typedef struct s_file	t_file;
+typedef struct s_file tt_file;
 
-// t_file			*file_new(char *file_name);
-t_file			*file_new(int player_name, char *file_name);
-void			file_destroy(t_file **self);
-void			*file_data_code(t_file *self);
-char			*file_data_comment(t_file *self);
-char			*file_data_name(t_file *self);
-int				file_player_name(t_file *self);
-int				file_data_check_valid(t_file *self);
+// tt_file			*file_new(char *file_name);
+tt_file			*file_new(char *file_name);
+void			file_destroy(tt_file **self);
+void			*file_data_code(tt_file *self);
+char			*file_data_comment(tt_file *self);
+char			*file_data_name(tt_file *self);
+int				file_player_name(tt_file *self);
+int				file_data_check_valid(tt_file *self);
 
 
 #endif

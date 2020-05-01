@@ -21,7 +21,7 @@
 typedef struct			s_vmp_player
 {
 	int			player_name;
-	t_file		*file;
+	tt_file		*file;
 }						t_vmp_player;
 
 #endif

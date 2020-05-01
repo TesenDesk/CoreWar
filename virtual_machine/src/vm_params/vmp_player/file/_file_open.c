@@ -12,7 +12,7 @@
 
 #include "_file.h"
 
-void			_file_open(t_file *self)
+void			_file_open(tt_file *self)
 {
 	if (self->is_opened == TRUE)
 		raise(__FILE__, __LINE__, EDOUBLEOPENNING);

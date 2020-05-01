@@ -12,15 +12,17 @@
 
 #include "_file.h"
 
-void			_file_reallocate_value(t_file *self)
+void			_file_reallocate_value(tt_file *self)
 {
 	ssize_t			new_capacity;
 
 	new_capacity = 2 * self->capacity;
 	if (new_capacity > INT_MAX)
-		raise(__FILE__, __LINE__, ENOMEMORY);
-	if (ft_realloc_safe(&self->data, self->capacity, new_capacity) == FAILURE)
-		raise(__FILE__, __LINE__, ENOMEMORY);
+		exit (-1);
+//		raise(__FILE__, __LINE__, ENOMEMORY);
+	if (ft_realloc_safe(&(self->data), self->capacity, new_capacity) == FAILURE)
+//		raise(__FILE__, __LINE__, ENOMEMORY);
+		exit(-1);
 	self->capacity = new_capacity;
 	return;
 }

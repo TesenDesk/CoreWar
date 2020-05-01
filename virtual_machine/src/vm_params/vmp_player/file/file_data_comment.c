@@ -7,7 +7,7 @@
 # define CHAMP_SIZE_LENGTH			4
 # define COMMENT_LENGTH				2048
 
-char		*file_data_comment(t_file *self)
+char		*file_data_comment(tt_file *self)
 {
 	char		*comment_in_data;
 	char		*comment;

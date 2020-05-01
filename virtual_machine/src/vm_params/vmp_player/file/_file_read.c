@@ -12,15 +12,17 @@
 
 #include "_file.h"
 
-void			_file_read(t_file *self)
+void			_file_read(tt_file *self)
 {
+	int 		chunk;
+
+	chunk = 0;
 	_file_allocate_intitial_value(self);
-	_file_get_chunk(self);
-	while (self->is_read == FALSE)
+	while ((chunk = read(self->fd, self->data + self->total, INITIAL_CHUNK)) > 0)
 	{
-		if (self->total + INITIAL_CHUNK > self->capacity)
+		self->total += chunk;
+		if (self->total == self->capacity)
 			_file_reallocate_value(self);
-		_file_get_chunk(self);
 	}
 	return;
 }

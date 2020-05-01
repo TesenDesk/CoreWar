@@ -12,7 +12,7 @@
 
 #include "_file.h"
 
-void			_file_close(t_file *self)
+void			_file_close(tt_file *self)
 {
 	if (self->is_opened == FALSE)
 		raise (__FILE__, __LINE__, EDOUBLECLOSE);

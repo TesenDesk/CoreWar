@@ -12,11 +12,12 @@
 
 #include "_vm_params.h"
 #include "vmp_player.h"
+#include "./vmp_player/file/_file.h"
 
 // void				_vm_params_add_unnamed_player_node(t_vm_params *self,
 // 						t_player *player)
 void				_vm_params_add_unnamed_player_node(t_vm_params *self,
-						t_file *player)
+						tt_file *player)
 {
 	t_list				*new_node;
 
@@ -24,5 +25,5 @@ void				_vm_params_add_unnamed_player_node(t_vm_params *self,
 		raise(__FILE__, __LINE__, ENOMEMORY);
 	ft_lstadd(&self->noid_player_head, new_node);
 	++self->nb_players;
+	return ;
 }
-return;

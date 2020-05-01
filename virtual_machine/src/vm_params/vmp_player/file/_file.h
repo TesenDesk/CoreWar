@@ -28,14 +28,14 @@ typedef struct	s_file
 	int			fd;
 	int			is_opened;
 	int			is_read;
-}				t_file;
+}				tt_file;
 
-void			_file_read(t_file *self);
-void			_file_open(t_file *self);
-void			_file_close(t_file *self);
+void			_file_read(tt_file *self);
+void			_file_open(tt_file *self);
+void			_file_close(tt_file *self);
 
-void			_file_allocate_intitial_value(t_file *self);
-void			_file_reallocate_value(t_file *self);
-void			_file_get_chunk(t_file *self);
+void			_file_allocate_intitial_value(tt_file *self);
+void			_file_reallocate_value(tt_file *self);
+void			_file_get_chunk(tt_file *self);
 
 #endif

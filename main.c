@@ -21,8 +21,9 @@
 #include "parser.h"
 #include "./parser/parser_private.h"
 #include "analyser.h"
+#include "vm_params.h"
 
-int main()
+int main(int ac, char**av)
 {
 //    t_lexer *lex;
 //   _lexer_constructor(&lex);
@@ -162,21 +163,12 @@ int main()
 	printf("|sasadsdddddddddddddddddddddddddddddddddddddddddddd\n");
 	text = analyse_text(analyser, &vtr, map, &str);
 	printf("!state:%d\n", prs->state);
-	int fd2 = open('./bee_gees.cor', 'r');
-	t_vm_params vm_params;
-	printf("sasasasa\n");
-	vm_params.is_set_dump = TRUE;
-	vm_params.id_player_head = malloc(1000);
-	vm_params.id_player_head->next = NULL;
-	vm_params.id_player_head->content = malloc(1000);
-	vm_params.nb_players = 1;
-	vm_params.noid_player_head = NULL;
-	ft_bzero(vm_params.id_player_head->content, 1000);
-	read(fd2, vm_params.id_player_head->content, 1000);
-
+//	int fd2 = open('./bee_gees.cor', 'r');
+//	t_vm_params vm_params = vm_pa;
+	t_vm_params *params = vm_params_new(ac, av);
 
 
 //	vm_params.id_player_head->content =
-	t_arena *arena = arena_new(&vm_params);
+	t_arena *arena = arena_new(params);
 	return (SUCCESS);
 }
