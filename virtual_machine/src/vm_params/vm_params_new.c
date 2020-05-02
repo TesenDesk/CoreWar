@@ -15,8 +15,7 @@
 static void				_vm_params_new_precondition_check(int argc)
 {
 	if (argc < 2)
-//		raise(__FILE__, __LINE__, EINVALARG);
-		exit (-1);
+		raise(__FILE__, __LINE__, EINVALARG);
 	return;
 }
 

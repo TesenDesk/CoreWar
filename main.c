@@ -3,6 +3,8 @@
 #include <fcntl.h>
 #include "token.h"
 #include <errno.h>
+#include <arena/_arena.h>
+#include <vm_params/vmp_player/file/_file.h>
 #include "token_defines.h"
 //#include "virtual_machine/include/arena.h"
 
@@ -22,9 +24,82 @@
 #include "./parser/parser_private.h"
 #include "analyser.h"
 #include "vm_params.h"
+//		exit (-1);
+
+# define DUMP_LINE_SIZE			32 //bytes
+# define MEM_SIZE				(4 * 1024)
+# define SPACE					' '
+# define EOL					'\n'
+void			arena_print_dump(t_arena *self)
+{
+	size_t		index;
+	size_t		i;
+	size_t		buffer_len;
+	char    	*buffer;
+	char	    *data;
+	buffer_len = DUMP_LINE_SIZE * 3;
+	buffer = ft_memalloc(buffer_len);
+	data = (char*)self->data;
+	index = 0;
+	i = 0;
+	while (index < MEM_SIZE)
+	{
+		buffer[i] = '0';
+		if (data[index] < 16)
+			ft_uintmaxtostr(&buffer[i + 1], data[index], 16, 0);
+		else
+			ft_uintmaxtostr(&buffer[i], data[index], 16, 0);
+		i += 2;
+		index++;
+		if (!(index % DUMP_LINE_SIZE))
+		{
+			buffer[i] = EOL;
+			i = 0;
+			write(1, buffer, buffer_len);
+		}
+		else
+			buffer[i++] = SPACE;
+	}
+	// (void)vm_singleton(VM_DESTRUCT, 0, NULL);
+}
+
+
+//void			file_print_dump(tt_file *self)
+//{
+//	size_t		index;
+//	size_t		i;
+//	size_t		buffer_len;
+//	char    	*buffer;
+//	char	    *data;
+//	buffer_len = DUMP_LINE_SIZE * 3;
+//	buffer = ft_memalloc(buffer_len);
+//	data = (char*)self->data;
+//	index = 0;
+//	i = 0;
+//	while (index < MEM_SIZE)
+//	{
+//		buffer[i] = '0';
+//		if (data[index] < 16)
+//			ft_uintmaxtostr(&buffer[i + 1], data[index], 16, 0);
+//		else
+//			ft_uintmaxtostr(&buffer[i], data[index], 16, 0);
+//		i += 2;
+//		index++;
+//		if (!(index % DUMP_LINE_SIZE))
+//		{
+//			buffer[i] = EOL;
+//			i = 0;
+//			write(1, buffer, buffer_len);
+//		}
+//		else
+//			buffer[i++] = SPACE;
+//	}
+//	// (void)vm_singleton(VM_DESTRUCT, 0, NULL);
+//}
 
 int main(int ac, char**av)
 {
+	av[1] = "/home/ikira/Desktop/core/bee_gees.cor";
 //    t_lexer *lex;
 //   _lexer_constructor(&lex);
 //    lex = lexer_is
@@ -162,6 +237,11 @@ int main(int ac, char**av)
 	analyser = analyser_singleton_instance(ANALYSER_INSTANTIATE);
 	printf("|sasadsdddddddddddddddddddddddddddddddddddddddddddd\n");
 	text = analyse_text(analyser, &vtr, map, &str);
+	/*
+	 * ПЕРЕДЕЛАТЬ!!!
+	 */
+	av += 1;
+
 	printf("!state:%d\n", prs->state);
 //	int fd2 = open('./bee_gees.cor', 'r');
 //	t_vm_params vm_params = vm_pa;
