@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include "_file.h"
+#include "errors.h"
 
-void			_file_open(tt_file *self)
+void			 _file_open(tt_file *self)
 {
 	if (self->is_opened == TRUE)
 		raise(__FILE__, __LINE__, EDOUBLEOPENNING);

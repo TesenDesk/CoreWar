@@ -16,7 +16,7 @@ void			_file_read(tt_file *self)
 {
 	int 		chunk;
 
-	chunk = 0;
+    chunk = 0;
 	_file_allocate_intitial_value(self);
 	while ((chunk = read(self->fd, self->data + self->total, INITIAL_CHUNK)) > 0)
 	{

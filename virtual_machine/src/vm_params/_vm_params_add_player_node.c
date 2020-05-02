@@ -12,21 +12,14 @@
 
 #include "_vm_params.h"
 #include "vmp_player.h"
-<<<<<<< HEAD
 #include "player.h"
-=======
 #include "./vmp_player/file/_file.h"
->>>>>>> 5e87aa81da8044c119c7391fd8d16694431cd531
 
 
 //void				_vm_params_add_unnamed_player_node(t_vm_params *self,
 //						t_file *player)
 void				_vm_params_add_unnamed_player_node(t_vm_params *self,
-<<<<<<< HEAD
- 						t_player *player)
-=======
 						tt_file *player)
->>>>>>> 5e87aa81da8044c119c7391fd8d16694431cd531
 {
 	t_list				*new_node;
 
@@ -37,7 +30,3 @@ void				_vm_params_add_unnamed_player_node(t_vm_params *self,
 	++self->nb_players;
 	return ;
 }
-<<<<<<< HEAD
-return;
-=======
->>>>>>> 5e87aa81da8044c119c7391fd8d16694431cd531

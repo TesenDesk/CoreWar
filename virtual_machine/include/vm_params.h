@@ -24,7 +24,7 @@ void			vm_params_destroy(t_vm_params **self);
 
 void			vm_params_destroy_players_lists(t_vm_params *params);
 int				vm_params_nb_players(t_vm_params *params);
-void			*vm_params_fill_and_sort_array_of_players(t_vm_params *self,
+void			vm_params_fill_and_sort_array_of_players(t_vm_params *self,
 					t_arena *arena);
 void			vm_params_add_player_name_node(t_vm_params *self,
 					t_vmp_player *player);

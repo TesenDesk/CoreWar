@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _PALYER_H
+#ifndef _PLAYER_H
 # define _PLAYER_H
 
 # include "libft.h"

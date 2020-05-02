@@ -50,7 +50,7 @@ void		_vm_params_set_file_name_with_id(t_vm_params *self,
 				char *file_name);
 void		_vm_params_set_file_name_without_id(t_vm_params *self,
 				char *file_name);
-void		_vm_params_set_nbr_cycles(t_vm_params *self, char *nbr_sycles_str);
+void		_vm_params_set_nbr_cycles(t_vm_params *self, char *nbr_cycles_str);
 void		_vm_params_set_is_dump(t_vm_params *self, char *useless);
 void		_vm_params_set_mock(t_vm_params *never_passed, char *usless);
 

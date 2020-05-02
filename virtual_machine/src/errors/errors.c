@@ -41,6 +41,10 @@ static char		*error_messages[ERRMSGCOUNT] =
 	"Try to replace pointer to memory not being freed.",
 	"Loss of information due to some reasons. "
 		"(REG_SIZE is less then number of players.)",
+    "Wrong code_size",
+    "Incorrectly placed NULLs in data",
+    "No magic header",
+
 };
 
 int				raise(char *file_name, int line_nb, int errmsg_index)
