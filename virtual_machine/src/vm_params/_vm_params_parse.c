@@ -25,11 +25,10 @@ void					_vm_params_parse(t_vm_params *self, char **params)
 		_vm_params_set_nbr_cycles,
 		_vm_params_set_file_name_with_id,
 	};
-
 	while ((state = vmp_state(*params)) != VMP_STOP)
 	{
 		vtable[state](self, *params);
-		++(*params);
+		++params;
 	}
 	return ;
 }

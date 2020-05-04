@@ -16,8 +16,7 @@
 
 // void				_vm_params_add_unnamed_player_node(t_vm_params *self,
 // 						t_player *player)
-void				_vm_params_add_unnamed_player_node(t_vm_params *self,
-						tt_file *player)
+void				_vm_params_add_unnamed_player_node(t_vm_params *self,t_vmp_player *player)
 {
 	t_list				*new_node;
 

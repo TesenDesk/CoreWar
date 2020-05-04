@@ -17,6 +17,6 @@ void					_vm_params_set_nbr_cycles(t_vm_params *self,
 {
 	if (ft_strint_ou_flow(*nbr_sycles_str, self->nb_cycles) == FAILURE)
 		raise(__FILE__, __LINE__, EINTOUFLOW);
-	// self->is_set_dump = TRUE;
+	self->is_set_dump = TRUE;
 	return;
 }

@@ -16,11 +16,11 @@ int					vmp_state(char *param)
 {
 	static int		state;
 
-	if (state != VMP_INITIAL && param == NULL)
-		raise(__FILE__, __LINE__, ENOARGVAL);
-	if (state == VMP_INITIAL)
-		state = _vmp_state_due_to_param(param);
-	else
-		state = _vmp_state_due_to_state(state);
+//	if (state != VMP_INITIAL && param == NULL)
+//		raise(__FILE__, __LINE__, ENOARGVAL);
+//	if (state == VMP_INITIAL)
+//		state = _vmp_state_due_to_param(param);
+//	else
+//		state = _vmp_state_due_to_state(state);
 	return (state);
 }

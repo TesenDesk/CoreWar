@@ -22,7 +22,7 @@
 # include "player.h"
 # include "arena.h"
 # include "vm_params.h"
-//# include "vmp_player.h"
+#include "../vmp_player/_vmp_player.h"
 
 typedef  void (*t_sm_parser)(t_vm_params *self, char **params);
 
@@ -36,11 +36,7 @@ typedef struct					s_vm_params
 }								t_vm_params;
 
 void		_vm_params_parse(t_vm_params *self, char **params);
-//void		_vm_params_add_unnanmed_player_node(t_vm_params *self,
-//				char *file_name);
-
-void				_vm_params_add_unnamed_player_node(t_vm_params *self,
-													   tt_file *player);
+void		_vm_params_add_unnamed_player_node(t_vm_params *self, t_vmp_player *player);
 void		_vm_params_add_named_player_node(t_vm_params *self,
 				char *file_name);
 

@@ -13,11 +13,11 @@
 #include "_vm_params.h"
 
 void					_vm_params_set_mock(t_vm_params *never_passed,
-							char *usless)
+							char *useless)
 {
 	if (TRUE)
 		raise(__FILE__, __LINE__, EMOCKMETHOD);
 	(void)never_passed;
-	(void)usless;
+	(void)useless;
 	return;
 }
