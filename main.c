@@ -1,8 +1,8 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
+//#include <stdio.h>
+//#include <unistd.h>
+//#include <fcntl.h>
 //#include "token.h"
-#include <errno.h>
+//#include <errno.h>
 #include "token_defines.h"
 #include "virtual_machine/include/arena.h"  // changes by cmissy
 
@@ -83,11 +83,10 @@
 //{
 //
 //}
-#include "_vmp_player.h"
+//#include "_vmp_player.h"
 int                 main()
 {
     t_vmp_player    *vmp_player;
 
     vmp_player = vmp_player_new(1, "bee_gees.cor");
-//    print_vmp_player(vmp_player);
 }

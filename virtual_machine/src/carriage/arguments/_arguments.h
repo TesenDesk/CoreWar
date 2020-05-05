@@ -32,7 +32,7 @@ typedef struct			s_arguments
 	long				arg_3;
 }						t_arguments;
 
- t_arguments			*_arguments_new(void);
+t_arguments			*_arguments_new(void);
 void					_arguments_destroy(t_arguments **self);
 
 
