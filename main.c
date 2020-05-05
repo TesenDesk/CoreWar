@@ -62,18 +62,32 @@
 
 #include "virtual_machine/include/file.h"
 
-static void 	print_file(tt_file *self)
-{
-    printf("data_name = %s\n", file_data_name(self));
-    printf("data_comment = %s\n", file_data_comment(self));
-    printf("is valid = %s\n", file_data_check_valid(self));
-}
+//static void 	print_file(tt_file *self)
+//{
+//    printf("data_name = %s\n", file_data_name(self));
+//    printf("data_comment = %s\n", file_data_comment(self));
+//    printf("is valid = %d\n", file_data_check_valid(self));
+//
+//}
+//
+//int     main(int c, char **v)
+//{
+//    tt_file     *file;
+//
+//    file = file_new("bee_gees.cor");
+//    print_file(file);
+//    return (SUCCESS);
+//}
 
-int     main(int c, char **v)
+//void                print_vmp_player(t_vmp_player *self)
+//{
+//
+//}
+#include "_vmp_player.h"
+int                 main()
 {
-    tt_file     *file;
+    t_vmp_player    *vmp_player;
 
-    file = file_new("bee_gees.cor");
-    print_file(file);
-    return (SUCCESS);
+    vmp_player = vmp_player_new(1, "bee_gees.cor");
+//    print_vmp_player(vmp_player);
 }

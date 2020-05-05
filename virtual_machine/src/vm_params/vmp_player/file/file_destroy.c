@@ -15,7 +15,6 @@
 void				file_destroy(tt_file **self)
 {
 	ft_memdel(&((*self)->data));
-//	ft_memdel(&((*self)->file_name)); // it's stack (NOT HEAP)
 	ft_memdel((void **)self);
 	return;
 }
