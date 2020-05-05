@@ -12,6 +12,7 @@
 
 #include "_vm_params.h"
 
+
 static void			_vm_params_destroy_player(void *_player, size_t mock)
 {
 	t_vmp_player	*player;

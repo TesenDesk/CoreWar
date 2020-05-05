@@ -12,8 +12,9 @@
 
 #include "_vm_params.h"
 
-void			vm_params_add_named_player_node(t_vm_params *self,
-					t_vmp_player *player)
+
+void			_vm_params_add_named_player_node(t_vm_params *self,
+					void *player)
 {
 	t_list		*new_node;
 

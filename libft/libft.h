@@ -407,6 +407,7 @@ typedef union				u_print_ldbl
 /*
 ** Part 1.
 */
+long long					ft_atol(const char *str);
 void						*ft_memset(void *dst, int c, size_t size);
 void						ft_bzero(void *str, size_t size);
 void						*ft_memcpy(void *dst, const void *src, size_t len);

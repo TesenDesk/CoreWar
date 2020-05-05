@@ -12,11 +12,11 @@
 
 #include "_vm_params.h"
 
+
+
 void					_vm_params_set_nbr_cycles(t_vm_params *self,
 							char *nbr_sycles_str)
 {
-	if (ft_strint_ou_flow(*nbr_sycles_str, self->nb_cycles) == FAILURE)
-		raise(__FILE__, __LINE__, EINTOUFLOW);
-	self->is_set_dump = TRUE;
+	self->nb_cycles = ft_atol(nbr_sycles_str);
 	return;
 }

@@ -26,6 +26,26 @@
 
 typedef  void (*t_sm_parser)(t_vm_params *self, char **params);
 
+# define USAGE_STR			 "Usage: ./corewar [-d N -s N -v N | -b --stealth | -n --stealth] [-a] <champion1.cor> <...>\n"
+//							 "    -a        : Prints output from \"aff\" (Default is to hide it)\n"
+//							 "#### TEXT OUTPUT MODE ##########################################################\n"
+//							 "    -d N      : Dumps memory after N cycles then exits\n"
+//							 "    -s N      : Runs N cycles, dumps memory, pauses, then repeats\n"
+//							 "    -v N      : Verbosity levels, can be added together to enable several\n"
+//							 "                - 0 : Show only essentials\n"
+//							 "                - 1 : Show lives\n"
+//							 "                - 2 : Show cycles\n"
+//							 "                - 4 : Show operations (Params are NOT litteral ...)\n"
+//							 "                - 8 : Show deaths\n"
+//							 "                - 16 : Show PC movements (Except for jumps)\n"
+//							 "#### BINARY OUTPUT MODE ########################################################\n"
+//							 "    -b        : Binary output mode for corewar.42.fr\n"
+//							 "    --stealth : Hides the real contents of the memory\n"
+//							 "#### NCURSES OUTPUT MODE #######################################################\n"
+//							 "    -n        : Ncurses output mode\n"
+//							 "    --stealth : Hides the real contents of the memory\n"
+//							 "################################################################################"
+
 typedef struct					s_vm_params
 {
 	int				is_set_dump;
@@ -38,7 +58,7 @@ typedef struct					s_vm_params
 void		_vm_params_parse(t_vm_params *self, char **params);
 void		_vm_params_add_unnamed_player_node(t_vm_params *self, t_vmp_player *player);
 void		_vm_params_add_named_player_node(t_vm_params *self,
-				char *file_name);
+				void *file_name);
 
 void		_vm_params_set_player_name(t_vm_params *self,
 				char *player_name_str);

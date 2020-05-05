@@ -21,8 +21,12 @@
 # define P_LONG_NAME	"--name"
 # define P_SHORT_DUMP	"-d"
 # define P_LONG_DUMP	"--dump"
+# define FLAG_CYCLE		"-s"
+# define FLAG_VERB		"-v"
+# define FLAG_BINARY	"-b"
+# define FLAG_STEALTH	"--stealth"
+# define FLAG_NCURSES	"--curses"
 
-int			_vmp_state_due_to_state(int state);
-int			_vmp_state_due_to_param(char *param);
+
 
 #endif
