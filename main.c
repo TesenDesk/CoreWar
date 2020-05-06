@@ -84,9 +84,16 @@
 //
 //}
 //#include "_vmp_player.h"
+//#include "carriage.h"
+#include "player.h"
 int                 main()
 {
-    t_vmp_player    *vmp_player;
+//    t_carriage      *carriage;
+//    carriage = carriage_new(pla);
+    t_vmp_player    *vmpPlayer;
+    t_player        *player;
 
-    vmp_player = vmp_player_new(1, "bee_gees.cor");
+    vmpPlayer = vmp_player_new(1, "bee_gees.cor");
+    player = player_new(vmpPlayer);
+    arena_new();
 }
