@@ -676,6 +676,7 @@ int							ft_hash_map_set_content(t_hash_map *map, void *key,
 								void *new_content);
 int							ft_hash_map_put_to_map(t_hash_map **map_input,
 								t_pair *pair);
+
 /*
 ** Forbidden in libft project
 */

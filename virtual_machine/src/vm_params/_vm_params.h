@@ -50,6 +50,10 @@ typedef struct					s_vm_params
 {
 	int				is_set_dump;
 	int				nb_cycles;
+	int 			ncurses;
+	int 			verbosity_lvl;
+	int 			stealth;
+	int 			binary;
 	t_list			*id_player_head;
 	t_list			*noid_player_head;
 	int				nb_players;
@@ -69,5 +73,8 @@ void		_vm_params_set_file_name_without_id(t_vm_params *self,
 void		_vm_params_set_nbr_cycles(t_vm_params *self, char *nbr_sycles_str);
 void		_vm_params_set_is_dump(t_vm_params *self, char *useless);
 void		_vm_params_set_mock(t_vm_params *never_passed, char *usless);
+
+
+int 						ft_arg_is_num(char *param);
 
 #endif
