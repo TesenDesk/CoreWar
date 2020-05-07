@@ -27,9 +27,10 @@ enum				e_t_argtype
 	NO_ARG = 0,
 	ARG_NUMFLUG,
 	ARG_NONUMFLAG,
+	ARG_NUM,
 	ARG_FILE,
 };
-enum 				e_t_flagcodes
+enum 				e_t_paramcodes
 {
 	NO_FLAG_CODE = 0,
 	FLAG_NAME_CODE,
@@ -39,26 +40,33 @@ enum 				e_t_flagcodes
 	FLAG_BINARY_CODE,
 	FLAG_STEALTH_CODE,
 	FLAG_NCURSES_CODE,
+	FLAG_NUM_CODE,
+	FLAG_FILE_CODE,
+	FLAG_UNDEF,
 };
 
 
 
 static int 					flag_check(char *param) {
-	if (ft_strncmp(P_SHORT_NAME, param, 2) ||
-		ft_strncmp(P_LONG_NAME, param, 6))
+	if (!ft_strncmp(P_SHORT_NAME, param, 2) ||
+		!ft_strncmp(P_LONG_NAME, param, 6))
 		return (FLAG_NAME_CODE);
-
-	else if (ft_strncmp(FLAG_CYCLE, param, 2))
+	else if (!ft_strncmp(FLAG_CYCLE, param, 2))
 		return (FLAG_CYCLE_CODE);
-	else if(ft_strncmp(FLAG_VERB, param, 2))
+	else if(!ft_strncmp(FLAG_VERB, param, 2))
 		return (FLAG_VERBOSE_CODE);
-	else if (ft_strncmp(P_SHORT_DUMP, param, 2) ||
-			ft_strncmp(P_LONG_DUMP, param, 6))
+	else if (!ft_strncmp(P_SHORT_DUMP, param, 2) ||
+			!ft_strncmp(P_LONG_DUMP, param, 6))
 		return (FLAG_DUMP_CODE);
-	else if(ft_strncmp(FLAG_STEALTH, param, 9))
+	else if(!ft_strncmp(FLAG_STEALTH, param, 9))
 		return (FLAG_STEALTH_CODE);
-	else if(ft_strncmp(FLAG_NCURSES, param, 8))
+	else if(!ft_strncmp(FLAG_NCURSES, param, 8))
 		return (FLAG_NCURSES_CODE);
+	else if (!ft_strncmp(FLAG_BINARY, param, 2))
+		return (FLAG_BINARY_CODE);
+	else if (ft_arg_is_num(param))
+		return (FLAG_NUM_CODE);
+	return (FLAG_FILE_CODE);
 }
 
 static void				_vm_params_flag_on(t_vm_params *self, int flag_type)
@@ -72,61 +80,115 @@ static void				_vm_params_flag_on(t_vm_params *self, int flag_type)
 	else if (flag_type == FLAG_NCURSES_CODE)
 		self->ncurses = TRUE;
 }
+static int 				is_numflag(int flag)
+{
+	return (flag >= FLAG_NAME_CODE && flag <= FLAG_VERBOSE_CODE);
+}
 
-static int				_vm_params_init_action(t_vm_params *self, char *param)
+
+
+static int				_vm_params_init(t_vm_params *self, char *param)
 {
 	int 				flag;
 
 	flag = flag_check(param);
-	if (flag == FLAG_CYCLE)
-		return (VMP_SET_CYCLES);
-	else if (flag == FLAG_NAME_CODE)
-		return (VMP_SET_PNAME);
-	else if (flag == FLAG_VERB)
-		return (VMP_SET_VERB);
-	else if (flag >= FLAG_DUMP_CODE)
-	{
+	if(flag == FLAG_STEALTH_CODE || flag == FLAG_NCURSES_CODE
+	|| flag == FLAG_BINARY_CODE || flag == FLAG_DUMP_CODE) {
 		_vm_params_flag_on(self, flag);
-		return (VMP_INITIAL);
+		return (flag);
 	}
-	else if (ft_arg_is_num(param))
-		exit(-1);
-	else
-	{
+	else if (flag == FLAG_FILE_CODE)
 		_vm_params_set_file_name_without_id(self, param);
-		return (VMP_INITIAL);
-	}
+	return (flag);
+	/*
+	 * какие названия файлов допустимы?
+	 */
 }
 
-static int				_vm_params_waitnum_action(t_vm_params *self, char *param)
+static int 				_vm_params_flag_name(t_vm_params *self, char *param)
 {
 	long long num;
 
-	num = 0;
-	if (!ft_arg_is_num(param))
-		exit(-1);
 	num = ft_atol(param);
+	if (!(ft_arg_is_num(param)))
+		raise(__FILE__, __LINE__, ENOARGVAL);
+	_vm_params_set_player_name(self, num);
+	return (ARG_NUM);
+}
 
+static int 				_vm_params_flag_cycles(t_vm_params *self, char *param)
+{
+	long long num;
 
+	num = ft_atol(param);
+	if (!(ft_arg_is_num(param)))
+		raise(__FILE__, __LINE__, ENOARGVAL);
+	self->nb_cycles = num;
+	return (ARG_NUM);
 
 }
 
+static int 				_vm_params_flag_verbose(t_vm_params *self, char *param)
+{
+	long long num;
+
+	num = ft_atol(param);
+	if (!(ft_arg_is_num(param)))
+		raise(__FILE__, __LINE__, ENOARGVAL);
+	self->nb_cycles = num;
+	return (ARG_NUM);
+
+}
+
+int 					_vmp_state(t_vm_params *self, int argtype)
+{
+	if (self->state == VMP_INITIAL) {
+		if (argtype == FLAG_NUM_CODE)
+			raise(__FILE__, __LINE__, ENOARGVAL);
+		else if (argtype == FLAG_FILE_CODE || argtype == FLAG_DUMP_CODE
+				 || argtype == FLAG_BINARY_CODE || argtype == FLAG_NCURSES_CODE
+				 || argtype == FLAG_STEALTH_CODE)
+			;
+		else if (argtype == FLAG_VERBOSE_CODE)
+			self->state = VMP_SET_VERB;
+		else if (argtype == FLAG_CYCLE_CODE)
+			self->state = VMP_SET_CYCLES;
+		else if (argtype == FLAG_NAME_CODE)
+			self->state = VMP_SET_PNAME;
+	}
+	else if(self->state == VMP_SET_PNAME || self->state == VMP_SET_CYCLES
+	|| self->state == VMP_SET_VERB) {
+		if (argtype == FLAG_NUM_CODE)
+			self->state = VMP_INITIAL;
+		else
+			raise(__FILE__, __LINE__, ENOARGVAL);
+	}
+}
+//
 
 void					_vm_params_parse(t_vm_params *self, char **params)
 {
 	int					curr_player_name;
-	int					state;	
-//	static int	vtable[NBR_OF_VIRTUAL_METHODS] =
-//	{
-//			_vm_params_init_action,
-//			_vm_params_waitnum_action,
-//		_vm_params_set_file_name_without_id,
-//	};
-//	while (state != VMP_STOP)
-//	{
-//		 vtable[state](self, *params);
-//		state = vmp_state(int));
-//		++params;
-//	}
+	int 				arg_type;
+
+	arg_type = NO_ARG;
+	static t_sm_parser 	vtable[NBR_OF_VIRTUAL_METHODS] =
+	{
+			_vm_params_init,
+			_vm_params_flag_name,
+			_vm_params_flag_cycles,
+			_vm_params_flag_verbose,
+	};
+	if (!(*params))
+	{
+		printf(USAGE_STR);
+		exit(0);
+	}
+	while (*params)
+	{
+		arg_type = vtable[self->state](self, *params);
+		_vmp_state(self, arg_type);
+		++params;
+	}
 	return ;
 }

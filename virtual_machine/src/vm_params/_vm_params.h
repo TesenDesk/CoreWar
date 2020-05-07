@@ -24,7 +24,8 @@
 # include "vm_params.h"
 #include "../vmp_player/_vmp_player.h"
 
-typedef  void (*t_sm_parser)(t_vm_params *self, char **params);
+//typedef  void (*t_sm_parser)(t_vm_params *self, char **params);
+typedef  int (*t_sm_parser)(t_vm_params *self, char *params);
 
 # define USAGE_STR			 "Usage: ./corewar [-d N -s N -v N | -b --stealth | -n --stealth] [-a] <champion1.cor> <...>\n"
 //							 "    -a        : Prints output from \"aff\" (Default is to hide it)\n"
@@ -54,6 +55,7 @@ typedef struct					s_vm_params
 	int 			verbosity_lvl;
 	int 			stealth;
 	int 			binary;
+	int				state;
 	t_list			*id_player_head;
 	t_list			*noid_player_head;
 	int				nb_players;
@@ -65,15 +67,13 @@ void		_vm_params_add_named_player_node(t_vm_params *self,
 				void *file_name);
 
 void		_vm_params_set_player_name(t_vm_params *self,
-				char *player_name_str);
+				 int player_name);
 void		_vm_params_set_file_name_with_id(t_vm_params *self,
 				char *file_name);
 void		_vm_params_set_file_name_without_id(t_vm_params *self,
 				char *file_name);
-void		_vm_params_set_nbr_cycles(t_vm_params *self, char *nbr_sycles_str);
-void		_vm_params_set_is_dump(t_vm_params *self, char *useless);
-void		_vm_params_set_mock(t_vm_params *never_passed, char *usless);
 
+int 					_vmp_state(t_vm_params *self, int argtype);
 
 int 						ft_arg_is_num(char *param);
 
