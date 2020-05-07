@@ -1,15 +1,15 @@
-//#include <stdio.h>
-//#include <unistd.h>
-//#include <fcntl.h>
-//#include "token.h"
-//#include <errno.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include "token.h"
+#include <errno.h>
 #include "token_defines.h"
-#include "virtual_machine/include/arena.h"  // changes by cmissy
+//#include "virtual_machine/include/arena.h"
 
 #include "lexer.h"
 #include "virtual_machine/src/vm_params/_vm_params.h"
 #include "virtual_machine/include/vm_params.h"
-//#include "lexer_private.h"  // changes by cmissy
+#include "lexer_private.h"
 #include "./lexer/lexer_private.h"
 
 #include "./lexer/lexer_utils_private.h"
@@ -21,6 +21,7 @@
 #include "parser.h"
 #include "./parser/parser_private.h"
 #include "analyser.h"
+<<<<<<< HEAD
 //#include "vm_params.h"
 
 //int main()
@@ -129,6 +130,44 @@
 ////	vm_params.id_player_head->content =
 //	t_arena *arena = arena_new(params);
 //	return (SUCCESS);
+=======
+#include "vm_params.h"
+//		exit (-1);
+
+
+
+//void			file_print_dump(tt_file *self)
+//{
+//	size_t		index;
+//	size_t		i;
+//	size_t		buffer_len;
+//	char    	*buffer;
+//	char	    *data;
+//	buffer_len = DUMP_LINE_SIZE * 3;
+//	buffer = ft_memalloc(buffer_len);
+//	data = (char*)self->data;
+//	index = 0;
+//	i = 0;
+//	while (index < MEM_SIZE)
+//	{
+//		buffer[i] = '0';
+//		if (data[index] < 16)
+//			ft_uintmaxtostr(&buffer[i + 1], data[index], 16, 0);
+//		else
+//			ft_uintmaxtostr(&buffer[i], data[index], 16, 0);
+//		i += 2;
+//		index++;
+//		if (!(index % DUMP_LINE_SIZE))
+//		{
+//			buffer[i] = EOL;
+//			i = 0;
+//			write(1, buffer, buffer_len);
+//		}
+//		else
+//			buffer[i++] = SPACE;
+//	}
+//	// (void)vm_singleton(VM_DESTRUCT, 0, NULL);
+>>>>>>> e3e25fe0ac3684476028641a79df83acff7a3173
 //}
 
 int         main()

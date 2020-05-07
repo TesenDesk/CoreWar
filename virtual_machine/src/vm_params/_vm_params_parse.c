@@ -114,7 +114,15 @@ static int 				_vm_params_flag_name(t_vm_params *self, char *param)
 	if (!(ft_arg_is_num(param)))
 		raise(__FILE__, __LINE__, ENOARGVAL);
 	_vm_params_set_player_name(self, num);
-	return (ARG_NUM);
+	return (FLAG_NUM_CODE);
+}
+
+static int 				_vm_params_flag_name_done(t_vm_params *self, char *param)
+{
+
+//	_vm_params_set_player_name(self, num);
+	_vm_params_set_file_name_with_id(self, param);
+	return (FLAG_FILE_CODE);
 }
 
 static int 				_vm_params_flag_cycles(t_vm_params *self, char *param)
@@ -125,7 +133,7 @@ static int 				_vm_params_flag_cycles(t_vm_params *self, char *param)
 	if (!(ft_arg_is_num(param)))
 		raise(__FILE__, __LINE__, ENOARGVAL);
 	self->nb_cycles = num;
-	return (ARG_NUM);
+	return (FLAG_NUM_CODE);
 
 }
 
@@ -137,7 +145,7 @@ static int 				_vm_params_flag_verbose(t_vm_params *self, char *param)
 	if (!(ft_arg_is_num(param)))
 		raise(__FILE__, __LINE__, ENOARGVAL);
 	self->nb_cycles = num;
-	return (ARG_NUM);
+	return (FLAG_NUM_CODE);
 
 }
 
@@ -157,9 +165,21 @@ int 					_vmp_state(t_vm_params *self, int argtype)
 		else if (argtype == FLAG_NAME_CODE)
 			self->state = VMP_SET_PNAME;
 	}
-	else if(self->state == VMP_SET_PNAME || self->state == VMP_SET_CYCLES
-	|| self->state == VMP_SET_VERB) {
+	else if(self->state == VMP_SET_CYCLES || self->state == VMP_SET_VERB) {
 		if (argtype == FLAG_NUM_CODE)
+			self->state = VMP_INITIAL;
+		else
+			raise(__FILE__, __LINE__, ENOARGVAL);
+	}
+	else if (self->state == VMP_SET_PNAME) {
+		if (argtype == FLAG_NUM_CODE)
+			self->state = VMP_SET_PNAME_DONE;
+		else
+			raise(__FILE__, __LINE__, ENOARGVAL);
+	}
+	else if (self->state == VMP_SET_PNAME_DONE)
+	{
+		if (argtype == FLAG_FILE_CODE)
 			self->state = VMP_INITIAL;
 		else
 			raise(__FILE__, __LINE__, ENOARGVAL);
@@ -177,9 +197,11 @@ void					_vm_params_parse(t_vm_params *self, char **params)
 	{
 			_vm_params_init,
 			_vm_params_flag_name,
+			_vm_params_flag_name_done,
 			_vm_params_flag_cycles,
 			_vm_params_flag_verbose,
 	};
+//	printf("\n\n\n\n\n\n\n\n\n");
 	if (!(*params))
 	{
 		printf(USAGE_STR);
@@ -191,5 +213,6 @@ void					_vm_params_parse(t_vm_params *self, char **params)
 		_vmp_state(self, arg_type);
 		++params;
 	}
+//	printf("done\n\n\n\n\n\n\n\n");
 	return ;
 }
