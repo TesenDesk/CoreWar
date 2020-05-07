@@ -32,7 +32,7 @@ typedef struct s_carriage t_carriage;
 
 typedef struct	s_vm
 {
-	t_params	*params;
+//	t_params	*params;
 	t_arena		*arena;
 	t_list		*carriage_head;
 }				t_vm;

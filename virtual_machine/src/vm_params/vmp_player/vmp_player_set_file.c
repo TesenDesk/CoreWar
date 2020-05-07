@@ -22,7 +22,7 @@ static void		_vmp_player_precondition_check(t_vmp_player *self,
 
 void			vmp_player_set_file(t_vmp_player *self, char *file_name)
 {
-	_vmp_player_precondition_check(self, file_name);
+//	_vmp_player_precondition_check(self, file_name);
 	self->file = file_new(file_name);
 	return;
 }
