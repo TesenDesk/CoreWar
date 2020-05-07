@@ -13,18 +13,7 @@
 #ifndef _VM_PARAMS_H
 # define _VM_PARAMS_H
 
-<<<<<<< HEAD
-    # include "../../../libft/libft.h" // changes by cmissy
-# include "../../include/errors.h"
-# include "../../include/op.h"
-# include "../../include/vm_params.h"
-# include "../../include/vmp_state.h"
-# include "../../include/vmp_player.h"
-# include "../../include/player.h"
-# include "../../include/arena.h"
-# include "../../include/vm_params.h"
 //# include "vmp_player.h"
-=======
 # include "libft.h"
 # include "errors.h"
 # include "op.h"
@@ -35,7 +24,6 @@
 # include "arena.h"
 # include "vm_params.h"
 #include "../vmp_player/_vmp_player.h"
->>>>>>> 9e694051cb87f51b02066e202c8af78361558f3b
 
 //typedef  void (*t_sm_parser)(t_vm_params *self, char **params);
 typedef  int (*t_sm_parser)(t_vm_params *self, char *params);
@@ -85,15 +73,11 @@ void		_vm_params_set_file_name_with_id(t_vm_params *self,
 				char *file_name);
 void		_vm_params_set_file_name_without_id(t_vm_params *self,
 				char *file_name);
-<<<<<<< HEAD
-void		_vm_params_set_nbr_cycles(t_vm_params *self, char *nbr_cycles_str);
-void		_vm_params_set_is_dump(t_vm_params *self, char *useless);
-void		_vm_params_set_mock(t_vm_params *never_passed, char *usless);
-=======
-
+//void		_vm_params_set_nbr_cycles(t_vm_params *self, char *nbr_cycles_str);
+//void		_vm_params_set_is_dump(t_vm_params *self, char *useless);
+//void		_vm_params_set_mock(t_vm_params *never_passed, char *usless);
 int 					_vmp_state(t_vm_params *self, int argtype);
 
 int 						ft_arg_is_num(char *param);
->>>>>>> 9e694051cb87f51b02066e202c8af78361558f3b
 
 #endif

@@ -103,6 +103,7 @@ static int				_vm_params_init(t_vm_params *self, char *param)
 	/*
 	 * какие названия файлов допустимы?
 	 */
+
 }
 
 static int 				_vm_params_flag_name(t_vm_params *self, char *param)
