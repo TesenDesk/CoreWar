@@ -17,14 +17,12 @@ enum					e_vmp_states
 {
 	VMP_STOP = -1,
 	VMP_INITIAL,
-	IS_DUMP,
-	SET_PLAYER_NAME,
-	SET_FILE_NAME_WITHOUT_ID,
-	SET_NBR_CYCLES,
-	SET_FILE_NAME_WITH_ID,
+	VMP_SET_PNAME,
+	VMP_SET_CYCLES,
+	VMP_SET_VERB,
 	NBR_OF_VIRTUAL_METHODS,
 };
 
-int					vmp_state(char *param);
+int					vmp_state(int argtype);
 
 #endif

@@ -31,8 +31,6 @@ int					ft_strint_ou_flow(char *str, int *nbr)
 		top = str;
 		if (*top == '+' || *top == '-')
 			++top;
-		if (!(top = ft_strchr_no(top, '0')))
-			return (FAILURE);
 		tip = travers_nbr_str(top);
 		if ((ft_strncmp("214748364", top, tip - top)) ||
 				(*(top + 9) != '7' && (*nbr > 0)) ||

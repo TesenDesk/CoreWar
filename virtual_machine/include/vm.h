@@ -22,5 +22,4 @@ enum			e_vm_singleton
 typedef struct s_vm	t_vm;
 
 t_vm			*vm_singleton(int instantiation_status, int argc, char *argv[]);
-
 #endif

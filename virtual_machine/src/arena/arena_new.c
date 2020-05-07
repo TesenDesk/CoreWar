@@ -29,11 +29,11 @@ static void			arena_fill_in_the_data(t_arena *self)
 	curr = 0;
 	if (!(arena_field = malloc(MEM_SIZE * sizeof(char))))
 		raise(__FILE__, __LINE__, EINVALCONSTANTS);
-//	while (curr < self->nb_players)
-//	{
-//		ft_memcpy((arena_field + curr * self->nb_players), self->players[curr]->code.data,
-//				(self->players)[curr].code);
-//	}
+	while (curr < self->nb_players)
+	{
+		ft_memcpy((arena_field + curr * self->nb_players), self->players[curr]->code.data,
+				(self->players)[curr].code);
+	}
 
 	return ;
 }

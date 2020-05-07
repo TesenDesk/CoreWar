@@ -407,6 +407,7 @@ typedef union				u_print_ldbl
 /*
 ** Part 1.
 */
+long long					ft_atol(const char *str);
 void						*ft_memset(void *dst, int c, size_t size);
 void						ft_bzero(void *str, size_t size);
 void						*ft_memcpy(void *dst, const void *src, size_t len);
@@ -675,6 +676,7 @@ int							ft_hash_map_set_content(t_hash_map *map, void *key,
 								void *new_content);
 int							ft_hash_map_put_to_map(t_hash_map **map_input,
 								t_pair *pair);
+
 /*
 ** Forbidden in libft project
 */

@@ -23,7 +23,7 @@
 typedef struct				s_carriage
 {
 	t_arena			*arena;
-//	char 			*player_name;//добавить имя
+//	char 			*text_player_name; // нужно или нет - хз
 	int				player_name; // 1. уникальный код кареткии
 	int				carry; // 2. Флаг, который может изменять некоторые операции. Изначально его значение равно false.
 	int				op_code; // 3. До начала битвы значение этой переменной не установлено.

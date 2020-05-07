@@ -15,18 +15,32 @@
 #include "player.h"
 #include "./vmp_player/file/_file.h"
 
+<<<<<<< HEAD
 
 //void				_vm_params_add_unnamed_player_node(t_vm_params *self,
 //						t_file *player)
 void				_vm_params_add_unnamed_player_node(t_vm_params *self,
 						tt_file *player)
+=======
+// void				_vm_params_add_unnamed_player_node(t_vm_params *self,
+// 						t_player *player)
+void				_vm_params_add_unnamed_player_node(t_vm_params *self,t_vmp_player *player)
+>>>>>>> 9e694051cb87f51b02066e202c8af78361558f3b
 {
-	t_list				*new_node;
+t_list				*new_node;
 
+<<<<<<< HEAD
 //	if ((new_node = ft_lstnew((void *)player, sizeof(*player))) == NULL)
 	if ((new_node = ft_lstnew((void *)player, sizeof(*player))) == NULL)
 		raise(__FILE__, __LINE__, ENOMEMORY);
 	ft_lstadd(&self->noid_player_head, new_node);
 	++self->nb_players;
 	return ;
+=======
+if ((new_node = ft_lstnew((void *)player, sizeof(*player))) == NULL)
+	raise(__FILE__, __LINE__, ENOMEMORY);
+ft_lstadd(&self->noid_player_head, new_node);
+++self->nb_players;
+return ;
+>>>>>>> 9e694051cb87f51b02066e202c8af78361558f3b
 }

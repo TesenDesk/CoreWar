@@ -14,12 +14,12 @@
 
 void		_vm_destroy(t_vm **self)
 {
-	if((*self)->params != NULL)
-		vm_params_destroy(&(*self)->params);
-	if ((*self)->arena != NULL)
-		vm_arena_destroy(&(*self)->arena);
-	if((*self)->carriage_head != NULL)
-		vm_carriage_list_destruct(&(*self)->arena);
+//	if((*self)->params != NULL)
+//		vm_params_destroy(&(*self)->params);
+//	if ((*self)->arena != NULL)
+//		vm_arena_destroy(&(*self)->arena);
+//	if((*self)->carriage_head != NULL)
+//		vm_carriage_list_destruct(&(*self)->arena);
 	ft_memdel((void **)self);
 	return ;
 }
