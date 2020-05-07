@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arena_ser_unnamed_player.c                         :+:      :+:    :+:   */
+/*   _arguments_op_code_is_load_i.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/07 19:00:07 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 23:08:48 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/14 22:21:31 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/14 22:31:52 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_arena.h"
+#include "_arguments.h"
 
-void			arena_set_unnamed_player(t_arena *self,
-					t_player *unnamed_player)
+int				_arguments_op_code_is_load_i(t_arguments *self)
 {
-	_arena_set_smallest_unoccupied_name(self);
-    player_set_name(unnamed_player, self->smallest_unoccupied_name);
-	(self->players)[self->smallest_unoccupied_name] = unnamed_player;
-	return;
+	int			conclusion;
+
+	conclusion = (self->op_code == OP_LDI || self->op_code == OP_LLDI);
+	return (conclusion);
 }

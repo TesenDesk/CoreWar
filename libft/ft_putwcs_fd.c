@@ -23,7 +23,7 @@ void	ft_putwcs_fd(char const *wcs, int fd)
 
 	if (wcs)
 	{
-		len = ft_wcslen(wcs);
+		len = ft_wcslen((wchar_t *)wcs);
 		(void)write(fd, wcs, len * sizeof(wcs));
 	}
 	return ;

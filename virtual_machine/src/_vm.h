@@ -26,7 +26,7 @@
 # define MAX_PROC_RAM		0xFFFFFF
 
 typedef struct s_errors t_errors;
-typedef struct s_vm_params t_params;
+typedef struct s_vm_params t_vm_params;
 typedef struct s_arena t_arena;
 typedef struct s_carriage t_carriage;
 

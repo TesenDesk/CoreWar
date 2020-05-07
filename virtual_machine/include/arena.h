@@ -18,6 +18,8 @@ typedef struct s_player		t_player;
 
 typedef struct s_arena		t_arena;
 
+void		arena_print_dump(t_arena *self);
+
 t_arena		*arena_new(t_vm_params *params);
 void		arena_destroy(t_arena **self);
 

@@ -14,7 +14,10 @@
 
 void			player_destroy(t_player **self)
 {
+
+    free((*self)->text_name);
+    free((*self)->text_comment);
 //	code_destroy(&(*self)->code);
-	ft_memdel(*self);
+	ft_memdel((void**)self);
 	return;
 }

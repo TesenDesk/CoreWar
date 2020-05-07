@@ -33,6 +33,9 @@ enum					e_error_id
 	EDOUBLENAME,
 	EDANGLINGPTR,
 	EDATALOSS,
+    EWRONGSIZE,
+    ENONULLS,
+    ENOMAGICH,
 	
 	
 	

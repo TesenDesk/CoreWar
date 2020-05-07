@@ -36,6 +36,5 @@ void			_file_close(tt_file *self);
 
 void			_file_allocate_intitial_value(tt_file *self);
 void			_file_reallocate_value(tt_file *self);
-void			_file_get_chunk(tt_file *self);
 
 #endif

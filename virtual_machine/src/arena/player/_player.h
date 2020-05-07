@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _PALYER_H
+#ifndef _PLAYER_H
 # define _PLAYER_H
 
 # include "libft.h"
@@ -26,7 +26,7 @@ typedef struct		s_player
 	int				name;
 	char			*text_name;
 	char			*text_comment;
-	t_code			*code;
+	void			*code;
 }					t_player;
 
 

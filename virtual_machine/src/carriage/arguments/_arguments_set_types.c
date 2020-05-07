@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arena_ser_unnamed_player.c                         :+:      :+:    :+:   */
+/*   _arguments_set_types.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/07 19:00:07 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 23:08:48 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/13 01:02:17 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/13 01:44:58 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_arena.h"
+#include "_arguments.h"
 
-void			arena_set_unnamed_player(t_arena *self,
-					t_player *unnamed_player)
+void			_arguments_set_types(t_arguments *self, t_arena *arena)
 {
-	_arena_set_smallest_unoccupied_name(self);
-    player_set_name(unnamed_player, self->smallest_unoccupied_name);
-	(self->players)[self->smallest_unoccupied_name] = unnamed_player;
+	if (_arguments_op_code_is_op_life(self) == FALSE)
+		self->types = arena_argument_types(arena, self->arena_position);
+	else
+		self->types = NO_ARGTYPES;
 	return;
 }

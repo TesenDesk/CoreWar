@@ -18,12 +18,13 @@ void				ft_lstswap(t_list **head, t_list *first, t_list *second)
 	t_list			*prev_first;
 	t_list			*prev_second;
 
-	if (!head)
+//	if (!head)
+	if (!*head)
 		return ;
 	size = ft_lstsize(*head);
 	if (size < 2 || !first || !second ||
-			!(prev_first = ft_lstfind_prev(head, (void *)first)) ||
-			!(prev_second = ft_lstfind_prev(head, (void *)second)))
+			!(prev_first = ft_lstfind_prev(*head, (void *)first)) ||
+			!(prev_second = ft_lstfind_prev(*head, (void *)second)))
 		return ;
 	return ;
 }
