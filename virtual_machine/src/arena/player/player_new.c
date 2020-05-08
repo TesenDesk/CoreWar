@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "_player.h"
+#include "vmp_player.h"
 
 t_player		*player_new(t_vmp_player *vmp_player)
 {

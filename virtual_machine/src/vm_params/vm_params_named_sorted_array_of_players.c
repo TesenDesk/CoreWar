@@ -11,22 +11,22 @@
 /* ************************************************************************** */
 
 #include "_vm_params.h"
-#include "../player/_player.h"
+#include "player.h"
 
 //static void			arena_set_player(t_arena *arena, t_player *new_player)
 //{
 //	char 			*
 //}
 
-static void			_vm_params_map_players_to_arena(t_list *id_players,
+static void			_vm_params_map_players_to_arena(t_list *players,
 						t_arena *arena, void (*arena_set_player)(t_arena *arena,
 						t_player *new_player))
 {
 
-	while (id_players != NULL)
+	while (players != NULL)
 	{
-		(*arena_set_player)(arena, id_players->content);
-		id_players = id_players->next;
+		(*arena_set_player)(arena, player_new(players->content));
+		players = players->next;
 	}
 	return ;
 }

@@ -209,6 +209,7 @@ void					_vm_params_parse(t_vm_params *self, char **params)
 	while (*params)
 	{
 		arg_type = vtable[self->state](self, *params);
+//		printf("%d\n");
 		_vmp_state(self, arg_type);
 		++params;
 	}

@@ -17,8 +17,8 @@ void		arena_set_named_player(t_arena *self, t_player *named_player)
 	int		name;
 
 	name = player_name(named_player);
-	if (self->players[name] != NULL)
+	if (self->players[name - 1] != NULL)
 		raise(__FILE__, __LINE__, EDOUBLENAME);
-	self->players[name] = named_player;
+	self->players[name - 1] = named_player;
 	return;
 }
