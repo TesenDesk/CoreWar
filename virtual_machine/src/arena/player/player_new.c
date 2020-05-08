@@ -25,7 +25,6 @@ t_player		*player_new(t_vmp_player *vmp_player)
 	self->text_name = file_data_name(file);
 	self->text_comment = file_data_comment(file);
 	self->code = file_data_code(file);
-    vmp_player_destroy(&vmp_player);
     return (self);
 }
 

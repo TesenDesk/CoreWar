@@ -13,7 +13,7 @@
 #include "_vm_params.h"
 
 void				_vm_params_set_player_name(t_vm_params *self,
-						 int player_name_str)
+						 int player_name)
 {
 	t_vmp_player	*player;
 	

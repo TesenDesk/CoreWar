@@ -17,10 +17,6 @@
 void					_vm_params_set_nbr_cycles(t_vm_params *self,
 							char *nbr_sycles_str)
 {
-<<<<<<< HEAD
-	self->nb_cycles = ft_atol(nbr_cycles_str);
-=======
 	self->nb_cycles = ft_atol(nbr_sycles_str);
->>>>>>> e3e25fe0ac3684476028641a79df83acff7a3173
 	return;
 }

@@ -22,10 +22,12 @@ static void			_vm_params_map_players_to_arena(t_list *id_players,
 						t_arena *arena, void (*arena_set_player)(t_arena *arena,
 						t_player *new_player))
 {
+    t_player        *player;
 
 	while (id_players != NULL)
 	{
-		(*arena_set_player)(arena, id_players->content);
+	    player = player_new(id_players->content);
+		(*arena_set_player)(arena, player);
 		id_players = id_players->next;
 	}
 	return ;

@@ -21,7 +21,6 @@
 #include "parser.h"
 #include "./parser/parser_private.h"
 #include "analyser.h"
-<<<<<<< HEAD
 //#include "vm_params.h"
 
 //int main()
@@ -130,7 +129,6 @@
 ////	vm_params.id_player_head->content =
 //	t_arena *arena = arena_new(params);
 //	return (SUCCESS);
-=======
 #include "vm_params.h"
 //		exit (-1);
 
@@ -167,17 +165,34 @@
 //			buffer[i++] = SPACE;
 //	}
 //	// (void)vm_singleton(VM_DESTRUCT, 0, NULL);
->>>>>>> e3e25fe0ac3684476028641a79df83acff7a3173
 //}
+#include "virtual_machine/include/vm.h"
 
-int         main()
+int         main() // DONT FORGET FIX arc CAUSE argc[0] == EXEC FILE NAME
 {
-    char     *argv[2];
+    t_vm            *vm;
+/*      FIRST TEST      */
 
-    argv[0] = "bee_gees.cor";
-    argv[1] = "zork.cor";
+//    int             argc = 5;
+//    char            *argv[argc];
+//    argv[0] = "bee_gees.cor";
+//    argv[1] = "-n";
+//    argv[2] = "2";
+//    argv[3] = "zork.cor";
+//    argv[4] = NULL;
 
-    vm_params_new(2, argv);
+
+/*      SECOND TEST      */
+    int             argc = 6;
+    char            *argv[argc];
+    argv[1] = "bee_gees.cor";
+    argv[2] = "-n";
+    argv[3] = "2";
+    argv[4] = "zork.cor";
+    argv[5] = NULL;
+
+//    vm_params = vm_params_new(2, argv);
+    vm = vm_singleton(VM_INSTANTIATE, argc - 1, argv + 1);
 
     return (SUCCESS);
 }
