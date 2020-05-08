@@ -16,6 +16,7 @@
 # define P_LONG_NAME	"--name"
 # define P_SHORT_DUMP	"-d"
 # define P_LONG_DUMP	"--dump"
+
 # define FLAG_CYCLE		"-s"
 # define FLAG_VERB		"-v"
 # define FLAG_BINARY	"-b"

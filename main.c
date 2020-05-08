@@ -171,27 +171,27 @@
 int         main() // DONT FORGET FIX arc CAUSE argc[0] == EXEC FILE NAME
 {
     t_vm            *vm;
+
 /*      FIRST TEST      */
-
-//    int             argc = 5;
+//    int             argc = 6;
 //    char            *argv[argc];
-//    argv[0] = "bee_gees.cor";
-//    argv[1] = "-n";
-//    argv[2] = "2";
-//    argv[3] = "zork.cor";
-//    argv[4] = NULL;
-
+//    argv[1] = "bee_gees.cor";
+//    argv[2] = "-n";
+//    argv[3] = "2";
+//    argv[4] = "zork.cor";
+//    argv[5] = NULL;
 
 /*      SECOND TEST      */
-    int             argc = 6;
+    int             argc = 8;
     char            *argv[argc];
     argv[1] = "bee_gees.cor";
     argv[2] = "-n";
-    argv[3] = "2";
+    argv[3] = "1";
     argv[4] = "zork.cor";
-    argv[5] = NULL;
+    argv[5] = "--dump";
+    argv[6] = "5000";
+    argv[7] = NULL;
 
-//    vm_params = vm_params_new(2, argv);
     vm = vm_singleton(VM_INSTANTIATE, argc - 1, argv + 1);
 
     return (SUCCESS);
