@@ -28,7 +28,7 @@ void		_arena_set_smallest_unoccupied_name(t_arena *self)
 
 	new_player_name = self->smallest_unoccupied_name;
 	while (
-			(self->players)[new_player_name] != NULL &&
+	        (self->players)[new_player_name] != NULL &&
 			new_player_name < self->nb_players)
 		++new_player_name;
 	self->smallest_unoccupied_name = new_player_name;

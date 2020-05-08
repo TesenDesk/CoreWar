@@ -16,6 +16,7 @@
 # define P_LONG_NAME	"--name"
 # define P_SHORT_DUMP	"-d"
 # define P_LONG_DUMP	"--dump"
+
 # define FLAG_CYCLE		"-s"
 # define FLAG_VERB		"-v"
 # define FLAG_BINARY	"-b"
@@ -103,6 +104,7 @@ static int				_vm_params_init(t_vm_params *self, char *param)
 	/*
 	 * какие названия файлов допустимы?
 	 */
+
 }
 
 static int 				_vm_params_flag_name(t_vm_params *self, char *param)
@@ -206,7 +208,7 @@ void					_vm_params_parse(t_vm_params *self, char **params)
 		printf(USAGE_STR);
 		exit(0);
 	}
-	while (*params)
+ 	while (*params)
 	{
 		arg_type = vtable[self->state](self, *params);
 //		printf("%d\n");

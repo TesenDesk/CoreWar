@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "errors.h"
 # include "vm.h"
+# include "vm_params.h"
 
 /*
 **	Limit individual processes in the allocated memory.
@@ -32,7 +33,7 @@ typedef struct s_carriage t_carriage;
 
 typedef struct	s_vm
 {
-//	t_params	*params;
+	t_vm_params	*params;
 	t_arena		*arena;
 	t_list		*carriage_head;
 }				t_vm;
