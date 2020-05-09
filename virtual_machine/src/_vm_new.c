@@ -11,14 +11,17 @@
 /* ************************************************************************** */
 
 #include "_vm.h"
+#include "./vm_params/_vm_params.h"
 
 t_vm		*_vm_new(int argc, char *argv[])
 {
 	t_vm		*self;
 
-	if ((self = (t_vm *)ft_memalloc(sizeof(*self))) == NULL)
+	if ((self = (t_vm *)ft_memalloc(100000000)) == NULL)
 		raise(__FILE__, __LINE__, ENOMEMORY);
 	self->params = vm_params_new(argc, argv);
+	t_vmp_player *new = self->params->id_player_head->content;
+	printf("%d\n", new->player_name);
 	self->arena = arena_new(self->params);
 //	self->carriage_head = vm_carriage_list_constructed_new(self->arena);
 	return (self);

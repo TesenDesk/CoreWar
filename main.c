@@ -168,7 +168,7 @@
 //}
 #include "virtual_machine/include/vm.h"
 
-int         main() // DONT FORGET FIX arc CAUSE argc[0] == EXEC FILE NAME
+int         main(int ac, char **av) // DONT FORGET FIX arc CAUSE argc[0] == EXEC FILE NAME
 {
     t_vm            *vm;
 
@@ -182,17 +182,17 @@ int         main() // DONT FORGET FIX arc CAUSE argc[0] == EXEC FILE NAME
 //    argv[5] = NULL;
 
 /*      SECOND TEST      */
-    int             argc = 8;
-    char            *argv[argc];
-    argv[1] = "bee_gees.cor";
-    argv[2] = "-n";
-    argv[3] = "1";
-    argv[4] = "zork.cor";
-    argv[5] = "--dump";
-    argv[6] = "5000";
-    argv[7] = NULL;
+//    int             argc = 8;
+//    char            *argv[argc];
+//    argv[1] = "bee_gees.cor";
+//    argv[2] = "-n";
+//    argv[3] = "1";
+//    argv[4] = "zork.cor";
+//    argv[5] = "--dump";
+//    argv[6] = "5000";
+//    argv[7] = NULL;
 
-    vm = vm_singleton(VM_INSTANTIATE, argc - 1, argv + 1);
+    vm = vm_singleton(VM_INSTANTIATE, ac - 1, av + 1);
 
     return (SUCCESS);
 }

@@ -13,6 +13,8 @@
 #include "_arena.h"
 #include "vm_params.h"
 #include "vmp_player.h"
+#include "player.h"
+#include "./arena/player/_player.h"
 
 static void			_arena_new_precondition_check(void)
 {
@@ -25,16 +27,20 @@ static void			arena_fill_in_the_data(t_arena *self)
 {
 	char			*arena_field;
 	int 			curr;
+	int 			step;
 
+	step = MEM_SIZE / 4;
 	curr = 0;
-	if (!(arena_field = malloc(MEM_SIZE * sizeof(char))))
+	if (!(arena_field = ft_memalloc(MEM_SIZE * sizeof(char))))
 		raise(__FILE__, __LINE__, EINVALCONSTANTS);
 	while (curr < self->nb_players)
 	{
-//		ft_memcpy((arena_field + curr * self->nb_players), self->players[curr]->code.data,
-//				(self->players)[curr].code);
-;
+		ft_memcpy((arena_field + (curr + 1) * step), self->players[curr]->code,
+				ft_strlen((self->players)[curr]->code));
+		curr += 1;
 	}
+	printf("dasdasdasd");
+
 
 	return ;
 }

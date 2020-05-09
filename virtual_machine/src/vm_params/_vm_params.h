@@ -65,7 +65,7 @@ typedef struct					s_vm_params
 void		_vm_params_parse(t_vm_params *self, char **params);
 void		_vm_params_add_unnamed_player_node(t_vm_params *self, t_vmp_player *player);
 void		_vm_params_add_named_player_node(t_vm_params *self,
-				void *file_name);
+				t_vmp_player *player);
 
 void		_vm_params_set_player_name(t_vm_params *self,
 				 int player_name);

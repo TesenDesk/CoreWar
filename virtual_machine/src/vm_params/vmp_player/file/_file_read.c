@@ -27,13 +27,13 @@ void			_file_read(tt_file *self)
 		int i = 0;
 		while (i < INITIAL_CHUNK)
 		{
-			if (i % 16 == 0)
-				printf("\n");
-			else if(i % 2 == 0)
-				printf("  ");
-			if (*((unsigned char*)(self->data + self->total  - chunk + i)) < 16)
-				printf("0");
-			printf("%x",  *((unsigned char*)(self->data + self->total  - chunk + i)));
+//			if (i % 16 == 0)
+//				printf("\n");
+//			else if(i % 2 == 0)
+//				printf("  ");
+//			if (*((unsigned char*)(self->data + self->total  - chunk + i)) < 16)
+//				printf("0");
+//			printf("%x",  *((unsigned char*)(self->data + self->total  - chunk + i)));
 			i += 1;
 		}
 

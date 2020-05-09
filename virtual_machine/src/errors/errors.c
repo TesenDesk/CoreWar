@@ -14,10 +14,6 @@
 
 static char		*error_messages[ERRMSGCOUNT] =
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> e3e25fe0ac3684476028641a79df83acff7a3173
 	"Usage: ./corewar [-d nbr_cycles] [[-n number] player1.cor ...]\n"
 	"\n"
 	"Here is the text about the programm."
@@ -49,8 +45,6 @@ static char		*error_messages[ERRMSGCOUNT] =
     "Incorrectly placed NULLs in data",
     "No magic header",
 
-<<<<<<< HEAD
-=======
 		"ss",
 //	"Usage: ./corewar [-d nbr_cycles] [[-n number] player1.cor ...]\n"
 //	"\n"
@@ -79,9 +73,6 @@ static char		*error_messages[ERRMSGCOUNT] =
 //	"Try to replace pointer to memory not being freed.",
 //	"Loss of information due to some reasons. "
 //		"(REG_SIZE is less then number of players.)",
->>>>>>> 9e694051cb87f51b02066e202c8af78361558f3b
-=======
->>>>>>> e3e25fe0ac3684476028641a79df83acff7a3173
 };
 
 int				raise(char *file_name, int line_nb, int errmsg_index)
