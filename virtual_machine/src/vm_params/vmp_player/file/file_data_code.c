@@ -12,7 +12,7 @@ void		*file_data_code(tt_file *self)
 	char		*code_in_data;
 	char		*code;
 	char		*code_size_in_data;
-	ssize_t		code_size;
+	size_t		code_size;
 
 	code_in_data = (char*)(self->data)
 		+ COREWAR_EXEC_MAGIC_LENGTH
@@ -25,14 +25,14 @@ void		*file_data_code(tt_file *self)
 		+ COREWAR_EXEC_MAGIC_LENGTH
 		+ PROG_NAME_LENGTH
 		+ NULL_LENGTH;
-	code_size = (ssize_t)*(int*)code_size_in_data;
+	code_size = (size_t)*(int*)code_size_in_data;
 	code_size = (int)((code_size << 24)
 		| ((code_size & 0xff00) << 8)
 		| ((code_size & 0xff0000) >> 8)
 		| (code_size>> 24));
 	if (!(code = ft_memalloc(code_size)))
 		raise(__FILE__, __LINE__, ENOMEMORY);
-	ft_strncpy(code, code_in_data, code_size);
+    ft_memcpy(code, code_in_data, code_size);
 	return (code);
 }
 

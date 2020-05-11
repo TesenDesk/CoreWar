@@ -24,6 +24,9 @@ t_player		*player_new(t_vmp_player *vmp_player)
 	self->name = vmp_player_name(vmp_player);
 	self->text_name = file_data_name(file);
 	self->text_comment = file_data_comment(file);
+	self->code_size = file_code_size(file);
+
+// dont forget fix file_data_code
 	self->code = file_data_code(file);
     return (self);
 }
