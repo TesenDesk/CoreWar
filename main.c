@@ -194,5 +194,13 @@ int         main() // DONT FORGET FIX arc CAUSE argc[0] == EXEC FILE NAME
 
     vm = vm_singleton(VM_INSTANTIATE, argc - 1, argv + 1);
 
+
+//    char *dst = ft_memalloc(8);
+//    printf("dst = %s\n", dst);
+//    char *src = "12345678";
+//    ft_strncpy(dst, src, 8);
+//    printf("dst = %s\n", dst);
+
+
     return (SUCCESS);
 }
