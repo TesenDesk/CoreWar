@@ -15,7 +15,7 @@
 #include "vmp_player.h"
 #include "player.h"
 #include "./arena/player/_player.h"
-
+#include "unistd.h"
 static void			_arena_new_precondition_check(void)
 {
 	if (MEM_SIZE <= 0 || CHAMP_MAX_SIZE <= 0 || REG_NUMBER <= 0)
@@ -29,17 +29,35 @@ static void			arena_fill_in_the_data(t_arena *self)
 	int 			curr;
 	int 			step;
 
-	step = MEM_SIZE / 4;
+	step = MEM_SIZE / self->nb_players;
 	curr = 0;
 	if (!(arena_field = ft_memalloc(MEM_SIZE * sizeof(char))))
 		raise(__FILE__, __LINE__, EINVALCONSTANTS);
 	while (curr < self->nb_players)
 	{
-		ft_memcpy((arena_field + (curr + 1) * step), self->players[curr]->code,
-				ft_strlen((self->players)[curr]->code));
+		printf("dasdasdasdasd1111\n");
+		ft_memcpy((arena_field + (curr) * step), self->players[curr]->code,
+				self->players[curr]->code_size);
 		curr += 1;
 	}
 	printf("dasdasdasd");
+	int i = 0;
+	while (i < MEM_SIZE)
+	{
+		if ((unsigned char)*(arena_field + i) < 16)
+			printf("0");
+		printf("%x", (unsigned char)(*(arena_field + i)));
+		if (i % 32 == 1)
+			printf("\n");
+		else if (i % 2 == 1)
+			printf(" ");
+//		else if (i % 2 == 0)
+//			printf(" ");
+		++i;
+	}
+//	int fd1 = open("./our_bee_gees2.cor", O_APPEND);
+//	printf("\n%d\n\n%d\n", fd1, self->nb_players);
+//	write(fd1, arena_field, MEM_SIZE );
 
 
 	return ;
