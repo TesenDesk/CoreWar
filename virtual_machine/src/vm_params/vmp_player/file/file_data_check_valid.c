@@ -31,10 +31,6 @@ static int		file_check_data_size(tt_file *self)
             | ((code_size & 0xff00) << 8)
             | ((code_size & 0xff0000) >> 8)
             | (code_size>> 24));
-    /*code_size = (*pointer_code_size << 24)
-            | (*(pointer_code_size + 1) << 16)
-            | (*(pointer_code_size + 2) << 8)
-            | *(pointer_code_size + 3);*/
  	data_file_size = min_size + code_size;
  	if (code_size > CHAMP_MAX_SIZE
 	|| data_file_size != self->total)

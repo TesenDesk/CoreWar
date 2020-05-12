@@ -27,6 +27,7 @@ typedef struct		s_player
 	char			*text_name;
 	char			*text_comment;
 	void			*code;
+	size_t 			code_size;
 }					t_player;
 
 

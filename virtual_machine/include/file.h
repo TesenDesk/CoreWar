@@ -21,7 +21,7 @@ void			file_destroy(tt_file **self);
 void			*file_data_code(tt_file *self);
 char			*file_data_comment(tt_file *self);
 char			*file_data_name(tt_file *self);
-int				file_player_name(tt_file *self);
 int				file_data_check_valid(tt_file *self);
+size_t          file_code_size(tt_file *self);
 
 #endif
