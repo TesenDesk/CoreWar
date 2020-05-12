@@ -17,7 +17,7 @@ t_vm		*_vm_new(int argc, char *argv[])
 {
 	t_vm		*self;
 
-	if ((self = (t_vm *)ft_memalloc(100000000)) == NULL)
+	if ((self = (t_vm *)ft_memalloc(sizeof(*self))) == NULL)
 		raise(__FILE__, __LINE__, ENOMEMORY);
 	self->params = vm_params_new(argc, argv);
 	t_vmp_player *new = self->params->id_player_head->content;
