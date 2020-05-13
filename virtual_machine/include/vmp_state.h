@@ -21,6 +21,7 @@ enum					e_vmp_states
 	VMP_SET_PNAME_DONE,
 	VMP_SET_CYCLES,
 	VMP_SET_VERB,
+	VMP_SET_DUMP,
 	NBR_OF_VIRTUAL_METHODS,
 };
 

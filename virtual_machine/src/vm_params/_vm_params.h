@@ -52,6 +52,7 @@ typedef struct					s_vm_params
 {
 	int				is_set_dump;
 	int				nb_cycles;
+	int 			dump_cycles;
 	int 			ncurses;
 	int 			verbosity_lvl;
 	int 			stealth;
