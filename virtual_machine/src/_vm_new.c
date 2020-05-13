@@ -20,9 +20,9 @@ t_vm		*_vm_new(int argc, char *argv[])
 	if ((self = (t_vm *)ft_memalloc(sizeof(*self))) == NULL)
 		raise(__FILE__, __LINE__, ENOMEMORY);
 	self->params = vm_params_new(argc, argv);
-	t_vmp_player *new = self->params->id_player_head->content;
-	printf("%d\n", new->player_name);
+//	t_vmp_player *new = self->params->id_player_head->content;
+//	printf("%d\n", new->player_name);
 	self->arena = arena_new(self->params);
-//	self->carriage_head = vm_carriage_list_constructed_new(self->arena);
+//	self->carriage_head =  vm_carriage_list_constructed_new(self->arena);
 	return (self);
 }
