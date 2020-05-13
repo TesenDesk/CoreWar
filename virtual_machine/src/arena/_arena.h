@@ -26,6 +26,7 @@ typedef struct			s_arena
 	t_player		**players;
 	int				smallest_unoccupied_name;
 	int				nb_players;
+	int             nb_of_cycles;
 	void			*data;
 	int				size;
 }						t_arena;
