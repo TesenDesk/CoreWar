@@ -29,6 +29,7 @@ typedef struct			s_arena
 	int             nb_of_cycles;
 	void			*data;
 	int				size;
+	int 			dump_cycles;
 }						t_arena;
 
 
