@@ -94,7 +94,7 @@ static int				_vm_params_init(t_vm_params *self, char *param)
 
 	flag = flag_check(param);
 	if(flag == FLAG_STEALTH_CODE || flag == FLAG_NCURSES_CODE
-	|| flag == FLAG_BINARY_CODE || flag == FLAG_DUMP_CODE) {
+	|| flag == FLAG_BINARY_CODE) {
 		_vm_params_flag_on(self, flag);
 		return (flag);
 	}
@@ -118,6 +118,18 @@ static int 				_vm_params_flag_name(t_vm_params *self, char *param)
 	return (FLAG_NUM_CODE);
 }
 
+
+static int 				_vm_params_dump_init(t_vm_params *self, char *param)
+{
+
+}
+
+static int 				_vm_params_dump_done(t_vm_params *self, char *param)
+{
+
+}
+
+
 static int 				_vm_params_flag_name_done(t_vm_params *self, char *param)
 {
 
@@ -126,14 +138,30 @@ static int 				_vm_params_flag_name_done(t_vm_params *self, char *param)
 	return (FLAG_FILE_CODE);
 }
 
+/*
+ * ТУТ и -d и -s!
+ */
 static int 				_vm_params_flag_cycles(t_vm_params *self, char *param)
 {
 	long long num;
-
 	num = ft_atol(param);
 	if (!(ft_arg_is_num(param)))
 		raise(__FILE__, __LINE__, ENOARGVAL);
+	self->nb_cycles = num;
+//	printf("s_cycles %d\n", self->nb_cycles);
+	return (FLAG_NUM_CODE);
 
+}
+
+
+static int 				_vm_params_dump_cycles(t_vm_params *self, char *param)
+{
+	long long num;
+	num = ft_atol(param);
+	if (!(ft_arg_is_num(param)))
+		raise(__FILE__, __LINE__, ENOARGVAL);
+	self->dump_cycles = num;
+//	printf("dump:%d\n", self->dump_cycles);
 	return (FLAG_NUM_CODE);
 
 }
@@ -155,9 +183,8 @@ int 					_vmp_state(t_vm_params *self, int argtype)
 	if (self->state == VMP_INITIAL) {
 		if (argtype == FLAG_NUM_CODE)
 			raise(__FILE__, __LINE__, ENOARGVAL);
-		else if (argtype == FLAG_FILE_CODE || argtype == FLAG_DUMP_CODE
-				 || argtype == FLAG_BINARY_CODE || argtype == FLAG_NCURSES_CODE
-				 || argtype == FLAG_STEALTH_CODE)
+		else if (argtype == FLAG_FILE_CODE || argtype == FLAG_BINARY_CODE
+		|| argtype == FLAG_NCURSES_CODE || argtype == FLAG_STEALTH_CODE)
 			;
 		else if (argtype == FLAG_VERBOSE_CODE)
 			self->state = VMP_SET_VERB;
@@ -165,8 +192,12 @@ int 					_vmp_state(t_vm_params *self, int argtype)
 			self->state = VMP_SET_CYCLES;
 		else if (argtype == FLAG_NAME_CODE)
 			self->state = VMP_SET_PNAME;
+		else if(argtype == FLAG_DUMP_CODE)
+			self->state = VMP_SET_DUMP;
 	}
-	else if(self->state == VMP_SET_CYCLES || self->state == VMP_SET_VERB) {
+	else if(self->state == VMP_SET_CYCLES || self->state == VMP_SET_VERB
+	|| self->state == VMP_SET_DUMP)
+	{
 		if (argtype == FLAG_NUM_CODE)
 			self->state = VMP_INITIAL;
 		else
@@ -201,6 +232,7 @@ void					_vm_params_parse(t_vm_params *self, char **params)
 			_vm_params_flag_name_done,
 			_vm_params_flag_cycles,
 			_vm_params_flag_verbose,
+			_vm_params_dump_cycles,
 	};
 //	printf("\n\n\n\n\n\n\n\n\n");
 	if (!(*params))
