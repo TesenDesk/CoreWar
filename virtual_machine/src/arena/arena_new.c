@@ -12,6 +12,7 @@
 
 #include "_arena.h"
 #include "vm_params.h"
+#include "./vm_params/_vm_params.h"
 #include "vmp_player.h"
 #include "player.h"
 #include "./arena/player/_player.h"
@@ -71,7 +72,8 @@ t_arena				*arena_new(t_vm_params *params)
 		raise(__FILE__, __LINE__, ENOMEMORY);
 	self->nb_players = vm_params_nb_players(params);
 	self->players = _arena_players_new(self->nb_players);
-//	self->dump_cycles = params->dump_cycles;
+	self->dump_cycles = params->dump_cycles;
+//	printf("aren_dump:%d\n", self->dump_cycles);
 	vm_params_fill_and_sort_array_of_players(params, self);
 	vm_params_destroy_players_lists(params);
 	arena_fill_in_the_data(self);
