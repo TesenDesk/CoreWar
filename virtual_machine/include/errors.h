@@ -16,8 +16,8 @@
 enum					e_error_id
 {
 	EUSAGE,
-//	ENOMEMORY,
-//	EINVALARG,
+	ENOMEMORY,
+	EINVALARG,
 	ENOARGVAL,
 	EBADFILENAME,
 	ECANNOTCLOSE,
@@ -41,6 +41,7 @@ enum					e_error_id
 	
 	ERRMSGCOUNT,
 };
+
 
 int				raise(char *file_name, int line_nb, int errmsg_index);
 

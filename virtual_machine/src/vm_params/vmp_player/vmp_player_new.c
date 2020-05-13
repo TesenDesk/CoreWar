@@ -102,7 +102,7 @@ t_vmp_player		*vmp_player_new(int player_name, char *file_name)
 	if ((self = (t_vmp_player *)ft_memalloc(sizeof(t_vmp_player))) == NULL)
 		raise(__FILE__, __LINE__, ENOMEMORY);
 	self->player_name = player_name;
-	printf("%d, %d\n\n", player_name, self->player_name);
+//	printf("%d, %d\n\n", player_name, self->player_name);
 	if (file_name != PFILE_MOCK)
 		self->file = file_new(file_name);
 	return (self);

@@ -20,6 +20,6 @@ void				_vm_params_set_player_name(t_vm_params *self,
 	_vm_params_add_named_player_node(self, player);
 
 	t_vmp_player *new = self->id_player_head->content;
-	printf("\n!!!%d\n", new->player_name);
+//	printf("\n!!!%d\n", new->player_name);
 	return;
 }
