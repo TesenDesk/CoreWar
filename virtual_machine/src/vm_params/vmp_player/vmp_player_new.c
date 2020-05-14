@@ -15,8 +15,9 @@
 
 
 
+# define MAX_PLAYERS			4
 # define DUMP_LINE_SIZE			32 //bytes
-# define MEM_SIZE				(4 * 1024)
+# define MEM_SIZE				(MAX_PLAYERS * 1024)
 # define SPACE					' '
 # define EOL					'\n'
 #include <fcntl.h>

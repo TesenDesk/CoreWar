@@ -42,9 +42,10 @@ static char		*error_messages[ERRMSGCOUNT] =
 	"Try to replace pointer to memory not being freed.",
 	"Loss of information due to some reasons. "
 		"(REG_SIZE is less then number of players.)",
-    "Wrong code_size",
-    "Incorrectly placed NULLs in data",
-    "No magic header",
+    "Wrong code_size.",
+    "Incorrectly placed NULLs in data.",
+    "No magic header.",
+	"To many players.",
 
 		"ss",
 //	"Usage: ./corewar [-d nbr_cycles] [[-n number] player1.cor ...]\n"

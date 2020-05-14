@@ -17,11 +17,10 @@ t_carriage		*carriage_new(int player_name, t_arena *arena,
 {
 	t_carriage	*self;
 
-	if ((self = (t_arena *)ft_memalloc(sizeof(*self))) == NULL)
+	if ((self = (t_carriage *)ft_memalloc(sizeof(*self))) == NULL)
 		raise(__FILE__, __LINE__, ENOMEMORY);
 	self->arena = arena;
 	self->player_name = player_name;
-//	self->carry = 0;
 	self->registers[0] = -self->player_name;
 	self->arena_position = arena_position;
 	return (self);

@@ -21,7 +21,9 @@ static void				_vm_params_new_precondition_check(int argc)
 
 static void				_vm_params_new_postcondition_check(t_vm_params *self)
 {
-	if (
+    if (self->nb_players > MAX_PLAYERS)
+        raise(__FILE__, __LINE__, EMANYPLAYERS);
+    if (
 			self->nb_players <= 0 ||
 			(self->noid_player_head || self->id_player_head) == FALSE)
 		raise(__FILE__, __LINE__, ENOPLAYERS);

@@ -36,6 +36,7 @@ enum					e_error_id
     EWRONGSIZE,
     ENONULLS,
     ENOMAGICH,
+	EMANYPLAYERS,
 	
 	
 	
