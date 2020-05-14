@@ -10,3 +10,39 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
+#include "_vm.h"
+#include "carriage/_carriage.h"
+#include "arena/_arena.h"
+#include "errors.h"
+
+static t_list *carriages_new( int players_num)
+{
+	int 	cur_player;
+	t_list	*new_car;
+	t_list	*core;
+
+	cur_player = 1;
+//	if (!(ft_lstnew(carriage_new())))
+
+	while(cur_player <= players_num)
+	{
+//		if (!(ft_lstnew()))
+		++cur_player;
+
+
+	}
+
+}
+
+void 		vm_play(t_vm *self)
+{
+	t_list	*carriages;
+
+	if (!(carriages_new(self->arena->nb_players)))
+		raise(__FILE__, __LINE__, ENOMEMORY);
+
+
+
+
+}
