@@ -21,6 +21,7 @@ static char		*error_messages[ERRMSGCOUNT] =
 	"Options:\n"
 	"\t"	"-n, --number\t"	"& means ...\n"
 	"\t"	"-d, --dump\t"		"& means ...\n",
+
 	"Could not allocate memory.",
 	"Invalid argument.",
 	"Invalid command line argument. "
@@ -84,7 +85,6 @@ int				raise(char *file_name, int line_nb, int errmsg_index)
 	ft_putnbr_fd(line_nb, STDERR);
 	ft_putendl_fd(".", STDERR);
 	ft_putendl_fd(error_messages[errmsg_index], STDERR);
-	printf("wwww");
 	exit (FAILURE);
 }
 

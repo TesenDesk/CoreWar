@@ -40,6 +40,7 @@ static void			arena_fill_in_the_data(t_arena *self)
 				self->players[curr]->code_size);
 		curr += 1;
 	}
+	self->data = arena_field;
 //	int i = 0;
 //	while (i < MEM_SIZE)
 //	{
@@ -77,5 +78,6 @@ t_arena				*arena_new(t_vm_params *params)
 	vm_params_fill_and_sort_array_of_players(params, self);
 	vm_params_destroy_players_lists(params);
 	arena_fill_in_the_data(self);
+	arena_print_dump(self);
 	return (self);
 }

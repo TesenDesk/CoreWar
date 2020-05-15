@@ -135,9 +135,9 @@
 # define EINOUT				2
 # define E2BIGENT			3
 # define EBADFD				4
-#define ENOMEMORY			5
+//#define ENOMEMORY			5
 # define ENOACCES			6
-# define EINVALARG			7
+//# define EINVALARG			7
 # define EFILE2BIG			8
 # define ENOMSGS			9
 # define EOVERFLOW			10

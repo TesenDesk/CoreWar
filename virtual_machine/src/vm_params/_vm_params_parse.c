@@ -67,6 +67,8 @@ static int 					flag_check(char *param) {
 		return (FLAG_BINARY_CODE);
 	else if (ft_arg_is_num(param))
 		return (FLAG_NUM_CODE);
+	else if (*param == '-')
+        raise(__FILE__, __LINE__, FLAG_UNDEF);
 	return (FLAG_FILE_CODE);
 }
 
@@ -158,10 +160,9 @@ static int 				_vm_params_dump_cycles(t_vm_params *self, char *param)
 {
 	long long num;
 	num = ft_atol(param);
-	if (!(ft_arg_is_num(param)))
+	if (!(ft_arg_is_num(param)) || num < 0)
 		raise(__FILE__, __LINE__, ENOARGVAL);
 	self->dump_cycles = num;
-//	printf("dump:%d\n", self->dump_cycles);
 	return (FLAG_NUM_CODE);
 
 }
