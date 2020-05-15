@@ -23,44 +23,43 @@
 #include "analyser.h"
 //#include "vm_params.h"
 
-//int main()
-//{
-//	t_parser		*prs;
-//	char			*str = malloc(1000);
-//	t_hash_map		*map;
-//	t_vector		vtr;
-//	t_vector		*text;
-//
-//	t_arg			*arg;
-//	int i = 0;
-//	while (i < 1000)
-//		str[i++] = 0;
-//	int fd = open( "example_text" , O_RDONLY);
-//
-//	int errsv = errno;
-//	printf("somecall() %d, %d\n", errsv, fd);
-//	int chunk = 100;
-//	int cur = 0;
-//
-//	while (read(fd,str + cur, chunk))
-//		cur += chunk;
+int main(int ac, char **av)
+{
+	t_parser		*prs;
+	char			*str = malloc(1000000);
+	t_hash_map		*map = ft_hash_map_ctor(1000);
+	t_vector		vtr;
+	t_vector		*text;
+
+	t_arg			*arg;
+	int i = 0;
+	while (i < 1000)
+		str[i++] = 0;
+	int fd = open( "./valid/42.s" , O_RDONLY);
+
+	int errsv = errno;
+	printf("somecall() %d, %d\n", errsv, fd);
+	int chunk = 100;
+	int cur = 0;
+
+	while (read(fd,str + cur, chunk))
+		cur += chunk;
 //	prs = parser_singleton_instance(PARSER_INSTANTIATE);
 //	map = ft_hash_map_ctor(HASH_CONST);
-//	ft_vector_init(&vtr);
-//
-//	t_analyser *analyser;
-//
-//	analyser = analyser_singleton_instance(ANALYSER_INSTANTIATE);
-//	printf("|sasadsdddddddddddddddddddddddddddddddddddddddddddd\n");
-//	text = analyse_text(analyser, &vtr, map, &str);
-//	printf("!state:%d\n", prs->state);
-//	t_vm_params *params = vm_params_new(ac, av);
-//
-//	t_arena *arena = arena_new(params);
-//	return (SUCCESS);
-//}
+	ft_vector_init(&vtr);
 
-#include "virtual_machine/include/file.h"
+	t_analyser *analyser;
+	analyser = analyser_singleton_instance(ANALYSER_INSTANTIATE);
+	text = analyse_text(analyser, &vtr, map, &str);
+	printf("!state:%d\n", prs->state);
+	printf("ok\n");
+//	t_vm_params *params = vm_params_new(ac, av);
+
+//	t_arena *arena = arena_new(params);
+	return (SUCCESS);
+}
+
+//#include "virtual_machine/include/file.h"
 //
 //int main(int ac, char**av)
 //{
@@ -134,43 +133,11 @@
 
 
 
-//void			file_print_dump(tt_file *self)
-//{
-//	size_t		index;
-//	size_t		i;
-//	size_t		buffer_len;
-//	char    	*buffer;
-//	char	    *data;
-//	buffer_len = DUMP_LINE_SIZE * 3;
-//	buffer = ft_memalloc(buffer_len);
-//	data = (char*)self->data;
-//	index = 0;
-//	i = 0;
-//	while (index < MEM_SIZE)
-//	{
-//		buffer[i] = '0';
-//		if (data[index] < 16)
-//			ft_uintmaxtostr(&buffer[i + 1], data[index], 16, 0);
-//		else
-//			ft_uintmaxtostr(&buffer[i], data[index], 16, 0);
-//		i += 2;
-//		index++;
-//		if (!(index % DUMP_LINE_SIZE))
-//		{
-//			buffer[i] = EOL;
-//			i = 0;
-//			write(1, buffer, buffer_len);
-//		}
-//		else
-//			buffer[i++] = SPACE;
-//	}
-//	// (void)vm_singleton(VM_DESTRUCT, 0, NULL);
-//}
 #include "virtual_machine/include/vm.h"
 
-int         main(int ac, char **av) // DONT FORGET FIX arc CAUSE argc[0] == EXEC FILE NAME
-{
-    t_vm            *vm;
+//int         main(int ac, char **av) // DONT FORGET FIX arc CAUSE argc[0] == EXEC FILE NAME
+//{
+//    t_vm            *vm;
 
 /*      FIRST TEST      */
 //    int             argc = 6;
@@ -191,7 +158,8 @@ int         main(int ac, char **av) // DONT FORGET FIX arc CAUSE argc[0] == EXEC
 //    argv[5] = "--dump";
 //    argv[6] = "5000";
 //    argv[7] = NULL;
-    vm = vm_singleton(VM_INSTANTIATE, ac - 1, av + 1);
+
+//    vm = vm_singleton(VM_INSTANTIATE, ac - 1, av + 1);
 
 
 //    char *dst = ft_memalloc(8);
@@ -201,5 +169,5 @@ int         main(int ac, char **av) // DONT FORGET FIX arc CAUSE argc[0] == EXEC
 //    printf("dst = %s\n", dst);
 
 
-    return (SUCCESS);
-}
+//    return (SUCCESS);
+//}

@@ -1,9 +1,11 @@
 #include "parser_private.h"
+#include "token_private.h"
 #include <string.h>
 t_expr				*parser_form_expr(t_parser *parser, char const **text,
 					t_hash_map *map, t_vector *label_vector) {
 	t_expr *expr;
 	//int 			expr_type; //TODO: UNUSED
+	t_token		*token;
 	int token_type;
 	t_lexer *lexer;
 
@@ -24,15 +26,17 @@ t_expr				*parser_form_expr(t_parser *parser, char const **text,
 
 //		printf("====================================================================\nparser_state = %i\nSTR = %s\n\n",
 //			   parser->state, *text);
-		token_type =
-				parser->get_token[parser->state](parser, lexer, expr, text);
-
+//		token_type =
+//				parser->get_token[parser->state](parser, lexer, expr, text);
+		token = parser->get_token[parser->state](parser, lexer, expr, text);
+		token_type = token_get_type(token);
+		printf("val:%s\n", token->val);
 		if (token_type == TOKEN_LABEL_WORD) {
-			if (label_checker_put_to_map_label_word(&map, expr) ==
+			if (label_checker_put_to_map_label_word(&map, token) ==
 				FAILURE)
 				return (NULL);
 		} else if (token_type == TOKEN_TIND_LAB || token_type == TOKEN_TDIR_LAB) {
-			if (label_checker_put_to_map_label_ptr(label_vector, expr) == FAILURE)
+			if (label_checker_put_to_map_label_ptr(label_vector, token) == FAILURE)
 				return (NULL);
 		}
 		parser->change_state(parser, token_type);

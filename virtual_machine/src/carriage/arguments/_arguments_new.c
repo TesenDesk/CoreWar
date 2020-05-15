@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "_arguments.h"
+#include <libft.h>
 
 t_arguments			*_arguments_new(void)
 {

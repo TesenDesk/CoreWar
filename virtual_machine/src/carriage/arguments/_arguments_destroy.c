@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "_arguments.h"
+#include <libft.h>
 
 void			_arguments_destroy(t_arguments **self)
 {

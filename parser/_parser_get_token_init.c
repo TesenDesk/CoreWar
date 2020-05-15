@@ -24,7 +24,7 @@ static void		fill_expr_types(int expr_types[TOKEN_LABEL_WORD + 2])
 		expr_types[index_token++] = value_expr;
 }
 
-int				_parser_get_token_init(t_parser *parser, t_lexer *lexer,
+t_token			*_parser_get_token_init(t_parser *parser, t_lexer *lexer,
 				t_expr *expr, char const **text)
 {
 	t_token		*token;
@@ -32,7 +32,7 @@ int				_parser_get_token_init(t_parser *parser, t_lexer *lexer,
 	static int	expr_types[50];
 
 	if ((token = lexer_form_token(lexer, text)) == NULL)
-		return (NO_TOKEN);
+		return (NULL);
 	token_type = token_get_type(token);
 	if (!expr_types[TOKEN_LFORK])
 		fill_expr_types(expr_types);
@@ -48,6 +48,6 @@ int				_parser_get_token_init(t_parser *parser, t_lexer *lexer,
 	else
 		expr->type = EXPR_UNDEF;
 	if (expr_set_arg(expr, token, OP_NAME, token_type) == FAILURE)
-		return (NO_TOKEN);
-	return (token_type);
+		return (NULL);
+	return (token);
 }

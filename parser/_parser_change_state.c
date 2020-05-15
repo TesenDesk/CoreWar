@@ -174,7 +174,7 @@ static int  _parser_find_next_to_op2_st(t_parser  *parser, int token_type)
 //	else if (parser->state == PARSER_OP2_LOGIC_ST)
 //		;
 //	else if (parser->state == PARSER_OP2_STORI_ST)
-//		;
+//		_parser_get_token;
 //	if (token_type == TOKEN_LFEED) {
 //		parser->state = PARSER_INIT_ST;
 //	}

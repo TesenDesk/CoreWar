@@ -56,10 +56,10 @@ static int                  lexer_find_next_to_INIT_ST(int term_type)
 	{
 		return (OPX_ST);
 	}
-	else if (term_type == OPX_CODE)
-	{
-		return (OPX_ST);
-	}
+//	else if (term_type == OPX_CODE)
+//	{
+//		return (OPX_ST);
+//	}
 	else if (term_type == LABEL_CHARS_CODE)
 	{
 		return (LABEL_WORD_ST);

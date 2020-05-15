@@ -23,9 +23,9 @@
 
 // t_hash_map		*create_hashmap(size_t vertices_num);
 int				label_checker_put_to_map_label_word(
-					t_hash_map **map_of_label_words,  t_expr *expr);
+					t_hash_map **map_of_label_words,  t_token *token);
 int				label_checker_put_to_map_label_ptr(
-					t_vector *added_label_ptrs, t_expr *expr);
+					t_vector *added_label_ptrs, t_token *token);
 int				label_checker_inclusion_of_maps(t_vector *label_ptr_keys,
 					t_hash_map *map_of_label_words);
 

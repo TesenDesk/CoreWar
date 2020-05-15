@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "label_checker_private.h"
+#include "../lexer/token_private.h"
 
 /*
 **	The function adds a unique "label word" name to the assiciative array.
@@ -20,11 +21,16 @@
 */
 
 int					label_checker_put_to_map_label_word(
-					t_hash_map **map_of_label_words, t_expr *expr)
+					t_hash_map **map_of_label_words, t_token *token)
 {
 	t_pair			pair;
 
-	pair.key = token_get_value((t_token *)(expr_get_arg_value(expr, OP_NAME)));
+	pair.key = token->val;
+//	pair.key = (char*)token_get_value(token);
+	char *s = (char*)token->val;
+	printf("hm:%s\n", token->val);
+	printf("key:%s\n", (char*)pair.key);
+	printf("ss:%s\n", s);
 	pair.content = (void *)TRUE;
 	if (ft_hash_map_get(*map_of_label_words, pair.key))
 		return (FAILURE);
@@ -42,11 +48,11 @@ int					label_checker_put_to_map_label_word(
 */
 
 int					label_checker_put_to_map_label_ptr(
-					t_vector *added_label_ptrs, t_expr *expr)
+					t_vector *added_label_ptrs, t_token *token)
 {
 	t_pair			pair;
 	
-	pair.key = token_get_value((t_token *)(expr_get_arg_value(expr, OP_NAME)));
+	pair.key = token_get_value(token);
 	pair.content = (void *)TRUE;
 	if (ft_vector_add(added_label_ptrs, (void *)pair.key) == FAILURE)
 		return (FAILURE);
