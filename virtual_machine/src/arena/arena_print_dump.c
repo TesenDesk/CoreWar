@@ -15,7 +15,7 @@ void			arena_print_dump(t_arena *self)
     char	    *data;
 
 
-    buffer_len = DUMP_LINE_SIZE * 5 / 2; // every byte want 2 chars 00 and 0.5 spaces
+    buffer_len = DUMP_LINE_SIZE * 3;
     buffer = ft_memalloc(buffer_len);
     data = (char*)self->data;
     index = 0;
@@ -23,10 +23,10 @@ void			arena_print_dump(t_arena *self)
     while (index < MEM_SIZE)
     {
         buffer[i] = '0';
-        if (data[index] < 16)
-            ft_uintmaxtostr(&buffer[i + 1], data[index], 16, 0);
+        if (data[index] & 0xf0)
+            ft_uintmaxtostr(&buffer[i], (unsigned int)data[index], 16, 0);
         else
-            ft_uintmaxtostr(&buffer[i], data[index], 16, 0);
+            ft_uintmaxtostr(&buffer[i + 1], (unsigned int)data[index], 16, 0);
         i += 2;
         index++;
         if (!(index % DUMP_LINE_SIZE))
@@ -35,7 +35,7 @@ void			arena_print_dump(t_arena *self)
             i = 0;
             write(1, buffer, buffer_len);
         }
-        else if (!(index % 2))
+        else
             buffer[i++] = SPACE;
     }
     // (void)vm_singleton(VM_DESTRUCT, 0, NULL);

@@ -26,6 +26,9 @@ void		arena_destroy(t_arena **self);
 void		arena_set_named_player(t_arena *self, t_player *named_player);
 void		arena_set_unnamed_player(t_arena *self, t_player *unnamed_player);
 t_list      *arena_carriage_list_new(t_arena *self);
+t_player     **arena_players(t_arena *self);
+int         arena_nb_players(t_arena *self);
 int			arena_op_code(t_arena *self, int arena_position);
+
 
 #endif

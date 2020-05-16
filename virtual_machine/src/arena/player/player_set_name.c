@@ -14,6 +14,6 @@
 
 void		player_set_name(t_player *self, int name)
 {
-	self->name = name;
+	self->name = name + 1;
 	return;
 }

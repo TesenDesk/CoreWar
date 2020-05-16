@@ -30,7 +30,7 @@ typedef struct				s_carriage
 	int				is_correct_operation; //
 	int				wait_so_many_cycles_to_perform_op; // циклов до операции (какая операция по умолчанию??)
 	t_operation 	ops[NUMBER_OF_OPERATIONS];
-	int				announcment_cycle_that_live; // посдедний цикло в котором каретка  live
+	int				announcment_cycle_that_live; // посдедний цикл в котором каретка  live
 	int				is_correct_op_code;
 	int				arena_position;
 	int				bytes_to_next_op;

@@ -22,5 +22,6 @@ void	    	player_set_name(t_player *self, int name);
 int				player_name(t_player *self);
 t_player		*player_new(t_vmp_player *vmp_player);
 void			player_destroy(t_player **self);
+//void            player_introducing(t_player **self);
 
 #endif

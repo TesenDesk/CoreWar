@@ -30,5 +30,6 @@ typedef struct		s_player
 	size_t 			code_size;
 }					t_player;
 
+void        player_introducing(t_player *players);
 
 #endif

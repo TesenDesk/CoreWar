@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "_player.h"
 #include "_arena.h"
 #include "vm_params.h"
 #include "./vm_params/_vm_params.h"
@@ -41,24 +42,6 @@ static void			arena_fill_in_the_data(t_arena *self)
 		curr += 1;
 	}
 	self->data = arena_field;
-//	int i = 0;
-//	while (i < MEM_SIZE)
-//	{
-//		if ((unsigned char)*(arena_field + i) < 16)
-//			printf("0");
-//		printf("%x", (unsigned char)(*(arena_field + i)));
-//		if (i % 32 == 1)
-//			printf("\n");
-//		else if (i % 2 == 1)
-//			printf(" ");
-//		else if (i % 2 == 0)
-//			printf(" ");
-//		++i;
-//	}
-//	int fd1 = open("./our_bee_gees2.cor", O_APPEND);
-//	printf("\n%d\n\n%d\n", fd1, self->nb_players);
-//	write(fd1, arena_field, MEM_SIZE );
-
 
 	return ;
 }
@@ -75,9 +58,19 @@ t_arena				*arena_new(t_vm_params *params)
 	self->players = _arena_players_new(self->nb_players);
 	self->dump_cycles = params->dump_cycles;
 //	printf("aren_dump:%d\n", self->dump_cycles);
+
+
 	vm_params_fill_and_sort_array_of_players(params, self);
-	vm_params_destroy_players_lists(params);
+
+
+
+
+
+    //	vm_params_destroy_players_lists(params); // problems, check it
 	arena_fill_in_the_data(self);
-//	arena_print_dump(self);
+//    write(1, "there\n", 6);
+	arena_print_dump(self);
+
+    arena_players_introducing(self);
 	return (self);
 }

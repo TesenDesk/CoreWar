@@ -37,8 +37,6 @@ static void			_vm_params_map_players_to_arena(t_list *id_players,
 void				vm_params_fill_and_sort_array_of_players(t_vm_params *self,
 						t_arena *arena)
 {
-//	arena->dump_cycles = self->dump_cycles;
-//	printf("aren_dump:%d\n", arena->dump_cycles);
 	if (self->id_player_head != NULL)
 		_vm_params_map_players_to_arena(self->id_player_head, arena,
 		arena_set_named_player);
