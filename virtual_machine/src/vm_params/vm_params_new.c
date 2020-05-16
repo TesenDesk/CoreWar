@@ -12,6 +12,9 @@
 
 #include "_vm_params.h"
 
+/*
+ * неправильно
+ */
 static void				_vm_params_new_precondition_check(int argc)
 {
 	if (argc < 2)

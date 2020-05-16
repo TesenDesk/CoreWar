@@ -41,8 +41,7 @@ static int                  lexer_find_next_to_INIT_ST(int term_type)
 	}
 	else if (term_type == LINE_FEED_CODE)
 	{
-		// mabe want use INIT_ST
-		return (LINE_FEED_ST);
+		return (INIT_ST);
 	}
 	else if (term_type == NAME_CMD_STRING_CODE)
 	{
@@ -126,6 +125,8 @@ void                lexer_change_state(t_lexer *lexer, int term_type)
 
 	if (lexer->state == INIT_ST)
 		lexer->state = lexer_find_next_to_INIT_ST(term_type);
+	else if(lexer->state == COMMENT_ST)
+			lexer->state = INIT_ST;
 	else if (lexer->state >= NAME_CMD_ST && lexer->state <= CH_COMM_ST)
 			lexer->state = lexer_find_champ_state(lexer, term_type);
 	else if (lexer->state == OPX_ST || lexer->state == MULTI_ARG_ST) {

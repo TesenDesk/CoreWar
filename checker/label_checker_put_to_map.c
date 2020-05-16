@@ -28,9 +28,6 @@ int					label_checker_put_to_map_label_word(
 	pair.key = token->val;
 //	pair.key = (char*)token_get_value(token);
 	char *s = (char*)token->val;
-	printf("hm:%s\n", token->val);
-	printf("key:%s\n", (char*)pair.key);
-	printf("ss:%s\n", s);
 	pair.content = (void *)TRUE;
 	if (ft_hash_map_get(*map_of_label_words, pair.key))
 		return (FAILURE);

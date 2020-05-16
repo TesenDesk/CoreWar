@@ -26,9 +26,9 @@ t_token			*_parser_get_token_line_end(t_parser *parser, t_lexer *lexer,
 	token_type = token_get_type(token);
 	if (!(token_type == TOKEN_LFEED))
 		expr->type = EXPR_UNDEF;
-	if (expr_set_arg(expr, token, LINE_END_ARG, token_type) == FAILURE)
-	{
-		return (NULL);
-	}
+//	if (expr_set_arg(expr, token, LINE_END_ARG, token_type) == FAILURE)
+//	{
+//		return (NULL);
+//	}
 	return (token);
 }

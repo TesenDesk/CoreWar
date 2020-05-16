@@ -19,12 +19,10 @@
 int			expr_set_arg(t_expr *expr, t_token *token,
 					int args_number, int arg_type)
 {
+	if (arg_type == TOKEN_LABEL_WORD || arg_type == TOKEN_LFEED) {
+		return (SUCCESS);
+	}
 	expr->args[args_number].type = arg_type;
 	expr->args[args_number].value = (void *)token;
-	if (arg_type == TOKEN_LABEL_WORD)
-		if (token_name_init((t_token *)token) == FAILURE)
-			return (FAILURE);
-//	if (args_number == OP_NAME)
-//		expr->type = arg_type;
 	return (SUCCESS);
 }

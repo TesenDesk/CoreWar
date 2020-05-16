@@ -22,7 +22,7 @@
 #include "./parser/parser_private.h"
 #include "analyser.h"
 //#include "vm_params.h"
-
+#include <string.h>
 int main(int ac, char **av)
 {
 	t_parser		*prs;
@@ -35,7 +35,7 @@ int main(int ac, char **av)
 	int i = 0;
 	while (i < 1000)
 		str[i++] = 0;
-	int fd = open( "./valid/42.s" , O_RDONLY);
+	int fd = open( "./valid/bee_gees.s" , O_RDONLY);
 
 	int errsv = errno;
 	printf("somecall() %d, %d\n", errsv, fd);
@@ -44,18 +44,18 @@ int main(int ac, char **av)
 
 	while (read(fd,str + cur, chunk))
 		cur += chunk;
-//	prs = parser_singleton_instance(PARSER_INSTANTIATE);
-//	map = ft_hash_map_ctor(HASH_CONST);
 	ft_vector_init(&vtr);
 
 	t_analyser *analyser;
 	analyser = analyser_singleton_instance(ANALYSER_INSTANTIATE);
-	text = analyse_text(analyser, &vtr, map, &str);
-	printf("!state:%d\n", prs->state);
+//	text = analyse_text(analyser, &vtr, map, &str);
 	printf("ok\n");
-//	t_vm_params *params = vm_params_new(ac, av);
+	/*
+	 * need to fix strnstr
+	 */
+	t_vm_params *params = vm_params_new(ac, av);
 
-//	t_arena *arena = arena_new(params);
+	t_arena *arena = arena_new(params);
 	return (SUCCESS);
 }
 
@@ -133,13 +133,13 @@ int main(int ac, char **av)
 
 
 
-#include "virtual_machine/include/vm.h"
-
+//#include "virtual_machine/include/vm.h"
+//
 //int         main(int ac, char **av) // DONT FORGET FIX arc CAUSE argc[0] == EXEC FILE NAME
 //{
 //    t_vm            *vm;
-
-/*      FIRST TEST      */
+////
+/////*      FIRST TEST      */
 //    int             argc = 6;
 //    char            *argv[argc];
 //    argv[1] = "bee_gees.cor";
@@ -147,27 +147,27 @@ int main(int ac, char **av)
 //    argv[3] = "2";
 //    argv[4] = "zork.cor";
 //    argv[5] = NULL;
-
-/*      SECOND TEST      */
-//    int             argc = 8;
-//    char            *argv[argc];
-//    argv[1] = "bee_gees.cor";
-//    argv[2] = "-n";
-//    argv[3] = "1";
-//    argv[4] = "zork.cor";
-//    argv[5] = "--dump";
-//    argv[6] = "5000";
-//    argv[7] = NULL;
-
+////
+/////*      SECOND TEST      */
+////    int             argc = 8;
+////    char            *argv[argc];
+////    argv[1] = "bee_gees.cor";
+////    argv[2] = "-n";
+////    argv[3] = "1";
+////    argv[4] = "zork.cor";
+////    argv[5] = "--dump";
+////    argv[6] = "5000";
+////    argv[7] = NULL;
+////
 //    vm = vm_singleton(VM_INSTANTIATE, ac - 1, av + 1);
-
-
+////
+////
 //    char *dst = ft_memalloc(8);
 //    printf("dst = %s\n", dst);
 //    char *src = "12345678";
 //    ft_strncpy(dst, src, 8);
 //    printf("dst = %s\n", dst);
-
-
+////
+////
 //    return (SUCCESS);
 //}

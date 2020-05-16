@@ -30,7 +30,8 @@ t_expr				*parser_form_expr(t_parser *parser, char const **text,
 //				parser->get_token[parser->state](parser, lexer, expr, text);
 		token = parser->get_token[parser->state](parser, lexer, expr, text);
 		token_type = token_get_type(token);
-		printf("val:%s\n", token->val);
+//		printf("expr:%d\n", expr->type);
+//		printf("val:%s\n",(char*)token->val);
 		if (token_type == TOKEN_LABEL_WORD) {
 			if (label_checker_put_to_map_label_word(&map, token) ==
 				FAILURE)

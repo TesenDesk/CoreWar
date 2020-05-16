@@ -28,13 +28,13 @@ t_token				*token_constructor(int type,void *ptr[2])
 	if (!(token->val = ft_memalloc(size)))
 		exit(-1);
 	ft_memcpy(token->val, ptr[0], size - 1);
-	printf("!%s!\n", token->val);
+//	printf("!%s!\n", token->val);
 //	printf("%d, %s\n", size -1 , token->val);
 	token->type = type;
 	token->token_ptr[0] = ptr[0];
 	token->token_ptr[1] = ptr[1];
 	token->get_type = token_get_type;
-	printf("!%s!\n", token->val);
+//	printf("!%s!\n", token->val);
 
 	return (token);
 }
@@ -56,7 +56,6 @@ int					token_get_type(t_token *token)
 
 void				*token_get_value(t_token *token)
 {
-	printf("wow, %s\n", token->val);
 	if (token)
 		return (token->val);
 	return (NULL);
