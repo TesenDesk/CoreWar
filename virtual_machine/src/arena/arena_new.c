@@ -71,6 +71,6 @@ t_arena				*arena_new(t_vm_params *params)
 //    write(1, "there\n", 6);
 	arena_print_dump(self);
 
-    arena_players_introducing(self);
+//    arena_players_introducing(self);
 	return (self);
 }

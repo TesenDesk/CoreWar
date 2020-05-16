@@ -192,7 +192,7 @@ int         main(int ac, char **av) // DONT FORGET FIX arc CAUSE argc[0] == EXEC
 //    argv[6] = "5000";
 //    argv[7] = NULL;
     vm = vm_singleton(VM_INSTANTIATE, ac - 1, av + 1);
-//    vm_play(vm);
+    vm_play(vm);
 
     return (SUCCESS);
 }

@@ -7,7 +7,6 @@ void    arena_players_introducing(t_arena *self)
 
     write(1, "Introducing contestants...\n", 27 );
 
-//    player_introducing(self->players);
     index = 0;
     while (index < self->nb_players)
     {
