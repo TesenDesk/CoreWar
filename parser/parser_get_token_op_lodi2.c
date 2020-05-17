@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_name_init.c                                  :+:      :+:    :+:   */
+/*   parser_get_token_op_lodi2.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/05 20:25:30 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/06 21:23:57 by ftothmur         ###   ########.fr       */
+/*   Created: 2020/02/21 16:15:45 by ftothmur          #+#    #+#             */
+/*   Updated: 2020/02/21 16:18:27 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "token.h"
-#include "token_private.h"
-// #include "token_defines.h"
+#include "expr.h"
+#include "expr_defines.h"
+#include "expr_private.h"
+#include "parser_private.h"
 
-int				token_name_init(t_token *t)
+int				parser_get_token_op_lodi2(t_parser *parser, t_lexer *lexer,
+				t_expr *expr, char const **text)
 {
-	char		*token_name;
+	int		token_type;
 
-	if (!(token_name = ft_strsub((char *)(t->token_ptr[TOKEN_TEXT_START_INDX]),
-			TOKEN_TEXT_START_INDX,
-			TOKEN_TEXT_END_INDX - TOKEN_TEXT_START_INDX + 1)))
-		return (FAILURE);
-	t->val = (void *)token_name;
-	return (SUCCESS);
+	token_type = get_type(lexer_form_token(lexer, text));
+	if (!(token_type == TOKEN_TREG))
+		expr->token = EXPR_UNDEF;
+	return (token_type);
 }
