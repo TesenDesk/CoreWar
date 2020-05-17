@@ -36,6 +36,5 @@ typedef struct			s_arena
 
 t_player	**_arena_players_new(int num_players);
 void		_arena_set_smallest_unoccupied_name(t_arena *self);
-void        arena_players_introducing(t_arena *self);
 
 #endif

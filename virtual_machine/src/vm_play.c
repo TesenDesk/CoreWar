@@ -58,20 +58,18 @@
 //    }
 //}
 
+//void            arena_take_step
+
 void 		    vm_play(t_vm *self)
 {
 	t_list	*carriages;
 
 //    write(1, "there\n", 6);
     arena_players_introducing(self->arena);
-//    while (TRUE)
+
+    arena_is_turnable(self->arena);
+//    while (arena_is_turnable(self->arena))
 //    {
-//        carriages = self->carriage_head;
-//        while (carriages)
-//        {
-//            carriages_take_next_step((t_carriage*)carriages);
-//            vm_take_next_step(self);
-//            carriages = carriages->next;
-//        }
+//        carriages_take_next_step((t_carriage*)carriages);
 //    }
 }
