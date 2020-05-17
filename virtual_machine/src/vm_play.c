@@ -16,6 +16,7 @@
 #include "arena/_arena.h"
 #include "player.h"
 #include "errors.h"
+#define CYCLES_TO_DIE       1536;
 
 //static t_list *carriages_new( int players_num)
 //{
@@ -59,17 +60,51 @@
 //}
 
 //void            arena_take_step
+//void            vm_take_next_step(t_vm *self)
+//{
+//    t_list      *tmp;
+//    t_list      *list;
+//
+//    tmp = NULL;
+//    list = self->carriage_head;
+//    while (list)
+//    {
+//        if (carriage_is_alive(list->content) == FALSE)
+//        tmp = list;
+//        list = list->next;
+//    }
+//}
+carriage_is_dead
+
+int             vm_check(t_vm *self)
+{
+    t_list      *tmp;
+    t_list      *list;
+
+    tmp = NULL;
+    list = self->carriage_head;
+    while (list)
+    {
+        if (carriage_is_alive(list->content) == FALSE)
+            list_del(tmp, list);
+        list = list->next
+    }
+}
+
+void            vm_next_turn(t_vm *self)
+{
+}
 
 void 		    vm_play(t_vm *self)
 {
-	t_list	*carriages;
-
-//    write(1, "there\n", 6);
     arena_players_introducing(self->arena);
-
-    arena_is_turnable(self->arena);
-//    while (arena_is_turnable(self->arena))
-//    {
-//        carriages_take_next_step((t_carriage*)carriages);
-//    }
+    self->cycles_to_die = CYCLES_TO_DIE;
+    while (TRUE)
+    {
+        if (self->cycles_to_die <= 0)
+            if (vm_check(self) == FAILURE)
+                break;
+        else
+            vm_next_turn(self);
+    }
 }

@@ -36,6 +36,8 @@ typedef struct	s_vm
 	t_vm_params	*params;
 	t_arena		*arena;
 	t_list		*carriage_head;
+	int         cycles_to_die;
+	int         num_of_live_ops;
 }				t_vm;
 
 t_vm		*_vm_new(int argc, char *argv[]);
