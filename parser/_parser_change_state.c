@@ -112,7 +112,7 @@ static int 	_find_2_1_layer_op(t_parser *parser, int token_type)
 			return (PARSER_OP2_LOADI_ST);
 		else if (parser->state == PARSER_OP1_LOGIC_ST)
 			return (PARSER_OP2_LOGIC_ST);
-		else if (parser->state == PARSER_OP2_STORI_ST)
+		else if (parser->state == PARSER_OP1_STORI_ST)
 			return (PARSER_OP2_STORI_ST);
 	}
 	else if (token_type == TOKEN_TDIR_LAB || token_type == TOKEN_TDIR_INT)

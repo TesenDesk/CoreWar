@@ -92,8 +92,6 @@ static int          lexer_find_op_arg_state(t_lexer *lexer, int term_type)
 	{
 		if (term_type == SEPARATOR_CHAR_CODE)
 			return (MULTI_ARG_ST);
-		else if (term_type == WHITE_SPACE_CODE)
-			return (INIT_ST);
 	}
 	else if ((lexer->state == T_REG_ST && term_type == INTEGER_CODE))
 			return (ARG_BRK_ST);
@@ -114,8 +112,6 @@ static int          lexer_find_op_arg_state(t_lexer *lexer, int term_type)
 	{
 		if (term_type == SEPARATOR_CHAR_CODE)
 			return (MULTI_ARG_ST);
-		else if (term_type == WHITE_SPACE_CODE)
-			return (INIT_ST);
 	}
 	return (INIT_ST);
 }
@@ -161,7 +157,12 @@ t_token             *lexer_form_token(t_lexer *lexer, char const **text)
 	{
 //		printf("111  lexer->state %i\n", lexer->state);
 //		printf("text:%s\n", *text);
+		while (**text == ' ' || **text == '\t')
+			++(*text);
 		lexer->change_state(lexer, lexer->get_term[lexer->state](lexer, text, &token_type, token_ptr));
+		while (**text == ' ' || **text == '\t')
+			++(*text);
+
 //		printf("TEXT:%s\n", *text);
 //		printf("THERE.      token_type = %i\n", token_type);
 

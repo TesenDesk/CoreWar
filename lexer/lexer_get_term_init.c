@@ -16,8 +16,8 @@ static int			term_is_op(char const *text)
 	while (i < 16)
 	{
 		len = ft_strlen(cmds_arr[i]);
-		if (ft_strnstr(text, cmds_arr[i], len - 1))
-			if (text[len - 1] == ' ' || text[len - 1] == '\t')
+		if (ft_strnstr(text, cmds_arr[i], len))
+			if (text[len] == ' ' || text[len] == '\t')
 				return (len);
 		i++;
 	}
@@ -133,12 +133,18 @@ int             lexer_get_term_init(t_lexer *lexer, char const **text, int *type
 		return (INIT_ST);
 	}
 	else if (ft_strnstr(*text, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING))) {
-		(*text) += ft_strlen(NAME_CMD_STRING);
-		return (NAME_CMD_STRING_CODE);
+		if (*(*text + ft_strlen(NAME_CMD_STRING)) == ' '
+			|| *(*text + ft_strlen(NAME_CMD_STRING)) == '\t') {
+				(*text) += ft_strlen(NAME_CMD_STRING);
+				return (NAME_CMD_STRING_CODE);
+		}
 	}
 	else if (ft_strnstr(*text, COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING))){
-		(*text) += ft_strlen(COMMENT_CMD_STRING);
-		return (COMMENT_CMD_STRING_CODE);
+		if (*(*text + ft_strlen(COMMENT_CMD_STRING)) == ' '
+			|| *(*text + ft_strlen(COMMENT_CMD_STRING)) == '\t') {
+			(*text) += ft_strlen(COMMENT_CMD_STRING);
+			return (COMMENT_CMD_STRING_CODE);
+		}
 	}
 	else if ((op_len = term_is_op(*text)))
 	{

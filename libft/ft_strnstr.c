@@ -78,7 +78,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 			h++;
 			l--;
 		}
-		if (*n == '\0')
+		if (l == 0)
 			return ((char*)haystack);
 		haystack++;
 		len--;
