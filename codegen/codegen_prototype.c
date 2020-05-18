@@ -209,56 +209,56 @@ int				champ_exec_constructor(t_codegen *data)
 
 #ifdef CODEGEN_DEBUGGER
 
-int				main(void)
-{
-	t_codegen	*code;
-	header_t	header;
-	int			fd;
-	t_expr		*q;
-	t_hash_map	*map;
-	t_pair      *new_item;
-	int int_ptr[10];
-
-	ft_bzero(&header.comment, COMMENT_LENGTH + 1);
-	ft_bzero(&header.prog_name, PROG_NAME_LENGTH + 1);
-	q = ft_memalloc(sizeof(t_expr));
-	ft_memcpy(&header.prog_name, "Batman", 4*6);
-	ft_memcpy(&header.comment, "This city needs me", 4*6);
-	code = codegen_ctor(NULL, NULL, &header);
-	map = ft_hash_map_ctor(5);
-	new_item = ft_memalloc(sizeof(t_pair));
-	new_item->key = "loop";
-	ft_hash_map_put_to_map(&map, new_item);
-	new_item = ft_memalloc(sizeof(t_pair));
-	new_item->key = "live";
-	ft_hash_map_put_to_map(&map, new_item);
-	code->labels_free = map;
-	code->code_size = 22;
-	//code->code = ft_memalloc(8);
-	code->header->magic = COREWAR_EXEC_MAGIC;
-	q->type = LABEL_WORD;
-	q->args[0].value = "loop";
-	codegen_codegen(code, q);
-
-	q->type = COM_STI;
-	int_ptr[0] = 1;
-	q->args[0].type = T_REG;
-	q->args[0].value = &int_ptr[0];
-	q->args[1].type = T_DIR;
-	q->args[2].type = T_DIR;
-	int_ptr[1] = LABEL_WORD;
-	q->args[1].value = &int_ptr[1];
-	int_ptr[2] = 1;
-	q->args[2].value = &int_ptr[2];
-	codegen_codegen(code, q);
-
-	code->header->prog_size = champ_exec_constructor(code);
-	fd = open("test.cmp", O_WRONLY);
-	//fprintf(fp, "%s", code->exec);
-	write(fd, code->exec, code->header->prog_size);
-
-	return  (0);
-}
+//int				main(void)
+//{
+//	t_codegen	*code;
+//	header_t	header;
+//	int			fd;
+//	t_expr		*q;
+//	t_hash_map	*map;
+//	t_pair      *new_item;
+//	int int_ptr[10];
+//
+//	ft_bzero(&header.comment, COMMENT_LENGTH + 1);
+//	ft_bzero(&header.prog_name, PROG_NAME_LENGTH + 1);
+//	q = ft_memalloc(sizeof(t_expr));
+//	ft_memcpy(&header.prog_name, "Batman", 4*6);
+//	ft_memcpy(&header.comment, "This city needs me", 4*6);
+//	code = codegen_ctor(NULL, NULL, &header);
+//	map = ft_hash_map_ctor(5);
+//	new_item = ft_memalloc(sizeof(t_pair));
+//	new_item->key = "loop";
+//	ft_hash_map_put_to_map(&map, new_item);
+//	new_item = ft_memalloc(sizeof(t_pair));
+//	new_item->key = "live";
+//	ft_hash_map_put_to_map(&map, new_item);
+//	code->labels_free = map;
+//	code->code_size = 22;
+//	//code->code = ft_memalloc(8);
+//	code->header->magic = COREWAR_EXEC_MAGIC;
+//	q->type = LABEL_WORD;
+//	q->args[0].value = "loop";
+//	codegen_codegen(code, q);
+//
+//	q->type = COM_STI;
+//	int_ptr[0] = 1;
+//	q->args[0].type = T_REG;
+//	q->args[0].value = &int_ptr[0];
+//	q->args[1].type = T_DIR;
+//	q->args[2].type = T_DIR;
+//	int_ptr[1] = LABEL_WORD;
+//	q->args[1].value = &int_ptr[1];
+//	int_ptr[2] = 1;
+//	q->args[2].value = &int_ptr[2];
+//	codegen_codegen(code, q);
+//
+//	code->header->prog_size = champ_exec_constructor(code);
+//	fd = open("test.cmp", O_WRONLY);
+//	//fprintf(fp, "%s", code->exec);
+//	write(fd, code->exec, code->header->prog_size);
+//
+//	return  (0);
+//}
 
 #endif // CODEGEN_DEBUGGER
 

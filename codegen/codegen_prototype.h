@@ -7,6 +7,8 @@
 
 #include "libft.h"
 #include "junk/op.h"
+#include "expr_defines.h"
+#include "../parser/expr_private.h"
 
 #define CODEGEN_DEBUGGER 1
 #define DIR_LEN_2 1
@@ -28,24 +30,5 @@ typedef union			u_code_addr
 	unsigned int		addr;
 }						t_code_addr;
 
-typedef enum			e_commands
-{
-	COM_LIVE = 1,
-	COM_LD,
-	COM_ST,
-	COM_ADD,
-	COM_SUB,
-	COM_AND,
-	COM_OR,
-	COM_XOR,
-	COM_ZJMP,
-	COM_LDI,
-	COM_STI,
-	COM_FORK,
-	COM_LLD,
-	COM_LLDI,
-	COM_LFORK,
-	COM_AFF
-}						t_commands;
 
 #endif //CODEGEN_PROTOTYPE_H

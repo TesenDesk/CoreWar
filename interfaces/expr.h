@@ -14,11 +14,12 @@ typedef struct s_arg		t_arg;
 
 typedef enum		e_arg_number
 {
-	OP_NAME = 0,
+	UNDEF_ARG = -1,
+	OP_NAME,
 	FIRST_ARG,
 	SECOND_ARG,
 	THIRD_ARG,
-	LINE_END_ARG
+	LABEL_ARG,
 }					t_arg_number;
 
 /*

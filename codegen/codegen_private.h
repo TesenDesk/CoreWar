@@ -1,6 +1,7 @@
 //
 // Created by Jhiqui Jerde on 21/02/2020.
 //
+#include "expr.h"
 
 #ifndef GIT_CODEGEN_PRIVATE_H
 #define GIT_CODEGEN_PRIVATE_H
@@ -20,18 +21,18 @@ typedef struct		s_codegen
 	header_t		*header;
 }					t_codegen;
 
-typedef struct		s_arg
-{
-	char			type;
-	void			*value;
-}					t_arg;
-
-typedef struct		s_expr
-{
-	char			type;
-	char			size;
-	void			*name;
-	t_arg			args[3];
-}					t_expr;
+//typedef struct		s_arg
+//{
+//	char			type;
+//	void			*value;
+//}					t_arg;
+//
+//typedef struct		s_expr
+//{
+//	char			type;
+//	char			size;
+//	void			*name;
+//	t_arg			args[3];
+//}					t_expr;
 
 #endif //GIT_CODEGEN_PRIVATE_H

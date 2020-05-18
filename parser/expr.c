@@ -11,9 +11,12 @@ t_expr					*expr_ctor(void)
 		exit(-1);
 	}
 	expr->type = EXPR_INIT;
-	expr->args[0].type = ARG_INIT;
-	expr->args[1].type = ARG_INIT;
-	expr->args[2].type = ARG_INIT;
+	expr->args[OP_NAME].type = ARG_INIT;
+	expr->args[FIRST_ARG].type = ARG_INIT;
+	expr->args[SECOND_ARG].type = ARG_INIT;
+	expr->args[THIRD_ARG].type = ARG_INIT;
+	expr->args[LABEL_ARG].type = ARG_INIT;
+
 	return (expr);
 }
 

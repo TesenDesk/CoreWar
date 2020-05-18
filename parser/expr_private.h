@@ -15,7 +15,7 @@ typedef struct		s_expr
 	int				type;
 	int				size;
 	void			*name;
-	t_arg			args[5];
+	t_arg			args[6];
 
 	//изменить на индекс
 }					t_expr;

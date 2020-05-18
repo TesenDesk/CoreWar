@@ -2,18 +2,6 @@
 #include "parser_private.h"
 // #include "../lexer/token_defines.h"
 
-//void     _parser_change_state(t_parser *parser, int token_type)
-//{
-//    if (parser->state == PARSER_INIT_ST)
-//    {
-//        if (token_type == TOKEN_CHNAME || token_type == TOKEN_CHCOM)
-//            parser->state = PRECODE_ST;
-//        else if (token_type == TOKEN_LABEL_WORD)
-//    }
-//}
-//
-
-
 static int  _find_parser_op0_state(int token_type)
 {
 	if (token_type >= TOKEN_LIVE && token_type <= TOKEN_LFORK)
@@ -223,26 +211,3 @@ void        _parser_change_state(t_parser *parser, int token_type)
 			parser->state = PARSER_ERROR;
 	}
 }
-//PARSER_ERROR = -1,
-//		PARSER_INIT_ST,
-//		PARSER_OP0_LIFE_ST,
-//		PARSER_OP0_AFFECT_ST,
-//		PARSER_OP0_LOAD_ST,
-//		PARSER_OP1_LOAD_ST,
-//		PARSER_OP0_STORE_ST,
-//		PARSER_OP1_STORE_ST,
-//		PARSER_OP0_ARITHM_ST,
-//		PARSER_OP1_ARITHM_ST,
-//		PARSER_OP2_ARITHM_ST,
-//		PARSER_OP0_LOADI_ST,
-//		PARSER_OP1_LOADI_ST,
-//		PARSER_OP2_LOADI_ST,
-//		PARSER_OP0_LOGIC_ST,
-//		PARSER_OP1_LOGIC_ST,
-//		PARSER_OP2_LOGIC_ST,
-//		PARSER_OP0_STORI_ST,
-//		PARSER_OP1_STORI_ST,
-//		PARSER_OP2_STORI_ST,
-//		PARSER_LINE_END_ST,
-//		PARSER_EOF,
-//		PARSER_AR_SIZE,

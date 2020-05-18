@@ -1,6 +1,7 @@
 #include "parser_private.h"
 #include "token_private.h"
 #include <string.h>
+#include <token_private.h>
 t_expr				*parser_form_expr(t_parser *parser, char const **text,
 					t_hash_map *map, t_vector *label_vector) {
 	t_expr *expr;
@@ -30,8 +31,6 @@ t_expr				*parser_form_expr(t_parser *parser, char const **text,
 //				parser->get_token[parser->state](parser, lexer, expr, text);
 		token = parser->get_token[parser->state](parser, lexer, expr, text);
 		token_type = token_get_type(token);
-//		printf("expr:%d\n", expr->type);
-//		printf("val:%s\n",(char*)token->val);
 		if (token_type == TOKEN_LABEL_WORD) {
 			if (label_checker_put_to_map_label_word(&map, token) ==
 				FAILURE)
@@ -50,7 +49,5 @@ t_expr				*parser_form_expr(t_parser *parser, char const **text,
 				break;
 		}
 	}
-//	printf("expr->type:%d\n", expr->type);
-//	printf("text:%s\n", *text);
 	return (expr);
 }

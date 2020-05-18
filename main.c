@@ -35,7 +35,7 @@ int main(int ac, char **av)
 	int i = 0;
 	while (i < 1000)
 		str[i++] = 0;
-	int fd = open( "./invalid/Torpille.s" , O_RDONLY);
+	int fd = open( "./valid/zork.s" , O_RDONLY);
 
 	int errsv = errno;
 	printf("somecall() %d, %d\n", errsv, fd);
