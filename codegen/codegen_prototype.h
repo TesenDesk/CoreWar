@@ -5,10 +5,8 @@
 #ifndef CODEGEN_PROTOTYPE_H
 #define CODEGEN_PROTOTYPE_H
 
-#include "libft.h"
-#include "junk/op.h"
-#include "expr_defines.h"
-#include "../parser/expr_private.h"
+
+#include "codegen.h"
 
 #define CODEGEN_DEBUGGER 1
 #define DIR_LEN_2 1
@@ -16,7 +14,6 @@
 
 #define LABEL_WORD 99 //todo: need write what you need to do with it?
 
-#include <fcntl.h>
 
 typedef struct		s_label_data
 {

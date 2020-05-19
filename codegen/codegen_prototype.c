@@ -135,7 +135,7 @@ static void		add_param(t_codegen *data, t_arg *param, char dir_type)
 	}
 }
 
-static void		codegen_codegen(t_codegen *data, t_expr *q)
+void		codegen_codegen(t_codegen *data, t_expr *q)
 {
 	int i;
 
@@ -190,6 +190,7 @@ int				champ_exec_constructor(t_codegen *data)
 	i += 4;
 	codegen_add_champ_name(&data->exec[i], data->header);
 	i += (PROG_NAME_LENGTH) + 4;
+	printf("code_s:%d\n", data->code_size);
 	tmp_size = data->code_size;
 	rotate_four_bytes(&tmp_size);
 	ft_memcpy(&data->exec[i], &tmp_size, 4);
