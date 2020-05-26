@@ -12,6 +12,7 @@
 
 #include "label_checker_private.h"
 #include "../lexer/token_private.h"
+#include "../codegen/codegen_prototype.h"
 
 /*
 **	The function adds a unique "label word" name to the assiciative array.
@@ -28,7 +29,7 @@ int					label_checker_put_to_map_label_word(
 	pair.key = token->val;
 //	pair.key = (char*)token_get_value(token);
 	char *s = (char*)token->val;
-	pair.content = (void *)TRUE;
+	pair.content = (void *)token->;
 	if (ft_hash_map_get(*map_of_label_words, pair.key))
 		return (FAILURE);
 	if (ft_hash_map_set(map_of_label_words, pair.key, pair.content) == FAILURE)
@@ -47,11 +48,11 @@ int					label_checker_put_to_map_label_word(
 int					label_checker_put_to_map_label_ptr(
 					t_vector *added_label_ptrs, t_token *token)
 {
-	t_pair			pair;
-	
-	pair.key = token_get_value(token);
-	pair.content = (void *)TRUE;
-	if (ft_vector_add(added_label_ptrs, (void *)pair.key) == FAILURE)
+	t_label_data	*data;
+
+	data->na
+
+	if (ft_vector_add(added_label_ptrs, token_get_value(token)) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
 }
