@@ -5,14 +5,10 @@
 t_expr				*parser_form_expr(t_parser *parser, char const **text,
 					t_hash_map *map, t_vector *label_vector) {
 	t_expr *expr;
-	//int 			expr_type; //TODO: UNUSED
 	t_token		*token;
 	int token_type;
 	t_lexer *lexer;
 
-	/*
-	 * лексер есть в парсере
-	 */
 	lexer = lexer_singleton_instance(LEXER_INSTANTIATE);
 	expr = expr_ctor();
 	while (TRUE) {
@@ -20,15 +16,6 @@ t_expr				*parser_form_expr(t_parser *parser, char const **text,
 		 * заменить expr_type на expr. там где обрабатываем аргументы операций добавить соответствующие
 		 * операции в expr->args (с указанием типа)
 		 */
-		//token = parser-get
-		//if (token_type == LA__WO)
-		//if (!//token_check)
-		//parser->change_state(parser, token);
-
-//		printf("====================================================================\nparser_state = %i\nSTR = %s\n\n",
-//			   parser->state, *text);
-//		token_type =
-//				parser->get_token[parser->state](parser, lexer, expr, text);
 		token = parser->get_token[parser->state](parser, lexer, expr, text);
 		token_type = token_get_type(token);
 		if (token_type == TOKEN_LABEL_WORD) {
@@ -44,7 +31,6 @@ t_expr				*parser_form_expr(t_parser *parser, char const **text,
 			if (parser->state == PARSER_ERROR) {
 				expr->type = EXPR_UNDEF;
 			}
-//			else if (token_type != TOKEN_LABEL_WORD && token_type != TOKEN_LFEED)
 				parser->state = PARSER_INIT_ST;
 				break;
 		}

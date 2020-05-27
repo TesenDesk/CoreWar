@@ -66,6 +66,10 @@ int main(int ac, char **av)
 	code->code_size = 22;
 	code->header->magic = COREWAR_EXEC_MAGIC;
 
+	int i = 0;
+	t_expr *new;
+	while ((new = ft_vector_get(text, i++)))
+		codegen_codegen(code, new);
 	code->header->prog_size = champ_exec_constructor(code);
 	fd1 = open("test.cmp", O_WRONLY);
 	write(fd1, code->exec, code->header->prog_size);

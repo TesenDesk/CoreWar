@@ -29,9 +29,10 @@ static int  _parser_find_next_to_init_st(int token_type)
 		return (PARSER_LINE_END_ST);
 	else if (token_type >= TOKEN_AFF && token_type <= TOKEN_LFORK)
 		return (_find_parser_op0_state(token_type));
-	else if (token_type == TOKEN_LABEL_WORD ||
-	token_type == TOKEN_LFEED || token_type == TOKEN_EOF)
+	else if (token_type == TOKEN_LFEED || token_type == TOKEN_EOF)
 		return (PARSER_INIT_ST);
+	else if (token_type == TOKEN_LABEL_WORD)
+		return (PARSER_FINISH_ST);
 	else
 		return (PARSER_ERROR);
 }

@@ -31,7 +31,7 @@ int				lexer_get_term_ch_name(t_lexer *lexer, char const **text,
 	if (lexer_utils_is_quotation_mark(**text))
 	{
 		*type = TOKEN_CHNAME;
-		token_ptr[TOKEN_END_PTR] = (void*)*(text - 1);
+		token_ptr[TOKEN_END_PTR] = (void*)(*text - 1);
 		++(*text);
 		return (QUOTATION_MARK_CODE);
 	}

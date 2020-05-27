@@ -52,10 +52,14 @@ t_token			*_parser_get_token_init(t_parser *parser, t_lexer *lexer,
 		fill_expr_types(expr_types);
 	if (token_type >= TOKEN_CHNAME && token_type <= TOKEN_LFORK)
 		expr->type = expr_types[token_type];
+	else if(token_type == TOKEN_LABEL_WORD)
+	{
+		expr->type = EXPR_LABEL_W;
+		parser->state = PARSER_FINISH_ST;
+	}
 	else if (token_type == TOKEN_EOF) {
 		expr->type = EXPR_EOF;
 		parser->state = PARSER_FINISH_ST;
-
 	}
 	else
 		expr->type = EXPR_UNDEF;

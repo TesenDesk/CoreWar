@@ -5,6 +5,7 @@
 // Created by Jhiqui Jerde on 21/02/2020.
 //
 
+#include <token_private.h>
 #include "codegen_prototype.h"
 #include "codegen_private.h"
 
@@ -93,10 +94,14 @@ static void		dir_type_detector(t_expr *q)
 
 static void		write_address_to_free_label(t_codegen *data, t_expr *label)
 {
-	t_code_addr	tmp;
+	t_code_addr	*tmp;
+	t_token		*token;
 
-	tmp.addr = data->add;
-	ft_hash_map_set_content(data->labels_free, label->args[0].value, &tmp);
+	token = label->args[LABEL_ARG].value;
+	if (!(tmp = (t_code_addr*)malloc(sizeof(t_code_addr))))
+		exit(-1);
+	tmp->addr = data->add;
+	ft_hash_map_set_content(data->labels_free, token->val, tmp);
 }
 
 static void		add_address_to_arg_label(t_codegen *data, t_arg *arg)
@@ -140,7 +145,7 @@ void		codegen_codegen(t_codegen *data, t_expr *q)
 	int i;
 
 	i = -1;
-	if (q->type == LABEL_WORD)
+	if (q->type == EXPR_LABEL_W)
 		write_address_to_free_label(data, q);
 	else
 	{

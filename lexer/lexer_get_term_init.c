@@ -117,6 +117,8 @@ int             lexer_get_term_init(t_lexer *lexer, char const **text, int *type
 	if (!(**text))
 	{
 		*type = TOKEN_EOF;
+		token_ptr[0] = *text;
+		token_ptr[1] = *text;
 		return (EOF_CODE);
 	}
 	else if (**text == COMMENT_CHAR) {
@@ -129,6 +131,8 @@ int             lexer_get_term_init(t_lexer *lexer, char const **text, int *type
 	}
 	else if (**text == LINE_FEED) {
 		*type = TOKEN_LFEED;
+		token_ptr[0] = *text;
+		token_ptr[1] = *text;
 		++(*text);
 		return (INIT_ST);
 	}
