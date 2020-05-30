@@ -33,7 +33,7 @@ int main(int ac, char **av)
 	t_parser		*prs;
 	char			*str = ft_memalloc(1000000);
 	t_hash_map		*map = ft_hash_map_ctor(1000);
-	t_vector		vtr;
+	t_vector		*vtr;
 	t_vector		*text;
 
 	t_arg			*arg;
@@ -46,11 +46,14 @@ int main(int ac, char **av)
 
 	while (read(fd,str + cur, chunk))
 		cur += chunk;
-	ft_vector_init(&vtr);
+	if (!(vtr = (t_vector*)ft_memalloc(sizeof(t_vector))))
+		exit(-1);
+	ft_vector_init(vtr);
 
 	t_analyser *analyser;
 	analyser = analyser_singleton_instance(ANALYSER_INSTANTIATE);
-	text = analyse_text(analyser, &vtr, map, &str);
+	text = analyse_text(analyser, vtr, map, &str);
+
 	printf("valid\n");
 //	exit(0);
 	t_codegen	*code;
@@ -61,12 +64,17 @@ int main(int ac, char **av)
 	ft_bzero(&header.comment, COMMENT_LENGTH + 1);
 	ft_bzero(&header.prog_name, PROG_NAME_LENGTH + 1);
 	ft_memcpy(&header.comment, "I'M ALIIIIVE", strlen("I'M ALIIIIVE") );
-	code = codegen_ctor(map, &vtr , &header);
+	code = codegen_ctor(map, vtr , &header);
 	code->labels_free = map;
 	code->code_size = 22;
 	code->header->magic = COREWAR_EXEC_MAGIC;
 
 	int i = 0;
+	while (i < code->labels_ptrs->total)
+	{
+		free(code->labels_ptrs->items[i++]);
+	}
+	code->labels_ptrs->total &= 0;
 	t_expr *new;
 	while ((new = ft_vector_get(text, i++)))
 		codegen_codegen(code, new);

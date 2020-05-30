@@ -8,6 +8,7 @@
 #include <token_private.h>
 #include "codegen_prototype.h"
 #include "codegen_private.h"
+#include "token_defines.h"
 
 static void		rotate_four_bytes(unsigned int *p)
 {
@@ -72,10 +73,12 @@ static void		add_params_types(t_codegen *data, t_expr *q)
 	res = (res + q->args[2].type) << 2;
 	data->code[data->add++] = (char)res;
 }
-
+/*
+ * переделать константы
+ */
 static void		recast_params_types(t_expr *q)
 {
-	if (q->args[0].type == T_IND)
+	if (q->args[0].type == T_IND) //TOKEN_TIND_INT)
 		q->args[0].type = T_IND_CODE;
 	if (q->args[1].type == T_IND)
 		q->args[1].type = T_IND_CODE;
@@ -101,7 +104,7 @@ static void		write_address_to_free_label(t_codegen *data, t_expr *label)
 	if (!(tmp = (t_code_addr*)malloc(sizeof(t_code_addr))))
 		exit(-1);
 	tmp->addr = data->add;
-	ft_hash_map_set_content(data->labels_free, token->val, tmp);
+	ft_hash_map_set_content(data->labels_free, token->val, (void*)&(tmp->addr));
 }
 
 static void		add_address_to_arg_label(t_codegen *data, t_arg *arg)
@@ -139,7 +142,9 @@ static void		add_param(t_codegen *data, t_arg *param, char dir_type)
 		}
 	}
 }
-
+/*
+ * переделать
+ */
 void		codegen_codegen(t_codegen *data, t_expr *q)
 {
 	int i;
@@ -162,13 +167,14 @@ static void			codegen_ending(t_codegen *data)
 {
 	int				i;
 	t_label_data	*ld;
-	unsigned int	add;
+	int				*add;
 	int				tmp;
 
 	i = -1;
+	printf("labs");
 	while ((ld = ft_vector_get(data->labels_ptrs, ++i)))
 	{
-		add = (unsigned int)ft_hash_map_get(data->labels_free, ld->name);
+		add = (int*)ft_hash_map_get(data->labels_free, ld->name);
 		tmp = (int)(add - ld->add);
 		if (tmp < 0)
 		{

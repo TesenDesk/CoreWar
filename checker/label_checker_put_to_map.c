@@ -49,10 +49,12 @@ int					label_checker_put_to_map_label_ptr(
 	t_label_data	*data;
 
 //	data->na
+	if (!(data = (t_label_data*)ft_memalloc(sizeof(t_label_data))))
+		exit(-1);
 	data->name = token->val;
 	data->add = token->token_ptr[0];
 
-	if (ft_vector_add(added_label_ptrs, token_get_value(token)) == FAILURE)
+	if (ft_vector_add(added_label_ptrs, data) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
 }
