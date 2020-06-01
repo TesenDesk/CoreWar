@@ -7,7 +7,12 @@
 
 #include "codegen.h"
 
+#define T_REG_CODE		1
+#define T_DIR_CODE		2
 #define T_IND_CODE		3
+
+
+
 #define IND_PARAM_SIZE	2
 #define DIR_PARAM_SIZE	4
 

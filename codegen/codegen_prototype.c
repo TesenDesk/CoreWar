@@ -9,6 +9,7 @@
 #include "codegen_prototype.h"
 #include "codegen_private.h"
 #include "token_defines.h"
+#include "../virtual_machine/include/op.h"
 
 static void		rotate_four_bytes(unsigned int *p)
 {
@@ -78,12 +79,15 @@ static void		add_params_types(t_codegen *data, t_expr *q)
  */
 static void		recast_params_types(t_expr *q)
 {
-	if (q->args[0].type == T_IND) //TOKEN_TIND_INT)
+	/*
+	 * все на токены
+	 */
+	if (q->args[0].type == TOKEN_TIND_INT || q->args[0].type == TOKEN_TIND_LAB)
 		q->args[0].type = T_IND_CODE;
-	if (q->args[1].type == T_IND)
-		q->args[1].type = T_IND_CODE;
-	if (q->args[2].type == T_IND)
-		q->args[2].type = T_IND_CODE;
+	else if (q->args[0].type == TOKEN_TDIR_INT || q->args[0].type == TOKEN_TDIR_LAB)
+		q->args[0].type = T_DIR_CODE;
+	else if (q->args[0].type == TOKEN_TREG)
+		q->args[0].type = T_REG_CODE;
 }
 
 static void		dir_type_detector(t_expr *q)
@@ -118,24 +122,27 @@ static void		add_address_to_arg_label(t_codegen *data, t_arg *arg)
 
 static void		add_param(t_codegen *data, t_arg *param, char dir_type)
 {
-	if (param->type == LABEL_WORD)
+	if (param->type == TOKEN_TIND_LAB || param->type == TOKEN_TDIR_LAB)
+	{
 		add_address_to_arg_label(data, param);
+		++(data->add);
+	}
 	else
 	{
-		if (param->type == T_IND_CODE)
+		if (param->type == TOKEN_TIND_INT)
 		{
 			rotate_four_bytes(param->value);
-			ft_memcpy(&data->code[data->add], param->value, IND_PARAM_SIZE);
-			data->add += IND_PARAM_SIZE;
+			ft_memcpy(&data->code[data->add], param->value, IND_SIZE);
+			data->add += IND_SIZE;
 		}
-		else if (param->type == T_DIR)
+		else if (param->type == TOKEN_TDIR_INT)
 		{
 			rotate_four_bytes(param->value);
 			ft_memcpy(&data->code[data->add], param->value,
-					DIR_PARAM_SIZE / dir_type);
-			data->add += DIR_PARAM_SIZE / dir_type;
+					DIR_SIZE / dir_type);
+			data->add += DIR_SIZE / dir_type;
 		}
-		else if (param->type == T_REG)
+		else if (param->type == TOKEN_TREG)
 		{
 			data->code[data->add] = (char)param->value;
 			++(data->add);
@@ -155,7 +162,6 @@ void		codegen_codegen(t_codegen *data, t_expr *q)
 	else
 	{
 		add_params_types(data, q);
-		recast_params_types(q);
 		dir_type_detector(q);
 		data->code[data->add++] = q->type;
 		while (++i < 3 && q->args[i].type)
@@ -171,7 +177,7 @@ static void			codegen_ending(t_codegen *data)
 	int				tmp;
 
 	i = -1;
-	printf("labs");
+//	printf("labs");
 	while ((ld = ft_vector_get(data->labels_ptrs, ++i)))
 	{
 		add = (int*)ft_hash_map_get(data->labels_free, ld->name);
