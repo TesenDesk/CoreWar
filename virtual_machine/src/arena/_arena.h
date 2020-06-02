@@ -27,10 +27,13 @@ typedef struct			s_arena
 	int				smallest_unoccupied_name;
 	t_player        *last_live_player;
 	int				nb_players;
-	int             nb_of_cycles;
+//	int             nb_of_cycles;
 	void			*data;
 	int				size;
-	int 			dump_cycles;
+	int 			dump_cycles; // change to dump_cycle;
+//    int                         cycles_to_die;
+//    int                         cycles_counter;
+//    int                         num_of_live_ops;
 }						t_arena;
 
 

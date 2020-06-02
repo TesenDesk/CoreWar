@@ -30,7 +30,5 @@ t_player     **arena_players(t_arena *self);
 int         arena_nb_players(t_arena *self);
 int			arena_op_code(t_arena *self, int arena_position);
 void        arena_players_introducing(t_arena *self);
-int         arena_is_turnable(t_arena *self);
-
 
 #endif

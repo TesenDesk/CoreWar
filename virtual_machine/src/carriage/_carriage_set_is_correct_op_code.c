@@ -12,10 +12,18 @@
 
 #include "_carriage.h"
 
-void			_carriage_set_if_op_code_is_correct(t_carriage *self,
-					t_arena *arena)
+//void			_carriage_set_if_op_code_is_correct(t_carriage *self,
+//					t_arena *arena)
+//{
+//	self->is_correct_op_code =
+//	        (self->op_code == arena_op_code(arena, self->arena_position));
+//	// wrong cause self->op_code = arena_op_code(arena, self->arena_position);
+//	return;
+//}
+
+void            _carriage_set_is_correct_op_code(t_carriage *self)
 {
-	self->is_correct_op_code = (self->op_code ==
-		arena_op_code(arena, self->arena_position));
-	return;
+    self->is_correct_op_code =
+            (self->op_code >= 0x01 && self->op_code >= 0x10);
+    return;
 }

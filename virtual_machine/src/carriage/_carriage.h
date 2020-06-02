@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/01 17:18:37 by yurezz            #+#    #+#             */
+/*   Created: 2020/04/0s1 17:18:37 by yurezz            #+#    #+#             */
 /*   Updated: 2020/04/13 01:41:25 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -37,6 +37,6 @@ typedef struct				s_carriage
 	long int		registers[REG_NUMBER];
 }							t_carriage;
 
-
-
+void                _carriage_set_op_code(t_carriage *self, t_arena *arena);
+void                _carriage_set_is_correct_op_code(t_carriage *self);
 #endif
