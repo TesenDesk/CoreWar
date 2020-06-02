@@ -64,6 +64,7 @@ enum			e_token_types
 	TOKEN_UNDEF,
 	TOKEN_INIT_ST,
 	TOKEN_EOF,
+	NUM_OF_TOKENS,
 };
 
 // #define NO_TOKEN -1
