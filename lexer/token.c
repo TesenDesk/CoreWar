@@ -7,6 +7,7 @@ t_token				*token_constructor(int type,void *ptr[2])
 {
 	t_token			*token;
 	int 			size;
+	printf("type:%d\n", type);
 	if (ptr[1] < ptr[0] && type == TOKEN_LABEL_WORD)
 	{
 		printf("smth_wrong");

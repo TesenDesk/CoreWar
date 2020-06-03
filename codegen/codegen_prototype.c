@@ -84,47 +84,54 @@ void		ft_printbits(char n, int count)
 }
 
 
-static void		add_params_types(t_codegen *data, t_expr *q)
+static void		add_params_types(t_codegen *data,  int first_arg, int second_arg, int third_arg)
 {
 	int res;
 
 	res = 0;
-	printf("w%d!!!!!!!!!!!!!!!\n", q->args[FIRST_ARG].type);
-	printf("w%d!!!!!!!!!!!!!!!\n", q->args[SECOND_ARG].type);
-	printf("w%d!!!!!!!!!!!!!!!\n", q->args[THIRD_ARG].type);
-	res |= q->args[FIRST_ARG].type << 6;
-	res |= q->args[SECOND_ARG].type << 4;
-	res |= q->args[THIRD_ARG].type << 2;
-//	printf("%d!!!\n", res);
+	res |= first_arg << 6;
+	res |= second_arg << 4;
+	res |= third_arg << 2;
 	data->code[data->add++] = (char)res;
+	printf("!!!!!!!!!!!!!!!");
 	ft_printbits(res, 8);
+	printf("!!!!!!!!!!!!!!!");
 }
 /*
  * переделать константы
  */
-static void		recast_params_types(t_expr *q)
+static void		recast_params_types(t_codegen *data, t_expr  *q)
 {
 	/*
 	 * все на токены
 	 */
+	int		first_arg;
+	int 	second_arg;
+	int 	third_arg;
+
+	first_arg = 0;
+	second_arg = 0;
+	third_arg = 0;
 	if (q->args[FIRST_ARG].type == TOKEN_TIND_INT || q->args[FIRST_ARG].type == TOKEN_TIND_LAB)
-		q->args[FIRST_ARG].type = T_IND_CODE;
+		first_arg = T_IND_CODE;
 	else if (q->args[FIRST_ARG].type == TOKEN_TDIR_INT || q->args[FIRST_ARG].type == TOKEN_TDIR_LAB)
-		q->args[FIRST_ARG].type = T_DIR_CODE;
+		first_arg = T_DIR_CODE;
 	else if (q->args[FIRST_ARG].type == TOKEN_TREG)
-		q->args[FIRST_ARG].type = T_REG_CODE;
+		first_arg = T_REG_CODE;
 	if (q->args[SECOND_ARG].type == TOKEN_TIND_INT || q->args[SECOND_ARG].type == TOKEN_TIND_LAB)
-		q->args[SECOND_ARG].type = T_IND_CODE;
+		second_arg = T_IND_CODE;
 	else if (q->args[SECOND_ARG].type == TOKEN_TDIR_INT || q->args[SECOND_ARG].type == TOKEN_TDIR_LAB)
-		q->args[SECOND_ARG].type = T_DIR_CODE;
+		second_arg = T_DIR_CODE;
 	else if (q->args[SECOND_ARG].type == TOKEN_TREG)
-		q->args[SECOND_ARG].type = T_REG_CODE;
+		second_arg = T_REG_CODE;
 	if (q->args[THIRD_ARG].type == TOKEN_TIND_INT || q->args[THIRD_ARG].type == TOKEN_TIND_LAB)
-		q->args[THIRD_ARG].type = T_IND_CODE;
+		third_arg = T_IND_CODE;
 	else if (q->args[THIRD_ARG].type == TOKEN_TDIR_INT || q->args[THIRD_ARG].type == TOKEN_TDIR_LAB)
-		q->args[THIRD_ARG].type = T_DIR_CODE;
+		third_arg = T_DIR_CODE;
 	else if (q->args[THIRD_ARG].type == TOKEN_TREG)
-		q->args[THIRD_ARG].type = T_REG_CODE;
+		third_arg = T_REG_CODE;
+	add_params_types(data, first_arg, second_arg, third_arg);
+
 }
 
 static void		dir_type_detector(t_expr *q)
@@ -229,6 +236,10 @@ static void map_expr_to_code(t_expr *expr)
 		;
 	else
 		fill_codes(array_of_exprcodes);
+	printf("op_name:%d\n", expr->args[OP_NAME].type);
+	printf("op_name:%d\n", expr->args[FIRST_ARG].type);
+	printf("op_name:%d\n", expr->args[SECOND_ARG].type);
+	printf("op_code:%d\n", array_of_exprcodes[expr->args[OP_NAME].type]);
 	expr->type = array_of_exprcodes[expr->args[OP_NAME].type];
 }
 
@@ -241,12 +252,17 @@ void		codegen_codegen(t_codegen *data, t_expr *q)
 		write_address_to_free_label(data, q);
 	else
 	{
-//		if (q->type != OP_LIVE_CODE && q->type != OP_ZJMP_CODE
-//		&& q->type != OP_FORK_CODE && q->type != OP_LFORK_CODE)
-			add_params_types(data, q);
 		dir_type_detector(q);
 		map_expr_to_code(q);
 		data->code[data->add++] = q->type;
+		if (q->type != OP_LIVE_CODE && q->type != OP_ZJMP_CODE
+			&& q->type != OP_FORK_CODE && q->type != OP_LFORK_CODE)
+//			add_params_types(data, q);
+			recast_params_types(data, q);
+//		if (q->type != OP_LIVE_CODE && q->type != OP_ZJMP_CODE
+//			&& q->type != OP_FORK_CODE && q->type != OP_LFORK_CODE)
+////			add_params_types(data, q);
+//			recast_params_types(data, q);
 		/*
 		 * нужно смапить expr_type в реальный тип асма
 		 */

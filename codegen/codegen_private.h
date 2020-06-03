@@ -43,7 +43,7 @@ enum 				e_t_opcodes
 typedef struct		s_codegen
 {
 	int				add;
-	int				*code;
+	char			*code;
 	char			*exec;
 	unsigned int	code_size;
 	t_hash_map		*labels_free;
