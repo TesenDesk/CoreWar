@@ -157,16 +157,18 @@ static void		write_address_to_free_label(t_codegen *data, t_expr *label)
 	if (!(tmp = (t_code_addr*)malloc(sizeof(t_code_addr))))
 		exit(-1);
 	tmp->addr = data->add;
-	ft_hash_map_set_content(data->labels_free, token->val, (void*)&(tmp->addr));
+	ft_hash_map_set_content(data->labels_free, token->val, (tmp));
 }
 
 static void		add_address_to_arg_label(t_codegen *data, t_arg *arg)
 {
-	t_label_data label;
+	t_label_data *label;
 
-	label.name = arg->value;
-	label.add = data->add;
-	ft_vector_add(data->labels_ptrs, &label);
+	if (!(label = (t_label_data*)malloc(sizeof(t_label_data))))
+		exit(-1);
+	label->name = ((t_token*)arg->value)->val;
+	label->add = data->add;
+	ft_vector_add(data->labels_ptrs, label);
 }
 
 static void		add_param(t_codegen *data, t_arg *param, char dir_type)
@@ -174,6 +176,10 @@ static void		add_param(t_codegen *data, t_arg *param, char dir_type)
 	/*
 	 * нет рекаста
 	 */
+	int			arg;
+
+	arg = 0;
+	printf("%zu\n", sizeof(short));
 	if (param->type == TOKEN_TIND_LAB || param->type == TOKEN_TDIR_LAB)
 	{
 		add_address_to_arg_label(data, param);
@@ -184,22 +190,24 @@ static void		add_param(t_codegen *data, t_arg *param, char dir_type)
 	}
 	else
 	{
+		arg = ft_atoi(((t_token *)param->value)->val);
+		printf("!!%d\n", arg);
 		if (param->type == TOKEN_TIND_INT)
 		{
 			rotate_four_bytes(param->value);
-			ft_memcpy(&data->code[data->add], param->value, IND_SIZE);
+			ft_memcpy(&data->code[data->add], &arg, IND_SIZE);
 			data->add += IND_SIZE;
 		}
 		else if (param->type == TOKEN_TDIR_INT)
 		{
 			rotate_four_bytes(param->value);
-			ft_memcpy(&data->code[data->add], param->value,
+			ft_memcpy(&data->code[data->add], &arg,
 					DIR_SIZE / dir_type);
 			data->add += DIR_SIZE / dir_type;
 		}
 		else if (param->type == TOKEN_TREG)
 		{
-			data->code[data->add] = (char)param->value;
+			data->code[data->add] = (char)arg;
 			++(data->add);
 		}
 	}
@@ -267,7 +275,7 @@ void		codegen_codegen(t_codegen *data, t_expr *q)
 		 * нужно смапить expr_type в реальный тип асма
 		 */
 		while (i < 4 && q->args[i].type)
-			add_param(data, &q->args[i++], q->size);
+			add_param(data, &(q->args[i++]), q->size);
 	}
 }
 
@@ -275,15 +283,15 @@ static void			codegen_ending(t_codegen *data)
 {
 	int				i;
 	t_label_data	*ld;
-	int				*add;
+	int				add;
 	int				tmp;
 
 	i = -1;
 //	printf("labs");
 	while ((ld = ft_vector_get(data->labels_ptrs, ++i)))
 	{
-		add = (int*)ft_hash_map_get(data->labels_free, ld->name);
-		tmp = (int)(add - ld->add);
+		add = (int)ft_hash_map_get(data->labels_free, ld->name);
+		tmp = (char)(add - ld->add);
 		if (tmp < 0)
 		{
 			tmp = (int)(tmp ^ 0xFFFFFFFF);
@@ -300,7 +308,7 @@ int				champ_exec_constructor(t_codegen *data)
 	unsigned int	tmp_size;
 
 	i = 0;
-//	codegen_ending(data);
+	codegen_ending(data);
 	total_size = PROG_NAME_LENGTH + COMMENT_LENGTH + 16 + data->code_size;
 	if (!(data->exec = ft_memalloc(total_size)))
 		return (0);
