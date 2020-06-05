@@ -13,7 +13,8 @@ typedef struct		s_arg
 typedef struct		s_expr
 {
 	int				type;
-	int				size;
+	int				arg_size;
+	int 			size;
 	void			*name;
 	t_arg			args[6];
 

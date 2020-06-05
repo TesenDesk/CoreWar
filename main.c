@@ -76,6 +76,8 @@ int main(int ac, char **av)
 	}
 	code->labels_ptrs->total &= 0;
 	t_expr *new;
+	int kkk = 0;
+	i = 2;
 	while ((new = ft_vector_get(text, i++)))
 		codegen_codegen(code, new);
 	code->header->prog_size = champ_exec_constructor(code);

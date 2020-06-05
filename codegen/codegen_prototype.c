@@ -93,9 +93,10 @@ static void		add_params_types(t_codegen *data,  int first_arg, int second_arg, i
 	res |= second_arg << 4;
 	res |= third_arg << 2;
 	data->code[data->add++] = (char)res;
-	printf("!!!!!!!!!!!!!!!");
+//	printf("res:%d, data->add:%d\n", res, data->add -1 );
+//	printf("!!!!!!!!!!!!!!!");
 	ft_printbits(res, 8);
-	printf("!!!!!!!!!!!!!!!");
+//	printf("!!!!!!!!!!!!!!!");
 }
 /*
  * переделать константы
@@ -179,7 +180,7 @@ static void		add_param(t_codegen *data, t_arg *param, char dir_type)
 	int			arg;
 
 	arg = 0;
-	printf("%zu\n", sizeof(short));
+//	printf("%zu\n", sizeof(short));
 	if (param->type == TOKEN_TIND_LAB || param->type == TOKEN_TDIR_LAB)
 	{
 		add_address_to_arg_label(data, param);
@@ -194,13 +195,13 @@ static void		add_param(t_codegen *data, t_arg *param, char dir_type)
 		printf("!!%d\n", arg);
 		if (param->type == TOKEN_TIND_INT)
 		{
-			rotate_four_bytes(param->value);
+//			rotate_four_bytes(param->value);
 			ft_memcpy(&data->code[data->add], &arg, IND_SIZE);
 			data->add += IND_SIZE;
 		}
 		else if (param->type == TOKEN_TDIR_INT)
 		{
-			rotate_four_bytes(param->value);
+//			rotate_four_bytes(param->value);
 			ft_memcpy(&data->code[data->add], &arg,
 					DIR_SIZE / dir_type);
 			data->add += DIR_SIZE / dir_type;
@@ -226,6 +227,7 @@ static void fill_codes(int array_of_codes[NUM_OF_TOKENS])
 	array_of_codes[TOKEN_LD]  = OP_LD_CODE;
 	array_of_codes[TOKEN_LLD] = OP_LLD_CODE;
 	array_of_codes[TOKEN_LDI] = OP_LDI_CODE;
+	array_of_codes[TOKEN_LLDI] = OP_LLDI_CODE;
 	array_of_codes[TOKEN_AND] = OP_AND_CODE;
 	array_of_codes[TOKEN_OR]  = OP_OR_CODE;
 	array_of_codes[TOKEN_XOR] = OP_XOR_CODE;
@@ -244,10 +246,10 @@ static void map_expr_to_code(t_expr *expr)
 		;
 	else
 		fill_codes(array_of_exprcodes);
-	printf("op_name:%d\n", expr->args[OP_NAME].type);
-	printf("op_name:%d\n", expr->args[FIRST_ARG].type);
-	printf("op_name:%d\n", expr->args[SECOND_ARG].type);
-	printf("op_code:%d\n", array_of_exprcodes[expr->args[OP_NAME].type]);
+//	printf("op_name:%d\n", expr->args[OP_NAME].type);
+//	printf("op_name:%d\n", expr->args[FIRST_ARG].type);
+//	printf("op_name:%d\n", expr->args[SECOND_ARG].type);
+//	printf("op_code:%d\n", array_of_exprcodes[expr->args[OP_NAME].type]);
 	expr->type = array_of_exprcodes[expr->args[OP_NAME].type];
 }
 
@@ -256,17 +258,23 @@ void		codegen_codegen(t_codegen *data, t_expr *q)
 	int i;
 
 	i = 1;
+	printf("first:%d\n", data->add);
 	if (q->type == EXPR_LABEL_W)
 		write_address_to_free_label(data, q);
-	else
+	else if(q->type != EXPR_EOF)
 	{
 		dir_type_detector(q);
 		map_expr_to_code(q);
+		printf("aaaaaaaaa%d\n", q->type);
 		data->code[data->add++] = q->type;
 		if (q->type != OP_LIVE_CODE && q->type != OP_ZJMP_CODE
-			&& q->type != OP_FORK_CODE && q->type != OP_LFORK_CODE)
+			&& q->type != OP_FORK_CODE && q->type != OP_LFORK_CODE) {
+
+//			printf("aaaaaaaaa%d\n", q->type);
+//			printf("%s\n", ((t_token*)(q->args[0].value))->token_ptr[0]);
 //			add_params_types(data, q);
 			recast_params_types(data, q);
+		}
 //		if (q->type != OP_LIVE_CODE && q->type != OP_ZJMP_CODE
 //			&& q->type != OP_FORK_CODE && q->type != OP_LFORK_CODE)
 ////			add_params_types(data, q);
@@ -274,7 +282,7 @@ void		codegen_codegen(t_codegen *data, t_expr *q)
 		/*
 		 * нужно смапить expr_type в реальный тип асма
 		 */
-		while (i < 4 && q->args[i].type)
+		while (i - 1 < q->arg_size && q->args[i].type)
 			add_param(data, &(q->args[i++]), q->size);
 	}
 }
@@ -308,7 +316,7 @@ int				champ_exec_constructor(t_codegen *data)
 	unsigned int	tmp_size;
 
 	i = 0;
-	codegen_ending(data);
+//	codegen_ending(data);
 	total_size = PROG_NAME_LENGTH + COMMENT_LENGTH + 16 + data->code_size;
 	if (!(data->exec = ft_memalloc(total_size)))
 		return (0);
@@ -324,7 +332,21 @@ int				champ_exec_constructor(t_codegen *data)
 	i += 4;
 	codegen_add_champ_comment(&data->exec[i], data->header);
 	i += (COMMENT_LENGTH) + 4;
+	int k = 0;
+//	while (k < data->code_size) {
+//		rotate_four_bytes((unsigned int*)&((data->code[k])));
+//		k += 4;
+//	}
+//	t_expr	*new;
+//	ii = 2;
+//	while ((new = ft_vector_get(text, ii++)))
+//		codegen_codegen(code, new);
 	ft_memcpy(&data->exec[i], data->code, data->code_size);
+	int ll = 0;
+	while (ll < data->code_size)
+	{
+		printf("%d ", data->code[ll++]);
+	}
 	return (total_size);
 }
 
