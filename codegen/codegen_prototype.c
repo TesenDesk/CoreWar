@@ -161,57 +161,106 @@ static void		write_address_to_free_label(t_codegen *data, t_expr *label)
 	ft_hash_map_set_content(data->labels_free, token->val, (tmp));
 }
 
-static void		add_address_to_arg_label(t_codegen *data, t_arg *arg)
+
+
+static void		add_address_to_arg_label(t_codegen *data, t_arg *arg, int shift)
 {
 	t_label_data *label;
 
 	if (!(label = (t_label_data*)malloc(sizeof(t_label_data))))
 		exit(-1);
 	label->name = ((t_token*)arg->value)->val;
-	label->add = data->add;
+	label->add = data->add + shift;
+	label->instruction_begining = data->cur_instruction_addr;
+	label->param_type = arg->type;
+	label->size = data->cur_instruction_dirsize;
+
+//	label->instruction_end = data->cur_instruction_addr + chose_instruction_size(data->cur_instruction);
+
 	ft_vector_add(data->labels_ptrs, label);
 }
 
+int 	bytesize(int num)
+{
+	int	ans;
+
+	ans = 0;
+	while(num)
+	{
+		num >>= 1;
+		ans += 1;
+	}
+	return (!(ans % 8) ? (ans / 8) : (ans / 8)+ 1);
+}
+
+static void		fill_empty_cell(t_codegen *data, int size)
+{
+	while (size)
+	{
+		ft_memcpy(&(data->code[data->add++]),"\0", 1);
+		--size;
+	}
+}
+
+/*
+ * ВЕЗДЕ ЛИ ОБРЕЗАЕТСЯ?
+ */
+
+void			cut_num_arg(int *num_arg, int param_type, char dir_type)
+{
+	if (param_type == TOKEN_TREG)
+	{
+		if (*num_arg > 255 || *num_arg < -256)
+			exit(-1);
+		return ;
+	}
+	else if ((param_type == TOKEN_TDIR_INT && dir_type == 2) || param_type == TOKEN_TIND_INT)
+		*num_arg %=  ft_power(2, 16);
+	else
+		*num_arg %= ft_power(2, 32);
+}
+
+
+static void		fill_dirind_param(t_codegen *data, t_arg *param, char dir_type)
+{
+	int			num_arg;
+	int 		num_size;
+	int 		cell_size;
+
+	num_arg = ft_atoi(((t_token *)param->value)->val) % IDX_MOD;
+	cut_num_arg(&num_arg, param->type, dir_type);
+	if (param->type == TOKEN_TREG)
+		cell_size = 1;
+	else
+		cell_size = param->type == TOKEN_TDIR_INT && dir_type == 1 ? 4 : 2;
+	num_size = num_arg >= 0 ? bytesize(num_arg) : cell_size;
+	fill_empty_cell(data, cell_size - num_size);
+	ft_memcpy(&(data->code[data->add]), &num_arg, num_size);
+	data->add += num_size;
+}
+
+
 static void		add_param(t_codegen *data, t_arg *param, char dir_type)
 {
-	/*
-	 * нет рекаста
-	 */
 	int			arg;
+	int 		shift;
 
 	arg = 0;
-//	printf("%zu\n", sizeof(short));
 	if (param->type == TOKEN_TIND_LAB || param->type == TOKEN_TDIR_LAB)
 	{
-		add_address_to_arg_label(data, param);
-		if (param->type == TOKEN_TIND_LAB)
-			data->add += IND_SIZE;
+		if ((param->type == TOKEN_TDIR_LAB && dir_type == 2) || param->type == TOKEN_TIND_LAB)
+			shift = 2;
 		else
-			data->add += DIR_SIZE / dir_type;
+			shift = 4;
+		add_address_to_arg_label(data, param, 0);
+//		if (param->type == TOKEN_TIND_LAB)
+//			data->add += IND_SIZE;
+//		else
+//			data->add += DIR_SIZE / dir_type;
+		data->add += shift;
 	}
 	else
-	{
-		arg = ft_atoi(((t_token *)param->value)->val);
-		printf("!!%d\n", arg);
-		if (param->type == TOKEN_TIND_INT)
-		{
-//			rotate_four_bytes(param->value);
-			ft_memcpy(&data->code[data->add], &arg, IND_SIZE);
-			data->add += IND_SIZE;
-		}
-		else if (param->type == TOKEN_TDIR_INT)
-		{
-//			rotate_four_bytes(param->value);
-			ft_memcpy(&data->code[data->add], &arg,
-					DIR_SIZE / dir_type);
-			data->add += DIR_SIZE / dir_type;
-		}
-		else if (param->type == TOKEN_TREG)
-		{
-			data->code[data->add] = (char)arg;
-			++(data->add);
-		}
-	}
+		fill_dirind_param(data, param, dir_type);
 }
 /*
  * переделать
@@ -246,10 +295,6 @@ static void map_expr_to_code(t_expr *expr)
 		;
 	else
 		fill_codes(array_of_exprcodes);
-//	printf("op_name:%d\n", expr->args[OP_NAME].type);
-//	printf("op_name:%d\n", expr->args[FIRST_ARG].type);
-//	printf("op_name:%d\n", expr->args[SECOND_ARG].type);
-//	printf("op_code:%d\n", array_of_exprcodes[expr->args[OP_NAME].type]);
 	expr->type = array_of_exprcodes[expr->args[OP_NAME].type];
 }
 
@@ -266,19 +311,15 @@ void		codegen_codegen(t_codegen *data, t_expr *q)
 		dir_type_detector(q);
 		map_expr_to_code(q);
 		printf("aaaaaaaaa%d\n", q->type);
+		data->cur_instruction_addr = data->add;
+		data->cur_instruction_code = q->type;
+		data->cur_instruction_dirsize = q->size;
 		data->code[data->add++] = q->type;
 		if (q->type != OP_LIVE_CODE && q->type != OP_ZJMP_CODE
 			&& q->type != OP_FORK_CODE && q->type != OP_LFORK_CODE) {
 
-//			printf("aaaaaaaaa%d\n", q->type);
-//			printf("%s\n", ((t_token*)(q->args[0].value))->token_ptr[0]);
-//			add_params_types(data, q);
 			recast_params_types(data, q);
 		}
-//		if (q->type != OP_LIVE_CODE && q->type != OP_ZJMP_CODE
-//			&& q->type != OP_FORK_CODE && q->type != OP_LFORK_CODE)
-////			add_params_types(data, q);
-//			recast_params_types(data, q);
 		/*
 		 * нужно смапить expr_type в реальный тип асма
 		 */
@@ -287,25 +328,60 @@ void		codegen_codegen(t_codegen *data, t_expr *q)
 	}
 }
 
+
+//static void		fill_dirind_param(t_codegen *data, t_arg *param, char dir_type)
+//{
+//	int			num_arg;
+//	int 		num_size;
+//	int 		cell_size;
+//
+//	num_arg = ft_atoi(((t_token *)param->value)->val) % IDX_MOD;
+//	cut_num_arg(&num_arg, param->type, dir_type);
+//	if (param->type == TOKEN_TREG)
+//		cell_size = 1;
+//	else
+//		cell_size = param->type == TOKEN_TDIR_INT && dir_type == 1 ? 4 : 2;
+//	num_size = num_arg >= 0 ? bytesize(num_arg) : cell_size;
+//	fill_empty_cell(data, cell_size - num_size);
+//	ft_memcpy(&(data->code[data->add]), &num_arg, num_size);
+//	data->add += num_size;
+//}
+
 static void			codegen_ending(t_codegen *data)
 {
 	int				i;
 	t_label_data	*ld;
 	int				add;
 	int				tmp;
+//	t_arg			*tmp_param;
+	int 			cell_size;
+	int 			num_size;
 
 	i = -1;
-//	printf("labs");
+//	if (!(tmp_param = (t_arg*)malloc(sizeof(t_arg))))
+//		exit(-1);
+//	tmp_param->type = 0;
+//	tmp_param->value = 0;
+//		cell_size = param->type == TOKEN_TDIR_INT && dir_type == 1 ? 4 : 2;
 	while ((ld = ft_vector_get(data->labels_ptrs, ++i)))
 	{
-		add = (int)ft_hash_map_get(data->labels_free, ld->name);
-		tmp = (char)(add - ld->add);
+		add = (int)(((t_code_addr*)ft_hash_map_get(data->labels_free, ld->name))->addr);
+		tmp = (char)(add - ld->instruction_begining);
+//		tmp_param->value = tmp;
+		printf("!!!!!!!!!!!!!!!%d\n", tmp);
 		if (tmp < 0)
 		{
 			tmp = (int)(tmp ^ 0xFFFFFFFF);
 			++tmp;
 		}
-		data->code[ld->add] = (char)tmp;
+//		cut_num_arg(&tmp, ld->param_type, ld->size);
+		cell_size = ld->param_type == TOKEN_TDIR_INT && ld->size == 1 ? 4 : 2;
+//		num_size = tmp >= 0 ? bytesize(tmp) : cell_size;
+		int shift = 0;
+		while (cell_size-- > 1)
+			ft_memcpy(&(data->code[ld->add + shift++]), "\0", 1);
+//		fill_empty_cell(data, cell_size - num_size);
+		ft_memcpy(&(data->code[ld->add + shift]) , &tmp, 1);
 	}
 }
 
@@ -316,7 +392,7 @@ int				champ_exec_constructor(t_codegen *data)
 	unsigned int	tmp_size;
 
 	i = 0;
-//	codegen_ending(data);
+	codegen_ending(data);
 	total_size = PROG_NAME_LENGTH + COMMENT_LENGTH + 16 + data->code_size;
 	if (!(data->exec = ft_memalloc(total_size)))
 		return (0);

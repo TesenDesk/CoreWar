@@ -46,6 +46,9 @@ typedef struct		s_codegen
 	char			*code;
 	char			*exec;
 	unsigned int	code_size;
+	int 			cur_instruction_addr;
+	int 			cur_instruction_code;
+	int 			cur_instruction_dirsize;
 	t_hash_map		*labels_free;
 	t_vector		*labels_ptrs;
 	header_t		*header;

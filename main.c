@@ -78,6 +78,7 @@ int main(int ac, char **av)
 	t_expr *new;
 	int kkk = 0;
 	i = 2;
+	printf("!!!!!!!!!!!%d\n", -2 % 2);
 	while ((new = ft_vector_get(text, i++)))
 		codegen_codegen(code, new);
 	code->header->prog_size = champ_exec_constructor(code);
@@ -86,3 +87,4 @@ int main(int ac, char **av)
 
 	return  (0);
 }
+//0b 68 01 0007 0001

@@ -19,6 +19,9 @@ typedef struct		s_label_data
 {
 	char			*name;
 	unsigned int	add;
+	unsigned int	instruction_begining;
+	int 			size;
+	int				param_type;
 }					t_label_data;
 
 typedef union			u_code_addr
