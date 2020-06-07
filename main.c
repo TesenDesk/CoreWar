@@ -37,7 +37,7 @@ int main(int ac, char **av)
 	t_vector		*text;
 
 	t_arg			*arg;
-	int fd = open( "./valid/zork1.s" , O_RDONLY);
+	int fd = open( "./valid/turtle.s" , O_RDONLY);
 
 	int errsv = errno;
 	printf("somecall() %d, %d\n", errsv, fd);
@@ -63,10 +63,13 @@ int main(int ac, char **av)
 
 	ft_bzero(&header.comment, COMMENT_LENGTH + 1);
 	ft_bzero(&header.prog_name, PROG_NAME_LENGTH + 1);
-	ft_memcpy(&header.comment, "I'M ALIIIIVE", strlen("I'M ALIIIIVE") );
+	ft_memcpy(&header.prog_name, (((t_expr*)ft_vector_get(text, 0))->args[OP_NAME].value),
+			  ft_strlen((((t_expr*)ft_vector_get(text, 0))->args[OP_NAME].value)));
+	ft_memcpy(&header.comment, (((t_expr*)ft_vector_get(text, 1))->args[OP_NAME].value),
+		ft_strlen((((t_expr*)ft_vector_get(text, 1))->args[OP_NAME].value)));
 	code = codegen_ctor(map, vtr , &header);
 	code->labels_free = map;
-	code->code_size = 22;
+//	code->code_size = 22;
 	code->header->magic = COREWAR_EXEC_MAGIC;
 
 	int i = 0;

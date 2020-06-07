@@ -17,6 +17,23 @@ static void		rotate_four_bytes(unsigned int *p)
 	*p = *p << 24 | *p >> 24 | (*p & 0xff00) << 8 | (*p & 0xff0000) >> 8;
 }
 
+static void		rotate_two_bytes(unsigned short *p)
+{
+	*p = *p << 8 | (*p & 0xff00) >> 8;
+}
+
+static void		rotate_bytes(unsigned int *p, int size)
+{
+	if (size == 2)
+		rotate_two_bytes((unsigned short*)p);
+	else if (size == 4)
+		rotate_four_bytes(p);
+	else
+		;
+}
+
+
+
 t_codegen		*codegen_ctor(t_hash_map *labels_free, t_vector *labels_ptrs,
 									header_t *header)
 {
@@ -142,11 +159,11 @@ static void		dir_type_detector(t_expr *q)
 //		q->size = 1;
 //	else
 //		q->size = 2;
-	if (q->args[OP_NAME].type == TOKEN_ZJMP || q->args[OP_NAME].type == TOKEN_LFORK
-		|| q->args[OP_NAME].type == TOKEN_LD)
-		q->size = 1;
-	else
+	if (q->args[OP_NAME].type == TOKEN_ZJMP || q->args[OP_NAME].type == TOKEN_LDI || q->args[OP_NAME].type == TOKEN_STI ||
+	q->args[OP_NAME].type == TOKEN_LFORK || q->args[OP_NAME].type == TOKEN_LLDI || q->args[OP_NAME].type == TOKEN_LFORK)
 		q->size = 2;
+	else
+		q->size = 1;
 }
 
 static void		write_address_to_free_label(t_codegen *data, t_expr *label)
@@ -217,8 +234,10 @@ void			cut_num_arg(int *num_arg, int param_type, char dir_type)
 	else if ((param_type == TOKEN_TDIR_INT && dir_type == 2) || param_type == TOKEN_TIND_INT)
 		*num_arg %=  ft_power(2, 16);
 	else
-		*num_arg %= ft_power(2, 32);
+		;
+//		*num_arg %= ft_power(2, 32);
 }
+
 
 
 static void		fill_dirind_param(t_codegen *data, t_arg *param, char dir_type)
@@ -235,6 +254,7 @@ static void		fill_dirind_param(t_codegen *data, t_arg *param, char dir_type)
 		cell_size = param->type == TOKEN_TDIR_INT && dir_type == 1 ? 4 : 2;
 	num_size = num_arg >= 0 ? bytesize(num_arg) : cell_size;
 	fill_empty_cell(data, cell_size - num_size);
+	rotate_bytes(&num_arg, num_size);
 	ft_memcpy(&(data->code[data->add]), &num_arg, num_size);
 	data->add += num_size;
 }
@@ -298,8 +318,33 @@ static void map_expr_to_code(t_expr *expr)
 	expr->type = array_of_exprcodes[expr->args[OP_NAME].type];
 }
 
+static void	fill_expr_size(int expr_size[OP_NUM_OF_CODES])
+{
+	expr_size[OP_LIVE_CODE] = 6;
+	expr_size[OP_LIVE_CODE] = 6;
+	expr_size[OP_LIVE_CODE] = 6;
+	expr_size[OP_LIVE_CODE] = 6;
+	expr_size[OP_LIVE_CODE] = 6;
+	expr_size[OP_LIVE_CODE] = 6;
+	expr_size[OP_LIVE_CODE] = 6;
+	expr_size[OP_LIVE_CODE] = 6;
+	expr_size[OP_LIVE_CODE] = 6;
+	expr_size[OP_LIVE_CODE] = 6;
+	expr_size[OP_LIVE_CODE] = 6;
+	expr_size[OP_LIVE_CODE] = 6;
+	expr_size[OP_LIVE_CODE] = 6;
+	expr_size[OP_LIVE_CODE] = 6;
+	expr_size[OP_LIVE_CODE] = 6;
+
+}
+
 void		codegen_codegen(t_codegen *data, t_expr *q)
 {
+
+	static int expr_size[OP_NUM_OF_CODES];
+
+	if (!(expr_size[OP_LIVE_CODE]))
+		fill_expr_size(expr_size);
 	int i;
 
 	i = 1;
@@ -315,16 +360,29 @@ void		codegen_codegen(t_codegen *data, t_expr *q)
 		data->cur_instruction_code = q->type;
 		data->cur_instruction_dirsize = q->size;
 		data->code[data->add++] = q->type;
+		data->code_size += 1;
 		if (q->type != OP_LIVE_CODE && q->type != OP_ZJMP_CODE
 			&& q->type != OP_FORK_CODE && q->type != OP_LFORK_CODE) {
 
 			recast_params_types(data, q);
+			data->code_size += 1;
 		}
 		/*
 		 * нужно смапить expr_type в реальный тип асма
 		 */
-		while (i - 1 < q->arg_size && q->args[i].type)
+		while (i - 1 < q->arg_size && q->args[i].type) {
 			add_param(data, &(q->args[i++]), q->size);
+			if (q->args[i-1].type == TOKEN_TREG)
+				data->code_size += 1;
+			else if (q->args[i-1].type == TOKEN_TIND_LAB || q->args[i-1].type == TOKEN_TIND_INT
+			|| (q->args[i-1].type == TOKEN_TDIR_LAB || q->args[i-1].type == TOKEN_TDIR_INT && q->size == 2))
+				data->code_size += 2;
+			else
+				data->code_size += 4;
+
+
+		}
+//		data->code_size += expr_size[q->type];
 	}
 }
 
@@ -374,13 +432,12 @@ static void			codegen_ending(t_codegen *data)
 			tmp = (int)(tmp ^ 0xFFFFFFFF);
 			++tmp;
 		}
-//		cut_num_arg(&tmp, ld->param_type, ld->size);
 		cell_size = ld->param_type == TOKEN_TDIR_INT && ld->size == 1 ? 4 : 2;
-//		num_size = tmp >= 0 ? bytesize(tmp) : cell_size;
+		num_size = tmp >= 0 ? bytesize(tmp) : cell_size;
+		rotate_bytes(&tmp, num_size);
 		int shift = 0;
 		while (cell_size-- > 1)
 			ft_memcpy(&(data->code[ld->add + shift++]), "\0", 1);
-//		fill_empty_cell(data, cell_size - num_size);
 		ft_memcpy(&(data->code[ld->add + shift]) , &tmp, 1);
 	}
 }
@@ -417,7 +474,7 @@ int				champ_exec_constructor(t_codegen *data)
 //	ii = 2;
 //	while ((new = ft_vector_get(text, ii++)))
 //		codegen_codegen(code, new);
-	ft_memcpy(&data->exec[i], data->code, data->code_size);
+	ft_memcpy(&data->exec[i], data->code, data->add);
 	int ll = 0;
 	while (ll < data->code_size)
 	{

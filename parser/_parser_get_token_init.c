@@ -28,7 +28,7 @@ static void find_arg_num(int token_type, char *arg_num)
 {
 	if (token_type == TOKEN_LABEL_WORD)
 		*arg_num = LABEL_ARG;
-	else if(token_type >=TOKEN_AFF
+	else if(token_type >=TOKEN_CHNAME
 	&& token_type <= TOKEN_LFORK)
 		*arg_num = OP_NAME;
 	else
