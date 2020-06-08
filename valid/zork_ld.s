@@ -1,3 +1,3 @@
 .name "zork"
 .comment "I'M ALIIIIVE"
-        st r1, 100000
+        st r1, 258

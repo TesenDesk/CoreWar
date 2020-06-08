@@ -28,6 +28,10 @@
 #include "analyser.h"
 //#include "vm_params.h"
 #include <string.h>
+typedef struct mem_kek{
+	int ab[3];
+	int a;
+}memkek;
 int main(int ac, char **av)
 {
 	t_parser		*prs;
@@ -37,7 +41,7 @@ int main(int ac, char **av)
 	t_vector		*text;
 
 	t_arg			*arg;
-	int fd = open( "./valid/turtle.s" , O_RDONLY);
+	int fd = open( "./valid/turtle3.s" , O_RDONLY);
 
 	int errsv = errno;
 	printf("somecall() %d, %d\n", errsv, fd);
@@ -69,19 +73,16 @@ int main(int ac, char **av)
 		ft_strlen((((t_expr*)ft_vector_get(text, 1))->args[OP_NAME].value)));
 	code = codegen_ctor(map, vtr , &header);
 	code->labels_free = map;
-//	code->code_size = 22;
 	code->header->magic = COREWAR_EXEC_MAGIC;
 
-	int i = 0;
-	while (i < code->labels_ptrs->total)
-	{
-		free(code->labels_ptrs->items[i++]);
-	}
-	code->labels_ptrs->total &= 0;
 	t_expr *new;
-	int kkk = 0;
-	i = 2;
-	printf("!!!!!!!!!!!%d\n", -2 % 2);
+	int i = 2;
+//	memkek *kek;
+//	kek = malloc(sizeof(memkek));
+//	printf("%p %p %p %p\n",  &(kek->ab[0]), &(kek->ab[1]), &(kek->ab[2]), &(kek->a));
+//	exit(0);
+
+
 	while ((new = ft_vector_get(text, i++)))
 		codegen_codegen(code, new);
 	code->header->prog_size = champ_exec_constructor(code);

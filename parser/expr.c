@@ -16,6 +16,11 @@ t_expr					*expr_ctor(void)
 	expr->args[SECOND_ARG].type = ARG_INIT;
 	expr->args[THIRD_ARG].type = ARG_INIT;
 	expr->args[LABEL_ARG].type = ARG_INIT;
+	expr->args[OP_NAME].value = NULL;
+	expr->args[FIRST_ARG].value = NULL;
+	expr->args[SECOND_ARG].value = NULL;
+	expr->args[THIRD_ARG].value = NULL;
+	expr->args[LABEL_ARG].value = NULL;
 
 	return (expr);
 }

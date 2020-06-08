@@ -47,7 +47,10 @@ t_codegen		*codegen_ctor(t_hash_map *labels_free, t_vector *labels_ptrs,
 			return (NULL);
 		ft_vector_init(labels_ptrs);
 	}
-	code->labels_ptrs = labels_ptrs;
+//	code->labels_ptrs = labels_ptrs;
+	if (!(code->labels_ptrs = (t_vector*)ft_memalloc(sizeof(t_vector))))
+		exit(-1);
+	ft_vector_init(code->labels_ptrs);
 	code->header = header;
 	code->code = ft_memalloc(sizeof(char) * 32);
 	return (code);
@@ -110,10 +113,7 @@ static void		add_params_types(t_codegen *data,  int first_arg, int second_arg, i
 	res |= second_arg << 4;
 	res |= third_arg << 2;
 	data->code[data->add++] = (char)res;
-//	printf("res:%d, data->add:%d\n", res, data->add -1 );
-//	printf("!!!!!!!!!!!!!!!");
 	ft_printbits(res, 8);
-//	printf("!!!!!!!!!!!!!!!");
 }
 /*
  * переделать константы
@@ -191,8 +191,6 @@ static void		add_address_to_arg_label(t_codegen *data, t_arg *arg, int shift)
 	label->instruction_begining = data->cur_instruction_addr;
 	label->param_type = arg->type;
 	label->size = data->cur_instruction_dirsize;
-
-//	label->instruction_end = data->cur_instruction_addr + chose_instruction_size(data->cur_instruction);
 
 	ft_vector_add(data->labels_ptrs, label);
 }
@@ -416,11 +414,6 @@ static void			codegen_ending(t_codegen *data)
 	int 			num_size;
 
 	i = -1;
-//	if (!(tmp_param = (t_arg*)malloc(sizeof(t_arg))))
-//		exit(-1);
-//	tmp_param->type = 0;
-//	tmp_param->value = 0;
-//		cell_size = param->type == TOKEN_TDIR_INT && dir_type == 1 ? 4 : 2;
 	while ((ld = ft_vector_get(data->labels_ptrs, ++i)))
 	{
 		add = (int)(((t_code_addr*)ft_hash_map_get(data->labels_free, ld->name))->addr);
@@ -436,9 +429,9 @@ static void			codegen_ending(t_codegen *data)
 		num_size = tmp >= 0 ? bytesize(tmp) : cell_size;
 		rotate_bytes(&tmp, num_size);
 		int shift = 0;
-		while (cell_size-- > 1)
+		while (cell_size-- > num_size)
 			ft_memcpy(&(data->code[ld->add + shift++]), "\0", 1);
-		ft_memcpy(&(data->code[ld->add + shift]) , &tmp, 1);
+		ft_memcpy(&(data->code[ld->add + shift]) , &tmp, num_size);
 	}
 }
 
@@ -450,7 +443,7 @@ int				champ_exec_constructor(t_codegen *data)
 
 	i = 0;
 	codegen_ending(data);
-	total_size = PROG_NAME_LENGTH + COMMENT_LENGTH + 16 + data->code_size;
+	total_size = (PROG_NAME_LENGTH + COMMENT_LENGTH) + 16;
 	if (!(data->exec = ft_memalloc(total_size)))
 		return (0);
 	rotate_four_bytes(&data->header->magic);
@@ -465,21 +458,14 @@ int				champ_exec_constructor(t_codegen *data)
 	i += 4;
 	codegen_add_champ_comment(&data->exec[i], data->header);
 	i += (COMMENT_LENGTH) + 4;
-	int k = 0;
-//	while (k < data->code_size) {
-//		rotate_four_bytes((unsigned int*)&((data->code[k])));
-//		k += 4;
-//	}
-//	t_expr	*new;
-//	ii = 2;
-//	while ((new = ft_vector_get(text, ii++)))
-//		codegen_codegen(code, new);
 	ft_memcpy(&data->exec[i], data->code, data->add);
-	int ll = 0;
-	while (ll < data->code_size)
-	{
-		printf("%d ", data->code[ll++]);
-	}
+	printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!dataadd:%d\n", data->add);
+//	int ll = 0;
+//	while (ll < )
+//	{
+//		printf("%d ", data->code[ll++]);
+//	}
+	total_size += data->add;
 	return (total_size);
 }
 
