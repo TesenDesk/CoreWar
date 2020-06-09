@@ -9,6 +9,7 @@
 #include "libft.h"
 #include "codegen/codegen_private.h"
 #include "codegen/codegen_prototype.h"
+#include "lexer/token_private.h"
 //#include "virtual_machine/include/arena.h"
 
 #include "lexer.h"
@@ -67,10 +68,11 @@ int main(int ac, char **av)
 
 	ft_bzero(&header.comment, COMMENT_LENGTH + 1);
 	ft_bzero(&header.prog_name, PROG_NAME_LENGTH + 1);
-	ft_memcpy(&header.prog_name, (((t_expr*)ft_vector_get(text, 0))->args[OP_NAME].value),
-			  ft_strlen((((t_expr*)ft_vector_get(text, 0))->args[OP_NAME].value)));
-	ft_memcpy(&header.comment, (((t_expr*)ft_vector_get(text, 1))->args[OP_NAME].value),
-		ft_strlen((((t_expr*)ft_vector_get(text, 1))->args[OP_NAME].value)));
+	char *name = ((t_token*)((t_expr*)ft_vector_get(text, 0))->args[OP_NAME].value)->val;
+	char *comment = ((t_token*)((t_expr*)ft_vector_get(text, 1))->args[OP_NAME].value)->val;
+	printf("%s\n%s\n", name, comment);
+	ft_memcpy(&header.prog_name, name, ft_strlen(name));
+	ft_memcpy(&header.comment, comment, ft_strlen(comment));
 	code = codegen_ctor(map, vtr , &header);
 	code->labels_free = map;
 	code->header->magic = COREWAR_EXEC_MAGIC;
