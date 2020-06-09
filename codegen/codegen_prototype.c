@@ -414,17 +414,19 @@ static void			codegen_ending(t_codegen *data)
 	int 			num_size;
 
 	i = -1;
+	printf("asascxdasjkfnsdjkfdkjsfnbsdjkfbdsjkh     %d\n", data->code_size);
 	while ((ld = ft_vector_get(data->labels_ptrs, ++i)))
 	{
 		add = (int)(((t_code_addr*)ft_hash_map_get(data->labels_free, ld->name))->addr);
 		tmp = (char)(add - ld->instruction_begining);
 //		tmp_param->value = tmp;
 		printf("!!!!!!!!!!!!!!!%d\n", tmp);
-		if (tmp < 0)
-		{
-			tmp = (int)(tmp ^ 0xFFFFFFFF);
-			++tmp;
-		}
+//		if (tmp < 0)
+//		{
+//			tmp = (int)(tmp ^ 0xFFFFFFFF);
+//			++tmp;
+//		}
+		printf("!!!!!!!!!!!!!!!%d\n", tmp);
 		cell_size = ld->param_type == TOKEN_TDIR_INT && ld->size == 1 ? 4 : 2;
 		num_size = tmp >= 0 ? bytesize(tmp) : cell_size;
 		rotate_bytes(&tmp, num_size);
@@ -443,7 +445,8 @@ int				champ_exec_constructor(t_codegen *data)
 
 	i = 0;
 	codegen_ending(data);
-	total_size = (PROG_NAME_LENGTH + COMMENT_LENGTH) + 16;
+	total_size = (PROG_NAME_LENGTH + COMMENT_LENGTH) + 16 + data->code_size;
+	printf("NOW: %d\n", data->code_size);
 	if (!(data->exec = ft_memalloc(total_size)))
 		return (0);
 	rotate_four_bytes(&data->header->magic);
@@ -458,14 +461,14 @@ int				champ_exec_constructor(t_codegen *data)
 	i += 4;
 	codegen_add_champ_comment(&data->exec[i], data->header);
 	i += (COMMENT_LENGTH) + 4;
-	ft_memcpy(&data->exec[i], data->code, data->add);
+	ft_memcpy(&data->exec[i], data->code, data->code_size);
 	printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!dataadd:%d\n", data->add);
 //	int ll = 0;
 //	while (ll < )
 //	{
 //		printf("%d ", data->code[ll++]);
 //	}
-	total_size += data->add;
+	printf("size:%d\n", total_size);
 	return (total_size);
 }
 

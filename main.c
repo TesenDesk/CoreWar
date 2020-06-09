@@ -42,7 +42,7 @@ int main(int ac, char **av)
 	t_vector		*text;
 
 	t_arg			*arg;
-	int fd = open( "./valid/turtle3.s" , O_RDONLY);
+	int fd = open( "./valid/turtle2.s" , O_RDONLY);
 
 	int errsv = errno;
 	printf("somecall() %d, %d\n", errsv, fd);
@@ -79,10 +79,6 @@ int main(int ac, char **av)
 
 	t_expr *new;
 	int i = 2;
-//	memkek *kek;
-//	kek = malloc(sizeof(memkek));
-//	printf("%p %p %p %p\n",  &(kek->ab[0]), &(kek->ab[1]), &(kek->ab[2]), &(kek->a));
-//	exit(0);
 
 
 	while ((new = ft_vector_get(text, i++)))

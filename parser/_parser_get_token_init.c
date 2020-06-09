@@ -48,7 +48,7 @@ t_token			*_parser_get_token_init(t_parser *parser, t_lexer *lexer,
 		return (NULL);
 	token_type = token_get_type(token);
 	find_arg_num(token_type, &arg_num);
-	printf("WW %d %d\n", token_type, arg_num);
+//	printf("WW %d %d\n", token_type, arg_num);
 	if (!expr_types[TOKEN_LFORK])
 		fill_expr_types(expr_types);
 	if (token_type >= TOKEN_CHNAME && token_type <= TOKEN_LFORK)
