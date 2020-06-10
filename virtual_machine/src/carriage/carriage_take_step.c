@@ -24,7 +24,8 @@ int     carriage_take_step(t_carriage *self)
     {
         if (self->is_correct_op_code)
         {
-            operation_perform(self);
+            operation_dispatched(self);
+//            operation_perform(self);
         }
 //        else
 //        {

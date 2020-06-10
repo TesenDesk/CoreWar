@@ -20,10 +20,13 @@
 void                    _operation_live(t_carriage *self)
 {
     int position;
+    int op_len;
     int arg;
 
     position = self->arena_position;
+    op_len = 5; // 5 bytes for op live
     arg = arena_get_n_bytes_from(self, position + ONE_BYTE, ONE_BYTE);
+//    if (arg == )
 }
 
 

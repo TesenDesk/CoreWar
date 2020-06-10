@@ -55,6 +55,10 @@ enum				e_op_codes
 };
 
 typedef struct s_carriage	t_carriage;
+
+
+void				*operation_dispatched(t_carriage *self);
+
 //typedef						(*t_operation)(t_carriage *carriage);
 
 

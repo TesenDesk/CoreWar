@@ -1,6 +1,6 @@
 #include "_operation.h"
 
-void				*operation_dispatched(int state)
+void				*operation_dispatched(t_carriage *self)
 {
     static t_operation	operations[NUMBER_OF_OPERATIONS] =
             {

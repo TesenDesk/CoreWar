@@ -17,6 +17,7 @@
 # include "errors.h"
 # include "vm.h"
 # include "vm_params.h"
+# include "carriage.h"
 
 /*
 **	Limit individual processes in the allocated memory.

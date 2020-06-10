@@ -12,13 +12,7 @@
 
 
 #include "_vm.h"
-#include "carriage/_carriage.h"
 #include "arena/_arena.h"
-#include "player.h"
-#include "errors.h"
-#define CYCLES_TO_DIE       1536
-#define NBR_LIVE            21
-#define CYCLE_DELTA         50
 
 void            destroy_dead_carriages(t_list **head)
 {
@@ -75,6 +69,7 @@ int             vm_check(t_vm *self)
 
     self->num_of_live_ops = 0;
     self->cycles_counter = 0;
+//    arena_reset_num_of_live_ops(self->arena);
     return (SUCCESS);
 }
 
@@ -96,7 +91,7 @@ void 		    vm_play(t_vm *self)
 
 //    vm_check(self);
 
-    self->cycles_to_die = CYCLES_TO_DIE;
+    self->cycles_to_die = CYCLE_TO_DIE;
     while (TRUE)
     {
         vm_next_cycle(self);
