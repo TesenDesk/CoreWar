@@ -28,8 +28,8 @@ typedef struct				s_carriage
 	int				carry; // 2. Флаг, который может изменять некоторые операции. Изначально его значение равно false.
 	int				op_code; // 3. До начала битвы значение этой переменной не установлено.
 	int				is_correct_operation; //
-	int				wait_so_many_cycles_to_perform_op; // циклов до операции (какая операция по умолчанию??)
-	t_operation 	ops[NUMBER_OF_OPERATIONS];
+	int				cycles_to_perform_op; // циклов до операции (какая операция по умолчанию??)
+//	t_operation 	ops[NUMBER_OF_OPERATIONS];
 	int				last_live_cycle; // посдедний цикл в котором каретка  live
 	int				is_correct_op_code;
 	int				arena_position;
@@ -39,4 +39,6 @@ typedef struct				s_carriage
 
 void                _carriage_set_op_code(t_carriage *self, t_arena *arena);
 void                _carriage_set_is_correct_op_code(t_carriage *self);
+void                _carriage_set_cycles_to_perform_op(t_carriage *self);
+
 #endif

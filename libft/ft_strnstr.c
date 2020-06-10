@@ -22,7 +22,7 @@
 **
 **	First, the conditions for missing arguments are processed by reference. If
 ** they are not there, and also if the string dst, where the search will be
-** performed, is empty, or the number of characters for the search, size is 0,
+** ed, is empty, or the number of characters for the search, size is 0,
 ** and also if the string src, whose entry in dst is searched, does not fit
 ** there, in all these Cases will return a null pointer. (By end symbol from
 ** dst). The same result will be if there is no substring in dst equal to src

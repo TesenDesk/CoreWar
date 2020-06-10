@@ -13,6 +13,12 @@
 #ifndef OPERATION_H
 # define OPERATION_H
 
+enum			e_operation_singleton
+{
+    OPERATION_INSTANTIATE,
+    OPERATION_DESTRUCT,
+};
+
 enum					e_op_code_groups
 {
 	OP_ERROR = -1,
@@ -49,6 +55,7 @@ enum				e_op_codes
 };
 
 typedef struct s_carriage	t_carriage;
-typedef						(*t_operation)(t_carriage *carriage);
+//typedef						(*t_operation)(t_carriage *carriage);
+
 
 #endif

@@ -19,4 +19,24 @@
 # include "operation.h"
 # include "carriage.h"
 
+enum					e_arguments
+{
+    ARG_1,
+    ARG_2,
+    ARG_3,
+    NB_ARGS,
+};
+
+enum					e_siz_in_bytes
+{
+    ONE_BYTE = 1,
+    TWO_BYTES,
+    THREE_BYTES,
+    FOUR_BYTES,
+};
+
+typedef					(*t_operation)(t_carriage *carriage);
+void                    _operation_live(t_carriage *self);
+
 #endif
+

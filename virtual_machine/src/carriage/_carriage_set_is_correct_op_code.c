@@ -23,7 +23,7 @@
 
 void            _carriage_set_is_correct_op_code(t_carriage *self)
 {
-    self->is_correct_op_code =
-            (self->op_code >= 0x01 && self->op_code >= 0x10);
+    if (self->op_code > OP_MOCK && self->op_code < NUMBER_OF_OPERATIONS)
+        self->is_correct_op_code = 1;
     return;
 }
