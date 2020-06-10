@@ -9,5 +9,9 @@ zork:
 
 ardef:
 	live		%42
+	live		%42
+	live		%42
+	live		%42
+	live		%42
 	zjmp		%:zork
 

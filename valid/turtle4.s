@@ -2,10 +2,10 @@
 .comment	"TURTLE FFS U LAMA"
 
 entry:
-	sti			r1, %:zork, %1
+	sti			r1, %:entry, %1
 
 entry_l1:
-	fork		%:avdef
+	fork		%:entry_l1
 
 ################################################################################
 

@@ -42,7 +42,7 @@ int main(int ac, char **av)
 	t_vector		*text;
 
 	t_arg			*arg;
-	int fd = open( "./valid/turtle2.s" , O_RDONLY);
+	int fd = open( "./valid/42.s" , O_RDONLY);
 
 	int errsv = errno;
 	printf("somecall() %d, %d\n", errsv, fd);
@@ -84,7 +84,7 @@ int main(int ac, char **av)
 	while ((new = ft_vector_get(text, i++)))
 		codegen_codegen(code, new);
 	code->header->prog_size = champ_exec_constructor(code);
-	fd1 = open("test.cmp", O_WRONLY);
+	fd1 = open("test", O_WRONLY | O_CREAT | O_TRUNC);
 	write(fd1, code->exec, code->header->prog_size);
 
 	return  (0);

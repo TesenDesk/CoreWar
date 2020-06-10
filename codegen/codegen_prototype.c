@@ -52,7 +52,10 @@ t_codegen		*codegen_ctor(t_hash_map *labels_free, t_vector *labels_ptrs,
 		exit(-1);
 	ft_vector_init(code->labels_ptrs);
 	code->header = header;
-	code->code = ft_memalloc(sizeof(char) * 32);
+	code->code = ft_memalloc(sizeof(char) * 1000000);
+	/*
+	 * need to implement_function write_to_code
+	 */
 	return (code);
 }
 
@@ -160,7 +163,7 @@ static void		dir_type_detector(t_expr *q)
 //	else
 //		q->size = 2;
 	if (q->args[OP_NAME].type == TOKEN_ZJMP || q->args[OP_NAME].type == TOKEN_LDI || q->args[OP_NAME].type == TOKEN_STI ||
-	q->args[OP_NAME].type == TOKEN_LFORK || q->args[OP_NAME].type == TOKEN_LLDI || q->args[OP_NAME].type == TOKEN_LFORK)
+	q->args[OP_NAME].type == TOKEN_FORK || q->args[OP_NAME].type == TOKEN_LLDI || q->args[OP_NAME].type == TOKEN_LFORK)
 		q->size = 2;
 	else
 		q->size = 1;
@@ -373,7 +376,7 @@ void		codegen_codegen(t_codegen *data, t_expr *q)
 			if (q->args[i-1].type == TOKEN_TREG)
 				data->code_size += 1;
 			else if (q->args[i-1].type == TOKEN_TIND_LAB || q->args[i-1].type == TOKEN_TIND_INT
-			|| (q->args[i-1].type == TOKEN_TDIR_LAB || q->args[i-1].type == TOKEN_TDIR_INT && q->size == 2))
+			|| (q->args[i-1].type == TOKEN_TDIR_LAB || (q->args[i-1].type == TOKEN_TDIR_INT && q->size == 2)))
 				data->code_size += 2;
 			else
 				data->code_size += 4;
@@ -414,18 +417,16 @@ static void			codegen_ending(t_codegen *data)
 	int 			num_size;
 
 	i = -1;
-	printf("asascxdasjkfnsdjkfdkjsfnbsdjkfbdsjkh     %d\n", data->code_size);
 	while ((ld = ft_vector_get(data->labels_ptrs, ++i)))
 	{
 		add = (int)(((t_code_addr*)ft_hash_map_get(data->labels_free, ld->name))->addr);
 		tmp = (char)(add - ld->instruction_begining);
 //		tmp_param->value = tmp;
-		printf("!!!!!!!!!!!!!!!%d\n", tmp);
-//		if (tmp < 0)
-//		{
-//			tmp = (int)(tmp ^ 0xFFFFFFFF);
-//			++tmp;
-//		}
+		if (tmp < 0)
+		{
+			tmp = (int)(tmp ^ 0xFFFFFFFF);
+			++tmp;
+		}
 		printf("!!!!!!!!!!!!!!!%d\n", tmp);
 		cell_size = ld->param_type == TOKEN_TDIR_INT && ld->size == 1 ? 4 : 2;
 		num_size = tmp >= 0 ? bytesize(tmp) : cell_size;
