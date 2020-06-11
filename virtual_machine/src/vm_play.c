@@ -87,9 +87,25 @@ void            vm_next_cycle(t_vm *self)
 
 void 		    vm_play(t_vm *self)
 {
-    arena_players_introducing(self->arena);
+// experiments place start
 
-//    vm_check(self);
+//    char a[4] = {9,1,2,3,};
+//    int four_bytes = *a;
+//
+//    int i = 1;
+//    while (i < 3)
+//    {
+//        four_bytes = four_bytes << 8;
+//        four_bytes |= a[i];
+//        i++;
+//    }
+
+// experiments place end
+
+
+
+
+    arena_players_introducing(self->arena);
 
     self->cycles_to_die = CYCLE_TO_DIE;
     while (TRUE)
