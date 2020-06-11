@@ -448,14 +448,17 @@ static void			codegen_ending(t_codegen *data)
 //			tmp = (int)(tmp ^ 0xFFFFFFFF);
 //			++tmp;
 //		}
-		printf("!!!!!!!!!!!!!!!%d\n", tmp);
-		cell_size = ld->param_type == TOKEN_TDIR_INT && ld->size == 1 ? 4 : 2;
-		num_size = tmp >= 0 ? bytesize(tmp) : cell_size;
-		rotate_bytes(&tmp, num_size);
-		int shift = 0;
-		while (cell_size-- > num_size)
-			ft_memcpy(&(data->code[ld->add + shift++]), "\0", 1);
-		ft_memcpy(&(data->code[ld->add + shift]) , &tmp, num_size);
+		/*
+		 * HERE PROBLEM
+		 */
+		cell_size = ld->param_type == TOKEN_TDIR_LAB && ld->size == 1 ? 4 : 2;
+//		num_size = tmp >= 0 ? bytesize(tmp) : cell_size;
+		rotate_bytes(&tmp, cell_size);
+//		int shift = 0;
+//		while (cell_size-- > num_size)
+//			ft_memcpy(&(data->code[ld->add + shift++]), "\0", 1);
+		ft_memcpy(&(data->code[ld->add]) , &tmp, cell_size);
+
 	}
 }
 
