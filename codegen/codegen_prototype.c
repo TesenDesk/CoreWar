@@ -14,7 +14,21 @@
 
 static void		rotate_four_bytes(unsigned int *p)
 {
-	*p = *p << 24 | *p >> 24 | (*p & 0xff00) << 8 | (*p & 0xff0000) >> 8;
+	int 		tmp = *p;
+	printf("!!%d\n", *p);
+	int	first = (*p & 0x000000ff) << 24;
+	int second = ((*p & 0xff000000) >> 24);
+	int third = 	((*p & 0x0000ff00) << 8);
+	int fourth = ((*p & 0x00ff0000) >> 8);
+	printf("%x %x %x %x\n", first, third, fourth, second);
+	/*
+	 * в обратную сторону???
+	 */
+	printf("*p:%d\n", *p);
+	*p = second | fourth | third | first;
+	printf("*p:%d\n", *p);
+//				 *p = ((*p & 0x000000ff)) << 24 | ((*p & 0xff000000) >> 24) | ((*p & 0x0000ff00) << 8) | ((*p & 0x00ff0000) >> 8);
+//	*p = (*p << 24) | (*p >> 24);
 }
 
 static void		rotate_two_bytes(unsigned short *p)
@@ -202,10 +216,10 @@ int 	bytesize(int num)
 {
 	int	ans;
 
-	ans = 0;
-	while(num)
+	ans = 1;
+	while(num >>= 1)
 	{
-		num >>= 1;
+//		num >>= 1;
 		ans += 1;
 	}
 	return (!(ans % 8) ? (ans / 8) : (ans / 8)+ 1);
@@ -232,8 +246,8 @@ void			cut_num_arg(int *num_arg, int param_type, char dir_type)
 			exit(-1);
 		return ;
 	}
-	else if ((param_type == TOKEN_TDIR_INT && dir_type == 2) || param_type == TOKEN_TIND_INT)
-		*num_arg %=  ft_power(2, 16);
+//	else if ((param_type == TOKEN_TDIR_INT && dir_type == 2) || param_type == TOKEN_TIND_INT)
+//		*num_arg %=  ft_power(2, 16);
 	else
 		;
 //		*num_arg %= ft_power(2, 32);
@@ -247,16 +261,19 @@ static void		fill_dirind_param(t_codegen *data, t_arg *param, char dir_type)
 	int 		num_size;
 	int 		cell_size;
 
-	num_arg = ft_atoi(((t_token *)param->value)->val) % IDX_MOD;
-	cut_num_arg(&num_arg, param->type, dir_type);
+
+	num_arg = ft_atoi(((t_token *)param->value)->val);
+	if (param->type == TOKEN_TIND_INT)
+		num_arg %= IDX_MOD;
+//	cut_num_arg(&num_arg, param->type, dir_type);
 	if (param->type == TOKEN_TREG)
 		cell_size = 1;
 	else
 		cell_size = param->type == TOKEN_TDIR_INT && dir_type == 1 ? 4 : 2;
 	num_size = num_arg >= 0 ? bytesize(num_arg) : cell_size;
-	fill_empty_cell(data, cell_size - num_size);
-	rotate_bytes(&num_arg, num_size);
-	ft_memcpy(&(data->code[data->add]), &num_arg, num_size);
+//	fill_empty_cell(data, cell_size - num_size);
+	rotate_bytes(&num_arg, cell_size);
+	ft_memcpy(&(data->code[data->add]), &num_arg, cell_size);
 	data->add += num_size;
 }
 
@@ -269,6 +286,8 @@ static void		add_param(t_codegen *data, t_arg *param, char dir_type)
 	arg = 0;
 	if (param->type == TOKEN_TIND_LAB || param->type == TOKEN_TDIR_LAB)
 	{
+		if (param->type == TOKEN_TIND_LAB)
+			printf("asaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n");
 		if ((param->type == TOKEN_TDIR_LAB && dir_type == 2) || param->type == TOKEN_TIND_LAB)
 			shift = 2;
 		else
@@ -420,13 +439,15 @@ static void			codegen_ending(t_codegen *data)
 	while ((ld = ft_vector_get(data->labels_ptrs, ++i)))
 	{
 		add = (int)(((t_code_addr*)ft_hash_map_get(data->labels_free, ld->name))->addr);
-		tmp = (char)(add - ld->instruction_begining);
+		tmp = (add - ld->instruction_begining);
+		if (ld->param_type == TOKEN_TIND_LAB)
+			tmp %= IDX_MOD;
 //		tmp_param->value = tmp;
-		if (tmp < 0)
-		{
-			tmp = (int)(tmp ^ 0xFFFFFFFF);
-			++tmp;
-		}
+//		if (tmp < 0)
+//		{
+//			tmp = (int)(tmp ^ 0xFFFFFFFF);
+//			++tmp;
+//		}
 		printf("!!!!!!!!!!!!!!!%d\n", tmp);
 		cell_size = ld->param_type == TOKEN_TDIR_INT && ld->size == 1 ? 4 : 2;
 		num_size = tmp >= 0 ? bytesize(tmp) : cell_size;
@@ -463,7 +484,6 @@ int				champ_exec_constructor(t_codegen *data)
 	codegen_add_champ_comment(&data->exec[i], data->header);
 	i += (COMMENT_LENGTH) + 4;
 	ft_memcpy(&data->exec[i], data->code, data->code_size);
-	printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!dataadd:%d\n", data->add);
 //	int ll = 0;
 //	while (ll < )
 //	{
