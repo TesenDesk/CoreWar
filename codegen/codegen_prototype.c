@@ -206,6 +206,7 @@ static void		add_address_to_arg_label(t_codegen *data, t_arg *arg, int shift)
 	label->name = ((t_token*)arg->value)->val;
 	label->add = data->add + shift;
 	label->instruction_begining = data->cur_instruction_addr;
+	printf("label_add:%d, cur_add:%d\n", label->add, label->instruction_begining);
 	label->param_type = arg->type;
 	label->size = data->cur_instruction_dirsize;
 
@@ -258,23 +259,24 @@ void			cut_num_arg(int *num_arg, int param_type, char dir_type)
 static void		fill_dirind_param(t_codegen *data, t_arg *param, char dir_type)
 {
 	int			num_arg;
-	int 		num_size;
 	int 		cell_size;
 
 
 	num_arg = ft_atoi(((t_token *)param->value)->val);
 	if (param->type == TOKEN_TIND_INT)
 		num_arg %= IDX_MOD;
-//	cut_num_arg(&num_arg, param->type, dir_type);
 	if (param->type == TOKEN_TREG)
 		cell_size = 1;
 	else
 		cell_size = param->type == TOKEN_TDIR_INT && dir_type == 1 ? 4 : 2;
-	num_size = num_arg >= 0 ? bytesize(num_arg) : cell_size;
-//	fill_empty_cell(data, cell_size - num_size);
 	rotate_bytes(&num_arg, cell_size);
-	ft_memcpy(&(data->code[data->add]), &num_arg, cell_size);
-	data->add += num_size;
+	if (cell_size == 2) {
+		short s = (short)num_arg;
+		ft_memcpy(&(data->code[data->add]), &s, cell_size);
+	}
+	else
+		ft_memcpy(&(data->code[data->add]), &num_arg, cell_size);
+	data->add += cell_size;
 }
 
 
@@ -286,8 +288,6 @@ static void		add_param(t_codegen *data, t_arg *param, char dir_type)
 	arg = 0;
 	if (param->type == TOKEN_TIND_LAB || param->type == TOKEN_TDIR_LAB)
 	{
-		if (param->type == TOKEN_TIND_LAB)
-			printf("asaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n");
 		if ((param->type == TOKEN_TDIR_LAB && dir_type == 2) || param->type == TOKEN_TIND_LAB)
 			shift = 2;
 		else
@@ -298,6 +298,7 @@ static void		add_param(t_codegen *data, t_arg *param, char dir_type)
 //		else
 //			data->add += DIR_SIZE / dir_type;
 		data->add += shift;
+		printf("data_add:%d\n", data->add);
 	}
 	else
 		fill_dirind_param(data, param, dir_type);
@@ -368,15 +369,14 @@ void		codegen_codegen(t_codegen *data, t_expr *q)
 	int i;
 
 	i = 1;
-	printf("first:%d\n", data->add);
 	if (q->type == EXPR_LABEL_W)
 		write_address_to_free_label(data, q);
 	else if(q->type != EXPR_EOF)
 	{
 		dir_type_detector(q);
 		map_expr_to_code(q);
-		printf("aaaaaaaaa%d\n", q->type);
 		data->cur_instruction_addr = data->add;
+		printf("cur_instr:%d\n", data->add);
 		data->cur_instruction_code = q->type;
 		data->cur_instruction_dirsize = q->size;
 		data->code[data->add++] = q->type;
@@ -431,17 +431,17 @@ static void			codegen_ending(t_codegen *data)
 	t_label_data	*ld;
 	int				add;
 	int				tmp;
-//	t_arg			*tmp_param;
 	int 			cell_size;
-	int 			num_size;
 
 	i = -1;
 	while ((ld = ft_vector_get(data->labels_ptrs, ++i)))
 	{
 		add = (int)(((t_code_addr*)ft_hash_map_get(data->labels_free, ld->name))->addr);
 		tmp = (add - ld->instruction_begining);
+		printf("!@!tmp:%d\n", tmp);
 		if (ld->param_type == TOKEN_TIND_LAB)
 			tmp %= IDX_MOD;
+		printf("!@!ld->add:%d\n", ld->add);
 //		tmp_param->value = tmp;
 //		if (tmp < 0)
 //		{
@@ -452,12 +452,14 @@ static void			codegen_ending(t_codegen *data)
 		 * HERE PROBLEM
 		 */
 		cell_size = ld->param_type == TOKEN_TDIR_LAB && ld->size == 1 ? 4 : 2;
-//		num_size = tmp >= 0 ? bytesize(tmp) : cell_size;
 		rotate_bytes(&tmp, cell_size);
-//		int shift = 0;
-//		while (cell_size-- > num_size)
-//			ft_memcpy(&(data->code[ld->add + shift++]), "\0", 1);
-		ft_memcpy(&(data->code[ld->add]) , &tmp, cell_size);
+		if (cell_size == 2) {
+			short temp = (short)tmp;
+			ft_memcpy(&(data->code[ld->add]), (short *) &tmp, cell_size);
+		}
+		else
+			ft_memcpy(&(data->code[ld->add]) , &tmp, cell_size);
+
 
 	}
 }
