@@ -15,19 +15,24 @@ t_token				*token_constructor(int type,void *ptr[2])
 	/*
 	 * исправить эту заглушку
 	 */
-	if (ptr[1] < ptr[0])
-		size = 10;
-	else
-		size = ptr[1] - ptr[0] + 2;
-//	printf("!!!%d, %p %p\n", type, ptr[0], ptr[1]);
 	if (!(token = (t_token*)malloc(sizeof(t_token))))
 	{
 		printf("error\n");
 		exit(-1);
 	}
-	if (!(token->val = ft_memalloc(size)))
-		exit(-1);
-	ft_memcpy(token->val, ptr[0], size - 1);
+	if (ptr[1] - ptr[0] < 0) {
+		printf("!%.5s!\n", ptr[0]);
+		printf("type:%d\n", type);
+		printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+		token->val = "";
+	}
+	else {
+		size = ptr[1] - ptr[0] + 2;
+//	printf("!!!%d, %p %p\n", type, ptr[0], ptr[1]);
+		if (!(token->val = ft_memalloc(size)))
+			exit(-1);
+		ft_memcpy(token->val, ptr[0], size - 1);
+	}
 	token->type = type;
 	token->token_ptr[0] = ptr[0];
 	token->token_ptr[1] = ptr[1];

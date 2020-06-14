@@ -32,6 +32,8 @@ int				lexer_get_term_ch_name(t_lexer *lexer, char const **text,
 	{
 		*type = TOKEN_CHNAME;
 		token_ptr[TOKEN_END_PTR] = (void*)(*text - 1);
+		printf("1:%.5s\n", token_ptr[TOKEN_START_PTR]);
+		printf("2:%.5s\n", token_ptr[TOKEN_END_PTR]);
 		++(*text);
 		return (QUOTATION_MARK_CODE);
 	}

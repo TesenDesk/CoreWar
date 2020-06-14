@@ -28,7 +28,7 @@ t_vector		*analyse_text(t_analyser *analyser, t_vector *vector,t_hash_map  *map,
 			exit(-1);
 		expr_type = ((t_expr*)ft_vector_get_curr(expr_text))->type;
 		analyser->_change_state(analyser, expr_type);
-		printf("type:%d, state:%d\n", expr_type, analyser->state);
+//		printf("type:%d, state:%d\n", expr_type, analyser->state);
 		if (analyser->state == ANALYSER_ERROR_ST)
 			exit(-1);
 	}

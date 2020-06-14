@@ -153,7 +153,6 @@ int             lexer_get_term_init(t_lexer *lexer, char const **text, int *type
 	else if ((op_len = term_is_op(*text)))
 	{
 		*type = find_op_type(*text);
-		printf("init_type:%d\n", *type);
 		token_ptr[0] = (void*)(*text);
 		token_ptr[1] =  (void*)(*text + op_len);
 		*text += op_len;

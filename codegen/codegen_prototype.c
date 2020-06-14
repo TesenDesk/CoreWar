@@ -15,18 +15,18 @@
 static void		rotate_four_bytes(unsigned int *p)
 {
 	int 		tmp = *p;
-	printf("!!%d\n", *p);
+//	printf("!!%d\n", *p);
 	int	first = (*p & 0x000000ff) << 24;
 	int second = ((*p & 0xff000000) >> 24);
 	int third = 	((*p & 0x0000ff00) << 8);
 	int fourth = ((*p & 0x00ff0000) >> 8);
-	printf("%x %x %x %x\n", first, third, fourth, second);
+//	printf("%x %x %x %x\n", first, third, fourth, second);
 	/*
 	 * в обратную сторону???
 	 */
-	printf("*p:%d\n", *p);
+//	printf("*p:%d\n", *p);
 	*p = second | fourth | third | first;
-	printf("*p:%d\n", *p);
+//	printf("*p:%d\n", *p);
 //				 *p = ((*p & 0x000000ff)) << 24 | ((*p & 0xff000000) >> 24) | ((*p & 0x0000ff00) << 8) | ((*p & 0x00ff0000) >> 8);
 //	*p = (*p << 24) | (*p >> 24);
 }
@@ -206,7 +206,7 @@ static void		add_address_to_arg_label(t_codegen *data, t_arg *arg, int shift)
 	label->name = ((t_token*)arg->value)->val;
 	label->add = data->add + shift;
 	label->instruction_begining = data->cur_instruction_addr;
-	printf("label_add:%d, cur_add:%d\n", label->add, label->instruction_begining);
+//	printf("label_add:%d, cur_add:%d\n", label->add, label->instruction_begining);
 	label->param_type = arg->type;
 	label->size = data->cur_instruction_dirsize;
 
@@ -269,6 +269,7 @@ static void		fill_dirind_param(t_codegen *data, t_arg *param, char dir_type)
 		cell_size = 1;
 	else
 		cell_size = param->type == TOKEN_TDIR_INT && dir_type == 1 ? 4 : 2;
+	printf("cell_type:%d, num_arg:%d\n", cell_size, num_arg);
 	rotate_bytes(&num_arg, cell_size);
 	if (cell_size == 2) {
 		short s = (short)num_arg;
@@ -298,7 +299,6 @@ static void		add_param(t_codegen *data, t_arg *param, char dir_type)
 //		else
 //			data->add += DIR_SIZE / dir_type;
 		data->add += shift;
-		printf("data_add:%d\n", data->add);
 	}
 	else
 		fill_dirind_param(data, param, dir_type);
@@ -376,7 +376,7 @@ void		codegen_codegen(t_codegen *data, t_expr *q)
 		dir_type_detector(q);
 		map_expr_to_code(q);
 		data->cur_instruction_addr = data->add;
-		printf("cur_instr:%d\n", data->add);
+//		printf("cur_instr:%d\n", data->add);
 		data->cur_instruction_code = q->type;
 		data->cur_instruction_dirsize = q->size;
 		data->code[data->add++] = q->type;
@@ -438,10 +438,10 @@ static void			codegen_ending(t_codegen *data)
 	{
 		add = (int)(((t_code_addr*)ft_hash_map_get(data->labels_free, ld->name))->addr);
 		tmp = (add - ld->instruction_begining);
-		printf("!@!tmp:%d\n", tmp);
+//		printf("!@!tmp:%d\n", tmp);
 		if (ld->param_type == TOKEN_TIND_LAB)
 			tmp %= IDX_MOD;
-		printf("!@!ld->add:%d\n", ld->add);
+//		printf("!@!ld->add:%d\n", ld->add);
 //		tmp_param->value = tmp;
 //		if (tmp < 0)
 //		{
@@ -473,7 +473,6 @@ int				champ_exec_constructor(t_codegen *data)
 	i = 0;
 	codegen_ending(data);
 	total_size = (PROG_NAME_LENGTH + COMMENT_LENGTH) + 16 + data->code_size;
-	printf("NOW: %d\n", data->code_size);
 	if (!(data->exec = ft_memalloc(total_size)))
 		return (0);
 	rotate_four_bytes(&data->header->magic);
@@ -481,7 +480,6 @@ int				champ_exec_constructor(t_codegen *data)
 	i += 4;
 	codegen_add_champ_name(&data->exec[i], data->header);
 	i += (PROG_NAME_LENGTH) + 4;
-	printf("code_s:%d\n", data->code_size);
 	tmp_size = data->code_size;
 	rotate_four_bytes(&tmp_size);
 	ft_memcpy(&data->exec[i], &tmp_size, 4);
@@ -494,7 +492,6 @@ int				champ_exec_constructor(t_codegen *data)
 //	{
 //		printf("%d ", data->code[ll++]);
 //	}
-	printf("size:%d\n", total_size);
 	return (total_size);
 }
 
