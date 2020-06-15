@@ -33,7 +33,7 @@ typedef struct				s_carriage
 	int				last_live_cycle; // посдедний цикл в котором каретка  live
 	int				is_correct_op_code;
 	int				arena_position;
-	int				bytes_to_next_op;
+//	int				bytes_to_next_op;
 	long int		registers[REG_NUMBER];
 }							t_carriage;
 

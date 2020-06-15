@@ -11,28 +11,24 @@
 /* ************************************************************************** */
 
 #include "_operation.h"
-#include "_carriage.h"
-
-// TODO: номер цикла где-то нужно учитывать
-
-
 
 void                    _operation_live(t_carriage *self)
 {
     int position;
     int op_len;
     int arg;
+    t_vm *vm;
 
     position = self->arena_position;
     op_len = ONE_BYTE + FOUR_BYTES; // 5 bytes for op live
     arg = arena_get_n_bytes_from(self, position + ONE_BYTE, ONE_BYTE);
+    vm = vm_singleton(VM_INSTANTIATE, 0, NULL);
     if ((arg * -1) == self->player_name)
     {
-        self->last_live_cycle = arena_get_
-//        arena_set_last_live_player(self->arena, self->player_name);
+        self->last_live_cycle = vm_cycles_counter(vm);
+        arena_set_last_live_player(self->arena, self->player_name);
     }
-//    arena_set_last_live_cycle(self->arena);
-//    arena_increase_num_live_ops(self->arena);
+    vm_increase_num_of_live_ops(self->arena);
 }
 
 

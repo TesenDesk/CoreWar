@@ -31,6 +31,7 @@ int         arena_nb_players(t_arena *self);
 int			arena_op_code(t_arena *self, int arena_position);
 void        arena_players_introducing(t_arena *self);
 int         arena_get_n_bytes_from(t_arena *self, int pos, int bytes);
+void        arena_set_last_live_player(t_arena *self, int player_num);
 
 
 #endif

@@ -6,7 +6,7 @@ void				*operation_dispatched(t_carriage *self)
             {
 //                    _operation_mock,
                     _operation_live,
-//                    _operation_ld,
+                    _operation_ld,
 //                    _operation_st,
 //                    _operation_add,
 //                    _operation_sub,
@@ -22,6 +22,5 @@ void				*operation_dispatched(t_carriage *self)
 //                    _operation_lfork,
 //                    _operation_aff,
             };
-
-//    return (operations[state]);
+    operations[self->op_code];
 }

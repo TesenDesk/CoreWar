@@ -53,8 +53,8 @@ int             vm_check(t_vm *self)
         ft_lstdel(&(self->carriage_head), carriage_destroy);
         return (FAILURE);
     }
-    destroy_dead_carriages(&(self->carriage_head));
 
+    destroy_dead_carriages(&(self->carriage_head));
     if (self->carriage_head == NULL) // all carriages dead
         return (FAILURE);
 
@@ -69,7 +69,7 @@ int             vm_check(t_vm *self)
 
     self->num_of_live_ops = 0;
     self->cycles_counter = 0;
-//    arena_reset_num_of_live_ops(self->arena);
+//    self->cycles_counter = 1;  // need or no??? check later
     return (SUCCESS);
 }
 
@@ -83,31 +83,14 @@ void            vm_next_cycle(t_vm *self)
         self->num_of_live_ops += carriage_take_step(list->content);
         list = list->next;
     }
+    self->cycles_counter += 1;
 }
 
 void 		    vm_play(t_vm *self)
 {
-// experiments place start
-
-//    char a[4] = {9,1,2,3,};
-//    int four_bytes = *a;
-//
-//    int i = 1;
-//    while (i < 3)
-//    {
-//        four_bytes = four_bytes << 8;
-//        four_bytes |= a[i];
-//        i++;
-//    }
-
-// experiments place end
-
-
-
-
     arena_players_introducing(self->arena);
-
     self->cycles_to_die = CYCLE_TO_DIE;
+//    self->cycles_counter = 1;  // need or no??? check later
     while (TRUE)
     {
         vm_next_cycle(self);

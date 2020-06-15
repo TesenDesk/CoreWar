@@ -23,5 +23,9 @@ typedef struct s_vm	t_vm;
 
 t_vm			*vm_singleton(int instantiation_status, int argc, char *argv[]);
 void 		    vm_play(t_vm *self);
+int             vm_cycles_counter(t_vm *self);
+void            vm_increase_num_of_live_ops(t_vm *self);
+
+
 
 #endif

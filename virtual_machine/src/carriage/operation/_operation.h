@@ -18,6 +18,8 @@
 # include "op.h"
 # include "operation.h"
 # include "carriage.h"
+# include "vm.h"
+# include "_carriage.h"
 
 enum					e_arguments
 {
@@ -37,6 +39,7 @@ enum					e_siz_in_bytes
 
 typedef					(*t_operation)(t_carriage *carriage);
 void                    _operation_live(t_carriage *self);
+void                    _operation_ld(t_carriage *self);
 
 #endif
 
