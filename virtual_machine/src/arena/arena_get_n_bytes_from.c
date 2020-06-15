@@ -16,6 +16,9 @@ int         arena_get_n_bytes_from(t_arena *self, int pos, int num_of_bytes)
         printf("Wrong num_of_bytes in ARENA_GET_N_BYTES_FROM fix it\n");
         raise(__FILE__, __LINE__, ENOMEMORY); // dont forget change ERRMSGINDEX
     }
+    if (pos < 0)
+        pos = MEM_SIZE + pos;
+
     data = (char*)(self->data);
     four_bytes = data[pos % MEM_SIZE];
     i = 1;

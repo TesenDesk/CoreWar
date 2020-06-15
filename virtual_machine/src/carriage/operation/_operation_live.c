@@ -21,7 +21,7 @@ void                    _operation_live(t_carriage *self)
 
     position = self->arena_position;
     op_len = ONE_BYTE + FOUR_BYTES; // 5 bytes for op live
-    arg = arena_get_n_bytes_from(self, position + ONE_BYTE, ONE_BYTE);
+    arg = arena_get_n_bytes_from(self->arena, position + ONE_BYTE, ONE_BYTE);
     vm = vm_singleton(VM_INSTANTIATE, 0, NULL);
     if ((arg * -1) == self->player_name)
     {
@@ -29,6 +29,7 @@ void                    _operation_live(t_carriage *self)
         arena_set_last_live_player(self->arena, self->player_name);
     }
     vm_increase_num_of_live_ops(self->arena);
+    self->arena_position += op_len;
 }
 
 

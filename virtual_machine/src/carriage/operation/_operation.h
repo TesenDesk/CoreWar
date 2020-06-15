@@ -21,6 +21,8 @@
 # include "vm.h"
 # include "_carriage.h"
 
+# define TWO_BITS_MASK      3
+
 enum					e_arguments
 {
     ARG_1,
@@ -35,6 +37,13 @@ enum					e_siz_in_bytes
     TWO_BYTES,
     THREE_BYTES,
     FOUR_BYTES,
+};
+
+enum					e_type_codes
+{
+    CODE_T_REG = 1, //01
+    CODE_T_DIR, //10
+    CODE_T_IND, //11
 };
 
 typedef					(*t_operation)(t_carriage *carriage);
