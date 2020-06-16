@@ -12,8 +12,6 @@ int				lexer_get_term_arg_reg(t_lexer *lexer, char const **text,
 	if (!ft_isdigit(**text) || (num = ft_atoi(*text)) < 1 || num > 16)
 	{
 		*type = TOKEN_UNDEF;
-
-
 		return (TERM_UNDEFINED_CODE);
 	}
 	token_ptr[TOKEN_START_PTR] = (void*)(*text);

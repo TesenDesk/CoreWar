@@ -24,6 +24,6 @@ t_vm		*_vm_new(int argc, char *argv[])
 //	printf("%d\n", new->player_name);
 	self->arena = arena_new(self->params);
 //	self->carriage_head = vm_carriage_list_constructed_new(self->arena);
-	self->carriage_head = arena_carriage_list_new(self->arena);
+//	self->carriage_head = arena_carriage_list_new(self->arena);
 	return (self);
 }

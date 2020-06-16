@@ -133,7 +133,7 @@ typedef struct		s_parser
 	 *сколько состояний?
 	 */
 
-	int				(*get_token[PARSER_AR_SIZE])(struct s_parser *parser, t_lexer *lexer,
+	t_token*				(*get_token[PARSER_AR_SIZE])(struct s_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
 }					t_parser;
 
@@ -146,7 +146,7 @@ void				_parser_change_state(t_parser *parser, int token_type);
 /*
  * INIT_ST state methods
  */
-int					_parser_get_token_init(t_parser *parser, t_lexer *lexer,
+t_token*					_parser_get_token_init(t_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
 
 
@@ -164,43 +164,43 @@ int					_parser_get_token_init(t_parser *parser, t_lexer *lexer,
  * op_inner_methods
  */
 
-int					_parser_get_token_op0_life(t_parser *parser, t_lexer *lexer,
+t_token*					_parser_get_token_op0_life(t_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
-int					_parser_get_token_op0_load(t_parser *parser, t_lexer *lexer,
+t_token*					_parser_get_token_op0_load(t_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
-int					_parser_get_token_op1_load(t_parser *parser, t_lexer *lexer,
+t_token*					_parser_get_token_op1_load(t_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
-int					_parser_get_token_op0_arit(t_parser *parser, t_lexer *lexer,
+t_token*					_parser_get_token_op0_arit(t_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
-int					_parser_get_token_op1_arit(t_parser *parser, t_lexer *lexer,
+t_token*					_parser_get_token_op1_arit(t_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
-int					_parser_get_token_op2_arit(t_parser *parser, t_lexer *lexer,
+t_token*					_parser_get_token_op2_arit(t_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
-int					_parser_get_token_op0_lodi(t_parser *parser, t_lexer *lexer,
+t_token*					_parser_get_token_op0_lodi(t_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
-int					_parser_get_token_op1_lodi(t_parser *parser, t_lexer *lexer,
+t_token*					_parser_get_token_op1_lodi(t_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
-int					_parser_get_token_op2_lodi(t_parser *parser, t_lexer *lexer,
+t_token*					_parser_get_token_op2_lodi(t_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
-int					_parser_get_token_op0_logc(t_parser *parser, t_lexer *lexer,
+t_token*					_parser_get_token_op0_logc(t_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
-int					_parser_get_token_op1_logc(t_parser *parser, t_lexer *lexer,
+t_token*					_parser_get_token_op1_logc(t_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
-int					_parser_get_token_op2_logc(t_parser *parser, t_lexer *lexer,
+t_token*					_parser_get_token_op2_logc(t_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
-int					_parser_get_token_op0_stri(t_parser *parser, t_lexer *lexer,
+t_token*					_parser_get_token_op0_stri(t_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
-int					_parser_get_token_op1_stri(t_parser *parser, t_lexer *lexer,
+t_token*					_parser_get_token_op1_stri(t_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
-int					_parser_get_token_op2_stri(t_parser *parser, t_lexer *lexer,
+t_token*					_parser_get_token_op2_stri(t_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
-int					_parser_get_token_op0_stor(t_parser *parser, t_lexer *lexer,
+t_token*					_parser_get_token_op0_stor(t_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
-int					_parser_get_token_op1_stor(t_parser *parser, t_lexer *lexer,
+t_token*					_parser_get_token_op1_stor(t_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
-int					_parser_get_token_op0_afct(t_parser *parser, t_lexer *lexer,
+t_token*					_parser_get_token_op0_afct(t_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
-int					_parser_get_token_line_end(t_parser *parser, t_lexer *lexer,
+t_token*					_parser_get_token_line_end(t_parser *parser, t_lexer *lexer,
 						t_expr *expr, char const **text);
 
 #endif

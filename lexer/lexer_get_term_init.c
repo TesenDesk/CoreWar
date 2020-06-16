@@ -17,7 +17,7 @@ static int			term_is_op(char const *text)
 	{
 		len = ft_strlen(cmds_arr[i]);
 		if (ft_strnstr(text, cmds_arr[i], len))
-			if (text[len] != LABEL_CHAR)
+			if (text[len] == ' ' || text[len] == '\t')
 				return (len);
 		i++;
 	}
@@ -44,52 +44,52 @@ static int			term_is_op(char const *text)
 
 static int		find_op2_type(char const *text)
 {
-	if (ft_strnstr(text, LD_NAME, 2))
+	if (ft_strnstr(text, LD_NAME, ft_strlen(LD_NAME)))
 		return (TOKEN_LD);
-	else if (ft_strnstr(text, OR_NAME, 2))
+	else if (ft_strnstr(text, OR_NAME, ft_strlen(OR_NAME)))
 		return (TOKEN_OR);
-	else if (ft_strnstr(text, ST_NAME, 2))
+	else if (ft_strnstr(text, ST_NAME, ft_strlen(ST_NAME)))
 		return (TOKEN_ST);
 	return (0);
 }
 
 static int      find_op3_type(char const *text)
 {
-	if (ft_strnstr(text, ADD_NAME, 3))
+	if (ft_strnstr(text, ADD_NAME, ft_strlen(ADD_NAME)))
 		return (TOKEN_ADD);
-	else if (ft_strnstr(text, AFF_NAME, 3))
+	else if (ft_strnstr(text, AFF_NAME, ft_strlen(AFF_NAME)))
 		return (TOKEN_AFF);
-	else if (ft_strnstr(text, AND_NAME, 3))
+	else if (ft_strnstr(text, AND_NAME, ft_strlen(AND_NAME)))
 		return (TOKEN_AND);
-	else if (ft_strnstr(text, LDI_NAME, 3))
+	else if (ft_strnstr(text, LDI_NAME, ft_strlen(LDI_NAME)))
 		return (TOKEN_LDI);
-	else if (ft_strnstr(text, LLD_NAME, 3))
+	else if (ft_strnstr(text, LLD_NAME, ft_strlen(LLD_NAME)))
 		return (TOKEN_LLD);
-	else if (ft_strnstr(text, STI_NAME, 3))
+	else if (ft_strnstr(text, STI_NAME, ft_strlen(STI_NAME)))
 		return (TOKEN_STI);
-	else if (ft_strnstr(text, SUB_NAME, 3))
+	else if (ft_strnstr(text, SUB_NAME, ft_strlen(SUB_NAME)))
 		return (TOKEN_SUB);
-	else if (ft_strnstr(text, XOR_NAME, 3))
+	else if (ft_strnstr(text, XOR_NAME, ft_strlen(XOR_NAME)))
 		return (TOKEN_XOR);
 	return (0);
 }
 
 static int		find_op4_type(char const *text)
 {
-	if (ft_strnstr(text, FORK_NAME, 4))
+	if (ft_strnstr(text, FORK_NAME, ft_strlen(FORK_NAME)))
 		return (TOKEN_FORK);
-	else if (ft_strnstr(text, LIVE_NAME, 4))
+	else if (ft_strnstr(text, LIVE_NAME, ft_strlen(LIVE_NAME)))
 		return (TOKEN_LIVE);
-	else if (ft_strnstr(text, LLDI_NAME, 4))
+	else if (ft_strnstr(text, LLDI_NAME, ft_strlen(LLDI_NAME)))
 		return (TOKEN_LLDI);
-	else if (ft_strnstr(text, ZJMP_NAME, 4))
+	else if (ft_strnstr(text, ZJMP_NAME, ft_strlen(ZJMP_NAME)))
 		return(TOKEN_ZJMP);
 	return (0);
 }
 
 static int		find_op5_type(char const *text)
 {
-	if (ft_strnstr(text, LFORK_NAME, 5))
+	if (ft_strnstr(text, LFORK_NAME, ft_strlen(LFORK_NAME)))
 		return (TOKEN_LFORK);
 	return (0);
 }
@@ -117,6 +117,8 @@ int             lexer_get_term_init(t_lexer *lexer, char const **text, int *type
 	if (!(**text))
 	{
 		*type = TOKEN_EOF;
+		token_ptr[0] = *text;
+		token_ptr[1] = *text;
 		return (EOF_CODE);
 	}
 	else if (**text == COMMENT_CHAR) {
@@ -129,22 +131,30 @@ int             lexer_get_term_init(t_lexer *lexer, char const **text, int *type
 	}
 	else if (**text == LINE_FEED) {
 		*type = TOKEN_LFEED;
+		token_ptr[0] = *text;
+		token_ptr[1] = *text;
 		++(*text);
-		return (LINE_FEED_CODE);
+		return (INIT_ST);
 	}
-	else if (ft_strnstr(*text, NAME_CMD_STRING, 5)) {
-		(*text) += 5;
-		return (NAME_CMD_STRING_CODE);
+	else if (ft_strnstr(*text, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING))) {
+		if (*(*text + ft_strlen(NAME_CMD_STRING)) == ' '
+			|| *(*text + ft_strlen(NAME_CMD_STRING)) == '\t') {
+				(*text) += ft_strlen(NAME_CMD_STRING);
+				return (NAME_CMD_STRING_CODE);
+		}
 	}
-	else if (ft_strnstr(*text, COMMENT_CMD_STRING, 8)){
-		(*text) += 8;
-		return (COMMENT_CMD_STRING_CODE);
+	else if (ft_strnstr(*text, COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING))){
+		if (*(*text + ft_strlen(COMMENT_CMD_STRING)) == ' '
+			|| *(*text + ft_strlen(COMMENT_CMD_STRING)) == '\t') {
+			(*text) += ft_strlen(COMMENT_CMD_STRING);
+			return (COMMENT_CMD_STRING_CODE);
+		}
 	}
 	else if ((op_len = term_is_op(*text)))
 	{
 		*type = find_op_type(*text);
-		*token_ptr = (void*)(*text);
-		*(token_ptr + 1) =  (void*)(*(text + op_len));
+		token_ptr[0] = (void*)(*text);
+		token_ptr[1] =  (void*)(*text + op_len);
 		*text += op_len;
 		return (OPX_CODE);
 	}

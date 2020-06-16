@@ -30,6 +30,6 @@ void				token_destructor(t_token **token);
  */
 int					token_get_type(t_token *token);
 void				*token_get_value(t_token *token);
-int					token_name_init(t_token *t);
+//int					token_name_init(t_token *t);
 
 #endif

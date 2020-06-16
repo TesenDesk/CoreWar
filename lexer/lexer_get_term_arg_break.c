@@ -15,11 +15,6 @@ int			lexer_get_term_arg_break(t_lexer *lexer, char const **text,
 	(void)lexer;
 	(void)token_ptr;
 	(void)type;
-	if (ft_strchr(WHITE_SPACE, **text))
-	{
-		(*text)++;
-		return (WHITE_SPACE_CODE);
-	}
 	if (**text == SEPARATOR_CHAR)
 	{
 		(*text)++;

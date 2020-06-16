@@ -16,8 +16,8 @@ void					*ft_hash_map_get(t_hash_map *map, void *key)
 {
 	unsigned long long	index;
 	t_keystr_avl_t		*avl_tmp;
-
 	index = ft_hash_map_hashcode((unsigned char *)key) % map->arr_size;
+//	printf("%s, %d\n", (char*)key, index);
 	if (!map->data[index])
 		return (NULL);
 	if (!(avl_tmp = ft_keystr_avl_search(map->data[index], key)))

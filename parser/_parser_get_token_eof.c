@@ -15,7 +15,7 @@
 // #include "expr_private.h"
 #include "parser_private.h"
 
-int				_parser_get_token_eof(t_parser *parser, t_lexer *lexer,
+t_token 		*_parser_get_token_eof(t_parser *parser, t_lexer *lexer,
 				t_expr *expr, char const **text)
 {
 	t_token		*token;
@@ -27,6 +27,6 @@ int				_parser_get_token_eof(t_parser *parser, t_lexer *lexer,
 	if (!(token_type == TOKEN_EOF))
 		expr->type = EXPR_UNDEF;
 	if (expr_set_arg(expr, token, OP_NAME, token_type) == FAILURE)
-		return (NO_TOKEN);
-	return (token_type);
+		return (NULL);
+	return (token);
 }

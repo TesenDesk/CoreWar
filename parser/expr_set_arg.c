@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <token_private.h>
 #include "expr_private.h"
 
 /*
@@ -19,12 +20,9 @@
 int			expr_set_arg(t_expr *expr, t_token *token,
 					int args_number, int arg_type)
 {
+	if (args_number == UNDEF_ARG)
+		return (SUCCESS);
 	expr->args[args_number].type = arg_type;
 	expr->args[args_number].value = (void *)token;
-	if (arg_type == TOKEN_LABEL_WORD)
-		if (token_name_init((t_token *)token) == FAILURE)
-			return (FAILURE);
-//	if (args_number == OP_NAME)
-//		expr->type = arg_type;
 	return (SUCCESS);
 }

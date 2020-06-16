@@ -41,8 +41,7 @@ static int                  lexer_find_next_to_INIT_ST(int term_type)
 	}
 	else if (term_type == LINE_FEED_CODE)
 	{
-		// mabe want use INIT_ST
-		return (LINE_FEED_ST);
+		return (INIT_ST);
 	}
 	else if (term_type == NAME_CMD_STRING_CODE)
 	{
@@ -56,10 +55,10 @@ static int                  lexer_find_next_to_INIT_ST(int term_type)
 	{
 		return (OPX_ST);
 	}
-	else if (term_type == OPX_CODE)
-	{
-		return (OPX_ST);
-	}
+//	else if (term_type == OPX_CODE)
+//	{
+//		return (OPX_ST);
+//	}
 	else if (term_type == LABEL_CHARS_CODE)
 	{
 		return (LABEL_WORD_ST);
@@ -93,8 +92,6 @@ static int          lexer_find_op_arg_state(t_lexer *lexer, int term_type)
 	{
 		if (term_type == SEPARATOR_CHAR_CODE)
 			return (MULTI_ARG_ST);
-		else if (term_type == WHITE_SPACE_CODE)
-			return (INIT_ST);
 	}
 	else if ((lexer->state == T_REG_ST && term_type == INTEGER_CODE))
 			return (ARG_BRK_ST);
@@ -115,8 +112,6 @@ static int          lexer_find_op_arg_state(t_lexer *lexer, int term_type)
 	{
 		if (term_type == SEPARATOR_CHAR_CODE)
 			return (MULTI_ARG_ST);
-		else if (term_type == WHITE_SPACE_CODE)
-			return (INIT_ST);
 	}
 	return (INIT_ST);
 }
@@ -126,6 +121,8 @@ void                lexer_change_state(t_lexer *lexer, int term_type)
 
 	if (lexer->state == INIT_ST)
 		lexer->state = lexer_find_next_to_INIT_ST(term_type);
+	else if(lexer->state == COMMENT_ST)
+			lexer->state = INIT_ST;
 	else if (lexer->state >= NAME_CMD_ST && lexer->state <= CH_COMM_ST)
 			lexer->state = lexer_find_champ_state(lexer, term_type);
 	else if (lexer->state == OPX_ST || lexer->state == MULTI_ARG_ST) {
@@ -160,7 +157,12 @@ t_token             *lexer_form_token(t_lexer *lexer, char const **text)
 	{
 //		printf("111  lexer->state %i\n", lexer->state);
 //		printf("text:%s\n", *text);
+		while (**text == ' ' || **text == '\t')
+			++(*text);
 		lexer->change_state(lexer, lexer->get_term[lexer->state](lexer, text, &token_type, token_ptr));
+		while (**text == ' ' || **text == '\t')
+			++(*text);
+
 //		printf("TEXT:%s\n", *text);
 //		printf("THERE.      token_type = %i\n", token_type);
 

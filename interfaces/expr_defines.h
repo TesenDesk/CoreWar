@@ -54,9 +54,8 @@ typedef enum		e_expr_defines
 	EXPR_OP_LODI,
 	EXPR_OP_LOGC,
 	EXPR_OP_LIFE,
-	// EXPR_PRECODE_COMMENT_LINE,
-	// EXPR_CODE_COMMENT_LINE,
-	EXPR_EOF
+	EXPR_EOF,
+	COUNT_EXPR,
 }					t_expr_defines;
 
 

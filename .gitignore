@@ -53,7 +53,6 @@ dkms.conif
 
 # other
 .DS_Store
-CMakeLists.txt
 .idea
 cmake-build-debug
 a.out

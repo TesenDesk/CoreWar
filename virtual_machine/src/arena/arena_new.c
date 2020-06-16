@@ -40,6 +40,8 @@ static void			arena_fill_in_the_data(t_arena *self)
 		ft_memcpy((arena_field + (curr) * step), self->players[curr]->code,
 				self->players[curr]->code_size);
 		curr += 1;
+		printf("%s\n", self->players[curr]->text_name);
+//		self->players[curr]->
 	}
 	self->data = arena_field;
 
