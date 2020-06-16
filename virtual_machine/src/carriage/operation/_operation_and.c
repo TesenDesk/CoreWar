@@ -17,12 +17,12 @@ void            _operation_and(t_carriage *self)
         if (type_codes[0] == CODE_T_REG)
             args[0] = self->registers[args[0]];
         else if (type_codes[0] == CODE_T_IND)
-            args[0] = arena_get_n_bytes_from(self->arena, self->arena_position + args[0], FOUR_BYTES);
+            args[0] = arena_get_n_bytes_from(self->arena, self->arena_position + args[0] % IDX_MOD, FOUR_BYTES);
 
         if (type_codes[1] == CODE_T_REG)
             args[1] = self->registers[args[1]];
         else if (type_codes[0] == CODE_T_IND)
-            args[1] = arena_get_n_bytes_from(self->arena, self->arena_position + args[1], FOUR_BYTES);
+            args[1] = arena_get_n_bytes_from(self->arena, self->arena_position + args[1] % IDX_MOD, FOUR_BYTES);
 
         if ((self->registers[args[2]] = args[0] & args[1]) == 0)
             self->carry = 1;

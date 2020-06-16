@@ -378,6 +378,11 @@ add_executable(corewar
         virtual_machine/src/carriage/operation/_operation_or.c
         virtual_machine/src/carriage/operation/_operation_xor.c
         virtual_machine/src/carriage/operation/_operation_zjmp.c
+        virtual_machine/src/carriage/operation/_operation_ldi.c
+        virtual_machine/src/carriage/operation/_operation_sti.c
+#        virtual_machine/src/carriage/operation/_operation_fork.c
+        virtual_machine/src/carriage/operation/_operation_lld.c
+        virtual_machine/src/carriage/operation/_operation_lldi.c
 #        virtual_machine/src/carriage/operation/operation_destroy.c
 #        virtual_machine/src/carriage/operation/operation_new.c
         virtual_machine/src/carriage/type_cut/_type_cut.h

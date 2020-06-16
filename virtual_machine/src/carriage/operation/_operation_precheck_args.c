@@ -42,7 +42,7 @@ int                    _operation_precheck_args(t_carriage *self, int *args, cha
         }
         else if (type_codes[i] == CODE_T_IND)
         {
-            args[i] = arena_get_n_bytes_from(self->arena, self->arena_position + *op_len, TWO_BYTES) % IDX_MOD;
+            args[i] = arena_get_n_bytes_from(self->arena, self->arena_position + *op_len, TWO_BYTES);
 //            t_ind = arena_get_n_bytes_from(self->arena, self->arena_position + op_len, TWO_BYTES) % IDX_MOD;
 //            args[i] = arena_get_n_bytes_from(self->arena, self->arena_position + t_ind, FOUR_BYTES);
             *op_len += TWO_BYTES;

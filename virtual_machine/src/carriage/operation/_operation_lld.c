@@ -1,7 +1,7 @@
 #include "_operation.h"
 
 //don`t checked
-void                    _operation_ld(t_carriage *self)
+void                    _operation_lld(t_carriage *self)
 {
 //    need change "2" to constant later
     int     op_len;
@@ -14,16 +14,16 @@ void                    _operation_ld(t_carriage *self)
     {
 //        especially need check this part with conversion t_ind to t_dir
         if (type_codes[0] == CODE_T_IND) // convert t_ind to t_dir and but to same place
-            args[0] = arena_get_n_bytes_from(self->arena, self->arena_position + args[0] % IDX_MOD, FOUR_BYTES);
+            args[0] = arena_get_n_bytes_from(self->arena, self->arena_position + args[0], FOUR_BYTES);
 
-        if ((self->registers[args[1]] = args[0]) == 0)
+        if ((self->registers[args[1]] = args[0]) == 0) // need or not set carry?????
             self->carry = 1;
         else
             self->carry = 0;
     }
     if (op_len <= 0)
     {
-        printf("SOMETHING WRONG WITH OP_LEN IN _OPERATION_LD\n");
+        printf("SOMETHING WRONG WITH OP_LEN IN _OPERATION_LLD\n");
         exit(1);
     }
     self->arena_position = (self->arena_position + op_len) % MEM_SIZE;

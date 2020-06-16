@@ -29,7 +29,7 @@ void                    _operation_live(t_carriage *self)
         arena_set_last_live_player(self->arena, self->player_name);
     }
     vm_increase_num_of_live_ops(vm);
-    self->arena_position += op_len;
+    self->arena_position = (self->arena_position + op_len) % MEM_SIZE;
 }
 
 
