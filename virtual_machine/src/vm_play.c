@@ -68,8 +68,8 @@ int             vm_check(t_vm *self)
         self->num_checks += 1;
 
     self->num_of_live_ops = 0;
-    self->cycles_counter = 0;
-//    self->cycles_counter = 1;  // need or no??? check later
+//    self->cycles_counter = 0;
+    self->cycles_counter = 1;  // need or no??? check laters
     return (SUCCESS);
 }
 
@@ -90,7 +90,8 @@ void 		    vm_play(t_vm *self)
 {
     arena_players_introducing(self->arena);
     self->cycles_to_die = CYCLE_TO_DIE;
-//    self->cycles_counter = 1;  // need or no??? check later
+    self->cycles_counter = 1;  // need or no??? check later
+//    need_tp set to arena->last_live_player = arena->nb_players;
     while (TRUE)
     {
         vm_next_cycle(self);

@@ -28,7 +28,7 @@ void                    _operation_live(t_carriage *self)
         self->last_live_cycle = vm_cycles_counter(vm);
         arena_set_last_live_player(self->arena, self->player_name);
     }
-    vm_increase_num_of_live_ops(self->arena);
+    vm_increase_num_of_live_ops(vm);
     self->arena_position += op_len;
 }
 

@@ -1,8 +1,5 @@
 #include "_arena.h"
 
-#define EIGHT_BITS      8
-
-
 
  // check later
 int         arena_get_n_bytes_from(t_arena *self, int pos, int num_of_bytes)

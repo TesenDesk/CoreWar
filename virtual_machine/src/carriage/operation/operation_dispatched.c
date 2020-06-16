@@ -1,17 +1,17 @@
 #include "_operation.h"
 
-void				*operation_dispatched(t_carriage *self)
+void				operation_dispatched(t_carriage *self)
 {
-    static t_operation	operations[NUMBER_OF_OPERATIONS] =
+    void	(*operations[NUMBER_OF_OPERATIONS])(t_carriage *self) =
             {
 //                    _operation_mock,
                     _operation_live,
                     _operation_ld,
-//                    _operation_st,
-//                    _operation_add,
-//                    _operation_sub,
-//                    _operation_and,
-//                    _operation_or,
+                    _operation_st,
+                    _operation_add,
+                    _operation_sub,
+                    _operation_and,
+                    _operation_or,
 //                    _operation_xor,
 //                    _operation_zjmp,
 //                    _operation_ldi,
@@ -22,5 +22,5 @@ void				*operation_dispatched(t_carriage *self)
 //                    _operation_lfork,
 //                    _operation_aff,
             };
-    operations[self->op_code];
+    operations[self->op_code](self);
 }

@@ -34,7 +34,8 @@ typedef struct				s_carriage
 	int				is_correct_op_code;
 	int				arena_position;
 //	int				bytes_to_next_op;
-	long int		registers[REG_NUMBER];
+	int	        	registers[REG_NUMBER];
+//	long int		registers[REG_NUMBER];
 }							t_carriage;
 
 void                _carriage_set_op_code(t_carriage *self, t_arena *arena);

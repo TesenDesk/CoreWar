@@ -20,6 +20,7 @@
 # include "vm_params.h"
 # include "player.h"
 
+#define EIGHT_BITS      8
 
 typedef struct			s_arena
 {

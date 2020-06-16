@@ -1,12 +1,4 @@
 #include "_carriage.h"
-// return 1 - if live op else 0
-
-int     carriage_op_code_valid(t_carriage *self)
-{
-    if (self->op_code >= 0x01 && self->op_code <= 0x10)
-        return (TRUE);
-    return (FALSE);
-}
 
 int     carriage_take_step(t_carriage *self)
 {
@@ -25,12 +17,11 @@ int     carriage_take_step(t_carriage *self)
         if (self->is_correct_op_code)
         {
             operation_dispatched(self);
-//            operation_perform(self);
         }
-//        else
-//        {
+        else
+        {
 //        move carriage on one bite
-//        }
+        }
     }
     return 0;
 }

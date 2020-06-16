@@ -46,10 +46,17 @@ enum					e_type_codes
     CODE_T_IND, //11
 };
 
-typedef					(*t_operation)(t_carriage *carriage);
 int                    _operation_precheck_args(t_carriage *self, int *args, char *type_codes, int num_of_args, int *op_len);
 void                    _operation_live(t_carriage *self);
 void                    _operation_ld(t_carriage *self);
+void                    _operation_st(t_carriage *self);
+void                    _operation_add(t_carriage *self);
+void                    _operation_sub(t_carriage *self);
+void                    _operation_and(t_carriage *self);
+void                    _operation_or(t_carriage *self);
+
+
+
 
 #endif
 

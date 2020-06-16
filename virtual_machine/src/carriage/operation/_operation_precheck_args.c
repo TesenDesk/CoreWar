@@ -7,8 +7,8 @@ static int                 t_dir_size_for_the_op(int op_code)
     return t_dir_sizes[op_code];
 }
 
-// fill args, type_codes and op_len
-// return SUCCESS all args_codes is real
+// fill args[num_of_args], type_codes[num_of_args] and op_len
+// return SUCCESS all args_codes is real and if arg_code == CODE_T_REG and t_reg_arg >= 1 and t_reg_arg <= 16
 // else return FAILURE
 int                    _operation_precheck_args(t_carriage *self, int *args, char *type_codes, int num_of_args, int *op_len)
 {
@@ -29,7 +29,7 @@ int                    _operation_precheck_args(t_carriage *self, int *args, cha
         type_codes[i] = (argument_type_code >> (6 - i)) & TWO_BITS_MASK;
         if (type_codes[i] == CODE_T_REG)
         {
-            args[i] = arena_get_n_bytes_from(self->arena, self->arena_position + op_len, ONE_BYTE);
+            args[i] = arena_get_n_bytes_from(self->arena, (self->arena_position + *op_len), ONE_BYTE);
             *op_len += ONE_BYTE;
             if (args[i] >= 1 && args[i] <= 16)
                 result = FAILURE;
@@ -37,13 +37,14 @@ int                    _operation_precheck_args(t_carriage *self, int *args, cha
         else if (type_codes[i] == CODE_T_DIR)
         {
             t_dir_size = t_dir_size_for_the_op(self->op_code);
-            args[i] = arena_get_n_bytes_from(self->arena, self->arena_position + op_len, t_dir_size);
+            args[i] = arena_get_n_bytes_from(self->arena, self->arena_position + *op_len, t_dir_size);
             *op_len += t_dir_size;
         }
         else if (type_codes[i] == CODE_T_IND)
         {
-            t_ind = arena_get_n_bytes_from(self->arena, self->arena_position + op_len, TWO_BYTES) % IDX_MOD;
-            args[i] = arena_get_n_bytes_from(self->arena, self->arena_position + t_ind, FOUR_BYTES);
+            args[i] = arena_get_n_bytes_from(self->arena, self->arena_position + *op_len, TWO_BYTES) % IDX_MOD;
+//            t_ind = arena_get_n_bytes_from(self->arena, self->arena_position + op_len, TWO_BYTES) % IDX_MOD;
+//            args[i] = arena_get_n_bytes_from(self->arena, self->arena_position + t_ind, FOUR_BYTES);
             *op_len += TWO_BYTES;
         }
         else

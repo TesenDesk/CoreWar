@@ -360,6 +360,7 @@ add_executable(corewar
         virtual_machine/src/arena/arena_set_named_player.c
         virtual_machine/src/arena/arena_players_introducing.c
         virtual_machine/src/arena/arena_carriage_list_new.c
+        virtual_machine/src/arena/arena_write_four_bytes_to_data.c
         virtual_machine/src/carriage/arguments/_arguments.h
 #        virtual_machine/src/carriage/arguments/_arguments_destroy.c
 #        virtual_machine/src/carriage/arguments/_arguments_new.c
@@ -370,6 +371,11 @@ add_executable(corewar
         virtual_machine/src/carriage/operation/_operation_precheck_args.c
         virtual_machine/src/carriage/operation/_operation_live.c
         virtual_machine/src/carriage/operation/_operation_ld.c
+        virtual_machine/src/carriage/operation/_operation_st.c
+        virtual_machine/src/carriage/operation/_operation_add.c
+        virtual_machine/src/carriage/operation/_operation_sub.c
+        virtual_machine/src/carriage/operation/_operation_and.c
+        virtual_machine/src/carriage/operation/_operation_or.c
 #        virtual_machine/src/carriage/operation/operation_destroy.c
 #        virtual_machine/src/carriage/operation/operation_new.c
         virtual_machine/src/carriage/type_cut/_type_cut.h
