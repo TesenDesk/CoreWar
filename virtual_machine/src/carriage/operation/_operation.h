@@ -54,6 +54,8 @@ void                    _operation_add(t_carriage *self);
 void                    _operation_sub(t_carriage *self);
 void                    _operation_and(t_carriage *self);
 void                    _operation_or(t_carriage *self);
+void                    _operation_xor(t_carriage *self);
+void                    _operation_zjmp(t_carriage *self);
 
 
 
