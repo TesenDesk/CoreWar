@@ -47,6 +47,7 @@ enum					e_type_codes
 };
 
 typedef					(*t_operation)(t_carriage *carriage);
+int                    _operation_precheck_args(t_carriage *self, int *args, char *type_codes, int num_of_args, int *op_len);
 void                    _operation_live(t_carriage *self);
 void                    _operation_ld(t_carriage *self);
 

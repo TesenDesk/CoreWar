@@ -69,7 +69,7 @@ add_executable(corewar
         lexer/lexer_xtor_private.c
         lexer/lexer_xtor_private.h
         lexer/token.c
-        lexer/token_name_init.c
+#        lexer/token_name_init.c
         lexer/token_private.h
         libft/ft_abs.c
         libft/ft_atoi.c
@@ -367,6 +367,7 @@ add_executable(corewar
 #        virtual_machine/src/carriage/arguments/arguments_singletone.c
         virtual_machine/src/carriage/operation/_operation.h
         virtual_machine/src/carriage/operation/operation_dispatched.c
+        virtual_machine/src/carriage/operation/_operation_precheck_args.c
         virtual_machine/src/carriage/operation/_operation_live.c
         virtual_machine/src/carriage/operation/_operation_ld.c
 #        virtual_machine/src/carriage/operation/operation_destroy.c
