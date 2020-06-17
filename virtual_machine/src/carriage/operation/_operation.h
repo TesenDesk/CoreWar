@@ -58,7 +58,7 @@ void                    _operation_xor(t_carriage *self);
 void                    _operation_zjmp(t_carriage *self);
 void                    _operation_ldi(t_carriage *self);
 void                    _operation_sti(t_carriage *self);
-//void                    _operation_fork(t_carriage *self);
+void                    _operation_fork(t_carriage *self);
 void                    _operation_lld(t_carriage *self);
 void                    _operation_lldi(t_carriage *self);
 

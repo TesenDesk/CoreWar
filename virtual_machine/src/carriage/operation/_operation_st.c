@@ -15,7 +15,7 @@ void            _operation_st(t_carriage *self)
         if (type_codes[1] == CODE_T_IND)
             arena_write_four_bytes_to_data(self->arena, self->arena_position + args[1] % IDX_MOD, self->registers[args[0]]);
         else
-            self->registers[args[0]] = self->registers[args[1]];
+            self->registers[args[0]] = self->registers[args[1]]; // - 1 need for indexing
     }
     if (op_len <= 0)
     {

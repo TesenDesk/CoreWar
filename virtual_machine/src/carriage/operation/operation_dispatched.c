@@ -16,7 +16,7 @@ void				operation_dispatched(t_carriage *self)
                     _operation_zjmp,
                     _operation_ldi,
                     _operation_sti,
-//                    _operation_fork,
+                    _operation_fork,
                     _operation_lld,
                     _operation_lldi,
 //                    _operation_lfork,

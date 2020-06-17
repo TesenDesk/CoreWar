@@ -380,7 +380,7 @@ add_executable(corewar
         virtual_machine/src/carriage/operation/_operation_zjmp.c
         virtual_machine/src/carriage/operation/_operation_ldi.c
         virtual_machine/src/carriage/operation/_operation_sti.c
-#        virtual_machine/src/carriage/operation/_operation_fork.c
+        virtual_machine/src/carriage/operation/_operation_fork.c
         virtual_machine/src/carriage/operation/_operation_lld.c
         virtual_machine/src/carriage/operation/_operation_lldi.c
 #        virtual_machine/src/carriage/operation/operation_destroy.c

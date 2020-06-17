@@ -69,7 +69,7 @@ int             vm_check(t_vm *self)
 
     self->num_of_live_ops = 0;
 //    self->cycles_counter = 0;
-    self->cycles_counter = 1;  // need or no??? check laters
+    self->cycles_counter = 1;  // need or no??? check later
     return (SUCCESS);
 }
 
