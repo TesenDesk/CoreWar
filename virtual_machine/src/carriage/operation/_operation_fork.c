@@ -24,13 +24,16 @@ void            _operation_fork(t_carriage *self)
     int         op_len;
     int         position;
     t_carriage  *new_carriage;
-    t_vm        *vm;
+    t_list      *new_node;
+
 
     op_len = ONE_BYTE + TWO_BYTES;
     position = arena_get_n_bytes_from(self->arena, self->arena_position + ONE_BYTE, TWO_BYTES) % IDX_MOD;
     new_carriage = carriage_new(self->player_name, self->arena, position);
     _fill_new_carriage(self, new_carriage);
 
-    vm = vm_singleton(VM_INSTANTIATE, 0, NULL);
     self->arena_position = op_len;
+    if ((new_node = ft_lstnew((void *) new_carriage, sizeof(t_carriage))) == NULL)
+        raise(__FILE__, __LINE__, ENOMEMORY);
+    vm_add_new_carriage_node(new_node);
 }

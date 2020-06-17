@@ -13,7 +13,7 @@ void                    _operation_ld(t_carriage *self)
         && type_codes[1] == CODE_T_REG)
     {
 //        especially need check this part with conversion t_ind to t_dir
-        if (type_codes[0] == CODE_T_IND) // convert t_ind to t_dir and but to same place
+        if (type_codes[0] == CODE_T_IND)
             args[0] = arena_get_n_bytes_from(self->arena, self->arena_position + args[0] % IDX_MOD, FOUR_BYTES);
 
         if ((self->registers[args[1]] = args[0]) == 0)

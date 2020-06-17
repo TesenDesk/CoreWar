@@ -454,6 +454,7 @@ add_executable(corewar
         virtual_machine/src/vm_play.c
         virtual_machine/src/vm_cycles_counter.c
         virtual_machine/src/vm_singleton.c
+        virtual_machine/src/vm_add_new_carriage_node.c
         virtual_machine/src/vm_increase_num_of_live_ops.c
 #        virtual_machine/test/main_test.c
         main.c)

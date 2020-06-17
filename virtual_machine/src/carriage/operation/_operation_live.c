@@ -17,18 +17,16 @@ void                    _operation_live(t_carriage *self)
     int position;
     int op_len;
     int arg;
-    t_vm *vm;
 
     position = self->arena_position;
     op_len = ONE_BYTE + FOUR_BYTES; // 5 bytes for op live
     arg = arena_get_n_bytes_from(self->arena, position + ONE_BYTE, ONE_BYTE);
-    vm = vm_singleton(VM_INSTANTIATE, 0, NULL);
     if ((arg * -1) == self->player_name)
     {
-        self->last_live_cycle = vm_cycles_counter(vm);
+        self->last_live_cycle = vm_cycles_counter();
         arena_set_last_live_player(self->arena, self->player_name);
     }
-    vm_increase_num_of_live_ops(vm);
+    vm_increase_num_of_live_ops(); // не нашел, нужно ли увеличивать счетчик лайвов, если для каретку лайв не успешный
     self->arena_position = (self->arena_position + op_len) % MEM_SIZE;
 }
 
