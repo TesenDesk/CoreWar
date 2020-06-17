@@ -383,6 +383,7 @@ add_executable(corewar
         virtual_machine/src/carriage/operation/_operation_fork.c
         virtual_machine/src/carriage/operation/_operation_lld.c
         virtual_machine/src/carriage/operation/_operation_lldi.c
+        virtual_machine/src/carriage/operation/_operation_lfork.c
 #        virtual_machine/src/carriage/operation/operation_destroy.c
 #        virtual_machine/src/carriage/operation/operation_new.c
         virtual_machine/src/carriage/type_cut/_type_cut.h
