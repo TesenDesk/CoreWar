@@ -5,7 +5,6 @@ set(CMAKE_C_STANDARD 11)
 
 include_directories(analyser)
 include_directories(checker)
-include_directories(codegen)
 include_directories(interfaces)
 include_directories(lexer)
 include_directories(libft)
@@ -17,7 +16,6 @@ include_directories(virtual_machine/src/arena/player)
 include_directories(virtual_machine/src/arena/player/code)
 include_directories(virtual_machine/src/carriage)
 include_directories(virtual_machine/src/carriage/arguments)
-include_directories(virtual_machine/src/carriage/arguments/types)
 include_directories(virtual_machine/src/carriage/operation)
 include_directories(virtual_machine/src/carriage/type_cut)
 include_directories(virtual_machine/src/corwar)
@@ -25,9 +23,11 @@ include_directories(virtual_machine/src/errors)
 include_directories(virtual_machine/src/vm_params)
 include_directories(virtual_machine/src/vm_params/vmp_player)
 include_directories(virtual_machine/src/vm_params/vmp_player/file)
-include_directories(vm-champ-linux)
+include_directories(virtual_machine/src/vm_params/vmp_state)
 
 add_executable(core
+        asm_main.c
+#        vm_main.c
         analyser/_analyser_change_state.c
         analyser/_analyser_get_expr.c
         analyser/_analyser_xtor.c
@@ -37,16 +37,13 @@ add_executable(core
         analyser/analyser_xtor_private.h
         analyser/text_private.h
 #        checker/checker_main.c
-        checker/hash_table_allocate_delete.c
-        checker/hash_table_operations.c
         checker/label_checker_inclusion_of_maps.c
         checker/label_checker_private.h
         checker/label_checker_put_to_map.c
         codegen/codegen_private.h
-        codegen/codegen_prototype.c
         codegen/codegen_prototype.h
+        codegen/codegen_prototype.c
         interfaces/analyser.h
-        interfaces/codegen.h
         interfaces/expr.h
         interfaces/expr_defines.h
         interfaces/label_checker.h
@@ -77,6 +74,7 @@ add_executable(core
         lexer/lexer_xtor_private.c
         lexer/lexer_xtor_private.h
         lexer/token.c
+#        lexer/token_name_init.c
         lexer/token_private.h
         libft/ft_abs.c
         libft/ft_atoi.c
@@ -120,7 +118,7 @@ add_executable(core
         libft/ft_error_ptr.c
         libft/ft_fit_size.c
         libft/ft_free_ptr_ar.c
-#        libft/ft_ft_wcsnew.c
+        libft/ft_ft_wcsnew.c
         libft/ft_get_next_line.c
         libft/ft_getline.c
         libft/ft_hash_map_ctor.c
@@ -156,6 +154,7 @@ add_executable(core
         libft/ft_linedelone.c
         libft/ft_lldiv_mod.c
         libft/ft_lstadd.c
+        libft/ft_lstpushback.c
         libft/ft_lstaddtip.c
         libft/ft_lstat.c
         libft/ft_lstcmp_next.c
@@ -188,6 +187,7 @@ add_executable(core
         libft/ft_powerof2rounddown.c
         libft/ft_powerof2roundup.c
         libft/ft_print_bits.c
+#        libft/ft_print_bytes_by_bit.c
         libft/ft_putchar.c
         libft/ft_putchar_fd.c
         libft/ft_putendl.c
@@ -204,7 +204,6 @@ add_executable(core
         libft/ft_putwchar_fd.c
         libft/ft_putwcs.c
         libft/ft_putwcs_fd.c
-#        libft/ft_putwstr.c
         libft/ft_quicksort.c
         libft/ft_read_file.c
         libft/ft_realloc.c
@@ -261,7 +260,7 @@ add_executable(core
         libft/ft_strstr.c
         libft/ft_strsub.c
         libft/ft_strtolower.c
-        libft/ft_strtoupper.c
+#        libft/ft_strtoupper.a
         libft/ft_strtrim.c
         libft/ft_swap.c
         libft/ft_toggle_nth_bit.c
@@ -288,7 +287,7 @@ add_executable(core
         libft/ft_wcsdup.c
         libft/ft_wcslen.c
         libft/ft_wcsncpy.c
-        libft/ft_wcsnew.c
+#        libft/ft_wcsnew.c
         libft/ft_wcsnlen.c
         libft/get_next_line.c
         libft/get_next_line.h
@@ -298,7 +297,6 @@ add_executable(core
         parser/_parser_change_state.c
         parser/_parser_get_token_eof.c
         parser/_parser_get_token_init.c
-        parser/_parser_get_token_labw.c
         parser/_parser_get_token_line_end.c
         parser/_parser_get_token_op0_afct.c
         parser/_parser_get_token_op0_arit.c
@@ -326,126 +324,127 @@ add_executable(core
         parser/parser_private.h
         parser/parser_singleton_instance.c
         parser/parser_xtor_private.h
-#        virtual_machine/include/arena.h
-#        virtual_machine/include/arguments.h
-#        virtual_machine/include/carriage.h
-#        virtual_machine/include/code.h
-#        virtual_machine/include/corwar.h
-#        virtual_machine/include/errors.h
-#        virtual_machine/include/file.h
-#        virtual_machine/include/op.h
-#        virtual_machine/include/operation.h
-#        virtual_machine/include/player.h
-#        virtual_machine/include/type_cut.h
-#        virtual_machine/include/types.h
-#        virtual_machine/include/vm.h
-#        virtual_machine/include/vm_params.h
-#        virtual_machine/include/vmp_player.h
-#        virtual_machine/include/vmp_state.h
+        virtual_machine/include/arena.h
+        virtual_machine/include/arguments.h
+        virtual_machine/include/carriage.h
+        virtual_machine/include/code.h
+        virtual_machine/include/corwar.h
+        virtual_machine/include/errors.h
+        virtual_machine/include/file.h
+        virtual_machine/include/op.h
+        virtual_machine/include/operation.h
+        virtual_machine/include/player.h
+        virtual_machine/include/type_cut.h
+        virtual_machine/include/vm.h
+        virtual_machine/include/vm_params.h
+        virtual_machine/include/vmp_player.h
+        virtual_machine/include/vmp_state.h
 #        virtual_machine/src/arena/player/code/_code.h
 #        virtual_machine/src/arena/player/code/code_destroy.c
 #        virtual_machine/src/arena/player/code/code_new.c
-#        virtual_machine/src/arena/player/_player.h
-#        virtual_machine/src/arena/player/player_destroy.c
-#        virtual_machine/src/arena/player/player_name.c
-#        virtual_machine/src/arena/player/player_new.c
-#        virtual_machine/src/arena/player/player_set_name.c
-#        virtual_machine/src/arena/_arena.h
-#        virtual_machine/src/arena/_arena_players_new.c
-#        virtual_machine/src/arena/_arena_set_smallest_unoccupied_name.c
-#        virtual_machine/src/arena/arena_carriage_list_new.c
-#        virtual_machine/src/arena/arena_destroy.c
-#        virtual_machine/src/arena/arena_new.c
-#        virtual_machine/src/arena/arena_op_code.c
-#        virtual_machine/src/arena/arena_print_dump.c
-#        virtual_machine/src/arena/arena_ser_unnamed_player.c
-#        virtual_machine/src/arena/arena_set_named_player.c
-#        virtual_machine/src/carriage/arguments/types/_types.h
-#        virtual_machine/src/carriage/arguments/types/_types_not_nil_dir_or_reg_reg.c
-#        virtual_machine/src/carriage/arguments/types/_types_not_nil_not_nil_reg.c
-#        virtual_machine/src/carriage/arguments/types/types_do_match_op_affect.c
-#        virtual_machine/src/carriage/arguments/types/types_do_match_op_arithmetic.c
-#        virtual_machine/src/carriage/arguments/types/types_do_match_op_life.c
-#        virtual_machine/src/carriage/arguments/types/types_do_match_op_load.c
-#        virtual_machine/src/carriage/arguments/types/types_do_match_op_load_i.c
-#        virtual_machine/src/carriage/arguments/types/types_do_match_op_logic.c
-#        virtual_machine/src/carriage/arguments/types/types_do_match_op_store.c
-#        virtual_machine/src/carriage/arguments/types/types_do_match_op_store_i.c
-#        virtual_machine/src/carriage/arguments/types/types_do_match_op_store_ii.c
-#        virtual_machine/src/carriage/arguments/_arguments.h
+        virtual_machine/src/arena/player/_player.h
+#        virtual_machine/src/arena/player/_player_text_name_from_vmp_player.c
+        virtual_machine/src/arena/player/player_destroy.c
+        virtual_machine/src/arena/player/player_name.c
+        virtual_machine/src/arena/player/player_new.c
+        virtual_machine/src/arena/player/player_set_name.c
+        virtual_machine/src/arena/player/player_introducing.c
+        virtual_machine/src/arena/player/player_print_winner.c
+        virtual_machine/src/arena/arena_get_n_bytes_from.c
+        virtual_machine/src/arena/_arena.h
+        virtual_machine/src/arena/_arena_players_new.c
+        virtual_machine/src/arena/_arena_set_smallest_unoccupied_name.c
+        virtual_machine/src/arena/arena_players.c
+        virtual_machine/src/arena/arena_set_last_live_player.c
+        virtual_machine/src/arena/arena_nb_players.c
+        virtual_machine/src/arena/arena_destroy.c
+        virtual_machine/src/arena/arena_new.c
+        virtual_machine/src/arena/arena_op_code.c
+        virtual_machine/src/arena/arena_print_dump.c
+        virtual_machine/src/arena/arena_ser_unnamed_player.c
+        virtual_machine/src/arena/arena_set_named_player.c
+        virtual_machine/src/arena/arena_players_introducing.c
+        virtual_machine/src/arena/arena_carriage_list_new.c
+        virtual_machine/src/carriage/arguments/_arguments.h
 #        virtual_machine/src/carriage/arguments/_arguments_destroy.c
 #        virtual_machine/src/carriage/arguments/_arguments_new.c
-#        virtual_machine/src/carriage/arguments/_arguments_op_code_is_affect.c
-#        virtual_machine/src/carriage/arguments/_arguments_op_code_is_arithmetic.c
-#        virtual_machine/src/carriage/arguments/_arguments_op_code_is_load.c
-#        virtual_machine/src/carriage/arguments/_arguments_op_code_is_load_i.c
-#        virtual_machine/src/carriage/arguments/_arguments_op_code_is_logic.c
-#        virtual_machine/src/carriage/arguments/_arguments_op_code_is_op_life.c
-#        virtual_machine/src/carriage/arguments/_arguments_op_code_is_store.c
-#        virtual_machine/src/carriage/arguments/_arguments_op_code_is_store_i.c
-#        virtual_machine/src/carriage/arguments/_arguments_set_if_operation_and_types_match.c
-#        virtual_machine/src/carriage/arguments/_arguments_set_op_group.c
-#        virtual_machine/src/carriage/arguments/_arguments_set_types.c
 #        virtual_machine/src/carriage/arguments/arguments_set.c
 #        virtual_machine/src/carriage/arguments/arguments_singletone.c
-#        virtual_machine/src/carriage/operation/_operation.h
-#        virtual_machine/src/carriage/operation/_operation_live.c
+        virtual_machine/src/carriage/operation/_operation.h
+        virtual_machine/src/carriage/operation/operation_dispatched.c
+        virtual_machine/src/carriage/operation/_operation_live.c
+        virtual_machine/src/carriage/operation/_operation_ld.c
 #        virtual_machine/src/carriage/operation/operation_destroy.c
 #        virtual_machine/src/carriage/operation/operation_new.c
-#        virtual_machine/src/carriage/type_cut/_type_cut.h
+        virtual_machine/src/carriage/type_cut/_type_cut.h
 #        virtual_machine/src/carriage/type_cut/_type_cut_char.c
 #        virtual_machine/src/carriage/type_cut/_type_cut_int.c
 #        virtual_machine/src/carriage/type_cut/_type_cut_long_int.c
 #        virtual_machine/src/carriage/type_cut/_type_cut_short.c
 #        virtual_machine/src/carriage/type_cut/type_cut_dispatched.c
-#        virtual_machine/src/carriage/_carriage.h
-#        virtual_machine/src/carriage/_carriage_set_if_op_code_is_correct.c
-#        virtual_machine/src/carriage/_carriage_set_op_code.c
-#        virtual_machine/src/carriage/carriage_destroy.c
-#        virtual_machine/src/carriage/carriage_new.c
-#        virtual_machine/src/corwar/_corwar.h
+        virtual_machine/src/carriage/_carriage.h
+        virtual_machine/src/carriage/_carriage_set_is_correct_op_code.c
+        virtual_machine/src/carriage/_carriage_set_op_code.c
+        virtual_machine/src/carriage/_carriage_set_cycles_to_perform_op.c
+        virtual_machine/src/carriage/carriage_destroy.c
+        virtual_machine/src/carriage/carriage_take_step.c
+#        virtual_machine/src/carriage/carriages_check_wins.c
+        virtual_machine/src/carriage/carriage_new.c
+        virtual_machine/src/carriage/carriage_is_alive.c
+        virtual_machine/src/corwar/_corwar.h
 #        virtual_machine/src/corwar/corwar.c
-#        virtual_machine/src/errors/_errors.h
-#        virtual_machine/src/errors/errors.c
-#        virtual_machine/src/vm_params/vmp_player/file/_file.h
-#        virtual_machine/src/vm_params/vmp_player/file/_file_allocate_initial_value.c
-#        virtual_machine/src/vm_params/vmp_player/file/_file_close.c
-#        virtual_machine/src/vm_params/vmp_player/file/_file_open.c
-#        virtual_machine/src/vm_params/vmp_player/file/_file_read.c
-#        virtual_machine/src/vm_params/vmp_player/file/_file_reallocate_value.c
-#        virtual_machine/src/vm_params/vmp_player/file/file_code_size.c
-#        virtual_machine/src/vm_params/vmp_player/file/file_data_check_valid.c
-#        virtual_machine/src/vm_params/vmp_player/file/file_data_code.c
-#        virtual_machine/src/vm_params/vmp_player/file/file_data_comment.c
-#        virtual_machine/src/vm_params/vmp_player/file/file_data_name.c
-#        virtual_machine/src/vm_params/vmp_player/file/file_destroy.c
-#        virtual_machine/src/vm_params/vmp_player/file/file_new.c
-#        virtual_machine/src/vm_params/vmp_player/_vmp_player.h
-#        virtual_machine/src/vm_params/vmp_player/vmp_player_destroy.c
-#        virtual_machine/src/vm_params/vmp_player/vmp_player_file.c
-#        virtual_machine/src/vm_params/vmp_player/vmp_player_name.c
-#        virtual_machine/src/vm_params/vmp_player/vmp_player_new.c
-#        virtual_machine/src/vm_params/vmp_player/vmp_player_set_file.c
-#        virtual_machine/src/vm_params/_vm_params.h
-#        virtual_machine/src/vm_params/_vm_params_add_player_node.c
-#        virtual_machine/src/vm_params/_vm_params_parse.c
-#        virtual_machine/src/vm_params/_vm_params_set_file_name_with_id.c
-#        virtual_machine/src/vm_params/_vm_params_set_file_name_without_id.c
-#        virtual_machine/src/vm_params/_vm_params_set_nbr_cycles.c
-#        virtual_machine/src/vm_params/_vm_params_set_player_name.c
-#        virtual_machine/src/vm_params/ft_arg_is_num.c
-#        virtual_machine/src/vm_params/vm_params_add_player_name_node.c
-#        virtual_machine/src/vm_params/vm_params_destroy.c
-#        virtual_machine/src/vm_params/vm_params_destroy_players.c
-#        virtual_machine/src/vm_params/vm_params_named_sorted_array_of_players.c
-#        virtual_machine/src/vm_params/vm_params_nb_players.c
-#        virtual_machine/src/vm_params/vm_params_new.c
-#        virtual_machine/src/_vm.h
-#        virtual_machine/src/_vm_destroy.c
-#        virtual_machine/src/_vm_new.c
-#        virtual_machine/src/vm_play.c
-#        virtual_machine/src/vm_singleton.c
+        virtual_machine/src/errors/_errors.h
+        virtual_machine/src/errors/errors.c
+        virtual_machine/src/vm_params/vmp_player/file/_file.h
+        virtual_machine/src/vm_params/ft_arg_is_num.c
+        virtual_machine/src/vm_params/vmp_player/file/_file_allocate_initial_value.c
+        virtual_machine/src/vm_params/vmp_player/file/_file_close.c
+#        virtual_machine/src/vm_params/vmp_player/file/_file_get_chunk.c
+        virtual_machine/src/vm_params/vmp_player/file/_file_open.c
+        virtual_machine/src/vm_params/vmp_player/file/_file_open.c
+        virtual_machine/src/vm_params/vmp_player/file/_file_read.c
+        virtual_machine/src/vm_params/vmp_player/file/_file_reallocate_value.c
+        virtual_machine/src/vm_params/vmp_player/file/file_data_check_valid.c
+        virtual_machine/src/vm_params/vmp_player/file/file_data_code.c
+        virtual_machine/src/vm_params/vmp_player/file/file_data_comment.c
+        virtual_machine/src/vm_params/vmp_player/file/file_code_size.c
+#        virtual_machine/src/vm_params/vmp_player/file/file_data_exec_code_size.c
+#        virtual_machine/src/vm_params/vmp_player/file/file_data_magic_header.c
+        virtual_machine/src/vm_params/vmp_player/file/file_data_name.c
+        virtual_machine/src/vm_params/vmp_player/file/file_destroy.c
+        virtual_machine/src/vm_params/vmp_player/file/file_new.c
+#        virtual_machine/src/vm_params/vmp_player/file/file_total.c
+        virtual_machine/src/vm_params/vmp_player/_vmp_player.h
+        virtual_machine/src/vm_params/vmp_player/vmp_player_destroy.c
+        virtual_machine/src/vm_params/vmp_player/vmp_player_new.c
+        virtual_machine/src/vm_params/vmp_player/vmp_player_set_file.c
+        virtual_machine/src/vm_params/vmp_player/vmp_player_file.c
+        virtual_machine/src/vm_params/vmp_player/vmp_player_name.c
+#        virtual_machine/src/vm_params/vmp_state/_vmp_state.h
+#        virtual_machine/src/vm_params/vmp_state/_vmp_state_due_to_param.c
+#        virtual_machine/src/vm_params/vmp_state/_vmp_state_due_to_state.c
+#        virtual_machine/src/vm_params/vmp_state/vmp_state.c
+        virtual_machine/src/vm_params/_vm_params.h
+        virtual_machine/src/vm_params/_vm_params_add_player_node.c
+        virtual_machine/src/vm_params/_vm_params_parse.c
+        virtual_machine/src/vm_params/_vm_params_set_file_name_with_id.c
+        virtual_machine/src/vm_params/_vm_params_set_file_name_without_id.c
+#        virtual_machine/src/vm_params/_vm_params_set_is_dump.c
+#        virtual_machine/src/vm_params/_vm_params_set_mock.c
+        virtual_machine/src/vm_params/_vm_params_set_nbr_cycles.c
+        virtual_machine/src/vm_params/_vm_params_set_player_name.c
+        virtual_machine/src/vm_params/vm_params_add_player_name_node.c
+        virtual_machine/src/vm_params/vm_params_destroy_players.c
+#        virtual_machine/src/vm_params/vm_params_detroy.c
+        virtual_machine/src/vm_params/vm_params_named_sorted_array_of_players.c
+        virtual_machine/src/vm_params/vm_params_nb_players.c
+        virtual_machine/src/vm_params/vm_params_new.c
+        virtual_machine/src/_vm.h
+        virtual_machine/src/_vm_destroy.c
+        virtual_machine/src/_vm_new.c
+        virtual_machine/src/vm_play.c
+        virtual_machine/src/vm_cycles_counter.c
+        virtual_machine/src/vm_singleton.c
+        virtual_machine/src/vm_increase_num_of_live_ops.c
 #        virtual_machine/test/main_test.c
-#        vm-champ-linux/op.c
-#        vm-champ-linux/op.h
-        main.c)
+        )
