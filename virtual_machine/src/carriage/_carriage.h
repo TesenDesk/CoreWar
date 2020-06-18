@@ -27,7 +27,7 @@ typedef struct				s_carriage
 	int				player_name; // 1. уникальный код кареткии
 	int				carry; // 2. Флаг, который может изменять некоторые операции. Изначально его значение равно false.
 	int				op_code; // 3. До начала битвы значение этой переменной не установлено.
-	int				is_correct_operation; //
+//	int				is_correct_operation; //
 	int				cycles_to_perform_op; // циклов до операции (какая операция по умолчанию??)
 //	t_operation 	ops[NUMBER_OF_OPERATIONS];
 	int				last_live_cycle; // посдедний цикл в котором каретка  live

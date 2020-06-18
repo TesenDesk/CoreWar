@@ -20,7 +20,7 @@ void                    _operation_live(t_carriage *self)
 
     position = self->arena_position;
     op_len = ONE_BYTE + FOUR_BYTES; // 5 bytes for op live
-    arg = arena_get_n_bytes_from(self->arena, position + ONE_BYTE, ONE_BYTE);
+    arg = arena_get_n_bytes_from(self->arena, position + ONE_BYTE, FOUR_BYTES);
     if ((arg * -1) == self->player_name)
     {
         self->last_live_cycle = vm_cycles_counter();

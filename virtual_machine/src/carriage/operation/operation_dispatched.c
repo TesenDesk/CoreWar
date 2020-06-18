@@ -4,7 +4,6 @@ void				operation_dispatched(t_carriage *self)
 {
     void	(*operations[NUMBER_OF_OPERATIONS])(t_carriage *self) =
             {
-//                    _operation_mock,
                     _operation_live,
                     _operation_ld,
                     _operation_st,
@@ -22,5 +21,5 @@ void				operation_dispatched(t_carriage *self)
                     _operation_lfork,
 //                    _operation_aff,
             };
-    operations[self->op_code](self);
+    operations[self->op_code - 1](self);
 }

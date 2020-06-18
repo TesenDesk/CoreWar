@@ -15,13 +15,9 @@ int     carriage_take_step(t_carriage *self)
     if (self->cycles_to_perform_op == 0)
     {
         if (self->is_correct_op_code)
-        {
             operation_dispatched(self);
-        }
         else
-        {
-//        move carriage on one bite
-        }
+            self->arena_position = (self->arena_position + 1) % MEM_SIZE;
     }
     return 0;
 }
