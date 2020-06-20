@@ -20,10 +20,14 @@ void            _operation_sti(t_carriage *self)
             args[1] = arena_get_n_bytes_from(self->arena, self->arena_position + args[1] % IDX_MOD, FOUR_BYTES);
 //            args[1] = args[1]; check it, or ask someone else
 
-        if (args[2] == CODE_T_REG)
+        if (type_codes[2] == CODE_T_REG)
             args[2] = self->registers[args[2]];
 
         position = self->arena_position + (args[1] + args[2]) % IDX_MOD;
+//        arena_print_dump(self->arena);
+        arena_write_four_bytes_to_data(self->arena, position, self->registers[args[0]]);
+//        write(1, "\n\n\n\n", 4);
+//        arena_print_dump(self->arena);
     }
     if (op_len <= 0)
     {
