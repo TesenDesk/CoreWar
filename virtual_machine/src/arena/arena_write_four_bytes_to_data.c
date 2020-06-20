@@ -9,7 +9,7 @@ void        arena_write_four_bytes_to_data(t_arena *self, int pos, int new_data)
 
     data = self->data;
     if (pos < 0)
-        pos = MEM_SIZE - pos % MEM_SIZE;
+        pos = MEM_SIZE + pos % MEM_SIZE;
     i = 0;
     while (i < 4)
     {
