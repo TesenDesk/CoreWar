@@ -29,7 +29,7 @@ void            _operation_and(t_carriage *self)
         else
             self->carry = 0;
     }
-2    if (op_len <= 0)
+    if (op_len <= 0)
     {
         printf("SOMETHING WRONG WITH OP_LEN IN _OPERATION_AND\n");
         exit(1);
