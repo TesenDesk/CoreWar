@@ -31,7 +31,7 @@ int                    _operation_precheck_args(t_carriage *self, int *args, cha
         {
             args[i] = arena_get_n_bytes_from(self->arena, (self->arena_position + *op_len), ONE_BYTE) - 1;
             *op_len += ONE_BYTE;
-            if (args[i] < 1 || args[i] > 16)
+            if (args[i] < 0 || args[i] >= 16)
                 result = FAILURE;
         }
         else if (type_codes[i] == CODE_T_DIR)

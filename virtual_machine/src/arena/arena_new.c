@@ -40,8 +40,6 @@ static void			arena_fill_in_the_data(t_arena *self)
 		ft_memcpy((arena_field + (curr) * step), self->players[curr]->code,
 				self->players[curr]->code_size);
 		curr += 1;
-//		printf("%s\n", self->players[curr]->text_name);
-//		self->players[curr]->
 	}
 	self->data = arena_field;
 
@@ -57,7 +55,8 @@ t_arena				*arena_new(t_vm_params *params)
 	if ((self = (t_arena *)ft_memalloc(sizeof(*self))) == NULL)
 		raise(__FILE__, __LINE__, ENOMEMORY);
 	self->nb_players = vm_params_nb_players(params);
-	self->players = _arena_players_new(self->nb_players);
+	self->last_live_player = self->nb_players;
+	self->players = _arena_players_new(self->nb_players); // cause before vm_play last_live_player == last player
 	self->dump_cycles = params->dump_cycles;
 //	printf("aren_dump:%d\n", self->dump_cycles);
 
