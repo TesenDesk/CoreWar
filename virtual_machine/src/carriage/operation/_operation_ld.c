@@ -1,6 +1,5 @@
 #include "_operation.h"
 
-//don`t checked
 void                    _operation_ld(t_carriage *self)
 {
 //    need change "2" to constant later
