@@ -12,14 +12,13 @@ void                    _operation_lld(t_carriage *self)
         && (type_codes[0] == CODE_T_IND || type_codes[0] == CODE_T_DIR)
         && type_codes[1] == CODE_T_REG)
     {
-//        especially need check this part with conversion t_ind to t_dir
-        if (type_codes[0] == CODE_T_IND) // convert t_ind to t_dir and but to same place
+        if (type_codes[0] == CODE_T_IND)
             args[0] = arena_get_n_bytes_from(self->arena, self->arena_position + args[0], FOUR_BYTES);
 
         if ((self->registers[args[1]] = args[0]) == 0) // need or not set carry?????
             self->carry = 1;
         else
-            self->carry = 0;
+                self->carry = 0;
     }
     if (op_len <= 0)
     {

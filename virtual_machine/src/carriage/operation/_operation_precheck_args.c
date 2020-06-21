@@ -23,6 +23,7 @@ int                    _operation_precheck_args(t_carriage *self, int *args, cha
 
     result = SUCCESS;
     *op_len = ONE_BYTE + ONE_BYTE;
+    t_dir_size = t_dir_size_for_the_op(self->op_code);
     i = 0;
     while (i < num_of_args)
     {
@@ -36,7 +37,6 @@ int                    _operation_precheck_args(t_carriage *self, int *args, cha
         }
         else if (type_codes[i] == CODE_T_DIR)
         {
-            t_dir_size = t_dir_size_for_the_op(self->op_code);
             args[i] = arena_get_n_bytes_from(self->arena, self->arena_position + *op_len, t_dir_size);
             *op_len += t_dir_size;
         }
