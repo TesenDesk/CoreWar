@@ -11,6 +11,8 @@
 #include "token_defines.h"
 #include "../virtual_machine/include/op.h"
 #include "expr.h"
+#include "expr_defines.h"
+#include "../parser/expr_private.h"
 
 static void		rotate_four_bytes(unsigned int *p)
 {
@@ -45,31 +47,24 @@ static void		rotate_bytes(unsigned int *p, int size)
 	else
 		;
 }
-
-
-
-t_codegen		*codegen_ctor(t_hash_map *labels_free, t_vector *labels_ptrs,
+//
+//
+//
+t_codegen		*codegen_ctor(t_hash_map *labels_free,
 									header_t *header)
 {
 	t_codegen	*code;
 
 	code = ft_memalloc(sizeof(t_codegen));
 	code->labels_free = labels_free;
-	if (!labels_ptrs)
-	{
-		if (!(labels_ptrs = ft_memalloc(sizeof(t_vector))))
-			return (NULL);
-		ft_vector_init(labels_ptrs);
-	}
-//	code->labels_ptrs = labels_ptrs;
 	if (!(code->labels_ptrs = (t_vector*)ft_memalloc(sizeof(t_vector))))
 		exit(-1);
 	ft_vector_init(code->labels_ptrs);
 	code->header = header;
-	code->code = ft_memalloc(sizeof(char) * 1000000);
 	/*
-	 * need to implement_function write_to_code
+	 * найти размер?
 	 */
+	code->code = ft_memalloc(sizeof(char) * 1000000);
 	return (code);
 }
 
@@ -87,22 +82,22 @@ void			codegen_dtor(t_codegen *code)
 		code = NULL;
 	}
 }
-
+//
 static void		codegen_add_champ_name(char *dst, header_t *header)
 {
 	ft_memcpy(dst, header->prog_name,
 			sizeof(char) * ft_strlen(header->prog_name));
 }
-
+//
 static void		codegen_add_champ_comment(char *dst, header_t *header)
 {
 	ft_memcpy(dst, header->comment,
 			sizeof(char) * ft_strlen(header->comment));
 }
-
-// NOTE: NEED CAST TYPES LIKE TYPES TABLE!!!!!!!!
-
-
+//
+//// NOTE: NEED CAST TYPES LIKE TYPES TABLE!!!!!!!!
+//
+//
 int			ft_checkbit(char n, int pos)
 {
 	return ((n & (1 << pos)) != 0);
@@ -119,8 +114,8 @@ void		ft_printbits(char n, int count)
 	}
 	ft_putchar('\n');
 }
-
-
+//
+//
 static void		add_params_types(t_codegen *data,  int first_arg, int second_arg, int third_arg)
 {
 	int res;
@@ -132,9 +127,9 @@ static void		add_params_types(t_codegen *data,  int first_arg, int second_arg, i
 	data->code[data->add++] = (char)res;
 	ft_printbits(res, 8);
 }
-/*
- * переделать константы
- */
+///*
+// * переделать константы
+// */
 static void		recast_params_types(t_codegen *data, t_expr  *q)
 {
 	/*
@@ -168,7 +163,7 @@ static void		recast_params_types(t_codegen *data, t_expr  *q)
 	add_params_types(data, first_arg, second_arg, third_arg);
 
 }
-
+//
 static void		dir_type_detector(t_expr *q)
 {
 //	if (q->type < COM_ZJMP || q->type > COM_LFORK ||
@@ -194,9 +189,9 @@ static void		write_address_to_free_label(t_codegen *data, t_expr *label)
 	tmp->addr = data->add;
 	ft_hash_map_set_content(data->labels_free, token->val, (tmp));
 }
-
-
-
+//
+//
+//
 static void		add_address_to_arg_label(t_codegen *data, t_arg *arg, int shift)
 {
 	t_label_data *label;
@@ -339,33 +334,14 @@ static void map_expr_to_code(t_expr *expr)
 	expr->type = array_of_exprcodes[expr->args[OP_NAME].type];
 }
 
-static void	fill_expr_size(int expr_size[OP_NUM_OF_CODES])
-{
-	expr_size[OP_LIVE_CODE] = 6;
-	expr_size[OP_LIVE_CODE] = 6;
-	expr_size[OP_LIVE_CODE] = 6;
-	expr_size[OP_LIVE_CODE] = 6;
-	expr_size[OP_LIVE_CODE] = 6;
-	expr_size[OP_LIVE_CODE] = 6;
-	expr_size[OP_LIVE_CODE] = 6;
-	expr_size[OP_LIVE_CODE] = 6;
-	expr_size[OP_LIVE_CODE] = 6;
-	expr_size[OP_LIVE_CODE] = 6;
-	expr_size[OP_LIVE_CODE] = 6;
-	expr_size[OP_LIVE_CODE] = 6;
-	expr_size[OP_LIVE_CODE] = 6;
-	expr_size[OP_LIVE_CODE] = 6;
-	expr_size[OP_LIVE_CODE] = 6;
-
-}
 
 void		codegen_codegen(t_codegen *data, t_expr *q)
 {
 
 	static int expr_size[OP_NUM_OF_CODES];
 
-	if (!(expr_size[OP_LIVE_CODE]))
-		fill_expr_size(expr_size);
+//	if (!(expr_size[OP_LIVE_CODE]))
+//		fill_expr_size(expr_size);
 	int i;
 
 	i = 1;
@@ -407,24 +383,6 @@ void		codegen_codegen(t_codegen *data, t_expr *q)
 }
 
 
-//static void		fill_dirind_param(t_codegen *data, t_arg *param, char dir_type)
-//{
-//	int			num_arg;
-//	int 		num_size;
-//	int 		cell_size;
-//
-//	num_arg = ft_atoi(((t_token *)param->value)->val) % IDX_MOD;
-//	cut_num_arg(&num_arg, param->type, dir_type);
-//	if (param->type == TOKEN_TREG)
-//		cell_size = 1;
-//	else
-//		cell_size = param->type == TOKEN_TDIR_INT && dir_type == 1 ? 4 : 2;
-//	num_size = num_arg >= 0 ? bytesize(num_arg) : cell_size;
-//	fill_empty_cell(data, cell_size - num_size);
-//	ft_memcpy(&(data->code[data->add]), &num_arg, num_size);
-//	data->add += num_size;
-//}
-
 static void			codegen_ending(t_codegen *data)
 {
 	int				i;
@@ -441,13 +399,6 @@ static void			codegen_ending(t_codegen *data)
 //		printf("!@!tmp:%d\n", tmp);
 		if (ld->param_type == TOKEN_TIND_LAB)
 			tmp %= IDX_MOD;
-//		printf("!@!ld->add:%d\n", ld->add);
-//		tmp_param->value = tmp;
-//		if (tmp < 0)
-//		{
-//			tmp = (int)(tmp ^ 0xFFFFFFFF);
-//			++tmp;
-//		}
 		/*
 		 * HERE PROBLEM
 		 */
@@ -463,6 +414,7 @@ static void			codegen_ending(t_codegen *data)
 
 	}
 }
+
 
 int				champ_exec_constructor(t_codegen *data)
 {
@@ -487,74 +439,33 @@ int				champ_exec_constructor(t_codegen *data)
 	codegen_add_champ_comment(&data->exec[i], data->header);
 	i += (COMMENT_LENGTH) + 4;
 	ft_memcpy(&data->exec[i], data->code, data->code_size);
-//	int ll = 0;
-//	while (ll < )
-//	{
-//		printf("%d ", data->code[ll++]);
-//	}
 	return (total_size);
 }
 
-/*
-** ========== DEBUG ZONE =========== TODO: Delete all data beyond this point
-*/
+void            init_header(header_t *header, t_vector*text)
+{
+    char        *name;
+    char        *comment;
 
-// WARN: IF YOU WANT DELETE THIS, PLEASE ASK A DEVELOPER.
-// OR YOU CAN COMMENT CODEGEN_DEBUGGER DEFINITION ON .h FILE
+    name =((t_token*)((((t_expr*)text->items[0])->args[0]).value))->val;
+    comment =((t_token*)((((t_expr*)text->items[1])->args[0]).value))->val;
+    ft_bzero(header->comment, COMMENT_LENGTH + 1);
+    ft_bzero(header->prog_name, PROG_NAME_LENGTH + 1);
+    ft_memcpy(header->prog_name, name, ft_strlen(name));
+    ft_memcpy(header->comment, comment, ft_strlen(comment));
+}
 
-#ifdef CODEGEN_DEBUGGER
 
-//int				main(void)
-//{
-//	t_codegen	*code;
-//	header_t	header;
-//	int			fd;
-//	t_expr		*q;
-//	t_hash_map	*map;
-//	t_pair      *new_item;
-//	int int_ptr[10];
-//
-//	ft_bzero(&header.comment, COMMENT_LENGTH + 1);
-//	ft_bzero(&header.prog_name, PROG_NAME_LENGTH + 1);
-//	q = ft_memalloc(sizeof(t_expr));
-//	ft_memcpy(&header.prog_name, "Batman", 4*6);
-//	ft_memcpy(&header.comment, "This city needs me", 4*6);
-//	code = codegen_ctor(NULL, NULL, &header);
-//	map = ft_hash_map_ctor(5);
-//	new_item = ft_memalloc(sizeof(t_pair));
-//	new_item->key = "loop";
-//	ft_hash_map_put_to_map(&map, new_item);
-//	new_item = ft_memalloc(sizeof(t_pair));
-//	new_item->key = "live";
-//	ft_hash_map_put_to_map(&map, new_item);
-//	code->labels_free = map;
-//	code->code_size = 22;
-//	//code->code = ft_memalloc(8);
-//	code->header->magic = COREWAR_EXEC_MAGIC;
-//	q->type = LABEL_WORD;
-//	q->args[0].value = "loop";
-//	codegen_codegen(code, q);
-//
-//	q->type = COM_STI;
-//	int_ptr[0] = 1;
-//	q->args[0].type = T_REG;
-//	q->args[0].value = &int_ptr[0];
-//	q->args[1].type = T_DIR;
-//	q->args[2].type = T_DIR;
-//	int_ptr[1] = LABEL_WORD;
-//	q->args[1].value = &int_ptr[1];
-//	int_ptr[2] = 1;
-//	q->args[2].value = &int_ptr[2];
-//	codegen_codegen(code, q);
-//
-//	code->header->prog_size = champ_exec_constructor(code);
-//	fd = open("test.cmp", O_WRONLY);
-//	//fprintf(fp, "%s", code->exec);
-//	write(fd, code->exec, code->header->prog_size);
-//
-//	return  (0);
-//}
+void            generate_code(t_hash_map *map, t_vector *text)
+{
+    t_codegen *codegen;
+    header_t header;
 
-#endif // CODEGEN_DEBUGGER
+    init_header(&header, text);
+    codegen = codegen_ctor(map, &header);
+    /*
+     * цикл, эндинг
+     */
 
-#pragma clang diagnostic pop
+}
+

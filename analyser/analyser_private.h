@@ -32,7 +32,7 @@ struct s_analyser
 	int				state;
 	t_parser 		*parser;
 	int 			(*analyse_text)(t_analyser *analyser,
-								   char const **text);
+								   char  *text);
 //	t_expr 			(*analyser_get_expr)(t_analyser *analyser);
 
 	void			(*_change_state)(t_analyser *analyser,  int expr_type);

@@ -11,7 +11,7 @@
 #define T_DIR_CODE		2
 #define T_IND_CODE		3
 
-
+#include "codegen.h"
 
 #define IND_PARAM_SIZE	2
 #define DIR_PARAM_SIZE	4
@@ -53,19 +53,5 @@ typedef struct		s_codegen
 	t_vector		*labels_ptrs;
 	header_t		*header;
 }					t_codegen;
-
-//typedef struct		s_arg
-//{
-//	char			type;
-//	void			*value;
-//}					t_arg;
-//
-//typedef struct		s_expr
-//{
-//	char			type;
-//	char			size;
-//	void			*name;
-//	t_arg			args[3];
-//}					t_expr;
 
 #endif //GIT_CODEGEN_PRIVATE_H

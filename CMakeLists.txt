@@ -26,18 +26,21 @@ include_directories(virtual_machine/src/vm_params/vmp_player/file)
 include_directories(virtual_machine/src/vm_params/vmp_state)
 
 add_executable(corewar
-#        analyser/_analyser_change_state.c
-#        analyser/_analyser_get_expr.c
-#        analyser/_analyser_xtor.c
-#        analyser/analyser.c
-#        analyser/analyser_private.h
-#        analyser/analyser_singleton_instance.c
-#        analyser/analyser_xtor_private.h
-#        analyser/text_private.h
+        analyser/_analyser_change_state.c
+        analyser/_analyser_get_expr.c
+        analyser/_analyser_xtor.c
+        analyser/analyser.c
+        analyser/analyser_private.h
+        analyser/analyser_singleton_instance.c
+        analyser/analyser_xtor_private.h
+        analyser/text_private.h
 #        checker/checker_main.c
         checker/label_checker_inclusion_of_maps.c
         checker/label_checker_private.h
         checker/label_checker_put_to_map.c
+        codegen/codegen_private.h
+        codegen/codegen_prototype.h
+        codegen/codegen_prototype.c
         interfaces/analyser.h
         interfaces/expr.h
         interfaces/expr_defines.h
@@ -458,4 +461,4 @@ add_executable(corewar
         virtual_machine/src/vm_add_new_carriage_node.c
         virtual_machine/src/vm_increase_num_of_live_ops.c
 #        virtual_machine/test/main_test.c
-        main.c virtual_machine/src/carriage/operation/_operation_aff.c)
+        virtual_machine/src/carriage/operation/_operation_aff.c main_asm.c codegen/codegen.h)
