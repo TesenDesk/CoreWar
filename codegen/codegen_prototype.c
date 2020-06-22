@@ -12,12 +12,12 @@
 #include "../virtual_machine/include/op.h"
 #include "expr.h"
 #include "expr_defines.h"
+#include "op.h"
 #include "../parser/expr_private.h"
 
 static void		rotate_four_bytes(unsigned int *p)
 {
 	int 		tmp = *p;
-//	printf("!!%d\n", *p);
 	int	first = (*p & 0x000000ff) << 24;
 	int second = ((*p & 0xff000000) >> 24);
 	int third = 	((*p & 0x0000ff00) << 8);
@@ -107,7 +107,6 @@ void		ft_printbits(char n, int count)
 {
 	while (count--)
 	{
-//		ft_putchar(ft_checkbit(n, count) + '0');
 		printf("%c", ft_checkbit(n, count) + '0');
 		if (!(count % 4 && count))
 			ft_putchar(' ');
@@ -163,14 +162,9 @@ static void		recast_params_types(t_codegen *data, t_expr  *q)
 	add_params_types(data, first_arg, second_arg, third_arg);
 
 }
-//
+
 static void		dir_type_detector(t_expr *q)
 {
-//	if (q->type < COM_ZJMP || q->type > COM_LFORK ||
-//		q->type == COM_LLD)
-//		q->size = 1;
-//	else
-//		q->size = 2;
 	if (q->args[OP_NAME].type == TOKEN_ZJMP || q->args[OP_NAME].type == TOKEN_LDI || q->args[OP_NAME].type == TOKEN_STI ||
 	q->args[OP_NAME].type == TOKEN_FORK || q->args[OP_NAME].type == TOKEN_LLDI || q->args[OP_NAME].type == TOKEN_LFORK)
 		q->size = 2;
@@ -189,9 +183,7 @@ static void		write_address_to_free_label(t_codegen *data, t_expr *label)
 	tmp->addr = data->add;
 	ft_hash_map_set_content(data->labels_free, token->val, (tmp));
 }
-//
-//
-//
+
 static void		add_address_to_arg_label(t_codegen *data, t_arg *arg, int shift)
 {
 	t_label_data *label;
@@ -201,7 +193,6 @@ static void		add_address_to_arg_label(t_codegen *data, t_arg *arg, int shift)
 	label->name = ((t_token*)arg->value)->val;
 	label->add = data->add + shift;
 	label->instruction_begining = data->cur_instruction_addr;
-//	printf("label_add:%d, cur_add:%d\n", label->add, label->instruction_begining);
 	label->param_type = arg->type;
 	label->size = data->cur_instruction_dirsize;
 
@@ -214,10 +205,7 @@ int 	bytesize(int num)
 
 	ans = 1;
 	while(num >>= 1)
-	{
-//		num >>= 1;
 		ans += 1;
-	}
 	return (!(ans % 8) ? (ans / 8) : (ans / 8)+ 1);
 }
 
@@ -289,10 +277,6 @@ static void		add_param(t_codegen *data, t_arg *param, char dir_type)
 		else
 			shift = 4;
 		add_address_to_arg_label(data, param, 0);
-//		if (param->type == TOKEN_TIND_LAB)
-//			data->add += IND_SIZE;
-//		else
-//			data->add += DIR_SIZE / dir_type;
 		data->add += shift;
 	}
 	else
@@ -337,11 +321,7 @@ static void map_expr_to_code(t_expr *expr)
 
 void		codegen_codegen(t_codegen *data, t_expr *q)
 {
-
 	static int expr_size[OP_NUM_OF_CODES];
-
-//	if (!(expr_size[OP_LIVE_CODE]))
-//		fill_expr_size(expr_size);
 	int i;
 
 	i = 1;
@@ -352,21 +332,18 @@ void		codegen_codegen(t_codegen *data, t_expr *q)
 		dir_type_detector(q);
 		map_expr_to_code(q);
 		data->cur_instruction_addr = data->add;
-//		printf("cur_instr:%d\n", data->add);
 		data->cur_instruction_code = q->type;
 		data->cur_instruction_dirsize = q->size;
 		data->code[data->add++] = q->type;
 		data->code_size += 1;
 		if (q->type != OP_LIVE_CODE && q->type != OP_ZJMP_CODE
-			&& q->type != OP_FORK_CODE && q->type != OP_LFORK_CODE) {
-
+			&& q->type != OP_FORK_CODE && q->type != OP_LFORK_CODE)
+		{
 			recast_params_types(data, q);
 			data->code_size += 1;
 		}
-		/*
-		 * нужно смапить expr_type в реальный тип асма
-		 */
-		while (i - 1 < q->arg_size && q->args[i].type) {
+		while (i - 1 < q->arg_size && q->args[i].type)
+		{
 			add_param(data, &(q->args[i++]), q->size);
 			if (q->args[i-1].type == TOKEN_TREG)
 				data->code_size += 1;
@@ -375,8 +352,6 @@ void		codegen_codegen(t_codegen *data, t_expr *q)
 				data->code_size += 2;
 			else
 				data->code_size += 4;
-
-
 		}
 //		data->code_size += expr_size[q->type];
 	}
@@ -396,7 +371,6 @@ static void			codegen_ending(t_codegen *data)
 	{
 		add = (int)(((t_code_addr*)ft_hash_map_get(data->labels_free, ld->name))->addr);
 		tmp = (add - ld->instruction_begining);
-//		printf("!@!tmp:%d\n", tmp);
 		if (ld->param_type == TOKEN_TIND_LAB)
 			tmp %= IDX_MOD;
 		/*
@@ -410,8 +384,6 @@ static void			codegen_ending(t_codegen *data)
 		}
 		else
 			ft_memcpy(&(data->code[ld->add]) , &tmp, cell_size);
-
-
 	}
 }
 
@@ -453,16 +425,49 @@ void            init_header(header_t *header, t_vector*text)
     ft_bzero(header->prog_name, PROG_NAME_LENGTH + 1);
     ft_memcpy(header->prog_name, name, ft_strlen(name));
     ft_memcpy(header->comment, comment, ft_strlen(comment));
+    header->magic = COREWAR_EXEC_MAGIC;
+    printf("%d\n");
+}
+
+void        write_code_to_file(char* exec,int code_size,char * filename)
+{
+	int     fd;
+	char    *root;
+    char    **chunks;
+
+
+    chunks = ft_strsplit(filename, '.');
+    if (ft_strlen(chunks[0]) < 1 || ft_strnstr(chunks[1], "s", 1) == NULL) {
+	    printf("bad filename or format\n");
+	    exit(-1);
+    }
+//    root = ft_strsub(filename, 0, ft_strsearch(filename, '.'));
+    printf("%s\n", chunks[1]);
+    root = ft_strjoin(chunks[0], ".cor");
+    printf("%s\n", root);
+    if (!(fd = open(root, O_WRONLY | O_CREAT))){
+    	printf("can' open/create a file\n");
+    	exit(-1);
+    }
+    write(fd, exec, code_size);
+
 }
 
 
-void            generate_code(t_hash_map *map, t_vector *text)
+void            generate_code(t_hash_map *map, t_vector *text, char *filename)
 {
-    t_codegen *codegen;
-    header_t header;
+    t_codegen   *codegen;
+    header_t    header;
+    int         fd;
+    int         index;
+
+    index = 2;
 
     init_header(&header, text);
     codegen = codegen_ctor(map, &header);
+    while(index < text->total)
+        codegen_codegen(codegen, text->items[index++]);
+    write_code_to_file(codegen->exec, champ_exec_constructor(codegen), filename);
     /*
      * цикл, эндинг
      */

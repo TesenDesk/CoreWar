@@ -24,7 +24,7 @@
 #include "parser.h"
 #include "./parser/parser_private.h"
 #include "analyser.h"
-
+#include "codegen.h"
 
 char        *read_code(int fd)
 {
@@ -66,7 +66,7 @@ int main(int ac, char **av)
 	ft_vector_init(&vtr);
 	analyser = analyser_singleton_instance(ANALYSER_INSTANTIATE);
 	text = analyse_text(analyser, &vtr, map, (read_code(open(av[1], O_RDONLY))));
-	generate_code(map, text);
+	generate_code(map, text, av[1]);
 
 	return (SUCCESS);
 }

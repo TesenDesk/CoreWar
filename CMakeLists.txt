@@ -461,4 +461,4 @@ add_executable(corewar
         virtual_machine/src/vm_add_new_carriage_node.c
         virtual_machine/src/vm_increase_num_of_live_ops.c
 #        virtual_machine/test/main_test.c
-        virtual_machine/src/carriage/operation/_operation_aff.c main_asm.c codegen/codegen.h)
+        virtual_machine/src/carriage/operation/_operation_aff.c main_asm.c interfaces/codegen.h)

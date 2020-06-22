@@ -13,9 +13,5 @@
 
 typedef struct		s_codegen t_codegen;
 
-t_codegen		*codegen_ctor(t_hash_map *labels_free, t_vector *labels_ptrs,
-							   header_t *header);
-void			codegen_dtor(t_codegen *code);
-void		codegen_codegen(t_codegen *data, t_expr *q);
-int			champ_exec_constructor(t_codegen *data);
+void            generate_code(t_hash_map *map, t_vector *text, char *filename);
 #endif //CORE_CODEGEN_H

@@ -57,7 +57,6 @@ int             vm_check(t_vm *self)
     destroy_dead_carriages(&(self->carriage_head));
     if (self->carriage_head == NULL) // all carriages dead
         return (FAILURE);
-
     if (self->num_checks == MAX_CHECKS // cycles_to_die менялась MAX_CHECKS проверок(vm_check) назад
             || self->num_of_live_ops >= NBR_LIVE) // число операций live слишко большое
     {
