@@ -124,7 +124,7 @@ static void		add_params_types(t_codegen *data,  int first_arg, int second_arg, i
 	res |= second_arg << 4;
 	res |= third_arg << 2;
 	data->code[data->add++] = (char)res;
-	ft_printbits(res, 8);
+//	ft_printbits(res, 8);
 }
 ///*
 // * переделать константы
@@ -245,7 +245,7 @@ static void		fill_dirind_param(t_codegen *data, t_arg *param, char dir_type)
 	int 		cell_size;
 
 
-	num_arg = ft_atoi(((t_token *)param->value)->val);
+	num_arg = ft_atol(((t_token *)param->value)->val);
 	if (param->type == TOKEN_TIND_INT)
 		num_arg %= IDX_MOD;
 	if (param->type == TOKEN_TREG)
@@ -426,7 +426,7 @@ void            init_header(header_t *header, t_vector*text)
     ft_memcpy(header->prog_name, name, ft_strlen(name));
     ft_memcpy(header->comment, comment, ft_strlen(comment));
     header->magic = COREWAR_EXEC_MAGIC;
-    printf("%d\n");
+//    printf("%d\n");
 }
 
 void        write_code_to_file(char* exec,int code_size,char * filename)
@@ -441,10 +441,9 @@ void        write_code_to_file(char* exec,int code_size,char * filename)
 	    printf("bad filename or format\n");
 	    exit(-1);
     }
-//    root = ft_strsub(filename, 0, ft_strsearch(filename, '.'));
-    printf("%s\n", chunks[1]);
+//    printf("%s\n", chunks[1]);
     root = ft_strjoin(chunks[0], ".cor");
-    printf("%s\n", root);
+//    printf("%s\n", root);
     if (!(fd = open(root, O_WRONLY | O_CREAT))){
     	printf("can' open/create a file\n");
     	exit(-1);
