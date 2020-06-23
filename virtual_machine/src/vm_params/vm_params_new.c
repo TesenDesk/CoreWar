@@ -12,9 +12,6 @@
 
 #include "_vm_params.h"
 
-/*
- * неправильно
- */
 static void				_vm_params_new_precondition_check(int argc)
 {
 	if (argc < 1)
@@ -42,7 +39,7 @@ t_vm_params				*vm_params_new(int argc, char *argv[])
 	_vm_params_new_precondition_check(argc);
 	if ((self = (t_vm_params *)ft_memalloc(sizeof(*self))) == NULL)
 		raise(__FILE__, __LINE__, ENOMEMORY);
-//	_vm_params_parse(self, argv);
+	self->dump_cycles = -1;
 	_vm_params_parse(self, argv);
 	_vm_params_new_postcondition_check(self);
 	return (self);

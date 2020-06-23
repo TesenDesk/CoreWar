@@ -448,6 +448,7 @@ add_executable(corewar
 #        virtual_machine/src/vm_params/vm_params_detroy.c
         virtual_machine/src/vm_params/vm_params_named_sorted_array_of_players.c
         virtual_machine/src/vm_params/vm_params_nb_players.c
+        virtual_machine/src/vm_params/vm_params_dump_cycles.c
         virtual_machine/src/vm_params/vm_params_new.c
         virtual_machine/src/_vm.h
         virtual_machine/src/_vm_destroy.c

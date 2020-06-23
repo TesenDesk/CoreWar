@@ -20,6 +20,7 @@ t_vm		*_vm_new(int argc, char *argv[])
 	if ((self = (t_vm *)ft_memalloc(sizeof(*self))) == NULL)
 		raise(__FILE__, __LINE__, ENOMEMORY);
 	self->params = vm_params_new(argc, argv);
+	self->cycles_to_dump = vm_params_dump_cycles(self->params);
 //	t_vmp_player *new = self->params->id_player_head->content;
 //	printf("%d\n", new->player_name);
 	self->arena = arena_new(self->params);

@@ -7,6 +7,7 @@ void                    _operation_ld(t_carriage *self)
     int     args[2];
     char    type_codes[2];
 
+
     if (_operation_precheck_args(self, args, type_codes, 2, &op_len) == SUCCESS
         && (type_codes[0] == CODE_T_IND || type_codes[0] == CODE_T_DIR)
         && type_codes[1] == CODE_T_REG)

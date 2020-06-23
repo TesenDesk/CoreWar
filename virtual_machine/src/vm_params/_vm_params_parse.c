@@ -121,15 +121,15 @@ static int 				_vm_params_flag_name(t_vm_params *self, char *param)
 }
 
 
-static int 				_vm_params_dump_init(t_vm_params *self, char *param)
-{
+//static int 				_vm_params_dump_init(t_vm_params *self, char *param)
+//{
+//
+//}
 
-}
-
-static int 				_vm_params_dump_done(t_vm_params *self, char *param)
-{
-
-}
+//static int 				_vm_params_dump_done(t_vm_params *self, char *param)
+//{
+//
+//}
 
 
 static int 				_vm_params_flag_name_done(t_vm_params *self, char *param)

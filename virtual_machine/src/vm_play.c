@@ -84,6 +84,7 @@ void            vm_next_cycle(t_vm *self)
         list = list->next;
     }
     self->cycles_counter += 1;
+    self->cycles_to_dump -= 1;
 }
 
 void 		    vm_play(t_vm *self)
@@ -95,6 +96,11 @@ void 		    vm_play(t_vm *self)
 //    need_tp set to arena->last_live_player = arena->nb_players;
     while (TRUE)
     {
+        if (self->cycles_to_dump == 0)
+        {
+            arena_print_dump(self->arena);
+            break;
+        }
         vm_next_cycle(self);
         if (self->cycles_to_die <= self->cycles_counter)
         {
