@@ -246,8 +246,8 @@ static void		fill_dirind_param(t_codegen *data, t_arg *param, char dir_type)
 
 
 	num_arg = ft_atol(((t_token *)param->value)->val);
-	if (param->type == TOKEN_TIND_INT)
-		num_arg %= IDX_MOD;
+//	if (param->type == TOKEN_TIND_INT)
+//		num_arg %= IDX_MOD;
 	if (param->type == TOKEN_TREG)
 		cell_size = 1;
 	else
