@@ -181,6 +181,7 @@ static void		write_address_to_free_label(t_codegen *data, t_expr *label)
 	if (!(tmp = (t_code_addr*)malloc(sizeof(t_code_addr))))
 		exit(-1);
 	tmp->addr = data->add;
+	printf("codegen, addr:%d, val:%s\n", tmp->addr, token->val);
 	ft_hash_map_set_content(data->labels_free, token->val, (tmp));
 }
 
@@ -348,7 +349,7 @@ void		codegen_codegen(t_codegen *data, t_expr *q)
 			if (q->args[i-1].type == TOKEN_TREG)
 				data->code_size += 1;
 			else if (q->args[i-1].type == TOKEN_TIND_LAB || q->args[i-1].type == TOKEN_TIND_INT
-			|| (q->args[i-1].type == TOKEN_TDIR_LAB || (q->args[i-1].type == TOKEN_TDIR_INT && q->size == 2)))
+			|| ((q->args[i-1].type == TOKEN_TDIR_LAB || q->args[i-1].type == TOKEN_TDIR_INT) && q->size == 2))
 				data->code_size += 2;
 			else
 				data->code_size += 4;
@@ -370,13 +371,17 @@ static void			codegen_ending(t_codegen *data)
 	while ((ld = ft_vector_get(data->labels_ptrs, ++i)))
 	{
 		add = (int)(((t_code_addr*)ft_hash_map_get(data->labels_free, ld->name))->addr);
+		printf("add_addr:%d, val:%s, instr:%d\n", add, ld->name, ld->instruction_begining);
 		tmp = (add - ld->instruction_begining);
 		if (ld->param_type == TOKEN_TIND_LAB)
 			tmp %= IDX_MOD;
 		/*
 		 * HERE PROBLEM
 		 */
-		cell_size = ld->param_type == TOKEN_TDIR_LAB && ld->size == 1 ? 4 : 2;
+//		cell_size = ld->param_type == TOKEN_TDIR_LAB && ld->size == 1 ? 4 : 2;
+
+		cell_size = ld->param_type == ((TOKEN_TDIR_LAB && ld->size == 2) || ld->param_type ==
+				TOKEN_TIND_LAB) ? 4 : 2;
 		rotate_bytes(&tmp, cell_size);
 		if (cell_size == 2) {
 			short temp = (short)tmp;
@@ -429,22 +434,39 @@ void            init_header(header_t *header, t_vector*text)
 //    printf("%d\n");
 }
 
+int         ar_len(char *ar)
+{
+	int res;
+
+	res = 0;
+	while (ar != NULL)
+	{
+		ar += 1;
+		res += 1;
+	}
+	return (res);
+}
+
+
 void        write_code_to_file(char* exec,int code_size,char * filename)
 {
 	int     fd;
 	char    *root;
-    char    **chunks;
+	char    *new_name;
 
 
-    chunks = ft_strsplit(filename, '.');
-    if (ft_strlen(chunks[0]) < 1 || ft_strnstr(chunks[1], "s", 1) == NULL) {
+
+    if (!(root = ft_memalloc(ft_strlen(filename) - 1)))
+    	exit(-1);
+    if (ft_strncmp(filename + ft_strlen(filename) - 2, ".s", 2) != 0){
 	    printf("bad filename or format\n");
 	    exit(-1);
     }
-//    printf("%s\n", chunks[1]);
-    root = ft_strjoin(chunks[0], ".cor");
-//    printf("%s\n", root);
-    if (!(fd = open(root, O_WRONLY | O_CREAT))){
+    root = ft_strncpy(root, filename, ft_strlen(filename)  - 2);
+    new_name = ft_strjoin(root, ".cor");
+    free(root);
+    printf("!!!!!!!!!!!!!!!%s\n", new_name);
+    if (!(fd = open(new_name, O_WRONLY | O_CREAT))){
     	printf("can' open/create a file\n");
     	exit(-1);
     }

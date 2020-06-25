@@ -6,8 +6,8 @@ l2:
 l3:
 l4:
 
-	live %1
-		zjmp %:live
+	live %123456789999
+#		zjmp %:live
 live:
 
 dive:
