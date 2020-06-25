@@ -23,19 +23,15 @@
 typedef struct				s_carriage
 {
 	t_arena			*arena;
-//	char 			*text_player_name; // нужно или нет - хз
+	int             num;
 	int				player_name; // 1. уникальный код кареткии
 	int				carry; // 2. Флаг, который может изменять некоторые операции. Изначально его значение равно false.
 	int				op_code; // 3. До начала битвы значение этой переменной не установлено.
-//	int				is_correct_operation; //
 	int				cycles_to_perform_op; // циклов до операции (какая операция по умолчанию??)
-//	t_operation 	ops[NUMBER_OF_OPERATIONS];
 	int				last_live_cycle; // посдедний цикл в котором каретка  live
 	int				is_correct_op_code;
 	int				arena_position;
-//	int				bytes_to_next_op;
 	int	        	registers[REG_NUMBER];
-//	long int		registers[REG_NUMBER];
 }							t_carriage;
 
 void                _carriage_set_op_code(t_carriage *self, t_arena *arena);

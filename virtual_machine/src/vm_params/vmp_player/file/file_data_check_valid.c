@@ -9,10 +9,10 @@
 
 static int		file_check_data_size(tt_file *self)
 {
-    ssize_t			min_size;
-    ssize_t			code_size;
-	char			*pointer_code_size;
-	ssize_t			data_file_size;
+    unsigned int			min_size;
+    unsigned int			code_size;
+	char		        	*pointer_code_size;
+	unsigned int			data_file_size;
 
 	min_size = COREWAR_EXEC_MAGIC_LENGTH
 		+ PROG_NAME_LENGTH
@@ -77,23 +77,11 @@ static int		file_data_magic_header_check(tt_file *self)
 
 int				file_data_check_valid(tt_file *self)
 {
-	int		result;
-
-	result = SUCCESS;
 	if (file_check_data_size(self))
-	{
-	    result = FAILURE;
 		raise(__FILE__, __LINE__, EWRONGSIZE);
-	}
 	else if (file_data_check_nulls(self))
-	{
-	    result = FAILURE;
 		raise(__FILE__, __LINE__, ENONULLS);
-	}
 	else if (file_data_magic_header_check(self))
-	{
-	    result = FAILURE;
 		raise(__FILE__, __LINE__, ENOMAGICH);
-	}
-	return result;
+	return SUCCESS;
 }

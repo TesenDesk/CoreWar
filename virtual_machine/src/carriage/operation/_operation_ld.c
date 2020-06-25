@@ -1,5 +1,10 @@
 #include "_operation.h"
 
+static void                perform_op(t_carriage *self, int *args)
+{
+    printf("P%5i | ld %i r%i\n", self->num, args[0], args[1] + 1);
+}
+
 void                    _operation_ld(t_carriage *self)
 {
 //    need change "2" to constant later
@@ -16,6 +21,7 @@ void                    _operation_ld(t_carriage *self)
         if (type_codes[0] == CODE_T_IND)
             args[0] = arena_get_n_bytes_from(self->arena, self->arena_position + args[0] % IDX_MOD, FOUR_BYTES);
 
+perform_op(self, args);
         if ((self->registers[args[1]] = args[0]) == 0)
             self->carry = 1;
         else
@@ -27,4 +33,5 @@ void                    _operation_ld(t_carriage *self)
         exit(1);
     }
     self->arena_position = (self->arena_position + op_len) % MEM_SIZE;
+
 }

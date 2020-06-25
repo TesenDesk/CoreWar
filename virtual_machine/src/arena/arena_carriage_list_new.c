@@ -17,7 +17,7 @@ t_list          *arena_carriage_list_new(t_arena *self)
     curr_carriage = NULL;
     while (i < self->nb_players)
     {
-        curr_carriage = carriage_new(i + 1, self, i * step);
+        curr_carriage = carriage_new(i + 1, self, i * step, i + 1);
         if ((new_node = ft_lstnew((void *) curr_carriage, sizeof(t_carriage))) == NULL)
             raise(__FILE__, __LINE__, ENOMEMORY);
         ft_lstadd(&head, new_node);

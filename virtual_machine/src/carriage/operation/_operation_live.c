@@ -12,6 +12,11 @@
 
 #include "_operation.h"
 
+static void                perform_op(t_carriage *self, int arg)
+{
+    printf("P%5i | live %i\n", self->num, arg);
+}
+
 void                    _operation_live(t_carriage *self)
 {
     int position;
@@ -28,6 +33,9 @@ void                    _operation_live(t_carriage *self)
     }
     vm_increase_num_of_live_ops(); // не нашел, нужно ли увеличивать счетчик лайвов, если для каретку лайв не успешный
     self->arena_position = (self->arena_position + op_len) % MEM_SIZE;
+
+
+    perform_op(self, arg);
 }
 
 

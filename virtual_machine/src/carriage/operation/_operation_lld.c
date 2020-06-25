@@ -1,5 +1,10 @@
 #include "_operation.h"
 
+static void                perform_op(t_carriage *self, int *args)
+{
+    printf("P%5i | lld %i r%i\n", self->num, args[0], args[1] + 1);
+}
+
 //don`t checked
 void                    _operation_lld(t_carriage *self)
 {
@@ -13,12 +18,13 @@ void                    _operation_lld(t_carriage *self)
         && type_codes[1] == CODE_T_REG)
     {
         if (type_codes[0] == CODE_T_IND)
-            args[0] = arena_get_n_bytes_from(self->arena, self->arena_position + args[0], FOUR_BYTES);
-
-        if ((self->registers[args[1]] = args[0]) == 0) // need or not set carry?????
+            args[0] = arena_get_n_bytes_from(self->arena, self->arena_position + args[0], TWO_BYTES); // like original vm
+//            args[0] = arena_get_n_bytes_from(self->arena, self->arena_position + args[0], FOUR_BYTES); // without problems
+perform_op(self, args);
+        if ((self->registers[args[1]] = args[0]) == 0)
             self->carry = 1;
         else
-                self->carry = 0;
+            self->carry = 0;
     }
     if (op_len <= 0)
     {

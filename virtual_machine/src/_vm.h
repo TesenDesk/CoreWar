@@ -42,6 +42,7 @@ typedef struct	s_vm
 	int         cycles_counter;
 	int         num_of_live_ops;
 	int         num_checks;
+	int         num_of_carriages;
 }				t_vm;
 
 t_vm		*_vm_new(int argc, char *argv[]);

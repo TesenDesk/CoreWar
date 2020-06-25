@@ -105,6 +105,7 @@ void 		    vm_play(t_vm *self)
         if (self->cycles_to_die <= self->cycles_counter)
         {
             if (vm_check(self) == FAILURE) {
+                arena_print_winner(self->arena);
                 break;
             }
         }

@@ -1,5 +1,12 @@
 #include "_operation.h"
 
+static void                perform_op(t_carriage *self, int *args)
+{
+    printf("P%5i | ldi %i %i r%i\n", self->num, args[0], args[1], args[2] + 1);
+    printf("       | -> load from %i + %i = %i (with pc and mod %i)\n",
+            args[0], args[1], args[0] + args[1], self->arena_position + (args[0] + args[1]) % IDX_MOD);
+}
+
 void            _operation_ldi(t_carriage *self)
 {
     //    need change "3" to constant later
@@ -20,7 +27,9 @@ void            _operation_ldi(t_carriage *self)
         if (type_codes[1] == CODE_T_REG)
             args[1] = self->registers[args[1]];
 
+perform_op(self, args);
         self->registers[args[2]] = self->arena_position + (args[0] + args[1]) % IDX_MOD;
+
     }
     if (op_len <= 0)
     {

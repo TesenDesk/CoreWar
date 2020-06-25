@@ -35,6 +35,7 @@ int         arena_get_n_bytes_from(t_arena *self, int pos, int num_of_bytes);
 
 void        arena_set_last_live_player(t_arena *self, int player_num);
 //void        arena_write_to_data(t_arena *self, int pos, int new_data, int size);
+void        arena_print_winner(t_arena *self);
 void        arena_write_four_bytes_to_data(t_arena *self, int pos, int new_data);
 
 
