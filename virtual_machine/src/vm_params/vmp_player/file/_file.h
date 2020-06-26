@@ -22,8 +22,8 @@
 typedef struct	s_file
 {
 	void		*data;
-	ssize_t		total;
-	ssize_t		capacity;
+	unsigned int		total;
+    unsigned int		capacity;
 	char		*file_name;
 	int			fd;
 	int			is_opened;

@@ -359,6 +359,7 @@ add_executable(corewar
         virtual_machine/src/arena/arena_new.c
         virtual_machine/src/arena/arena_op_code.c
         virtual_machine/src/arena/arena_print_dump.c
+        virtual_machine/src/arena/arena_print_winner.c
         virtual_machine/src/arena/arena_ser_unnamed_player.c
         virtual_machine/src/arena/arena_set_named_player.c
         virtual_machine/src/arena/arena_players_introducing.c
@@ -387,6 +388,7 @@ add_executable(corewar
         virtual_machine/src/carriage/operation/_operation_lld.c
         virtual_machine/src/carriage/operation/_operation_lldi.c
         virtual_machine/src/carriage/operation/_operation_lfork.c
+        virtual_machine/src/carriage/operation/_operation_aff.c
 #        virtual_machine/src/carriage/operation/operation_destroy.c
 #        virtual_machine/src/carriage/operation/operation_new.c
         virtual_machine/src/carriage/type_cut/_type_cut.h
@@ -451,6 +453,7 @@ add_executable(corewar
 #        virtual_machine/src/vm_params/vm_params_detroy.c
         virtual_machine/src/vm_params/vm_params_named_sorted_array_of_players.c
         virtual_machine/src/vm_params/vm_params_nb_players.c
+        virtual_machine/src/vm_params/vm_params_dump_cycles.c
         virtual_machine/src/vm_params/vm_params_new.c
         virtual_machine/src/_vm.h
         virtual_machine/src/_vm_destroy.c
@@ -460,5 +463,6 @@ add_executable(corewar
         virtual_machine/src/vm_singleton.c
         virtual_machine/src/vm_add_new_carriage_node.c
         virtual_machine/src/vm_increase_num_of_live_ops.c
+        virtual_machine/src/vm_num_of_carriages.c
 #        virtual_machine/test/main_test.c
         virtual_machine/src/carriage/operation/_operation_aff.c main_asm.c interfaces/codegen.h)

@@ -19,7 +19,7 @@ void				operation_dispatched(t_carriage *self)
                     _operation_lld,
                     _operation_lldi,
                     _operation_lfork,
-//                    _operation_aff,
+                    _operation_aff,
             };
     operations[self->op_code - 1](self);
 }

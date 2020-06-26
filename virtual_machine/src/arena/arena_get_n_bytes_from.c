@@ -14,15 +14,17 @@ int         arena_get_n_bytes_from(t_arena *self, int pos, int num_of_bytes)
         raise(__FILE__, __LINE__, ENOMEMORY); // dont forget change ERRMSGINDEX
     }
     if (pos < 0)
-        pos = MEM_SIZE + pos;
+        pos = MEM_SIZE + pos % MEM_SIZE;
 
     data = (char*)(self->data);
     four_bytes = data[pos % MEM_SIZE];
     i = 1;
+//    four_bytes = 0;
+//    i = 0;
     while (i < num_of_bytes)
     {
         four_bytes = four_bytes << EIGHT_BITS;
-        four_bytes |= data[(pos + i) % MEM_SIZE];
+        four_bytes |= (int)data[(pos + i) % MEM_SIZE] & 0xff;
         i++;
     }
     return four_bytes;

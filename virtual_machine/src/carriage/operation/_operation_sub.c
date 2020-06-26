@@ -1,6 +1,10 @@
 #include "_operation.h"
 
-//don`t checked
+static void                perform_op(t_carriage *self, int *args)
+{
+    printf("P%5i | sub r%i r%i r%i\n", self->num, args[0] + 1, args[1] + 1, args[2] + 1);
+}
+
 void            _operation_sub(t_carriage *self)
 {
     //    need change "3" to constant later
@@ -19,6 +23,7 @@ void            _operation_sub(t_carriage *self)
             self->carry = 1;
         else
             self->carry = 0;
+        perform_op(self, args);
     }
     if (op_len <= 0)
     {

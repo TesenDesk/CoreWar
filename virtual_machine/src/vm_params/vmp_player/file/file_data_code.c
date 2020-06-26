@@ -12,7 +12,8 @@ void		*file_data_code(tt_file *self)
 	char		*code_in_data;
 	char		*code;
 	char		*code_size_in_data;
-	size_t		code_size;
+//	size_t		code_size;
+	unsigned int		code_size;
 
 	code_in_data = (char*)(self->data)
 		+ COREWAR_EXEC_MAGIC_LENGTH
@@ -25,7 +26,7 @@ void		*file_data_code(tt_file *self)
 		+ COREWAR_EXEC_MAGIC_LENGTH
 		+ PROG_NAME_LENGTH
 		+ NULL_LENGTH;
-	code_size = (size_t)*(int*)code_size_in_data;
+	code_size = *(unsigned int*)code_size_in_data;
 	code_size = (int)((code_size << 24)
 		| ((code_size & 0xff00) << 8)
 		| ((code_size & 0xff0000) >> 8)

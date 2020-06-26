@@ -14,16 +14,20 @@
 #include "_carriage.h"
 
 t_carriage		*carriage_new(int player_name, t_arena *arena,
-                             int arena_position)
+                             int arena_position, int num)
 {
     t_carriage	*self;
 
     if ((self = (t_carriage *)ft_memalloc(sizeof(*self))) == NULL)
         raise(__FILE__, __LINE__, ENOMEMORY);
+    self->num = num;
     self->arena = arena;
     self->player_name = player_name;
     self->registers[0] = -self->player_name;
+    if (arena_position < 0)
+        arena_position = MEM_SIZE + arena_position % MEM_SIZE;
+    else if (arena_position >= MEM_SIZE)
+        arena_position = arena_position % MEM_SIZE;
     self->arena_position = arena_position;
-//    self->op_tab =
     return (self);
 }

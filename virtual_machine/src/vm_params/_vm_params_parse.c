@@ -121,15 +121,15 @@ static int 				_vm_params_flag_name(t_vm_params *self, char *param)
 }
 
 
-static int 				_vm_params_dump_init(t_vm_params *self, char *param)
-{
+//static int 				_vm_params_dump_init(t_vm_params *self, char *param)
+//{
+//
+//}
 
-}
-
-static int 				_vm_params_dump_done(t_vm_params *self, char *param)
-{
-
-}
+//static int 				_vm_params_dump_done(t_vm_params *self, char *param)
+//{
+//
+//}
 
 
 static int 				_vm_params_flag_name_done(t_vm_params *self, char *param)
@@ -217,8 +217,10 @@ int 					_vmp_state(t_vm_params *self, int argtype)
 		else
 			raise(__FILE__, __LINE__, ENOARGVAL);
 	}
+
+//	fast fix dont know why didnt return before
+    return FAILURE;
 }
-//
 
 void					_vm_params_parse(t_vm_params *self, char **params)
 {

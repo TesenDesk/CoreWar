@@ -29,6 +29,8 @@ void			vm_params_fill_and_sort_array_of_players(t_vm_params *self,
 void			vm_params_add_player_name_node(t_vm_params *self,
 					t_vmp_player *player);
 //int 			vm_params_dump_cycles(t_vm_params *self);
+int 			vm_params_dump_cycles(t_vm_params *self);
+
 
 
 #endif
