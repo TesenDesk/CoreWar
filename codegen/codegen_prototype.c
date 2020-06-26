@@ -380,8 +380,7 @@ static void			codegen_ending(t_codegen *data)
 		 */
 //		cell_size = ld->param_type == TOKEN_TDIR_LAB && ld->size == 1 ? 4 : 2;
 
-		cell_size = ld->param_type == ((TOKEN_TDIR_LAB && ld->size == 2) || ld->param_type ==
-				TOKEN_TIND_LAB) ? 4 : 2;
+		cell_size = (ld->param_type == TOKEN_TDIR_LAB && ld->size == 1) ? 4 : 2;
 		rotate_bytes(&tmp, cell_size);
 		if (cell_size == 2) {
 			short temp = (short)tmp;

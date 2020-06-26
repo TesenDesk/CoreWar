@@ -60,13 +60,24 @@ int main(int ac, char **av)
     t_vector		*text;
     t_analyser      *analyser;
 	t_vector		vtr;
+	int             count = 1;
+	/*
+	 * count для теста
+	 */
 
 
-	map = ft_hash_map_ctor(HASH_CONST);
-	ft_vector_init(&vtr);
-	analyser = analyser_singleton_instance(ANALYSER_INSTANTIATE);
-	text = analyse_text(analyser, &vtr, map, (read_code(open(av[1], O_RDONLY))));
-	generate_code(map, text, av[1]);
+//	map = ft_hash_map_ctor(HASH_CONST);
+//	ft_vector_init(&vtr);
+//	analyser = analyser_singleton_instance(ANALYSER_INSTANTIATE);
+	while (count < ac) {
+		map = ft_hash_map_ctor(HASH_CONST);
+		ft_vector_init(&vtr);
+		analyser = analyser_singleton_instance(ANALYSER_INSTANTIATE);
+		text = analyse_text(analyser, &vtr, map, (read_code(open(av[count], O_RDONLY))));
+		generate_code(map, text, av[count]);
+		analyser_singleton_instance(ANALYSER_DESTRUCT);
+		++count;
+	}
 
 	return (SUCCESS);
 }
