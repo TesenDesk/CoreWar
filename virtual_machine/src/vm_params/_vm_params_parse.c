@@ -174,7 +174,7 @@ static int 				_vm_params_flag_verbose(t_vm_params *self, char *param)
 	num = ft_atol(param);
 	if (!(ft_arg_is_num(param)))
 		raise(__FILE__, __LINE__, ENOARGVAL);
-	self->nb_cycles = num;
+	self->verbosity_lvl = 2;
 	return (FLAG_NUM_CODE);
 
 }
@@ -237,7 +237,6 @@ void					_vm_params_parse(t_vm_params *self, char **params)
 			_vm_params_flag_verbose,
 			_vm_params_dump_cycles,
 	};
-//	printf("\n\n\n\n\n\n\n\n\n");
 	if (!(*params))
 	{
 		printf(USAGE_STR);
