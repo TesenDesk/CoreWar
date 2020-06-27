@@ -28,11 +28,11 @@ void            _operation_xor(t_carriage *self)
         else if (type_codes[1] == CODE_T_IND)
             args[1] = arena_get_n_bytes_from(self->arena, self->arena_position + args[1] % IDX_MOD, FOUR_BYTES);
 
+perform_op(self, args);
         if ((self->registers[args[2]] = args[0] ^ args[1]) == 0)
             self->carry = 1;
         else
             self->carry = 0;
-perform_op(self, args);
     }
     if (op_len <= 0)
     {

@@ -1,6 +1,6 @@
 #include "_operation.h"
 
-static void                perform_op(t_carriage *self, int arg, int position)
+static void                print_op_log(t_carriage *self, int arg, int position)
 {
     printf("P%5i | lfork %i (%i)\n", self->num, arg, position);
 }
@@ -36,7 +36,7 @@ void            _operation_lfork(t_carriage *self)
     arg = arena_get_n_bytes_from(self->arena, self->arena_position + ONE_BYTE, TWO_BYTES);
     position = (self->arena_position + arg) % MEM_SIZE;
 
-perform_op(self, arg, position);
+print_op_log(self, arg, position);
 
     new_carriage = carriage_new(self->player_name, self->arena, position, vm_num_of_carriages_and_increase());
     _fill_new_carriage(self, new_carriage);

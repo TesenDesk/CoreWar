@@ -12,7 +12,7 @@
 
 #include "_operation.h"
 
-static void                perform_op(t_carriage *self, int arg)
+static void                print_op_log(t_carriage *self, int arg)
 {
     printf("P%5i | live %i\n", self->num, arg);
 }
@@ -35,7 +35,7 @@ void                    _operation_live(t_carriage *self)
     self->arena_position = (self->arena_position + op_len) % MEM_SIZE;
 
 
-    perform_op(self, arg);
+    print_op_log(self, arg);
 }
 
 

@@ -1,6 +1,6 @@
 #include "_operation.h"
 
-static void                perform_op(t_carriage *self, int *args)
+static void                print_op_log(t_carriage *self, int *args)
 {
     printf("P%5i | add r%i r%i r%i\n", self->num, args[0] + 1, args[1] + 1, args[2] + 1);
 }
@@ -17,12 +17,12 @@ void            _operation_add(t_carriage *self)
         && type_codes[1] == CODE_T_REG
         && type_codes[2] == CODE_T_REG)
     {
+print_op_log(self, args);
         sum = self->registers[args[0]] + self->registers[args[1]];
         if ((self->registers[args[2]] = sum) == 0)
             self->carry = 1;
         else
             self->carry = 0;
-        perform_op(self, args);
     }
     if (op_len <= 0)
     {

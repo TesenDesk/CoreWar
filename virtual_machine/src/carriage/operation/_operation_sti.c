@@ -1,6 +1,6 @@
 #include "_operation.h"
 
-static void                perform_op(t_carriage *self, int *args)
+static void                print_op_log(t_carriage *self, int *args)
 {
     printf("P%5i | sti r%i %i %i\n", self->num, args[0] + 1, args[1], args[2]);
     printf("       | -> store to %i + %i = %i (with pc and mod %i)\n",
@@ -29,7 +29,7 @@ void            _operation_sti(t_carriage *self)
 
         if (type_codes[2] == CODE_T_REG)
             args[2] = self->registers[args[2]];
-perform_op(self, args);
+print_op_log(self, args);
         position = self->arena_position + (args[1] + args[2]) % IDX_MOD;
         arena_write_four_bytes_to_data(self->arena, position, self->registers[args[0]]);
     }

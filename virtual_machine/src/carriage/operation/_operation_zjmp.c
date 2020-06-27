@@ -1,6 +1,6 @@
 #include "_operation.h"
 
-static void                perform_op(t_carriage *self, int arg)
+static void                print_op_log(t_carriage *self, int arg)
 {
     if (self->carry)
         printf("P%5i | zjmp %i OK\n", self->num, arg);
@@ -20,5 +20,5 @@ void                    _operation_zjmp(t_carriage *self)
     else
         self->arena_position = (self->arena_position + op_len) % MEM_SIZE;
 
-    perform_op(self, arg);
+print_op_log(self, arg);
 }
