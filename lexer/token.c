@@ -67,3 +67,5 @@ void				*get_begin(t_token *token)
 {
 	return (token->token_ptr[0]);
 }
+
+//void                *token_set_value(t_token *token, )

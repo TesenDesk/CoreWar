@@ -5,10 +5,11 @@
 #include <unistd.h>
 #include "token.h"
 #include "lexer.h"
-#include "lexer_private.h"
-#include "./parser/expr_private.h"
+#include "codegen.h"
+//#include "lexer_private.h"
+//#include "./parser/expr_private.h"
 #include "parser.h"
-#include "./parser/parser_private.h"
+//#include "./parser/parser_private.h"
 #include "analyser.h"
 
 char        *read_code(int fd)

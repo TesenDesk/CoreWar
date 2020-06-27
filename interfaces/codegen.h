@@ -5,13 +5,13 @@
 #ifndef CORE_CODEGEN_H
 #define CORE_CODEGEN_H
 
-#include "../virtual_machine/include/op.h"
-#include "libft.h"
-#include "expr.h"
-#include "expr_defines.h"
-#include "../parser/expr_private.h"
+#include <stdlib.h>
+#include "op.h"
 
 typedef struct		s_codegen t_codegen;
+typedef struct      s_vector  t_vector;
+typedef struct      s_hash_map t_hash_map;
+
 
 void            generate_code(t_hash_map *map, t_vector *text, char *filename);
 #endif //CORE_CODEGEN_H

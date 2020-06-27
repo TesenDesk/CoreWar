@@ -5,60 +5,61 @@
 		makevisual
 
 #======================Folders & Files=========================================#
-NAME        :=  corewar
-MAIN        :=  main.c
+NAME        :=  asm
+MAIN        :=  main_asm.c
 LABEL       :=	CoreWar
 WORKDIR     :=  ./
 LIBDIR      :=	$(WORKDIR)libft/
 HEADERDIR   :=	$(WORKDIR)#includes/
 LIB         :=  $(LIBDIR)libft.a
-LEX_SRC     :=	lexer_get_term_name_cmd.c \
+LEX_SRC     := 	lexer.c \
+				lexer_get_term_arg_break.c \
+				lexer_get_term_arg_dir.c \
+				lexer_get_term_arg_ind.c \
+				lexer_get_term_arg_reg.c \
+				lexer_get_term_ch_comment.c \
 				lexer_get_term_ch_name.c \
 				lexer_get_term_com_cmd.c \
 				lexer_get_term_comment.c \
-				lexer.c \
+				lexer_get_term_init.c \
+				lexer_get_term_label_word_unit.c \
+				lexer_get_term_line_feed.c \
+				lexer_get_term_name_cmd.c \
+				lexer_get_term_opx_multy.c \
+				lexer_singleton_instance.c \
 				lexer_utils_1.c \
 				lexer_utils_2.c \
-				lexer_get_term_init.c \
-				lexer_singleton_instance.c \
-				lexer_get_term_opx_multy.c \
-				lexer_get_term_arg_dir.c \
-				lexer_get_term_arg_ind.c \
-				lexer_get_term_arg_break.c \
-				lexer_get_term_ch_comment.c \
-				lexer_get_term_line_feed.c \
-				lexer_get_term_arg_reg.c \
-				lexer_get_term_label_word_unit.c \
-				token.c \
-				token_name_init.c \
-				lexer_xtor_private.c
+				lexer_xtor_private.c \
+				token.c
 LEX_OBJ     :=  $(patsubst %.c, %.o, $(LEX_SRC))
 LEX_DIR_OBJ :=  $(addprefix ./lexer/, $(LEX_OBJ))
 PARS_SRC :=	_parser_change_state.c \
-			_parser_get_token_op0_load.c \
-			_parser_get_token_op1_lodi.c \
-			_parser_get_token_op2_stri.c \
 			_parser_get_token_eof.c \
-			_parser_get_token_op0_lodi.c \
-			_parser_get_token_op1_logc.c \
-			expr.c \
 			_parser_get_token_init.c \
-			_parser_get_token_op0_logc.c \
-			_parser_get_token_op1_stor.c \
-			_parser_xtor.c \
+			_parser_get_token_labw.c \
 			_parser_get_token_line_end.c \
-			_parser_get_token_op0_stor.c \
-			_parser_get_token_op1_stri.c \
 			_parser_get_token_op0_afct.c \
-			_parser_get_token_op0_stri.c \
-			_parser_get_token_op2_arit.c \
 			_parser_get_token_op0_arit.c \
-			_parser_get_token_op1_arit.c \
-			_parser_get_token_op2_lodi.c \
-			expr_set_arg.c \
 			_parser_get_token_op0_life.c \
+			_parser_get_token_op0_load.c \
+			_parser_get_token_op0_lodi.c \
+			_parser_get_token_op0_logc.c \
+			_parser_get_token_op0_stor.c \
+			_parser_get_token_op0_stri.c \
+			_parser_get_token_op1_arit.c \
 			_parser_get_token_op1_load.c \
+			_parser_get_token_op1_lodi.c \
+			_parser_get_token_op1_logc.c \
+			_parser_get_token_op1_stor.c \
+			_parser_get_token_op1_stri.c \
+			_parser_get_token_op2_arit.c \
+			_parser_get_token_op2_lodi.c \
 			_parser_get_token_op2_logc.c \
+			_parser_get_token_op2_stri.c \
+			_parser_xtor.c \
+			_expr.c \
+			_expr_set_arg.c \
+			_parser_get_token_op0_life.c \
 			parser.c \
 			parser_singleton_instance.c
 PARS_OBJ     :=  $(patsubst %.c, %.o, $(PARS_SRC))
@@ -77,6 +78,12 @@ ANALYSER_SRC := _analyser_change_state.c \
                 analyser_singleton_instance.c
 ANALYSER_OBJ :=  $(patsubst %.c, %.o, $(ANALYSER_SRC))
 ANALYSER_DIR_OBJ :=  $(addprefix ./analyser/, $(ANALYSER_OBJ))
+
+
+CODEGEN_SRC :=	codegen_prototype.c
+CODEGEN_OBJ :=  $(patsubst %.c, %.o, $(CODEGEN_SRC))
+CODEGEN_DIR_OBJ :=  $(addprefix ./codegen/, $(CODEGEN_OBJ))
+
 
 
 
@@ -128,7 +135,7 @@ debmsg:
 # $(PARS_DIR_OBJ): %.o: %.c
 # 		@cc -c $(FLAGS)  $< -o $@
 
-$(NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(CHK_DIR_OBJ) $(ANALYSER_DIR_OBJ) $(MAIN) $(LIB)
+$(NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(CHK_DIR_OBJ) $(ANALYSER_DIR_OBJ) $(CODEGEN_DIR_OBJ) $(MAIN) $(LIB)
 		@printf "$(PREFIX)📦  Building $(NAME)...\n"
 		@printf "Building $(LEX_DIR_OBJ).$(LEX_OBJ).\n"
 
@@ -147,6 +154,10 @@ $(CHK_DIR_OBJ): %.o: %.c
 		gcc -c $(FLAGS) -I$(INTERFACE) $(LIBFLAGS)  $<  -o $@
 
 $(ANALYSER_DIR_OBJ): %.o: %.c
+		gcc -c $(FLAGS) -I$(INTERFACE) $(LIBFLAGS)  $<  -o $@
+
+
+$(CODEGEN_DIR_OBJ): %.o: %.c
 		gcc -c $(FLAGS) -I$(INTERFACE) $(LIBFLAGS)  $<  -o $@
 
 

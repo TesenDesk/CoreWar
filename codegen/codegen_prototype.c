@@ -1,19 +1,19 @@
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "hicpp-signed-bitwise" // todo: Hey? Delete this!
+//#pragma clang diagnostic push
+//#pragma ide diagnostic ignored "hicpp-signed-bitwise" // todo: Hey? Delete this!
 
 //
 // Created by Jhiqui Jerde on 21/02/2020.
 //
 
-#include <token_private.h>
-#include "codegen_prototype.h"
+//#include <token_private.h>
+//#include "codegen_prototype.h"
 #include "codegen_private.h"
 #include "token_defines.h"
 #include "../virtual_machine/include/op.h"
-#include "expr.h"
+//#include "_expr.h"
 #include "expr_defines.h"
-#include "op.h"
-#include "../parser/expr_private.h"
+//#include "op.h"
+//#include "../parser/expr_private.h"
 
 static void		rotate_four_bytes(unsigned int *p)
 {
@@ -22,15 +22,7 @@ static void		rotate_four_bytes(unsigned int *p)
 	int second = ((*p & 0xff000000) >> 24);
 	int third = 	((*p & 0x0000ff00) << 8);
 	int fourth = ((*p & 0x00ff0000) >> 8);
-//	printf("%x %x %x %x\n", first, third, fourth, second);
-	/*
-	 * в обратную сторону???
-	 */
-//	printf("*p:%d\n", *p);
 	*p = second | fourth | third | first;
-//	printf("*p:%d\n", *p);
-//				 *p = ((*p & 0x000000ff)) << 24 | ((*p & 0xff000000) >> 24) | ((*p & 0x0000ff00) << 8) | ((*p & 0x00ff0000) >> 8);
-//	*p = (*p << 24) | (*p >> 24);
 }
 
 static void		rotate_two_bytes(unsigned short *p)
@@ -107,7 +99,7 @@ void		ft_printbits(char n, int count)
 {
 	while (count--)
 	{
-		printf("%c", ft_checkbit(n, count) + '0');
+//		printf("%c", ft_checkbit(n, count) + '0');
 		if (!(count % 4 && count))
 			ft_putchar(' ');
 	}
@@ -181,7 +173,6 @@ static void		write_address_to_free_label(t_codegen *data, t_expr *label)
 	if (!(tmp = (t_code_addr*)malloc(sizeof(t_code_addr))))
 		exit(-1);
 	tmp->addr = data->add;
-	printf("codegen, addr:%d, val:%s\n", tmp->addr, token->val);
 	ft_hash_map_set_content(data->labels_free, token->val, (tmp));
 }
 
@@ -247,13 +238,10 @@ static void		fill_dirind_param(t_codegen *data, t_arg *param, char dir_type)
 
 
 	num_arg = ft_atol(((t_token *)param->value)->val);
-//	if (param->type == TOKEN_TIND_INT)
-//		num_arg %= IDX_MOD;
 	if (param->type == TOKEN_TREG)
 		cell_size = 1;
 	else
 		cell_size = param->type == TOKEN_TDIR_INT && dir_type == 1 ? 4 : 2;
-	printf("cell_type:%d, num_arg:%d\n", cell_size, num_arg);
 	rotate_bytes(&num_arg, cell_size);
 	if (cell_size == 2) {
 		short s = (short)num_arg;
@@ -371,7 +359,7 @@ static void			codegen_ending(t_codegen *data)
 	while ((ld = ft_vector_get(data->labels_ptrs, ++i)))
 	{
 		add = (int)(((t_code_addr*)ft_hash_map_get(data->labels_free, ld->name))->addr);
-		printf("add_addr:%d, val:%s, instr:%d\n", add, ld->name, ld->instruction_begining);
+//		printf("add_addr:%d, val:%s, instr:%d\n", add, ld->name, ld->instruction_begining);
 		tmp = (add - ld->instruction_begining);
 		if (ld->param_type == TOKEN_TIND_LAB)
 			tmp %= IDX_MOD;
@@ -430,7 +418,6 @@ void            init_header(header_t *header, t_vector*text)
     ft_memcpy(header->prog_name, name, ft_strlen(name));
     ft_memcpy(header->comment, comment, ft_strlen(comment));
     header->magic = COREWAR_EXEC_MAGIC;
-//    printf("%d\n");
 }
 
 int         ar_len(char *ar)
@@ -458,15 +445,15 @@ void        write_code_to_file(char* exec,int code_size,char * filename)
     if (!(root = ft_memalloc(ft_strlen(filename) - 1)))
     	exit(-1);
     if (ft_strncmp(filename + ft_strlen(filename) - 2, ".s", 2) != 0){
-	    printf("bad filename or format\n");
+//	    printf("bad filename or format\n");
 	    exit(-1);
     }
     root = ft_strncpy(root, filename, ft_strlen(filename)  - 2);
     new_name = ft_strjoin(root, ".cor");
     free(root);
-    printf("!!!!!!!!!!!!!!!%s\n", new_name);
+//    printf("!!!!!!!!!!!!!!!%s\n", new_name);
     if (!(fd = open(new_name, O_WRONLY | O_CREAT))){
-    	printf("can' open/create a file\n");
+//    	printf("can' open/create a file\n");
     	exit(-1);
     }
     write(fd, exec, code_size);

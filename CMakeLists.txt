@@ -42,7 +42,7 @@ add_executable(corewar
         codegen/codegen_prototype.h
         codegen/codegen_prototype.c
         interfaces/analyser.h
-        interfaces/expr.h
+        interfaces/_expr.h
         interfaces/expr_defines.h
         interfaces/label_checker.h
         interfaces/lexer.h
@@ -315,9 +315,9 @@ add_executable(corewar
         parser/_parser_get_token_op2_logc.c
         parser/_parser_get_token_op2_stri.c
         parser/_parser_xtor.c
-        parser/expr.c
+        parser/_expr.c
         parser/expr_private.h
-        parser/expr_set_arg.c
+        parser/_expr_set_arg.c
         parser/parser.c
         parser/parser_private.h
         parser/parser_singleton_instance.c
@@ -465,4 +465,7 @@ add_executable(corewar
         virtual_machine/src/vm_increase_num_of_live_ops.c
         virtual_machine/src/vm_num_of_carriages.c
 #        virtual_machine/test/main_test.c
-        virtual_machine/src/carriage/operation/_operation_aff.c main_asm.c interfaces/codegen.h)
+        virtual_machine/src/carriage/operation/_operation_aff.c
+        main_asm.c
+#        main_vm.c
+        interfaces/codegen.h)

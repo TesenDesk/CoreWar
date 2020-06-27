@@ -6,12 +6,10 @@
 #define GIT_CODEGEN_PRIVATE_H
 
 #include "codegen.h"
-
 #define T_REG_CODE		1
 #define T_DIR_CODE		2
 #define T_IND_CODE		3
 
-#include "codegen.h"
 
 #define IND_PARAM_SIZE	2
 #define DIR_PARAM_SIZE	4
@@ -53,5 +51,21 @@ typedef struct		s_codegen
 	t_vector		*labels_ptrs;
 	header_t		*header;
 }					t_codegen;
+
+
+typedef struct		s_label_data
+{
+	char			*name;
+	unsigned int	add;
+	unsigned int	instruction_begining;
+	int 			size;
+	int				param_type;
+}					t_label_data;
+
+typedef union			u_code_addr
+{
+	void				*content;
+	unsigned int		addr;
+}						t_code_addr;
 
 #endif //GIT_CODEGEN_PRIVATE_H
