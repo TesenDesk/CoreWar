@@ -40,6 +40,7 @@ typedef struct	s_vm
 	int         cycles_to_die;
 	int         cycles_to_dump;
 	int         cycles_counter;
+	int         global_counter;
 	int         num_of_live_ops;
 	int         num_checks;
 	int         num_of_carriages;

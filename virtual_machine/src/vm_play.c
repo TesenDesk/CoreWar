@@ -14,7 +14,7 @@
 #include "_vm.h"
 #include "arena/_arena.h"
 
-void            destroy_dead_carriages(t_list **head)
+void            destroy_dead_carriages(t_list **head, int cycles_to_die, int counter)
 {
     t_list      *current;
     t_list      *previous;
@@ -23,7 +23,7 @@ void            destroy_dead_carriages(t_list **head)
     previous = NULL;
     while (current)
     {
-        if (carriage_is_alive(current->content) == FALSE)
+        if (carriage_is_alive(current->content, cycles_to_die, counter) == FALSE)
         {
             if (previous == NULL)
             {
@@ -48,28 +48,19 @@ void            destroy_dead_carriages(t_list **head)
 
 int             vm_check(t_vm *self)
 {
-    if (self->cycles_to_die <= 0)
-    {
-        ft_lstdel(&(self->carriage_head), carriage_destroy);
-        return (FAILURE);
-    }
-
-    destroy_dead_carriages(&(self->carriage_head));
+    destroy_dead_carriages(&(self->carriage_head), self->cycles_to_die, self->global_counter);
     if (self->carriage_head == NULL) // all carriages dead
         return (FAILURE);
 
-    if (self->num_checks == MAX_CHECKS // cycles_to_die менялась MAX_CHECKS проверок(vm_check) назад
+    if (self->num_checks >= MAX_CHECKS // cycles_to_die менялась MAX_CHECKS проверок(vm_check) назад
             || self->num_of_live_ops >= NBR_LIVE) // число операций live слишко большое
     {
         self->num_checks = 0;
         self->cycles_to_die -= CYCLE_DELTA;
     }
-    else
-        self->num_checks += 1;
-
+    self->num_checks += 1;
     self->num_of_live_ops = 0;
-//    self->cycles_counter = 0;
-    self->cycles_counter = 1;  // need or no??? check later
+    self->cycles_counter = 0;
     return (SUCCESS);
 }
 
@@ -80,20 +71,17 @@ void            vm_next_cycle(t_vm *self)
     list = self->carriage_head;
     while (list)
     {
-        self->num_of_live_ops += carriage_take_step(list->content);
+        carriage_take_step(list->content);
         list = list->next;
     }
-    self->cycles_counter += 1;
-    self->cycles_to_dump -= 1;
 }
 
 void 		    vm_play(t_vm *self)
 {
     arena_players_introducing(self->arena);
     self->cycles_to_die = CYCLE_TO_DIE;
-    self->cycles_counter = 1;  // need or no??? check later
-//    arena_print_dump(self->arena);
-//    need_tp set to arena->last_live_player = arena->nb_players;
+    self->cycles_counter = 1;
+    self->global_counter = 1;
     while (TRUE)
     {
         if (self->cycles_to_dump == 0)
@@ -109,5 +97,8 @@ void 		    vm_play(t_vm *self)
                 break;
             }
         }
+        self->global_counter += 1;
+        self->cycles_counter += 1;
+        self->cycles_to_dump -= 1;
     }
 }

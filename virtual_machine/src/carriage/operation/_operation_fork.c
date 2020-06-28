@@ -2,7 +2,7 @@
 
 static void                print_op_log(t_carriage *self, int arg, int position)
 {
-    printf("P%5i | fork %i (%i)\n", self->num, arg, position);
+    printf("P %4i | fork %i (%i)\n", self->num, arg, position);
 }
 
 //don`t checked
@@ -38,6 +38,7 @@ void            _operation_fork(t_carriage *self)
     position = (arg % IDX_MOD + self->arena_position) % MEM_SIZE;
 
 print_op_log(self, arg, position);
+//    position = arg % IDX_MOD;
 
     new_carriage = carriage_new(self->player_name, self->arena, position, vm_num_of_carriages_and_increase());
     _fill_new_carriage(self, new_carriage);

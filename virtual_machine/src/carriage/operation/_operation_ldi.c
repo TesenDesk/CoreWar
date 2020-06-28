@@ -2,7 +2,7 @@
 
 static void                print_op_log(t_carriage *self, int *args)
 {
-    printf("P%5i | ldi %i %i r%i\n", self->num, args[0], args[1], args[2] + 1);
+    printf("P %4i | ldi %i %i r%i\n", self->num, args[0], args[1], args[2] + 1);
     printf("       | -> load from %i + %i = %i (with pc and mod %i)\n",
             args[0], args[1], args[0] + args[1], self->arena_position + (args[0] + args[1]) % IDX_MOD);
 }
@@ -28,7 +28,8 @@ void            _operation_ldi(t_carriage *self)
             args[1] = self->registers[args[1]];
 
 print_op_log(self, args);
-        self->registers[args[2]] = self->arena_position + (args[0] + args[1]) % IDX_MOD;
+
+        self->registers[args[2]] = arena_get_n_bytes_from(self->arena, self->arena_position + (args[0] + args[1]) % IDX_MOD, FOUR_BYTES);
 
     }
     if (op_len <= 0)

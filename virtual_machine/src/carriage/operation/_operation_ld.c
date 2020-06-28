@@ -2,7 +2,7 @@
 
 static void                print_op_log(t_carriage *self, int *args)
 {
-    printf("P%5i | ld %i r%i\n", self->num, args[0], args[1] + 1);
+    printf("P %4i | ld %i r%i\n", self->num, args[0], args[1] + 1);
 }
 
 void                    _operation_ld(t_carriage *self)
@@ -21,7 +21,8 @@ void                    _operation_ld(t_carriage *self)
         if (type_codes[0] == CODE_T_IND)
             args[0] = arena_get_n_bytes_from(self->arena, self->arena_position + args[0] % IDX_MOD, FOUR_BYTES);
 
-        print_op_log(self, args);
+print_op_log(self, args);
+
         if ((self->registers[args[1]] = args[0]) == 0)
             self->carry = 1;
         else

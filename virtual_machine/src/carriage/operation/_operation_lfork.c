@@ -2,7 +2,7 @@
 
 static void                print_op_log(t_carriage *self, int arg, int position)
 {
-    printf("P%5i | lfork %i (%i)\n", self->num, arg, position);
+    printf("P %4i | lfork %i (%i)\n", self->num, arg, position);
 }
 //don`t checked
 static void            _fill_new_carriage(t_carriage *old, t_carriage *new)
@@ -34,7 +34,7 @@ void            _operation_lfork(t_carriage *self)
 
     op_len = ONE_BYTE + TWO_BYTES;
     arg = arena_get_n_bytes_from(self->arena, self->arena_position + ONE_BYTE, TWO_BYTES);
-    position = (self->arena_position + arg) % MEM_SIZE;
+    position = self->arena_position + arg;
 
 print_op_log(self, arg, position);
 
