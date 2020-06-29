@@ -84,8 +84,9 @@ int                    _operation_precheck_args(t_carriage *self, int *args, cha
         }
         else
         {
-            return FAILURE;
-//            result = FAILURE;
+//            return FAILURE;
+            result = FAILURE;
+            args[i] = 0;
 //            break;
         }
         i++;

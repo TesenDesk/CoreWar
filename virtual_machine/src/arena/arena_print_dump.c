@@ -52,7 +52,8 @@ void			arena_print_dump(t_arena *self)
         {
             buffer[i] = EOL;
             i = PREFIX_SIZE;
-            write(1, buffer, buffer_len);
+//            write(1, buffer, buffer_len);
+            printf("%s", buffer);
             set_index_in_buffer(buffer, index);
         }
         else

@@ -31,10 +31,10 @@ void                    _operation_live(t_carriage *self)
         arena_set_last_live_player(self->arena, self->player_name);
     }
     self->last_live_cycle = vm_global_counter();
+    vm_increase_num_of_live_ops(); // не нашел, нужно ли увеличивать счетчик лайвов, если для каретку лайв не успешный
 
 print_op_log(self, arg);
 
-    vm_increase_num_of_live_ops(); // не нашел, нужно ли увеличивать счетчик лайвов, если для каретку лайв не успешный
 
     self->arena_position = (self->arena_position + op_len) % MEM_SIZE;
 }

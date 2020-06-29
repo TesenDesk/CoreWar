@@ -52,13 +52,13 @@ int             vm_check(t_vm *self)
     if (self->carriage_head == NULL) // all carriages dead
         return (FAILURE);
 
+    self->num_checks += 1;
     if (self->num_checks >= MAX_CHECKS // cycles_to_die менялась MAX_CHECKS проверок(vm_check) назад
             || self->num_of_live_ops >= NBR_LIVE) // число операций live слишко большое
     {
         self->num_checks = 0;
         self->cycles_to_die -= CYCLE_DELTA;
     }
-    self->num_checks += 1;
     self->num_of_live_ops = 0;
     self->cycles_counter = 0;
     return (SUCCESS);

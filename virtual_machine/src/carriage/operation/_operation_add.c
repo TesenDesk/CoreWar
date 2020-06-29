@@ -31,5 +31,7 @@ print_op_log(self, args);
         printf("SOMETHING WRONG WITH OP_LEN IN _OPERATION_ADD\n");
         exit(1);
     }
+//op_len = ONE_BYTE + ONE_BYTE + THREE_BYTES;
+
     self->arena_position = (self->arena_position + op_len) % MEM_SIZE;
 }
