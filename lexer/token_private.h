@@ -14,6 +14,7 @@
 #define TOKEN_PRIVATE_H
 
 #include "token.h"
+#include "token_defines.h"
 
 //#define UNDEF_TOKEN -1
 

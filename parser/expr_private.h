@@ -2,13 +2,7 @@
 #ifndef EXPR_PRIVATE_H
 #define EXPR_PRIVATE_H
 
-#include "_expr.h"
-
-typedef struct		s_arg
-{
-	int 			type;
-	void 			*value;
-}					t_arg;
+#include "expr.h"
 
 typedef struct		s_expr
 {

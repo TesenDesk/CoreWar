@@ -17,9 +17,11 @@
 
 #include "token_defines.h"
 #include "token.h"
+#include "libft.h"
+#include "constants.h"
 
 // #include "expr_defines.h"
-#include "_expr.h"
+#include "expr.h"
 
 // t_hash_map		*create_hashmap(size_t vertices_num);
 int				label_checker_put_to_map_label_word(

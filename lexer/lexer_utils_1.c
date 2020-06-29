@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "lexer.h"
+#include "lexer_private.h"
 #include "lexer_utils_private.h"
 
 /*

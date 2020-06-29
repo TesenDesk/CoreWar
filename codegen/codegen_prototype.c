@@ -1,19 +1,9 @@
-//#pragma clang diagnostic push
-//#pragma ide diagnostic ignored "hicpp-signed-bitwise" // todo: Hey? Delete this!
 
 //
 // Created by Jhiqui Jerde on 21/02/2020.
 //
 
-//#include <token_private.h>
-//#include "codegen_prototype.h"
 #include "codegen_private.h"
-#include "token_defines.h"
-#include "../virtual_machine/include/op.h"
-//#include "_expr.h"
-#include "expr_defines.h"
-//#include "op.h"
-//#include "../parser/expr_private.h"
 
 static void		rotate_four_bytes(unsigned int *p)
 {
@@ -123,42 +113,39 @@ static void		add_params_types(t_codegen *data,  int first_arg, int second_arg, i
 // */
 static void		recast_params_types(t_codegen *data, t_expr  *q)
 {
-	/*
-	 * все на токены
-	 */
 	int		first_arg;
 	int 	second_arg;
 	int 	third_arg;
 
-	first_arg = 0;
-	second_arg = 0;
-	third_arg = 0;
-	if (q->args[FIRST_ARG].type == TOKEN_TIND_INT || q->args[FIRST_ARG].type == TOKEN_TIND_LAB)
+	first_arg = expr_get_arg_type(q, FIRST_ARG);
+	second_arg = expr_get_arg_type(q, SECOND_ARG);
+	third_arg = expr_get_arg_type(q, THIRD_ARG);
+	if (first_arg == TOKEN_TIND_INT || first_arg == TOKEN_TIND_LAB)
 		first_arg = T_IND_CODE;
-	else if (q->args[FIRST_ARG].type == TOKEN_TDIR_INT || q->args[FIRST_ARG].type == TOKEN_TDIR_LAB)
+	else if (first_arg|| first_arg == TOKEN_TDIR_LAB)
 		first_arg = T_DIR_CODE;
-	else if (q->args[FIRST_ARG].type == TOKEN_TREG)
+	else if (first_arg == TOKEN_TREG)
 		first_arg = T_REG_CODE;
-	if (q->args[SECOND_ARG].type == TOKEN_TIND_INT || q->args[SECOND_ARG].type == TOKEN_TIND_LAB)
+	if (second_arg == TOKEN_TIND_INT || second_arg == TOKEN_TIND_LAB)
 		second_arg = T_IND_CODE;
-	else if (q->args[SECOND_ARG].type == TOKEN_TDIR_INT || q->args[SECOND_ARG].type == TOKEN_TDIR_LAB)
+	else if (second_arg == TOKEN_TDIR_INT || second_arg == TOKEN_TDIR_LAB)
 		second_arg = T_DIR_CODE;
-	else if (q->args[SECOND_ARG].type == TOKEN_TREG)
+	else if (second_arg == TOKEN_TREG)
 		second_arg = T_REG_CODE;
-	if (q->args[THIRD_ARG].type == TOKEN_TIND_INT || q->args[THIRD_ARG].type == TOKEN_TIND_LAB)
+	if (third_arg == TOKEN_TIND_INT || third_arg == TOKEN_TIND_LAB)
 		third_arg = T_IND_CODE;
-	else if (q->args[THIRD_ARG].type == TOKEN_TDIR_INT || q->args[THIRD_ARG].type == TOKEN_TDIR_LAB)
+	else if (third_arg== TOKEN_TDIR_INT || third_arg == TOKEN_TDIR_LAB)
 		third_arg = T_DIR_CODE;
-	else if (q->args[THIRD_ARG].type == TOKEN_TREG)
+	else if (third_arg == TOKEN_TREG)
 		third_arg = T_REG_CODE;
 	add_params_types(data, first_arg, second_arg, third_arg);
-
 }
 
 static void		dir_type_detector(t_expr *q)
 {
-	if (q->args[OP_NAME].type == TOKEN_ZJMP || q->args[OP_NAME].type == TOKEN_LDI || q->args[OP_NAME].type == TOKEN_STI ||
-	q->args[OP_NAME].type == TOKEN_FORK || q->args[OP_NAME].type == TOKEN_LLDI || q->args[OP_NAME].type == TOKEN_LFORK)
+	int op_name = expr_get_arg_type(q, OP_NAME);
+	if (op_name == TOKEN_ZJMP || op_name == TOKEN_LDI || op_name == TOKEN_STI ||
+	op_name == TOKEN_FORK || op_name == TOKEN_LLDI || op_name == TOKEN_LFORK)
 		q->size = 2;
 	else
 		q->size = 1;
@@ -173,7 +160,7 @@ static void		write_address_to_free_label(t_codegen *data, t_expr *label)
 	if (!(tmp = (t_code_addr*)malloc(sizeof(t_code_addr))))
 		exit(-1);
 	tmp->addr = data->add;
-	ft_hash_map_set_content(data->labels_free, token->val, (tmp));
+	ft_hash_map_set_content(data->labels_free, token_get_value(token), (tmp));
 }
 
 static void		add_address_to_arg_label(t_codegen *data, t_arg *arg, int shift)
@@ -182,7 +169,7 @@ static void		add_address_to_arg_label(t_codegen *data, t_arg *arg, int shift)
 
 	if (!(label = (t_label_data*)malloc(sizeof(t_label_data))))
 		exit(-1);
-	label->name = ((t_token*)arg->value)->val;
+	label->name = token_get_value((t_token*)arg->value);
 	label->add = data->add + shift;
 	label->instruction_begining = data->cur_instruction_addr;
 	label->param_type = arg->type;
@@ -237,7 +224,7 @@ static void		fill_dirind_param(t_codegen *data, t_arg *param, char dir_type)
 	int 		cell_size;
 
 
-	num_arg = ft_atol(((t_token *)param->value)->val);
+	num_arg = ft_atol(token_get_value((t_token *)param->value));
 	if (param->type == TOKEN_TREG)
 		cell_size = 1;
 	else
@@ -411,8 +398,8 @@ void            init_header(header_t *header, t_vector*text)
     char        *name;
     char        *comment;
 
-    name =((t_token*)((((t_expr*)text->items[0])->args[0]).value))->val;
-    comment =((t_token*)((((t_expr*)text->items[1])->args[0]).value))->val;
+    name = token_get_value((t_token*)((((t_expr*)text->items[0])->args[0]).value));
+    comment = token_get_value((t_token*)((((t_expr*)text->items[1])->args[0]).value));
     ft_bzero(header->comment, COMMENT_LENGTH + 1);
     ft_bzero(header->prog_name, PROG_NAME_LENGTH + 1);
     ft_memcpy(header->prog_name, name, ft_strlen(name));

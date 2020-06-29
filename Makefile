@@ -9,7 +9,8 @@ NAME        :=  asm
 MAIN        :=  main_asm.c
 LABEL       :=	CoreWar
 WORKDIR     :=  ./
-LIBDIR      :=	$(WORKDIR)libft/
+LIBDIR      :=	./libft/
+LFLAGS		:=  ft
 HEADERDIR   :=	$(WORKDIR)#includes/
 LIB         :=  $(LIBDIR)libft.a
 LEX_SRC     := 	lexer.c \
@@ -57,7 +58,7 @@ PARS_SRC :=	_parser_change_state.c \
 			_parser_get_token_op2_logc.c \
 			_parser_get_token_op2_stri.c \
 			_parser_xtor.c \
-			_expr.c \
+			expr.c \
 			_expr_set_arg.c \
 			_parser_get_token_op0_life.c \
 			parser.c \
@@ -90,7 +91,7 @@ CODEGEN_DIR_OBJ :=  $(addprefix ./codegen/, $(CODEGEN_OBJ))
 CFLAGS      :=  -Wall -Wextra -Werror -g
 LIBFLAGS    :=  -L$(LIBDIR) -lft
 HEADER      :=  $(HEADERDIR)ms.h
-INTERFACE =	$(WORKDIR)interfaces/
+INTERFACE =	$(WORKDIR)interfaces/ \
 
 #======================COLORS & Co=============================================#
 GREEN =		\033[1;32m
@@ -135,30 +136,31 @@ debmsg:
 # $(PARS_DIR_OBJ): %.o: %.c
 # 		@cc -c $(FLAGS)  $< -o $@
 
-$(NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(CHK_DIR_OBJ) $(ANALYSER_DIR_OBJ) $(CODEGEN_DIR_OBJ) $(MAIN) $(LIB)
+$(NAME): $(LIB) $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(CHK_DIR_OBJ) $(ANALYSER_DIR_OBJ) $(CODEGEN_DIR_OBJ)  $(MAIN)
 		@printf "$(PREFIX)📦  Building $(NAME)...\n"
 		@printf "Building $(LEX_DIR_OBJ).$(LEX_OBJ).\n"
 
 
 #		@gcc $(FLAGS) -o $(NAME) $(LEX_DIR_SRC) $(LIBFLAGS) -I$(HEADERDIR)
 		# @cc $(FLAGS) -o $(NAME) $(LEX_DIR_SRC) $(MLX_FLAGS) -I$(HEADERDIR) ##todo: add '$(LIBFLAGS)'
-		gcc  -I$(INTERFACE) $(LIBFLAGS)  $^ -o $@
+		gcc  -I$(INTERFACE) -L$(LIBDIR) -c $^ -o $@ $(LIBFLAGS)
+$(LIB):
+		make -C libft/
 
 $(LEX_DIR_OBJ): %.o:  %.c
-		gcc -c $(FLAGS)  -I$(INTERFACE) $(LIBFLAGS) $<  -o $@
+		gcc $(FLAGS) -I$(INTERFACE) -I$(LIBDIR) -c $< -o $@
 
 $(PARS_DIR_OBJ): %.o: %.c
-		gcc -c $(FLAGS) -I$(INTERFACE) $(LIBFLAGS)  $<  -o $@
+		gcc $(FLAGS) -I$(INTERFACE) -I$(LIBDIR)  -c  $<  -o $@
 
 $(CHK_DIR_OBJ): %.o: %.c
-		gcc -c $(FLAGS) -I$(INTERFACE) $(LIBFLAGS)  $<  -o $@
+		gcc $(FLAGS) -I$(INTERFACE) -I$(LIBDIR) -c $<  -o $@
 
 $(ANALYSER_DIR_OBJ): %.o: %.c
-		gcc -c $(FLAGS) -I$(INTERFACE) $(LIBFLAGS)  $<  -o $@
-
+		gcc -I$(INTERFACE) -I$(LIBDIR) -c $< -o $@
 
 $(CODEGEN_DIR_OBJ): %.o: %.c
-		gcc -c $(FLAGS) -I$(INTERFACE) $(LIBFLAGS)  $<  -o $@
+		gcc $(FLAGS) -I$(INTERFACE) -I$(LIBDIR) -c $<  -o $@
 
 
 # $(PARS_DIR_OBJ): %.o:  %.c
@@ -176,6 +178,7 @@ clean: deljunk
 		rm -rf lexer/*.o
 		rm -rf parser/*.o
 		rm -rf analyser/*.o
+		rm -rf codegen/*.o
 		@make -C $(LIBDIR) clean
 
 delfile:

@@ -5,8 +5,11 @@
 #ifndef CORE_CODEGEN_H
 #define CORE_CODEGEN_H
 
+#include <unistd.h>
 #include <stdlib.h>
 #include "op.h"
+#include "libft.h"
+#include "constants.h"
 
 typedef struct		s_codegen t_codegen;
 typedef struct      s_vector  t_vector;

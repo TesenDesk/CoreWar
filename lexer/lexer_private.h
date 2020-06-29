@@ -15,6 +15,8 @@
 
 #include "lexer.h"
 #include "lexer_utils_private.h"
+#include "token.h"
+#include "token_defines.h"
 
 #define TOKEN_START_PTR	0
 #define TOKEN_END_PTR	1

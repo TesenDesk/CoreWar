@@ -5,7 +5,7 @@
 #ifndef CORE_ANALYSER_H
 #define CORE_ANALYSER_H
 
-#include "_expr.h"
+#include "expr.h"
 #include "expr_defines.h"
 #include "label_checker.h"
 #include "lexer.h"
@@ -13,6 +13,8 @@
 #include "token.h"
 #include "token_defines.h"
 #include "text.h"
+#include "libft.h"
+//#include "constants.h"
 
 typedef struct s_analyser t_analyser;
 

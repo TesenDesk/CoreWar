@@ -10,27 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "lexer.h"
 #include "lexer_private.h"
-// #include "token.h"
-// #include "token_defines.h"
-
-// #define ADD_NAME				"add"
-// #define AFF_NAME				"aff"
-// #define AND_NAME				"and"
-// #define FORK_NAME				"fork"
-// #define LD_NAME					"ld"
-// #define LDI_NAME				"ldi"
-// #define LFORK_NAME				"lfork"
-// #define LIVE_NAME				"live"
-// #define LLD_NAME				"lld"
-// #define LLDI_NAME				"lldi"
-// #define OR_NAME					"or"
-// #define ST_NAME					"st"
-// #define STI_NAME				"sti"
-// #define SUB_NAME				"sub"
-// #define XOR_NAME				"xor"
-// #define ZJMP_NAME				"zjmp"
 
 
 static int                  lexer_find_next_to_INIT_ST(int term_type)
@@ -55,10 +35,6 @@ static int                  lexer_find_next_to_INIT_ST(int term_type)
 	{
 		return (OPX_ST);
 	}
-//	else if (term_type == OPX_CODE)
-//	{
-//		return (OPX_ST);
-//	}
 	else if (term_type == LABEL_CHARS_CODE)
 	{
 		return (LABEL_WORD_ST);
@@ -83,7 +59,6 @@ static int          lexer_find_champ_state(t_lexer *lexer, int term_type)
 			return (INIT_ST);
 	}
 	return (INIT_ST);
-	//?????
 }
 
 static int          lexer_find_op_arg_state(t_lexer *lexer, int term_type)
@@ -155,8 +130,6 @@ t_token             *lexer_form_token(t_lexer *lexer, char const **text)
 	token_ptr[1] = NULL;
 	while (token_type == TOKEN_INIT_ST)
 	{
-//		printf("111  lexer->state %i\n", lexer->state);
-//		printf("text:%s\n", *text);
 		if (lexer->state != CH_NAME_ST && lexer->state != CH_COMM_ST)
 			while (**text == ' ' || **text == '\t')
 				++(*text);
@@ -164,10 +137,6 @@ t_token             *lexer_form_token(t_lexer *lexer, char const **text)
 		if (lexer->state != CH_NAME_ST && lexer->state != CH_COMM_ST)
 			while (**text == ' ' || **text == '\t')
 				++(*text);
-
-//		printf("TEXT:%s\n", *text);
-//		printf("THERE.      token_type = %i\n", token_type);
-
 	}
 	return (token_constructor(token_type, token_ptr));
 }

@@ -8,6 +8,11 @@
 
 #include "codegen.h"
 
+
+#include "token_defines.h"
+#include "../virtual_machine/include/op.h"
+//#include "expr.h"
+
 #define CODEGEN_DEBUGGER 1
 #define DIR_LEN_2 1
 #define DIR_LEN_4 2

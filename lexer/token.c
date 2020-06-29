@@ -21,9 +21,6 @@ t_token				*token_constructor(int type,void *ptr[2])
 		exit(-1);
 	}
 	if (ptr[1] - ptr[0] < 0) {
-		printf("!%.5s!\n", ptr[0]);
-		printf("type:%d\n", type);
-		printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
 		token->val = "";
 	}
 	else {
@@ -62,6 +59,12 @@ void				*token_get_value(t_token *token)
 		return (token->val);
 	return (NULL);
 }
+
+void                token_set_value(t_token *token, void *val)
+{
+	return ;
+}
+
 
 void				*get_begin(t_token *token)
 {

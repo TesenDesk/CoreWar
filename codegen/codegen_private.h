@@ -6,6 +6,11 @@
 #define GIT_CODEGEN_PRIVATE_H
 
 #include "codegen.h"
+
+#include "token_defines.h"
+#include "../virtual_machine/include/op.h"
+#include "expr.h"
+#include "expr_defines.h"
 #define T_REG_CODE		1
 #define T_DIR_CODE		2
 #define T_IND_CODE		3
