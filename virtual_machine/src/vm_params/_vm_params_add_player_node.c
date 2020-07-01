@@ -12,7 +12,7 @@
 
 #include "_vm_params.h"
 #include "vmp_player.h"
-#include "./vmp_player/file/_file.h"
+#include "./vmp_player/file/prvt_file.h"
 
 void				_vm_params_add_unnamed_player_node(t_vm_params *self,t_vmp_player *player)
 {

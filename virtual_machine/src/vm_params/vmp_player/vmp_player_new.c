@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <vm_params/vmp_player/file/_file.h>
+#include <vm_params/vmp_player/file/prvt_file.h>
 #include "_vmp_player.h"
 
 
 
 # define MAX_PLAYERS			4
 # define DUMP_LINE_SIZE			32 //bytes
-# define MEM_SIZE				(MAX_PLAYERS * 1024)
+//# define MEM_SIZE				(MAX_PLAYERS * 1024)
 # define SPACE					' '
 # define EOL					'\n'
 #include <fcntl.h>

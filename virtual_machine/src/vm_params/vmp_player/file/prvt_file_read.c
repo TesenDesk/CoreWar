@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_data_comment.c                                :+:      :+:    :+:   */
+/*   prvt_file_read.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/01 17:59:45 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/01 17:59:46 by cmissy           ###   ########.fr       */
+/*   Created: 2020/07/01 18:18:38 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/01 18:18:38 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prvt_file.h"
 
-char		*file_data_comment(tt_file *self)
+void			prvt_file_read(tt_file *self)
 {
-	char		*comment_in_data;
-	char		*comment;
+	int			chunk;
 
-	comment_in_data = (char*)(self->data)
-		+ MAGIC_LENGTH
-		+ PROG_NAME_LENGTH
-		+ NULL_LENGTH
-		+ CHAMP_SIZE_LENGTH;
-	if (!(comment = ft_strdup(comment_in_data)))
-		raise(__FILE__, __LINE__, ENOMEMORY);
-	return (comment);
+	chunk = 0;
+	prvt_file_allocate_intitial_value(self);
+	self->total = 0;
+	while ((chunk =
+	read(self->fd, self->data + self->total, INITIAL_CHUNK)) > 0)
+	{
+		self->total += chunk;
+		if (self->total == self->capacity)
+			prvt_file_reallocate_value(self);
+	}
+	return ;
 }

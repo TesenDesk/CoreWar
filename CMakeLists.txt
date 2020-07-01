@@ -407,15 +407,15 @@ add_executable(corewar
 #        virtual_machine/src/corwar/corwar.c
         virtual_machine/src/errors/_errors.h
         virtual_machine/src/errors/errors.c
-        virtual_machine/src/vm_params/vmp_player/file/_file.h
+        virtual_machine/src/vm_params/vmp_player/file/prvt_file.h
         virtual_machine/src/vm_params/ft_arg_is_num.c
-        virtual_machine/src/vm_params/vmp_player/file/_file_allocate_initial_value.c
-        virtual_machine/src/vm_params/vmp_player/file/_file_close.c
+        virtual_machine/src/vm_params/vmp_player/file/prvt_file_allocate_initial_value.c
+        virtual_machine/src/vm_params/vmp_player/file/prvt_file_close.c
 #        virtual_machine/src/vm_params/vmp_player/file/_file_get_chunk.c
-        virtual_machine/src/vm_params/vmp_player/file/_file_open.c
-        virtual_machine/src/vm_params/vmp_player/file/_file_open.c
-        virtual_machine/src/vm_params/vmp_player/file/_file_read.c
-        virtual_machine/src/vm_params/vmp_player/file/_file_reallocate_value.c
+        virtual_machine/src/vm_params/vmp_player/file/prvt_file_open.c
+        virtual_machine/src/vm_params/vmp_player/file/prvt_file_open.c
+        virtual_machine/src/vm_params/vmp_player/file/prvt_file_read.c
+        virtual_machine/src/vm_params/vmp_player/file/prvt_file_reallocate_value.c
         virtual_machine/src/vm_params/vmp_player/file/file_data_check_valid.c
         virtual_machine/src/vm_params/vmp_player/file/file_data_code.c
         virtual_machine/src/vm_params/vmp_player/file/file_data_comment.c
@@ -460,6 +460,6 @@ add_executable(corewar
         virtual_machine/src/vm_singleton.c
         virtual_machine/src/vm_add_new_carriage_node.c
         virtual_machine/src/vm_increase_num_of_live_ops.c
-        virtual_machine/src/vm_num_of_carriages.c
+        virtual_machine/src/vm_num_of_carriages_and_increase.c
 #        virtual_machine/test/main_test.c
         main.c)
