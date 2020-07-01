@@ -11,11 +11,7 @@ static void            _fill_new_carriage(t_carriage *old, t_carriage *new)
     int         i;
 
     new->carry = old->carry;
-//    new->op_code = old->op_code;
-//    new->is_correct_op_code = old->is_correct_op_code;
-//    new->cycles_to_perform_op = old->cycles_to_perform_op;
     new->last_live_cycle = old->last_live_cycle;
-//    new->is_correct_op_code = old->is_correct_op_code;
     i = 0;
     while (i < 16)
     {
@@ -35,10 +31,9 @@ void            _operation_fork(t_carriage *self)
 
     op_len = ONE_BYTE + TWO_BYTES;
     arg = arena_get_n_bytes_from(self->arena, self->arena_position + ONE_BYTE, TWO_BYTES);
-    position = (arg % IDX_MOD + self->arena_position) % MEM_SIZE;
+    position = arg % IDX_MOD + self->arena_position;
 
 print_op_log(self, arg, position);
-//    position = arg % IDX_MOD;
 
     new_carriage = carriage_new(self->player_name, self->arena, position, vm_num_of_carriages_and_increase());
     _fill_new_carriage(self, new_carriage);
