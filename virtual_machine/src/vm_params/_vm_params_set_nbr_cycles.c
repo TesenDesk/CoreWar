@@ -12,8 +12,6 @@
 
 #include "_vm_params.h"
 
-
-
 void					_vm_params_set_nbr_cycles(t_vm_params *self,
 							char *nbr_sycles_str)
 {

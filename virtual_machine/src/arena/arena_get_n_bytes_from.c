@@ -1,7 +1,5 @@
 #include "_arena.h"
 
-
- // check later
 int         arena_get_n_bytes_from(t_arena *self, int pos, int num_of_bytes)
 {
     char    *data;
@@ -19,8 +17,6 @@ int         arena_get_n_bytes_from(t_arena *self, int pos, int num_of_bytes)
     data = (char*)(self->data);
     four_bytes = data[pos % MEM_SIZE];
     i = 1;
-//    four_bytes = 0;
-//    i = 0;
     while (i < num_of_bytes)
     {
         four_bytes = four_bytes << EIGHT_BITS;

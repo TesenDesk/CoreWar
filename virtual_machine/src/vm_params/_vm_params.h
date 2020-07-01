@@ -23,9 +23,8 @@
 # include "player.h"
 # include "arena.h"
 # include "vm_params.h"
-#include "../vmp_player/_vmp_player.h"
+#include "_vmp_player.h"
 
-//typedef  void (*t_sm_parser)(t_vm_params *self, char **params);
 typedef  int (*t_sm_parser)(t_vm_params *self, char *params);
 
 # define USAGE_STR			 "Usage: ./corewar [-d N -s N -v N | -b --stealth | -n --stealth] [-a] <champion1.cor> <...>\n"
@@ -79,7 +78,6 @@ void		_vm_params_set_file_name_without_id(t_vm_params *self,
 //void		_vm_params_set_mock(t_vm_params *never_passed, char *usless);
 
 int 					_vmp_state(t_vm_params *self, int argtype);
-
-int 						ft_arg_is_num(char *param);
+int 					ft_arg_is_num(char *param);
 
 #endif

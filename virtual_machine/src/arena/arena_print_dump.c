@@ -1,9 +1,7 @@
 #include "_arena.h"
-
 # define DUMP_LINE_SIZE			32 //bytes
 # define D_LINE_SIZE			64 //bytes
 # define MAX_PLAYERS			4
-//# define MEM_SIZE				(MAX_PLAYERS * 1024)
 # define SPACE					' '
 # define EOL					'\n'
 # define PREFIX_SIZE			9

@@ -1,5 +1,4 @@
 #include "_arena.h"
-#include "carriage.h"
 #include "_carriage.h"
 
 t_list          *arena_carriage_list_new(t_arena *self)
