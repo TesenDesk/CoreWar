@@ -1,6 +1,18 @@
-# include "_vmp_player.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vmp_player_name.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/02 18:12:09 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/02 18:20:28 by cmissy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int         vmp_player_name(t_vmp_player *self)
+#include "prvt_vmp_player.h"
+
+int			vmp_player_name(t_vmp_player *self)
 {
-    return (self->player_name);
+	return (self->player_name);
 }

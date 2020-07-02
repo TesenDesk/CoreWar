@@ -45,6 +45,8 @@ typedef struct	s_vm
 	int         num_of_live_ops;
 	int         num_checks;
 	int         num_of_carriages;
+    int         verbosity_lvl;
+  ;
 }				t_vm;
 
 t_vm		*_vm_new(int argc, char *argv[]);

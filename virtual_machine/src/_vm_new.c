@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "_vm.h"
-#include "./vm_params/_vm_params.h"
 
 t_vm		*_vm_new(int argc, char *argv[])
 {
@@ -21,10 +20,8 @@ t_vm		*_vm_new(int argc, char *argv[])
 		raise(__FILE__, __LINE__, ENOMEMORY);
 	self->params = vm_params_new(argc, argv);
 	self->cycles_to_dump = vm_params_dump_cycles(self->params);
-//	t_vmp_player *new = self->params->id_player_head->content;
-//	printf("%d\n", new->player_name);
+	self->verbosity_lvl = vm_params_verbosity_lvl(self->params);
 	self->arena = arena_new(self->params);
-//	self->carriage_head = vm_carriage_list_constructed_new(self->arena);
 	self->carriage_head = arena_carriage_list_new(self->arena);
 	self->num_of_carriages = arena_nb_players(self->arena);
 	return (self);
