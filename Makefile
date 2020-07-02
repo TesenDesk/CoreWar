@@ -5,7 +5,7 @@
 		makevisual
 
 #======================Folders & Files=========================================#
-NAME        :=  asm
+NAME        :=  ASM
 MAIN        :=  main_asm.c
 LABEL       :=	CoreWar
 WORKDIR     :=  ./
@@ -81,7 +81,7 @@ ANALYSER_OBJ :=  $(patsubst %.c, %.o, $(ANALYSER_SRC))
 ANALYSER_DIR_OBJ :=  $(addprefix ./analyser/, $(ANALYSER_OBJ))
 
 
-CODEGEN_SRC :=	codegen_prototype.c
+CODEGEN_SRC :=	codegen_prototype1.c
 CODEGEN_OBJ :=  $(patsubst %.c, %.o, $(CODEGEN_SRC))
 CODEGEN_DIR_OBJ :=  $(addprefix ./codegen/, $(CODEGEN_OBJ))
 
@@ -136,16 +136,17 @@ debmsg:
 # $(PARS_DIR_OBJ): %.o: %.c
 # 		@cc -c $(FLAGS)  $< -o $@
 
-$(NAME): $(LIB) $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(CHK_DIR_OBJ) $(ANALYSER_DIR_OBJ) $(CODEGEN_DIR_OBJ)  $(MAIN)
+$(NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(CHK_DIR_OBJ) $(ANALYSER_DIR_OBJ) $(CODEGEN_DIR_OBJ)  $(MAIN)
 		@printf "$(PREFIX)📦  Building $(NAME)...\n"
 		@printf "Building $(LEX_DIR_OBJ).$(LEX_OBJ).\n"
 
 
 #		@gcc $(FLAGS) -o $(NAME) $(LEX_DIR_SRC) $(LIBFLAGS) -I$(HEADERDIR)
 		# @cc $(FLAGS) -o $(NAME) $(LEX_DIR_SRC) $(MLX_FLAGS) -I$(HEADERDIR) ##todo: add '$(LIBFLAGS)'
-		gcc  -I$(INTERFACE) -L$(LIBDIR) -c $^ -o $@ $(LIBFLAGS)
-$(LIB):
-		make -C libft/
+		make -C ./libft
+		gcc  -I$(INTERFACE) -I./libft/ $^ -o $@ $(LIBFLAGS)
+#$(LIB):
+		#make -C libft/
 
 $(LEX_DIR_OBJ): %.o:  %.c
 		gcc $(FLAGS) -I$(INTERFACE) -I$(LIBDIR) -c $< -o $@
@@ -166,10 +167,10 @@ $(CODEGEN_DIR_OBJ): %.o: %.c
 # $(PARS_DIR_OBJ): %.o:  %.c
 # 		@cc -c $(FLAGS)  $< -o $@
 
-$(LIB):
-		make -C libft/
+#$(LIB):
+		#make -C libft/
 
-# libfliba:
+# liba:
 # 	libfliba	@printf "$(PREFIX)$(BOLD)🔎  Checkig \
 # for libf up-to-dateates...$(RST)\n"
 # 		@make -C $(LIBDIR) DEBUGMODE=$(DEBUGMODE)

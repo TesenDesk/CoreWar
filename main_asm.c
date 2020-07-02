@@ -3,12 +3,13 @@
 //
 
 #include <unistd.h>
-#include "token.h"
-#include "lexer.h"
+//#include "token.h"
+//#include "lexer.h"
 #include "codegen.h"
+//#include "libft.h"
 //#include "lexer_private.h"
 //#include "./parser/expr_private.h"
-#include "parser.h"
+//#include "parser.h"
 //#include "./parser/parser_private.h"
 #include "analyser.h"
 
@@ -53,29 +54,29 @@ int main(int ac, char **av)
     t_vector		*text;
     t_analyser      *analyser;
 	t_vector		vtr;
-//	int             count = 1;
+	int             count = 1;
 	/*
 	 * count для теста
 	 */
 
 
-	map = ft_hash_map_ctor(HASH_CONST);
-	ft_vector_init(&vtr);
-	analyser = analyser_singleton_instance(ANALYSER_INSTANTIATE);
-	text = analyse_text(analyser, &vtr, map, (read_code(open(av[1], O_RDONLY))));
-	generate_code(map, text, av[1]);
+//	map = ft_hash_map_ctor(HASH_CONST);
+//	ft_vector_init(&vtr);
+//	analyser = analyser_singleton_instance(ANALYSER_INSTANTIATE);
+//	text = analyse_text(analyser, &vtr, map, (read_code(open(av[1], O_RDONLY))));
+//	generate_code(map, text, av[1]);
 	/*
 	 * цикл для тестов
 	 */
-//	while (count < ac) {
-//		map = ft_hash_map_ctor(HASH_CONST);
-//		ft_vector_init(&vtr);
-//		analyser = analyser_singleton_instance(ANALYSER_INSTANTIATE);
-//		text = analyse_text(analyser, &vtr, map, (read_code(open(av[count], O_RDONLY))));
-//		generate_code(map, text, av[count]);
-//		analyser_singleton_instance(ANALYSER_DESTRUCT);
-//		++count;
-//	}
+	while (count < ac) {
+		map = ft_hash_map_ctor(HASH_CONST);
+		ft_vector_init(&vtr);
+		analyser = analyser_singleton_instance(ANALYSER_INSTANTIATE);
+		text = analyse_text(analyser, &vtr, map, (read_code(open(av[count], O_RDONLY))));
+		generate_code(map, text, av[count]);
+		analyser_singleton_instance(ANALYSER_DESTRUCT);
+		++count;
+	}
 	ft_hash_map_dtor(&map);
 	delete_parsing_structs();
 	return (SUCCESS);
