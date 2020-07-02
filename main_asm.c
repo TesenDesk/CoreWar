@@ -6,23 +6,6 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include "token.h"
-#include <errno.h>
-#include "token_defines.h"
-
-#include "lexer.h"
-#include "virtual_machine/src/vm_params/_vm_params.h"
-#include "virtual_machine/include/vm_params.h"
-#include "lexer_private.h"
-#include "./lexer/lexer_private.h"
-
-#include "./lexer/lexer_utils_private.h"
-
-#include "expr.h"
-#include "expr_defines.h"
-#include "./parser/expr_private.h"
-
-#include "parser.h"
-#include "./parser/parser_private.h"
 #include "analyser.h"
 #include "codegen.h"
 

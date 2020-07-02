@@ -1,7 +1,7 @@
 #include "parser_private.h"
-#include "token_private.h"
+#include "../lexer/token_private.h"
 #include <string.h>
-#include <token_private.h>
+#include "../lexer/token_private.h"
 
 
 static void			fill_expr_ar_num(int expr_ar_num[COUNT_EXPR])

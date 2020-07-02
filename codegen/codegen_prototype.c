@@ -1,19 +1,17 @@
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "hicpp-signed-bitwise" // todo: Hey? Delete this!
+//#pragma clang diagnostic push
+//#pragma ide diagnostic ignored "hicpp-signed-bitwise" // todo: Hey? Delete this!
 
 //
 // Created by Jhiqui Jerde on 21/02/2020.
 //
 
-#include <token_private.h>
+#include "../lexer/token_private.h"
 #include "codegen_prototype.h"
 #include "codegen_private.h"
 #include "token_defines.h"
-#include "../virtual_machine/include/op.h"
+#include "op.h"
 #include "expr.h"
 #include "expr_defines.h"
-#include "op.h"
-#include "../parser/expr_private.h"
 
 static void		rotate_four_bytes(unsigned int *p)
 {
