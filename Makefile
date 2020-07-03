@@ -85,6 +85,20 @@ CODEGEN_SRC :=	codegen_prototype.c
 CODEGEN_OBJ :=  $(patsubst %.c, %.o, $(CODEGEN_SRC))
 CODEGEN_DIR_OBJ :=  $(addprefix ./codegen/, $(CODEGEN_OBJ))
 
+VM_SRC_ARENA := _arena_players_new.c
+				_arena_set_smallest_unoccupied_name.s
+				arena_carriage_list_new.c
+				arena_destroy.c
+				arena_get_n_bytes_from.c
+				arena_nb_players.c
+				arena_new.c
+				arena_op_code.c
+				arena_players.c
+				arena_players_introducing.c
+				arena_print_dump.c
+				arena_print_winner.c
+				arena_set_unnamed_player.c
+				arena_write_four_bytes_to_data.c
 
 
 
