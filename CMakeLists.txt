@@ -317,7 +317,7 @@ add_executable(corewar
         parser/_parser_xtor.c
         parser/expr.c
         parser/expr_private.h
-        parser/expr_set_arg.c
+        parser/_expr_set_arg.c
         parser/parser.c
         parser/parser_private.h
         parser/parser_singleton_instance.c
@@ -329,7 +329,7 @@ add_executable(corewar
         virtual_machine/include/corwar.h
         virtual_machine/include/errors.h
         virtual_machine/include/file.h
-        virtual_machine/include/op.h
+        interfaces/op.h
         virtual_machine/include/operation.h
         virtual_machine/include/player.h
         virtual_machine/include/type_cut.h
