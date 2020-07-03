@@ -13,7 +13,7 @@
 #ifndef FILE_H
 # define FILE_H
 
-typedef struct s_file tt_file;
+typedef struct s_i_file tt_file;
 
 
 tt_file			*file_new(char *file_name);

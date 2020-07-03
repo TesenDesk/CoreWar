@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "_vm_params.h"
-#include "vmp_player.h"
 
 void				_vm_params_set_file_name_with_id(t_vm_params *self,
 							char *file_name)

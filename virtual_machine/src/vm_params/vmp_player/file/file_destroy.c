@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   file_destroy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 21:41:19 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/24 19:38:04 by nikita_toro      ###   ########.fr       */
+/*   Updated: 2020/07/01 18:01:33 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_file.h"
+#include "prvt_file.h"
 
 void				file_destroy(tt_file **self)
 {
 	ft_memdel(&((*self)->data));
 	ft_memdel((void **)self);
-	return;
+	return ;
 }

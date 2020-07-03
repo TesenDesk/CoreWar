@@ -1,9 +1,9 @@
 #include "_vm.h"
 
-void		vm_increase_num_of_live_ops()
+int			vm_global_counter()
 {
 	t_vm	*vm;
 
 	vm = vm_singleton(VM_INSTANTIATE, 0, NULL);
-	vm->num_of_live_ops += 1;
+	return (vm->global_counter);
 }

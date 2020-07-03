@@ -1,6 +1,6 @@
 #include "_carriage.h"
 
-int     carriage_take_step(t_carriage *self)
+void     carriage_take_step(t_carriage *self)
 {
     if (self->cycles_to_perform_op == 0)
     {
@@ -11,7 +11,7 @@ int     carriage_take_step(t_carriage *self)
 
     if (self->cycles_to_perform_op > 0)
         self->cycles_to_perform_op -= 1;
-    
+
     if (self->cycles_to_perform_op == 0)
     {
         if (self->is_correct_op_code)
@@ -19,5 +19,4 @@ int     carriage_take_step(t_carriage *self)
         else
             self->arena_position = (self->arena_position + 1) % MEM_SIZE;
     }
-    return 0;
 }

@@ -1,5 +1,12 @@
 #include "_operation.h"
 
+static void                print_op_log(t_carriage *self, int *args)
+{
+    printf("P %4i | lldi %i %i r%i\n", self->num, args[0], args[1], args[2] + 1);
+    printf("       | -> load from %i + %i = %i (with pc %i)\n",
+           args[0], args[1], args[0] + args[1], self->arena_position + args[0] + args[1]);
+}
+
 //don`t checked
 void            _operation_lldi(t_carriage *self)
 {
@@ -7,6 +14,7 @@ void            _operation_lldi(t_carriage *self)
     int     op_len;
     int     args[3];
     char    type_codes[3];
+    int     arg;
 
     if (_operation_precheck_args(self, args, type_codes, 3, &op_len) == SUCCESS
         && (type_codes[0] == CODE_T_REG || type_codes[0] == CODE_T_DIR || type_codes[0] == CODE_T_IND)
@@ -21,7 +29,14 @@ void            _operation_lldi(t_carriage *self)
         if (type_codes[1] == CODE_T_REG)
             args[1] = self->registers[args[1]];
 
-        self->registers[args[2]] = self->arena_position + (args[0] + args[1]);
+print_op_log(self, args);
+
+        arg = arena_get_n_bytes_from(self->arena, self->arena_position + (args[0] + args[1]), FOUR_BYTES);
+
+        if ((self->registers[args[2]] = arg) == 0)
+            self->carry = 1;
+        else
+            self->carry = 0;
     }
     if (op_len <= 0)
     {

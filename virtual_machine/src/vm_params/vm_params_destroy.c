@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm_params_destroy.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/08 21:50:06 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/26 21:42:36 by nikita_toro      ###   ########.fr       */
+/*   Created: 2020/07/02 18:31:53 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/02 18:31:53 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ void					vm_params_destroy(t_vm_params **self)
 {
 	_vm_params_destroy_players_lists(*self);
 	ft_memdel((void **)self);
-	return;
+	return ;
 }

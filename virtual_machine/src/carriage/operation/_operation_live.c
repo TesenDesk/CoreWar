@@ -12,6 +12,11 @@
 
 #include "_operation.h"
 
+static void                print_op_log(t_carriage *self, int arg)
+{
+    printf("P %4i | live %i\n", self->num, arg);
+}
+
 void                    _operation_live(t_carriage *self)
 {
     int position;
@@ -23,10 +28,14 @@ void                    _operation_live(t_carriage *self)
     arg = arena_get_n_bytes_from(self->arena, position + ONE_BYTE, FOUR_BYTES);
     if ((arg * -1) == self->player_name)
     {
-        self->last_live_cycle = vm_cycles_counter();
         arena_set_last_live_player(self->arena, self->player_name);
     }
+    self->last_live_cycle = vm_global_counter();
     vm_increase_num_of_live_ops(); // не нашел, нужно ли увеличивать счетчик лайвов, если для каретку лайв не успешный
+
+print_op_log(self, arg);
+
+
     self->arena_position = (self->arena_position + op_len) % MEM_SIZE;
 }
 

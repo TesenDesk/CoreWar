@@ -70,7 +70,7 @@ t_arena				*arena_new(t_vm_params *params)
     //	vm_params_destroy_players_lists(params); // problems, check it
 	arena_fill_in_the_data(self);
 //    write(1, "there\n", 6);
-//	arena_print_dump(self);
+//	(self);
 
 //    arena_players_introducing(self);
 	return (self);

@@ -16,13 +16,13 @@ int                    _operation_precheck_args(t_carriage *self, int *args, cha
     int     i;
     int     result;
     int     t_dir_size;
-    int     t_ind;
 
     argument_type_code =
             (char)arena_get_n_bytes_from(self->arena, self->arena_position + ONE_BYTE, ONE_BYTE);
 
     result = SUCCESS;
     *op_len = ONE_BYTE + ONE_BYTE;
+    t_dir_size = t_dir_size_for_the_op(self->op_code);
     i = 0;
     while (i < num_of_args)
     {
@@ -36,21 +36,18 @@ int                    _operation_precheck_args(t_carriage *self, int *args, cha
         }
         else if (type_codes[i] == CODE_T_DIR)
         {
-            t_dir_size = t_dir_size_for_the_op(self->op_code);
             args[i] = arena_get_n_bytes_from(self->arena, self->arena_position + *op_len, t_dir_size);
             *op_len += t_dir_size;
         }
         else if (type_codes[i] == CODE_T_IND)
         {
             args[i] = arena_get_n_bytes_from(self->arena, self->arena_position + *op_len, TWO_BYTES);
-//            t_ind = arena_get_n_bytes_from(self->arena, self->arena_position + op_len, TWO_BYTES) % IDX_MOD;
-//            args[i] = arena_get_n_bytes_from(self->arena, self->arena_position + t_ind, FOUR_BYTES);
             *op_len += TWO_BYTES;
         }
         else
         {
             result = FAILURE;
-            break;
+            args[i] = 0;
         }
         i++;
     }

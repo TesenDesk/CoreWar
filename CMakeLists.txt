@@ -359,6 +359,7 @@ add_executable(corewar
         virtual_machine/src/arena/arena_new.c
         virtual_machine/src/arena/arena_op_code.c
         virtual_machine/src/arena/arena_print_dump.c
+        virtual_machine/src/arena/arena_print_winner.c
         virtual_machine/src/arena/arena_ser_unnamed_player.c
         virtual_machine/src/arena/arena_set_named_player.c
         virtual_machine/src/arena/arena_players_introducing.c
@@ -387,6 +388,7 @@ add_executable(corewar
         virtual_machine/src/carriage/operation/_operation_lld.c
         virtual_machine/src/carriage/operation/_operation_lldi.c
         virtual_machine/src/carriage/operation/_operation_lfork.c
+        virtual_machine/src/carriage/operation/_operation_aff.c
 #        virtual_machine/src/carriage/operation/operation_destroy.c
 #        virtual_machine/src/carriage/operation/operation_new.c
         virtual_machine/src/carriage/type_cut/_type_cut.h
@@ -408,15 +410,15 @@ add_executable(corewar
 #        virtual_machine/src/corwar/corwar.c
         virtual_machine/src/errors/_errors.h
         virtual_machine/src/errors/errors.c
-        virtual_machine/src/vm_params/vmp_player/file/_file.h
+        virtual_machine/src/vm_params/vmp_player/file/prvt_file.h
         virtual_machine/src/vm_params/ft_arg_is_num.c
-        virtual_machine/src/vm_params/vmp_player/file/_file_allocate_initial_value.c
-        virtual_machine/src/vm_params/vmp_player/file/_file_close.c
+        virtual_machine/src/vm_params/vmp_player/file/prvt_file_allocate_initial_value.c
+        virtual_machine/src/vm_params/vmp_player/file/prvt_file_close.c
 #        virtual_machine/src/vm_params/vmp_player/file/_file_get_chunk.c
-        virtual_machine/src/vm_params/vmp_player/file/_file_open.c
-        virtual_machine/src/vm_params/vmp_player/file/_file_open.c
-        virtual_machine/src/vm_params/vmp_player/file/_file_read.c
-        virtual_machine/src/vm_params/vmp_player/file/_file_reallocate_value.c
+        virtual_machine/src/vm_params/vmp_player/file/prvt_file_open.c
+        virtual_machine/src/vm_params/vmp_player/file/prvt_file_open.c
+        virtual_machine/src/vm_params/vmp_player/file/prvt_file_read.c
+        virtual_machine/src/vm_params/vmp_player/file/prvt_file_reallocate_value.c
         virtual_machine/src/vm_params/vmp_player/file/file_data_check_valid.c
         virtual_machine/src/vm_params/vmp_player/file/file_data_code.c
         virtual_machine/src/vm_params/vmp_player/file/file_data_comment.c
@@ -427,38 +429,46 @@ add_executable(corewar
         virtual_machine/src/vm_params/vmp_player/file/file_destroy.c
         virtual_machine/src/vm_params/vmp_player/file/file_new.c
 #        virtual_machine/src/vm_params/vmp_player/file/file_total.c
-        virtual_machine/src/vm_params/vmp_player/_vmp_player.h
+        virtual_machine/src/vm_params/vmp_player/prvt_vmp_player.h
         virtual_machine/src/vm_params/vmp_player/vmp_player_destroy.c
         virtual_machine/src/vm_params/vmp_player/vmp_player_new.c
         virtual_machine/src/vm_params/vmp_player/vmp_player_set_file.c
         virtual_machine/src/vm_params/vmp_player/vmp_player_file.c
         virtual_machine/src/vm_params/vmp_player/vmp_player_name.c
-#        virtual_machine/src/vm_params/vmp_state/_vmp_state.h
+#        virtual_machine/src/vm_params/vmp_state/prvt_vmp_state.h
 #        virtual_machine/src/vm_params/vmp_state/_vmp_state_due_to_param.c
 #        virtual_machine/src/vm_params/vmp_state/_vmp_state_due_to_state.c
 #        virtual_machine/src/vm_params/vmp_state/vmp_state.c
         virtual_machine/src/vm_params/_vm_params.h
-        virtual_machine/src/vm_params/_vm_params_add_player_node.c
-        virtual_machine/src/vm_params/_vm_params_parse.c
+        virtual_machine/src/vm_params/prvt_vm_params_add_player_node.c
+        virtual_machine/src/vm_params/prvt_vm_params_parse.c
         virtual_machine/src/vm_params/_vm_params_set_file_name_with_id.c
         virtual_machine/src/vm_params/_vm_params_set_file_name_without_id.c
 #        virtual_machine/src/vm_params/_vm_params_set_is_dump.c
 #        virtual_machine/src/vm_params/_vm_params_set_mock.c
-        virtual_machine/src/vm_params/_vm_params_set_nbr_cycles.c
-        virtual_machine/src/vm_params/_vm_params_set_player_name.c
-        virtual_machine/src/vm_params/vm_params_add_player_name_node.c
+#        virtual_machine/src/vm_params/.c
+        virtual_machine/src/vm_params/prvt_vm_params_init.c
+        virtual_machine/src/vm_params/prvt_vm_params_flag_name.c
+        virtual_machine/src/vm_params/_vm_params_flag_cycles.c
+        virtual_machine/src/vm_params/_vm_params_dump_cycles.c
+        virtual_machine/src/vm_params/_vm_params_flag_verbose.c
+        virtual_machine/src/vm_params/prvt_vm_params_set_player_name.c
+        virtual_machine/src/vm_params/prvt_vm_params_add_player_name_node.c
         virtual_machine/src/vm_params/vm_params_destroy_players.c
 #        virtual_machine/src/vm_params/vm_params_detroy.c
         virtual_machine/src/vm_params/vm_params_named_sorted_array_of_players.c
         virtual_machine/src/vm_params/vm_params_nb_players.c
+        virtual_machine/src/vm_params/vm_params_dump_cycles.c
+        virtual_machine/src/vm_params/vm_params_verbosity_lvl.c
         virtual_machine/src/vm_params/vm_params_new.c
         virtual_machine/src/_vm.h
         virtual_machine/src/_vm_destroy.c
         virtual_machine/src/_vm_new.c
         virtual_machine/src/vm_play.c
-        virtual_machine/src/vm_cycles_counter.c
+        virtual_machine/src/vm_global_counter.c
         virtual_machine/src/vm_singleton.c
         virtual_machine/src/vm_add_new_carriage_node.c
         virtual_machine/src/vm_increase_num_of_live_ops.c
+        virtual_machine/src/vm_num_of_carriages_and_increase.c
 #        virtual_machine/test/main_test.c
         virtual_machine/src/carriage/operation/_operation_aff.c main_asm.c interfaces/codegen.h)

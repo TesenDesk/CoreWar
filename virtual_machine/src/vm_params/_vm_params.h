@@ -23,15 +23,30 @@
 # include "player.h"
 # include "arena.h"
 # include "vm_params.h"
-#include "../vmp_player/_vmp_player.h"
+#include "prvt_vmp_player.h"
 
-//typedef  void (*t_sm_parser)(t_vm_params *self, char **params);
 typedef  int (*t_sm_parser)(t_vm_params *self, char *params);
+
+# define P_SHORT_NAME	"-n"
+# define P_LONG_NAME	"-name"
+# define P_SHORT_DUMP	"-d"
+# define P_LONG_DUMP	"-dump"
+
+# define FLAG_CYCLE		"-s"
+# define FLAG_VERB		"-v"
+# define FLAG_BINARY	"-b"
+# define FLAG_STEALTH	"-stealth"
+# define FLAG_NCURSES	"-curses"
+
+
 
 # define USAGE_STR			 "Usage: ./corewar [-d N -s N -v N | -b --stealth | -n --stealth] [-a] <champion1.cor> <...>\n"
 //							 "    -a        : Prints output from \"aff\" (Default is to hide it)\n"
 //							 "#### TEXT OUTPUT MODE ##########################################################\n"
-//							 "    -d N      : Dumps memory after N cycles then exits\n"
+//							 "    -d N      : Dumps memory (64 byte line)
+//after N cycles then exits\n"
+//							 "    -dump N      : Dumps memory (64 byte line)
+//after N cycles then exits\n"
 //							 "    -s N      : Runs N cycles, dumps memory, pauses, then repeats\n"
 //							 "    -v N      : Verbosity levels, can be added together to enable several\n"
 //							 "                - 0 : Show only essentials\n"
@@ -48,6 +63,30 @@ typedef  int (*t_sm_parser)(t_vm_params *self, char *params);
 //							 "    --stealth : Hides the real contents of the memory\n"
 //							 "################################################################################"
 
+enum				e_t_argtype
+{
+  NO_ARG = 0,
+  ARG_NUMFLUG,
+  ARG_NONUMFLAG,
+  ARG_NUM,
+  ARG_FILE,
+};
+
+enum 				e_t_paramcodes
+{
+  NO_FLAG_CODE = 0,
+  FLAG_NAME_CODE,
+  FLAG_CYCLE_CODE,
+  FLAG_VERBOSE_CODE,
+  FLAG_DUMP_CODE,
+  FLAG_BINARY_CODE,
+  FLAG_STEALTH_CODE,
+  FLAG_NCURSES_CODE,
+  FLAG_NUM_CODE,
+  FLAG_FILE_CODE,
+  FLAG_UNDEF,
+};
+
 typedef struct					s_vm_params
 {
 	int				is_set_dump;
@@ -63,23 +102,25 @@ typedef struct					s_vm_params
 	int				nb_players;
 }								t_vm_params;
 
-void		_vm_params_parse(t_vm_params *self, char **params);
-void		_vm_params_add_unnamed_player_node(t_vm_params *self, t_vmp_player *player);
-void		_vm_params_add_named_player_node(t_vm_params *self,
+void		prvt_vm_params_parse(t_vm_params *self, char **params);
+void		prvt_vm_params_add_unnamed_player_node(t_vm_params *self, t_vmp_player *player);
+void		prvt_vm_params_add_named_player_node(t_vm_params *self,
 				t_vmp_player *player);
 
-void		_vm_params_set_player_name(t_vm_params *self,
+void		prvt_vm_params_set_player_name(t_vm_params *self,
 				 int player_name);
 void		_vm_params_set_file_name_with_id(t_vm_params *self,
 				char *file_name);
 void		_vm_params_set_file_name_without_id(t_vm_params *self,
 				char *file_name);
-//void		_vm_params_set_nbr_cycles(t_vm_params *self, char *nbr_cycles_str);
-//void		_vm_params_set_is_dump(t_vm_params *self, char *useless);
-//void		_vm_params_set_mock(t_vm_params *never_passed, char *usless);
+int			prvt_vm_params_init(t_vm_params *self, char *param);
+int			prvt_vm_params_flag_name(t_vm_params *self, char *param);
+int 		_vm_params_flag_cycles(t_vm_params *self, char *param);
+int 		_vm_params_dump_cycles(t_vm_params *self, char *param);
+int 		_vm_params_flag_verbose(t_vm_params *self, char *param);
 
-int 					_vmp_state(t_vm_params *self, int argtype);
 
-int 						ft_arg_is_num(char *param);
+
+int 					ft_arg_is_num(char *param);
 
 #endif

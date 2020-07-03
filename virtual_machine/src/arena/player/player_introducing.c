@@ -20,7 +20,7 @@ void        player_introducing(t_player *self)
     write(1, self->text_name, ft_strlen(self->text_name));
     write(1, "\" (\"", 4);
     write(1, self->text_comment, ft_strlen(self->text_comment));
-    write(1, "\") !\n", 6);
+    write(1, "\") !\n", 5);
     return;
 }
 

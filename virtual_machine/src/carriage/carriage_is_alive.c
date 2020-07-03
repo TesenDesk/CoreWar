@@ -1,14 +1,10 @@
 # include "_carriage.h"
 
-int         carriage_is_alive(t_carriage *self)
+int         carriage_is_alive(t_carriage *self, int cycles_to_die, int counter)
 {
-    if (self->last_live_cycle == 0) // cant be smaller the 0
-    {
+    if (cycles_to_die <= 0
+    || (counter - self->last_live_cycle) >= cycles_to_die)
         return (FALSE);
-    }
     else
-    {
-        self->last_live_cycle = 0;
         return (TRUE);
-    }
 }
