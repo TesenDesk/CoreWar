@@ -179,7 +179,7 @@ static void		write_address_to_free_label(t_codegen *data, t_expr *label)
 	if (!(tmp = (t_code_addr*)malloc(sizeof(t_code_addr))))
 		exit(-1);
 	tmp->addr = data->add;
-	printf("codegen, addr:%d, val:%s\n", tmp->addr, token->val);
+//	printf("codegen, addr:%d, val:%s\n", tmp->addr, token->val);
 	ft_hash_map_set_content(data->labels_free, token->val, (tmp));
 }
 
@@ -251,7 +251,7 @@ static void		fill_dirind_param(t_codegen *data, t_arg *param, char dir_type)
 		cell_size = 1;
 	else
 		cell_size = param->type == TOKEN_TDIR_INT && dir_type == 1 ? 4 : 2;
-	printf("cell_type:%d, num_arg:%d\n", cell_size, num_arg);
+//	printf("cell_type:%d, num_arg:%d\n", cell_size, num_arg);
 	rotate_bytes(&num_arg, cell_size);
 	if (cell_size == 2) {
 		short s = (short)num_arg;
@@ -369,7 +369,7 @@ static void			codegen_ending(t_codegen *data)
 	while ((ld = ft_vector_get(data->labels_ptrs, ++i)))
 	{
 		add = (int)(((t_code_addr*)ft_hash_map_get(data->labels_free, ld->name))->addr);
-		printf("add_addr:%d, val:%s, instr:%d\n", add, ld->name, ld->instruction_begining);
+//		printf("add_addr:%d, val:%s, instr:%d\n", add, ld->name, ld->instruction_begining);
 		tmp = (add - ld->instruction_begining);
 		if (ld->param_type == TOKEN_TIND_LAB)
 			tmp %= IDX_MOD;
@@ -462,7 +462,6 @@ void        write_code_to_file(char* exec,int code_size,char * filename)
     root = ft_strncpy(root, filename, ft_strlen(filename)  - 2);
     new_name = ft_strjoin(root, ".cor");
     free(root);
-    printf("!!!!!!!!!!!!!!!%s\n", new_name);
     if (!(fd = open(new_name, O_WRONLY | O_CREAT))){
     	printf("can' open/create a file\n");
     	exit(-1);
