@@ -158,7 +158,7 @@ $(NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(CHK_DIR_OBJ) $(ANALYSER_DIR_OBJ) $(COD
 #		@gcc $(FLAGS) -o $(NAME) $(LEX_DIR_SRC) $(LIBFLAGS) -I$(HEADERDIR)
 		# @cc $(FLAGS) -o $(NAME) $(LEX_DIR_SRC) $(MLX_FLAGS) -I$(HEADERDIR) ##todo: add '$(LIBFLAGS)'
 		make -C ./libft
-		gcc  -I$(INTERFACE) -I./libft/ $^ -o $@ $(LIBFLAGS)
+		gcc  -I$(INTERFACE) -I./libft/ $^ -lncurses -o $@ $(LIBFLAGS)
 #$(LIB):
 		#make -C libft/
 
