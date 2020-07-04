@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_destroy.c                                     :+:      :+:    :+:   */
+/*   prvt_vm_params_flag_verbose.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/08 21:41:19 by yurezz            #+#    #+#             */
-/*   Updated: 2020/07/01 18:01:33 by cmissy           ###   ########.fr       */
+/*   Created: 2020/07/04 16:21:43 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/04 16:22:00 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prvt_file.h"
+#include "prvt_vm_params.h"
 
-void				file_destroy(t_i_file **self)
+int				prvt_vm_params_flag_verbose(t_vm_params *self, char *param)
 {
-	ft_memdel(&((*self)->data));
-	ft_memdel((void **)self);
-	return ;
+	long long	num;
+
+	num = ft_atol(param);
+	if (!(ft_arg_is_num(param)))
+		raise(__FILE__, __LINE__, ENOARGVAL);
+	self->verbosity_lvl = num;
+	return (FLAG_NUM_CODE);
 }

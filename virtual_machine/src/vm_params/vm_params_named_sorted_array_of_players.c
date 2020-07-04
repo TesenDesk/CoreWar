@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <arena/_arena.h>
-#include "_vm_params.h"
+#include "prvt_vm_params.h"
 #include "../player/_player.h"
 
 static void			prvt_vm_params_map_players_to_arena(t_list *id_players,

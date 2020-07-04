@@ -1,7 +1,7 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Make                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
@@ -23,7 +23,7 @@ PREFIX =	[$(CYAN)libft$(RST)]:\t
 LIB_DIR =	./
 HDR_DIR =	./
 SRC_DIR =	./
-#------------------------------------files-------------------------------------#
+#------------------------------------s-------------------------------------#
 NAME =		libft.a
 HEADER =	libft.h get_next_line.h
 OBJ = 		$(SRC:.c=.o)
@@ -134,7 +134,7 @@ EXPANSION =	ft_isspace.c \
 			ft_fit_size.c \
 			ft_error.c \
 			ft_error_ptr.c \
-			ft_read_file.c \
+			ft_read_.c \
 			ft_div_mod.c \
 			ft_lldiv_mod.c \
 			ft_imaxdiv.c \
@@ -254,7 +254,7 @@ all:		$(NAME)
 		@echo "$(PREFIX)✅  $(GREEN)Done.$(RST)"
 
 $(NAME):	$(OBJ) $(HEADER)
-		@printf "%-95c\r$(PREFIX)✅  $(GREEN)All files accepted.$(RST)\n" ' '
+		@printf "%-95c\r$(PREFIX)✅  $(GREEN)All s accepted.$(RST)\n" ' '
 		@echo "$(PREFIX)📦  Packaging files into library file..."
 		@ar rc $(NAME) $(OBJ)
 		@ranlib $(NAME)

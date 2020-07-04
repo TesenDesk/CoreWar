@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _vm_params_add_player_node.c                       :+:      :+:    :+:   */
+/*   prvt_vm_params_dump_cycles.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/06 01:00:49 by yurezz            #+#    #+#             */
-/*   Updated: 2020/07/02 19:02:23 by cmissy           ###   ########.fr       */
+/*   Created: 2020/07/04 16:30:48 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/04 16:31:45 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_vm_params.h"
+#include "prvt_vm_params.h"
 
-void			prvt_vm_params_add_unnamed_player_node(t_vm_params *self,
-												t_vmp_player *player)
+int				prvt_vm_params_dump_cycles(t_vm_params *self, char *param)
 {
-	t_list		*new_node;
+	long long	num;
 
-	if ((new_node = ft_lstnew((void *)player, sizeof(*player))) == NULL)
-		raise(__FILE__, __LINE__, ENOMEMORY);
-	ft_lstpushback(&self->noid_player_head, new_node);
-	++self->nb_players;
-	return ;
+	num = ft_atol(param);
+	if (!(ft_arg_is_num(param)) || num < 0)
+		raise(__FILE__, __LINE__, ENOARGVAL);
+	self->dump_cycles = num;
+	return (FLAG_NUM_CODE);
 }

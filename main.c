@@ -7,7 +7,7 @@
 //#include "virtual_machine/include/arena.h"
 
 #include "lexer.h"
-#include "virtual_machine/src/vm_params/_vm_params.h"
+#include "virtual_machine/src/vm_params/prvt_vm_params.h"
 #include "virtual_machine/include/vm_params.h"
 #include "lexer_private.h"
 #include "./lexer/lexer_private.h"
@@ -134,7 +134,7 @@
 
 
 
-//void			file_print_dump(tt_file *self)
+//void			file_print_dump(t_i_file *self)
 //{
 //	size_t		index;
 //	size_t		i;

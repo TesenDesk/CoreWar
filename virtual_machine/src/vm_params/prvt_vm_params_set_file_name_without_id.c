@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _vm_params_set_file_name_with_id.c                 :+:      :+:    :+:   */
+/*   prvt_vm_params_set_file_name_without_id.c          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/06 00:47:10 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/26 21:44:34 by nikita_toro      ###   ########.fr       */
+/*   Created: 2020/07/04 16:33:55 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/04 16:35:12 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_vm_params.h"
+#include "prvt_vm_params.h"
 
-void				_vm_params_set_file_name_with_id(t_vm_params *self,
-							char *file_name)
+void				prvt_vm_params_set_file_name_without_id(t_vm_params *self,
+															char *file_name)
 {
 	t_vmp_player	*player;
 
-	player = (t_vmp_player *)self->id_player_head->content;
-	vmp_player_set_file(player, file_name);
-	return;
+	player = vmp_player_new(PNAME_MOCK, file_name);
+	prvt_vm_params_add_unnamed_player_node(self, player);
+	return ;
 }

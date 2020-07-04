@@ -13,7 +13,7 @@
 #include "libft.h"
 
 /*
-**	The function writes the incoming character to the file defined by the file
+**	The function writes the incoming character to the  defined by the
 ** descriptor.
 */
 

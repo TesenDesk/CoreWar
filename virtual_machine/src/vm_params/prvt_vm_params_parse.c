@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_vm_params.h"
+#include "prvt_vm_params.h"
 
 static int				prvt_vm_params_flag_name_done(t_vm_params *self,
 													char *param)
 {
-	_vm_params_set_file_name_with_id(self, param);
+	prvt_vm_params_set_file_name_with_id(self, param);
 	return (FLAG_FILE_CODE);
 }
 
@@ -57,9 +57,9 @@ void					prvt_vm_params_parse(t_vm_params *self, char **params)
 	vtable[0] = prvt_vm_params_init;
 	vtable[1] = prvt_vm_params_flag_name;
 	vtable[2] = prvt_vm_params_flag_name_done;
-	vtable[3] = _vm_params_flag_cycles;
-	vtable[4] = _vm_params_flag_verbose;
-	vtable[5] = _vm_params_dump_cycles;
+	vtable[3] = prvt_vm_params_flag_cycles;
+	vtable[4] = prvt_vm_params_flag_verbose;
+	vtable[5] = prvt_vm_params_dump_cycles;
 	arg_type = NO_ARG;
 	if (!(*params))
 		raise(__FILE__, __LINE__, EBADPLAYERNAME);

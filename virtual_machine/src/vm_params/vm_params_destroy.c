@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_vm_params.h"
+#include "prvt_vm_params.h"
 
 void					vm_params_destroy(t_vm_params **self)
 {

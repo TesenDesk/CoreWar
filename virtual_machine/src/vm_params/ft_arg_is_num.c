@@ -6,13 +6,13 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 18:59:32 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/02 18:59:36 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/04 16:40:49 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_vm_params.h"
+#include "prvt_vm_params.h"
 
-int 				ft_arg_is_num(char *param)
+int				ft_arg_is_num(char *param)
 {
 	if (*param == '+' || *param == '-')
 		++param;

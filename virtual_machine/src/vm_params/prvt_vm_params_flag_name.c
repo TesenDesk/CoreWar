@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_vm_params.h"
+#include "prvt_vm_params.h"
 
 int				prvt_vm_params_flag_name(t_vm_params *self, char *param)
 {

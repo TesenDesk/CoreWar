@@ -12,7 +12,7 @@
 
 #include "prvt_file.h"
 
-char		*file_data_comment(tt_file *self)
+char		*file_data_comment(t_i_file *self)
 {
 	char		*comment_in_data;
 	char		*comment;

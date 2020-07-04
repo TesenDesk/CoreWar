@@ -16,7 +16,7 @@
 t_player		*player_new(t_vmp_player *vmp_player)
 {
 	t_player	*self;
-	tt_file		*file;
+	t_i_file		*file;
 
 	file = vmp_player_file(vmp_player);
 	file_data_check_valid(file);

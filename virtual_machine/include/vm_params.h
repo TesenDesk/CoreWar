@@ -17,6 +17,7 @@
 #include "arena.h"
 
 typedef struct s_vm_params	t_vm_params;
+typedef struct s_vm_params	t_vm_params;
 
 t_vm_params		*vm_params_new(int argc, char *argv[]);
 void			vm_params_destroy(t_vm_params **self);

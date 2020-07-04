@@ -13,7 +13,7 @@
 #include "_player.h"
 #include "_arena.h"
 #include "vm_params.h"
-#include "./vm_params/_vm_params.h"
+#include "./vm_params/prvt_vm_params.h"
 #include "vmp_player.h"
 #include "player.h"
 #include "./arena/player/_player.h"

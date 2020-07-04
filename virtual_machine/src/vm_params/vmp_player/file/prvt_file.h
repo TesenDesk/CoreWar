@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:18:37 by yurezz            #+#    #+#             */
-/*   Updated: 2020/07/01 18:18:05 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/04 17:22:34 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "libft.h"
 # include "errors.h"
-# include "file.h"
 # include "op.h"
 
 # define MAGIC_LENGTH		4
@@ -35,10 +34,10 @@ typedef struct				s_i_file
 	int						is_read;
 }							t_i_file;
 
-void						prvt_file_read(tt_file *self);
-void						prvt_file_open(tt_file *self);
-void						prvt_file_close(tt_file *self);
-void						prvt_file_allocate_intitial_value(tt_file *self);
-void						prvt_file_reallocate_value(tt_file *self);
+void						prvt_file_read(t_i_file *self);
+void						prvt_file_open(t_i_file *self);
+void						prvt_file_close(t_i_file *self);
+void						prvt_file_allocate_initial_value(t_i_file *self);
+void						prvt_file_reallocate_value(t_i_file *self);
 
 #endif

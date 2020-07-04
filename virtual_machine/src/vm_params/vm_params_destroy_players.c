@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_vm_params.h"
+#include "prvt_vm_params.h"
 
 static void			prvt_vm_params_destroy_player(void *prvt_player,
 														size_t mock)

@@ -12,7 +12,7 @@
 
 #include "prvt_file.h"
 
-static int		file_check_data_size(tt_file *self)
+static int		file_check_data_size(t_i_file *self)
 {
 	unsigned int			min_size;
 	unsigned int			code_size;
@@ -40,7 +40,7 @@ static int		file_check_data_size(tt_file *self)
 	return (SUCCESS);
 }
 
-static int		file_data_check_nulls(tt_file *self)
+static int		file_data_check_nulls(t_i_file *self)
 {
 	char		*pointer_first_null;
 	char		*pointer_second_null;
@@ -63,7 +63,7 @@ static int		file_data_check_nulls(tt_file *self)
 	return (SUCCESS);
 }
 
-static int		file_data_magic_header_check(tt_file *self)
+static int		file_data_magic_header_check(t_i_file *self)
 {
 	unsigned int			data_magic_header;
 
@@ -77,7 +77,7 @@ static int		file_data_magic_header_check(tt_file *self)
 	return (SUCCESS);
 }
 
-int				file_data_check_valid(tt_file *self)
+int				file_data_check_valid(t_i_file *self)
 {
 	if (file_check_data_size(self))
 		raise(__FILE__, __LINE__, EWRONGSIZE);

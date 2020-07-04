@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_vm_params.h"
+#include "prvt_vm_params.h"
 
 void			prvt_vm_params_add_unnamed_player_node(t_vm_params *self,
 												t_vmp_player *player)
@@ -19,7 +19,7 @@ void			prvt_vm_params_add_unnamed_player_node(t_vm_params *self,
 
 	if ((new_node = ft_lstnew((void *)player, sizeof(*player))) == NULL)
 		raise(__FILE__, __LINE__, ENOMEMORY);
-	ft_lstpushback(&self->noid_player_head, new_node);
+	ft_lstpushback(&(self->noid_player_head), new_node);
 	++self->nb_players;
 	return ;
 }
