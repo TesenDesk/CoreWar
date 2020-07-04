@@ -239,7 +239,8 @@ EXPANSION =	ft_isspace.c \
 			ft_hash_map_hashcode.c \
 			ft_hash_map_set.c \
 			ft_hash_map_set_content.c \
-			ft_hash_map_put_to_map.c
+			ft_hash_map_put_to_map.c \
+			ft_atol.c
 #--------------------COMPILER_OPTIONS--------------------#
 ifeq ($(DEBUG), 1)
 	CC_FLAGS =	-Wall -Wextra -Werror -g
