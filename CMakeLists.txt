@@ -320,7 +320,7 @@ add_executable(corewar
         parser/parser_singleton_instance.c
         parser/parser_xtor_private.h
         virtual_machine/include/arena.h
-        virtual_machine/include/arguments.h
+#        virtual_machine/include/arguments.h
         virtual_machine/include/carriage.h
         virtual_machine/include/code.h
         virtual_machine/include/corwar.h
@@ -364,42 +364,43 @@ add_executable(corewar
         virtual_machine/src/arena/arena_players_introducing.c
         virtual_machine/src/arena/arena_carriage_list_new.c
         virtual_machine/src/arena/arena_write_four_bytes_to_data.c
-        virtual_machine/src/carriage/arguments/_arguments.h
+#        virtual_machine/src/carriage/arguments/_arguments.h
 #        virtual_machine/src/carriage/arguments/_arguments_destroy.c
 #        virtual_machine/src/carriage/arguments/_arguments_new.c
 #        virtual_machine/src/carriage/arguments/arguments_set.c
 #        virtual_machine/src/carriage/arguments/arguments_singletone.c
-        virtual_machine/src/carriage/operation/_operation.h
+        virtual_machine/src/carriage/operation/prvt_operation.h
         virtual_machine/src/carriage/operation/operation_dispatched.c
-        virtual_machine/src/carriage/operation/_operation_precheck_args.c
-        virtual_machine/src/carriage/operation/_operation_live.c
-        virtual_machine/src/carriage/operation/_operation_ld.c
-        virtual_machine/src/carriage/operation/_operation_st.c
-        virtual_machine/src/carriage/operation/_operation_add.c
-        virtual_machine/src/carriage/operation/_operation_sub.c
-        virtual_machine/src/carriage/operation/_operation_and.c
-        virtual_machine/src/carriage/operation/_operation_or.c
-        virtual_machine/src/carriage/operation/_operation_xor.c
-        virtual_machine/src/carriage/operation/_operation_zjmp.c
-        virtual_machine/src/carriage/operation/_operation_ldi.c
-        virtual_machine/src/carriage/operation/_operation_sti.c
-        virtual_machine/src/carriage/operation/_operation_fork.c
-        virtual_machine/src/carriage/operation/_operation_lld.c
-        virtual_machine/src/carriage/operation/_operation_lldi.c
-        virtual_machine/src/carriage/operation/_operation_lfork.c
-        virtual_machine/src/carriage/operation/_operation_aff.c
+        virtual_machine/src/carriage/operation/prvt_operation_precheck_args.c
+        virtual_machine/src/carriage/operation/prvt_operation_live.c
+        virtual_machine/src/carriage/operation/prvt_operation_ld.c
+        virtual_machine/src/carriage/operation/prvt_operation_st.c
+        virtual_machine/src/carriage/operation/prvt_operation_add.c
+        virtual_machine/src/carriage/operation/prvt_operation_sub.c
+        virtual_machine/src/carriage/operation/prvt_operation_and.c
+        virtual_machine/src/carriage/operation/prvt_operation_or.c
+        virtual_machine/src/carriage/operation/prvt_operation_xor.c
+        virtual_machine/src/carriage/operation/prvt_operation_zjmp.c
+        virtual_machine/src/carriage/operation/prvt_operation_ldi.c
+        virtual_machine/src/carriage/operation/prvt_operation_sti.c
+        virtual_machine/src/carriage/operation/prvt_operation_fork.c
+        virtual_machine/src/carriage/operation/prvt_operation_lld.c
+        virtual_machine/src/carriage/operation/prvt_operation_lldi.c
+        virtual_machine/src/carriage/operation/prvt_operation_lfork.c
+        virtual_machine/src/carriage/operation/prvt_operation_aff.c
+        virtual_machine/src/carriage/operation/prvt_op_num_of_args.c
 #        virtual_machine/src/carriage/operation/operation_destroy.c
 #        virtual_machine/src/carriage/operation/operation_new.c
-        virtual_machine/src/carriage/type_cut/_type_cut.h
+#        virtual_machine/src/carriage/type_cut/_type_cut.h
 #        virtual_machine/src/carriage/type_cut/_type_cut_char.c
 #        virtual_machine/src/carriage/type_cut/_type_cut_int.c
 #        virtual_machine/src/carriage/type_cut/_type_cut_long_int.c
 #        virtual_machine/src/carriage/type_cut/_type_cut_short.c
 #        virtual_machine/src/carriage/type_cut/type_cut_dispatched.c
-        virtual_machine/src/carriage/_carriage.h
-        virtual_machine/src/carriage/_carriage_set_is_correct_op_code.c
-        virtual_machine/src/carriage/_carriage_set_op_code.c
-        virtual_machine/src/carriage/_carriage_set_cycles_to_perform_op.c
+        virtual_machine/src/carriage/prvt_carriage.h
+        virtual_machine/src/carriage/prvt_carriage_set_is_correct_op_code.c
+        virtual_machine/src/carriage/prvt_carriage_set_op_code.c
+        virtual_machine/src/carriage/prvt_carriage_set_cycles_to_perform_op.c
         virtual_machine/src/carriage/carriage_destroy.c
         virtual_machine/src/carriage/carriage_take_step.c
 #        virtual_machine/src/carriage/carriages_check_wins.c
@@ -469,5 +470,6 @@ add_executable(corewar
         virtual_machine/src/vm_add_new_carriage_node.c
         virtual_machine/src/vm_increase_num_of_live_ops.c
         virtual_machine/src/vm_num_of_carriages_and_increase.c
+        virtual_machine/src/vm_verbosity_lvl.c
 #        virtual_machine/test/main_test.c
         main.c)

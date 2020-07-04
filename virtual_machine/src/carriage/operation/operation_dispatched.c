@@ -1,25 +1,25 @@
-#include "_operation.h"
+#include "prvt_operation.h"
 
 void				operation_dispatched(t_carriage *self)
 {
     void	(*operations[NUMBER_OF_OPERATIONS])(t_carriage *self) =
             {
-                    _operation_live,
-                    _operation_ld,
-                    _operation_st,
-                    _operation_add,
-                    _operation_sub,
-                    _operation_and,
-                    _operation_or,
-                    _operation_xor,
-                    _operation_zjmp,
-                    _operation_ldi,
-                    _operation_sti,
-                    _operation_fork,
-                    _operation_lld,
-                    _operation_lldi,
-                    _operation_lfork,
-                    _operation_aff,
+		            prvt_operation_live,
+		            prvt_operation_ld,
+		            prvt_operation_st,
+		            prvt_operation_add,
+		            prvt_operation_sub,
+		            prvt_operation_and,
+		            prvt_operation_or,
+		            prvt_operation_xor,
+		            prvt_operation_zjmp,
+		            prvt_operation_ldi,
+		            prvt_operation_sti,
+		            prvt_operation_fork,
+		            prvt_operation_lld,
+		            prvt_operation_lldi,
+		            prvt_operation_lfork,
+		            prvt_operation_aff,
             };
     operations[self->op_code - 1](self);
 }

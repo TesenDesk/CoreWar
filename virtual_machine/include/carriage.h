@@ -12,7 +12,7 @@
 
 #ifndef CARRIAGE_H
 # define CARRIAGE_H
-# include "_carriage.h"
+# include "prvt_carriage.h"
 
 typedef struct s_arena		t_arena;
 

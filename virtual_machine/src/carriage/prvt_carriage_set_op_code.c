@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   carriage_destroy.c                                 :+:      :+:    :+:   */
+/*   prvt_carriage_set_op_code.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/08 22:59:21 by yurezz            #+#    #+#             */
-/*   Updated: 2020/07/04 21:07:22 by cmissy           ###   ########.fr       */
+/*   Created: 2020/07/04 21:03:04 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/04 21:08:19 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prvt_carriage.h"
 
-void		carriage_destroy(void *self, size_t size)
+void			prvt_carriage_set_op_code(t_carriage *self, t_arena *arena)
 {
-	free(self);
+	self->op_code = arena_op_code(arena, self->arena_position);
 	return ;
 }
