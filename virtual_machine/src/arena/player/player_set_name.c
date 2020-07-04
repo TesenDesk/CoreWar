@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   player_set_name.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 19:49:39 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/29 18:30:28 by nikita_toro      ###   ########.fr       */
+/*   Updated: 2020/07/04 17:57:14 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_player.h"
+#include "prvt_player.h"
 
 void		player_set_name(t_player *self, int name)
 {
 	self->name = name + 1;
-	return;
+	return ;
 }

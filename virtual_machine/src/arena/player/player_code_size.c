@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _code.h                                            :+:      :+:    :+:   */
+/*   player_code_size.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/01 17:10:32 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 18:54:01 by yurezz           ###   ########.fr       */
+/*   Created: 2020/07/04 19:19:23 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/04 19:19:36 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _CODE_H
-# define _CODE_H
+#include "prvt_player.h"
 
-# include "error.h"
-# include "code.h"
-
-typedef struct			s_code
+int		player_code_size(t_player *self)
 {
-	void			*data;
-	int				size;
-}						t_code;
-
-
-#endif
+	return (self->code_size);
+}

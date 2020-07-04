@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_player.h"
+#include "prvt_player.h"
 
 int			player_name(t_player *self)
 {

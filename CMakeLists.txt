@@ -337,18 +337,20 @@ add_executable(corewar
 #        virtual_machine/src/arena/player/code/_code.h
 #        virtual_machine/src/arena/player/code/code_destroy.c
 #        virtual_machine/src/arena/player/code/code_new.c
-        virtual_machine/src/arena/player/_player.h
+        virtual_machine/src/arena/player/prvt_player.h
 #        virtual_machine/src/arena/player/_player_text_name_from_vmp_player.c
         virtual_machine/src/arena/player/player_destroy.c
         virtual_machine/src/arena/player/player_name.c
+        virtual_machine/src/arena/player/player_code.c
+        virtual_machine/src/arena/player/player_code_size.c
         virtual_machine/src/arena/player/player_new.c
         virtual_machine/src/arena/player/player_set_name.c
         virtual_machine/src/arena/player/player_introducing.c
         virtual_machine/src/arena/player/player_print_winner.c
         virtual_machine/src/arena/arena_get_n_bytes_from.c
-        virtual_machine/src/arena/_arena.h
-        virtual_machine/src/arena/_arena_players_new.c
-        virtual_machine/src/arena/_arena_set_smallest_unoccupied_name.c
+        virtual_machine/src/arena/prvt_arena.h
+        virtual_machine/src/arena/prvt_arena_players_new.c
+        virtual_machine/src/arena/prvt_arena_set_smallest_unoccupied_name.c
         virtual_machine/src/arena/arena_players.c
         virtual_machine/src/arena/arena_set_last_live_player.c
         virtual_machine/src/arena/arena_nb_players.c
@@ -357,7 +359,7 @@ add_executable(corewar
         virtual_machine/src/arena/arena_op_code.c
         virtual_machine/src/arena/arena_print_dump.c
         virtual_machine/src/arena/arena_print_winner.c
-        virtual_machine/src/arena/arena_ser_unnamed_player.c
+        virtual_machine/src/arena/arena_set_unnamed_player.c
         virtual_machine/src/arena/arena_set_named_player.c
         virtual_machine/src/arena/arena_players_introducing.c
         virtual_machine/src/arena/arena_carriage_list_new.c

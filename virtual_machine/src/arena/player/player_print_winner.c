@@ -1,18 +1,19 @@
-#include "_player.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player_print_winner.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/04 18:04:10 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/04 18:04:20 by cmissy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "prvt_player.h"
 
 void		player_print_winner(t_player *self)
 {
-//    char    *player_nb;
-//    write(1, "Contestant ", 11);
-//    player_nb = ft_itoa(self->name);
-//    write(1, player_nb, ft_strlen(player_nb));
-//    free(player_nb);
-//
-//    write(1, ", \"", 3 );
-//    write(1, self->text_name, ft_strlen(self->text_name));
-//    write(1, "\", has won !\n", 13);
-
-    printf("Contestant %i, \"%s\", has won !\n", self->name, self->text_name);
-
-    return;
+	printf("Contestant %i, \"%s\", has won !\n", self->name, self->text_name);
+	return ;
 }
