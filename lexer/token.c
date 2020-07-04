@@ -21,9 +21,9 @@ t_token				*token_constructor(int type,void *ptr[2])
 		exit(-1);
 	}
 	if (ptr[1] - ptr[0] < 0) {
-		printf("!%.5s!\n", ptr[0]);
-		printf("type:%d\n", type);
-		printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+//		printf("!%.5s!\n", ptr[0]);
+//		printf("type:%d\n", type);
+//		printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
 		token->val = "";
 	}
 	else {

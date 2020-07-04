@@ -1,6 +1,5 @@
 #include "_arena.h"
 
-//don`t checked
 void        arena_write_four_bytes_to_data(t_arena *self, int pos, int new_data)
 {
     char        *data;

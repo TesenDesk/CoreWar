@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _vmp_player.h                                      :+:      :+:    :+:   */
+/*   vm_params_verbosity_lvl.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/01 17:18:37 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/26 21:13:02 by nikita_toro      ###   ########.fr       */
+/*   Created: 2020/07/02 18:40:50 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/02 18:40:50 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _VM_PARAMS_PLAYER_H
-# define _VM_PARAMS_PLAYER_H
+#include "_vm_params.h"
 
-# include "libft.h"
-# include "errors.h"
-# include "vmp_player.h"
-# include "file.h"
-
-typedef struct			s_vmp_player
+int		vm_params_verbosity_lvl(t_vm_params *self)
 {
-	int			player_name;
-	tt_file		*file;
-}						t_vmp_player;
-
-#endif
+	return (self->verbosity_lvl);
+}

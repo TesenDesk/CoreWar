@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expr_set_arg.c                                     :+:      :+:    :+:   */
+/*   prvt_file_read.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/03 17:22:07 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/16 19:47:04 by cmissy           ###   ########.fr       */
+/*   Created: 2020/07/01 18:18:38 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/01 18:18:38 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <token_private.h>
-#include "expr_private.h"
+#include "prvt_file.h"
 
-/*
-**	It sets argument type and token of the argument.
-*/
-
-int			expr_set_arg(t_expr *expr, t_token *token,
-					int args_number, int arg_type)
+void			prvt_file_read(tt_file *self)
 {
-	if (args_number == UNDEF_ARG)
-		return (SUCCESS);
-	expr->args[args_number].type = arg_type;
-	expr->args[args_number].value = (void *)token;
-	return (SUCCESS);
+	int			chunk;
+
+	chunk = 0;
+	prvt_file_allocate_intitial_value(self);
+	self->total = 0;
+	while ((chunk =
+	read(self->fd, self->data + self->total, INITIAL_CHUNK)) > 0)
+	{
+		self->total += chunk;
+		if (self->total == self->capacity)
+			prvt_file_reallocate_value(self);
+	}
+	return ;
 }

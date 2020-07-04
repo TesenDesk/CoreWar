@@ -5,7 +5,7 @@
 #ifndef CORE_CODEGEN_H
 #define CORE_CODEGEN_H
 
-#include "../virtual_machine/include/op.h"
+#include "op.h"
 #include "libft.h"
 #include "expr.h"
 #include "expr_defines.h"

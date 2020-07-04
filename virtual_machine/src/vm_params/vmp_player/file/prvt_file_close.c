@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _file_allocate_initial_value.c                     :+:      :+:    :+:   */
+/*   prvt_file_close.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/08 22:57:19 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 22:57:38 by yurezz           ###   ########.fr       */
+/*   Created: 2020/07/01 18:19:22 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/01 18:19:27 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_file.h"
+#include "prvt_file.h"
 
-void			_file_allocate_intitial_value(tt_file *self)
+void			prvt_file_close(tt_file *self)
 {
-	if ((self->data = ft_memalloc(INITIAL_CHUNK * sizeof(char))) == NULL)
-		raise(__FILE__, __LINE__, ENOMEMORY);
-	self->capacity = INITIAL_CHUNK;
+	if (self->is_opened == FALSE)
+		raise(__FILE__, __LINE__, EDOUBLECLOSE);
+	if (close(self->fd) == FAILURE)
+		raise(__FILE__, __LINE__, ECANNOTCLOSE);
+	self->is_opened = FALSE;
+	return ;
 }

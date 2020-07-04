@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_data_comment.c                                :+:      :+:    :+:   */
+/*   _vm_params_add_player_node.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/01 17:59:45 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/01 17:59:46 by cmissy           ###   ########.fr       */
+/*   Created: 2020/04/06 01:00:49 by yurezz            #+#    #+#             */
+/*   Updated: 2020/07/02 19:00:42 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prvt_file.h"
+#include "_vm_params.h"
 
-char		*file_data_comment(tt_file *self)
+void			prvt_vm_params_add_unnamed_player_node(t_vm_params *self,
+												t_vmp_player *player)
 {
-	char		*comment_in_data;
-	char		*comment;
+	t_list		*new_node;
 
-	comment_in_data = (char*)(self->data)
-		+ MAGIC_LENGTH
-		+ PROG_NAME_LENGTH
-		+ NULL_LENGTH
-		+ CHAMP_SIZE_LENGTH;
-	if (!(comment = ft_strdup(comment_in_data)))
+	if ((new_node = ft_lstnew((void *)player, sizeof(*player))) == NULL)
 		raise(__FILE__, __LINE__, ENOMEMORY);
-	return (comment);
+	ft_lstpushback(&self->noid_player_head, new_node);
+	++self->nb_players;
+	return ;
 }

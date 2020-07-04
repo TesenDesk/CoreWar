@@ -1,11 +1,11 @@
 #include "_operation.h"
 
-static void                perform_op(t_carriage *self, int arg)
+static void                print_op_log(t_carriage *self, int arg)
 {
     if (self->carry)
-        printf("P%5i | zjmp %i OK\n", self->num, arg);
+        printf("P %4i | zjmp %i OK\n", self->num, arg);
     else
-        printf("P%5i | zjmp %i FAILED\n", self->num, arg);
+        printf("P %4i | zjmp %i FAILED\n", self->num, arg);
 }
 
 void                    _operation_zjmp(t_carriage *self)
@@ -14,11 +14,14 @@ void                    _operation_zjmp(t_carriage *self)
     int     arg;
 
     op_len = ONE_BYTE + TWO_BYTES;
-    arg = arena_get_n_bytes_from(self->arena, self->arena_position + ONE_BYTE, TWO_BYTES) % IDX_MOD;
+    arg = arena_get_n_bytes_from(self->arena, self->arena_position + ONE_BYTE, TWO_BYTES);
     if (self->carry == 1)
-        self->arena_position = (self->arena_position + arg) % MEM_SIZE;
+        self->arena_position = (self->arena_position + arg  % IDX_MOD) % MEM_SIZE;
     else
         self->arena_position = (self->arena_position + op_len) % MEM_SIZE;
 
-    perform_op(self, arg);
+    if (self->arena_position < 0)
+        self->arena_position = MEM_SIZE + (self->arena_position % MEM_SIZE);
+
+print_op_log(self, arg);
 }

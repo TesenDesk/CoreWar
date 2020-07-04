@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _vm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:22:30 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 22:40:01 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/07/01 18:27:02 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "vm.h"
 # include "vm_params.h"
 # include "carriage.h"
+# include "op.h"
 
 /*
 **	Limit individual processes in the allocated memory.
@@ -40,9 +41,12 @@ typedef struct	s_vm
 	int         cycles_to_die;
 	int         cycles_to_dump;
 	int         cycles_counter;
+	int         global_counter;
 	int         num_of_live_ops;
 	int         num_checks;
 	int         num_of_carriages;
+    int         verbosity_lvl;
+  ;
 }				t_vm;
 
 t_vm		*_vm_new(int argc, char *argv[]);

@@ -10,13 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_vmp_player.h"
-#include "file.h"
+#include "prvt_vmp_player.h"
 
 void				vmp_player_destroy(t_vmp_player **self)
 {
 	if ((*self)->file != PFILE_MOCK)
 		file_destroy(&(*self)->file);
 	ft_memdel((void **)self);
-	return;
+	return ;
 }

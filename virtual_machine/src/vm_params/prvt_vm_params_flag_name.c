@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _vm_params_set_nbr_cycles.c                        :+:      :+:    :+:   */
+/*   prvt_vm_params_flag_name.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/06 01:05:02 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/26 20:24:05 by nikita_toro      ###   ########.fr       */
+/*   Created: 2020/07/02 18:31:11 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/02 18:31:12 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "_vm_params.h"
 
-
-
-void					_vm_params_set_nbr_cycles(t_vm_params *self,
-							char *nbr_sycles_str)
+int				prvt_vm_params_flag_name(t_vm_params *self, char *param)
 {
-	self->nb_cycles = ft_atol(nbr_sycles_str);
-	return;
+	long long num;
+
+	num = ft_atol(param);
+	if (!(ft_arg_is_num(param)))
+		raise(__FILE__, __LINE__, ENOARGVAL);
+	prvt_vm_params_set_player_name(self, num);
+	return (FLAG_NUM_CODE);
 }

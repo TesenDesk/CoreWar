@@ -1,9 +1,7 @@
 #include "_arena.h"
-
 # define DUMP_LINE_SIZE			32 //bytes
 # define D_LINE_SIZE			64 //bytes
 # define MAX_PLAYERS			4
-//# define MEM_SIZE				(MAX_PLAYERS * 1024)
 # define SPACE					' '
 # define EOL					'\n'
 # define PREFIX_SIZE			9
@@ -52,7 +50,8 @@ void			arena_print_dump(t_arena *self)
         {
             buffer[i] = EOL;
             i = PREFIX_SIZE;
-            write(1, buffer, buffer_len);
+//            write(1, buffer, buffer_len);
+            printf("%s", buffer);
             set_index_in_buffer(buffer, index);
         }
         else

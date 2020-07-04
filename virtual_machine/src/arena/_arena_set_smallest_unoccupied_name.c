@@ -11,9 +11,7 @@
 /* ************************************************************************** */
 
 #include "_arena.h"
-/*
- *
- */
+
 static void		_arena_set_smallest_unoccupied_name_postcondition_check(
 					t_arena *self)
 {
