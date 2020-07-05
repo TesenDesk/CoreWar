@@ -22,6 +22,8 @@
 # include "prvt_carriage.h"
 
 # define TWO_BITS_MASK	3
+# define NUM_OF_ARGS_ARRAY	{0, 1, 2, 2, 3, 3, 3, 3, 3, 1, 3, 3, 1, 2, 3, 1, 1}
+# define DIR_SIZE_IN_OPS	{0, 4, 4, 4, 4, 4, 4, 4, 4, 2, 2, 2, 2, 4, 2, 2, 4}
 
 enum	e_num_of_arguments
 {
@@ -38,39 +40,32 @@ enum	e_arguments
 	NB_ARGS,
 };
 
-enum	e_siz_in_bytes
-{
-	ONE_BYTE = 1,
-	TWO_BYTES,
-	THREE_BYTES,
-	FOUR_BYTES,
-};
+//enum	e_siz_in_bytes
+//{
+//	ONE_BYTE = 1,
+//	TWO_BYTES,
+//	THREE_BYTES,
+//	FOUR_BYTES,
+//};
 
-enum	e_type_codes
-{
-	CODE_T_REG = 1,
-	CODE_T_DIR,
-	CODE_T_IND,
-};
-
-int			prvt_operation_precheck_args(t_carriage *self, int *args,
+int operation_precheck_args(t_carriage *self, int *args,
 			char *type_codes, int num_of_args, int *op_len);
-void		prvt_operation_live(t_carriage *self);
-void		prvt_operation_ld(t_carriage *self);
-void		prvt_operation_st(t_carriage *self);
-void		prvt_operation_add(t_carriage *self);
-void		prvt_operation_sub(t_carriage *self);
-void		prvt_operation_and(t_carriage *self);
-void		prvt_operation_or(t_carriage *self);
-void		prvt_operation_xor(t_carriage *self);
-void		prvt_operation_zjmp(t_carriage *self);
-void		prvt_operation_ldi(t_carriage *self);
-void		prvt_operation_sti(t_carriage *self);
-void		prvt_operation_fork(t_carriage *self);
-void		prvt_operation_lld(t_carriage *self);
-void		prvt_operation_lldi(t_carriage *self);
-void		prvt_operation_lfork(t_carriage *self);
-void		prvt_operation_aff(t_carriage *self);
+void operation_live(t_carriage *self);
+void operation_ld(t_carriage *self);
+void operation_st(t_carriage *self);
+void operation_add(t_carriage *self);
+void operation_sub(t_carriage *self);
+void operation_and(t_carriage *self);
+void operation_or(t_carriage *self);
+void operation_xor(t_carriage *self);
+void operation_zjmp(t_carriage *self);
+void operation_ldi(t_carriage *self);
+void operation_sti(t_carriage *self);
+void operation_fork(t_carriage *self);
+void operation_lld(t_carriage *self);
+void operation_lldi(t_carriage *self);
+void operation_lfork(t_carriage *self);
+void operation_aff(t_carriage *self);
 int         prvt_op_num_of_args(int op_code);
 
 

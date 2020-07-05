@@ -22,7 +22,8 @@
 		"_vmp_state.h": "c",
 		"_vm_params.h": "c",
 		"_vm.h": "c",
-		"_errors.h": "c"
+		"_errors.h": "c",
+		"__locale": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }

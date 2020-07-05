@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prvt_operation_or.c                                :+:      :+:    :+:   */
+/*   operation_or.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -21,31 +21,31 @@ static void		print_op_log(t_carriage *self, int *args)
 
 static void		convert_args(t_carriage *self, int *args, char *type_codes)
 {
-	if (type_codes[ARG_1] == CODE_T_REG)
+	if (type_codes[ARG_1] == REG_CODE)
 		args[ARG_1] = self->registers[args[ARG_1]];
-	else if (type_codes[ARG_1] == CODE_T_IND)
+	else if (type_codes[ARG_1] == IND_CODE)
 		args[ARG_1] = arena_get_n_bytes_from(self->arena,
 		self->arena_position + args[ARG_1] % IDX_MOD, FOUR_BYTES);
-	if (type_codes[ARG_2] == CODE_T_REG)
+	if (type_codes[ARG_2] == REG_CODE)
 		args[ARG_2] = self->registers[args[ARG_2]];
-	else if (type_codes[ARG_2] == CODE_T_IND)
+	else if (type_codes[ARG_2] == IND_CODE)
 		args[ARG_2] = arena_get_n_bytes_from(self->arena,
 		self->arena_position + args[ARG_2] % IDX_MOD, FOUR_BYTES);
 }
 
-void			prvt_operation_or(t_carriage *self)
+void operation_or(t_carriage *self)
 {
 	int			op_len;
 	int			args[THREE_ARGS];
 	char		type_codes[THREE_ARGS];
 
-	if (prvt_operation_precheck_args(self, args, type_codes, THREE_ARGS,
-	&op_len) == SUCCESS
-		&& (type_codes[ARG_1] == CODE_T_REG || type_codes[ARG_1] == CODE_T_DIR
-			|| type_codes[ARG_1] == CODE_T_IND)
-		&& (type_codes[1] == CODE_T_REG || type_codes[1] == CODE_T_DIR
-			|| type_codes[1] == CODE_T_IND)
-		&& type_codes[2] == CODE_T_REG)
+	if (operation_precheck_args(self, args, type_codes, THREE_ARGS,
+                                    &op_len) == SUCCESS
+		&& (type_codes[ARG_1] == REG_CODE || type_codes[ARG_1] == DIR_CODE
+			|| type_codes[ARG_1] == IND_CODE)
+		&& (type_codes[ARG_2] == REG_CODE || type_codes[ARG_2] == DIR_CODE
+			|| type_codes[ARG_2] == IND_CODE)
+		&& type_codes[ARG_3] == REG_CODE)
 	{
 		convert_args(self, args, type_codes);
 		print_op_log(self, args);

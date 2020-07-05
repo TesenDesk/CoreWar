@@ -8,7 +8,7 @@ static void                print_op_log(t_carriage *self, int arg)
         printf("P %4i | zjmp %i FAILED\n", self->num, arg);
 }
 
-void                    prvt_operation_zjmp(t_carriage *self)
+void        operation_zjmp(t_carriage *self)
 {
     int     op_len;
     int     arg;
@@ -22,6 +22,5 @@ void                    prvt_operation_zjmp(t_carriage *self)
 
     if (self->arena_position < 0)
         self->arena_position = MEM_SIZE + (self->arena_position % MEM_SIZE);
-
-print_op_log(self, arg);
+    print_op_log(self, arg);
 }

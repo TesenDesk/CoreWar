@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prvt_operation_add.c                               :+:      :+:    :+:   */
+/*   operation_add.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -17,23 +17,22 @@ static void		print_op_log(t_carriage *self, int *args)
 	if (vm_verbosity_lvl() == 4)
 	{
 		printf("P %4i | add r%i r%i r%i\n",
-		self->num, args[0] + 1, args[1] + 1, args[2] + 1);
+		self->num, args[ARG_1] + 1, args[ARG_2] + 1, args[ARG_3] + 1);
 	}
 }
 
-void			prvt_operation_add(t_carriage *self)
+void            operation_add(t_carriage *self)
 {
-	int         num_of_args = prvt_op_num_of_args(self->op_code);
 	int			op_len;
-	int			args[num_of_args];
-	char		type_codes[num_of_args];
+	int			args[THREE_ARGS];
+	char		type_codes[THREE_ARGS];
 	int			sum;
 
-	if (prvt_operation_precheck_args(self, args, type_codes,
-			num_of_args, &op_len) == SUCCESS
-		&& type_codes[ARG_1] == CODE_T_REG
-		&& type_codes[ARG_2] == CODE_T_REG
-		&& type_codes[ARG_3] == CODE_T_REG)
+	if (operation_precheck_args(self, args, type_codes, THREE_ARGS,
+                                    &op_len) == SUCCESS
+		&& type_codes[ARG_1] == REG_CODE
+		&& type_codes[ARG_2] == REG_CODE
+		&& type_codes[ARG_3] == REG_CODE)
 	{
 		print_op_log(self, args);
 		sum = self->registers[args[ARG_1]] + self->registers[args[ARG_2]];

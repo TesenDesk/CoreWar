@@ -4,22 +4,12 @@ void				operation_dispatched(t_carriage *self)
 {
     void	(*operations[NUMBER_OF_OPERATIONS])(t_carriage *self) =
             {
-		            prvt_operation_live,
-		            prvt_operation_ld,
-		            prvt_operation_st,
-		            prvt_operation_add,
-		            prvt_operation_sub,
-		            prvt_operation_and,
-		            prvt_operation_or,
-		            prvt_operation_xor,
-		            prvt_operation_zjmp,
-		            prvt_operation_ldi,
-		            prvt_operation_sti,
-		            prvt_operation_fork,
-		            prvt_operation_lld,
-		            prvt_operation_lldi,
-		            prvt_operation_lfork,
-		            prvt_operation_aff,
+      operation_live,     operation_ld,        operation_st,
+      operation_add,      operation_sub,       operation_and,
+      operation_or,       operation_xor,  operation_zjmp,
+      operation_ldi,      operation_sti,       operation_fork,
+      operation_lld,  operation_lldi, operation_lfork,
+      operation_aff,
             };
     operations[self->op_code - 1](self);
 }

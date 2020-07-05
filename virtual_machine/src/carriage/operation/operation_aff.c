@@ -1,15 +1,14 @@
 #include "prvt_operation.h"
 
-//dont checked
-void            prvt_operation_aff(t_carriage *self)
+void            operation_aff(t_carriage *self)
 {
     int         op_len;
     int         arg;
     char        type_code;
 
 
-    if (prvt_operation_precheck_args(self, &arg, &type_code, 1, &op_len) == SUCCESS
-        && type_code == CODE_T_REG)
+    if (operation_precheck_args(self, &arg, &type_code, 1, &op_len) == SUCCESS
+        && type_code == REG_CODE)
     {
         arg = 1; // fish
     }

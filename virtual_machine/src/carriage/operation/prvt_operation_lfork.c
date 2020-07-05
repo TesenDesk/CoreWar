@@ -4,17 +4,13 @@ static void                print_op_log(t_carriage *self, int arg, int position)
 {
     printf("P %4i | lfork %i (%i)\n", self->num, arg, position);
 }
-//don`t checked
+
 static void            _fill_new_carriage(t_carriage *old, t_carriage *new)
 {
     int         i;
 
     new->carry = old->carry;
-//    new->op_code = old->op_code;
-//    new->is_correct_op_code = old->is_correct_op_code;
-//    new->cycles_to_perform_op = old->cycles_to_perform_op;
     new->last_live_cycle = old->last_live_cycle;
-//    new->is_correct_op_code = old->is_correct_op_code;
     i = 0;
     while (i < 16)
     {
@@ -23,14 +19,13 @@ static void            _fill_new_carriage(t_carriage *old, t_carriage *new)
     }
 }
 
-void            prvt_operation_lfork(t_carriage *self)
+void            operation_lfork(t_carriage *self)
 {
     int         op_len;
     int         position;
     int         arg;
     t_carriage  *new_carriage;
     t_list      *new_node;
-
 
     op_len = ONE_BYTE + TWO_BYTES;
     arg = arena_get_n_bytes_from(self->arena, self->arena_position + ONE_BYTE, TWO_BYTES);

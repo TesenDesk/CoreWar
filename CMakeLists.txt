@@ -375,20 +375,20 @@ add_executable(corewar
         virtual_machine/src/carriage/operation/prvt_operation_live.c
         virtual_machine/src/carriage/operation/prvt_operation_ld.c
         virtual_machine/src/carriage/operation/prvt_operation_st.c
-        virtual_machine/src/carriage/operation/prvt_operation_add.c
+        virtual_machine/src/carriage/operation/operation_add.c
         virtual_machine/src/carriage/operation/prvt_operation_sub.c
         virtual_machine/src/carriage/operation/prvt_operation_and.c
         virtual_machine/src/carriage/operation/prvt_operation_or.c
         virtual_machine/src/carriage/operation/prvt_operation_xor.c
-        virtual_machine/src/carriage/operation/prvt_operation_zjmp.c
+        virtual_machine/src/carriage/operation/operation_zjmp.c
         virtual_machine/src/carriage/operation/prvt_operation_ldi.c
         virtual_machine/src/carriage/operation/prvt_operation_sti.c
         virtual_machine/src/carriage/operation/prvt_operation_fork.c
         virtual_machine/src/carriage/operation/prvt_operation_lld.c
         virtual_machine/src/carriage/operation/prvt_operation_lldi.c
         virtual_machine/src/carriage/operation/prvt_operation_lfork.c
-        virtual_machine/src/carriage/operation/prvt_operation_aff.c
-        virtual_machine/src/carriage/operation/prvt_op_num_of_args.c
+        virtual_machine/src/carriage/operation/operation_aff.c
+        virtual_machine/src/carriage/operation/op_num_of_args.c
 #        virtual_machine/src/carriage/operation/operation_destroy.c
 #        virtual_machine/src/carriage/operation/operation_new.c
 #        virtual_machine/src/carriage/type_cut/_type_cut.h

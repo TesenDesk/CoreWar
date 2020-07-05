@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prvt_operation_live.c                                  :+:      :+:    :+:   */
+/*   operation_live.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -18,7 +18,7 @@ static void                print_op_log(t_carriage *self, int arg)
         printf("P %4i | live %i\n", self->num, arg);
 }
 
-void                    prvt_operation_live(t_carriage *self)
+void operation_live(t_carriage *self)
 {
     int position;
     int op_len;
@@ -54,7 +54,7 @@ print_op_log(self, arg);
 //	return;
 //}
 //
-//void					prvt_operation_live(t_carriage *carriage, int args[NB_ARGS])
+//void					operation_live(t_carriage *carriage, int args[NB_ARGS])
 //{
 //	carriage_set_live(carriage);
 //	if (args[ARG_1] + carriage_player_name(carriage) == 0)
@@ -62,79 +62,79 @@ print_op_log(self, arg);
 //	return;
 //}
 //
-//void					prvt_operation_ld(t_carriage *carriage, int args[NB_ARGS])
+//void					operation_ld(t_carriage *carriage, int args[NB_ARGS])
 //{
 //	long				value;
 //
 //	value = _operation_ind
 //	return;
 //}
-//void					prvt_operation_st(t_carriage *carriage, int args[NB_ARGS])
+//void					operation_st(t_carriage *carriage, int args[NB_ARGS])
 //{
 //	return;
 //}
 //
-//void					prvt_operation_add(t_carriage *carriage, int args[NB_ARGS])
+//void					operation_add(t_carriage *carriage, int args[NB_ARGS])
 //{
 //	return;
 //}
 //
-//void					prvt_operation_sub(t_carriage *carriage, int args[NB_ARGS])
+//void					operation_sub(t_carriage *carriage, int args[NB_ARGS])
 //{
 //	return;
 //}
 //
-//void					prvt_operation_and(t_carriage *carriage, int args[NB_ARGS])
+//void					operation_and(t_carriage *carriage, int args[NB_ARGS])
 //{
 //	return;
 //}
 //
-//void					prvt_operation_or(t_carriage *carriage, int args[NB_ARGS])
+//void					operation_or(t_carriage *carriage, int args[NB_ARGS])
 //{
 //	return;
 //}
 //
-//void					prvt_operation_xor(t_carriage *carriage, int args[NB_ARGS])
+//void					operation_xor(t_carriage *carriage, int args[NB_ARGS])
 //{
 //	return;
 //}
 //
-//void					prvt_operation_zjmp(t_carriage *carriage, int args[NB_ARGS])
+//void					operation_zjmp(t_carriage *carriage, int args[NB_ARGS])
 //{
 //	return;
 //}
 //
-//void					prvt_operation_ldi(t_carriage *carriage, int args[NB_ARGS])
+//void					operation_ldi(t_carriage *carriage, int args[NB_ARGS])
 //{
 //	return;
 //}
 //
-//void					prvt_operation_sti(t_carriage *carriage, int args[NB_ARGS])
+//void					operation_sti(t_carriage *carriage, int args[NB_ARGS])
 //{
 //	return;
 //}
 //
-//void					prvt_operation_fork(t_carriage *carriage, int args[NB_ARGS])
+//void					operation_fork(t_carriage *carriage, int args[NB_ARGS])
 //{
 //	return;
 //}
 //
-//void					prvt_operation_lld(t_carriage *carriage, int args[NB_ARGS])
+//void					operation_lld(t_carriage *carriage, int args[NB_ARGS])
 //{
 //	return;
 //}
 //
-//void					prvt_operation_lldi(t_carriage *carriage, int args[NB_ARGS])
+//void					operation_lldi(t_carriage *carriage, int args[NB_ARGS])
 //{
 //	return;
 //}
 //
-//void					prvt_operation_lfork(t_carriage *carriage, int args[NB_ARGS])
+//void					operation_lfork(t_carriage *carriage, int args[NB_ARGS])
 //{
 //	return;
 //}
 //
-//void					prvt_operation_aff(t_carriage *carriage, int args[NB_ARGS])
+//void					operation_aff(t_carriage *carriage, int args[NB_ARGS])
 //{
 //	return;
 //}

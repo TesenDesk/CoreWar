@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prvt_operation_precheck_args.c                     :+:      :+:    :+:   */
+/*   operation_precheck_args.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -19,7 +19,7 @@ static int		t_dir_size_for_the_op(int op_code)
 	return (t_dir_sizes[op_code]);
 }
 
-int				prvt_operation_precheck_args(t_carriage *self, int *args,
+int operation_precheck_args(t_carriage *self, int *args,
 							char *type_codes, int num_of_args, int *op_len)
 {
 	char		argument_type_code;
@@ -36,7 +36,7 @@ int				prvt_operation_precheck_args(t_carriage *self, int *args,
 	while (i < num_of_args)
 	{
 		type_codes[i] = (argument_type_code >> (6 - 2 * i)) & TWO_BITS_MASK;
-		if (type_codes[i] == CODE_T_REG)
+		if (type_codes[i] == REG_CODE)
 		{
 			args[i] = arena_get_n_bytes_from(self->arena,
 				(self->arena_position + *op_len), ONE_BYTE) - 1;
@@ -44,13 +44,13 @@ int				prvt_operation_precheck_args(t_carriage *self, int *args,
 			if (args[i] < 0 || args[i] >= 16)
 				result = FAILURE;
 		}
-		else if (type_codes[i] == CODE_T_DIR)
+		else if (type_codes[i] == DIR_CODE)
 		{
 			args[i] = arena_get_n_bytes_from(self->arena,
 				self->arena_position + *op_len, t_dir_size);
 			*op_len += t_dir_size;
 		}
-		else if (type_codes[i] == CODE_T_IND)
+		else if (type_codes[i] == IND_CODE)
 		{
 			args[i] = arena_get_n_bytes_from(self->arena,
 				self->arena_position + *op_len, TWO_BYTES);

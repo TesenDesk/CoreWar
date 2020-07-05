@@ -2,35 +2,34 @@
 
 static void                print_op_log(t_carriage *self, int *args, char *type_codes)
 {
-    if (type_codes[1] == CODE_T_REG)
-        printf("P %4i | st r%i %i\n", self->num, args[0] + 1, args[1] + 1);
+    if (type_codes[1] == REG_CODE)
+        printf("P %4i | st r%i %i\n", self->num, args[ARG_1] + 1,
+             args[ARG_2] + 1);
     else
-        printf("P %4i | st r%i %i\n", self->num, args[0] + 1, args[1]);
+        printf("P %4i | st r%i %i\n", self->num, args[ARG_1] + 1, args[ARG_2]);
 }
 
-void            prvt_operation_st(t_carriage *self)
+void operation_st(t_carriage *self)
 {
     //    need change "2" to constant later
     int     op_len;
     int     args[2];
     char    type_codes[2];
 
-    if (prvt_operation_precheck_args(self, args, type_codes, 2, &op_len) == SUCCESS
-        && type_codes[0] == CODE_T_REG
-        && (type_codes[1] == CODE_T_REG || type_codes[1] == CODE_T_IND))
+    if (operation_precheck_args(self, args, type_codes, 2, &op_len) == SUCCESS
+        && type_codes[ARG_1] == REG_CODE
+        && (type_codes[ARG_2] == REG_CODE || type_codes[ARG_2] == IND_CODE))
     {
 
 print_op_log(self, args, type_codes);
 
-        if (type_codes[1] == CODE_T_IND)
-            arena_write_four_bytes_to_data(self->arena, self->arena_position + args[1] % IDX_MOD, self->registers[args[0]]);
+        if (type_codes[ARG_2] == IND_CODE)
+            arena_write_four_bytes_to_data(self->arena, self->arena_position
+                                                          + args[ARG_2] %
+                                                                IDX_MOD,
+                                         self->registers[args[ARG_1]]);
         else
-            self->registers[args[1]] = self->registers[args[0]]; // - 1 need for indexing
-    }
-    if (op_len <= 0)
-    {
-        printf("SOMETHING WRONG WITH OP_LEN IN _OPERATION_ST\n");
-        exit(1);
+            self->registers[args[ARG_2]] = self->registers[args[ARG_1]];
     }
     self->arena_position = (self->arena_position + op_len) % MEM_SIZE;
 }

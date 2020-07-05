@@ -20,7 +20,7 @@ static void            _fill_new_carriage(t_carriage *old, t_carriage *new)
     }
 }
 
-void            prvt_operation_fork(t_carriage *self)
+void operation_fork(t_carriage *self)
 {
     int         op_len;
     int         arg;
