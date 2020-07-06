@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prvt_operation.h"
+#include "operation.h"
 
 static void		print_op_log(t_carriage *self, int *args)
 {
@@ -35,24 +35,22 @@ static void		convert_args(t_carriage *self, int *args, char *type_codes)
 
 void operation_or(t_carriage *self)
 {
-	int			op_len;
-	int			args[THREE_ARGS];
-	char		type_codes[THREE_ARGS];
+	static t_op 	op;
 
-	if (operation_precheck_args(self, args, type_codes, THREE_ARGS,
-                                    &op_len) == SUCCESS
-		&& (type_codes[ARG_1] == REG_CODE || type_codes[ARG_1] == DIR_CODE
-			|| type_codes[ARG_1] == IND_CODE)
-		&& (type_codes[ARG_2] == REG_CODE || type_codes[ARG_2] == DIR_CODE
-			|| type_codes[ARG_2] == IND_CODE)
-		&& type_codes[ARG_3] == REG_CODE)
+	op = g_op[OP_OR];
+	if (operation_precheck_args(self, &op) == SUCCESS
+		&& (op.type_codes[ARG_1] == REG_CODE || op.type_codes[ARG_1] == DIR_CODE
+			|| op.type_codes[ARG_1] == IND_CODE)
+		&& (op.type_codes[ARG_2] == REG_CODE || op.type_codes[ARG_2] == DIR_CODE
+			|| op.type_codes[ARG_2] == IND_CODE)
+		&& op.type_codes[ARG_3] == REG_CODE)
 	{
-		convert_args(self, args, type_codes);
-		print_op_log(self, args);
-		if ((self->registers[args[ARG_3]] = args[ARG_1] | args[ARG_2]) == 0)
+		convert_args(self, op.args, op.type_codes);
+		print_op_log(self, op.args);
+		if ((self->registers[op.args[ARG_3]] = op.args[ARG_1] | op.args[ARG_2]) == 0)
 			self->carry = TRUE;
 		else
 			self->carry = FALSE;
 	}
-	self->arena_position = (self->arena_position + op_len) % MEM_SIZE;
+	self->arena_position = (self->arena_position + op.op_len) % MEM_SIZE;
 }

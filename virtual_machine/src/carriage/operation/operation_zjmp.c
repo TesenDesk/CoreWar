@@ -1,4 +1,4 @@
-#include "prvt_operation.h"
+#include "operation.h"
 
 static void                print_op_log(t_carriage *self, int arg)
 {
@@ -19,7 +19,6 @@ void        operation_zjmp(t_carriage *self)
         self->arena_position = (self->arena_position + arg  % IDX_MOD) % MEM_SIZE;
     else
         self->arena_position = (self->arena_position + op_len) % MEM_SIZE;
-
     if (self->arena_position < 0)
         self->arena_position = MEM_SIZE + (self->arena_position % MEM_SIZE);
     print_op_log(self, arg);

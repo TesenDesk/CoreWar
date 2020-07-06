@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prvt_operation.h"
+#include "operation.h"
 
 static void			print_op_log(t_carriage *self, int *args)
 {
@@ -19,25 +19,23 @@ static void			print_op_log(t_carriage *self, int *args)
 
 void operation_ld(t_carriage *self)
 {
-	const int		num_of_args_array[NUMBER_OF_OPERATIONS] = NUM_OF_ARGS_ARRAY;
-	int				num_of_args = num_of_args_array[OP_LD];
-	int				op_len;
-	int				args[num_of_args];
-	char			type_codes[num_of_args];
+	static t_op op;
 
-	if (operation_precheck_args(self, args, type_codes, num_of_args,
-                                    &op_len) == SUCCESS
-		&& (type_codes[ARG_1] == IND_CODE || type_codes[ARG_1] == DIR_CODE)
-		&& type_codes[ARG_2] == REG_CODE)
+	op = g_op[OP_LD];
+	if (operation_precheck_args(self, &op) == SUCCESS
+		&& (op.type_codes[ARG_1] == IND_CODE || op.type_codes[ARG_1] == DIR_CODE)
+		&& op.type_codes[ARG_2] == REG_CODE)
 	{
-		if (type_codes[ARG_1] == IND_CODE)
-			args[ARG_1] = arena_get_n_bytes_from(self->arena,
-			self->arena_position + args[ARG_1] % IDX_MOD, FOUR_BYTES);
-		print_op_log(self, args);
-		if ((self->registers[args[ARG_2]] = args[ARG_1]) == 0)
+		if (op.type_codes[ARG_1] == IND_CODE)
+			op.args[ARG_1] = arena_get_n_bytes_from(self->arena,
+			self->arena_position + op.args[ARG_1] % IDX_MOD, FOUR_BYTES);
+		print_op_log(self, op.args);
+		if ((self->registers[op.args[ARG_2]] = op.args[ARG_1]) == 0)
 			self->carry = TRUE;
 		else
 			self->carry = FALSE;
 	}
-	self->arena_position = (self->arena_position + op_len) % MEM_SIZE;
+	op.args_num = 600;
+
+  self->arena_position = (self->arena_position + op.op_len) % MEM_SIZE;
 }

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prvt_operation.h"
+#include "operation.h"
 
 static void		print_op_log(t_carriage *self, int *args)
 {
@@ -23,23 +23,21 @@ static void		print_op_log(t_carriage *self, int *args)
 
 void            operation_add(t_carriage *self)
 {
-	int			op_len;
-	int			args[THREE_ARGS];
-	char		type_codes[THREE_ARGS];
+	static t_op	add;
 	int			sum;
 
-	if (operation_precheck_args(self, args, type_codes, THREE_ARGS,
-                                    &op_len) == SUCCESS
-		&& type_codes[ARG_1] == REG_CODE
-		&& type_codes[ARG_2] == REG_CODE
-		&& type_codes[ARG_3] == REG_CODE)
+	add = g_op[OP_ADD - 1];
+	if (operation_precheck_args(self, &add) == SUCCESS
+		&& add.type_codes[ARG_1] == REG_CODE
+		&& add.type_codes[ARG_2] == REG_CODE
+		&& add.type_codes[ARG_3] == REG_CODE)
 	{
-		print_op_log(self, args);
-		sum = self->registers[args[ARG_1]] + self->registers[args[ARG_2]];
-		if ((self->registers[args[ARG_3]] = sum) == 0)
+		print_op_log(self, add.args);
+		sum = self->registers[add.args[ARG_1]] + self->registers[add.args[ARG_2]];
+		if ((self->registers[add.args[ARG_3]] = sum) == 0)
 			self->carry = TRUE;
 		else
 			self->carry = FALSE;
 	}
-	self->arena_position = (self->arena_position + op_len) % MEM_SIZE;
+	self->arena_position = (self->arena_position + add.op_len) % MEM_SIZE;
 }

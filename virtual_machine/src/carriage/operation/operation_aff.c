@@ -1,16 +1,14 @@
-#include "prvt_operation.h"
+#include "operation.h"
 
 void            operation_aff(t_carriage *self)
 {
-    int         op_len;
-    int         arg;
-    char        type_code;
+	static t_op 		aff;
 
-
-    if (operation_precheck_args(self, &arg, &type_code, 1, &op_len) == SUCCESS
-        && type_code == REG_CODE)
+	aff = g_op[OP_AFF - 1];
+    if (operation_precheck_args(self, &aff) == SUCCESS
+        && aff.type_codes[ARG_1] == REG_CODE)
     {
-        arg = 1; // fish
+        ; // fish
     }
-    self->arena_position = (self->arena_position + op_len) % MEM_SIZE;
+    self->arena_position = (self->arena_position + aff.op_len) % MEM_SIZE;
 }
