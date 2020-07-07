@@ -8,7 +8,8 @@
 #include "token.h"
 #include "analyser.h"
 #include "codegen.h"
-#include <ncurses.h>
+#include "visual.h"
+#include <stdio.h>
 char        *read_code(int fd)
 {
     char    *buf;
@@ -61,12 +62,31 @@ int main(int ac, char **av)
         analyser_singleton_instance(ANALYSER_DESTRUCT);
         ++count;
     }
+	int startx, starty, width, height;
+	height = 3;
+	width = 10;
+	initscr();			/* Start curses mode 		  */
+	printw("Press q to exit");
+	refresh();
+	starty = (LINES - height) / 2;	/* Calculating for a center placement */
+	startx = (COLS - width) / 2;	/* of the window		*/
 
-        initscr();			/* Start curses mode 		  */
-        printw("Hello World !!!");	/* Print Hello World		  */
-        refresh();			/* Print it on to the real screen */
-        getch();			/* Wait for user input */
+//        initscr();			/* Start curses mode 		  */
+//        printw("Hello World !!!");	/* Print Hello World		  */
+//        refresh();			/* Print it on to the real screen */
+//        getch();			/* Wait for user input */
 //        endwin();			/* End curses mode		  */
+	WINDOW *my_win = create_newwin(height, width, starty, startx);
+	char c;
+	while (1)
+	{
+		c = getchar();
+		if (c == 'q')
+			break ;
+		destroy_win(my_win);
+		my_win = create_newwin(height, width, starty,startx);
+
+	}
 
 
 	return (SUCCESS);

@@ -85,6 +85,11 @@ CODEGEN_SRC :=	codegen_prototype.c
 CODEGEN_OBJ :=  $(patsubst %.c, %.o, $(CODEGEN_SRC))
 CODEGEN_DIR_OBJ :=  $(addprefix ./codegen/, $(CODEGEN_OBJ))
 
+VISUAL_SRC := visual.c
+VISUAL_OBJ := $(patsubst %.c, %.o, $(VISUAL_SRC))
+VISUAL_DIR_OBJ := $(addprefix ./visual/, $(VISUAL_OBJ))
+
+
 #VM_SRC_ARENA := _arena_players_new.c
 #				_arena_set_smallest_unoccupied_name.s
 #				arena_carriage_list_new.c
@@ -150,7 +155,7 @@ debmsg:
 # $(PARS_DIR_OBJ): %.o: %.c
 # 		@cc -c $(FLAGS)  $< -o $@
 
-$(NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(CHK_DIR_OBJ) $(ANALYSER_DIR_OBJ) $(CODEGEN_DIR_OBJ)  $(MAIN)
+$(NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(CHK_DIR_OBJ) $(ANALYSER_DIR_OBJ) $(CODEGEN_DIR_OBJ) $(VISUAL_DIR_OBJ)  $(MAIN)
 		@printf "$(PREFIX)📦  Building $(NAME)...\n"
 		@printf "Building $(LEX_DIR_OBJ).$(LEX_OBJ).\n"
 
@@ -175,6 +180,9 @@ $(ANALYSER_DIR_OBJ): %.o: %.c
 		gcc -I$(INTERFACE) -I$(LIBDIR) -c $< -o $@
 
 $(CODEGEN_DIR_OBJ): %.o: %.c
+		gcc $(FLAGS) -I$(INTERFACE) -I$(LIBDIR) -c $<  -o $@
+
+$(VISUAL_DIR_OBJ): %.o: %.c
 		gcc $(FLAGS) -I$(INTERFACE) -I$(LIBDIR) -c $<  -o $@
 
 
