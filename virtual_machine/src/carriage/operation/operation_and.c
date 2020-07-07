@@ -2,7 +2,8 @@
 
 static void                print_op_log(t_carriage *self, int *args)
 {
-    printf("P %4i | and %i %i r%i\n", self->num, args[0], args[1], args[2] + 1);
+	if (vm_verbosity_lvl() == 4)
+		printf("P %4i | and %i %i r%i\n", self->num, args[0], args[1], args[2] + 1);
 }
 
 void operation_and(t_carriage *self)
@@ -10,12 +11,7 @@ void operation_and(t_carriage *self)
 	static t_op 	and;
 
 	and = g_op[OP_AND - 1];
-    if (operation_precheck_args(self, &and) == SUCCESS
-        && (and.type_codes[ARG_1] == REG_CODE
-        || and.type_codes[ARG_1] == DIR_CODE || and.type_codes[ARG_1] == IND_CODE)
-        && (and.type_codes[ARG_2] == REG_CODE
-        || and.type_codes[ARG_2] == DIR_CODE || and.type_codes[ARG_2] == IND_CODE)
-        && and.type_codes[ARG_3] == REG_CODE)
+    if (operation_precheck_args(self, &and) == SUCCESS)
     {
         if (and.type_codes[ARG_1] == REG_CODE)
             and.args[ARG_1] = self->registers[and.args[ARG_1]];

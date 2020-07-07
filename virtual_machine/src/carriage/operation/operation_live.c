@@ -20,122 +20,15 @@ static void                print_op_log(t_carriage *self, int arg)
 
 void operation_live(t_carriage *self)
 {
-    int position;
-    int op_len;
-    int arg;
+	t_op	op;
 
-    position = self->arena_position;
-    op_len = ONE_BYTE + FOUR_BYTES; // 5 bytes for op live
-    arg = arena_get_n_bytes_from(self->arena, position + ONE_BYTE, FOUR_BYTES);
-    if ((arg * -1) == self->player_name)
-    {
+    op = g_op[OP_LIVE - 1];
+    op.op_len = OP_CODE_SIZE + op.t_dir_size;
+    op.args[0] = arena_get_n_bytes_from(self->arena, self->arena_position + OP_CODE_SIZE, op.t_dir_size);
+    if ((op.args[0] * -1) == self->player_name)
         arena_set_last_live_player(self->arena, self->player_name);
-    }
     self->last_live_cycle = vm_global_counter();
-    vm_increase_num_of_live_ops(); // не нашел, нужно ли увеличивать счетчик лайвов, если для каретку лайв не успешный
-
-print_op_log(self, arg);
-
-
-    self->arena_position = (self->arena_position + op_len) % MEM_SIZE;
+    vm_increase_num_of_live_ops();
+	print_op_log(self, op.args[0]);
+    self->arena_position = (self->arena_position + op.op_len) % MEM_SIZE;
 }
-
-
-
-
-//void					_operation_convert_ind_to_dir(int *arg)
-//{
-//	*arg %= IDX_MOD;
-//	return;
-//}
-//
-//void					_operation_mock(t_carriage *carriage, int args[NB_ARGS])
-//{
-//	return;
-//}
-//
-//void					operation_live(t_carriage *carriage, int args[NB_ARGS])
-//{
-//	carriage_set_live(carriage);
-//	if (args[ARG_1] + carriage_player_name(carriage) == 0)
-//		carriage_set_player_is_alive(carriage);
-//	return;
-//}
-//
-//void					operation_ld(t_carriage *carriage, int args[NB_ARGS])
-//{
-//	long				value;
-//
-//	value = _operation_ind
-//	return;
-//}
-//void					operation_st(t_carriage *carriage, int args[NB_ARGS])
-//{
-//	return;
-//}
-//
-//void					operation_add(t_carriage *carriage, int args[NB_ARGS])
-//{
-//	return;
-//}
-//
-//void					operation_sub(t_carriage *carriage, int args[NB_ARGS])
-//{
-//	return;
-//}
-//
-//void					operation_and(t_carriage *carriage, int args[NB_ARGS])
-//{
-//	return;
-//}
-//
-//void					operation_or(t_carriage *carriage, int args[NB_ARGS])
-//{
-//	return;
-//}
-//
-//void					operation_xor(t_carriage *carriage, int args[NB_ARGS])
-//{
-//	return;
-//}
-//
-//void					operation_zjmp(t_carriage *carriage, int args[NB_ARGS])
-//{
-//	return;
-//}
-//
-//void					operation_ldi(t_carriage *carriage, int args[NB_ARGS])
-//{
-//	return;
-//}
-//
-//void					operation_sti(t_carriage *carriage, int args[NB_ARGS])
-//{
-//	return;
-//}
-//
-//void					operation_fork(t_carriage *carriage, int args[NB_ARGS])
-//{
-//	return;
-//}
-//
-//void					operation_lld(t_carriage *carriage, int args[NB_ARGS])
-//{
-//	return;
-//}
-//
-//void					operation_lldi(t_carriage *carriage, int args[NB_ARGS])
-//{
-//	return;
-//}
-//
-//void					operation_lfork(t_carriage *carriage, int args[NB_ARGS])
-//{
-//	return;
-//}
-//
-//void					operation_aff(t_carriage *carriage, int args[NB_ARGS])
-//{
-//	return;
-//}
-//

@@ -2,7 +2,7 @@
 
 void            operation_aff(t_carriage *self)
 {
-	static t_op 		aff;
+	t_op 		aff;
 
 	aff = g_op[OP_AFF - 1];
     if (operation_precheck_args(self, &aff) == SUCCESS

@@ -14,17 +14,16 @@
 
 static void			print_op_log(t_carriage *self, int *args)
 {
-	printf("P %4i | ld %i r%i\n", self->num, args[ARG_1], args[ARG_2] + 1);
+	if (vm_verbosity_lvl() == 4)
+		printf("P %4i | ld %i r%i\n", self->num, args[ARG_1], args[ARG_2] + 1);
 }
 
 void operation_ld(t_carriage *self)
 {
 	static t_op op;
 
-	op = g_op[OP_LD];
-	if (operation_precheck_args(self, &op) == SUCCESS
-		&& (op.type_codes[ARG_1] == IND_CODE || op.type_codes[ARG_1] == DIR_CODE)
-		&& op.type_codes[ARG_2] == REG_CODE)
+	op = g_op[OP_LD - 1];
+	if (operation_precheck_args(self, &op) == SUCCESS)
 	{
 		if (op.type_codes[ARG_1] == IND_CODE)
 			op.args[ARG_1] = arena_get_n_bytes_from(self->arena,

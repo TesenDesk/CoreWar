@@ -19,8 +19,19 @@
 # include "vm.h"
 # include "prvt_carriage.h"
 
-# define TWO_BITS_MASK	3
 # define NUMBER_OF_OPERATIONS   DEAD_LINE - 1
+
+# define TYPE_CODE_SIZE   		(MAX_ARGS_NUMBER * 2) / 8 + ((MAX_ARGS_NUMBER * 2) % 8) ? 1 : 0
+# define OP_CODE_SIZE   		1
+
+# define BITS_PER_BYTE   		8
+# define TWO_BITS		  		2
+# define TWO_BITS_MASK			3
+
+# define T_REG_SIZE					1
+# define T_IND_SIZE					2
+
+# define NUM_OF_ARG_TYPES			3
 
 enum				e_op_codes
 {
@@ -71,16 +82,16 @@ typedef struct s_carriage	t_carriage;
 typedef struct          s_op
 {
   char                  *name;
-  int    		code;
-  int   		args_num;
-  char  		args_types_code;
-  char  		args_types[MAX_ARGS_NUMBER];
-  int   		t_dir_size;
+  int    				code;
+  int   				args_num;
+  char  				args_types_code;
+  char  				args_types[MAX_ARGS_NUMBER];
+  int   				t_dir_size;
   int                   cycles_to_perform;
   int                   args[MAX_ARGS_NUMBER];
   char                  type_codes[MAX_ARGS_NUMBER];
   int                   op_len;
-}			t_op;
+}						t_op;
 
 static t_op		g_op[16] = {
     {
@@ -159,7 +170,7 @@ static t_op		g_op[16] = {
         .args_num = 1,
         .args_types_code = FALSE,
         .args_types = {T_DIR, 0, 0},
-        .t_dir_size = 2,
+        .t_dir_size = DIR_SIZE / 2,
         .cycles_to_perform = 20,
     },
     {

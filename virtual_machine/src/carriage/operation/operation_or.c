@@ -37,13 +37,8 @@ void operation_or(t_carriage *self)
 {
 	static t_op 	op;
 
-	op = g_op[OP_OR];
-	if (operation_precheck_args(self, &op) == SUCCESS
-		&& (op.type_codes[ARG_1] == REG_CODE || op.type_codes[ARG_1] == DIR_CODE
-			|| op.type_codes[ARG_1] == IND_CODE)
-		&& (op.type_codes[ARG_2] == REG_CODE || op.type_codes[ARG_2] == DIR_CODE
-			|| op.type_codes[ARG_2] == IND_CODE)
-		&& op.type_codes[ARG_3] == REG_CODE)
+	op = g_op[OP_OR - 1];
+	if (operation_precheck_args(self, &op) == SUCCESS)
 	{
 		convert_args(self, op.args, op.type_codes);
 		print_op_log(self, op.args);

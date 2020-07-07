@@ -23,21 +23,18 @@ static void		print_op_log(t_carriage *self, int *args)
 
 void            operation_add(t_carriage *self)
 {
-	static t_op	add;
+	t_op	op;
 	int			sum;
 
-	add = g_op[OP_ADD - 1];
-	if (operation_precheck_args(self, &add) == SUCCESS
-		&& add.type_codes[ARG_1] == REG_CODE
-		&& add.type_codes[ARG_2] == REG_CODE
-		&& add.type_codes[ARG_3] == REG_CODE)
+	op = g_op[OP_ADD - 1];
+	if (operation_precheck_args(self, &op) == SUCCESS)
 	{
-		print_op_log(self, add.args);
-		sum = self->registers[add.args[ARG_1]] + self->registers[add.args[ARG_2]];
-		if ((self->registers[add.args[ARG_3]] = sum) == 0)
+		print_op_log(self, op.args);
+		sum = self->registers[op.args[ARG_1]] + self->registers[op.args[ARG_2]];
+		if ((self->registers[op.args[ARG_3]] = sum) == 0)
 			self->carry = TRUE;
 		else
 			self->carry = FALSE;
 	}
-	self->arena_position = (self->arena_position + add.op_len) % MEM_SIZE;
+	self->arena_position = (self->arena_position + op.op_len) % MEM_SIZE;
 }

@@ -2,22 +2,21 @@
 
 static void                print_op_log(t_carriage *self, int *args)
 {
-    printf("P %4i | ldi %i %i r%i\n", self->num, args[0], args[1], args[2] + 1);
-    printf("       | -> load from %i + %i = %i (with pc and mod %i)\n",
+	if (vm_verbosity_lvl() == 4)
+	{
+		printf("P %4i | ldi %i %i r%i\n", self->num, args[0], args[1], args[2] + 1);
+    	printf("       | -> load from %i + %i = %i (with pc and mod %i)\n",
             args[0], args[1], args[0] + args[1], self->arena_position + (args[0] + args[1]) % IDX_MOD);
+	}
 }
 
 void operation_ldi(t_carriage *self)
 {
-	static t_op		op;
+	t_op		op;
 
 	op = g_op[OP_LLDI - 1];
 
-    if (operation_precheck_args(self, &op) == SUCCESS
-        && (op.type_codes[ARG_1] == REG_CODE || op.type_codes[ARG_1] == DIR_CODE ||
-			op.type_codes[ARG_1] == IND_CODE)
-        && (op.type_codes[ARG_2] == REG_CODE || op.type_codes[ARG_2] == DIR_CODE)
-        && op.type_codes[ARG_3] == REG_CODE)
+    if (operation_precheck_args(self, &op) == SUCCESS)
     {
         if (op.type_codes[ARG_1] == REG_CODE)
 			op.args[ARG_1] = self->registers[op.args[ARG_1]];
