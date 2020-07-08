@@ -14,6 +14,9 @@
 
 void		arena_set_last_live_player(t_arena *self, int player_num)
 {
-	self->last_live_player = player_num;
-	player_live_verbosity(self->players[player_num - 1]);
+	if (player_num > 0 && player_num <= self->nb_players)
+	{
+		self->last_live_player = player_num;
+		player_live_verbosity(self->players[player_num - 1]);
+	}
 }
