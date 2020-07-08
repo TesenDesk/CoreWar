@@ -12,7 +12,7 @@
 
 #include "prvt_file.h"
 
-void			prvt_file_reallocate_value(tt_file *self)
+void			prvt_file_reallocate_value(t_i_file *self)
 {
 	ssize_t			new_capacity;
 

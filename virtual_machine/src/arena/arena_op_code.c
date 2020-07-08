@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_arena.h"
+#include "prvt_arena.h"
 
 int				arena_op_code(t_arena *self, int arena_position)
 {

@@ -1,25 +1,15 @@
-#include "_operation.h"
+#include "operation.h"
 
 void				operation_dispatched(t_carriage *self)
 {
     void	(*operations[NUMBER_OF_OPERATIONS])(t_carriage *self) =
             {
-                    _operation_live,
-                    _operation_ld,
-                    _operation_st,
-                    _operation_add,
-                    _operation_sub,
-                    _operation_and,
-                    _operation_or,
-                    _operation_xor,
-                    _operation_zjmp,
-                    _operation_ldi,
-                    _operation_sti,
-                    _operation_fork,
-                    _operation_lld,
-                    _operation_lldi,
-                    _operation_lfork,
-                    _operation_aff,
+			operation_live, operation_ld, operation_st,
+			operation_add, operation_sub, operation_and,
+			operation_or, operation_xor, operation_zjmp,
+			operation_ldi, operation_sti, operation_fork,
+			operation_lld, operation_lldi, operation_lfork,
+			operation_aff,
             };
     operations[self->op_code - 1](self);
 }

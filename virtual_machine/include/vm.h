@@ -27,9 +27,7 @@ int             vm_global_counter();
 void            vm_increase_num_of_live_ops();
 void            vm_add_new_carriage_node(t_list *new_node);
 int             vm_num_of_carriages_and_increase();
-
-
-
-
+int 			vm_verbosity_lvl();
+void			vm_carriage_list_destruct(t_list **carriage_list);
 
 #endif

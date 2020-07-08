@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_vm_params.h"
+#include "prvt_vm_params.h"
 
 void				prvt_vm_params_set_player_name(t_vm_params *self,
 													int player_name)

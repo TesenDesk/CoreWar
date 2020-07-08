@@ -12,7 +12,7 @@
 
 #include "prvt_file.h"
 
-void		*file_data_code(tt_file *self)
+void		*file_data_code(t_i_file *self)
 {
 	char				*code_in_data;
 	char				*code;

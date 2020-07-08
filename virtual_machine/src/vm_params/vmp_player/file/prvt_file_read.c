@@ -12,12 +12,12 @@
 
 #include "prvt_file.h"
 
-void			prvt_file_read(tt_file *self)
+void			prvt_file_read(t_i_file *self)
 {
 	int			chunk;
 
 	chunk = 0;
-	prvt_file_allocate_intitial_value(self);
+	prvt_file_allocate_initial_value(self);
 	self->total = 0;
 	while ((chunk =
 	read(self->fd, self->data + self->total, INITIAL_CHUNK)) > 0)

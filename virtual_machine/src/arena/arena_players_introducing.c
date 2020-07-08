@@ -1,17 +1,27 @@
-#include "_arena.h"
-#include "_player.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   arena_players_introducing.c                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/04 19:15:35 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/04 19:16:05 by cmissy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void    arena_players_introducing(t_arena *self)
+#include "prvt_arena.h"
+
+void		arena_players_introducing(t_arena *self)
 {
-    int         index;
+	int		index;
 
-    write(1, "Introducing contestants...\n", 27 );
-
-    index = 0;
-    while (index < self->nb_players)
-    {
-        player_introducing(self->players[index]);
-        ++index;
-    }
-    return;
+	write(1, "Introducing contestants...\n", 27);
+	index = 0;
+	while (index < self->nb_players)
+	{
+		player_introducing(self->players[index]);
+		++index;
+	}
+	return ;
 }

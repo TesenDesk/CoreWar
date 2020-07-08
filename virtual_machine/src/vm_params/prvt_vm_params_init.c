@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_vm_params.h"
+#include "prvt_vm_params.h"
 
 static void		prvt_vm_params_flag_on(t_vm_params *self, int flag_type)
 {
@@ -61,6 +61,6 @@ int				prvt_vm_params_init(t_vm_params *self, char *param)
 		return (flag);
 	}
 	else if (flag == FLAG_FILE_CODE)
-		_vm_params_set_file_name_without_id(self, param);
+		prvt_vm_params_set_file_name_without_id(self, param);
 	return (flag);
 }

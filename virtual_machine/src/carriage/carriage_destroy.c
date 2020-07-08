@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   carriage_destroy.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 22:59:21 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/10 13:17:29 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/07/04 21:07:22 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_carriage.h"
+#include "prvt_carriage.h"
 
 void		carriage_destroy(void *self, size_t size)
 {
-    free(self);
-    return;
+	free(self);
+	return ;
 }

@@ -12,7 +12,7 @@
 
 #include "prvt_file.h"
 
-size_t			file_code_size(tt_file *self)
+size_t			file_code_size(t_i_file *self)
 {
 	char				*code_size_in_data;
 	unsigned int		code_size;

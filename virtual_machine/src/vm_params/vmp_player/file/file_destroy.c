@@ -12,7 +12,7 @@
 
 #include "prvt_file.h"
 
-void				file_destroy(tt_file **self)
+void				file_destroy(t_i_file **self)
 {
 	ft_memdel(&((*self)->data));
 	ft_memdel((void **)self);

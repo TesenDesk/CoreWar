@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_vm_params.h"
+#include "prvt_vm_params.h"
 
 void					vm_params_destroy(t_vm_params **self)
 {
-	_vm_params_destroy_players_lists(*self);
+	vm_params_destroy_players_lists(*self);
 	ft_memdel((void **)self);
 	return ;
 }

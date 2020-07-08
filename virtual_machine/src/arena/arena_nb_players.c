@@ -1,6 +1,18 @@
-#include "_arena.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   arena_nb_players.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/04 19:15:03 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/04 19:17:31 by cmissy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int         arena_nb_players(t_arena *self)
+#include "prvt_arena.h"
+
+int		arena_nb_players(t_arena *self)
 {
-    return (self->nb_players);
+	return (self->nb_players);
 }

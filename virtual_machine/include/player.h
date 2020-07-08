@@ -24,6 +24,11 @@ t_player		*player_new(t_vmp_player *vmp_player);
 void			player_destroy(t_player **self);
 void            player_introducing(t_player *players);
 void    		player_print_winner(t_player *self);
+char		    *player_code(t_player *self);
+int      		player_code_size(t_player *self);
+void			player_live_verbosity(t_player *self);
+
+
 
 //void            player_introducing(t_player **self);
 
