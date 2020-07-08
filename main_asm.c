@@ -63,8 +63,8 @@ int main(int ac, char **av)
         ++count;
     }
 	int startx, starty, width, height;
-	height = 3;
-	width = 10;
+	height = 10;
+	width = 30;
 	initscr();			/* Start curses mode 		  */
 	printw("Press q to exit");
 	refresh();
@@ -83,8 +83,10 @@ int main(int ac, char **av)
 		c = getchar();
 		if (c == 'q')
 			break ;
-		destroy_win(my_win);
-		my_win = create_newwin(height, width, starty,startx);
+//		destroy_win(my_win);
+//		my_win = create_newwin(height, width, starty,startx);
+		mvprintw((LINES - height) / 2, (COLS - width) /2,"wat!\n");
+		wrefresh(my_win);
 
 	}
 

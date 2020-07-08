@@ -4,7 +4,7 @@ void		player_print_winner(t_player *self)
 {
 //    char    *player_nb;
 //    write(1, "Contestant ", 11);
-//    player_nb = ft_itoa(self->name);
+//    player_nb = ft_itoa(self->);
 //    write(1, player_nb, ft_strlen(player_nb));
 //    free(player_nb);
 //
