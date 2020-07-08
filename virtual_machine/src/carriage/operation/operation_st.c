@@ -2,7 +2,7 @@
 
 static void                print_op_log(t_carriage *self, int *args, char *type_codes)
 {
-	if (vm_verbosity_lvl() == 4)
+	if (vm_verbosity_lvl() & 4)
 	{
 		if (type_codes[1] == REG_CODE)
     	    printf("P %4i | st r%i %i\n", self->num, args[ARG_1] + 1,

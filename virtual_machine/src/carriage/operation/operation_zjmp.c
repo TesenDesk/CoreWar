@@ -2,7 +2,7 @@
 
 static void                print_op_log(t_carriage *self, int arg)
 {
-	if (vm_verbosity_lvl() == 4)
+	if (vm_verbosity_lvl() & 4)
 	{
 		if (self->carry)
 			printf("P %4i | zjmp %i OK\n", self->num, arg);

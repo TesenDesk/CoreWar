@@ -2,7 +2,7 @@
 
 static void                print_op_log(t_carriage *self, int *args)
 {
-	if (vm_verbosity_lvl() == 4)
+	if (vm_verbosity_lvl() & 4)
 		printf("P %4i | and %i %i r%i\n", self->num, args[0], args[1], args[2] + 1);
 }
 

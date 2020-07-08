@@ -17,6 +17,7 @@
 # include "errors.h"
 # include "player.h"
 # include "vmp_player.h"
+# include "vm.h"
 
 typedef struct		s_player
 {

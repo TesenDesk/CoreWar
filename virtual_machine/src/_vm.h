@@ -19,6 +19,7 @@
 # include "vm_params.h"
 # include "carriage.h"
 # include "op.h"
+# include "arena.h"
 
 /*
 **	Limit individual processes in the allocated memory.

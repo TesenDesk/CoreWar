@@ -347,6 +347,7 @@ add_executable(corewar
         virtual_machine/src/arena/player/player_set_name.c
         virtual_machine/src/arena/player/player_introducing.c
         virtual_machine/src/arena/player/player_print_winner.c
+        virtual_machine/src/arena/player/player_live_verbosity.c
         virtual_machine/src/arena/arena_get_n_bytes_from.c
         virtual_machine/src/arena/prvt_arena.h
         virtual_machine/src/arena/prvt_arena_players_new.c
@@ -455,7 +456,7 @@ add_executable(corewar
         virtual_machine/src/vm_params/prvt_vm_params_set_player_name.c
         virtual_machine/src/vm_params/prvt_vm_params_add_player_name_node.c
         virtual_machine/src/vm_params/vm_params_destroy_players.c
-#        virtual_machine/src/vm_params/vm_params_detroy.c
+        virtual_machine/src/vm_params/vm_params_destroy.c
         virtual_machine/src/vm_params/vm_params_named_sorted_array_of_players.c
         virtual_machine/src/vm_params/vm_params_nb_players.c
         virtual_machine/src/vm_params/vm_params_dump_cycles.c
@@ -471,5 +472,6 @@ add_executable(corewar
         virtual_machine/src/vm_increase_num_of_live_ops.c
         virtual_machine/src/vm_num_of_carriages_and_increase.c
         virtual_machine/src/vm_verbosity_lvl.c
+        virtual_machine/src/vm_carriage_list_destruct.c
 #        virtual_machine/test/main_test.c
         main.c)

@@ -2,7 +2,7 @@
 
 static void                print_op_log(t_carriage *self, int *args)
 {
-	if (vm_verbosity_lvl() == 4)
+	if (vm_verbosity_lvl() & 4)
 	{
 		printf("P %4i | sti r%i %i %i\n", self->num, args[0] + 1, args[ARG_2], args[ARG_3]);
 		printf("       | -> store to %i + %i = %i (with pc and mod %i)\n",

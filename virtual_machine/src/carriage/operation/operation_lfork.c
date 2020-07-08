@@ -2,7 +2,7 @@
 
 static void                print_op_log(t_carriage *self, int arg, int position)
 {
-	if (vm_verbosity_lvl() == 4)
+		if (vm_verbosity_lvl() & 4)
 		printf("P %4i | lfork %i (%i)\n", self->num, arg, position);
 }
 
@@ -36,8 +36,9 @@ print_op_log(self, op.args[0], position);
 
     new_carriage = carriage_new(self->player_name, self->arena, position, vm_num_of_carriages_and_increase());
     _fill_new_carriage(self, new_carriage);
+//arena_set_last_live_player(new_carriage->arena, new_carriage->player_name);
 
-    self->arena_position = (self->arena_position + op.op_len) % MEM_SIZE;
+	self->arena_position = (self->arena_position + op.op_len) % MEM_SIZE;
     if ((new_node = ft_lstnew((void *) new_carriage, sizeof(t_carriage))) == NULL)
         raise(__FILE__, __LINE__, ENOMEMORY);
     vm_add_new_carriage_node(new_node);
