@@ -17,7 +17,6 @@
 # include "errors.h"
 # include "op.h"
 # include "operation.h"
-# include "carriage.h"
 # include "arena.h"
 
 typedef struct		s_carriage

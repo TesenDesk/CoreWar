@@ -15,8 +15,10 @@
 
 # include "libft.h"
 # include "errors.h"
-# include "vmp_player.h"
 # include "file.h"
+
+# define PNAME_MOCK	0
+# define PFILE_MOCK	(void *)0
 
 typedef struct	s_vmp_player
 {

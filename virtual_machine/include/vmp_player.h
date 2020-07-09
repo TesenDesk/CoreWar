@@ -14,9 +14,6 @@
 
 # define VM_PLAYER_H
 
-# define PNAME_MOCK	0
-# define PFILE_MOCK	(void *)0
-
 # include "file.h"
 # include "prvt_vmp_player.h"
 
