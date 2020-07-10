@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "prvt_vm_params.h"
-#include "prvt_vmp_player.h"
+#include "./vmp_player/prvt_vmp_player.h"
 
 void			prvt_vm_params_add_named_player_node(t_vm_params *self,
 													t_vmp_player *player)

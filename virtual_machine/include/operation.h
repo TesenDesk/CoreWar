@@ -17,7 +17,7 @@
 # include "errors.h"
 # include "op.h"
 # include "vm.h"
-# include "prvt_carriage.h"
+# include "../src/carriage/prvt_carriage.h"
 
 # define NUMBER_OF_OPERATIONS   DEAD_LINE - 1
 
