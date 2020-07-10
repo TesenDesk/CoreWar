@@ -15,7 +15,7 @@
 # define VM_PLAYER_H
 
 # include "file.h"
-# include "prvt_vmp_player.h"
+# include "../src/vm_params/vmp_player/prvt_vmp_player.h"
 
 typedef struct s_vmp_player t_vmp_player;
 

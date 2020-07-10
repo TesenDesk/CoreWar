@@ -28,8 +28,8 @@ int				main(int argc, char *argv[])
 	t_vm		*this;
 
 	_corwar_precondition_check();
-	this = vm_singletone(VM_INSTANTIATE, argc, argv);
+	this = vm_singleton(VM_INSTANTIATE, argc, argv);
 	vm_play(this);
-	(void)vm_singletone(VM_DESTRUCT, 0, NULL);
+	(void)vm_singleton(VM_DESTRUCT, 0, NULL);
 	return (SUCCESS);
 }

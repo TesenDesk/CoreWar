@@ -46,8 +46,6 @@ static char		*error_messages[ERRMSGCOUNT] =
     "Incorrectly placed NULLs in data.",
     "No magic header.",
 	"To many players.",
-
-		"ss",
 //	"Usage: ./corewar [-d nbr_cycles] [[-n number] player1.cor ...]\n"
 //	"\n"
 //	"Here is the text about the programm."

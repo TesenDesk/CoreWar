@@ -119,6 +119,7 @@ EXPANSION =	ft_isspace.c \
 			ft_lstrev.c \
 			ft_lstfind.c \
 			ft_lstfind_prev.c \
+			ft_lstpushback.c \
 			ft_reverse.c \
 			ft_strrev.c \
 			ft_swap.c \
@@ -134,7 +135,6 @@ EXPANSION =	ft_isspace.c \
 			ft_fit_size.c \
 			ft_error.c \
 			ft_error_ptr.c \
-			ft_read_.c \
 			ft_div_mod.c \
 			ft_lldiv_mod.c \
 			ft_imaxdiv.c \
