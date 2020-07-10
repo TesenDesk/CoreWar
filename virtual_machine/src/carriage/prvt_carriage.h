@@ -18,6 +18,7 @@
 # include "op.h"
 # include "operation.h"
 # include "arena.h"
+# include "carriage.h"
 
 typedef struct		s_carriage
 {

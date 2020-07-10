@@ -15,8 +15,7 @@
 
 typedef struct s_i_file t_i_file;
 
-
-t_i_file			*file_new(char *file_name);
+t_i_file		*file_new(char *file_name);
 void			file_destroy(t_i_file **self);
 void			*file_data_code(t_i_file *self);
 char			*file_data_comment(t_i_file *self);

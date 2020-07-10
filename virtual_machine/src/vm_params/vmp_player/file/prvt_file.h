@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "errors.h"
 # include "op.h"
+# include "file.h"
 
 # define MAGIC_LENGTH		4
 # define NULL_LENGTH		4

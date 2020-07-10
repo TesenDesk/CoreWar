@@ -19,6 +19,7 @@
 # include "vm_params.h"
 # include "player.h"
 # include "carriage.h"
+# include "arena.h"
 
 # define EIGHT_BITS		8
 # define D_LINE_SIZE	64

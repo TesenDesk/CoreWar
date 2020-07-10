@@ -404,6 +404,7 @@ add_executable(corewar
         virtual_machine/src/carriage/prvt_carriage_set_cycles_to_perform_op.c
         virtual_machine/src/carriage/carriage_destroy.c
         virtual_machine/src/carriage/carriage_take_step.c
+#        virtual_machine/src/carriage/carriage_list_new.c
 #        virtual_machine/src/carriage/carriages_check_wins.c
         virtual_machine/src/carriage/carriage_new.c
         virtual_machine/src/carriage/carriage_is_alive.c
