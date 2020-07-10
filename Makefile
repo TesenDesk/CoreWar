@@ -8,7 +8,7 @@
 ASM_NAME        :=  asm
 COREWAR_NAME	:= 	corewar
 ASM_MAIN        :=  main_asm.c
-COREWAR_MAIN	:= vm_main.c
+COREWAR_MAIN	:= main_vm.c
 LABEL       :=	CoreWar
 WORKDIR     :=  ./
 LIBDIR      :=	./libft/
