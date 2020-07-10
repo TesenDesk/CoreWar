@@ -12,10 +12,9 @@
 
 #ifndef CARRIAGE_H
 # define CARRIAGE_H
-# include "prvt_carriage.h"
+//# include "prvt_carriage.h"
 
 typedef struct s_arena		t_arena;
-
 typedef struct s_carriage	t_carriage;
 
 t_carriage	*carriage_new(int player_name, t_arena *arena, int arena_position, int num);
