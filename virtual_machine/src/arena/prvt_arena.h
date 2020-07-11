@@ -22,11 +22,8 @@
 # include "arena.h"
 
 # define EIGHT_BITS		8
-# define D_LINE_SIZE	64
+# define DUMP_LINE_SIZE	32
 # define MAX_PLAYERS	4
-# define SPACE			' '
-# define EOL			'\n'
-# define PREFIX_SIZE	9
 
 typedef struct			s_arena
 {
