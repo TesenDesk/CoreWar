@@ -14,7 +14,7 @@
 
 void		prvt_carriage_set_is_correct_op_code(t_carriage *self)
 {
-	if (self->op_code >= OP_LIVE && self->op_code <= OP_AFF)
+	if (self->op_code > 0 && self->op_code <= REG_NUMBER)
 		self->is_correct_op_code = TRUE;
 	else
 		self->is_correct_op_code = FALSE;

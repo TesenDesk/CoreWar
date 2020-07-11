@@ -29,7 +29,7 @@
 # define TWO_BITS_MASK			3
 
 # define T_REG_SIZE					1
-# define T_IND_SIZE					2
+# define T_IND_SIZE					IND_SIZE
 
 # define NUM_OF_ARG_TYPES			3
 
