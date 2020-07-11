@@ -18,11 +18,8 @@ int			arena_get_n_bytes_from(t_arena *self, int pos, int num_of_bytes)
 	int		four_bytes;
 	int		i;
 
-	if (num_of_bytes < 1 || num_of_bytes > 4 || num_of_bytes == 3)
-	{
-		printf("Wrong num_of_bytes in ARENA_GET_N_BYTES_FROM fix it\n");
+	if (num_of_bytes <= 0 || num_of_bytes > REG_SIZE)
 		raise(__FILE__, __LINE__, ENOMEMORY); // dont forget change ERRMSGINDEX
-	}
 	if (pos < 0)
 		pos = MEM_SIZE + pos % MEM_SIZE;
 	data = (char*)(self->data);

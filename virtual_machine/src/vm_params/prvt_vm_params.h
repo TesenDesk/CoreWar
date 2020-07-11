@@ -17,7 +17,7 @@
 # include "errors.h"
 # include "op.h"
 # include "vm_params.h"
-# include "vmp_state.h"
+//# include "vmp_state.h"
 # include "vmp_player.h"
 # include "player.h"
 # include "arena.h"
@@ -58,6 +58,18 @@ enum	e_t_paramcodes
 	FLAG_NUM_CODE,
 	FLAG_FILE_CODE,
 	FLAG_UNDEF,
+};
+
+enum					e_vmp_states
+{
+	VMP_STOP = -1,
+	VMP_INITIAL,
+	VMP_SET_PNAME,
+	VMP_SET_PNAME_DONE,
+	VMP_SET_CYCLES,
+	VMP_SET_VERB,
+	VMP_SET_DUMP,
+	NBR_OF_VIRTUAL_METHODS,
 };
 
 typedef struct		s_vm_params

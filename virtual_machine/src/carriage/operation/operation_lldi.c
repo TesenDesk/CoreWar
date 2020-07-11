@@ -24,14 +24,14 @@ void operation_lldi(t_carriage *self)
         if (op.type_codes[ARG_1] == REG_CODE)
 			op.args[ARG_1] = self->registers[op.args[ARG_1]];
         else if (op.type_codes[ARG_1] == IND_CODE)
-			op.args[ARG_1] = arena_get_n_bytes_from(self->arena, self->arena_position + op.args[ARG_1] % IDX_MOD, FOUR_BYTES);
+			op.args[ARG_1] = arena_get_n_bytes_from(self->arena, self->arena_position + op.args[ARG_1] % IDX_MOD, REG_SIZE);
         if (op.type_codes[1] == REG_CODE)
 			op.args[ARG_1] = self->registers[op.args[ARG_1]];
 
 print_op_log(self, op.args);
 
         arg = arena_get_n_bytes_from(self->arena, self->arena_position +
-        (op.args[ARG_1] + op.args[ARG_2]), FOUR_BYTES);
+        (op.args[ARG_1] + op.args[ARG_2]), REG_SIZE);
 
         if ((self->registers[op.args[ARG_3]] = arg) == 0)
             self->carry = TRUE;

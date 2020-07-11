@@ -16,9 +16,21 @@
 static void		_corwar_precondition_check()
 {
 	if (
-		(REG_SIZE < sizeof(char) || sizeof(long) < REG_SIZE) ||
+		(REG_SIZE < sizeof(char) || sizeof(int) < REG_SIZE) ||
+		IND_SIZE < sizeof(char) ||
+
+		MAX_ARGS_NUMBER < 4 ||
+		MAX_PLAYERS < 1 ||
+		REG_NUMBER < 1 ||
+
 		IDX_MOD < 1 ||
-		DIR_SIZE != REG_SIZE)
+		DIR_SIZE != REG_SIZE ||
+		CYCLE_DELTA < 1 ||
+		MAX_CHECKS < 1 ||
+
+		NBR_LIVE < 0
+
+		)
 		raise(__FILE__, __LINE__, EINVALCONSTANTS);
 	return;
 }

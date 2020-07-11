@@ -17,13 +17,11 @@ include_directories(virtual_machine/src/arena/player/code)
 include_directories(virtual_machine/src/carriage)
 include_directories(virtual_machine/src/carriage/arguments)
 include_directories(virtual_machine/src/carriage/operation)
-include_directories(virtual_machine/src/carriage/type_cut)
 include_directories(virtual_machine/src/corwar)
 include_directories(virtual_machine/src/errors)
 include_directories(virtual_machine/src/vm_params)
 include_directories(virtual_machine/src/vm_params/vmp_player)
 include_directories(virtual_machine/src/vm_params/vmp_player/file)
-include_directories(virtual_machine/src/vm_params/vmp_state)
 
 add_executable(corewar
 #        analyser/_analyser_change_state.c
@@ -322,18 +320,18 @@ add_executable(corewar
         virtual_machine/include/arena.h
 #        virtual_machine/include/arguments.h
         virtual_machine/include/carriage.h
-        virtual_machine/include/code.h
+#        virtual_machine/include/code.h
         virtual_machine/include/corwar.h
         virtual_machine/include/errors.h
         virtual_machine/include/file.h
         virtual_machine/include/op.h
         virtual_machine/include/operation.h
         virtual_machine/include/player.h
-        virtual_machine/include/type_cut.h
         virtual_machine/include/vm.h
         virtual_machine/include/vm_params.h
         virtual_machine/include/vmp_player.h
-        virtual_machine/include/vmp_state.h
+#        virtual_machine/include/vmp_state.h
+#        virtual_machine/include/type_cut.h
 #        virtual_machine/src/arena/player/code/_code.h
 #        virtual_machine/src/arena/player/code/code_destroy.c
 #        virtual_machine/src/arena/player/code/code_new.c
@@ -352,7 +350,7 @@ add_executable(corewar
         virtual_machine/src/arena/prvt_arena.h
         virtual_machine/src/arena/prvt_arena_players_new.c
         virtual_machine/src/arena/prvt_arena_set_smallest_unoccupied_name.c
-        virtual_machine/src/arena/arena_players.c
+#        virtual_machine/src/arena/arena_players.c
         virtual_machine/src/arena/arena_set_last_live_player.c
         virtual_machine/src/arena/arena_nb_players.c
         virtual_machine/src/arena/arena_destroy.c

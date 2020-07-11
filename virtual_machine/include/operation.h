@@ -28,10 +28,10 @@
 # define TWO_BITS		  		2
 # define TWO_BITS_MASK			3
 
-# define T_REG_SIZE					1
-# define T_IND_SIZE					IND_SIZE
+# define T_REG_SIZE				1
+# define T_IND_SIZE				IND_SIZE
 
-# define NUM_OF_ARG_TYPES			3
+# define NUM_OF_ARG_TYPES		3
 
 enum				e_op_codes
 {
@@ -54,27 +54,11 @@ enum				e_op_codes
 	DEAD_LINE
 };
 
-enum	e_num_of_arguments
-{
-  ONE_ARG = 1,
-  TWO_ARGS,
-  THREE_ARGS,
-};
-
 enum	e_arguments
 {
   ARG_1,
   ARG_2,
   ARG_3,
-  NB_ARGS,
-};
-
-enum	e_num_of_bytes
-{
-  ONE_BYTE = 1,
-  TWO_BYTES,
-  THREE_BYTES,
-  FOUR_BYTES,
 };
 
 typedef struct s_carriage	t_carriage;
@@ -110,7 +94,8 @@ static t_op		g_op[16] = {
         .args_types_code = TRUE,
         .args_types = {T_DIR | T_IND, T_REG, 0},
         .t_dir_size = DIR_SIZE,
-    },
+		.cycles_to_perform = 5,
+	},
     {
         .name = "st",
         .code = OP_ST,
@@ -118,7 +103,8 @@ static t_op		g_op[16] = {
         .args_types_code = TRUE,
         .args_types = {T_REG, T_REG | T_IND, 0},
         .t_dir_size = DIR_SIZE,
-    },
+		.cycles_to_perform = 5,
+	},
     {
         .name = "add",
         .code = OP_ADD,

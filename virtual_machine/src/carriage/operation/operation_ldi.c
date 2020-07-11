@@ -22,7 +22,7 @@ void operation_ldi(t_carriage *self)
 			op.args[ARG_1] = self->registers[op.args[ARG_1]];
         else if (op.type_codes[ARG_1] == IND_CODE)
 			op.args[ARG_1] = arena_get_n_bytes_from(self->arena,
-            		self->arena_position + op.args[ARG_1] % IDX_MOD, FOUR_BYTES);
+            		self->arena_position + op.args[ARG_1] % IDX_MOD, REG_SIZE);
 
         if (op.type_codes[ARG_2] == REG_CODE)
 			op.args[ARG_2] = self->registers[op.args[ARG_2]];
@@ -31,7 +31,7 @@ print_op_log(self, op.args);
 
         self->registers[op.args[ARG_3]] = arena_get_n_bytes_from(self->arena,
         		self->arena_position + (op.args[ARG_1] + op.args[ARG_2]) % IDX_MOD,
-        		FOUR_BYTES);
+        		REG_SIZE);
     }
     self->arena_position = (self->arena_position + op.op_len) % MEM_SIZE;
 }

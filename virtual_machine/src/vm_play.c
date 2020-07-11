@@ -103,6 +103,4 @@ void			vm_play(t_vm *self)
 		self->cycles_counter += 1;
 		self->cycles_to_dump -= 1;
 	}
-
-	vm_singleton(VM_DESTRUCT, 0, NULL);
 }

@@ -21,7 +21,6 @@ t_player		*player_new(t_vmp_player *vmp_player)
 	file_data_check_valid(file);
 	if ((self = (t_player *)ft_memalloc(sizeof(*self))) == NULL)
 		raise(__FILE__, __LINE__, ENOMEMORY);
-//	self->name = vmp_player_name(vmp_player);
 	self->text_name = file_data_name(file);
 	self->text_comment = file_data_comment(file);
 	self->code_size = file_code_size(file);

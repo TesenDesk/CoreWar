@@ -27,7 +27,7 @@ void operation_ld(t_carriage *self)
 	{
 		if (op.type_codes[ARG_1] == IND_CODE)
 			op.args[ARG_1] = arena_get_n_bytes_from(self->arena,
-			self->arena_position + op.args[ARG_1] % IDX_MOD, FOUR_BYTES);
+			self->arena_position + op.args[ARG_1] % IDX_MOD, REG_SIZE);
 		print_op_log(self, op.args);
 		if ((self->registers[op.args[ARG_2]] = op.args[ARG_1]) == 0)
 			self->carry = TRUE;

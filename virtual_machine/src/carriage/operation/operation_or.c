@@ -25,12 +25,12 @@ static void		convert_args(t_carriage *self, int *args, char *type_codes)
 		args[ARG_1] = self->registers[args[ARG_1]];
 	else if (type_codes[ARG_1] == IND_CODE)
 		args[ARG_1] = arena_get_n_bytes_from(self->arena,
-		self->arena_position + args[ARG_1] % IDX_MOD, FOUR_BYTES);
+		self->arena_position + args[ARG_1] % IDX_MOD, REG_SIZE);
 	if (type_codes[ARG_2] == REG_CODE)
 		args[ARG_2] = self->registers[args[ARG_2]];
 	else if (type_codes[ARG_2] == IND_CODE)
 		args[ARG_2] = arena_get_n_bytes_from(self->arena,
-		self->arena_position + args[ARG_2] % IDX_MOD, FOUR_BYTES);
+		self->arena_position + args[ARG_2] % IDX_MOD, REG_SIZE);
 }
 
 void operation_or(t_carriage *self)

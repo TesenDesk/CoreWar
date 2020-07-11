@@ -22,7 +22,7 @@ void operation_sti(t_carriage *self)
         if (op.type_codes[ARG_2] == REG_CODE)
 			op.args[ARG_2] = self->registers[op.args[ARG_2]];
         else if (op.type_codes[1] == IND_CODE)
-			op.args[ARG_2] = arena_get_n_bytes_from(self->arena,self->arena_position + op.args[ARG_2] % IDX_MOD, FOUR_BYTES);
+			op.args[ARG_2] = arena_get_n_bytes_from(self->arena,self->arena_position + op.args[ARG_2] % IDX_MOD, REG_SIZE);
         if (op.type_codes[ARG_3] == REG_CODE)
 			op.args[ARG_3] = self->registers[op.args[ARG_3]];
 		print_op_log(self, op.args);

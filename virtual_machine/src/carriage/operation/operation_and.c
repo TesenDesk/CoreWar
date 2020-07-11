@@ -17,13 +17,13 @@ void operation_and(t_carriage *self)
             and.args[ARG_1] = self->registers[and.args[ARG_1]];
         else if (and.type_codes[ARG_1] == IND_CODE)
             and.args[ARG_1] = arena_get_n_bytes_from(self->arena,
-            		self->arena_position + and.args[ARG_1] % IDX_MOD, FOUR_BYTES);
+            		self->arena_position + and.args[ARG_1] % IDX_MOD, REG_SIZE);
 
         if (and.type_codes[ARG_2] == REG_CODE)
             and.args[ARG_2] = self->registers[and.args[ARG_2]];
         else if (and.type_codes[ARG_2] == IND_CODE)
 			and.args[ARG_2] = arena_get_n_bytes_from(self->arena,
-            		self->arena_position + and.args[ARG_2] % IDX_MOD, FOUR_BYTES);
+            		self->arena_position + and.args[ARG_2] % IDX_MOD, REG_SIZE);
 		print_op_log(self, and.args);
         if ((self->registers[and.args[ARG_3]] = and.args[ARG_1] & and.args[ARG_2]) == 0)
             self->carry = TRUE;

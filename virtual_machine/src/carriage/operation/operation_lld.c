@@ -15,8 +15,8 @@ void operation_lld(t_carriage *self)
     if (operation_precheck_args(self, &op) == SUCCESS)
     {
         if (op.type_codes[ARG_1] == IND_CODE)
-			op.args[ARG_1] = arena_get_n_bytes_from(self->arena, self->arena_position + op.args[ARG_1], TWO_BYTES); // like original vm
-//            args[0] = arena_get_n_bytes_from(self->arena, self->arena_position + args[0], FOUR_BYTES); // need to be
+			op.args[ARG_1] = arena_get_n_bytes_from(self->arena, self->arena_position + op.args[ARG_1], REG_SIZE / 2); // like original vm
+//            args[0] = arena_get_n_bytes_from(self->arena, self->arena_position + args[0], REG_SIZE); // need to be
 
 		print_op_log(self, op.args);
 
