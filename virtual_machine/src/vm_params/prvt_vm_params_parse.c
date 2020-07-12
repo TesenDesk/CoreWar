@@ -12,13 +12,6 @@
 
 #include "prvt_vm_params.h"
 
-static int				prvt_vm_params_flag_name_done(t_vm_params *self,
-													char *param)
-{
-	prvt_vm_params_set_file_name_with_id(self, param);
-	return (FLAG_FILE_CODE);
-}
-
 static int				prvt_vmp_state(t_vm_params *self, int argtype)
 {
 	if (self->state == VMP_INITIAL
@@ -48,24 +41,32 @@ static int				prvt_vmp_state(t_vm_params *self, int argtype)
 	return (SUCCESS);
 }
 
+static int				prvt_vm_params_flag_name_done(t_vm_params *self,
+                                                        char *param)
+{
+    prvt_vm_params_set_file_name_with_id(self, param);
+    return (FLAG_FILE_CODE);
+}
+
 void					prvt_vm_params_parse(t_vm_params *self, char **params)
 {
-	int					urr_player_name;
 	int					arg_type;
-	static t_sm_parser	vtable[NBR_OF_VIRTUAL_METHODS];
+	static t_sm_parser	vtable[NBR_OF_VIRTUAL_METHODS] =
+    {
+	    prvt_vm_params_init,
+	    prvt_vm_params_flag_name,
+	    prvt_vm_params_flag_name_done,
+        prvt_vm_params_flag_cycles,
+        prvt_vm_params_flag_verbose,
+        prvt_vm_params_dump_cycles,
+	};
 
-	vtable[0] = prvt_vm_params_init;
-	vtable[1] = prvt_vm_params_flag_name;
-	vtable[2] = prvt_vm_params_flag_name_done;
-	vtable[3] = prvt_vm_params_flag_cycles;
-	vtable[4] = prvt_vm_params_flag_verbose;
-	vtable[5] = prvt_vm_params_dump_cycles;
-	arg_type = NO_ARG;
+	arg_type = NO_FLAG_CODE;
 	if (!(*params))
 		raise(__FILE__, __LINE__, EBADPLAYERNAME);
 	while (*params)
 	{
-		arg_type = vtable[self->state](self, *params);
+ 		arg_type = vtable[self->state](self, *params);
 		prvt_vmp_state(self, arg_type);
 		++params;
 	}

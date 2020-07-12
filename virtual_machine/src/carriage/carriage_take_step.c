@@ -12,7 +12,7 @@
 
 #include "prvt_carriage.h"
 
-void		carriage_take_step(t_carriage *self)
+void		 carriage_take_step(t_carriage *self)
 {
 	if (self->cycles_to_perform_op == 0)
 	{

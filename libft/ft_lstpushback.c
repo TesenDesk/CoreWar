@@ -4,6 +4,7 @@
 void	ft_lstpushback(t_list **head, t_list *new)
 {
     t_list  *tmp;
+
     if (head && new)
     {
         if (*head == NULL)

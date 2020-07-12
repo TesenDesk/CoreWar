@@ -20,7 +20,7 @@ void			prvt_vm_params_add_named_player_node(t_vm_params *self,
 
 	if ((new_node = ft_lstnew((void *)player, sizeof(*player))) == NULL)
 		raise(__FILE__, __LINE__, ENOMEMORY);
-	vmp_player_destroy(&player);
+//	vmp_player_destroy(&player);
 	ft_lstpushback(&(self->id_player_head), new_node);
 	++self->nb_players;
 	return ;
