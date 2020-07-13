@@ -4,6 +4,9 @@
 
 
 #include "_visual_private.h"
+#include <math.h>
+#include "op.h"
+#include "../arena/prvt_arena.h"
 
 WINDOW *create_newwin(int height, int width, int starty, int startx)
 {
@@ -50,4 +53,34 @@ void destroy_win(WINDOW *local_win)
 	 */
 	wrefresh(local_win);
 	delwin(local_win);
+}
+
+
+void    draw_arena(WINDOW *win, t_arena *arena)
+{
+	int sqr;
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+
+	start_color();			/* Start color 			*/
+	init_pair(1, COLOR_RED, COLOR_BLACK);
+	while(i < SQRT_MAP)
+	{
+//		wprintw(win, "%.2x", arena->data[i * 64 + j]);
+//		wprintw(win, "%.2x", arena->data[i * 64 + j]);
+		wmove(win, i, 0);
+		while (j < SQRT_MAP) {
+//			attron(COLOR_PAIR(1));
+			wattron(win, 1);
+			wprintw(win, "%.2x", (unsigned char)arena->data[i * 64 + j++]);
+//			wprintw(win, "%.2x", are);
+			waddch(win, ' ');
+		}
+		wprintw(win, "\n");
+		j = 0;
+		++i;
+	}
 }

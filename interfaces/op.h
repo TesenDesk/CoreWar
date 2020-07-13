@@ -25,6 +25,7 @@
 #define MAX_PLAYERS				4
 #define MEM_SIZE				(MAX_PLAYERS*1024)
 #define IDX_MOD					(MEM_SIZE / 8)
+#define SQRT_MAP                64
 #define CHAMP_MAX_SIZE			(MEM_SIZE / 6)
 
 #define COMMENT_CHAR			'#'

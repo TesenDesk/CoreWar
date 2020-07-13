@@ -11,6 +11,26 @@
 /* ************************************************************************** */
 
 #include "_vm.h"
+#include "visual.h"
+
+
+
+//while (i < 64)
+//{
+//j = 0;
+//wmove(vm->vs->win_arena, i + 2, 5);
+//while (j < 64)
+//{
+//attribute = get_attribute(vm, &vm->vs->map[i * 64 + j], cycles);
+//wattron(vm->vs->win_arena, attribute);
+//wprintw(vm->vs->win_arena, "%.2x", vm->arena[i * 64 + j]);
+//wattroff(vm->vs->win_arena, attribute);
+//waddch(vm->vs->win_arena, ' ');
+//j++;
+//}
+//wprintw(vm->vs->win_arena, "\n");
+//i++;
+//}
 
 void			destroy_dead_carriages(t_list **head, int c_t_d, int cntr)
 {
@@ -75,8 +95,38 @@ void			vm_next_cycle(t_vm *self)
 	}
 }
 
+static int ft_sqrt(int k)
+{
+	int   i;
+
+	i = 2;
+	while (i * i < k)
+		i += 1;
+	return (i);
+}
+
+
 void			vm_play(t_vm *self)
 {
+	WINDOW *my_win;
+	int startx, starty, width, height;
+	int ch;
+
+	initscr();			/* Start curses mode 		*/
+	cbreak();			/* Line buffering disabled, Pass on
+					 * everty thing to me 		*/
+	keypad(stdscr, TRUE);		/* I need that nifty F1 	*/
+
+	height = ft_sqrt(MEM_SIZE + 2);
+	width = ft_sqrt(MEM_SIZE + 2) * 4;
+	starty = 3;	/* Calculating for a center placement */
+	startx = 3;	/* of the window		*/
+	printw("Press F1 to exit");
+	refresh();
+	my_win = create_newwin(height, width, starty, startx);
+
+
+
 	arena_players_introducing(self->arena);
 	self->cycles_to_die = CYCLE_TO_DIE;
 	self->cycles_counter = 1;
@@ -102,5 +152,35 @@ void			vm_play(t_vm *self)
 		self->global_counter += 1;
 		self->cycles_counter += 1;
 		self->cycles_to_dump -= 1;
+//		ch = getch();
+		werase(my_win);
+//		my_win = create_newwin(height, width, starty, startx);
+		draw_arena(my_win, self->arena);
+
+		wrefresh(my_win);
+//		refresh();
+		getch();
+		endwin();
+//		switch(ch)
+//			{
+//				case KEY_LEFT:
+//					destroy_win(my_win);
+//					my_win = create_newwin(height, width, starty,--startx);
+//					break;
+//				case KEY_RIGHT:
+//					destroy_win(my_win);
+//					my_win = create_newwin(height, width, starty,++startx);
+//					break;
+//				case KEY_UP:
+//					destroy_win(my_win);
+//					my_win = create_newwin(height, width, --starty,startx);
+//					break;
+//				case KEY_DOWN:
+//					destroy_win(my_win);
+//					my_win = create_newwin(height, width, ++starty,startx);
+//					break;
+//				case KEY_F(1):
+//					endwin();
+//			}
 	}
 }
