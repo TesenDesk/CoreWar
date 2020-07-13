@@ -6,13 +6,13 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 22:35:40 by yurezz            #+#    #+#             */
-/*   Updated: 2020/07/13 12:58:39 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/13 18:41:34 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_corwar.h"
+#include "prvt_corwar.h"
 
-static void		_corwar_precondition_check()
+static void		prvt_corwar_precondition_check(void)
 {
 	if (
 		(REG_SIZE < sizeof(char) || sizeof(int) < REG_SIZE) ||
@@ -33,7 +33,7 @@ int				main(int argc, char *argv[])
 {
 	t_vm		*this;
 
-	_corwar_precondition_check();
+	prvt_corwar_precondition_check();
 	this = vm_singleton(VM_INSTANTIATE, argc - 1, argv + 1);
 	vm_play(this);
 	(void)vm_singleton(VM_DESTRUCT, 0, NULL);

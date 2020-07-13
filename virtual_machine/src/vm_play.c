@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   vm_play.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 23:20:21 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/03 23:20:22 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/07/13 16:58:31 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_vm.h"
+#include "prvt_vm.h"
 
 void			destroy_dead_carriages(t_list **head, int c_t_d, int cntr)
 {

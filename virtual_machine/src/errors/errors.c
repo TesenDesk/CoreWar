@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 21:07:20 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/28 15:24:00 by nikita_toro      ###   ########.fr       */
+/*   Updated: 2020/07/13 18:30:38 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_errors.h"
+#include "prvt_errors.h"
 
 static char		*error_messages[ERRMSGCOUNT] =
 {
@@ -42,9 +42,9 @@ static char		*error_messages[ERRMSGCOUNT] =
 	"Try to replace pointer to memory not being freed.",
 	"Loss of information due to some reasons. "
 		"(REG_SIZE is less then number of players.)",
-    "Wrong code_size.",
-    "Incorrectly placed NULLs in data.",
-    "No magic header.",
+	"Wrong code_size.",
+	"Incorrectly placed NULLs in data.",
+	"No magic header.",
 	"To many players.",
 //	"Usage: ./corewar [-d nbr_cycles] [[-n number] player1.cor ...]\n"
 //	"\n"
@@ -87,5 +87,3 @@ int				raise(char *file_name, int line_nb, int errmsg_index)
 	vm_singleton(VM_DESTRUCT, 0, NULL);
 	exit (FAILURE);
 }
-
-// add errors for "file_precondition_check"

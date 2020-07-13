@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operation_add.c                               :+:      :+:    :+:   */
+/*   operation_add.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/04 21:30:45 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/04 21:37:52 by cmissy           ###   ########.fr       */
+/*   Created: 2020/07/13 18:23:10 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/13 18:23:29 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static void		print_op_log(t_carriage *self, int *args)
 	}
 }
 
-void            operation_add(t_carriage *self)
+void			operation_add(t_carriage *self)
 {
-	t_op	op;
+	t_op		op;
 	int			sum;
 
 	op = g_op[OP_ADD - 1];

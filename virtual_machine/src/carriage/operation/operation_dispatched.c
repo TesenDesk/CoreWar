@@ -1,15 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operation_dispatched.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/13 17:39:51 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/13 18:02:35 by cmissy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "operation.h"
 
-void				operation_dispatched(t_carriage *self)
+void		operation_dispatched(t_carriage *self)
 {
-    void	(*operations[NUM_OF_OPERATIONS])(t_carriage *self) =
-            {
-			operation_live, operation_ld, operation_st,
-			operation_add, operation_sub, operation_and,
-			operation_or, operation_xor, operation_zjmp,
-			operation_ldi, operation_sti, operation_fork,
-			operation_lld, operation_lldi, operation_lfork,
-			operation_aff,
-            };
-    operations[self->op_code - 1](self);
+	t_op op;
+
+	op = g_op[self->op_code - 1];
+	op.operation(self);
 }

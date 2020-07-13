@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _errors.h                                          :+:      :+:    :+:   */
+/*   _corwar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/01 17:10:49 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/03 23:23:17 by yurezz           ###   ########.fr       */
+/*   Created: 2020/04/03 22:37:19 by yurezz            #+#    #+#             */
+/*   Updated: 2020/04/09 23:21:10 by yurezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _ERRORS_H
-# define _ERRORS_H
+#ifndef PRVT_CORWAR_H
+# define PRVT_CORWAR_H
 
-#include "libft.h"
-#include "errors.h"
-#include "vm.h"
+# include "libft.h"
+# include "errors.h"
+# include "corwar.h"
+# include "op.h"
+# include "vm.h"
 
 #endif

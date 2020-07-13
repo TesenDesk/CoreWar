@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _vm_destroy.c                                      :+:      :+:    :+:   */
+/*   prvt_vm_destroy.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/08 22:41:52 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/08 22:49:08 by yurezz           ###   ########.fr       */
+/*   Created: 2020/07/13 16:57:20 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/13 16:57:57 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_vm.h"
+#include "prvt_vm.h"
 
-void		_vm_destroy(t_vm **self)
+void		prvt_vm_destroy(t_vm **self)
 {
-	if((*self)->params != NULL)
+	if ((*self)->params != NULL)
 		vm_params_destroy(&(*self)->params);
 	if ((*self)->arena != NULL)
 		arena_destroy(&(*self)->arena);
-	if((*self)->carriage_head != NULL)
+	if ((*self)->carriage_head != NULL)
 		vm_carriage_list_destruct(&(*self)->carriage_head);
 	ft_memdel((void **)self);
 	return ;

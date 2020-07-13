@@ -3,7 +3,7 @@
 //
 
 
-#include "_visual_private.h"
+#include "prvt_visual_private.h"
 
 WINDOW *create_newwin(int height, int width, int starty, int startx)
 {

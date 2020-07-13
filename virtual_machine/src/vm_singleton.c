@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_vm.h"
+#include "prvt_vm.h"
 
 t_vm			*vm_singleton(int instantiation_status, int argc, char *argv[])
 {
@@ -19,12 +19,12 @@ t_vm			*vm_singleton(int instantiation_status, int argc, char *argv[])
 	if (instantiation_status == VM_INSTANTIATE)
 	{
 		if (self == NULL)
-			self = _vm_new(argc, argv);
+			self = prvt_vm_new(argc, argv);
 	}
 	else if (instantiation_status == VM_DESTRUCT)
 	{
 		if (self != NULL)
-			_vm_destroy(&self);
+			prvt_vm_destroy(&self);
 	}
 	return (self);
 }

@@ -6,13 +6,14 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 20:39:37 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/04 21:08:12 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/13 18:25:16 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prvt_carriage.h"
 
-void		prvt_carriage_set_cycles_to_perform_op(t_carriage *self) {
+void		prvt_carriage_set_cycles_to_perform_op(t_carriage *self)
+{
 	t_op op;
 
 	if (self->is_correct_op_code)

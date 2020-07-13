@@ -406,9 +406,9 @@ add_executable(corewar
 #        virtual_machine/src/carriage/carriages_check_wins.c
         virtual_machine/src/carriage/carriage_new.c
         virtual_machine/src/carriage/carriage_is_alive.c
-        virtual_machine/src/corwar/_corwar.h
+        virtual_machine/src/corwar/prvt_corwar.h
 #        virtual_machine/src/corwar/corwar.c
-        virtual_machine/src/errors/_errors.h
+        virtual_machine/src/errors/prvt_errors.h
         virtual_machine/src/errors/errors.c
         virtual_machine/src/vm_params/vmp_player/file/prvt_file.h
         virtual_machine/src/vm_params/ft_arg_is_num.c
@@ -461,9 +461,9 @@ add_executable(corewar
         virtual_machine/src/vm_params/vm_params_dump_cycles.c
         virtual_machine/src/vm_params/vm_params_verbosity_lvl.c
         virtual_machine/src/vm_params/vm_params_new.c
-        virtual_machine/src/_vm.h
-        virtual_machine/src/_vm_destroy.c
-        virtual_machine/src/_vm_new.c
+        virtual_machine/src/prvt_vm.h
+        virtual_machine/src/prvt_vm_destroy.c
+        virtual_machine/src/prvt_vm_new.c
         virtual_machine/src/vm_play.c
         virtual_machine/src/vm_global_counter.c
         virtual_machine/src/vm_singleton.c

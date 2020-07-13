@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _vm_new.c                                          :+:      :+:    :+:   */
+/*   prvt_vm_new.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/08 22:40:44 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/28 20:36:33 by nikita_toro      ###   ########.fr       */
+/*   Created: 2020/07/13 16:56:47 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/13 16:56:47 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_vm.h"
+#include "prvt_vm.h"
 
-t_vm		*_vm_new(int argc, char *argv[])
+t_vm		*prvt_vm_new(int argc, char **argv)
 {
 	t_vm		*self;
 

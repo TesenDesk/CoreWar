@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 18:42:20 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/04 18:42:20 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/13 17:03:44 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void			arena_print_dump(t_arena *self)
 {
-	int 			i;
-	char			*data;
+	int			i;
+	char		*data;
 
 	data = self->data;
 	i = 0;

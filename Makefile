@@ -88,8 +88,8 @@ CODEGEN_OBJ :=  $(patsubst %.c, %.o, $(CODEGEN_SRC))
 CODEGEN_DIR_OBJ :=  $(addprefix ./codegen/, $(CODEGEN_OBJ))
 
 
-VM_SRC := _vm_destroy.c \
-			_vm_new.c \
+VM_SRC := prvt_vm_destroy.c \
+			prvt_vm_new.c \
 			vm_add_new_carriage_node.c \
 			vm_carriage_list_destruct.c \
 			vm_global_counter.c \
@@ -365,9 +365,11 @@ clean: deljunk
 		rm -rf virtual_machine/src/arena/player/*.o
 		rm -rf virtual_machine/src/carriage/*.o
 		rm -rf virtual_machine/src/carriage/operation/*.o
+		rm -rf virtual_machine/src/corwar/*.o
 		rm -rf virtual_machine/src/errors/*.o
 		rm -rf virtual_machine/src/vm_params/*.o
 		rm -rf virtual_machine/src/vm_params/vmp_player/*.o
+		rm -rf virtual_machine/src/vm_params/vmp_player/file/*.o
 		rm -rf virtual_machine/src/visual/*.o
 		@make -C $(LIBDIR) clean
 
