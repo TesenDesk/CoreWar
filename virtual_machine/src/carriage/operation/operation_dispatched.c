@@ -2,7 +2,7 @@
 
 void				operation_dispatched(t_carriage *self)
 {
-    void	(*operations[NUMBER_OF_OPERATIONS])(t_carriage *self) =
+    void	(*operations[NUM_OF_OPERATIONS])(t_carriage *self) =
             {
 			operation_live, operation_ld, operation_st,
 			operation_add, operation_sub, operation_and,

@@ -6,14 +6,13 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:34:08 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/13 12:42:36 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/13 16:14:57 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILE_H
 # define FILE_H
 
-#include "../src/vm_params/vmp_player/file/prvt_file.h"
 typedef struct s_i_file		t_i_file;
 
 t_i_file		*file_new(char *file_name);

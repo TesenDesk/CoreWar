@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:10:01 by yurezz            #+#    #+#             */
-/*   Updated: 2020/07/13 12:44:43 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/13 16:24:36 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@
 # include "vm.h"
 # include "../src/carriage/prvt_carriage.h"
 
-# define NUMBER_OF_OPERATIONS	DEAD_LINE - 1
-# define TYPE_CODE_SIZE			(MAX_ARGS_NUMBER * 2) / 8 + ((MAX_ARGS_NUMBER * 2) % 8) ? 1 : 0
-# define OP_CODE_SIZE			1
-# define BITS_PER_BYTE			8
-# define TWO_BITS				2
-# define TWO_BITS_MASK			3
-# define T_REG_SIZE				1
-# define T_IND_SIZE				IND_SIZE
-# define NUM_OF_ARG_TYPES		3
+# define NUM_OF_OPERATIONS	DEAD_LINE - 1
+# define TYPE_CODE_SIZE		(MAX_ARGS_NUMBER*2)/8+((MAX_ARGS_NUMBER*2)%8)?1:0
+# define OP_CODE_SIZE		1
+# define BITS_PER_BYTE		8
+# define TWO_BITS			2
+# define TWO_BITS_MASK		3
+# define T_REG_SIZE			1
+# define T_IND_SIZE			IND_SIZE
+# define NUM_OF_ARG_TYPES	3
 
 enum				e_op_codes
 {

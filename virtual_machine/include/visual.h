@@ -5,8 +5,8 @@
 
 typedef struct  s_wins
 {
-	WINDOW      main;
-	WINDOW      chars;
+	WINDOW      *main;
+	WINDOW      *chars;
 }               t_wins;
 
 WINDOW *create_newwin(int height, int width, int starty, int startx);

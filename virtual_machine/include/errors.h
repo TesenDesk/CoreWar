@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:33:44 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/13 12:42:28 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/13 16:15:28 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@ enum					e_error_id
 	ENONULLS,
 	ENOMAGICH,
 	EMANYPLAYERS,
-	
-	
-	
 	ERRMSGCOUNT,
 };
 
