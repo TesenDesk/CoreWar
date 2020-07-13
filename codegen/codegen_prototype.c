@@ -5,7 +5,7 @@
 // Created by Jhiqui Jerde on 21/02/2020.
 //
 
-#include <token_private.h>
+#include "../lexer/token_private.h"
 #include "codegen_prototype.h"
 #include "codegen_private.h"
 #include "token_defines.h"

@@ -27,9 +27,7 @@ static void		_corwar_precondition_check()
 		CYCLE_DELTA < 1 ||
 		MAX_CHECKS < 1 ||
 
-		NBR_LIVE < 0
-
-		)
+		NBR_LIVE < 0)
 		raise(__FILE__, __LINE__, EINVALCONSTANTS);
 	return;
 }

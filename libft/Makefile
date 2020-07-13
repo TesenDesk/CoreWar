@@ -134,7 +134,6 @@ EXPANSION =	ft_isspace.c \
 			ft_fit_size.c \
 			ft_error.c \
 			ft_error_ptr.c \
-			ft_read_.c \
 			ft_div_mod.c \
 			ft_lldiv_mod.c \
 			ft_imaxdiv.c \

@@ -312,7 +312,7 @@ add_executable(corewar
         parser/_parser_xtor.c
         parser/expr.c
         parser/expr_private.h
-        parser/expr_set_arg.c
+        parser/_expr_set_arg.c
         parser/parser.c
         parser/parser_private.h
         parser/parser_singleton_instance.c
@@ -473,4 +473,4 @@ add_executable(corewar
         virtual_machine/src/vm_verbosity_lvl.c
         virtual_machine/src/vm_carriage_list_destruct.c
 #        virtual_machine/test/main_test.c
-        main.c)
+        main_vm.c)
