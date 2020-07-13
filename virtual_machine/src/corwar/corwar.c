@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   corwar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 22:35:40 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/10 15:53:04 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/07/13 12:58:39 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "_corwar.h"
 
-// TODO: Добавить проверку REG_SIZE. Видио  в классе corwar.
 static void		_corwar_precondition_check()
 {
 	if (

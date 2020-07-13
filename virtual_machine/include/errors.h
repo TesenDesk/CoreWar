@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/01 17:09:54 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/10 00:25:45 by yurezz           ###   ########.fr       */
+/*   Created: 2020/07/13 12:33:44 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/13 12:42:28 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ enum					e_error_id
 	EDOUBLENAME,
 	EDANGLINGPTR,
 	EDATALOSS,
-    EWRONGSIZE,
-    ENONULLS,
-    ENOMAGICH,
+	EWRONGSIZE,
+	ENONULLS,
+	ENOMAGICH,
 	EMANYPLAYERS,
 	
 	
