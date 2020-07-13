@@ -107,7 +107,6 @@ VM_ARENA_SRC := arena_carriage_list_new.c \
 				arena_nb_players.c \
 				arena_new.c \
 				arena_op_code.c \
-				arena_players.c \
 				arena_players_introducing.c \
 				arena_print_dump.c \
 				arena_print_winner.c \
@@ -258,6 +257,7 @@ all: debmsg $(ASM_NAME) $(COREWAR_NAME)##Todo: Add 'liba' rule BEFORE '$(ASM_NAM
 		@echo "$(PREFIX)✅  $(GREEN)All files up-to-date or \
 rebuilded.$(RST)"
 
+
 debmsg:
 		@printf "$(DEBUGMSG)"
 
@@ -309,7 +309,7 @@ $(COREWAR_NAME): $(VM_DIR_OBJ) $(VM_ARENA_DIR_OBJ) $(VM_ARENA_PLAYER_DIR_OBJ) \
 		$(VM_CARRIAGE_DIR_OBJ) $(VM_CARRIAGE_OP_DIR_OBJ) \
 		$(VM_COREWAR_DIR_OBJ) $(VM_ERRORS_DIR_OBJ) $(VM_PARAMS_DIR_OBJ) \
 		$(VM_PARAMS_VMP_PLAYER_DIR_OBJ) $(VM_PARAMS_VMP_PLAYER_FILE_DIR_OBJ) \
-		$(VISUAL_DIR_OBJ)
+#		$(VISUAL_DIR_OBJ)
 #		@printf "$(PREFIX)📦  Building $(COREWAR_NAME)...\n"
 		make -C ./libft
 		gcc  -I$(COREWAR_INTERFACE) -I./libft/ $^ -lncurses -o $@ $(LIBFLAGS)

@@ -13,6 +13,7 @@
 #ifndef FILE_H
 # define FILE_H
 
+#include "../src/vm_params/vmp_player/file/prvt_file.h"
 typedef struct s_i_file		t_i_file;
 
 t_i_file		*file_new(char *file_name);
