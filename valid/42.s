@@ -239,4 +239,4 @@ tird:	live	%42
 	zjmp	%:p1
 
 fin:
-	live	%9999999999
+	live	%2147483649

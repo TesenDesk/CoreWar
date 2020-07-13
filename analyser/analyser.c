@@ -8,7 +8,7 @@
 
 
 t_vector		*analyse_text(t_analyser *analyser, t_vector *vector,t_hash_map  *map,
-		char const **text)
+		char *text)
 {
 	int 			expr_type;
 	t_vector		*expr_text;
@@ -22,7 +22,7 @@ t_vector		*analyse_text(t_analyser *analyser, t_vector *vector,t_hash_map  *map,
 		exit(-1);
 	while(analyser->state != ANALYSER_FINISH_ST)
 	{
-		expr = analyser->_get_expr(vector, map, text);
+		expr = analyser->_get_expr(vector, map, (((char const**)&text)));
 		if (ft_vector_add(expr_text, expr)
 			== FAILURE)
 			exit(-1);

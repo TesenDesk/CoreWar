@@ -26,6 +26,6 @@ enum					e_analyser_instantiation_status
 t_analyser *analyser_singleton_instance(int instatiation_status);
 
 t_vector 			*analyse_text(t_analyser *analyser, t_vector *vector,
-							   t_hash_map  *map, char const **text);
+							   t_hash_map  *map, char *text);
 
 #endif //CORE_ANALYSER_H

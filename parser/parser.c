@@ -1,6 +1,7 @@
 #include "parser_private.h"
 #include "../lexer/token_private.h"
 #include <string.h>
+#include "../lexer/token_private.h"
 
 
 static void			fill_expr_ar_num(int expr_ar_num[COUNT_EXPR])
@@ -45,6 +46,7 @@ t_expr				*parser_form_expr(t_parser *parser, char const **text,
 			if (label_checker_put_to_map_label_ptr(label_vector, token) == FAILURE)
 				return (NULL);
 		}
+//		printf("type:%d, val:%s\n", token_type, token->val);
 		parser->change_state(parser, token_type);
 		if (parser->state == PARSER_FINISH_ST || parser->state == PARSER_ERROR) {
 			if (parser->state == PARSER_ERROR) {
