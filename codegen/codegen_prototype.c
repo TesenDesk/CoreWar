@@ -462,7 +462,7 @@ void        write_code_to_file(char* exec,int code_size,char * filename)
     root = ft_strncpy(root, filename, ft_strlen(filename)  - 2);
     new_name = ft_strjoin(root, ".cor");
     free(root);
-    if (!(fd = open(new_name, O_WRONLY | O_CREAT))){
+    if (!(fd = open(new_name, O_WRONLY | O_CREAT, S_IREAD))){
     	printf("can' open/create a file\n");
     	exit(-1);
     }
@@ -477,17 +477,15 @@ void            generate_code(t_hash_map *map, t_vector *text, char *filename)
     header_t    header;
     int         fd;
     int         index;
+	int         size;
 
     index = 2;
-
+	size = 0;
     init_header(&header, text);
     codegen = codegen_ctor(map, &header);
     while(index < text->total)
         codegen_codegen(codegen, text->items[index++]);
-    write_code_to_file(codegen->exec, champ_exec_constructor(codegen), filename);
-    /*
-     * цикл, эндинг
-     */
-
+    size = champ_exec_constructor(codegen);
+    write_code_to_file(codegen->exec, size, filename);
 }
 
