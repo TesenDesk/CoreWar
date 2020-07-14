@@ -13,24 +13,8 @@ WINDOW *create_newwin(int height, int width, int starty, int startx)
 	WINDOW *local_win;
 
 	local_win = newwin(height, width, starty, startx);
-	box(local_win, 0 , 0);
-	wrefresh(local_win);
 	return local_win;
 }
-
-
-//t_wins            *win_constructor(t_wins win)
-//{
-//	t_wins        *new;
-//	if (!(new = (t_wins*)malloc(sizeof(t_wins))))
-//		exit(-1);
-//	if (!(new->main = create_newwin(0,0,0,0)))
-//		exit(-1);
-//	if (!(new->chars = create_newwin(0,0,0,0)))
-//		exit(-1);
-//	if (!(new->main = create_newwin(0,0,0,0)))
-//		exit(-1);
-//}
 
 
 void destroy_win(WINDOW *local_win)
@@ -65,22 +49,30 @@ void    draw_arena(WINDOW *win, t_arena *arena)
 	i = 0;
 	j = 0;
 
+	if(has_colors() == FALSE)
+	{	endwin();
+		printf("Your terminal does not support color\n");
+		exit(1);
+	}
 	start_color();			/* Start color 			*/
 	init_pair(1, COLOR_RED, COLOR_BLACK);
+
 	while(i < SQRT_MAP)
 	{
-//		wprintw(win, "%.2x", arena->data[i * 64 + j]);
-//		wprintw(win, "%.2x", arena->data[i * 64 + j]);
-		wmove(win, i, 0);
+		wmove(win, i+1, 1);
 		while (j < SQRT_MAP) {
 //			attron(COLOR_PAIR(1));
 			wattron(win, 1);
 			wprintw(win, "%.2x", (unsigned char)arena->data[i * 64 + j++]);
+//			wattroff(win, 1);
 //			wprintw(win, "%.2x", are);
 			waddch(win, ' ');
+			wattroff(win, 1);
 		}
 		wprintw(win, "\n");
 		j = 0;
 		++i;
 	}
+	box(win, 0, 0);
+	wrefresh(win);
 }

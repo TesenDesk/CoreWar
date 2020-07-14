@@ -115,14 +115,16 @@ void			vm_play(t_vm *self)
 	initscr();			/* Start curses mode 		*/
 	cbreak();			/* Line buffering disabled, Pass on
 					 * everty thing to me 		*/
-	keypad(stdscr, TRUE);		/* I need that nifty F1 	*/
+//	keypad(stdscr, TRUE);		/* I need that nifty F1 	*/
 
-	height = ft_sqrt(MEM_SIZE + 2);
-	width = ft_sqrt(MEM_SIZE + 2) * 4;
-	starty = 3;	/* Calculating for a center placement */
-	startx = 3;	/* of the window		*/
-	printw("Press F1 to exit");
-	refresh();
+//	height = ft_sqrt(MEM_SIZE)*2;
+//	width = ft_sqrt(MEM_SIZE + 2) * 3;
+	height = SQRT_MAP+ 2;
+	width = SQRT_MAP * 3 + 2;
+	starty = 1;	/* Calculating for a center placement */
+	startx = 1;	/* of the window		*/
+//	printw("Press q to exit");
+//	refresh();
 	my_win = create_newwin(height, width, starty, startx);
 
 
@@ -152,15 +154,8 @@ void			vm_play(t_vm *self)
 		self->global_counter += 1;
 		self->cycles_counter += 1;
 		self->cycles_to_dump -= 1;
-//		ch = getch();
-		werase(my_win);
-//		my_win = create_newwin(height, width, starty, startx);
 		draw_arena(my_win, self->arena);
-
-		wrefresh(my_win);
-//		refresh();
-		getch();
-		endwin();
+		ch = getch();
 //		switch(ch)
 //			{
 //				case KEY_LEFT:
