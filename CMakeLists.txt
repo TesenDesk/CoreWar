@@ -23,7 +23,7 @@ include_directories(virtual_machine/src/vm_params)
 include_directories(virtual_machine/src/vm_params/vmp_player)
 include_directories(virtual_machine/src/vm_params/vmp_player/file)
 
-add_executable(corewar
+add_executable(asm
 #        analyser/_analyser_change_state.c
 #        analyser/_analyser_get_expr.c
 #        analyser/_analyser_xtor.c
@@ -473,4 +473,5 @@ add_executable(corewar
         virtual_machine/src/vm_verbosity_lvl.c
         virtual_machine/src/vm_carriage_list_destruct.c
 #        virtual_machine/test/main_test.c
-        main_vm.c)
+#        main_vm.c
+        )

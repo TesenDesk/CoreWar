@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 18:43:16 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/13 18:54:56 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/14 15:41:30 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,6 @@ void					prvt_vm_params_parse(t_vm_params *self, char **params)
 		prvt_vmp_state(self, arg_type);
 		++params;
 	}
+	if (self->state != VMP_INITIAL)
+		raise(__FILE__, __LINE__, EBADPLAYERNAME);
 }
