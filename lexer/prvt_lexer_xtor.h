@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_private.h                                    :+:      :+:    :+:   */
+/*   lexer_xtor_private.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/05 17:44:55 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/06 20:42:31 by ftothmur         ###   ########.fr       */
+/*   Created: 2020/02/18 17:14:25 by yurezz            #+#    #+#             */
+/*   Updated: 2020/03/06 19:57:28 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKEN_PRIVATE_H
-#define TOKEN_PRIVATE_H
+#ifndef LEXER_XTOR_PRIVATE_H
+# define LEXER_XTOR_PRIVATE_H
 
-#include "token.h"
+#include "lexer.h"
 
-//#define UNDEF_TOKEN -1
+/*
+** Constructor and destructor functions.
+*/
 
-typedef struct		s_token
-{
-	int				type;
-	void			*val;
-	void			*token_ptr[2];
-	int				(*get_type)(t_token  *token);
-	void			*(*get_begin)(t_token *token);
-	void			*(*get_val)(t_token *token);
-}					t_token;
+void			prvt_lexer_ctor(t_lexer **lexer);
+void			prvt_lexer_dtor(t_lexer **lexer);
 
 #endif

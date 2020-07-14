@@ -1,16 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expr.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/14 21:14:42 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/14 21:14:43 by cmissy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef EXPR_H
 # define EXPR_H
 
-//#include "expr_private.h"
-#include <stdio.h>
-#include <stdlib.h>
-
-#include "token.h"
-#include "expr_defines.h"
+# include "token.h"
+# include "expr_defines.h"
 
 typedef struct s_expr		t_expr;
 typedef struct s_arg		t_arg;
-
 
 typedef enum		e_arg_number
 {
@@ -22,26 +29,8 @@ typedef enum		e_arg_number
 	LABEL_ARG,
 }					t_arg_number;
 
-/*
- * TOKEN TYPES
- */
-//#define NO_TOKEN -1
-//#define TOKEN_UNDEF 0
-//#define TOKEN_INIT_ST 1
-//#define TOKEN_EOF 2
-//#define TOKEN_LFEED 3
-//#define TOKEN_CHNAME 4
-//#define TOKEN_CHCOM 5
-//#define TOKEN_OPX 6
-//#define TOKEN_TREG 7
-//#define TOKEN_TIND_INT 8
-//#define TOKEN_TIND_LAB 9
-//#define TOKEN_TDIR_INT 10
-//#define TOKEN_TDIR_LAB 11
-
 t_expr				*expr_ctor(void);
 void				expr_dtor(t_expr **expr);
-
 int					expr_set_arg(t_expr *expr, t_token *token,
 						int args_number, int arg_type);
 void				*expr_get_arg_value(t_expr *expr, int index);

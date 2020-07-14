@@ -12,7 +12,7 @@
 
 // #include "lexer.h"
 // #include "token_defines.h"
-#include "lexer_private.h"
+#include "prvt_lexer.h"
 
 /*
 **	The function determins if this part of text is appropriate term for

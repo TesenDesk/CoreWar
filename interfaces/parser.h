@@ -1,10 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/14 21:10:57 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/14 21:12:00 by cmissy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PARSER_H
-#define PARSER_H
+# define PARSER_H
 
-#include <string.h>
-
-#include "expr.h"
-#include "expr_defines.h"
+# include "expr.h"
+# include "expr_defines.h"
 
 enum							e_parser_instantiation_status
 {
@@ -25,14 +35,13 @@ typedef struct s_parser			t_parser;
 ** Pass PARSER_DESTRUCT to destrust lexer instance if there is any
 */
 
-
 t_parser			*parser_singleton_instance(int instantiation_status);
 
 /*
 ** Public behavioral functions.
 */
-int								get_expr_type(t_expr *expr);
-t_expr							*parser_form_expr(t_parser *parser,
-									char const **text, t_hash_map *map, t_vector *vector);
+int					get_expr_type(t_expr *expr);
+t_expr				*parser_form_expr(t_parser *parser, char const **text,
+									t_hash_map *map, t_vector *vector);
 
 #endif

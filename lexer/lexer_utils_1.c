@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "lexer.h"
-#include "lexer_utils_private.h"
+#include "prvt_lexer_utils.h"
 
 /*
 **	The function determins if the symbol is of that class of symbols.

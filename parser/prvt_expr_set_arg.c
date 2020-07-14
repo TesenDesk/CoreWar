@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lexer/token_private.h"
+#include "../lexer/prvt_token.h"
 #include "expr_private.h"
 
 /*

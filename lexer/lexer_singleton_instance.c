@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 // #include "lexer.h"
-#include "lexer_private.h"
-#include "lexer_xtor_private.h"
+#include "prvt_lexer.h"
+#include "prvt_lexer_xtor.h"
 
 t_lexer				*lexer_singleton_instance(int instantiation_status)
 {
@@ -21,12 +21,12 @@ t_lexer				*lexer_singleton_instance(int instantiation_status)
 	if (instantiation_status == LEXER_INSTANTIATE)
 	{
 		if (!lexer_instance)
-			_lexer_ctor(&lexer_instance); // обращение к lexer_instance до инициализации
+			prvt_lexer_ctor(&lexer_instance); // обращение к lexer_instance до инициализации
 	}
 	else if (instantiation_status == LEXER_DESTRUCT)
 	{
 		if (lexer_instance)
-			_lexer_dtor(&lexer_instance);
+			prvt_lexer_dtor(&lexer_instance);
 	}
 	return (lexer_instance);
 }

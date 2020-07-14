@@ -24,15 +24,15 @@ include_directories(virtual_machine/src/vm_params/vmp_player)
 include_directories(virtual_machine/src/vm_params/vmp_player/file)
 
 add_executable(asm
-#        analyser/_analyser_change_state.c
-#        analyser/_analyser_get_expr.c
-#        analyser/_analyser_xtor.c
-#        analyser/analyser.c
-#        analyser/analyser_private.h
-#        analyser/analyser_singleton_instance.c
-#        analyser/analyser_xtor_private.h
-#        analyser/text_private.h
-#        checker/checker_main.c
+        analyser/prvt_analyser_change_state.c
+        analyser/prvt_analyser_get_expr.c
+        analyser/prvt_analyser_xtor.c
+        analyser/analyser.c
+        analyser/prvt_analyser.h
+        analyser/analyser_singleton_instance.c
+        analyser/prvt_analyser_xtor.h
+        analyser/prvt_text.h
+        checker/checker_main.c
         checker/label_checker_inclusion_of_maps.c
         checker/label_checker_private.h
         checker/label_checker_put_to_map.c
@@ -59,16 +59,16 @@ add_executable(asm
         lexer/lexer_get_term_line_feed.c
         lexer/lexer_get_term_name_cmd.c
         lexer/lexer_get_term_opx_multy.c
-        lexer/lexer_private.h
+        lexer/prvt_lexer.h
         lexer/lexer_singleton_instance.c
         lexer/lexer_utils_1.c
         lexer/lexer_utils_2.c
-        lexer/lexer_utils_private.h
-        lexer/lexer_xtor_private.c
-        lexer/lexer_xtor_private.h
+        lexer/prvt_lexer_utils.h
+        lexer/prvt_lexer_xtor.c
+        lexer/prvt_lexer_xtor.h
         lexer/token.c
 #        lexer/token_name_init.c
-        lexer/token_private.h
+        lexer/prvt_token.h
         libft/ft_abs.c
         libft/ft_atoi.c
         libft/ft_atol.c
@@ -287,32 +287,32 @@ add_executable(asm
         libft/libft.h
         parser/useless_files/_parser_get_token_code_comment.c
         parser/useless_files/_parser_get_token_precode.c
-        parser/_parser_change_state.c
-        parser/_parser_get_token_eof.c
-        parser/_parser_get_token_init.c
-        parser/_parser_get_token_line_end.c
-        parser/_parser_get_token_op0_afct.c
-        parser/_parser_get_token_op0_arit.c
-        parser/_parser_get_token_op0_life.c
-        parser/_parser_get_token_op0_load.c
-        parser/_parser_get_token_op0_lodi.c
-        parser/_parser_get_token_op0_logc.c
-        parser/_parser_get_token_op0_stor.c
-        parser/_parser_get_token_op0_stri.c
-        parser/_parser_get_token_op1_arit.c
-        parser/_parser_get_token_op1_load.c
-        parser/_parser_get_token_op1_lodi.c
-        parser/_parser_get_token_op1_logc.c
-        parser/_parser_get_token_op1_stor.c
-        parser/_parser_get_token_op1_stri.c
-        parser/_parser_get_token_op2_arit.c
-        parser/_parser_get_token_op2_lodi.c
-        parser/_parser_get_token_op2_logc.c
-        parser/_parser_get_token_op2_stri.c
-        parser/_parser_xtor.c
+        parser/prvt_parser_change_state.c
+        parser/prvt_parser_get_token_eof.c
+        parser/prvt_parser_get_token_init.c
+        parser/prvt_parser_get_token_line_end.c
+        parser/prvt_parser_get_token_op0_afct.c
+        parser/prvt_parser_get_token_op0_arit.c
+        parser/prvt_parser_get_token_op0_life.c
+        parser/prvt_parser_get_token_op0_load.c
+        parser/prvt_parser_get_token_op0_lodi.c
+        parser/prvt_parser_get_token_op0_logc.c
+        parser/prvt_parser_get_token_op0_stor.c
+        parser/prvt_parser_get_token_op0_stri.c
+        parser/prvt_parser_get_token_op1_arit.c
+        parser/prvt_parser_get_token_op1_load.c
+        parser/prvt_parser_get_token_op1_lodi.c
+        parser/prvt_parser_get_token_op1_logc.c
+        parser/prvt_parser_get_token_op1_stor.c
+        parser/prvt_parser_get_token_op1_stri.c
+        parser/prvt_parser_get_token_op2_arit.c
+        parser/prvt_parser_get_token_op2_lodi.c
+        parser/prvt_parser_get_token_op2_logc.c
+        parser/prvt_parser_get_token_op2_stri.c
+        parser/prvt_parser_xtor.c
         parser/expr.c
         parser/expr_private.h
-        parser/_expr_set_arg.c
+        parser/prvt_expr_set_arg.c
         parser/parser.c
         parser/parser_private.h
         parser/parser_singleton_instance.c

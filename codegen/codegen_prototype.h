@@ -1,34 +1,32 @@
-//
-// Created by Jhiqui Jerde on 21/02/2020.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   codegen_prototype.h                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/14 19:55:55 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/14 20:54:08 by cmissy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef CODEGEN_PROTOTYPE_H
-#define CODEGEN_PROTOTYPE_H
-
-
-#include "codegen.h"
-
-#define CODEGEN_DEBUGGER 1
-#define DIR_LEN_2 1
-#define DIR_LEN_4 2
-
-#define LABEL_WORD 99 //todo: need write what you need to do with it?
-
+# define CODEGEN_PROTOTYPE_H
+# include "codegen.h"
 
 typedef struct		s_label_data
 {
 	char			*name;
 	unsigned int	add;
 	unsigned int	instruction_begining;
-	int 			size;
+	int				size;
 	int				param_type;
 }					t_label_data;
 
-typedef union			u_code_addr
+typedef union		u_code_addr
 {
-	void				*content;
-	unsigned int		addr;
-}						t_code_addr;
+	void			*content;
+	unsigned int	addr;
+}					t_code_addr;
 
-
-#endif //CODEGEN_PROTOTYPE_H
+#endif

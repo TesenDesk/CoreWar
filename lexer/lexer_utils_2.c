@@ -6,15 +6,15 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 19:47:03 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/11 13:52:50 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/14 21:29:30 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
-#include "lexer_utils_private.h"
+#include "prvt_lexer_utils.h"
 
 /*
-**	The function changes variable which is pointer to text. It moves the 
+**	The function changes variable which is pointer to text. It moves the
 ** pointer after all the white_spaces.
 **	INPUT:	ASCII.
 **	OUTPUT:	TRUE / FALSE.

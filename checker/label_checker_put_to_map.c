@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "label_checker_private.h"
-#include "../lexer/token_private.h"
+#include "../lexer/prvt_token.h"
 #include "../codegen/codegen_prototype.h"
 
 /*

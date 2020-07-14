@@ -1,14 +1,24 @@
-//#include "lexer.h"
-#include "lexer_private.h"
-// #include "token_defines.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer_get_term_opx_multy.c                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/14 21:58:55 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/14 22:00:00 by cmissy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "prvt_lexer.h"
 
 int					lexer_get_term_opx(t_lexer *lexer, char const **text,
 					int *type, void *token_ptr[2])
 {
-	int sign = 0;
+	int				sign;
 
+	sign = 0;
 	(void)lexer;
-	// *type = TOKEN_OPX;
 	while (**text != '\0' && (ft_strchr(WHITE_SPACE, **text) || **text == '\n'))
 		++(*text);
 	if (**text == REGISTER_CHAR)
@@ -54,8 +64,9 @@ int					lexer_get_term_opx(t_lexer *lexer, char const **text,
 int					lexer_get_term_multi_arg(t_lexer *lexer, char const **text,
 					int *type, void *token_ptr[2])
 {
-	int sign = 0;
+	int				sign;
 
+	sign = 0;
 	(void)type;
 	(void)lexer;
 	while (**text != '\0' && (ft_strchr(WHITE_SPACE, **text) || **text == '\n'))

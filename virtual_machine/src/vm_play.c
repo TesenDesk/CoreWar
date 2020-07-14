@@ -71,6 +71,7 @@ void			vm_next_cycle(t_vm *self)
 	while (list)
 	{
 		carriage_take_step(list->content);
+
 		list = list->next;
 	}
 }

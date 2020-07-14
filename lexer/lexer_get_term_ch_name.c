@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 // #include "lexer.h"
-#include "lexer_private.h"
+#include "prvt_lexer.h"
 // #include "lexer_utils_private.h"
 // #include "token_defines.h"
 

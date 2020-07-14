@@ -32,37 +32,37 @@ LEX_SRC     := 	lexer.c \
 				lexer_singleton_instance.c \
 				lexer_utils_1.c \
 				lexer_utils_2.c \
-				lexer_xtor_private.c \
+				prvt_lexer_xtor.c \
 				token.c
 LEX_OBJ     :=  $(patsubst %.c, %.o, $(LEX_SRC))
 LEX_DIR_OBJ :=  $(addprefix ./lexer/, $(LEX_OBJ))
-PARS_SRC :=	_parser_change_state.c \
-			_parser_get_token_eof.c \
-			_parser_get_token_init.c \
-			_parser_get_token_labw.c \
-			_parser_get_token_line_end.c \
-			_parser_get_token_op0_afct.c \
-			_parser_get_token_op0_arit.c \
-			_parser_get_token_op0_life.c \
-			_parser_get_token_op0_load.c \
-			_parser_get_token_op0_lodi.c \
-			_parser_get_token_op0_logc.c \
-			_parser_get_token_op0_stor.c \
-			_parser_get_token_op0_stri.c \
-			_parser_get_token_op1_arit.c \
-			_parser_get_token_op1_load.c \
-			_parser_get_token_op1_lodi.c \
-			_parser_get_token_op1_logc.c \
-			_parser_get_token_op1_stor.c \
-			_parser_get_token_op1_stri.c \
-			_parser_get_token_op2_arit.c \
-			_parser_get_token_op2_lodi.c \
-			_parser_get_token_op2_logc.c \
-			_parser_get_token_op2_stri.c \
-			_parser_xtor.c \
+PARS_SRC :=	prvt_parser_change_state.c \
+			prvt_parser_get_token_eof.c \
+			prvt_parser_get_token_init.c \
+			prvt_parser_get_token_labw.c \
+			prvt_parser_get_token_line_end.c \
+			prvt_parser_get_token_op0_afct.c \
+			prvt_parser_get_token_op0_arit.c \
+			prvt_parser_get_token_op0_life.c \
+			prvt_parser_get_token_op0_load.c \
+			prvt_parser_get_token_op0_lodi.c \
+			prvt_parser_get_token_op0_logc.c \
+			prvt_parser_get_token_op0_stor.c \
+			prvt_parser_get_token_op0_stri.c \
+			prvt_parser_get_token_op1_arit.c \
+			prvt_parser_get_token_op1_load.c \
+			prvt_parser_get_token_op1_lodi.c \
+			prvt_parser_get_token_op1_logc.c \
+			prvt_parser_get_token_op1_stor.c \
+			prvt_parser_get_token_op1_stri.c \
+			prvt_parser_get_token_op2_arit.c \
+			prvt_parser_get_token_op2_lodi.c \
+			prvt_parser_get_token_op2_logc.c \
+			prvt_parser_get_token_op2_stri.c \
+			prvt_parser_xtor.c \
 			expr.c \
-			_expr_set_arg.c \
-			_parser_get_token_op0_life.c \
+			prvt_expr_set_arg.c \
+			prvt_parser_get_token_op0_life.c \
 			parser.c \
 			parser_singleton_instance.c
 PARS_OBJ     :=  $(patsubst %.c, %.o, $(PARS_SRC))
@@ -74,9 +74,9 @@ CHK_SRC :=	label_checker_inclusion_of_maps.c \
 CHK_OBJ     :=  $(patsubst %.c, %.o, $(CHK_SRC))
 CHK_DIR_OBJ :=  $(addprefix ./checker/, $(CHK_OBJ))
 
-ANALYSER_SRC := _analyser_change_state.c \
-                _analyser_xtor.c \
-                _analyser_get_expr.c \
+ANALYSER_SRC := prvt_analyser_change_state.c \
+                prvt_analyser_xtor.c \
+                prvt_analyser_get_expr.c \
                 analyser.c \
                 analyser_singleton_instance.c
 ANALYSER_OBJ :=  $(patsubst %.c, %.o, $(ANALYSER_SRC))
