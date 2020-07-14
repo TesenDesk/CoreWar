@@ -28,7 +28,6 @@ t_token				*token_constructor(int type,void *ptr[2])
 	}
 	else {
 		size = ptr[1] - ptr[0] + 2;
-//	printf("!!!%d, %p %p\n", type, ptr[0], ptr[1]);
 		if (!(token->val = ft_memalloc(size)))
 			exit(-1);
 		ft_memcpy(token->val, ptr[0], size - 1);

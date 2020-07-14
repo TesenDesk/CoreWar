@@ -477,17 +477,15 @@ void            generate_code(t_hash_map *map, t_vector *text, char *filename)
     header_t    header;
     int         fd;
     int         index;
+    int         size;
 
     index = 2;
-
+	size = 0;
     init_header(&header, text);
     codegen = codegen_ctor(map, &header);
     while(index < text->total)
         codegen_codegen(codegen, text->items[index++]);
-    write_code_to_file(codegen->exec, champ_exec_constructor(codegen), filename);
-    /*
-     * цикл, эндинг
-     */
-
+	size = champ_exec_constructor(codegen);
+    write_code_to_file(codegen->exec, size, filename);
 }
 
