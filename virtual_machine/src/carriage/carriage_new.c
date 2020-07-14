@@ -28,5 +28,8 @@ t_carriage		*carriage_new(int player_name, t_arena *arena,
 	else if (arena_position >= MEM_SIZE)
 		arena_position = arena_position % MEM_SIZE;
 	self->arena_position = arena_position;
+	self->was_store = 0;
+	self->was_live =  0;
+	self->stor_pos =  0;
 	return (self);
 }

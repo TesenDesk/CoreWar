@@ -31,4 +31,5 @@ void operation_live(t_carriage *self)
 	self->last_live_cycle = vm_global_counter();
     vm_increase_num_of_live_ops();
     self->arena_position = (self->arena_position + op.op_len) % MEM_SIZE;
+    self->was_live = TRUE;
 }

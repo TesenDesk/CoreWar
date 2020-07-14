@@ -154,7 +154,7 @@ void			vm_play(t_vm *self)
 		self->global_counter += 1;
 		self->cycles_counter += 1;
 		self->cycles_to_dump -= 1;
-		draw_arena(my_win, self->arena);
+		draw_arena(my_win, self->arena, self);
 		ch = getch();
 //		switch(ch)
 //			{

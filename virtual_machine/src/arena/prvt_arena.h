@@ -20,6 +20,7 @@
 # include "player.h"
 # include "carriage.h"
 # include "arena.h"
+# include "visual.h"
 
 # define EIGHT_BITS		8
 # define DUMP_LINE_SIZE	32
@@ -32,6 +33,7 @@ typedef struct			s_arena
 	int					last_live_player;
 	int					nb_players;
 	char				*data;
+	t_color_mapcell     colormap[MEM_SIZE];
 	int					size;
 }						t_arena;
 

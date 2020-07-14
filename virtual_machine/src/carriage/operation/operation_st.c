@@ -20,8 +20,12 @@ void operation_st(t_carriage *self)
     if (operation_precheck_args(self, &op) == SUCCESS)
     {
 		print_op_log(self, op.args, op.type_codes);
-        if (op.type_codes[ARG_2] == IND_CODE)
-            arena_write_four_bytes_to_data(self->arena, self->arena_position + op.args[ARG_2] % IDX_MOD, self->registers[op.args[ARG_1]]);
+        if (op.type_codes[ARG_2] == IND_CODE) {
+	        arena_write_four_bytes_to_data(self->arena, self->arena_position + op.args[ARG_2] % IDX_MOD,
+	                                       self->registers[op.args[ARG_1]]);
+	        self->was_store = TRUE;
+	        self->stor_pos = (self->arena_position + op.args[ARG_2] % IDX_MOD) % MEM_SIZE;
+        }
         else
             self->registers[op.args[ARG_2]] = self->registers[op.args[ARG_1]];
     }
