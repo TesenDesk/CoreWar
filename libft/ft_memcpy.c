@@ -30,7 +30,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t len)
 		d = dst;
 		s = src;
 		while (len-- != 0)
-		    *d++ = *s++;
+			*d++ = *s++;
 	}
 	return (dst);
 }

@@ -61,7 +61,6 @@ PARS_SRC :=	prvt_parser_change_state.c \
 			prvt_parser_xtor.c \
 			expr.c \
 			prvt_expr_set_arg.c \
-			prvt_parser_get_token_op0_life.c \
 			parser.c \
 			parser_singleton_instance.c
 PARS_OBJ     :=  $(patsubst %.c, %.o, $(PARS_SRC))

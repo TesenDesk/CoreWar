@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 16:48:37 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/02/18 22:08:14 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/07/15 19:10:52 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,8 @@ int					ft_get_next_line(int fd, char **line)
 		return (ERROR);
 	data = (t_file *)(node->content);
 	if (!data->mark || data->file_size <= 1)
-		return (((int)(long int)(file_free(&head, node, data))) || NO_MORE_LINES);
-	data->mark = ft_delim(line, (char *)data->mark, '\n');
+		return (((int)(long int)(file_free(&head, node, data)))
+		|| NO_MORE_LINES);
+		data->mark = ft_delim(line, (char *)data->mark, '\n');
 	return (ONE_MORE_LINE);
 }

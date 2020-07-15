@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 15:05:36 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/04 16:59:56 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/07/15 18:47:42 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,9 +135,7 @@
 # define EINOUT				2
 # define E2BIGENT			3
 # define EBADFD				4
-//#define ENOMEMORY			5
 # define ENOACCES			6
-//# define EINVALARG			7
 # define EFILE2BIG			8
 # define ENOMSGS			9
 # define EOVERFLOW			10
@@ -221,8 +219,6 @@
 **						FUNC_DEFS
 */
 # define CMP(s1, s2) ft_strcmp(s1, s2)
-
-
 
 /*
 **	Data structures.
@@ -487,7 +483,7 @@ void						ft_lstdelone(t_list **alst, void (*delptr)(void*,
 void						ft_lstdel(t_list **alst,
 								void (*delptr)(void*, size_t));
 void						ft_lstadd(t_list **alst, t_list *new);
-void                    	ft_lstpushback(t_list **head, t_list *new);
+void						ft_lstpushback(t_list **head, t_list *new);
 void						ft_lstiter(t_list *lst, void (*f)(t_list *node));
 t_list						*ft_lstmap(t_list *lst, t_list *(*f)(t_list *node));
 

@@ -107,38 +107,26 @@ static void		add_params_types(t_codegen *data, int first_arg, int second_arg,
 
 static void		recast_params_types(t_codegen *data, t_expr *q)
 {
-	int		first_arg;
-	int		second_arg;
-	int		third_arg;
+	int			args[3];
+	int			i;
 
-	first_arg = 0;
-	second_arg = 0;
-	third_arg = 0;
-	if (q->args[FIRST_ARG].type == TOKEN_TIND_INT
-	|| q->args[FIRST_ARG].type == TOKEN_TIND_LAB)
-		first_arg = T_IND_CODE;
-	else if (q->args[FIRST_ARG].type == TOKEN_TDIR_INT
-	|| q->args[FIRST_ARG].type == TOKEN_TDIR_LAB)
-		first_arg = T_DIR_CODE;
-	else if (q->args[FIRST_ARG].type == TOKEN_TREG)
-		first_arg = T_REG_CODE;
-	if (q->args[SECOND_ARG].type == TOKEN_TIND_INT
-	|| q->args[SECOND_ARG].type == TOKEN_TIND_LAB)
-		second_arg = T_IND_CODE;
-	else if (q->args[SECOND_ARG].type == TOKEN_TDIR_INT
-	|| q->args[SECOND_ARG].type == TOKEN_TDIR_LAB)
-		second_arg = T_DIR_CODE;
-	else if (q->args[SECOND_ARG].type == TOKEN_TREG)
-		second_arg = T_REG_CODE;
-	if (q->args[THIRD_ARG].type == TOKEN_TIND_INT
-	|| q->args[THIRD_ARG].type == TOKEN_TIND_LAB)
-		third_arg = T_IND_CODE;
-	else if (q->args[THIRD_ARG].type == TOKEN_TDIR_INT
-	|| q->args[THIRD_ARG].type == TOKEN_TDIR_LAB)
-		third_arg = T_DIR_CODE;
-	else if (q->args[THIRD_ARG].type == TOKEN_TREG)
-		third_arg = T_REG_CODE;
-	add_params_types(data, first_arg, second_arg, third_arg);
+	args[0] = 0;
+	args[1] = 0;
+	args[2] = 0;
+	i = FIRST_ARG;
+	while (i <= THIRD_ARG)
+	{
+		if (q->args[i].type == TOKEN_TIND_INT
+		|| q->args[i].type == TOKEN_TIND_LAB)
+			args[i - 1] = T_IND_CODE;
+		else if (q->args[i].type == TOKEN_TDIR_INT
+		|| q->args[i].type == TOKEN_TDIR_LAB)
+			args[i - 1] = T_DIR_CODE;
+		else if (q->args[i].type == TOKEN_TREG)
+			args[i - 1] = T_REG_CODE;
+		i++;
+	}
+	add_params_types(data, args[0], args[1], args[2]);
 }
 
 static void		dir_type_detector(t_expr *q)
@@ -281,12 +269,28 @@ static void		map_expr_to_code(t_expr *expr)
 	expr->type = array_of_exprcodes[expr->args[OP_NAME].type];
 }
 
-void			codegen_codegen(t_codegen *data, t_expr *q)
+static void		do_something_in_cycle(t_codegen *data, t_expr *q)
 {
-	static int	expr_size[OP_NUM_OF_CODES];
 	int			i;
 
 	i = 1;
+	while (i - 1 < q->arg_size && q->args[i].type)
+	{
+		add_param(data, &(q->args[i++]), q->size);
+		if (q->args[i - 1].type == TOKEN_TREG)
+			data->code_size += 1;
+		else if (q->args[i - 1].type == TOKEN_TIND_LAB
+		|| q->args[i - 1].type == TOKEN_TIND_INT
+		|| ((q->args[i - 1].type == TOKEN_TDIR_LAB
+		|| q->args[i - 1].type == TOKEN_TDIR_INT) && q->size == 2))
+			data->code_size += 2;
+		else
+			data->code_size += 4;
+	}
+}
+
+void			codegen_codegen(t_codegen *data, t_expr *q)
+{
 	if (q->type == EXPR_LABEL_W)
 		write_address_to_free_label(data, q);
 	else if (q->type != EXPR_EOF)
@@ -304,20 +308,7 @@ void			codegen_codegen(t_codegen *data, t_expr *q)
 			recast_params_types(data, q);
 			data->code_size += 1;
 		}
-		while (i - 1 < q->arg_size && q->args[i].type)
-		{
-			add_param(data, &(q->args[i++]), q->size);
-			if (q->args[i - 1].type == TOKEN_TREG)
-				data->code_size += 1;
-			else if (q->args[i - 1].type == TOKEN_TIND_LAB
-			|| q->args[i - 1].type
-			== TOKEN_TIND_INT
-			|| ((q->args[i - 1].type == TOKEN_TDIR_LAB || q->args[i - 1].type
-			== TOKEN_TDIR_INT) && q->size == 2))
-				data->code_size += 2;
-			else
-				data->code_size += 4;
-		}
+		do_something_in_cycle(data, q);
 	}
 }
 

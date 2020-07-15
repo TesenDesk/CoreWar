@@ -33,32 +33,6 @@
 ** viewing point.
 */
 
-//char	*ft_strnstr(const char *dst, const char *src, size_t size)
-//{
-//	char const	*end;
-//	char const	*crt;
-//	size_t		len;
-//
-//	if (!(*src))
-//		return ((char *)dst);
-//	if (!dst || !src || !size || !(*dst) ||
-//			((end = dst + ft_strnlen(dst, size) - ft_strlen(src)) < dst))
-//		return (NULL);
-//	crt = dst;
-//	len = ft_strlen(src);
-//	while (1)
-//	{
-//		if (!(crt = ft_strnchr(crt, *src, end - crt)) || (crt > end))
-//			break ;
-//		if (!ft_strncmp(src, crt, len))
-//			return ((char *)crt);
-//		crt++;
-//	}
-//	return (NULL);
-//}
-
-
-
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	char	*h;
