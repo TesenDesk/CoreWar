@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 15:33:07 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/15 15:33:07 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/15 21:10:46 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,14 @@ static void			fill_expr_ar_num(int expr_ar_num[COUNT_EXPR])
 	expr_ar_num[EXPR_OP_STRI] = 3;
 }
 
-static void			expr_fill_arg_num(t_expr *expr)
+static t_expr		*expr_fill_arg_num(t_expr *expr)
 {
 	static int expr_ar_num[COUNT_EXPR];
 
 	if (!(expr_ar_num[EXPR_OP_AFCT]))
 		fill_expr_ar_num(expr_ar_num);
 	expr->arg_size = expr_ar_num[expr->type];
+	return (expr);
 }
 
 t_expr				*parser_form_expr(t_parser *parser, char const **text,
@@ -41,15 +42,13 @@ t_expr				*parser_form_expr(t_parser *parser, char const **text,
 	t_expr			*expr;
 	t_token			*token;
 	int				token_type;
-	t_lexer			*lexer;
 
-	lexer = lexer_singleton_instance(LEXER_INSTANTIATE);
 	expr = expr_ctor();
 	while (TRUE)
 	{
-		token = parser->get_token[parser->state](parser, lexer, expr, text);
-		token_type = token_get_type(token);
-		if (token_type == TOKEN_LABEL_WORD)
+		token = parser->get_token[parser->state](parser,
+		lexer_singleton_instance(LEXER_INSTANTIATE), expr, text);
+		if ((token_type = token_get_type(token)) == TOKEN_LABEL_WORD)
 		{
 			if (label_checker_put_to_map_label_word(&map, token) == FAILURE)
 				return (NULL);
@@ -64,13 +63,10 @@ t_expr				*parser_form_expr(t_parser *parser, char const **text,
 		if (parser->state == PARSER_FINISH_ST || parser->state == PARSER_ERROR)
 		{
 			if (parser->state == PARSER_ERROR)
-			{
 				expr->type = EXPR_UNDEF;
-			}
 			parser->state = PARSER_INIT_ST;
 			break ;
 		}
 	}
-	expr_fill_arg_num(expr);
-	return (expr);
+	return (expr_fill_arg_num(expr));
 }
