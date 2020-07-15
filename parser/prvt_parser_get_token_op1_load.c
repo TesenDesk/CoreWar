@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _parser_get_token_op1_load.c                       :+:      :+:    :+:   */
+/*   prvt_parser_get_token_op1_load.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/21 15:43:04 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/05 21:42:56 by ftothmur         ###   ########.fr       */
+/*   Created: 2020/07/15 15:56:25 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/15 15:56:50 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "expr.h"
-// #include "expr_defines.h"
-// #include "expr_private.h"
 #include "parser_private.h"
 
-t_token			*_parser_get_token_op1_load(t_parser *parser, t_lexer *lexer,
-				t_expr *expr, char const **text)
+t_token			*prvt_parser_get_token_op1_load(t_parser *parser,
+				t_lexer *lexer, t_expr *expr, char const **text)
 {
 	t_token		*token;
-	int		token_type;
+	int			token_type;
 
 	if ((token = lexer_form_token(lexer, text)) == NULL)
 		return (NULL);

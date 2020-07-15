@@ -1,6 +1,16 @@
-// #include "lexer.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer_get_term_arg_break.c                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/15 12:45:13 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/15 12:45:13 by cmissy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "prvt_lexer.h"
-// #include "token_defines.h"
 
 /*
 **	The function determins if this part of text is appropriate term for

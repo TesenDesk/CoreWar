@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_get_term_com_cmd.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 19:29:54 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/06 21:21:22 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/07/15 12:45:51 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "lexer.h"
 #include "prvt_lexer.h"
-// #include "lexer_utils_private.h"
 
 /*
 **	The function determins if this part of text is appropriate term for
@@ -21,7 +19,7 @@
 **	OUTPUT:	type of term.
 */
 
-int				lexer_get_term_com_cmd(t_lexer *lexer, char const **text, 
+int				lexer_get_term_com_cmd(t_lexer *lexer, char const **text,
 				int *type, void *token_ptr[2])
 {
 	(void)lexer;

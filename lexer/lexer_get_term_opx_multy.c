@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 21:58:55 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/14 22:00:00 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/15 12:55:35 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ int					lexer_get_term_opx(t_lexer *lexer, char const **text,
 		(*text) += 1;
 		return (DIRECT_CHAR_CODE);
 	}
-	else
-		return (TERM_UNDEFINED_CODE);
+	return (TERM_UNDEFINED_CODE);
 }
 
 int					lexer_get_term_multi_arg(t_lexer *lexer, char const **text,

@@ -39,7 +39,6 @@ LEX_DIR_OBJ :=  $(addprefix ./lexer/, $(LEX_OBJ))
 PARS_SRC :=	prvt_parser_change_state.c \
 			prvt_parser_get_token_eof.c \
 			prvt_parser_get_token_init.c \
-			prvt_parser_get_token_labw.c \
 			prvt_parser_get_token_line_end.c \
 			prvt_parser_get_token_op0_afct.c \
 			prvt_parser_get_token_op0_arit.c \

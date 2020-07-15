@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_utils_private.h                              :+:      :+:    :+:   */
+/*   prvt_lexer_utils.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 18:09:16 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/06 21:22:39 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/07/15 12:50:43 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEXER_UTILS_PRIVATE_H
-# define LEXER_UTILS_PRIVATE_H
+#ifndef PRVT_LEXER_UTILS_H
+# define PRVT_LEXER_UTILS_H
 
-#include "lexer.h"
+# include "lexer.h"
 
 int				lexer_utils_is_line_feed(char c);
 int				lexer_utils_is_of_label_chars(char c);

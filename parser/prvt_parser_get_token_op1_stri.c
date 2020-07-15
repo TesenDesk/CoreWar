@@ -1,10 +1,19 @@
-// #include "expr.h"
-// #include "expr_defines.h"
-// #include "expr_private.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   prvt_parser_get_token_op1_stri.c                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/15 13:54:48 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/15 13:55:08 by cmissy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parser_private.h"
 
-t_token 			*_parser_get_token_op1_stri(t_parser *parser, t_lexer *lexer,
-					t_expr *expr, char const **text)
+t_token				*prvt_parser_get_token_op1_stri(t_parser *parser,
+					t_lexer *lexer, t_expr *expr, char const **text)
 {
 	t_token			*token;
 	int				token_type;

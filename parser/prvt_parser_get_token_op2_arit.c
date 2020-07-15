@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _parser_get_token_op2_arit.c                       :+:      :+:    :+:   */
+/*   prvt_parser_get_token_op2_arit.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/21 15:45:37 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/05 21:43:19 by ftothmur         ###   ########.fr       */
+/*   Created: 2020/07/15 13:58:18 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/15 13:58:19 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "expr.h"
-// #include "expr_defines.h"
-// #include "expr_private.h"
 #include "parser_private.h"
 
-t_token			*_parser_get_token_op2_arit(t_parser *parser, t_lexer *lexer,
-				t_expr *expr, char const **text)
+t_token			*prvt_parser_get_token_op2_arit(t_parser *parser,
+				t_lexer *lexer, t_expr *expr, char const **text)
 {
 	t_token		*token;
 	int			token_type;

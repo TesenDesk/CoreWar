@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_get_term_name_cmd.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 19:30:10 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/12 21:15:18 by nikita_toro      ###   ########.fr       */
+/*   Updated: 2020/07/15 12:48:15 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "lexer.h"
 #include "prvt_lexer.h"
-// #include "lexer_utils_private.h"
 
 /*
 **	The function determins if this part of text is appropriate term for
@@ -21,12 +19,11 @@
 **	OUTPUT:	type of term.
 */
 
-int				lexer_get_term_name_cmd(t_lexer *lexer, char const **text, 
+int				lexer_get_term_name_cmd(t_lexer *lexer, char const **text,
 				int *type, void *token_ptr[2])
 {
 	(void)lexer;
 	(void)token_ptr;
-
 	lexer_utils_trim_whitespace(text);
 	if (lexer_utils_is_quotation_mark(**text))
 	{

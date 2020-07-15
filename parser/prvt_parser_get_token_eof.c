@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _parser_get_token_eof.c                            :+:      :+:    :+:   */
+/*   prvt_parser_get_token_eof.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/21 17:08:14 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/20 21:30:28 by nikita_toro      ###   ########.fr       */
+/*   Created: 2020/07/15 15:55:20 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/15 15:55:20 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "expr.h"
-// #include "expr_defines.h"
-// #include "expr_private.h"
 #include "parser_private.h"
 
-t_token 		*_parser_get_token_eof(t_parser *parser, t_lexer *lexer,
+t_token			*prvt_parser_get_token_eof(t_parser *parser, t_lexer *lexer,
 				t_expr *expr, char const **text)
 {
 	t_token		*token;

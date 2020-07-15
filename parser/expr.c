@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expr.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/15 16:21:20 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/15 16:22:35 by cmissy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "expr_private.h"
 
-
-t_expr					*expr_ctor(void)
+t_expr				*expr_ctor(void)
 {
-	t_expr				*expr;
+	t_expr			*expr;
+
 	if (!(expr = (t_expr*)ft_memalloc(sizeof(t_expr))))
 	{
 		printf("error\n");
@@ -21,7 +32,6 @@ t_expr					*expr_ctor(void)
 	expr->args[SECOND_ARG].value = NULL;
 	expr->args[THIRD_ARG].value = NULL;
 	expr->args[LABEL_ARG].value = NULL;
-
 	return (expr);
 }
 
@@ -35,4 +45,3 @@ void				*expr_get_arg_value(t_expr *expr, int index)
 {
 	return (expr->args[index].value);
 }
-
