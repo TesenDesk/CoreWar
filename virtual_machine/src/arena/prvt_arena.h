@@ -34,6 +34,7 @@ typedef struct			s_arena
 	int					nb_players;
 	char				*data;
 	t_color_mapcell     colormap[MEM_SIZE];
+	int                 color_is_set;
 	int					size;
 }						t_arena;
 

@@ -10,29 +10,11 @@
 #include "vm.h"
 #include "../_vm.h"
 #include "../carriage/prvt_carriage.h"
+#include "../arena/player/prvt_player.h"
+#include "op.h"
 
 
 
-
-//void		init_colors(void)
-//{
-//	init_color(COLOR_GRAY, 355, 355, 355);
-//	init_pair(GRAY, COLOR_GRAY, 0);
-//	init_pair(GREEN, COLOR_GREEN, 0);
-//	init_pair(YELLOW, COLOR_YELLOW, 0);
-//	init_pair(RED, COLOR_RED, 0);
-//	init_pair(CYAN, COLOR_CYAN, 0);
-//	init_pair(GRAY_CURSOR, COLOR_BLACK, COLOR_GRAY);
-//	init_pair(GREEN_CURSOR, COLOR_BLACK, COLOR_GREEN);
-//	init_pair(YELLOW_CURSOR, COLOR_BLACK, COLOR_YELLOW);
-//	init_pair(RED_CURSOR, COLOR_BLACK, COLOR_RED);
-//	init_pair(CYAN_CURSOR, COLOR_BLACK, COLOR_CYAN);
-//	init_pair(LIVE_GREEN, COLOR_WHITE, COLOR_GREEN);
-//	init_pair(LIVE_YELLOW, COLOR_WHITE, COLOR_YELLOW);
-//	init_pair(LIVE_RED, COLOR_WHITE, COLOR_RED);
-//	init_pair(LIVE_CYAN, COLOR_WHITE, COLOR_CYAN);
-//}
-//
 //static int	get_live_color(t_player *player)
 //{
 //	int32_t index;
@@ -70,19 +52,21 @@
 //** Color
 //*/
 //
-#define EXTERNAL_COLOR_OFFSET 4
-# define COLOR_GRAY				8
+
+
 //
 ///*
 //** Color pairs
 //*/
 //
 //# define GRAY					9
-# define GREEN					10
+//# define GREEN					10
+
+
 //# define YELLOW					11
 //# define RED					12
 //# define CYAN					13
-//# define GRAY_CURSOR			14
+//# define GRAY_CURSOR			14make
 //# define GREEN_CURSOR			15
 //# define YELLOW_CURSOR			16
 //# define RED_CURSOR				17
@@ -96,7 +80,6 @@
 //** Buttons
 //*/
 
-#define EXTERNAL_
 WINDOW *create_newwin(int height, int width, int starty, int startx)
 {
 	WINDOW *local_win;
@@ -128,17 +111,55 @@ void destroy_win(WINDOW *local_win)
 	delwin(local_win);
 }
 
-//int     chose_color()
 
-void    init_colormap(t_arena *arena, t_vm *vm)
+void    init_colors(void)
 {
-	t_list  *iter;
-	t_carriage  *carriage_cur;
-	int     index;
+	init_color(COLOR_GRAY, 355, 355, 355);
+	init_pair(P_1_HOME, COLOR_RED, COLOR_BLACK);
+	init_pair(P_2_HOME, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(P_3_HOME, COLOR_GREEN, COLOR_BLACK);
+	init_pair(P_4_HOME, COLOR_BLUE, COLOR_BLACK);
+	init_pair(P_1_L_HOME, COLOR_BLACK, COLOR_RED);
+	init_pair(P_2_L_HOME, COLOR_BLACK, COLOR_YELLOW);
+	init_pair(P_3_L_HOME, COLOR_BLACK, COLOR_GREEN);
+	init_pair(P_4_L_HOME, COLOR_BLACK, COLOR_BLUE);
+	init_pair(P_1_L_OUT, COLOR_WHITE, COLOR_RED);
+	init_pair(P_2_L_OUT, COLOR_WHITE, COLOR_YELLOW);
+	init_pair(P_3_L_OUT, COLOR_WHITE, COLOR_GREEN);
+	init_pair(P_4_L_OUT, COLOR_WHITE, COLOR_BLUE);
+	init_pair(NEUTRAL_COL, COLOR_GRAY, COLOR_BLACK);
+}
 
-	index = 0;
-	iter =  vm->carriage_head;
-	carriage_cur = NULL;
+void                init_colormap(t_arena *arena, t_vm *vm)
+{
+	t_carriage      *carriage_cur;
+	t_player        *tmp;
+	int             col;
+	int             offset;
+	int             pos;
+
+	col = P_1_HOME;
+	tmp = *(arena->players);
+	offset = 0;
+	pos = offset;
+	while (col <= P_4_HOME)
+	{
+//		index = offset;
+		while (pos < offset + tmp->code_size)
+		{
+			arena->colormap[pos].cell_index = col;
+			++pos;
+		}
+		while (pos < offset + CHAMP_MAX_SIZE)
+		{
+			arena->colormap[pos].cell_index = NEUTRAL_COL;
+			++pos;
+		}
+		offset += CHAMP_MAX_SIZE;
+		++col;
+	}
+	arena->color_is_set = 1;
+
 //	while (iter != NULL)
 //	{
 //		carriage_cur = (t_carriage*)iter->content;
@@ -157,32 +178,36 @@ void    init_colormap(t_arena *arena, t_vm *vm)
 
 int     chose_color(t_arena *arena, int index)
 {
-	if (arena->colormap[index].player_index == 0)
-	{
-		return (arena->colormap[index].cell_index);
+//	printf("c_i:%d\n", arena->colormap[index].cell_index);
+	if (arena->colormap[index].player_index == 0) {
+		return (COLOR_PAIR(arena->colormap[index].cell_index));
+
 	}
 	else if (arena->colormap[index].player_index == arena->colormap[index].cell_index)
 	{
-		return (arena->colormap[index].player_index);
+		return (COLOR_PAIR(arena->colormap[index].cell_index + HOME_OFFSET));
 	}
+	else if (arena->colormap[index].cell_index != NEUTRAL_COL)
+		return (COLOR_PAIR(arena->colormap[index].cell_index + OUT_OFFSET));
 	else
-	{
-		return (arena->colormap[index].player_index + EXTERNAL_COLOR_OFFSET);
-	}
+		return (COLOR_PAIR(NEUTRAL_COL));
 }
 
 
 
 
-void    rebuild_color_map(t_arena *arena, t_vm *vm)
-{
-	t_list  *iter;
-	t_carriage  *carriage_cur;
-	int     index;
+void    rebuild_color_map(t_arena *arena, t_vm *vm) {
+	t_list *iter;
+	t_carriage *carriage_cur;
+	int index;
 
 	index = 0;
-	iter =  vm->carriage_head;
+	iter = vm->carriage_head;
 	carriage_cur = NULL;
+	if (!(arena->color_is_set)) {
+		init_colors();
+		init_colormap(arena, vm);
+	}
 	while (iter != NULL)
 	{
 		carriage_cur = (t_carriage*)iter->content;
@@ -213,25 +238,24 @@ void    draw_arena(WINDOW *win, t_arena *arena, t_vm *vm)
 		exit(1);
 	}
 	start_color();			/* Start color 			*/
-	init_color(COLOR_GRAY, 355, 355, 355);
-	init_pair(GREEN, COLOR_GREEN, 0);
 	werase(win);
 	rebuild_color_map(arena, vm);
 	while(i < SQRT_MAP)
 	{
 		wmove(win, i+1, 1);
 		while (j < SQRT_MAP) {
-			wattron(win, chose_color(arena, i + j));
+			int col = chose_color(arena, i+j);
+			wattron(win, col);
 			wprintw(win, "%.2x", (unsigned char)arena->data[i * 64 + j++]);
-//			wattroff(win, GREEN);
-//			wprintw(win, "%.2x", are);
+			wattroff(win, col);
 			waddch(win, ' ');
-//			wattroff(win, 1);
 		}
 		wprintw(win, "\n");
 		j = 0;
 		++i;
 	}
 	box(win, 0, 0);
+	getchar();
+//	exit(0);
 	wrefresh(win);
 }

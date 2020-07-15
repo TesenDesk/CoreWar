@@ -5,6 +5,26 @@
 #include "visual.h"
 
 
+#define EXTERNAL_COLOR_OFFSET   4
+# define COLOR_GRAY				8
+
+#define P_1_HOME        1
+#define P_2_HOME        2
+#define P_3_HOME        3
+#define P_4_HOME        4
+#define P_1_L_HOME      5
+#define P_2_L_HOME      6
+#define P_3_L_HOME      7
+#define P_4_L_HOME      8
+#define P_1_L_OUT       9
+#define P_2_L_OUT       10
+#define P_3_L_OUT       11
+#define P_4_L_OUT       12
+#define NEUTRAL_COL     13
+
+#define HOME_OFFSET     4
+#define OUT_OFFSET      8
+
 //static int	get_live_color(t_player *player)
 //{
 //	int32_t index;
