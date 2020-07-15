@@ -155,27 +155,14 @@ void			vm_play(t_vm *self)
 		self->cycles_counter += 1;
 		self->cycles_to_dump -= 1;
 		draw_arena(my_win, self->arena, self);
-		ch = getch();
-//		switch(ch)
-//			{
-//				case KEY_LEFT:
-//					destroy_win(my_win);
-//					my_win = create_newwin(height, width, starty,--startx);
-//					break;
-//				case KEY_RIGHT:
-//					destroy_win(my_win);
-//					my_win = create_newwin(height, width, starty,++startx);
-//					break;
-//				case KEY_UP:
-//					destroy_win(my_win);
-//					my_win = create_newwin(height, width, --starty,startx);
-//					break;
-//				case KEY_DOWN:
-//					destroy_win(my_win);
-//					my_win = create_newwin(height, width, ++starty,startx);
-//					break;
-//				case KEY_F(1):
-//					endwin();
-//			}
+		werase(my_win);
+		wprintw(my_win, "DONE");
+		wrefresh(my_win);
+		getchar();
 	}
+	draw_arena(my_win, self->arena, self);
+	werase(my_win);
+	wprintw(my_win, "DONE");
+	wrefresh(my_win);
+	getchar();
 }
