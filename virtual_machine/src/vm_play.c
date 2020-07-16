@@ -108,26 +108,20 @@ static int ft_sqrt(int k)
 
 void			vm_play(t_vm *self)
 {
-	WINDOW *my_win;
 	int startx, starty, width, height;
 	int ch;
+	t_wins      *wins;
+
 
 	initscr();			/* Start curses mode 		*/
 	cbreak();			/* Line buffering disabled, Pass on
 					 * everty thing to me 		*/
-//	keypad(stdscr, TRUE);		/* I need that nifty F1 	*/
 
-//	height = ft_sqrt(MEM_SIZE)*2;
-//	width = ft_sqrt(MEM_SIZE + 2) * 3;
 	height = SQRT_MAP+ 2;
 	width = SQRT_MAP * 3 + 2;
 	starty = 1;	/* Calculating for a center placement */
 	startx = 1;	/* of the window		*/
-//	printw("Press q to exit");
-//	refresh();
-	my_win = create_newwin(height, width, starty, startx);
-
-
+	wins = init_wins();
 
 	arena_players_introducing(self->arena);
 	self->cycles_to_die = CYCLE_TO_DIE;
@@ -154,15 +148,15 @@ void			vm_play(t_vm *self)
 		self->global_counter += 1;
 		self->cycles_counter += 1;
 		self->cycles_to_dump -= 1;
-		draw_arena(my_win, self->arena, self);
-		werase(my_win);
-		wprintw(my_win, "DONE");
-		wrefresh(my_win);
-		getchar();
+		draw_arena(wins, self->arena, self);
+//		werase(my_win);
+//		wprintw(my_win, "DONE");
+//		wrefresh(my_win);
+//		getchar();
 	}
-	draw_arena(my_win, self->arena, self);
-	werase(my_win);
-	wprintw(my_win, "DONE");
-	wrefresh(my_win);
-	getchar();
+//	draw_arena(my_win, self->arena, self);
+//	werase(my_win);
+//	wprintw(my_win, "DONE");
+//	wrefresh(my_win);
+//	getchar();
 }

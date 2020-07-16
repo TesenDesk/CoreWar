@@ -10,8 +10,9 @@
 
 typedef struct  s_wins
 {
-	WINDOW      *main;
-	WINDOW      *chars;
+	WINDOW      *arena;
+	WINDOW      *info;
+	WINDOW      *help;
 }               t_wins;
 
 
@@ -25,8 +26,8 @@ typedef struct          s_color_mapcell
 
 
 
-WINDOW *create_newwin(int height, int width, int starty, int startx);
+t_wins *init_wins(void);
 void destroy_win(WINDOW *local_win);
-void    draw_arena(WINDOW *win, t_arena *arena, t_vm *vm);
+void    draw_arena(t_wins  *wins, t_arena *arena, t_vm *vm);
 
 #endif
