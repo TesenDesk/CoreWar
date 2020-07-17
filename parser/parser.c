@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 14:48:44 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/17 16:13:31 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/17 16:20:32 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,13 @@ t_expr				*parser_form_expr(t_parser *parser, char const **text,
 				return (NULL);
 		}
 		else if (token_type == TOKEN_TIND_LAB || token_type == TOKEN_TDIR_LAB)
-		{
 			if (label_checker_put_to_map_label_ptr(label_vector, token)
 			== FAILURE)
 				return (NULL);
-		}
 		parser->change_state(parser, token_type);
 		if (parser->state == PARSER_FINISH_ST || parser->state == PARSER_ERROR)
 			break ;
 	}
-
 	expr->type = (parser->state == PARSER_ERROR) ? EXPR_UNDEF : expr->type;
 	parser->state = PARSER_INIT_ST;
 	return (expr_fill_arg_num(expr));
