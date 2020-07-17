@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 13:36:30 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/15 13:54:12 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/17 16:41:35 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,17 +102,14 @@ static int	prvt_find_2_0_layer_op(t_parser *parser, int token_type)
 
 static int	prvt_find_2_1_layer_op(t_parser *parser, int token_type)
 {
-	if (token_type == TOKEN_TREG)
-	{
-		if (parser->state == PARSER_OP1_ARITHM_ST)
-			return (PARSER_OP2_ARITHM_ST);
-		else if (parser->state == PARSER_OP1_LOADI_ST)
-			return (PARSER_OP2_LOADI_ST);
-		else if (parser->state == PARSER_OP1_LOGIC_ST)
-			return (PARSER_OP2_LOGIC_ST);
-		else if (parser->state == PARSER_OP1_STORI_ST)
-			return (PARSER_OP2_STORI_ST);
-	}
+	if (token_type == TOKEN_TREG && parser->state == PARSER_OP1_ARITHM_ST)
+		return (PARSER_OP2_ARITHM_ST);
+	else if (token_type == TOKEN_TREG && parser->state == PARSER_OP1_LOADI_ST)
+		return (PARSER_OP2_LOADI_ST);
+	else if (token_type == TOKEN_TREG && parser->state == PARSER_OP1_LOGIC_ST)
+		return (PARSER_OP2_LOGIC_ST);
+	else if (token_type == TOKEN_TREG && parser->state == PARSER_OP1_STORI_ST)
+		return (PARSER_OP2_STORI_ST);
 	else if (token_type == TOKEN_TDIR_LAB || token_type == TOKEN_TDIR_INT)
 	{
 		if (parser->state == PARSER_OP1_LOADI_ST)
@@ -173,18 +170,14 @@ void		prvt_parser_change_state(t_parser *parser, int token_type)
 	if (parser->state == PARSER_INIT_ST)
 		parser->state = prvt_parser_find_next_to_init_st(token_type);
 	else if (parser->state == PARSER_OP0_LIFE_ST
-	|| parser->state == PARSER_OP0_AFFECT_ST
-	|| parser->state == PARSER_OP0_LOAD_ST
-	|| parser->state == PARSER_OP1_LOAD_ST
-	|| parser->state == PARSER_OP0_STORE_ST
-	|| parser->state == PARSER_OP1_STORE_ST
-	|| parser->state == PARSER_OP0_ARITHM_ST
-	|| parser->state == PARSER_OP1_ARITHM_ST
-	|| parser->state == PARSER_OP0_LOADI_ST
-	|| parser->state == PARSER_OP1_LOADI_ST
-	|| parser->state == PARSER_OP0_LOGIC_ST
-	|| parser->state == PARSER_OP1_LOGIC_ST
-	|| parser->state == PARSER_OP0_STORI_ST
+	|| parser->state == PARSER_OP0_AFFECT_ST || parser->state ==
+	PARSER_OP0_LOAD_ST || parser->state == PARSER_OP1_LOAD_ST
+	|| parser->state == PARSER_OP0_STORE_ST || parser->state ==
+	PARSER_OP1_STORE_ST || parser->state == PARSER_OP0_ARITHM_ST
+	|| parser->state == PARSER_OP1_ARITHM_ST || parser->state ==
+	PARSER_OP0_LOADI_ST || parser->state == PARSER_OP1_LOADI_ST
+	|| parser->state == PARSER_OP0_LOGIC_ST || parser->state ==
+	PARSER_OP1_LOGIC_ST || parser->state == PARSER_OP0_STORI_ST
 	|| parser->state == PARSER_OP1_STORI_ST)
 		prvt_parser_find_next_to_op01_st(parser, token_type);
 	else if (parser->state == PARSER_OP2_ARITHM_ST

@@ -29,5 +29,4 @@ void		carriage_take_step(t_carriage *self)
 		else
 			self->arena_position = (self->arena_position + 1) % MEM_SIZE;
 	}
-
 }
