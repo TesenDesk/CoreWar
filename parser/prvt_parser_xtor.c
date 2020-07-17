@@ -6,11 +6,26 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 19:42:19 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/07/15 16:14:29 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/17 15:55:16 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser_private.h"
+
+void				prvt_parser_ctor_p2(t_parser **parser)
+{
+	(*parser)->get_token[PARSER_OP2_ARITHM_ST] = prvt_parser_get_token_op2_arit;
+	(*parser)->get_token[PARSER_OP0_LOADI_ST] = prvt_parser_get_token_op0_lodi;
+	(*parser)->get_token[PARSER_OP1_LOADI_ST] = prvt_parser_get_token_op1_lodi;
+	(*parser)->get_token[PARSER_OP2_LOADI_ST] = prvt_parser_get_token_op2_lodi;
+	(*parser)->get_token[PARSER_OP0_LOGIC_ST] = prvt_parser_get_token_op0_logc;
+	(*parser)->get_token[PARSER_OP1_LOGIC_ST] = prvt_parser_get_token_op1_logc;
+	(*parser)->get_token[PARSER_OP2_LOGIC_ST] = prvt_parser_get_token_op2_logc;
+	(*parser)->get_token[PARSER_OP0_STORI_ST] = prvt_parser_get_token_op0_stri;
+	(*parser)->get_token[PARSER_OP1_STORI_ST] = prvt_parser_get_token_op1_stri;
+	(*parser)->get_token[PARSER_OP2_STORI_ST] = prvt_parser_get_token_op2_stri;
+	(*parser)->get_token[PARSER_LINE_END_ST] = prvt_parser_get_token_line_end;
+}
 
 void				prvt_parser_ctor(t_parser **parser)
 {

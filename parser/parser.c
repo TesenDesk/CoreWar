@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/15 15:33:07 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/15 21:10:46 by cmissy           ###   ########.fr       */
+/*   Created: 2020/07/17 14:48:44 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/17 16:13:31 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,10 @@ t_expr				*parser_form_expr(t_parser *parser, char const **text,
 		}
 		parser->change_state(parser, token_type);
 		if (parser->state == PARSER_FINISH_ST || parser->state == PARSER_ERROR)
-		{
-			if (parser->state == PARSER_ERROR)
-				expr->type = EXPR_UNDEF;
-			parser->state = PARSER_INIT_ST;
 			break ;
-		}
 	}
+
+	expr->type = (parser->state == PARSER_ERROR) ? EXPR_UNDEF : expr->type;
+	parser->state = PARSER_INIT_ST;
 	return (expr_fill_arg_num(expr));
 }

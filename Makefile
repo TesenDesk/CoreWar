@@ -356,6 +356,7 @@ $(VM_PARAMS_VMP_PLAYER_FILE_DIR_OBJ): %.o: %.c
 clean: deljunk
 		rm -rf lexer/*.o
 		rm -rf parser/*.o
+		rm -rf checker/*.o
 		rm -rf analyser/*.o
 		rm -rf codegen/*.o
 		rm -rf virtual_machine/src/*.o
