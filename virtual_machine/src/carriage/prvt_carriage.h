@@ -34,7 +34,7 @@ typedef struct		s_carriage
 	int				registers[REG_NUMBER];
 	int             was_store;
 	int             was_live;
-	int             stor_pos;
+	unsigned int             stor_pos;
 }					t_carriage;
 
 void				prvt_carriage_set_op_code(t_carriage *self, t_arena *arena);

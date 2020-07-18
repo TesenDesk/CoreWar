@@ -91,6 +91,7 @@ void			vm_next_cycle(t_vm *self)
 	list = self->carriage_head;
 	while (list)
 	{
+//		printf("%p\n", list);
 		carriage_take_step(list->content);
 		list = list->next;
 	}
@@ -124,6 +125,7 @@ void			vm_play(t_vm *self)
 	startx = 1;	/* of the window		*/
 	wins = init_wins();
 
+	self->wins = wins;
 	arena_players_introducing(self->arena);
 	self->cycles_to_die = CYCLE_TO_DIE;
 	self->cycles_counter = 1;
@@ -139,21 +141,7 @@ void			vm_play(t_vm *self)
 			arena_print_dump(self->arena);
 			break ;
 		}
-		if(self->cycles_counter > 1245)
-		{
-			werase(wins->info);
-			wprintw(wins->info, "cronk\n");
-			wrefresh(wins->info);
-			getchar();
-		}
 		vm_next_cycle(self);
-		if(self->cycles_counter > 1245)
-		{
-			werase(wins->info);
-			wprintw(wins->info, "ponk\n");
-			wrefresh(wins->info);
-			getchar();
-		}
 		if (self->cycles_to_die <= self->cycles_counter)
 		{
 			if (vm_check(self) == FAILURE)
@@ -165,21 +153,7 @@ void			vm_play(t_vm *self)
 		self->global_counter += 1;
 		self->cycles_counter += 1;
 		self->cycles_to_dump -= 1;
-		if(self->cycles_counter > 1245)
-		{
-			werase(wins->info);
-			wprintw(wins->info, "honk\n");
-			wrefresh(wins->info);
-			getchar();
-		}
 		draw_arena(wins, self->arena, self);
-		if(self->cycles_counter > 1245)
-		{
-			werase(wins->info);
-			wprintw(wins->info, "wow\n");
-			wrefresh(wins->info);
-			getchar();
-		}
 //		werase(my_win);
 //		wprintw(my_win, "DONE");
 //		wrefresh(my_win);
