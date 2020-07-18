@@ -17,70 +17,6 @@
 
 
 
-//static int	get_live_color(t_player *player)
-//{
-//	int32_t index;
-//
-//	index = ((player->id - 1) % MAX_PLAYER_ID) + 1;
-//	if (index == MIN_PLAYER_ID)
-//		return (COLOR_PAIR(LIVE_GREEN) | A_BOLD);
-//	else if (index == MIN_PLAYER_ID + 1)
-//		return (COLOR_PAIR(LIVE_YELLOW) | A_BOLD);
-//	else if (index == MIN_PLAYER_ID + 2)
-//		return (COLOR_PAIR(LIVE_RED) | A_BOLD);
-//	else
-//		return (COLOR_PAIR(LIVE_CYAN) | A_BOLD);
-//}
-//
-//int			get_attribute(t_vm *vm, t_attr *attribute, ssize_t cycles)
-//{
-//	if (cycles != vm->cycles
-//	    && vm->cycles_to_die > 0
-//	    && attribute->wait_cycles_live > 0)
-//		attribute->wait_cycles_live--;
-//	if (cycles != vm->cycles
-//	    && vm->cycles_to_die > 0
-//	    && attribute->wait_cycles_store > 0)
-//		attribute->wait_cycles_store--;
-//	if (attribute->wait_cycles_live)
-//		return (get_live_color(attribute->player_live));
-//	else if (attribute->wait_cycles_store)
-//		return (g_colors_players[attribute->index] | A_BOLD);
-//	else
-//		return (g_colors_players[attribute->index]);
-//}
-
-///*
-//** Color
-//*/
-//
-
-
-//
-///*
-//** Color pairs
-//*/
-//
-//# define GRAY					9
-//# define GREEN					10
-
-
-//# define YELLOW					11
-//# define RED					12
-//# define CYAN					13
-//# define GRAY_CURSOR			14make
-//# define GREEN_CURSOR			15
-//# define YELLOW_CURSOR			16
-//# define RED_CURSOR				17
-//# define CYAN_CURSOR			18
-//# define LIVE_GREEN				19
-//# define LIVE_YELLOW			20
-//# define LIVE_RED				21
-//# define LIVE_CYAN				22
-//
-///*
-//** Buttons
-//*/
 
 WINDOW *create_newwin(int height, int width, int starty, int startx)
 {
@@ -158,9 +94,6 @@ void                init_colormap(t_arena *arena, t_vm *vm, int OFFSET, WINDOW *
 	{
 		while (pos < offset + tmp->code_size)
 		{
-//			wprintw(win, "%d, %d", pos, OFFSET);
-//			wrefresh(win);
-//			werase(win);
 			arena->colormap[pos % MEM_SIZE].cell_index = col;
 			++pos;
 		}
@@ -178,48 +111,16 @@ void                init_colormap(t_arena *arena, t_vm *vm, int OFFSET, WINDOW *
 int     chose_color(t_arena *arena, int index, t_vm *vm, int i)
 {
 	int ans;
-//	if (vm->cycles_counter > 1245) {
-//		werase(vm->wins->info);
-//		wprintw(vm->wins->info, "WOOOOOOOOOOOW, %d, %d\n", i, vm->cycles_counter);
-//		wrefresh(vm->wins->info);
-////		getchar();
-//	}
-//	printf("c_i:%d\n", arena->colormap[index].cell_index);
-/*
- * probably here sega
- */
-//	if (vm->cycles_counter > 1244)
-//	{
-//		werase(vm->wins->info);
-//		wprintw(vm->wins->info, "shoooojdsfndfjnvgsdfjkdfgivnsdf\n");
-//		wrefresh(vm->wins->info);
-////			getchar();
-//	}
 	if (arena->colormap[index % MEM_SIZE].player_index == 0) {
 		ans = (COLOR_PAIR(arena->colormap[index % MEM_SIZE].cell_index));
 
 	}
 		else if (arena->colormap[index % MEM_SIZE].player_index == arena->colormap[index % MEM_SIZE].cell_index)
-	{
 		ans =  (COLOR_PAIR(arena->colormap[index % MEM_SIZE].cell_index + HOME_OFFSET));
-	}
 	else if (arena->colormap[index % MEM_SIZE].cell_index != NEUTRAL_COL)
 		ans =  (COLOR_PAIR(arena->colormap[index % MEM_SIZE].cell_index + OUT_OFFSET));
 	else
 		ans = (COLOR_PAIR(NEUTRAL_COL));
-//	if (vm->cycles_counter > 1244)
-//	{
-//		werase(vm->wins->info);
-//		wprintw(vm->wins->info, "KOOOOO\n");
-//		wrefresh(vm->wins->info);
-////			getchar();
-//	}
-//	if (vm->cycles_counter > 1245) {
-//		werase(vm->wins->info);
-//		wprintw(vm->wins->info, "mmmm,  %d %d, %d!!!!!!!!!!!!!!!!\n", i, vm->cycles_counter, arena->colormap[index % MEM_SIZE].cell_index);
-//		wrefresh(vm->wins->info);
-////		getchar();
-//	}
 	return (ans);
 }
 
@@ -243,8 +144,10 @@ void    rebuild_color_map(t_arena *arena, t_vm *vm, WINDOW *win) {
 		while (iter != NULL) {
 			carriage_cur = (t_carriage *) iter->content;
 			arena->colormap[carriage_cur->arena_position % MEM_SIZE].player_index = carriage_cur->player_name;
-			if (carriage_cur->was_store == TRUE) {
-				while (index < 4) {
+			if (carriage_cur->was_store == TRUE)
+			{
+				while (index < 4)
+				{
 					arena->colormap[
 						(carriage_cur->stor_pos +
 						index) % MEM_SIZE].cell_index = carriage_cur->player_name;
@@ -274,42 +177,10 @@ void    draw_arena(t_wins *wins, t_arena *arena, t_vm *vm)
 	start_color();			/* Start color 			*/
 	werase(wins->arena);
 	werase(wins->info);
-
-
-//	if(vm->cycles_counter > 1245) {
-//		werase(wins->info);
-//		wprintw(wins->info, "BEFORE REBUILD\n");
-//		wrefresh(wins->info);
-////		getchar();
-//	}
-//	werase(wins->info);
-//	wprintw(wins->info, "LALALAL, %d\n", vm->cycles_counter);
-//	wrefresh(wins->info);
-//	if (vm->cycles_counter > 1244)
-//		getchar();
-
-//	if (vm->cycles_counter ==100) {
-//		werase(wins->info);
-//		wprintw(wins->info, "init %p\n", arena->data);
-//		wrefresh(wins->info);
-////		getchar();
-//	}
 	rebuild_color_map(arena, vm, wins->info);
-//	if (vm->cycles_counter > 1244) {
-//		werase(wins->info);
-//		wprintw(wins->info, "after rebuild\n");
-//		wrefresh(wins->info);
-////		getchar();
-//	}
-//	werase(wins->info);
-//	wprintw(wins->info, "lolkek, %d\n", vm->cycles_counter);
-//	wrefresh(wins->info);
-//	if (vm->cycles_counter > 1244)
-//		getchar();
-
 	while(i < SQRT_MAP)
 	{
-		wmove(wins->arena, i, 1);
+		wmove(wins->arena, i + 1, 1);
 		while (j < SQRT_MAP) {
 			int col = chose_color(arena, (i* 64+j)%MEM_SIZE, vm, i);
 			wattron(wins->arena, col);
@@ -334,8 +205,7 @@ void    draw_arena(t_wins *wins, t_arena *arena, t_vm *vm)
 	box(wins->info, 0, 0);
 	wprintw(wins->info, "cycles_to_die: %d\n", vm->cycles_to_die);
 	wprintw(wins->info, "cycles_counter: %d\n", vm->cycles_counter);
-
 	wrefresh(wins->arena);
 	wrefresh(wins->info);
-	usleep(5000);
+	usleep(5000 * 20);
 }
