@@ -5,6 +5,7 @@
 #include "visual.h"
 
 
+#include "op.h"
 #define EXTERNAL_COLOR_OFFSET   4
 # define COLOR_GRAY				8
 

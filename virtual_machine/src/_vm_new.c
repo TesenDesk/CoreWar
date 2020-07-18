@@ -24,5 +24,6 @@ t_vm		*_vm_new(int argc, char *argv[])
 	self->arena = arena_new(self->params);
 	self->carriage_head = arena_carriage_list_new(self->arena);
 	self->num_of_carriages = arena_nb_players(self->arena);
+	self->speed = 1;
 	return (self);
 }

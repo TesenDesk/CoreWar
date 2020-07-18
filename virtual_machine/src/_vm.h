@@ -41,6 +41,7 @@ typedef struct	s_vm
 	t_arena		*arena;
 	t_list		*carriage_head;
 	t_wins      *wins;
+	char        speed;
 	int         cycles_to_die;
 	int         cycles_to_dump;
 	int         cycles_counter;

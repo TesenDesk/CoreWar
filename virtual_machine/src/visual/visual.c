@@ -4,10 +4,8 @@
 
 
 #include "_visual_private.h"
-#include <math.h>
 #include "op.h"
 #include "../arena/prvt_arena.h"
-#include "vm.h"
 #include "../_vm.h"
 #include "../carriage/prvt_carriage.h"
 #include "../arena/player/prvt_player.h"
@@ -31,9 +29,9 @@ t_wins          *init_wins(void)
 	t_wins      *wins;
 	if (!(wins = ft_memalloc(sizeof(t_wins))))
 		exit(-1);
-	if (!(wins->arena = create_newwin(SQRT_MAP + 10, SQRT_MAP * 3 + 10, 1, 1)))
+	if (!(wins->arena = create_newwin(SQRT_MAP + 2, SQRT_MAP * 3 + 2, 1, 1)))
 		exit(-1);
-	if (!(wins->info = create_newwin(15, 40, 1, SQRT_MAP * 3 + 12)))
+	if (!(wins->info = create_newwin(10, 75, 1, SQRT_MAP * 3 + 4)))
 		exit(-1);
 	return (wins);
 }
@@ -160,6 +158,38 @@ void    rebuild_color_map(t_arena *arena, t_vm *vm, WINDOW *win) {
 	}
 }
 
+void    print_info(t_vm *vm)
+{
+	wmove(vm->wins->info, 1, 1);
+	wprintw(vm->wins->info, " cycles_to_die:  %d\n", vm->cycles_to_die);
+	wmove(vm->wins->info, 2, 1);
+	wprintw(vm->wins->info, " cycles_counter: %d\n", vm->cycles_counter);
+	wmove(vm->wins->info, 3, 1);
+	wprintw(vm->wins->info, " cycles_delta:   %d\n", CYCLE_DELTA);
+	wmove(vm->wins->info, 4, 1);
+	wprintw(vm->wins->info, " game_speed:     %d\n", vm->speed);
+	wmove(vm->wins->info, 5, 1);
+	wprintw(vm->wins->info, " TO SPEED_UP PUSH UP_ARROW, TO SPEED_DOWN PUSH DOWN_ARROW(MIN 1 MAX 10)");
+//	int c = getch();
+//		if (c == KEY_UP)
+//		{
+//			vm->speed += 1;
+//		}
+//		else if (c ==  KEY_DOWN) {
+//			vm->speed -= 1;
+//		}
+//	if (vm->speed > 10)
+//		vm->speed = 10;
+//	if (vm->speed < 1)
+//		vm->speed = 1;
+//	wmove(vm->wins->info, 6, 1);
+//			wprintw(vm->wins->info, "your speed:%d\n", c);
+//			getchar();
+			box(vm->wins->info, 0, 0);
+	wrefresh(vm->wins->info);
+
+}
+
 void    draw_arena(t_wins *wins, t_arena *arena, t_vm *vm)
 {
 	int sqr;
@@ -174,7 +204,7 @@ void    draw_arena(t_wins *wins, t_arena *arena, t_vm *vm)
 		printf("Your terminal does not support color\n");
 		exit(1);
 	}
-	start_color();			/* Start color 			*/
+	start_color();
 	werase(wins->arena);
 	werase(wins->info);
 	rebuild_color_map(arena, vm, wins->info);
@@ -193,19 +223,10 @@ void    draw_arena(t_wins *wins, t_arena *arena, t_vm *vm)
 		++i;
 	}
 	box(wins->arena, 0, 0);
-	t_list  *tmptmp = vm->carriage_head;
-	t_carriage  *aaa = (t_carriage *)(tmptmp->content);
-	while(tmptmp)
-	{
-		aaa->was_store =0;
-		aaa->stor_pos = 0;
-		aaa->was_live = 0/**/;
-		tmptmp = tmptmp->next;
-	}
-	box(wins->info, 0, 0);
-	wprintw(wins->info, "cycles_to_die: %d\n", vm->cycles_to_die);
-	wprintw(wins->info, "cycles_counter: %d\n", vm->cycles_counter);
-	wrefresh(wins->arena);
-	wrefresh(wins->info);
-	usleep(5000 * 20);
+	int         ii = 0;
+	while (ii < MEM_SIZE)
+		arena->colormap[ii++].player_index = 0;
+	wrefresh(vm->wins->arena);
+	print_info(vm);
+	usleep(5000 / vm->speed);
 }

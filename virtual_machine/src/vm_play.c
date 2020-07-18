@@ -130,8 +130,6 @@ void			vm_play(t_vm *self)
 	self->cycles_to_die = CYCLE_TO_DIE;
 	self->cycles_counter = 1;
 	self->global_counter = 1;
-//	printf("%p!!!\n", self->arena->data);
-//	getchar();
 	while (TRUE)
 	{
 		if (vm_verbosity_lvl() & 2)
