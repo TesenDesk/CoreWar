@@ -27,7 +27,7 @@ static void			arena_fill_in_the_data(t_arena *self)
 
 	step = MEM_SIZE / self->nb_players;
 	curr = 0;
-	if (!(arena_field = ft_memalloc(MEM_SIZE * sizeof(char))))
+	if (!(arena_field = ft_memalloc(MEM_SIZE*2 * sizeof(char))))
 		raise(__FILE__, __LINE__, EINVALCONSTANTS);
 	while (curr < self->nb_players)
 	{
@@ -37,6 +37,8 @@ static void			arena_fill_in_the_data(t_arena *self)
 		curr += 1;
 	}
 	self->data = arena_field;
+//	printf("init:%p\n", self->data);
+//	getchar();
 	return ;
 }
 

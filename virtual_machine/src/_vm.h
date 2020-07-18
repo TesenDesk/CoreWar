@@ -20,6 +20,7 @@
 # include "carriage.h"
 # include "op.h"
 # include "arena.h"
+# include "visual.h"
 
 /*
 **	Limit individual processes in the allocated memory.
@@ -39,6 +40,7 @@ typedef struct	s_vm
 	t_vm_params	*params;
 	t_arena		*arena;
 	t_list		*carriage_head;
+	t_wins      *wins;
 	int         cycles_to_die;
 	int         cycles_to_dump;
 	int         cycles_counter;

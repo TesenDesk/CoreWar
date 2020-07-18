@@ -95,9 +95,9 @@ t_wins          *init_wins(void)
 	t_wins      *wins;
 	if (!(wins = ft_memalloc(sizeof(t_wins))))
 		exit(-1);
-	if (!(wins->arena = create_newwin(SQRT_MAP + 2, SQRT_MAP * 3 + 2, 1, 1)))
+	if (!(wins->arena = create_newwin(SQRT_MAP + 10, SQRT_MAP * 3 + 10, 1, 1)))
 		exit(-1);
-	if (!(wins->info = create_newwin(15, 40, 1, SQRT_MAP * 3 + 4)))
+	if (!(wins->info = create_newwin(15, 40, 1, SQRT_MAP * 3 + 12)))
 		exit(-1);
 	return (wins);
 }
@@ -158,15 +158,15 @@ void                init_colormap(t_arena *arena, t_vm *vm, int OFFSET, WINDOW *
 	{
 		while (pos < offset + tmp->code_size)
 		{
-			wprintw(win, "%d, %d", pos, OFFSET);
-			wrefresh(win);
-			werase(win);
-			arena->colormap[pos].cell_index = col;
+//			wprintw(win, "%d, %d", pos, OFFSET);
+//			wrefresh(win);
+//			werase(win);
+			arena->colormap[pos % MEM_SIZE].cell_index = col;
 			++pos;
 		}
 		while (pos < offset + OFFSET)
 		{
-			arena->colormap[pos].cell_index = NEUTRAL_COL;
+			arena->colormap[pos % MEM_SIZE].cell_index = NEUTRAL_COL;
 			++pos;
 		}
 		offset +=OFFSET;
@@ -175,24 +175,38 @@ void                init_colormap(t_arena *arena, t_vm *vm, int OFFSET, WINDOW *
 	arena->color_is_set = 1;
 }
 
-int     chose_color(t_arena *arena, int index)
+int     chose_color(t_arena *arena, int index, t_vm *vm, int i)
 {
+	int ans;
+	if (vm->cycles_counter > 1245) {
+		werase(vm->wins->info);
+		wprintw(vm->wins->info, "WOOOOOOOOOOOW, %d, %d\n", i, vm->cycles_counter);
+		wrefresh(vm->wins->info);
+//		getchar();
+	}
 //	printf("c_i:%d\n", arena->colormap[index].cell_index);
 /*
  * probably here sega
  */
-	if (arena->colormap[index].player_index == 0) {
-		return (COLOR_PAIR(arena->colormap[index].cell_index));
+	if (arena->colormap[index % MEM_SIZE].player_index == 0) {
+		ans = (COLOR_PAIR(arena->colormap[index % MEM_SIZE].cell_index));
 
 	}
-	else if (arena->colormap[index].player_index == arena->colormap[index].cell_index)
+	else if (arena->colormap[index % MEM_SIZE].player_index == arena->colormap[index % MEM_SIZE].cell_index)
 	{
-		return (COLOR_PAIR(arena->colormap[index].cell_index + HOME_OFFSET));
+		ans =  (COLOR_PAIR(arena->colormap[index % MEM_SIZE].cell_index + HOME_OFFSET));
 	}
-	else if (arena->colormap[index].cell_index != NEUTRAL_COL)
-		return (COLOR_PAIR(arena->colormap[index].cell_index + OUT_OFFSET));
+	else if (arena->colormap[index % MEM_SIZE].cell_index != NEUTRAL_COL)
+		ans =  (COLOR_PAIR(arena->colormap[index % MEM_SIZE].cell_index + HOME_OFFSET));
 	else
-		return (COLOR_PAIR(NEUTRAL_COL));
+		ans = (COLOR_PAIR(NEUTRAL_COL));
+	if (vm->cycles_counter > 1245) {
+		werase(vm->wins->info);
+		wprintw(vm->wins->info, "mmmm,  %d %d, %d!!!!!!!!!!!!!!!!\n", i, vm->cycles_counter, arena->colormap[index % MEM_SIZE].cell_index);
+		wrefresh(vm->wins->info);
+//		getchar();
+	}
+	return (ans);
 }
 
 
@@ -214,12 +228,12 @@ void    rebuild_color_map(t_arena *arena, t_vm *vm, WINDOW *win) {
 		{
 		while (iter != NULL) {
 			carriage_cur = (t_carriage *) iter->content;
-			arena->colormap[carriage_cur->arena_position].player_index = carriage_cur->player_name;
+			arena->colormap[carriage_cur->arena_position % MEM_SIZE].player_index = carriage_cur->player_name;
 			if (carriage_cur->was_store == TRUE) {
 				while (index < 4) {
-					arena->colormap[
+					arena->colormap[(
 						(((t_carriage *) (iter->content))->stor_pos) +
-						index].cell_index = carriage_cur->player_name;
+						index) % MEM_SIZE].cell_index = carriage_cur->player_name;
 					++index;
 				}
 				index = 0;
@@ -237,6 +251,7 @@ void    draw_arena(t_wins *wins, t_arena *arena, t_vm *vm)
 
 	i = 0;
 	j = 0;
+	vm->wins = wins;
 	if(has_colors() == FALSE)
 	{	endwin();
 		printf("Your terminal does not support color\n");
@@ -247,35 +262,121 @@ void    draw_arena(t_wins *wins, t_arena *arena, t_vm *vm)
 	werase(wins->info);
 
 
-	if(vm->cycles_counter > 1244)
-	{
+	if(vm->cycles_counter > 1245) {
 		werase(wins->info);
-		wprintw(wins->info,"BEFORE REBUILD\n");
+		wprintw(wins->info, "BEFORE REBUILD\n");
 		wrefresh(wins->info);
-		getchar();}
+		getchar();
+	}
+//	werase(wins->info);
+//	wprintw(wins->info, "LALALAL, %d\n", vm->cycles_counter);
+//	wrefresh(wins->info);
+//	if (vm->cycles_counter > 1244)
+//		getchar();
+
+	if (vm->cycles_counter ==100) {
+		werase(wins->info);
+		wprintw(wins->info, "init %p\n", arena->data);
+		wrefresh(wins->info);
+//		getchar();
+	}
 	rebuild_color_map(arena, vm, wins->info);
-	if (vm->cycles_counter > 1244)
-	{
+	if (vm->cycles_counter > 1244) {
 		werase(wins->info);
-		wprintw(wins->info,"AFTER REBUILD\n");
+		wprintw(wins->info, "after rebuild\n");
 		wrefresh(wins->info);
-		getchar();}
+//		getchar();
+	}
+//	werase(wins->info);
+//	wprintw(wins->info, "lolkek, %d\n", vm->cycles_counter);
+//	wrefresh(wins->info);
+//	if (vm->cycles_counter > 1244)
+//		getchar();
+
 	while(i < SQRT_MAP)
 	{
-		wmove(wins->arena, i+1, 1);
+//		if (vm->cycles_counter > 1244) {
+//			werase(wins->info);
+//			wprintw(wins->info, "ROLLKEK, %d %d, %p\n", i, SQRT_MAP, wins->info);
+//			wrefresh(wins->info);
+//			getchar();
+//		}
+		if (vm->cycles_counter > 1244) {
+			werase(wins->info);
+			wprintw(wins->info, "!!!%d\n", vm->cycles_counter);
+			wrefresh(wins->info);
+//			getchar();
+		}
+//		werase(wins->info);
+//		wprintw(wins->info, "Before move\n");
+//		wrefresh(wins->info);
+		wmove(wins->arena, i, 1);
+//		werase(wins->info);
+//		wprintw(wins->info, "after move\n");
+//		wrefresh(wins->info);
+//		wprintw(wins->info, "After move\n");
 		while (j < SQRT_MAP) {
-			int col = chose_color(arena, i* 64+j);
+//			if (vm->cycles_counter > 1245) {
+//				werase(wins->info);
+//				wprintw(wins->info, "KEKROLLKEK, %d %d %d, %p\n", i,j, SQRT_MAP, wins->info);
+//				wrefresh(wins->info);
+////				getchar();
+//			}
+//			werase(wins->info);
+//			wprintw(wins->info, "Before color\n");
+//			wrefresh(wins->info);
+			int col = chose_color(arena, (i* 64+j)%MEM_SIZE, vm, i);
+//			if (vm->cycles_counter > 1245) {
+//			werase(wins->info);
+//			wprintw(wins->info, "After color, col = %d, %d\n", col, vm->cycles_counter);
+//			wrefresh(wins->info);
+//			getchar();
+//			}
 			wattron(wins->arena, col);
-			wprintw(wins->arena, "%.2x", (unsigned char)arena->data[i * 64 + j++]);
+//			if (vm->cycles_counter > 1245) {
+//				werase(wins->info);
+//				wprintw(wins->info, "After attron, col = %d, %d\n", col, vm->cycles_counter);
+//				wrefresh(wins->info);
+//				getchar();
+//			}
+//			wprintw(wins->info, "KEKER\n", col);
+//			wrefresh(wins->info);
+//			if (vm->cycles_counter > 1244) {
+//				werase(wins->info);
+//				wprintw(wins->info, "After color, col = %d\n", col);
+//				wrefresh(wins->info);
+//				getchar();
+//			}
+//			if (vm->cycles_counter > 1245) {
+////				werase(wins->info);
+//				wprintw(wins->info, "before fffff, col = %d, %d, i:%d, j:%d, p:%p\n", col, vm->cycles_counter, i, j, arena->data);
+//				wrefresh(wins->info);
+//				getchar();
+//			}
+//			wprintw(wins->arena, "%.2x", (unsigned char)arena->data[(i*64 + j++) % MEM_SIZE]);
+
+			j+=1;
+//			if (vm->cycles_counter > 1245) {
+////				werase(wins->info);
+//				wprintw(wins->info, "before ATTROFF, col = %d, \n", col);
+//				wrefresh(wins->info);
+////				getchar();
+//			}
 			wattroff(wins->arena, col);
+//			if (vm->cycles_counter > 1245) {
+//				werase(wins->info);
+//				wprintw(wins->info, "After ATTROFF, col = %d\n", col);
+//				wrefresh(wins->info);
+////				getchar();
+//			}
 			waddch(wins->arena, ' ');
 		}
-		if (vm->cycles_counter > 1244)
-		{
-			werase(wins->info);
-			wprintw(wins->info,"AFTER J, %d, %d\n", j, i);
-			wrefresh(wins->info);
-			getchar();}
+//		if (vm->cycles_counter > 1244) {
+//			werase(wins->info);
+//			wprintw(wins->info, "AFTER J, %d, %d\n", j, i);
+//			wrefresh(wins->info);
+////			getchar();}
+//		}
 		wprintw(wins->arena, "\n");
 		j = 0;
 		++i;
@@ -287,7 +388,7 @@ void    draw_arena(t_wins *wins, t_arena *arena, t_vm *vm)
 
 		wprintw(wins->info,"!±!!!!!!!!!!!!!!\n");
 		wrefresh(wins->info);
-		getchar();
+//		getchar();
 	}
 	while(tmptmp)
 	{
@@ -300,13 +401,11 @@ void    draw_arena(t_wins *wins, t_arena *arena, t_vm *vm)
 	wprintw(wins->info, "cycles_to_die: %d\n", vm->cycles_to_die);
 	wprintw(wins->info, "cycles_counter: %d\n", vm->cycles_counter);
 
-	wrefresh(wins->arena);
+//	wrefresh(wins->arena);
 	wrefresh(wins->info);
-	if (vm->cycles_counter > 1244)
-	{
-		wprintw(wins->info,"AAAAAAAAAAAAAAAA\n");
-		wrefresh(wins->info);
-		getchar();}
-	usleep(5000);
+	werase(wins->info);
+	wprintw(wins->info, "SHOOOOOOTT: %d\n", vm->cycles_counter);
+	wrefresh(wins->info);
+//	usleep(5000);
 //	getchar();
 }
