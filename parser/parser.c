@@ -6,13 +6,11 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 14:48:44 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/17 16:20:32 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/19 19:29:58 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser_private.h"
-#include "../lexer/prvt_token.h"
-#include <string.h>
 
 static void			fill_expr_ar_num(int expr_ar_num[COUNT_EXPR])
 {

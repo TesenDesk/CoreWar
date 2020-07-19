@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expr_private.h                                     :+:      :+:    :+:   */
+/*   expr_set_size.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/15 16:25:58 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/15 16:26:20 by cmissy           ###   ########.fr       */
+/*   Created: 2020/07/19 16:36:09 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/19 16:44:01 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXPR_PRIVATE_H
-# define EXPR_PRIVATE_H
+#include "prvt_expr.h"
 
-# include "expr.h"
-
-typedef struct		s_arg
+void		expr_set_size(t_expr *q)
 {
-	int				type;
-	void			*value;
-}					t_arg;
-
-typedef struct		s_expr
-{
-	int				type;
-	int				arg_size;
-	int				size;
-	void			*name;
-	t_arg			args[6];
-}					t_expr;
-
-#endif
+	if (q->args[OP_NAME].type == TOKEN_ZJMP
+		|| q->args[OP_NAME].type == TOKEN_LDI || q->args[OP_NAME].type == TOKEN_STI
+		|| q->args[OP_NAME].type == TOKEN_FORK
+		|| q->args[OP_NAME].type == TOKEN_LLDI
+		|| q->args[OP_NAME].type == TOKEN_LFORK)
+		q->size = 2;
+	else
+		q->size = 1;
+}

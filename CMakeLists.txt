@@ -311,8 +311,8 @@ add_executable(asm
         parser/prvt_parser_get_token_op2_stri.c
         parser/prvt_parser_xtor.c
         parser/expr.c
-        parser/expr_private.h
-        parser/prvt_expr_set_arg.c
+        parser/prvt_expr.h
+        parser/expr_set_arg.c
         parser/parser.c
         parser/parser_private.h
         parser/parser_singleton_instance.c

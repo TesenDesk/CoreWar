@@ -6,12 +6,11 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 18:28:06 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/14 18:28:06 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/19 19:48:15 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prvt_analyser.h"
-#include "../parser/expr_private.h"
 
 t_vector		*analyse_text(t_analyser *analyser, t_vector *vector,
 								t_hash_map *map, char *text)
@@ -31,7 +30,7 @@ t_vector		*analyse_text(t_analyser *analyser, t_vector *vector,
 		expr = analyser->prvt_get_expr(vector, map, (((char const**)&text)));
 		if (ft_vector_add(expr_text, expr) == FAILURE)
 			exit(-1);
-		expr_type = ((t_expr*)ft_vector_get_curr(expr_text))->type;
+		expr_type = expr_get_type((t_expr*)ft_vector_get_curr(expr_text));
 		analyser->prvt_change_state(analyser, expr_type);
 		if (analyser->state == ANALYSER_ERROR_ST)
 			exit(-1);

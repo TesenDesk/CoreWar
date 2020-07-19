@@ -16,7 +16,7 @@
 
 #include "expr.h"
 #include "expr_defines.h"
-#include "./parser/expr_private.h"
+#include "./parser/prvt_expr.h"
 
 #include "parser.h"
 #include "./parser/parser_private.h"

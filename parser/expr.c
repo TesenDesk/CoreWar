@@ -6,11 +6,11 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 16:21:20 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/15 16:22:35 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/19 19:32:24 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "expr_private.h"
+#include "prvt_expr.h"
 
 t_expr				*expr_ctor(void)
 {
@@ -45,3 +45,31 @@ void				*expr_get_arg_value(t_expr *expr, int index)
 {
 	return (expr->args[index].value);
 }
+
+int 				expr_get_arg_type(t_expr *expr, int index)
+{
+	return (expr->args[index].type);
+}
+
+int 				expr_get_arg_size(t_expr *expr)
+{
+	return (expr->arg_size);
+}
+
+t_arg 				*expr_get_arg(t_expr *expr, int index)
+{
+	return (&(expr->args[index]));
+}
+
+int					expr_get_size(t_expr *expr)
+{
+	return (expr->size);
+}
+
+int					expr_get_type(t_expr *expr)
+{
+	return (expr->type);
+}
+
+
+

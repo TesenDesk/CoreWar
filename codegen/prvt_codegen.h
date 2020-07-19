@@ -6,20 +6,22 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 20:54:51 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/14 21:04:26 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/19 16:08:05 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRVT_CODEGEN_H
 # define PRVT_CODEGEN_H
 
+# include "op.h"
 # include "codegen.h"
+# include "codegen_prototype.h"
+# include "token.h"
+# include "expr.h"
 
 # define T_REG_CODE		1
 # define T_DIR_CODE		2
 # define T_IND_CODE		3
-
-# include "codegen.h"
 
 # define IND_PARAM_SIZE	2
 # define DIR_PARAM_SIZE	4

@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 18:45:08 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/14 19:50:46 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/19 19:48:47 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "parser.h"
 # include "analyser.h"
 # include "lexer.h"
+# include "expr.h"
 # include "token.h"
 # include "token_defines.h"
 

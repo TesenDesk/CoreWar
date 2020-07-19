@@ -6,13 +6,10 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 16:24:02 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/15 16:24:15 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/19 19:38:16 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "expr.h"
-#include "expr_defines.h"
-#include "expr_private.h"
 #include "parser_private.h"
 
 t_token			*prvt_parser_get_token_op0_arit(t_parser *parser,

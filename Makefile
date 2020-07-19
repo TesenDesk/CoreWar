@@ -33,7 +33,8 @@ LEX_SRC     := 	lexer.c \
 				lexer_utils_1.c \
 				lexer_utils_2.c \
 				prvt_lexer_xtor.c \
-				token.c
+				token.c \
+				token_getters.c
 LEX_OBJ     :=  $(patsubst %.c, %.o, $(LEX_SRC))
 LEX_DIR_OBJ :=  $(addprefix ./lexer/, $(LEX_OBJ))
 PARS_SRC :=	prvt_parser_change_state.c \
@@ -60,7 +61,10 @@ PARS_SRC :=	prvt_parser_change_state.c \
 			prvt_parser_get_token_op2_stri.c \
 			prvt_parser_xtor.c \
 			expr.c \
-			prvt_expr_set_arg.c \
+			arg_getters.c \
+			expr_set_arg.c \
+			expr_set_size.c \
+			expr_set_type.c \
 			parser.c \
 			parser_singleton_instance.c
 PARS_OBJ     :=  $(patsubst %.c, %.o, $(PARS_SRC))

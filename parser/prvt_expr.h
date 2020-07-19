@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   label_checker.h                                    :+:      :+:    :+:   */
+/*   expr_private.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/26 16:18:04 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/07/19 19:25:00 by cmissy           ###   ########.fr       */
+/*   Created: 2020/07/15 16:25:58 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/19 18:34:48 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LABEL_CHECKER_H
-# define LABEL_CHECKER_H
+#ifndef EXPR_PRIVATE_H
+# define EXPR_PRIVATE_H
 
-# include "token.h"
 # include "expr.h"
 
-int				label_checker_put_to_map_label_word(
-					t_hash_map **map_of_label_words, t_token *token);
-int				label_checker_put_to_map_label_ptr(
-					t_vector *added_label_ptrs, t_token *token);
-int				label_checker_inclusion_of_maps(t_vector *label_ptr_keys,
-					t_hash_map *map_of_label_words);
+typedef struct		s_arg
+{
+	int				type;
+	void			*value;
+}					t_arg;
+
+typedef struct		s_expr
+{
+	int				type;
+	int				arg_size;
+	int				size;
+	void			*name;
+	t_arg			args[6];
+}					t_expr;
 
 #endif

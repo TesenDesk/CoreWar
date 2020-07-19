@@ -12,6 +12,7 @@
 
 #ifndef PRVT_ANALYSER_XTOR_H
 # define PRVT_ANALYSER_XTOR_H
+
 # include "prvt_analyser.h"
 
 t_analyser		*prvt_analyser_ctor(t_analyser **analyser);

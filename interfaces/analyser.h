@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 21:05:30 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/14 21:06:15 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/19 19:24:10 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 # define CORE_ANALYSER_H
 
 # include "expr.h"
-# include "expr_defines.h"
 # include "label_checker.h"
 # include "lexer.h"
 # include "parser.h"
 # include "token.h"
-# include "token_defines.h"
 # include "text.h"
 
 typedef struct s_analyser	t_analyser;

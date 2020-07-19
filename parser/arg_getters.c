@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expr_set_arg.c                                     :+:      :+:    :+:   */
+/*   arg_getters.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/03 17:22:07 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/16 19:47:04 by cmissy           ###   ########.fr       */
+/*   Created: 2020/07/19 17:35:45 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/19 17:35:45 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lexer/prvt_token.h"
-#include "expr_private.h"
+#include "prvt_expr.h"
 
-/*
-**	It sets argument type and token of the argument.
-*/
-
-int			expr_set_arg(t_expr *expr, t_token *token,
-					int args_number, int arg_type)
+void		*arg_get_value(t_arg *self)
 {
-	if (args_number == UNDEF_ARG)
-		return (SUCCESS);
-	expr->args[args_number].type = arg_type;
-	expr->args[args_number].value = (void *)token;
-	return (SUCCESS);
+	return (self->value);
+}
+
+int			arg_get_type(t_arg *self)
+{
+	return (self->type);
 }

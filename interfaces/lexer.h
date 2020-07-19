@@ -14,7 +14,6 @@
 # define LEXER_H
 
 # include "token.h"
-# include "token_defines.h"
 
 enum					e_lexer_instantiation_status
 {

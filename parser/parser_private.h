@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 16:17:20 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/15 16:18:52 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/19 19:35:41 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "parser.h"
 # include "expr.h"
 # include "expr_defines.h"
-# include "expr_private.h"
+# include "prvt_expr.h"
 # include "label_checker.h"
 
 enum				e_parser_defines

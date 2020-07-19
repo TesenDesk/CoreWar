@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prvt_analyser.h"
 #include "prvt_analyser_xtor.h"
 
 t_analyser				*analyser_singleton_instance(int instantiation_status)

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "prvt_analyser_xtor.h"
-#include "prvt_analyser.h"
 
 t_analyser			*prvt_analyser_ctor(t_analyser **analyser)
 {

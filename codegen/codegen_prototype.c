@@ -1,20 +1,12 @@
-#include "../lexer/prvt_token.h"
-#include "codegen_prototype.h"
 #include "prvt_codegen.h"
-#include "token_defines.h"
-#include "op.h"
-#include "expr.h"
-#include "expr_defines.h"
 
 static void		rotate_four_bytes(unsigned int *p)
 {
-	int			tmp;
 	int			first;
 	int			second;
 	int			third;
 	int			fourth;
 
-	tmp = *p;
 	first = (*p & 0x000000ff) << 24;
 	second = ((*p & 0xff000000) >> 24);
 	third = ((*p & 0x0000ff00) << 8);
@@ -109,6 +101,7 @@ static void		recast_params_types(t_codegen *data, t_expr *q)
 {
 	int			args[3];
 	int			i;
+	int			arg_type;
 
 	args[0] = 0;
 	args[1] = 0;
@@ -116,29 +109,16 @@ static void		recast_params_types(t_codegen *data, t_expr *q)
 	i = FIRST_ARG;
 	while (i <= THIRD_ARG)
 	{
-		if (q->args[i].type == TOKEN_TIND_INT
-		|| q->args[i].type == TOKEN_TIND_LAB)
+		arg_type = expr_get_arg_type(q, i);
+		if (arg_type == TOKEN_TIND_INT || arg_type == TOKEN_TIND_LAB)
 			args[i - 1] = T_IND_CODE;
-		else if (q->args[i].type == TOKEN_TDIR_INT
-		|| q->args[i].type == TOKEN_TDIR_LAB)
+		else if (arg_type == TOKEN_TDIR_INT || arg_type == TOKEN_TDIR_LAB)
 			args[i - 1] = T_DIR_CODE;
-		else if (q->args[i].type == TOKEN_TREG)
+		else if (arg_type == TOKEN_TREG)
 			args[i - 1] = T_REG_CODE;
 		i++;
 	}
 	add_params_types(data, args[0], args[1], args[2]);
-}
-
-static void		dir_type_detector(t_expr *q)
-{
-	if (q->args[OP_NAME].type == TOKEN_ZJMP
-	|| q->args[OP_NAME].type == TOKEN_LDI || q->args[OP_NAME].type == TOKEN_STI
-	|| q->args[OP_NAME].type == TOKEN_FORK
-	|| q->args[OP_NAME].type == TOKEN_LLDI
-	|| q->args[OP_NAME].type == TOKEN_LFORK)
-		q->size = 2;
-	else
-		q->size = 1;
 }
 
 static void		write_address_to_free_label(t_codegen *data, t_expr *label)
@@ -146,11 +126,11 @@ static void		write_address_to_free_label(t_codegen *data, t_expr *label)
 	t_code_addr	*tmp;
 	t_token		*token;
 
-	token = label->args[LABEL_ARG].value;
+	token = expr_get_arg_value(label, LABEL_ARG);
 	if (!(tmp = (t_code_addr*)malloc(sizeof(t_code_addr))))
 		exit(-1);
 	tmp->addr = data->add;
-	ft_hash_map_set_content(data->labels_free, token->val, (tmp));
+	ft_hash_map_set_content(data->labels_free, token_get_value(token), (tmp));
 }
 
 static void		add_address_to_arg_label(t_codegen *data, t_arg *arg, int shift)
@@ -159,10 +139,10 @@ static void		add_address_to_arg_label(t_codegen *data, t_arg *arg, int shift)
 
 	if (!(label = (t_label_data*)malloc(sizeof(t_label_data))))
 		exit(-1);
-	label->name = ((t_token*)arg->value)->val;
+	label->name = token_get_value(arg_get_value(arg));
 	label->add = data->add + shift;
 	label->instruction_begining = data->cur_instruction_addr;
-	label->param_type = arg->type;
+	label->param_type = arg_get_type(arg);
 	label->size = data->cur_instruction_dirsize;
 	ft_vector_add(data->labels_ptrs, label);
 }
@@ -196,17 +176,19 @@ void			cut_num_arg(int *num_arg, int param_type, char dir_type)
 	}
 }
 
-static void		fill_dirind_param(t_codegen *data, t_arg *param, char dir_type)
+static void			fill_dirind_param(t_codegen *data, t_arg *param,
+					char dir_type)
 {
-	int			num_arg;
-	int			cell_size;
-	short		s;
+	unsigned int	num_arg;
+	int				cell_size;
+	short			s;
 
-	num_arg = ft_atol(((t_token *)param->value)->val);
-	if (param->type == TOKEN_TREG)
+	num_arg = (unsigned int)ft_atol(token_get_value(arg_get_value(param)));
+	if (arg_get_type(param) == TOKEN_TREG)
 		cell_size = 1;
 	else
-		cell_size = param->type == TOKEN_TDIR_INT && dir_type == 1 ? 4 : 2;
+		cell_size = arg_get_type(param) == TOKEN_TDIR_INT && dir_type == 1 ?
+			4 : 2;
 	rotate_bytes(&num_arg, cell_size);
 	if (cell_size == 2)
 	{
@@ -222,12 +204,14 @@ static void		add_param(t_codegen *data, t_arg *param, char dir_type)
 {
 	int			arg;
 	int			shift;
+	int			arg_type;
 
 	arg = 0;
-	if (param->type == TOKEN_TIND_LAB || param->type == TOKEN_TDIR_LAB)
+	arg_type = arg_get_type(param);
+	if (arg_type == TOKEN_TIND_LAB || arg_type == TOKEN_TDIR_LAB)
 	{
-		if ((param->type == TOKEN_TDIR_LAB && dir_type == 2)
-		|| param->type == TOKEN_TIND_LAB)
+		if ((arg_type == TOKEN_TDIR_LAB && dir_type == 2)
+		|| arg_type == TOKEN_TIND_LAB)
 			shift = 2;
 		else
 			shift = 4;
@@ -261,28 +245,34 @@ static void		fill_codes(int array_of_codes[NUM_OF_TOKENS])
 static void		map_expr_to_code(t_expr *expr)
 {
 	static int	array_of_exprcodes[NUM_OF_TOKENS];
+	int			new_type;
 
 	if (array_of_exprcodes[TOKEN_LFORK])
 		;
 	else
 		fill_codes(array_of_exprcodes);
-	expr->type = array_of_exprcodes[expr->args[OP_NAME].type];
+	new_type = array_of_exprcodes[expr_get_arg_type(expr, OP_NAME)];
+	expr_set_type(expr, new_type);
 }
 
 static void		do_something_in_cycle(t_codegen *data, t_expr *q)
 {
 	int			i;
+	t_arg		*curr_arg;
+	int			arg_type;
 
 	i = 1;
-	while (i - 1 < q->arg_size && q->args[i].type)
+	while (i - 1 < expr_get_arg_size(q) && expr_get_arg_type(q, i))
 	{
-		add_param(data, &(q->args[i++]), q->size);
-		if (q->args[i - 1].type == TOKEN_TREG)
+		arg_type = expr_get_arg_type(q, i);
+		curr_arg = expr_get_arg(q, i++);
+		add_param(data, curr_arg, (char)expr_get_size(q));
+		if (arg_type == TOKEN_TREG)
 			data->code_size += 1;
-		else if (q->args[i - 1].type == TOKEN_TIND_LAB
-		|| q->args[i - 1].type == TOKEN_TIND_INT
-		|| ((q->args[i - 1].type == TOKEN_TDIR_LAB
-		|| q->args[i - 1].type == TOKEN_TDIR_INT) && q->size == 2))
+		else if (arg_type == TOKEN_TIND_LAB
+		|| arg_type == TOKEN_TIND_INT
+		|| ((arg_type == TOKEN_TDIR_LAB
+		|| arg_type == TOKEN_TDIR_INT) && expr_get_size(q) == 2))
 			data->code_size += 2;
 		else
 			data->code_size += 4;
@@ -291,19 +281,20 @@ static void		do_something_in_cycle(t_codegen *data, t_expr *q)
 
 void			codegen_codegen(t_codegen *data, t_expr *q)
 {
-	if (q->type == EXPR_LABEL_W)
+	if (expr_get_type(q) == EXPR_LABEL_W)
 		write_address_to_free_label(data, q);
-	else if (q->type != EXPR_EOF)
+	else if (expr_get_type(q) != EXPR_EOF)
 	{
-		dir_type_detector(q);
+		expr_set_size(q);
 		map_expr_to_code(q);
 		data->cur_instruction_addr = data->add;
-		data->cur_instruction_code = q->type;
-		data->cur_instruction_dirsize = q->size;
-		data->code[data->add++] = q->type;
+		data->cur_instruction_code = expr_get_type(q);
+		data->cur_instruction_dirsize = expr_get_size(q);
+		data->code[data->add++] = expr_get_type(q);
 		data->code_size += 1;
-		if (q->type != OP_LIVE_CODE && q->type != OP_ZJMP_CODE
-			&& q->type != OP_FORK_CODE && q->type != OP_LFORK_CODE)
+		if (expr_get_type(q) != OP_LIVE_CODE && expr_get_type(q) != OP_ZJMP_CODE
+			&& expr_get_type(q) != OP_FORK_CODE && expr_get_type(q) !=
+			OP_LFORK_CODE)
 		{
 			recast_params_types(data, q);
 			data->code_size += 1;
@@ -329,7 +320,7 @@ static void			codegen_ending(t_codegen *data)
 		if (ld->param_type == TOKEN_TIND_LAB)
 			tmp %= IDX_MOD;
 		cell_size = (ld->param_type == TOKEN_TDIR_LAB && ld->size == 1) ? 4 : 2;
-		rotate_bytes(&tmp, cell_size);
+		rotate_bytes((unsigned int*)&tmp, cell_size);
 		if (cell_size == 2)
 			ft_memcpy(&(data->code[ld->add]), (short *)&tmp, cell_size);
 		else
@@ -368,8 +359,8 @@ void			init_header(t_header *header, t_vector *text)
 	char		*name;
 	char		*comment;
 
-	name = ((t_token*)((((t_expr*)text->items[0])->args[0]).value))->val;
-	comment = ((t_token*)((((t_expr*)text->items[1])->args[0]).value))->val;
+	name = token_get_value(expr_get_arg_value(text->items[0], 0));
+	comment = token_get_value(expr_get_arg_value(text->items[1], 0));
 	ft_bzero(header->comment, COMMENT_LENGTH + 1);
 	ft_bzero(header->prog_name, PROG_NAME_LENGTH + 1);
 	ft_memcpy(header->prog_name, name, ft_strlen(name));

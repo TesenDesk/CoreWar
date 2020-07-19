@@ -6,11 +6,10 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 19:47:03 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/07/14 21:29:30 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/19 19:30:47 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
 #include "prvt_lexer_utils.h"
 
 /*
