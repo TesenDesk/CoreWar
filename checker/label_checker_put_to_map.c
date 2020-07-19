@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 15:33:48 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/07/19 20:09:47 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/19 20:38:52 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int					label_checker_put_to_map_label_ptr(
 	if (!(data = (t_label_data*)ft_memalloc(sizeof(t_label_data))))
 		exit(-1);
 	data->name = token_get_value(token);
-	data->add = token_get_token_ptr(token, 0);
+	data->add = (unsigned int)token_get_token_ptr(token, 0);
 	if (ft_vector_add(added_label_ptrs, data) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);

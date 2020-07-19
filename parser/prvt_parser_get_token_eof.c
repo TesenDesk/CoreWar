@@ -19,7 +19,7 @@ t_token			*prvt_parser_get_token_eof(t_parser *parser, t_lexer *lexer,
 	int			token_type;
 
 	if ((token = lexer_form_token(lexer, text)) == NULL)
-		return (NO_TOKEN);
+		return (NULL);
 	token_type = token_get_type(token);
 	if (!(token_type == TOKEN_EOF))
 		expr->type = EXPR_UNDEF;

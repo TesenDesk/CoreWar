@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 21:30:04 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/14 21:38:31 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/19 20:28:32 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ static int		find_op_type(char const *text)
 int				lexer_get_term_init(t_lexer *lexer, char const **text,
 									int *type, void *token_ptr[2])
 {
-	int op_len;
+	int			op_len;
 
 	op_len = 0;
 	while (**text == ' ' || **text == '\t')
@@ -113,8 +113,8 @@ int				lexer_get_term_init(t_lexer *lexer, char const **text,
 	if (!(**text))
 	{
 		*type = TOKEN_EOF;
-		token_ptr[0] = *text;
-		token_ptr[1] = *text;
+		token_ptr[0] = (void*)*text;
+		token_ptr[1] = (void*)*text;
 		return (EOF_CODE);
 	}
 	else if (**text == COMMENT_CHAR)
@@ -130,8 +130,8 @@ int				lexer_get_term_init(t_lexer *lexer, char const **text,
 	else if (**text == LINE_FEED)
 	{
 		*type = TOKEN_LFEED;
-		token_ptr[0] = *text;
-		token_ptr[1] = *text;
+		token_ptr[0] = (void*)*text;
+		token_ptr[1] = (void*)*text;
 		++(*text);
 		return (INIT_ST);
 	}

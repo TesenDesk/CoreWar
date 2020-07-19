@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:40:45 by yurezz            #+#    #+#             */
-/*   Updated: 2020/07/14 21:39:48 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/19 20:30:58 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@
 void			prvt_lexer_ctor(t_lexer **lexer)
 {
 	if (!(*lexer = (t_lexer*)malloc(sizeof(t_lexer))))
-	{
-		("error\n");
 		exit(-1);
-	}
 	(*lexer)->state = INIT_ST;
 	(*lexer)->change_state = lexer_change_state;
 	(*lexer)->lexer_form_token = lexer_form_token;

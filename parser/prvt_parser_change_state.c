@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 13:36:30 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/17 16:41:35 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/19 20:29:43 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ static int	prvt_parser_find_next_to_op01_st(t_parser *parser, int token_type)
 		parser->state = PARSER_FINISH_ST;
 	else
 		parser->state = PARSER_ERROR;
+	return (SUCCESS);
 }
 
 static int	prvt_parser_find_next_to_op2_st(t_parser *parser, int token_type)
