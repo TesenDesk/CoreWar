@@ -94,8 +94,8 @@ void				prvt_vm_params_add_unnamed_player_node(t_vm_params *self,
 						t_vmp_player *player);
 void				prvt_vm_params_add_named_player_node(t_vm_params *self,
 						t_vmp_player *player);
-void				prvt_vm_params_set_player_name(t_vm_params *self,
-						int player_name);
+void				prvt_vm_params_set_p_name(t_vm_params *self,
+						int p_name);
 void				prvt_vm_params_set_file_name_with_id(t_vm_params *self,
 						char *file_name);
 void				prvt_vm_params_set_file_name_without_id(t_vm_params *self,

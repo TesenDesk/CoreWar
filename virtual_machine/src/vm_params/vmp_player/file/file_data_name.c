@@ -20,6 +20,6 @@ char		*file_data_name(t_i_file *self)
 	name_in_data = (char*)(self->data)
 		+ MAGIC_LENGTH;
 	if (!(name = ft_strdup(name_in_data)))
-		raise(__FILE__, __LINE__, ENOMEMORY);
+		ft_raise(__FILE__, __LINE__, ENOMEMORY);
 	return (name);
 }

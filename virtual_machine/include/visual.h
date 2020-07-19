@@ -12,7 +12,8 @@ typedef struct  s_wins
 {
 	WINDOW      *arena;
 	WINDOW      *info;
-	WINDOW      *help;
+	WINDOW      *champ;
+//	WINDOW      *help;
 }               t_wins;
 
 
@@ -21,13 +22,18 @@ typedef struct          s_color_mapcell
 {
 	int                 player_index;
 	int                 cell_index;
+	int                 store_index;
 
 }                       t_color_mapcell;
 
 
 
-t_wins *init_wins(void);
-void destroy_win(WINDOW *local_win);
-void    draw_arena(t_wins  *wins, t_arena *arena, t_vm *vm);
+t_wins  *init_wins(void);
+void    destroy_win(WINDOW *local_win);
+void    draw_arena(t_vm *vm);
+void    init_curses(void);
+void    erase_windows(t_vm *vm);
+void    print_windows(t_vm *vm);
+void    process_keys(t_vm *self);
 
 #endif

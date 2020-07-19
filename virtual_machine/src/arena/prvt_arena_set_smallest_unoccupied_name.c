@@ -16,19 +16,19 @@ static void		prvt_arena_set_smallest_unoccupied_name_postcondition_check(
 					t_arena *self)
 {
 	if (self->smallest_unoccupied_name > self->nb_players)
-		raise(__FILE__, __LINE__, EBADPLAYERNAME);
+		ft_raise(__FILE__, __LINE__, EBADPLAYERNAME);
 	return ;
 }
 
 void			prvt_arena_set_smallest_unoccupied_name(t_arena *self)
 {
-	int			new_player_name;
+	int			new_p_name;
 
-	new_player_name = self->smallest_unoccupied_name;
-	while ((self->players)[new_player_name] != NULL
-		&& new_player_name < self->nb_players)
-		++new_player_name;
-	self->smallest_unoccupied_name = new_player_name;
+	new_p_name = self->smallest_unoccupied_name;
+	while ((self->players)[new_p_name] != NULL
+		&& new_p_name < self->nb_players)
+		++new_p_name;
+	self->smallest_unoccupied_name = new_p_name;
 	prvt_arena_set_smallest_unoccupied_name_postcondition_check(self);
 	return ;
 }

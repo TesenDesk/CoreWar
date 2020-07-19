@@ -75,7 +75,7 @@ static char		*error_messages[ERRMSGCOUNT] =
 //		"(REG_SIZE is less then number of players.)",
 };
 
-int				raise(char *file_name, int line_nb, int errmsg_index)
+int				ft_raise(char *file_name, int line_nb, int errmsg_index)
 {
 	(void)vm_singleton(VM_DESTRUCT, 0, NULL);
 	ft_putstr_fd("Error! File: ", STDERR);

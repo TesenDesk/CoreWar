@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vmp_player_name.c                                  :+:      :+:    :+:   */
+/*   vmp_p_name.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,8 +12,8 @@
 
 #include "prvt_vmp_player.h"
 
-int			vmp_player_name(t_vmp_player *self)
+int			vmp_p_name(t_vmp_player *self)
 {
 
-	return (self->player_name);
+	return (self->p_name);
 }

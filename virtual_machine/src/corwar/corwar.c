@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "_corwar.h"
+#include "../_vm.h"
+#include "../vm_params/prvt_vm_params.h"
 
 static void		_corwar_precondition_check()
 {
@@ -25,17 +27,25 @@ static void		_corwar_precondition_check()
 		CYCLE_DELTA < 1 ||
 		MAX_CHECKS < 1 ||
 		NBR_LIVE < 0)
-		raise(__FILE__, __LINE__, EINVALCONSTANTS);
+		ft_raise(__FILE__, __LINE__, EINVALCONSTANTS);
 	return ;
+}
+
+int             _corewar_chose_regime(t_vm *this)
+{
+	if (this->params->ncurses == TRUE)
+		return (VISUAL_MODE);
+	return (DEFAULT_MODE);
 }
 
 int				main(int argc, char *argv[])
 {
 	t_vm		*this;
+	static      vm_play_fptr vmptf[2] = {vm_play, vm_play_visual};
 
 	_corwar_precondition_check();
 	this = vm_singleton(VM_INSTANTIATE, argc - 1, argv + 1);
-	vm_play(this);
+	vmptf[_corewar_chose_regime(this)](this);
 	(void)vm_singleton(VM_DESTRUCT, 0, NULL);
 	return (SUCCESS);
 }

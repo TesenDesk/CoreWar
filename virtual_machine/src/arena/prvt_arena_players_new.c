@@ -18,6 +18,6 @@ t_player			**prvt_arena_players_new(int num_players)
 
 	if ((new_array = (t_player **)ft_memalloc(sizeof(*new_array)
 			* num_players)) == NULL)
-		raise(__FILE__, __LINE__, ENOMEMORY);
+		ft_raise(__FILE__, __LINE__, ENOMEMORY);
 	return (new_array);
 }

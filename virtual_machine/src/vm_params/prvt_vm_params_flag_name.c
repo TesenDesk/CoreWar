@@ -18,7 +18,7 @@ int				prvt_vm_params_flag_name(t_vm_params *self, char *param)
 
 	num = ft_atol(param);
 	if (!(ft_arg_is_num(param)))
-		raise(__FILE__, __LINE__, ENOARGVAL);
-	prvt_vm_params_set_player_name(self, num);
+		ft_raise(__FILE__, __LINE__, ENOARGVAL);
+	prvt_vm_params_set_p_name(self, num);
 	return (FLAG_NUM_CODE);
 }

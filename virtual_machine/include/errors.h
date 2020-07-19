@@ -40,6 +40,6 @@ enum					e_error_id
 	ERRMSGCOUNT,
 };
 
-int				raise(char *file_name, int line_nb, int errmsg_index);
+int				ft_raise(char *file_name, int line_nb, int errmsg_index);
 
 #endif

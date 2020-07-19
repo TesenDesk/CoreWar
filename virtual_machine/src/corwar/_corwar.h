@@ -19,4 +19,7 @@
 # include "op.h"
 # include "vm.h"
 
+# define DEFAULT_MODE 0
+# define VISUAL_MODE 1
+
 #endif

@@ -45,7 +45,7 @@ static int		flag_check(char *param)
 	else if (ft_arg_is_num(param))
 		return (FLAG_NUM_CODE);
 	else if (*param == '-')
-		raise(__FILE__, __LINE__, FLAG_UNDEF);
+		ft_raise(__FILE__, __LINE__, FLAG_UNDEF);
 	return (FLAG_FILE_CODE);
 }
 

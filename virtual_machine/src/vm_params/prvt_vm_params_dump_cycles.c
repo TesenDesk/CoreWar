@@ -18,7 +18,7 @@ int				prvt_vm_params_dump_cycles(t_vm_params *self, char *param)
 
 	num = ft_atol(param);
 	if (!(ft_arg_is_num(param)) || num < 0)
-		raise(__FILE__, __LINE__, ENOARGVAL);
+		ft_raise(__FILE__, __LINE__, ENOARGVAL);
 	self->dump_cycles = num;
 	self->is_set_dump = TRUE;
 	return (FLAG_NUM_CODE);

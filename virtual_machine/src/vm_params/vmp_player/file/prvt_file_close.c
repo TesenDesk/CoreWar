@@ -15,9 +15,9 @@
 void			prvt_file_close(t_i_file *self)
 {
 	if (self->is_opened == FALSE)
-		raise(__FILE__, __LINE__, EDOUBLECLOSE);
+		ft_raise(__FILE__, __LINE__, EDOUBLECLOSE);
 	if (close(self->fd) == FAILURE)
-		raise(__FILE__, __LINE__, ECANNOTCLOSE);
+		ft_raise(__FILE__, __LINE__, ECANNOTCLOSE);
 	self->is_opened = FALSE;
 	return ;
 }

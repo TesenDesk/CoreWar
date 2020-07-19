@@ -23,6 +23,6 @@ char		*file_data_comment(t_i_file *self)
 		+ NULL_LENGTH
 		+ CHAMP_SIZE_LENGTH;
 	if (!(comment = ft_strdup(comment_in_data)))
-		raise(__FILE__, __LINE__, ENOMEMORY);
+		ft_raise(__FILE__, __LINE__, ENOMEMORY);
 	return (comment);
 }

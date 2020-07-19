@@ -17,7 +17,7 @@ t_vm		*_vm_new(int argc, char *argv[])
 	t_vm		*self;
 
 	if ((self = (t_vm *)ft_memalloc(sizeof(*self))) == NULL)
-		raise(__FILE__, __LINE__, ENOMEMORY);
+		ft_raise(__FILE__, __LINE__, ENOMEMORY);
 	self->params = vm_params_new(argc, argv);
 	self->cycles_to_dump = vm_params_dump_cycles(self->params);
 	self->verbosity_lvl = vm_params_verbosity_lvl(self->params);

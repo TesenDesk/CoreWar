@@ -13,25 +13,12 @@
 #include "_vm.h"
 #include "visual.h"
 #include "arena/prvt_arena.h"
+#include "ncurses.h"
+#include "visual.h"
+
+#include "visual/_visual_private.h"
 
 
-
-//while (i < 64)
-//{
-//j = 0;
-//wmove(vm->vs->win_arena, i + 2, 5);
-//while (j < 64)
-//{
-//attribute = get_attribute(vm, &vm->vs->map[i * 64 + j], cycles);
-//wattron(vm->vs->win_arena, attribute);
-//wprintw(vm->vs->win_arena, "%.2x", vm->arena[i * 64 + j]);
-//wattroff(vm->vs->win_arena, attribute);
-//waddch(vm->vs->win_arena, ' ');
-//j++;
-//}
-//wprintw(vm->vs->win_arena, "\n");
-//i++;
-//}
 
 void			destroy_dead_carriages(t_list **head, int c_t_d, int cntr)
 {
@@ -91,41 +78,14 @@ void			vm_next_cycle(t_vm *self)
 	list = self->carriage_head;
 	while (list)
 	{
-//		printf("%p\n", list);
 		carriage_take_step(list->content);
 		list = list->next;
 	}
 }
 
-static int ft_sqrt(int k)
-{
-	int   i;
-
-	i = 2;
-	while (i * i < k)
-		i += 1;
-	return (i);
-}
-
 
 void			vm_play(t_vm *self)
 {
-	int startx, starty, width, height;
-	int ch;
-	t_wins      *wins;
-
-
-	initscr();			/* Start curses mode 		*/
-	cbreak();			/* Line buffering disabled, Pass on
-					 * everty thing to me 		*/
-
-	height = SQRT_MAP+ 2;
-	width = SQRT_MAP * 3 + 2;
-	starty = 1;	/* Calculating for a center placement */
-	startx = 1;	/* of the window		*/
-	wins = init_wins();
-
-	self->wins = wins;
 	arena_players_introducing(self->arena);
 	self->cycles_to_die = CYCLE_TO_DIE;
 	self->cycles_counter = 1;
@@ -151,15 +111,43 @@ void			vm_play(t_vm *self)
 		self->global_counter += 1;
 		self->cycles_counter += 1;
 		self->cycles_to_dump -= 1;
-		draw_arena(wins, self->arena, self);
-//		werase(my_win);
-//		wprintw(my_win, "DONE");
-//		wrefresh(my_win);
-//		getchar();
 	}
-//	draw_arena(my_win, self->arena, self);
-//	werase(my_win);
-//	wprintw(my_win, "DONE");
-//	wrefresh(my_win);
-//	getchar();
+}
+
+
+void			vm_play_visual(t_vm *self)
+{
+	init_curses();
+	self->wins = init_wins();
+	arena_players_introducing(self->arena);
+	self->cycles_to_die = CYCLE_TO_DIE;
+	self->cycles_counter = 1;
+	self->global_counter = 1;
+	cbreak();
+	noecho();
+	nodelay(stdscr, TRUE);
+	while (TRUE)
+	{
+		process_keys(self);
+		erase_windows(self);
+		if (self->cycles_to_dump == 0)
+		{
+			arena_print_dump(self->arena);
+			break ;
+		}
+		vm_next_cycle(self);
+		if (self->cycles_to_die <= self->cycles_counter)
+		{
+			if (vm_check(self) == FAILURE)
+			{
+				arena_print_winner(self->arena);
+				break ;
+			}
+		}
+		self->global_counter += 1;
+		self->cycles_counter += 1;
+		self->cycles_to_dump -= 1;
+		print_windows(self);
+		usleep(100000 / (self->speed*2));
+	}
 }

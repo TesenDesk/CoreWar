@@ -80,10 +80,10 @@ static int		file_data_magic_header_check(t_i_file *self)
 int				file_data_check_valid(t_i_file *self)
 {
 	if (file_check_data_size(self))
-		raise(__FILE__, __LINE__, EWRONGSIZE);
+		ft_raise(__FILE__, __LINE__, EWRONGSIZE);
 	else if (file_data_check_nulls(self))
-		raise(__FILE__, __LINE__, ENONULLS);
+		ft_raise(__FILE__, __LINE__, ENONULLS);
 	else if (file_data_magic_header_check(self))
-		raise(__FILE__, __LINE__, ENOMAGICH);
+		ft_raise(__FILE__, __LINE__, ENOMAGICH);
 	return (SUCCESS);
 }

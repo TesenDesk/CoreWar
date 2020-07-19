@@ -21,7 +21,8 @@
 #define P_2_L_OUT       10
 #define P_3_L_OUT       11
 #define P_4_L_OUT       12
-#define NEUTRAL_COL     13
+#define B_INFO          13
+#define NEUTRAL_COL     14
 
 #define HOME_OFFSET     4
 #define OUT_OFFSET      8
@@ -172,7 +173,7 @@
 //
 //void				draw(t_vm *vm);
 //
-//void				draw_info(t_vm *vm);
+//void				draw_basic_info(t_vm *vm);
 //
 //void				draw_help(t_vm *vm);
 //

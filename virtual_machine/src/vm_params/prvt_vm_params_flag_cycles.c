@@ -18,7 +18,7 @@ int				prvt_vm_params_flag_cycles(t_vm_params *self, char *param)
 
 	num = ft_atol(param);
 	if (!(ft_arg_is_num(param)))
-		raise(__FILE__, __LINE__, ENOARGVAL);
+		ft_raise(__FILE__, __LINE__, ENOARGVAL);
 	self->nb_cycles = num;
 	return (FLAG_NUM_CODE);
 }

@@ -15,7 +15,7 @@
 static void			prvt_arena_new_precondition_check(void)
 {
 	if (MEM_SIZE <= 0 || CHAMP_MAX_SIZE <= 0 || REG_NUMBER <= 0)
-		raise(__FILE__, __LINE__, EINVALCONSTANTS);
+		ft_raise(__FILE__, __LINE__, EINVALCONSTANTS);
 	return ;
 }
 
@@ -28,7 +28,7 @@ static void			arena_fill_in_the_data(t_arena *self)
 	step = MEM_SIZE / self->nb_players;
 	curr = 0;
 	if (!(arena_field = ft_memalloc(MEM_SIZE*2 * sizeof(char))))
-		raise(__FILE__, __LINE__, EINVALCONSTANTS);
+		ft_raise(__FILE__, __LINE__, EINVALCONSTANTS);
 	while (curr < self->nb_players)
 	{
 		ft_memcpy((arena_field + (curr) * step),
@@ -45,10 +45,9 @@ static void			arena_fill_in_the_data(t_arena *self)
 t_arena				*arena_new(t_vm_params *params)
 {
 	t_arena			*self;
-
 	prvt_arena_new_precondition_check();
 	if ((self = (t_arena *)ft_memalloc(sizeof(*self))) == NULL)
-		raise(__FILE__, __LINE__, ENOMEMORY);
+		ft_raise(__FILE__, __LINE__, ENOMEMORY);
 	self->nb_players = vm_params_nb_players(params);
 	self->last_live_player = self->nb_players;
 	self->players = prvt_arena_players_new(self->nb_players);

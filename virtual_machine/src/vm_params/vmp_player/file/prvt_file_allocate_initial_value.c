@@ -15,6 +15,6 @@
 void			prvt_file_allocate_initial_value(t_i_file *self)
 {
 	if ((self->data = ft_memalloc(sizeof(char) * INITIAL_CHUNK)) == NULL)
-		raise(__FILE__, __LINE__, ENOMEMORY);
+		ft_raise(__FILE__, __LINE__, ENOMEMORY);
 	self->capacity = INITIAL_CHUNK;
 }

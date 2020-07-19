@@ -37,7 +37,7 @@ static int				prvt_vmp_state(t_vm_params *self, int argtype)
 			&& argtype == FLAG_FILE_CODE)
 		self->state = VMP_INITIAL;
 	else
-		raise(__FILE__, __LINE__, ENOARGVAL);
+		ft_raise(__FILE__, __LINE__, ENOARGVAL);
 	return (SUCCESS);
 }
 
@@ -63,7 +63,7 @@ void					prvt_vm_params_parse(t_vm_params *self, char **params)
 
 	arg_type = NO_FLAG_CODE;
 	if (!(*params))
-		raise(__FILE__, __LINE__, EBADPLAYERNAME);
+		ft_raise(__FILE__, __LINE__, EBADPLAYERNAME);
 	while (*params)
 	{
  		arg_type = vtable[self->state](self, *params);

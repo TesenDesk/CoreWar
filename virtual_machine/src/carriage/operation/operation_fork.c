@@ -32,11 +32,11 @@ void operation_fork(t_carriage *self)
     op.args[0] = arena_get_n_bytes_from(self->arena, self->arena_position + OP_CODE_SIZE, op.t_dir_size);
     position = op.args[0] % IDX_MOD + self->arena_position;
 	print_op_log(self, op.args[0], position);
-    new_carriage = carriage_new(self->player_name, self->arena, position, vm_num_of_carriages_and_increase());
-//arena_set_last_live_player(new_carriage->arena, new_carriage->player_name);
+    new_carriage = carriage_new(self->p_name, self->arena, position, vm_num_of_carriages_and_increase());
+//arena_set_last_live_player(new_carriage->arena, new_carriage->p_name);
 	_fill_new_carriage(self, new_carriage);
     self->arena_position = (self->arena_position + op.op_len) % MEM_SIZE;
     if ((new_node = ft_lstnew((void *) new_carriage, sizeof(t_carriage))) == NULL)
-        raise(__FILE__, __LINE__, ENOMEMORY);
+        ft_raise(__FILE__, __LINE__, ENOMEMORY);
     vm_add_new_carriage_node(new_node);
 }
