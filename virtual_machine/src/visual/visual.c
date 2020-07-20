@@ -32,9 +32,9 @@ t_wins          *init_wins(void)
 		exit(-1);
 	if (!(wins->arena = create_newwin(SQRT_MAP + 2, SQRT_MAP * 3 + 2, 1, 1)))
 		exit(-1);
-	if (!(wins->info = create_newwin(11, 75, 1, SQRT_MAP * 3 + 4)))
+	if (!(wins->info = create_newwin(8, 75, 1, SQRT_MAP * 3 + 4)))
 		exit(-1);
-	if (!(wins->champ = create_newwin(17, 75, 12, SQRT_MAP * 3 + 4)))
+	if (!(wins->champ = create_newwin(17, 53, 9, SQRT_MAP * 3 + 4)))
 		exit(-1);
 	return (wins);
 }
@@ -168,21 +168,20 @@ void    draw_basic_info(t_vm *vm)
 	wattroff(vm->wins->info, COLOR_PAIR(B_INFO) | A_BOLD);
 }
 
-
 void    draw_champ_info(t_vm *vm)
 {
 	int i;
-	i = 0;
 
+	i = 0;
 	while (i < (unsigned int) vm->arena->nb_players)
 	{
 		wattron(vm->wins->champ, COLOR_PAIR(P_1_HOME + i) | A_BOLD);
 		wmove(vm->wins->champ, i * vm->arena->nb_players + 1, 1);
-		wprintw(vm->wins->champ, "P_%d_name: %s", i+1, vm->arena->players[i]->text_name);
+		wprintw(vm->wins->champ, "P_%d_name: %40s", i+1, vm->arena->players[i]->text_name);
 		wmove(vm->wins->champ, i * vm->arena->nb_players + 2, 1);
-		wprintw(vm->wins->champ, "P_%d_comment: %s", i + 1, vm->arena->players[i]->text_comment);
+		wprintw(vm->wins->champ, "P_%d_comment: %37s", i + 1, vm->arena->players[i]->text_comment);
 		wmove(vm->wins->champ, i * vm->arena->nb_players + 3, 1);
-		wprintw(vm->wins->champ, "carriage_num: %d",  vm->arena->carriage_num[i]);
+		wprintw(vm->wins->champ, "carriage_num: %36d", vm->arena->carriage_num[i]);
 		wattroff(vm->wins->champ, COLOR_PAIR(P_1_HOME +i ) | A_BOLD);
 		++i;
 	}
