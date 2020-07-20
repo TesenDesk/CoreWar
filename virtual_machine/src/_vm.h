@@ -50,6 +50,9 @@ typedef struct	s_vm
 	int         num_checks;
 	int         num_of_carriages;
     int         verbosity_lvl;
+    int         urgent_break;
+    int         is_erased;
+    int         key;
   ;
 }				t_vm;
 

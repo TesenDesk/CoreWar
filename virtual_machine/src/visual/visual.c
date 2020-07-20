@@ -32,9 +32,11 @@ t_wins          *init_wins(void)
 		exit(-1);
 	if (!(wins->arena = create_newwin(SQRT_MAP + 2, SQRT_MAP * 3 + 2, 1, 1)))
 		exit(-1);
-	if (!(wins->info = create_newwin(8, 75, 1, SQRT_MAP * 3 + 4)))
+	if (!(wins->info = create_newwin(9, 75, 1, SQRT_MAP * 3 + 4)))
 		exit(-1);
-	if (!(wins->champ = create_newwin(17, 53, 9, SQRT_MAP * 3 + 4)))
+	if (!(wins->champ = create_newwin(14, 53, 10, SQRT_MAP * 3 + 4)))
+		exit(-1);
+	if (!(wins->win = create_newwin(4, 38, SQRT_MAP + 3, 1)))
 		exit(-1);
 	return (wins);
 }
@@ -76,6 +78,10 @@ void    init_colors(void)
 	init_pair(P_2_L_OUT, COLOR_WHITE, COLOR_YELLOW);
 	init_pair(P_3_L_OUT, COLOR_WHITE, COLOR_GREEN);
 	init_pair(P_4_L_OUT, COLOR_WHITE, COLOR_BLUE);
+	init_pair(P_1_L_WIN, COLOR_CYAN, COLOR_RED);
+	init_pair(P_2_L_WIN, COLOR_CYAN, COLOR_YELLOW);
+	init_pair(P_3_L_WIN, COLOR_CYAN, COLOR_GREEN);
+	init_pair(P_4_L_WIN, COLOR_CYAN, COLOR_BLUE);
 	init_pair(B_INFO, COLOR_CYAN, COLOR_BLACK);
 	init_pair(NEUTRAL_COL, COLOR_GRAY, COLOR_BLACK);
 }
@@ -154,17 +160,19 @@ void    draw_basic_info(t_vm *vm)
 {
 	wattron(vm->wins->info, COLOR_PAIR(B_INFO) | A_BOLD);
 	wmove(vm->wins->info, 1, 1);
-	wprintw(vm->wins->info, " cycles_to_die:  %zu\n", (unsigned  int)vm->cycles_to_die);
+	wprintw(vm->wins->info, " CYCLES_TO_DIE:   %zu\n", (unsigned  int)vm->cycles_to_die);
 	wmove(vm->wins->info, 2, 1);
-	wprintw(vm->wins->info, " cycles_counter: %zu\n", (unsigned int)vm->cycles_counter);
+	wprintw(vm->wins->info, " CURRENT_COUNTER: %zu\n", (unsigned int)vm->cycles_counter);
 	wmove(vm->wins->info, 3, 1);
-	wprintw(vm->wins->info, " cycles_to_dump: %d\n", -vm->cycles_to_dump);
+	wprintw(vm->wins->info, " GLOBAL_COUNTER:  %d\n", vm->global_counter);
 	wmove(vm->wins->info, 4, 1);
-	wprintw(vm->wins->info, " cycles_delta:   %d\n", CYCLE_DELTA);
+	wprintw(vm->wins->info, " CYCLES_DELTA:    %d\n", CYCLE_DELTA);
 	wmove(vm->wins->info, 5, 1);
-	wprintw(vm->wins->info, " game_speed:     %d\n", vm->speed);
+	wprintw(vm->wins->info, " GAME_SPEED:      %d\n", vm->speed);
 	wmove(vm->wins->info, 6, 1);
 	wprintw(vm->wins->info, " TO SPEED_UP PUSH UP_ARROW, TO SPEED_DOWN PUSH DOWN_ARROW(MIN 1 MAX 10)");
+	wmove(vm->wins->info, 7, 1);
+	wprintw(vm->wins->info, "                 PRESS 'x' TO GO TO JUMP TO THE END");
 	wattroff(vm->wins->info, COLOR_PAIR(B_INFO) | A_BOLD);
 }
 
@@ -176,11 +184,11 @@ void    draw_champ_info(t_vm *vm)
 	while (i < (unsigned int) vm->arena->nb_players)
 	{
 		wattron(vm->wins->champ, COLOR_PAIR(P_1_HOME + i) | A_BOLD);
-		wmove(vm->wins->champ, i * vm->arena->nb_players + 1, 1);
+		wmove(vm->wins->champ, i *3  + 1, 1);
 		wprintw(vm->wins->champ, "P_%d_name: %40s", i+1, vm->arena->players[i]->text_name);
-		wmove(vm->wins->champ, i * vm->arena->nb_players + 2, 1);
+		wmove(vm->wins->champ, i*3  + 2, 1);
 		wprintw(vm->wins->champ, "P_%d_comment: %37s", i + 1, vm->arena->players[i]->text_comment);
-		wmove(vm->wins->champ, i * vm->arena->nb_players + 3, 1);
+		wmove(vm->wins->champ, i*3  + 3, 1);
 		wprintw(vm->wins->champ, "carriage_num: %36d", vm->arena->carriage_num[i]);
 		wattroff(vm->wins->champ, COLOR_PAIR(P_1_HOME +i ) | A_BOLD);
 		++i;
@@ -239,15 +247,15 @@ void    print_windows(t_vm *vm)
 		init_colors();
 		init_colormap(vm->arena, vm, (MEM_SIZE / vm->arena->nb_players));
 	}
-	draw_arena(vm);
-	draw_basic_info(vm);
-	draw_champ_info(vm);
-	box(vm->wins->arena, 0, 0);
-	box(vm->wins->info, 0, 0);
-	box(vm->wins->champ, 0, 0);
-	wrefresh(vm->wins->champ);
-	wrefresh(vm->wins->arena);
-	wrefresh(vm->wins->info);
+		draw_arena(vm);
+		draw_basic_info(vm);
+		draw_champ_info(vm);
+		box(vm->wins->arena, 0, 0);
+		box(vm->wins->info, 0, 0);
+		box(vm->wins->champ, 0, 0);
+		wrefresh(vm->wins->champ);
+		wrefresh(vm->wins->arena);
+		wrefresh(vm->wins->info);
 }
 
 void    init_curses(void)
@@ -268,6 +276,7 @@ void process_keys(t_vm *self)
 	int c;
 
 	c = getch();
+	self->key = c;
 	if (c == 65)
 	{
 		wattron(self->wins->info, COLOR_PAIR(B_INFO) | A_BOLD);
@@ -286,5 +295,26 @@ void process_keys(t_vm *self)
 			self->speed = 1;
 		wattroff(self->wins->info, COLOR_PAIR(B_INFO) | A_BOLD);
 	}
+	else if (c == 120)
+	{
+		self->urgent_break = TRUE;
+	}
 	getch();
+}
+
+void    print_winner_visual(t_vm *vm)
+{
+	werase(vm->wins->win);
+	wattron(vm->wins->win, COLOR_PAIR(P_1_HOME + vm->arena->players[vm->arena->last_live_player - 1]->name - 1) | A_BOLD);
+	wmove(vm->wins->win, 1, 1);
+	wprintw(vm->wins->win,"%-20s(PLAYER #%d) WON!\n", vm->arena->players[vm->arena->last_live_player - 1]->text_name,
+	       vm->arena->players[vm->arena->last_live_player - 1]->name);
+	wattroff(vm->wins->win, COLOR_PAIR(P_1_HOME + vm->arena->players[vm->arena->last_live_player - 1]->name - 1) | A_BOLD);
+	wattron(vm->wins->win, COLOR_PAIR(B_INFO));
+	wmove(vm->wins->win, 2, 1);
+	wprintw(vm->wins->win, "       PRESS_ANY_KEY_TO_EXIT\n");
+	wattroff(vm->wins->win, COLOR_PAIR(B_INFO) | A_BOLD);
+	box(vm->wins->win, 0, 0);
+	wrefresh(vm->wins->win);
+	nodelay(stdscr, FALSE);
 }

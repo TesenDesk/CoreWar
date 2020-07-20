@@ -13,6 +13,7 @@ typedef struct  s_wins
 	WINDOW      *arena;
 	WINDOW      *info;
 	WINDOW      *champ;
+	WINDOW      *win;
 //	WINDOW      *help;
 }               t_wins;
 
@@ -35,5 +36,6 @@ void    init_curses(void);
 void    erase_windows(t_vm *vm);
 void    print_windows(t_vm *vm);
 void    process_keys(t_vm *self);
+void    print_winner_visual(t_vm *vm);
 
 #endif
