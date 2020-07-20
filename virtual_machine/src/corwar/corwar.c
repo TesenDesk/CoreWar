@@ -25,10 +25,10 @@ static void		prvt_corwar_precondition_check(int argc)
 		MAX_CHECKS < 1 ||
 		NBR_LIVE < 0)
 	{
-		raise(__FILE__, __LINE__, EINVALCONSTANTS);
+		ft_raise(__FILE__, __LINE__, EINVALCONSTANTS);
 	}
 	else if (argc < 2)
-		raise(__FILE__, __LINE__, EUSAGE);
+		ft_raise(__FILE__, __LINE__, EUSAGE);
 	return ;
 }
 

@@ -18,7 +18,7 @@ t_vmp_player		*vmp_player_new(int p_name, char *file_name)
 
 	if ((self = (t_vmp_player *)ft_memalloc(sizeof(t_vmp_player))) == NULL)
 		ft_raise(__FILE__, __LINE__, ENOMEMORY);
-	self->p_name = p_name;
+	self->player_name = p_name;
 	if (file_name != PFILE_MOCK)
 		self->file = file_new(file_name);
 	return (self);

@@ -3,7 +3,7 @@
 //
 
 
-#include "_visual_private.h"
+#include "prvt_visual.h"
 #include "op.h"
 #include "../arena/prvt_arena.h"
 #include "../_vm.h"
@@ -136,15 +136,15 @@ void    rebuild_color_map(t_arena *arena, t_vm *vm)
 	while (iter != NULL)
 	{
 		arena->colormap[((t_carriage*)iter->content)->arena_position % MEM_SIZE].player_index
-		= ((t_carriage*)iter->content)->p_name;
-		arena->carriage_num[((t_carriage *) iter->content)->p_name - 1] += 1;
+		= ((t_carriage*)iter->content)->player_name;
+		arena->carriage_num[((t_carriage *) iter->content)->player_name - 1] += 1;
 		if (((t_carriage *) iter->content)->was_store == TRUE)
 		{
 			while (index < 4)
 			{
 				arena->colormap[
 					(((t_carriage *) iter->content)->stor_pos +
-					index) % MEM_SIZE].cell_index = ((t_carriage *) iter->content)->p_name;
+					index) % MEM_SIZE].cell_index = ((t_carriage *) iter->content)->player_name;
 				arena->colormap[
 					(((t_carriage *) iter->content)->stor_pos +
 					 index) % MEM_SIZE].store_index = 1;

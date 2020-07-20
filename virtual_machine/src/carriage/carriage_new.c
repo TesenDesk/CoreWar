@@ -21,8 +21,8 @@ t_carriage		*carriage_new(int p_name, t_arena *arena,
 		ft_raise(__FILE__, __LINE__, ENOMEMORY);
 	self->num = num;
 	self->arena = arena;
-	self->p_name = p_name;
-	self->registers[0] = -self->p_name;
+	self->player_name = p_name;
+	self->registers[0] = -self->player_name;
 	if (arena_position < 0)
 		arena_position = MEM_SIZE + arena_position % MEM_SIZE;
 	else if (arena_position >= MEM_SIZE)

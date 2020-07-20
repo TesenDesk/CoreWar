@@ -49,6 +49,7 @@ static char		*g_error_messages[ERRMSGCOUNT] =
 	"Incorrectly placed NULLs in data.",
 	"No magic header.",
 	"To many players.",
+	"Bad filename.",
 };
 
 #endif

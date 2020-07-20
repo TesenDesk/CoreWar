@@ -70,5 +70,5 @@ void					prvt_vm_params_parse(t_vm_params *self, char **params)
 		++params;
 	}
 	if (self->state != VMP_INITIAL)
-		raise(__FILE__, __LINE__, EBADPLAYERNAME);
+		ft_raise(__FILE__, __LINE__, EBADPLAYERNAME);
 }

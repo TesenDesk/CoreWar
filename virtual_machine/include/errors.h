@@ -33,6 +33,7 @@ enum					e_error_id
 	ENONULLS,
 	ENOMAGICH,
 	EMANYPLAYERS,
+	EBADFILENAME,
 	ERRMSGCOUNT,
 };
 

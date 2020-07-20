@@ -19,7 +19,7 @@ int			arena_get_n_bytes_from(t_arena *self, int pos, int num_of_bytes)
 	int		i;
 
 	if (num_of_bytes <= 0 || num_of_bytes > REG_SIZE)
-		raise(__FILE__, __LINE__, EWRONGSIZE);
+		ft_raise(__FILE__, __LINE__, EWRONGSIZE);
 	if (pos < 0)
 		pos = MEM_SIZE + pos % MEM_SIZE;
 	data = (char*)(self->data);

@@ -311,7 +311,7 @@ $(COREWAR_NAME): $(VM_DIR_OBJ) $(VM_ARENA_DIR_OBJ) $(VM_ARENA_PLAYER_DIR_OBJ) \
 		$(VM_CARRIAGE_DIR_OBJ) $(VM_CARRIAGE_OP_DIR_OBJ) \
 		$(VM_COREWAR_DIR_OBJ) $(VM_ERRORS_DIR_OBJ) $(VM_PARAMS_DIR_OBJ) \
 		$(VM_PARAMS_VMP_PLAYER_DIR_OBJ) $(VM_PARAMS_VMP_PLAYER_FILE_DIR_OBJ) \
-#		$(VISUAL_DIR_OBJ)
+		$(VISUAL_DIR_OBJ)
 #		@printf "$(PREFIX)📦  Building $(COREWAR_NAME)...\n"
 		make -C ./libft
 		gcc  -I$(COREWAR_INTERFACE) -I./libft/ $^ -lncurses -o $@ $(LIBFLAGS)
@@ -342,8 +342,8 @@ $(VM_PARAMS_VMP_PLAYER_DIR_OBJ): %.o: %.c
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -c $< -o $@
 $(VM_PARAMS_VMP_PLAYER_FILE_DIR_OBJ): %.o: %.c
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -c $< -o $@
-#$(VISUAL_DIR_OBJ): %.o: %.c
-		#gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -c $<  -o $@
+$(VISUAL_DIR_OBJ): %.o: %.c
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -c $<  -o $@
 
 
 # $(PARS_DIR_OBJ): %.o:  %.c

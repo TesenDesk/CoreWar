@@ -16,7 +16,7 @@
 #include "ncurses.h"
 #include "visual.h"
 
-#include "visual/_visual_private.h"
+#include "visual/prvt_visual.h"
 
 
 

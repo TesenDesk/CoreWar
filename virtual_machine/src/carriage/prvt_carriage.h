@@ -24,7 +24,7 @@ typedef struct		s_carriage
 {
 	t_arena			*arena;
 	int				num;
-	int				p_name;
+	int				player_name;
 	int				carry;
 	int				op_code;
 	int				cycles_to_perform_op;

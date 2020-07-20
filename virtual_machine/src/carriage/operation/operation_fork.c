@@ -51,6 +51,6 @@ void				operation_fork(t_carriage *self)
 	self->arena_position = (self->arena_position + op.op_len) % MEM_SIZE;
 	if ((new_node = ft_lstnew((void *)new_carriage, sizeof(t_carriage)))
 	== NULL)
-		raise(__FILE__, __LINE__, ENOMEMORY);
+		ft_raise(__FILE__, __LINE__, ENOMEMORY);
 	vm_add_new_carriage_node(new_node);
 }
