@@ -9,14 +9,14 @@
 #include "lexer.h"
 #include "virtual_machine/src/vm_params/prvt_vm_params.h"
 #include "virtual_machine/include/vm_params.h"
-#include "lexer_private.h"
-#include "./lexer/lexer_private.h"
+#include "prvt_lexer.h"
+#include "./lexer/prvt_lexer.h"
 
-#include "./lexer/lexer_utils_private.h"
+#include "./lexer/prvt_lexer_utils.h"
 
 #include "expr.h"
 #include "expr_defines.h"
-#include "./parser/expr_private.h"
+#include "./parser/prvt_expr.h"
 
 #include "parser.h"
 #include "./parser/parser_private.h"

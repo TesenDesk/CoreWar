@@ -1,6 +1,16 @@
-//#include "lexer.h"
-//#include "token_defines.h"
-#include "lexer_private.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer_get_term_arg_ind.c                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/14 21:56:44 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/14 21:56:56 by cmissy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "prvt_lexer.h"
 
 int				lexer_get_term_arg_ind_int(t_lexer *lexer, char const **text,
 					int *type, void *token_ptr[2])
@@ -14,16 +24,10 @@ int				lexer_get_term_arg_ind_int(t_lexer *lexer, char const **text,
 		++(*text);
 		return (SEPARATOR_CHAR_CODE);
 	}
-	// else if (**text == LINE_FEED)
-	// {
-	// 	++(*text);
-	// 	return (LINE_FEED_CODE);
-	// }
-	// *type = TOKEN_UNDEF;
 	return (TERM_UNDEFINED_CODE);
 }
 
-int					lexer_get_term_arg_ind_label(t_lexer *lexer, char const **text,
+int				lexer_get_term_arg_ind_label(t_lexer *lexer, char const **text,
 					int *type, void *token_ptr[2])
 {
 	(void)lexer;

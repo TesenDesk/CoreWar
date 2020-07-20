@@ -17,7 +17,6 @@
 # include "errors.h"
 # include "op.h"
 # include "vm_params.h"
-//# include "vmp_state.h"
 # include "vmp_player.h"
 # include "player.h"
 # include "arena.h"
@@ -35,15 +34,6 @@
 # define FLAG_NCURSES	"-curses"
 
 # define USAGE_STR		"fix later"
-
-enum	e_t_argtype
-{
-	NO_ARG = 0,
-	ARG_NUMFLUG,
-	ARG_NONUMFLAG,
-	ARG_NUM,
-	ARG_FILE,
-};
 
 enum	e_t_paramcodes
 {

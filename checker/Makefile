@@ -1,1 +1,0 @@
-gcc -Wall -Wextra -Werror -g checker_main.c -I ../libf -I ../lexer -I . -L ../libf -lft hash_table_allocate_delete.c hash_table_operations.c label_checker_inclusion_of_maps.c label_checker_put_to_map.c

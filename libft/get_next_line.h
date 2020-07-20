@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nikita_toropov <nikita_toropov@student.    +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 16:18:38 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/04/13 04:22:21 by nikita_toro      ###   ########.fr       */
+/*   Created: 2020/07/15 18:50:32 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/15 18:50:36 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 /*
 ** Structure synonym for input file.
 */
-typedef struct				ss_file
+typedef struct				s_file
 {
 	int						fd;
 	char					*file;

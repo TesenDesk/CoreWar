@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 12:33:44 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/13 16:15:28 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/13 17:00:01 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,10 @@ enum					e_error_id
 	ENOMEMORY,
 	EINVALARG,
 	ENOARGVAL,
-	EBADFILENAME,
 	ECANNOTCLOSE,
 	ECANNOTREAD,
-	EINTOUFLOW,
-	EREADNOTOPENED,
 	EDOUBLEOPENNING,
 	EDOUBLECLOSE,
-	EMOCKMETHOD,
 	ENOPLAYERS,
 	EINVALCONSTANTS,
 	EBADPLAYERNAME,

@@ -18,7 +18,6 @@ void				ft_lstswap(t_list **head, t_list *first, t_list *second)
 	t_list			*prev_first;
 	t_list			*prev_second;
 
-//	if (!head)
 	if (!*head)
 		return ;
 	size = ft_lstsize(*head);

@@ -6,7 +6,7 @@
 /*   By: ftothmur <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:40:46 by ftothmur          #+#    #+#             */
-/*   Updated: 2019/10/18 13:49:39 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/07/15 19:07:46 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,8 @@ t_list	*ft_lstnew(void const *content, size_t content_size)
 	}
 	else
 	{
-//		if (!((new->content) = ((void *)ft_memalloc(content_size))))
-//			return (NULL);
 		new->content_size = content_size;
-//		ft_memcpy(new->content, content, new->content_size);
-        new->content = (void*)content;
+		new->content = (void*)content;
 	}
 	new->next = NULL;
 	return (new);

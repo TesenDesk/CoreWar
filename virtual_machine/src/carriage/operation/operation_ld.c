@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operation_ld.c                                :+:      :+:    :+:   */
+/*   operation_ld.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/05 17:20:34 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/05 18:07:24 by cmissy           ###   ########.fr       */
+/*   Created: 2020/07/13 18:14:05 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/13 18:14:05 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static void			print_op_log(t_carriage *self, int *args)
 		printf("P %4i | ld %i r%i\n", self->num, args[ARG_1], args[ARG_2] + 1);
 }
 
-void operation_ld(t_carriage *self)
+void				operation_ld(t_carriage *self)
 {
-	static t_op op;
+	static			t_op op;
 
 	op = g_op[OP_LD - 1];
 	if (operation_precheck_args(self, &op) == SUCCESS)
@@ -35,6 +35,5 @@ void operation_ld(t_carriage *self)
 			self->carry = FALSE;
 	}
 	op.args_num = 600;
-
-  self->arena_position = (self->arena_position + op.op_len) % MEM_SIZE;
+	self->arena_position = (self->arena_position + op.op_len) % MEM_SIZE;
 }

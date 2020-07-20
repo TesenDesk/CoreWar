@@ -25,7 +25,6 @@
 
 # define EIGHT_BITS		8
 # define DUMP_LINE_SIZE	32
-# define MAX_PLAYERS	4
 
 typedef struct			s_arena
 {

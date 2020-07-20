@@ -1,16 +1,26 @@
-// #include "token_defines.h"
-#include "lexer_private.h"
-// #include "lexer.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer_get_term_init.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/14 21:30:04 by cmissy            #+#    #+#             */
+/*   Updated: 2020/07/19 20:28:32 by cmissy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "prvt_lexer.h"
 
 static int			term_is_op(char const *text)
 {
-	char		*cmds_arr[16] = {
+	static char		*cmds_arr[16] = {
 		LFORK_NAME, FORK_NAME, LIVE_NAME, LLDI_NAME, ZJMP_NAME, ADD_NAME,
 		AFF_NAME, AND_NAME, LDI_NAME, LLD_NAME, STI_NAME, SUB_NAME, XOR_NAME,
 		LD_NAME, OR_NAME, ST_NAME,
 	};
-	int			i;
-	int			len;
+	int				i;
+	int				len;
 
 	i = 0;
 	while (i < 16)
@@ -24,24 +34,6 @@ static int			term_is_op(char const *text)
 	return (0);
 }
 
-// static int      term_is_op(char const *text)
-// {
-//     if (ft_strnstr(text, LFORK_NAME, 5))
-//     	return (5);
-//     else if (ft_strnstr(text, FORK_NAME, 4) || ft_strnstr(text, LIVE_NAME, 4)
-//              || ft_strnstr(text, LLDI_NAME, 4) || ft_strnstr(text, ZJMP_NAME, 4))
-// 	    return (4);
-//     else if (ft_strnstr(text, ADD_NAME, 3) || ft_strnstr(text, AFF_NAME, 3)
-//              || ft_strnstr(text, AND_NAME, 3) || ft_strnstr(text, LDI_NAME, 3)
-//              || ft_strnstr(text, LLD_NAME, 3) || ft_strnstr(text, STI_NAME, 3)
-//              || ft_strnstr(text, SUB_NAME, 3) || ft_strnstr(text, XOR_NAME, 3))
-// 	    return (3);
-// 	else if (ft_strnstr(text, LD_NAME, 2) || ft_strnstr(text, OR_NAME, 2)
-// 	    || ft_strnstr(text, ST_NAME, 2))
-// 		return (2);
-// 	return (0);
-// }
-
 static int		find_op2_type(char const *text)
 {
 	if (ft_strnstr(text, LD_NAME, ft_strlen(LD_NAME)))
@@ -53,7 +45,7 @@ static int		find_op2_type(char const *text)
 	return (0);
 }
 
-static int      find_op3_type(char const *text)
+static int		find_op3_type(char const *text)
 {
 	if (ft_strnstr(text, ADD_NAME, ft_strlen(ADD_NAME)))
 		return (TOKEN_ADD);
@@ -83,7 +75,7 @@ static int		find_op4_type(char const *text)
 	else if (ft_strnstr(text, LLDI_NAME, ft_strlen(LLDI_NAME)))
 		return (TOKEN_LLDI);
 	else if (ft_strnstr(text, ZJMP_NAME, ft_strlen(ZJMP_NAME)))
-		return(TOKEN_ZJMP);
+		return (TOKEN_ZJMP);
 	return (0);
 }
 
@@ -94,22 +86,26 @@ static int		find_op5_type(char const *text)
 	return (0);
 }
 
-
-static int      find_op_type(char const *text)
+static int		find_op_type(char const *text)
 {
-	int         op_code;
+	int			op_code;
 
 	op_code = 0;
-	if ((op_code = find_op5_type(text)) || (op_code = find_op4_type(text))
-	|| (op_code = find_op3_type(text)) || (op_code = find_op2_type(text)))
+	if ((op_code = find_op5_type(text)))
+		;
+	else if ((op_code = find_op4_type(text)))
+		;
+	else if ((op_code = find_op3_type(text)))
+		;
+	else if ((op_code = find_op2_type(text)))
 		;
 	return (op_code);
 }
 
-
-int             lexer_get_term_init(t_lexer *lexer, char const **text, int *type, void *token_ptr[2])
+int				lexer_get_term_init(t_lexer *lexer, char const **text,
+									int *type, void *token_ptr[2])
 {
-	int op_len;
+	int			op_len;
 
 	op_len = 0;
 	while (**text == ' ' || **text == '\t')
@@ -117,35 +113,43 @@ int             lexer_get_term_init(t_lexer *lexer, char const **text, int *type
 	if (!(**text))
 	{
 		*type = TOKEN_EOF;
-		token_ptr[0] = *text;
-		token_ptr[1] = *text;
+		token_ptr[0] = (void*)*text;
+		token_ptr[1] = (void*)*text;
 		return (EOF_CODE);
 	}
-	else if (**text == COMMENT_CHAR) {
+	else if (**text == COMMENT_CHAR)
+	{
 		++(*text);
 		return (COMMENT_CHAR_CODE);
 	}
-	else if (**text == ALT_COMMENT_CHAR) {
+	else if (**text == ALT_COMMENT_CHAR)
+	{
 		++(*text);
 		return (ALT_COMMENT_CHAR_CODE);
 	}
-	else if (**text == LINE_FEED) {
+	else if (**text == LINE_FEED)
+	{
 		*type = TOKEN_LFEED;
-		token_ptr[0] = *text;
-		token_ptr[1] = *text;
+		token_ptr[0] = (void*)*text;
+		token_ptr[1] = (void*)*text;
 		++(*text);
 		return (INIT_ST);
 	}
-	else if (ft_strnstr(*text, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING))) {
+	else if (ft_strnstr(*text, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
+	{
 		if (*(*text + ft_strlen(NAME_CMD_STRING)) == ' '
-			|| *(*text + ft_strlen(NAME_CMD_STRING)) == '\t') {
-				(*text) += ft_strlen(NAME_CMD_STRING);
-				return (NAME_CMD_STRING_CODE);
+		|| *(*text + ft_strlen(NAME_CMD_STRING)) == '\t')
+		{
+			(*text) += ft_strlen(NAME_CMD_STRING);
+			return (NAME_CMD_STRING_CODE);
 		}
 	}
-	else if (ft_strnstr(*text, COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING))){
+	else if (ft_strnstr(*text, COMMENT_CMD_STRING,
+	ft_strlen(COMMENT_CMD_STRING)))
+	{
 		if (*(*text + ft_strlen(COMMENT_CMD_STRING)) == ' '
-			|| *(*text + ft_strlen(COMMENT_CMD_STRING)) == '\t') {
+		|| *(*text + ft_strlen(COMMENT_CMD_STRING)) == '\t')
+		{
 			(*text) += ft_strlen(COMMENT_CMD_STRING);
 			return (COMMENT_CMD_STRING_CODE);
 		}
@@ -154,7 +158,7 @@ int             lexer_get_term_init(t_lexer *lexer, char const **text, int *type
 	{
 		*type = find_op_type(*text);
 		token_ptr[0] = (void*)(*text);
-		token_ptr[1] =  (void*)(*text + op_len);
+		token_ptr[1] = (void*)(*text + op_len);
 		*text += op_len;
 		return (OPX_CODE);
 	}

@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 17:17:18 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/07 17:22:07 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/13 17:09:34 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,25 @@ static int		is_correct_type_for_op(t_op *op, int i)
 static int		parse_the_arg(t_carriage *self, t_op *op, int i)
 {
 	int			result;
+	int			pos;
 
 	result = SUCCESS;
+	pos = self->arena_position + op->op_len;
 	if (op->type_codes[i] == REG_CODE)
 	{
-		op->args[i] = arena_get_n_bytes_from(self->arena,
-		(self->arena_position + op->op_len), T_REG_SIZE) - 1;
+		op->args[i] = arena_get_n_bytes_from(self->arena, pos, T_REG_SIZE) - 1;
 		if (op->args[i] < 0 || op->args[i] >= 16)
 			result = FAILURE;
 		op->op_len += T_REG_SIZE;
 	}
 	else if (op->type_codes[i] == DIR_CODE)
 	{
-		op->args[i] = arena_get_n_bytes_from(self->arena,
-		self->arena_position + op->op_len, op->t_dir_size);
+		op->args[i] = arena_get_n_bytes_from(self->arena, pos, op->t_dir_size);
 		op->op_len += op->t_dir_size;
 	}
 	else if (op->type_codes[i] == IND_CODE)
 	{
-		op->args[i] = arena_get_n_bytes_from(self->arena,
-		self->arena_position + op->op_len, T_IND_SIZE);
+		op->args[i] = arena_get_n_bytes_from(self->arena, pos, T_IND_SIZE);
 		op->op_len += T_IND_SIZE;
 	}
 	else

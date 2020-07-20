@@ -6,13 +6,13 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 20:38:37 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/04 20:38:46 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/14 15:45:50 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prvt_carriage.h"
 
-void		 carriage_take_step(t_carriage *self)
+void		carriage_take_step(t_carriage *self)
 {
 	if (self->cycles_to_perform_op == 0)
 	{

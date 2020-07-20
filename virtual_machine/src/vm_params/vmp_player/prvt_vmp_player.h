@@ -18,9 +18,6 @@
 # include "file.h"
 # include "vmp_player.h"
 
-//# define PNAME_MOCK	0
-//# define PFILE_MOCK	(void *)0
-
 typedef struct	s_vmp_player
 {
 	int			p_name;

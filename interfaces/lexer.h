@@ -3,23 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 18:35:16 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/03/06 20:51:47 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/07/14 21:16:44 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
-#define LEXER_H
+# define LEXER_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <string.h>
-
-#include "token.h"
-#include "token_defines.h"
+# include "token.h"
 
 enum					e_lexer_instantiation_status
 {

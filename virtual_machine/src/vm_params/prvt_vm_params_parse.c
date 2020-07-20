@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 18:43:16 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/02 18:55:48 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/14 15:41:30 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,32 +42,33 @@ static int				prvt_vmp_state(t_vm_params *self, int argtype)
 }
 
 static int				prvt_vm_params_flag_name_done(t_vm_params *self,
-                                                        char *param)
+														char *param)
 {
-    prvt_vm_params_set_file_name_with_id(self, param);
-    return (FLAG_FILE_CODE);
+	prvt_vm_params_set_file_name_with_id(self, param);
+	return (FLAG_FILE_CODE);
 }
 
 void					prvt_vm_params_parse(t_vm_params *self, char **params)
 {
-	int					arg_type;
-	static t_sm_parser	vtable[NBR_OF_VIRTUAL_METHODS] =
-    {
-	    prvt_vm_params_init,
-	    prvt_vm_params_flag_name,
-	    prvt_vm_params_flag_name_done,
-        prvt_vm_params_flag_cycles,
-        prvt_vm_params_flag_verbose,
-        prvt_vm_params_dump_cycles,
+	static t_sm_parser	vtable[NBR_OF_VIRTUAL_METHODS] = {
+		prvt_vm_params_init,
+		prvt_vm_params_flag_name,
+		prvt_vm_params_flag_name_done,
+		prvt_vm_params_flag_cycles,
+		prvt_vm_params_flag_verbose,
+		prvt_vm_params_dump_cycles,
 	};
+	int					arg_type;
 
 	arg_type = NO_FLAG_CODE;
 	if (!(*params))
 		ft_raise(__FILE__, __LINE__, EBADPLAYERNAME);
 	while (*params)
 	{
- 		arg_type = vtable[self->state](self, *params);
+		arg_type = vtable[self->state](self, *params);
 		prvt_vmp_state(self, arg_type);
 		++params;
 	}
+	if (self->state != VMP_INITIAL)
+		raise(__FILE__, __LINE__, EBADPLAYERNAME);
 }
