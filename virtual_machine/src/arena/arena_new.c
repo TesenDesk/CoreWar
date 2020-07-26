@@ -31,9 +31,10 @@ static void			arena_fill_in_the_data(t_arena *self)
 		ft_raise(__FILE__, __LINE__, EINVALCONSTANTS);
 	while (curr < self->nb_players)
 	{
-		ft_memcpy((arena_field + (curr) * step),
-		player_code(self->players[curr]),
-		player_code_size(self->players[curr]));
+		if (player_code_size(self->players[curr]))
+			ft_memcpy((arena_field + (curr) * step),
+			player_code(self->players[curr]),
+			player_code_size(self->players[curr]));
 		curr += 1;
 	}
 	self->data = arena_field;

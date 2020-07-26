@@ -35,8 +35,13 @@ void		*file_data_code(t_i_file *self)
 		| ((code_size & 0xff00) << 8)
 		| ((code_size & 0xff0000) >> 8)
 		| (code_size >> 24));
-	if (!(code = ft_memalloc(code_size)))
-		ft_raise(__FILE__, __LINE__, ENOMEMORY);
-	ft_memcpy(code, code_in_data, code_size);
+	if (code_size)
+	{
+		if (!(code = ft_memalloc(code_size)))
+			ft_raise(__FILE__, __LINE__, ENOMEMORY);
+		ft_memcpy(code, code_in_data, code_size);
+	}
+	else
+		code = NULL;
 	return (code);
 }
