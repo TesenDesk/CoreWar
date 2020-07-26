@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_private.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 16:17:20 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/19 19:35:41 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/26 19:59:50 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,21 @@ typedef struct		s_parser
 						t_lexer *lexer, t_expr *expr, char const **text);
 }					t_parser;
 
-void				prvt_parser_change_state(t_parser *parser,
+void				prvt_parser_change_state(t_parser *parser, int token_type);
+
+int					prvt_parser_find_next_to_init_st(int token_type);
+int					prvt_parser_find_next_to_op01_st(t_parser *parser,
 							int token_type);
+int					prvt_parser_find_next_to_op2_st(t_parser *parser,
+							int token_type);
+
+int					prvt_find_parser_op0_state(int token_type);
+int					prvt_find_1_0_layer_op(t_parser *parser, int token_type);
+int					prvt_find_1_1_layer_op(t_parser *parser, int token_type);
+int					prvt_find_2_0_layer_op(t_parser *parser, int token_type);
+int					prvt_find_2_1_layer_op(t_parser *parser,
+							int token_type);
+
 t_token				*prvt_parser_get_token_init(t_parser *parser,
 							t_lexer *lexer, t_expr *expr, char const **text);
 t_token				*prvt_parser_get_token_op0_life(t_parser *parser,

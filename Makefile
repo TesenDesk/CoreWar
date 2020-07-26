@@ -40,6 +40,14 @@ LEX_SRC     := 	lexer.c \
 LEX_OBJ     :=  $(patsubst %.c, %.o, $(LEX_SRC))
 LEX_DIR_OBJ :=  $(addprefix $(ASM_DIR)lexer/, $(LEX_OBJ))
 PARS_SRC :=	prvt_parser_change_state.c \
+			prvt_find_parser_op0_state.c \
+			prvt_parser_find_next_to_init_st.c \
+			prvt_find_1_0_layer_op.c \
+			prvt_find_1_1_layer_op.c \
+			prvt_find_2_0_layer_op.c \
+			prvt_find_2_1_layer_op.c \
+			prvt_parser_find_next_to_op01_st.c \
+			prvt_parser_find_next_to_op2_st.c \
 			prvt_parser_get_token_eof.c \
 			prvt_parser_get_token_init.c \
 			prvt_parser_get_token_line_end.c \
