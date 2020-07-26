@@ -19,7 +19,7 @@ t_token				*token_constructor(int type, void *ptr[2])
 
 	if (ptr[1] < ptr[0] && type == TOKEN_LABEL_WORD)
 	{
-		printf("smth_wrong");
+		ft_printf("smth_wrong");
 		exit(-1);
 	}
 	if (!(token = (t_token*)malloc(sizeof(t_token))))

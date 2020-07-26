@@ -31,7 +31,7 @@ void				prvt_parser_ctor(t_parser **parser)
 {
 	if (!(*parser = (t_parser*)malloc(sizeof(t_parser))))
 	{
-		printf("error\n");
+		ft_printf("error\n");
 		exit(-1);
 	}
 	(*parser)->lexer = lexer_singleton_instance(LEXER_INSTANTIATE);

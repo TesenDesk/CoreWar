@@ -16,9 +16,9 @@ static void		print_op_log(t_carriage *self, int *args)
 {
 	if (vm_verbosity_lvl() & 4)
 	{
-		printf("P %4i | ldi %i %i r%i\n", self->num, args[0], args[1],
+		ft_printf("P %4i | ldi %i %i r%i\n", self->num, args[0], args[1],
 			args[2] + 1);
-		printf("       | -> load from %i + %i = %i (with pc and mod %i)\n",
+		ft_printf("       | -> load from %i + %i = %i (with pc and mod %i)\n",
 			args[0], args[1], args[0] + args[1], self->arena_position
 			+ (args[0] + args[1]) % IDX_MOD);
 	}

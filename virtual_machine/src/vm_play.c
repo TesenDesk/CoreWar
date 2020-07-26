@@ -64,7 +64,7 @@ int				vm_check(t_vm *self)
 		self->num_checks = 0;
 		self->cycles_to_die -= CYCLE_DELTA;
 		if (vm_verbosity_lvl() & 2)
-			printf("Cycle to die is now %i\n", self->cycles_to_die);
+			ft_printf("Cycle to die is now %i\n", self->cycles_to_die);
 	}
 	self->num_of_live_ops = 0;
 	self->cycles_counter = 0;
@@ -93,7 +93,7 @@ void			vm_play(t_vm *self)
 	while (TRUE)
 	{
 		if (vm_verbosity_lvl() & 2)
-			printf("It is now cycle %i\n", self->global_counter);
+			ft_printf("It is now cycle %i\n", self->global_counter);
 		if (self->cycles_to_dump == 0)
 		{
 			arena_print_dump(self->arena);

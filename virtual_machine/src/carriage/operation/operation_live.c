@@ -15,7 +15,7 @@
 static void				print_op_log(t_carriage *self, int arg)
 {
 	if (vm_verbosity_lvl() & 4)
-		printf("P %4i | live %i\n", self->num, arg);
+		ft_printf("P %4i | live %i\n", self->num, arg);
 }
 
 void					operation_live(t_carriage *self)

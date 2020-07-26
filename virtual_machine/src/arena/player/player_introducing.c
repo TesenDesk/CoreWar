@@ -17,7 +17,7 @@ void			player_introducing(t_player *self)
 	char		*player_num;
 	char		*weighing;
 
-	printf("* Player %i, weighing %i bytes, \"%s\" (\"%s\") !\n", self->name,
+	ft_printf("* Player %i, weighing %i bytes, \"%s\" (\"%s\") !\n", self->name,
 			self->code_size, self->text_name, self->text_comment);
 	return ;
 }

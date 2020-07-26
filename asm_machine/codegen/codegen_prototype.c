@@ -78,7 +78,7 @@ void			ft_printbits(char n, int count)
 {
 	while (count--)
 	{
-		printf("%c", ft_checkbit(n, count) + '0');
+		ft_printf("%c", ft_checkbit(n, count) + '0');
 		if (!(count % 4 && count))
 			ft_putchar(' ');
 	}
@@ -391,7 +391,7 @@ void		write_code_to_file(char *exec, int code_size, char *filename)
 		exit(-1);
 	if (ft_strncmp(filename + ft_strlen(filename) - 2, ".s", 2) != 0)
 	{
-		printf("bad filename or format\n");
+		ft_printf("bad filename or format\n");
 		exit(-1);
 	}
 	root = ft_strncpy(root, filename, ft_strlen(filename) - 2);
@@ -399,7 +399,7 @@ void		write_code_to_file(char *exec, int code_size, char *filename)
 	free(root);
 	if (!(fd = open(new_name, O_WRONLY | O_CREAT, S_IWRITE | S_IREAD)))
 	{
-		printf("can' open/create a file\n");
+		ft_printf("can' open/create a file\n");
 		exit(-1);
 	}
 	write(fd, exec, code_size);

@@ -14,6 +14,6 @@
 
 void		player_print_winner(t_player *self)
 {
-	printf("Contestant %i, \"%s\", has won !\n", self->name, self->text_name);
+	ft_printf("Contestant %i, \"%s\", has won !\n", self->name, self->text_name);
 	return ;
 }

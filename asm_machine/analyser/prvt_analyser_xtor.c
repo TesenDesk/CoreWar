@@ -16,7 +16,7 @@ t_analyser			*prvt_analyser_ctor(t_analyser **analyser)
 {
 	if (!(*analyser = (t_analyser *)malloc(sizeof(t_analyser))))
 	{
-		printf("error\n");
+		ft_printf("error\n");
 		exit(-1);
 	}
 	(*analyser)->state = ANALYSER_INIT_ST;

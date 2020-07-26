@@ -16,7 +16,7 @@ static void		print_op_log(t_carriage *self, int *args)
 {
 	if (vm_verbosity_lvl() & 4)
 	{
-		printf("P %4i | add r%i r%i r%i\n",
+		ft_printf("P %4i | add r%i r%i r%i\n",
 		self->num, args[ARG_1] + 1, args[ARG_2] + 1, args[ARG_3] + 1);
 	}
 }

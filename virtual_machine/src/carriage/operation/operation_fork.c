@@ -15,7 +15,7 @@
 static void			print_op_log(t_carriage *self, int arg, int position)
 {
 	if (vm_verbosity_lvl() & 4)
-		printf("P %4i | fork %i (%i)\n", self->num, arg, position);
+		ft_printf("P %4i | fork %i (%i)\n", self->num, arg, position);
 }
 
 static void			prvt_fill_new_carriage(t_carriage *old, t_carriage *new)

@@ -16,7 +16,7 @@ void		arena_players_introducing(t_arena *self)
 {
 	int		index;
 
-	printf("Introducing contestants...\n");
+	ft_printf("Introducing contestants...\n");
 	index = 0;
 	while (index < self->nb_players)
 	{

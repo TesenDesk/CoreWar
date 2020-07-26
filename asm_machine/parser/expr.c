@@ -18,7 +18,7 @@ t_expr				*expr_ctor(void)
 
 	if (!(expr = (t_expr*)ft_memalloc(sizeof(t_expr))))
 	{
-		printf("error\n");
+		ft_printf("error\n");
 		exit(-1);
 	}
 	expr->type = EXPR_INIT;

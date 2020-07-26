@@ -17,10 +17,10 @@ static void			print_op_log(t_carriage *self, int *args, char *type_codes)
 	if (vm_verbosity_lvl() & 4)
 	{
 		if (type_codes[1] == REG_CODE)
-			printf("P %4i | st r%i %i\n", self->num, args[ARG_1] + 1,
+			ft_printf("P %4i | st r%i %i\n", self->num, args[ARG_1] + 1,
 				args[ARG_2] + 1);
 		else
-			printf("P %4i | st r%i %i\n", self->num, args[ARG_1] + 1,
+			ft_printf("P %4i | st r%i %i\n", self->num, args[ARG_1] + 1,
 			args[ARG_2]);
 	}
 }

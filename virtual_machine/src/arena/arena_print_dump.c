@@ -19,12 +19,12 @@ void			arena_print_dump(t_arena *self)
 
 	data = self->data;
 	i = 0;
-	printf("0x%.4x : ", i);
+	ft_printf("0x%.4x : ", i);
 	while (i < MEM_SIZE)
 	{
-		printf("%.2x ", data[i++] & 0xff);
+		ft_printf("%.2x ", data[i++] & 0xff);
 		if (i % DUMP_LINE_SIZE == 0 && i < MEM_SIZE)
-			printf("\n0x%04x : ", i);
+			ft_printf("\n0x%04x : ", i);
 	}
-	printf("\n");
+	ft_printf("\n");
 }

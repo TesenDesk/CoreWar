@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY:		all clean fclean re
+.PHONY:		all clean fclean re force
 #=================================COLORS & co==================================#
 GREEN =		\033[1;32m
 RED =		\033[1;31m
@@ -23,15 +23,17 @@ PREFIX =	[$(CYAN)libft$(RST)]:\t
 LIB_DIR =	./
 HDR_DIR =	./
 SRC_DIR =	./
+PRNTF_DIR =	./ft_printf
 #------------------------------------s-------------------------------------#
 NAME =		libft.a
+PRNTF =		./ft_printf/libftprintf.a
 HEADER =	libft.h get_next_line.h
 OBJ = 		$(SRC:.c=.o)
-SRC =       $(PART_1) \
+SRC =		$(PART_1) \
 			$(PART_2) \
 			$(BONUS) \
 	 		$(EXPANSION)
-PART_1 =    ft_strcat.c \
+PART_1 =	ft_strcat.c \
 			ft_strrchr.c \
 			ft_strstr.c \
 			ft_strncmp.c \
@@ -254,12 +256,15 @@ LIB_FLAGS =	-L$(LIB_DIR) -lft
 all:		$(NAME)
 		@echo "$(PREFIX)✅  $(GREEN)Done.$(RST)"
 
-$(NAME):	$(OBJ) $(HEADER)
+$(NAME):	$(PRNTF) $(OBJ) $(HEADER)
 		@printf "%-95c\r$(PREFIX)✅  $(GREEN)All s accepted.$(RST)\n" ' '
 		@echo "$(PREFIX)📦  Packaging files into library file..."
+		cp $(PRNTF) $(NAME)
 		@ar rc $(NAME) $(OBJ)
 		@ranlib $(NAME)
 
+$(PRNTF): force
+		make -C $(PRNTF_DIR)
 #--REMOVE this rule from $(NAME) if you compile lib into another project.--#
 
 deb_msg:
