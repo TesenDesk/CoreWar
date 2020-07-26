@@ -9,7 +9,7 @@ include_directories(interfaces)
 include_directories(lexer)
 include_directories(libft)
 include_directories(parser)
-include_directories(virtual_machine/include)
+include_directories(virtual_machine/interfaces)
 include_directories(virtual_machine/src)
 include_directories(virtual_machine/src/arena)
 include_directories(virtual_machine/src/arena/player)
@@ -317,21 +317,21 @@ add_executable(asm_machine
         parser/parser_private.h
         parser/parser_singleton_instance.c
         parser/parser_xtor_private.h
-        virtual_machine/include/arena.h
-#        virtual_machine/include/arguments.h
-        virtual_machine/include/carriage.h
-#        virtual_machine/include/code.h
-        virtual_machine/include/corwar.h
-        virtual_machine/include/errors.h
-        virtual_machine/include/file.h
-        virtual_machine/include/op.h
-        virtual_machine/include/operation.h
-        virtual_machine/include/player.h
-        virtual_machine/include/vm.h
-        virtual_machine/include/vm_params.h
-        virtual_machine/include/vmp_player.h
-#        virtual_machine/include/vmp_state.h
-#        virtual_machine/include/type_cut.h
+        virtual_machine/interfaces/arena.h
+#        virtual_machine/interfaces/arguments.h
+        virtual_machine/interfaces/carriage.h
+#        virtual_machine/interfaces/code.h
+        virtual_machine/interfaces/corwar.h
+        virtual_machine/interfaces/errors.h
+        virtual_machine/interfaces/file.h
+        virtual_machine/interfaces/op.h
+        virtual_machine/interfaces/operation.h
+        virtual_machine/interfaces/player.h
+        virtual_machine/interfaces/vm.h
+        virtual_machine/interfaces/vm_params.h
+        virtual_machine/interfaces/vmp_player.h
+#        virtual_machine/interfaces/vmp_state.h
+#        virtual_machine/interfaces/type_cut.h
 #        virtual_machine/src/arena/player/code/_code.h
 #        virtual_machine/src/arena/player/code/code_destroy.c
 #        virtual_machine/src/arena/player/code/code_new.c

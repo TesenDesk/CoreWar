@@ -6,14 +6,15 @@
 
 #======================Folders & Files=========================================#
 ASM_NAME        :=  asm
-ASM_DIR			:=  ./asm_machine/
 COREWAR_NAME	:= 	corewar
+ASM_DIR			:=  ./asm_machine/
+VM_DIR			:=  ./virtual_machine/
 ASM_MAIN        :=  main_asm.c
 COREWAR_MAIN	:= virtual_machine/src/corwar/corwar.c
 LABEL       :=	CoreWar
 WORKDIR     :=  ./
 LIBDIR      :=	./libft/
-LFLAGS		:=  ft
+OPERATION_INTERFACE := operation_interface
 HEADERDIR   :=	$(WORKDIR)#includes/
 LIB         :=  $(LIBDIR)libft.a
 LEX_SRC     := 	lexer.c \
@@ -102,7 +103,7 @@ VM_SRC := prvt_vm_destroy.c \
 			vm_singleton.c \
 			vm_verbosity_lvl.c
 VM_OBJ := $(patsubst %.c, %.o, $(VM_SRC))
-VM_DIR_OBJ := $(addprefix ./virtual_machine/src/, $(VM_OBJ))
+VM_DIR_OBJ := $(addprefix $(VM_DIR)src/, $(VM_OBJ))
 
 VM_ARENA_SRC := arena_carriage_list_new.c \
 				arena_destroy.c \
@@ -120,7 +121,7 @@ VM_ARENA_SRC := arena_carriage_list_new.c \
 				prvt_arena_players_new.c \
 				prvt_arena_set_smallest_unoccupied_name.c
 VM_ARENA_OBJ := $(patsubst %.c, %.o, $(VM_ARENA_SRC))
-VM_ARENA_DIR_OBJ := $(addprefix ./virtual_machine/src/arena/, $(VM_ARENA_OBJ))
+VM_ARENA_DIR_OBJ := $(addprefix $(VM_DIR)src/arena/, $(VM_ARENA_OBJ))
 
 VM_ARENA_PLAYER_SRC := player_code.c \
 				player_code_size.c \
@@ -133,7 +134,7 @@ VM_ARENA_PLAYER_SRC := player_code.c \
 				player_set_name.c
 
 VM_ARENA_PLAYER_OBJ := $(patsubst %.c, %.o, $(VM_ARENA_PLAYER_SRC))
-VM_ARENA_PLAYER_DIR_OBJ := $(addprefix ./virtual_machine/src/arena/player/, $(VM_ARENA_PLAYER_OBJ))
+VM_ARENA_PLAYER_DIR_OBJ := $(addprefix $(VM_DIR)src/arena/player/, $(VM_ARENA_PLAYER_OBJ))
 
 
 VM_CARRIAGE_SRC := 	carriage_destroy.c \
@@ -144,7 +145,7 @@ VM_CARRIAGE_SRC := 	carriage_destroy.c \
 					prvt_carriage_set_is_correct_op_code.c \
 					prvt_carriage_set_op_code.c
 VM_CARRIAGE_OBJ := $(patsubst %.c, %.o, $(VM_CARRIAGE_SRC))
-VM_CARRIAGE_DIR_OBJ := $(addprefix ./virtual_machine/src/carriage/, $(VM_CARRIAGE_OBJ))
+VM_CARRIAGE_DIR_OBJ := $(addprefix $(VM_DIR)src/carriage/, $(VM_CARRIAGE_OBJ))
 
 
 
@@ -167,16 +168,16 @@ VM_CARRIAGE_OP_SRC := 	operation_add.c \
 						operation_xor.c \
 						operation_zjmp.c
 VM_CARRIAGE_OP_OBJ := $(patsubst %.c, %.o, $(VM_CARRIAGE_OP_SRC))
-VM_CARRIAGE_OP_DIR_OBJ := $(addprefix ./virtual_machine/src/carriage/operation/, $(VM_CARRIAGE_OP_OBJ))
+VM_CARRIAGE_OP_DIR_OBJ := $(addprefix $(VM_DIR)src/carriage/operation/, $(VM_CARRIAGE_OP_OBJ))
 
 
 VM_COREWAR_SRC := corwar.c
 VM_COREWAR_OBJ := $(patsubst %.c, %.o, $(VM_COREWAR_SRC))
-VM_COREWAR_DIR_OBJ := $(addprefix ./virtual_machine/src/corwar/, $(VM_COREWAR_OBJ))
+VM_COREWAR_DIR_OBJ := $(addprefix $(VM_DIR)src/corwar/, $(VM_COREWAR_OBJ))
 
 VM_ERRORS_SRC := errors.c
 VM_ERRORS_OBJ := $(patsubst %.c, %.o, $(VM_ERRORS_SRC))
-VM_ERRORS_DIR_OBJ := $(addprefix ./virtual_machine/src/errors/, $(VM_ERRORS_OBJ))
+VM_ERRORS_DIR_OBJ := $(addprefix $(VM_DIR)src/errors/, $(VM_ERRORS_OBJ))
 
 VM_PARAMS_SRC := 	ft_arg_is_num.c \
 					prvt_vm_params_add_player_name_node.c \
@@ -198,7 +199,7 @@ VM_PARAMS_SRC := 	ft_arg_is_num.c \
 					vm_params_new.c \
 					vm_params_verbosity_lvl.c
 VM_PARAMS_OBJ := $(patsubst %.c, %.o, $(VM_PARAMS_SRC))
-VM_PARAMS_DIR_OBJ := $(addprefix ./virtual_machine/src/vm_params/, $(VM_PARAMS_OBJ))
+VM_PARAMS_DIR_OBJ := $(addprefix $(VM_DIR)src/vm_params/, $(VM_PARAMS_OBJ))
 
 VM_PARAMS_VMP_PLAYER_SRC := vmp_player_destroy.c \
 							vmp_player_file.c \
@@ -206,7 +207,7 @@ VM_PARAMS_VMP_PLAYER_SRC := vmp_player_destroy.c \
 							vmp_player_new.c \
 							vmp_player_set_file.c
 VM_PARAMS_VMP_PLAYER_OBJ := $(patsubst %.c, %.o, $(VM_PARAMS_VMP_PLAYER_SRC))
-VM_PARAMS_VMP_PLAYER_DIR_OBJ := $(addprefix ./virtual_machine/src/vm_params/vmp_player/, $(VM_PARAMS_VMP_PLAYER_OBJ))
+VM_PARAMS_VMP_PLAYER_DIR_OBJ := $(addprefix $(VM_DIR)src/vm_params/vmp_player/, $(VM_PARAMS_VMP_PLAYER_OBJ))
 
 VM_PARAMS_VMP_PLAYER_FILE_SRC := file_code_size.c \
 								 file_data_check_valid.c \
@@ -221,18 +222,18 @@ VM_PARAMS_VMP_PLAYER_FILE_SRC := file_code_size.c \
 								 prvt_file_read.c \
 								 prvt_file_reallocate_value.c
 VM_PARAMS_VMP_PLAYER_FILE_OBJ := $(patsubst %.c, %.o, $(VM_PARAMS_VMP_PLAYER_FILE_SRC))
-VM_PARAMS_VMP_PLAYER_FILE_DIR_OBJ := $(addprefix ./virtual_machine/src/vm_params/vmp_player/file/, $(VM_PARAMS_VMP_PLAYER_FILE_OBJ))
+VM_PARAMS_VMP_PLAYER_FILE_DIR_OBJ := $(addprefix $(VM_DIR)src/vm_params/vmp_player/file/, $(VM_PARAMS_VMP_PLAYER_FILE_OBJ))
 
 
 VISUAL_SRC := visual.c
 VISUAL_OBJ := $(patsubst %.c, %.o, $(VISUAL_SRC))
-VISUAL_DIR_OBJ := $(addprefix ./virtual_machine/src/visual/, $(VISUAL_OBJ))
+VISUAL_DIR_OBJ := $(addprefix $(VM_DIR)src/visual/, $(VISUAL_OBJ))
 
 CFLAGS      :=  -Wall -Wextra -Werror -g
 LIBFLAGS    :=  -L$(LIBDIR) -lft
 HEADER      :=  $(HEADERDIR)ms.h
 ASM_INTERFACE =	$(ASM_DIR)interfaces/
-COREWAR_INTERFACE =	$(WORKDIR)virtual_machine/include/
+COREWAR_INTERFACE =	$(WORKDIR)virtual_machine/interfaces/
 
 
 #======================COLORS & Co=============================================#
@@ -286,27 +287,27 @@ $(ASM_NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(CHK_DIR_OBJ) $(ANALYSER_DIR_OBJ) $
 
 #		@gcc $(FLAGS) -o $(ASM_NAME) $(LEX_DIR_SRC) $(LIBFLAGS) -I$(HEADERDIR)
 		# @cc $(FLAGS) -o $(ASM_NAME) $(LEX_DIR_SRC) $(MLX_FLAGS) -I$(HEADERDIR) ##todo: add '$(LIBFLAGS)'
-		make -C ./libft
-		gcc  -I$(ASM_INTERFACE) -I./libft/ $^ -o $@ $(LIBFLAGS)
+		make -C $(LIBDIR)
+		gcc  -I$(ASM_INTERFACE) -I$(OPERATION_INTERFACE)  -I$(LIBDIR) $^ -o $@ $(LIBFLAGS)
 
 
 $(LEX_DIR_OBJ): %.o:  %.c
-		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR) -c $< -o $@
+		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR) -I$(OPERATION_INTERFACE) -c $< -o $@
 
 $(PARS_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -c  $<  -o $@
+		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE) -c  $<  -o $@
 
 $(CHK_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR) -c $<  -o $@
+		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR) -I$(OPERATION_INTERFACE) -c $<  -o $@
 
 $(ANALYSER_DIR_OBJ): %.o: %.c
-		gcc -I$(ASM_INTERFACE) -I$(LIBDIR) -c $< -o $@
+		gcc -I$(ASM_INTERFACE) -I$(LIBDIR) -I$(OPERATION_INTERFACE) -c $< -o $@
 
 $(CODEGEN_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR) -c $<  -o $@
+		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $<  -o $@
 
 $(VISUAL_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR) -c $<  -o $@
+		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)   -c $<  -o $@
 
 $(COREWAR_NAME): $(VM_DIR_OBJ) $(VM_ARENA_DIR_OBJ) $(VM_ARENA_PLAYER_DIR_OBJ) \
 		$(VM_CARRIAGE_DIR_OBJ) $(VM_CARRIAGE_OP_DIR_OBJ) \
@@ -315,36 +316,36 @@ $(COREWAR_NAME): $(VM_DIR_OBJ) $(VM_ARENA_DIR_OBJ) $(VM_ARENA_PLAYER_DIR_OBJ) \
 		$(VISUAL_DIR_OBJ)
 #		@printf "$(PREFIX)📦  Building $(COREWAR_NAME)...\n"
 		make -C ./libft
-		gcc  -I$(COREWAR_INTERFACE) -I./libft/ $^ -lncurses -o $@ $(LIBFLAGS)
+		gcc  -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  $^ -lncurses -o $@ $(LIBFLAGS)
 #$(LIB):
 		#make -C libft/
 
 $(VM_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -c $< -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $< -o $@
 $(VM_ARENA_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -c $< -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $< -o $@
 $(VM_ARENA_PLAYER_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -c $< -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $< -o $@
 $(VM_ARENA_PLAYER_CODE_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -c $< -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $< -o $@
 $(VM_CARRIAGE_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -c $< -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $< -o $@
 $(VM_CARRIAGE_ARG_TYPES_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -c $< -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $< -o $@
 $(VM_CARRIAGE_OP_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -c $< -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $< -o $@
 $(VM_COREWAR_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -c $< -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $< -o $@
 $(VM_ERRORS_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -c $< -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $< -o $@
 $(VM_PARAMS_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -c $< -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $< -o $@
 $(VM_PARAMS_VMP_PLAYER_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -c $< -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $< -o $@
 $(VM_PARAMS_VMP_PLAYER_FILE_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -c $< -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $< -o $@
 $(VISUAL_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -c $<  -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $<  -o $@
 
 
 # $(PARS_DIR_OBJ): %.o:  %.c

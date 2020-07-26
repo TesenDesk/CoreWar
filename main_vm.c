@@ -4,7 +4,7 @@
 #include "token.h"
 #include <errno.h>
 #include "token_defines.h"
-//#include "virtual_machine/include/arena.h"
+//#interfaces "virtual_machine/interfaces/arena.h"
 
 #include "lexer.h"
 #include "virtual_machine/src/vm_params/prvt_vm_params.h"
@@ -21,7 +21,7 @@
 #include "parser.h"
 #include "./parser/parser_private.h"
 #include "analyser.h"
-//#include "vm_params.h"
+//#interfaces "vm_params.h"
 
 //int main()
 //{

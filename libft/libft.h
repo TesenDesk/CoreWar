@@ -35,7 +35,7 @@
 # include "get_next_line.h"
 
 /*
-** MAX_SIZE is a MACRO SIZE_MAX of stdint.h, which is forbidden to include
+** MAX_SIZE is a MACRO SIZE_MAX of stdint.h, which is forbidden to interfaces
 ** at the project. It's size is size_t or 18446744073709551615LUU == 2 ^ 64 - 1
 ** It is too big, to count. Malloc returns error for this value, zsh kills
 ** proces, when it is bigger then MAX_INT * 2048. But it do well with

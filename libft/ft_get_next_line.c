@@ -18,7 +18,7 @@
 ** get_next_line -- delimited string input.
 **
 **	Synopsis
-** #include "get_next_line.h"
+** #interfaces "get_next_line.h"
 ** int	get_next_line(int fd, char **line);
 **
 **	Description
