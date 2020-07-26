@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 16:08:57 by yurezz            #+#    #+#             */
-/*   Updated: 2020/07/02 18:51:27 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/26 16:07:28 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void			prvt_vm_params_add_named_player_node(t_vm_params *self,
 	t_list		*new_node;
 
 	if ((new_node = ft_lstnew((void *)player, sizeof(*player))) == NULL)
-		ft_raise(__FILE__, __LINE__, ENOMEMORY);
+		raise(__FILE__, __LINE__, ENOMEMORY);
 	ft_lstpushback(&(self->id_player_head), new_node);
 	++self->nb_players;
 	return ;

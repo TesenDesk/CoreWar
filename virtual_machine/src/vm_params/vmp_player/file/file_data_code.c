@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 18:00:19 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/01 18:00:19 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/26 16:07:28 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		*file_data_code(t_i_file *self)
 		| ((code_size & 0xff0000) >> 8)
 		| (code_size >> 24));
 	if (!(code = ft_memalloc(code_size)))
-		ft_raise(__FILE__, __LINE__, ENOMEMORY);
+		raise(__FILE__, __LINE__, ENOMEMORY);
 	ft_memcpy(code, code_in_data, code_size);
 	return (code);
 }

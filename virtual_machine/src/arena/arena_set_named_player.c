@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 19:00:31 by yurezz            #+#    #+#             */
-/*   Updated: 2020/07/04 18:43:25 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/26 16:07:28 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void		arena_set_named_player(t_arena *self, t_player *named_player)
 {
 	int		name;
 
-	name = p_name(named_player);
+	name = player_name(named_player);
 	if (name > self->nb_players || name < 1)
-		ft_raise(__FILE__, __LINE__, EBADPLAYERNAME);
+		raise(__FILE__, __LINE__, EBADPLAYERNAME);
 	if (self->players[name - 1] != NULL)
-		ft_raise(__FILE__, __LINE__, EDOUBLENAME);
+		raise(__FILE__, __LINE__, EDOUBLENAME);
 	self->players[name - 1] = named_player;
 	return ;
 }

@@ -3,22 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   vm_play.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 23:20:21 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/03 23:20:22 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/07/26 16:07:28 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_vm.h"
-#include "visual.h"
-#include "arena/prvt_arena.h"
-#include "ncurses.h"
-#include "visual.h"
-
-#include "visual/prvt_visual.h"
-
-
+#include "prvt_vm.h"
 
 void			destroy_dead_carriages(t_list **head, int c_t_d, int cntr)
 {
@@ -79,10 +71,10 @@ void			vm_next_cycle(t_vm *self)
 	while (list)
 	{
 		carriage_take_step(list->content);
+
 		list = list->next;
 	}
 }
-
 
 void			vm_play(t_vm *self)
 {
@@ -111,52 +103,5 @@ void			vm_play(t_vm *self)
 		self->global_counter += 1;
 		self->cycles_counter += 1;
 		self->cycles_to_dump -= 1;
-	}
-}
-
-
-void			vm_play_visual(t_vm *self)
-{
-	init_curses();
-	self->wins = init_wins();
-	arena_players_introducing(self->arena);
-	self->cycles_to_die = CYCLE_TO_DIE;
-	self->cycles_counter = 1;
-	self->global_counter = 1;
-	cbreak();
-	noecho();
-	nodelay(stdscr, TRUE);
-	while (TRUE)
-	{
-		if (self->urgent_break == FALSE) {
-			process_keys(self);
-			erase_windows(self);
-		}
-		if (self->cycles_to_dump == 0)
-		{
-			arena_print_dump(self->arena);
-			break ;
-		}
-		vm_next_cycle(self);
-		if (self->cycles_to_die <= self->cycles_counter)
-		{
-			if (vm_check(self) == FAILURE)
-			{
-				print_winner_visual(self);
-				getch();
-				break ;
-			}
-		}
-		self->global_counter += 1;
-		self->cycles_counter += 1;
-		self->cycles_to_dump -= 1;
-		if (self->urgent_break == FALSE) {
-			print_windows(self);
-			usleep(100000 / (self->speed*2));
-		}
-		else
-		{
-			;
-		}
 	}
 }

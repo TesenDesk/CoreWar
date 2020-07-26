@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 17:59:08 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/01 17:59:08 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/26 16:07:28 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,10 @@ static int		file_data_magic_header_check(t_i_file *self)
 int				file_data_check_valid(t_i_file *self)
 {
 	if (file_check_data_size(self))
-		ft_raise(__FILE__, __LINE__, EWRONGSIZE);
+		raise(__FILE__, __LINE__, EWRONGSIZE);
 	else if (file_data_check_nulls(self))
-		ft_raise(__FILE__, __LINE__, ENONULLS);
+		raise(__FILE__, __LINE__, ENONULLS);
 	else if (file_data_magic_header_check(self))
-		ft_raise(__FILE__, __LINE__, ENOMAGICH);
+		raise(__FILE__, __LINE__, ENOMAGICH);
 	return (SUCCESS);
 }

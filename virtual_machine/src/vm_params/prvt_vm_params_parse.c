@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 18:43:16 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/14 15:41:30 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/26 16:07:28 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int				prvt_vmp_state(t_vm_params *self, int argtype)
 			&& argtype == FLAG_FILE_CODE)
 		self->state = VMP_INITIAL;
 	else
-		ft_raise(__FILE__, __LINE__, ENOARGVAL);
+		raise(__FILE__, __LINE__, ENOARGVAL);
 	return (SUCCESS);
 }
 
@@ -62,7 +62,7 @@ void					prvt_vm_params_parse(t_vm_params *self, char **params)
 
 	arg_type = NO_FLAG_CODE;
 	if (!(*params))
-		ft_raise(__FILE__, __LINE__, EBADPLAYERNAME);
+		raise(__FILE__, __LINE__, EBADPLAYERNAME);
 	while (*params)
 	{
 		arg_type = vtable[self->state](self, *params);
@@ -70,5 +70,5 @@ void					prvt_vm_params_parse(t_vm_params *self, char **params)
 		++params;
 	}
 	if (self->state != VMP_INITIAL)
-		ft_raise(__FILE__, __LINE__, EBADPLAYERNAME);
+		raise(__FILE__, __LINE__, EBADPLAYERNAME);
 }

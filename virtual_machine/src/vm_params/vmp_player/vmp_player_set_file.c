@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 21:07:27 by yurezz            #+#    #+#             */
-/*   Updated: 2020/07/02 18:21:48 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/26 16:07:28 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void		prvt_vmp_player_precondition_check(t_vmp_player *self,
 					char *file_name)
 {
 	if (self->file != PFILE_MOCK)
-		ft_raise(__FILE__, __LINE__, EDANGLINGPTR);
+		raise(__FILE__, __LINE__, EDANGLINGPTR);
 	return ;
 }
 

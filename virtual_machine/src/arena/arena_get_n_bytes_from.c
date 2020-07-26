@@ -6,7 +6,7 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 19:10:36 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/13 17:01:10 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/26 16:07:28 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			arena_get_n_bytes_from(t_arena *self, int pos, int num_of_bytes)
 	int		i;
 
 	if (num_of_bytes <= 0 || num_of_bytes > REG_SIZE)
-		ft_raise(__FILE__, __LINE__, EWRONGSIZE);
+		raise(__FILE__, __LINE__, EWRONGSIZE);
 	if (pos < 0)
 		pos = MEM_SIZE + pos % MEM_SIZE;
 	data = (char*)(self->data);

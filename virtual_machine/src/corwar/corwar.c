@@ -6,14 +6,11 @@
 /*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 22:35:40 by yurezz            #+#    #+#             */
-/*   Updated: 2020/07/13 18:41:34 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/07/26 16:07:28 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prvt_corwar.h"
-#include "../_vm.h"
-#include "../vm_params/prvt_vm_params.h"
-
 
 static void		prvt_corwar_precondition_check(int argc)
 {
@@ -28,28 +25,20 @@ static void		prvt_corwar_precondition_check(int argc)
 		MAX_CHECKS < 1 ||
 		NBR_LIVE < 0)
 	{
-		ft_raise(__FILE__, __LINE__, EINVALCONSTANTS);
+		raise(__FILE__, __LINE__, EINVALCONSTANTS);
 	}
 	else if (argc < 2)
-		ft_raise(__FILE__, __LINE__, EUSAGE);
+		raise(__FILE__, __LINE__, EUSAGE);
 	return ;
-}
-
-int             _corewar_chose_regime(t_vm *this)
-{
-	if (this->params->ncurses == TRUE)
-		return (VISUAL_MODE);
-	return (DEFAULT_MODE);
 }
 
 int				main(int argc, char *argv[])
 {
 	t_vm		*this;
-	static      vm_play_fptr vmptf[2] = {vm_play, vm_play_visual};
 
 	prvt_corwar_precondition_check(argc);
 	this = vm_singleton(VM_INSTANTIATE, argc - 1, argv + 1);
-	vmptf[_corewar_chose_regime(this)](this);
+	vm_play(this);
 	(void)vm_singleton(VM_DESTRUCT, 0, NULL);
 	return (SUCCESS);
 }
