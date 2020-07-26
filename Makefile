@@ -6,6 +6,7 @@
 
 #======================Folders & Files=========================================#
 ASM_NAME        :=  asm
+ASM_DIR			:=  ./asm_machine/
 COREWAR_NAME	:= 	corewar
 ASM_MAIN        :=  main_asm.c
 COREWAR_MAIN	:= virtual_machine/src/corwar/corwar.c
@@ -36,7 +37,7 @@ LEX_SRC     := 	lexer.c \
 				token.c \
 				token_getters.c
 LEX_OBJ     :=  $(patsubst %.c, %.o, $(LEX_SRC))
-LEX_DIR_OBJ :=  $(addprefix ./lexer/, $(LEX_OBJ))
+LEX_DIR_OBJ :=  $(addprefix $(ASM_DIR)lexer/, $(LEX_OBJ))
 PARS_SRC :=	prvt_parser_change_state.c \
 			prvt_parser_get_token_eof.c \
 			prvt_parser_get_token_init.c \
@@ -68,13 +69,13 @@ PARS_SRC :=	prvt_parser_change_state.c \
 			parser.c \
 			parser_singleton_instance.c
 PARS_OBJ     :=  $(patsubst %.c, %.o, $(PARS_SRC))
-PARS_DIR_OBJ :=  $(addprefix ./parser/, $(PARS_OBJ))
+PARS_DIR_OBJ :=  $(addprefix $(ASM_DIR)parser/, $(PARS_OBJ))
 
 
 CHK_SRC :=	label_checker_inclusion_of_maps.c \
 			label_checker_put_to_map.c
 CHK_OBJ     :=  $(patsubst %.c, %.o, $(CHK_SRC))
-CHK_DIR_OBJ :=  $(addprefix ./checker/, $(CHK_OBJ))
+CHK_DIR_OBJ :=  $(addprefix $(ASM_DIR)checker/, $(CHK_OBJ))
 
 ANALYSER_SRC := prvt_analyser_change_state.c \
                 prvt_analyser_xtor.c \
@@ -82,12 +83,12 @@ ANALYSER_SRC := prvt_analyser_change_state.c \
                 analyser.c \
                 analyser_singleton_instance.c
 ANALYSER_OBJ :=  $(patsubst %.c, %.o, $(ANALYSER_SRC))
-ANALYSER_DIR_OBJ :=  $(addprefix ./analyser/, $(ANALYSER_OBJ))
+ANALYSER_DIR_OBJ :=  $(addprefix $(ASM_DIR)analyser/, $(ANALYSER_OBJ))
 
 
 CODEGEN_SRC :=	codegen_prototype.c
 CODEGEN_OBJ :=  $(patsubst %.c, %.o, $(CODEGEN_SRC))
-CODEGEN_DIR_OBJ :=  $(addprefix ./codegen/, $(CODEGEN_OBJ))
+CODEGEN_DIR_OBJ :=  $(addprefix $(ASM_DIR)codegen/, $(CODEGEN_OBJ))
 
 
 VM_SRC := prvt_vm_destroy.c \
@@ -230,7 +231,7 @@ VISUAL_DIR_OBJ := $(addprefix ./virtual_machine/src/visual/, $(VISUAL_OBJ))
 CFLAGS      :=  -Wall -Wextra -Werror -g
 LIBFLAGS    :=  -L$(LIBDIR) -lft
 HEADER      :=  $(HEADERDIR)ms.h
-ASM_INTERFACE =	$(WORKDIR)interfaces/
+ASM_INTERFACE =	$(ASM_DIR)interfaces/
 COREWAR_INTERFACE =	$(WORKDIR)virtual_machine/include/
 
 
@@ -278,7 +279,7 @@ debmsg:
 # $(PARS_DIR_OBJ): %.o: %.c
 # 		@cc -c $(FLAGS)  $< -o $@
 
-$(ASM_NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(CHK_DIR_OBJ) $(ANALYSER_DIR_OBJ) $(CODEGEN_DIR_OBJ)  $(ASM_MAIN)
+$(ASM_NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(CHK_DIR_OBJ) $(ANALYSER_DIR_OBJ) $(CODEGEN_DIR_OBJ)  $(ASM_DIR)$(ASM_MAIN)
 		@printf "$(PREFIX)📦  Building $(ASM_NAME)...\n"
 		@printf "Building $(LEX_DIR_OBJ).$(LEX_OBJ).\n"
 
@@ -358,11 +359,11 @@ $(VISUAL_DIR_OBJ): %.o: %.c
 # 		@make -C $(LIBDIR) DEBUGMODE=$(DEBUGMODE)
 
 clean: deljunk
-		rm -rf lexer/*.o
-		rm -rf parser/*.o
-		rm -rf checker/*.o
-		rm -rf analyser/*.o
-		rm -rf codegen/*.o
+		rm -rf $(ASM_DIR)lexer/*.o
+		rm -rf $(ASM_DIR)parser/*.o
+		rm -rf $(ASM_DIR)checker/*.o
+		rm -rf $(ASM_DIR)analyser/*.o
+		rm -rf $(ASM_DIR)codegen/*.o
 		rm -rf virtual_machine/src/*.o
 		rm -rf virtual_machine/src/arena/*.o
 		rm -rf virtual_machine/src/arena/player/*.o

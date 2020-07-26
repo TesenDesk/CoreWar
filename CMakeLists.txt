@@ -23,7 +23,7 @@ include_directories(virtual_machine/src/vm_params)
 include_directories(virtual_machine/src/vm_params/vmp_player)
 include_directories(virtual_machine/src/vm_params/vmp_player/file)
 
-add_executable(asm
+add_executable(asm_machine
         analyser/prvt_analyser_change_state.c
         analyser/prvt_analyser_get_expr.c
         analyser/prvt_analyser_xtor.c
