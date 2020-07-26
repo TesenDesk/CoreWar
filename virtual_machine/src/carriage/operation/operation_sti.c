@@ -40,10 +40,12 @@ void				operation_sti(t_carriage *self)
 		if (op.type_codes[ARG_3] == REG_CODE)
 			op.args[ARG_3] = self->registers[op.args[ARG_3]];
 		print_op_log(self, op.args);
-		position = self->arena_position + (op.args[ARG_2] + op.args[ARG_3])
-		% IDX_MOD;
+		position = (self->arena_position + (op.args[ARG_2] + op.args[ARG_3])
+		% IDX_MOD) % MEM_SIZE;
 		arena_write_four_bytes_to_data(self->arena, position,
 		self->registers[op.args[ARG_1]]);
 	}
 	self->arena_position = (self->arena_position + op.op_len) % MEM_SIZE;
+	self->was_store = TRUE;
+	self->stor_pos = position % MEM_SIZE;
 }

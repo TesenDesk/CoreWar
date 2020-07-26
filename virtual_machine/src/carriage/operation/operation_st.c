@@ -40,4 +40,6 @@ void				operation_st(t_carriage *self)
 			self->registers[op.args[ARG_2]] = self->registers[op.args[ARG_1]];
 	}
 	self->arena_position = (self->arena_position + op.op_len) % MEM_SIZE;
+	self->was_store = TRUE;
+	self->stor_pos = (self->arena_position + op.args[ARG_2] % IDX_MOD) % MEM_SIZE;
 }

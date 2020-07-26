@@ -244,13 +244,14 @@ BOLD =		\033[1m
 CYAN =		\033[1;36m
 PREFIX =	[$(CYAN)$(LABEL)$(RST)]:\t
 
+FLAGS := $(CFLAGS)
 #======================Debug & Flags===========================================#
 # -- WARN! Delete this message from rules if you using library from another prj#
 ifeq ($(DEBUGMODE), 1)
 	FLAGS		:= $(CFLAGS)
 	DEBUGMSG	:= $(PREFIX)⚠️  \033[1;33mDebug mode $(GREEN)enabled.$(RST)\n
 else
-	FLAGS		:= #$(CFLAGS)
+	FLAGS		:= -g
 	DEBUGMSG	:= $(PREFIX)⚠️  \033[1;33mDebug mode $(RED)disabled.$(RST)\n
 endif
 MLX_FLAGS		:= -L./minilibx -lmlx  -framework OpenGL -framework AppKit
