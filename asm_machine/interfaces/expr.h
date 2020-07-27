@@ -28,6 +28,7 @@ typedef enum		e_arg_number
 	SECOND_ARG,
 	THIRD_ARG,
 	LABEL_ARG,
+	LINE_END,
 }					t_arg_number;
 
 t_expr				*expr_ctor(void);

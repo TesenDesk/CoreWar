@@ -53,8 +53,12 @@ t_token				*prvt_parser_get_token_init(t_parser *parser,
 	char			arg_num;
 
 	arg_num = 0;
-	if ((token = lexer_form_token(lexer, text)) == NULL)
-		return (NULL);
+	if ((token = lexer_form_token(lexer, text)) == NULL) {
+//		token_destructor(&token);
+//		return (NULL);
+//		free(*token);
+		exit(-1);;
+	}
 	token_type = token_get_type(token);
 	find_arg_num(token_type, &arg_num);
 	if (!expr_types[TOKEN_LFORK])

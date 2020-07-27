@@ -22,11 +22,11 @@ t_expr				*expr_ctor(void)
 		exit(-1);
 	}
 	expr->type = EXPR_INIT;
-	expr->args[OP_NAME].type = ARG_INIT;
-	expr->args[FIRST_ARG].type = ARG_INIT;
-	expr->args[SECOND_ARG].type = ARG_INIT;
-	expr->args[THIRD_ARG].type = ARG_INIT;
-	expr->args[LABEL_ARG].type = ARG_INIT;
+//	expr->args[OP_NAME].type = ARG_INIT;
+//	expr->args[FIRST_ARG].type = ARG_INIT;
+//	expr->args[SECOND_ARG].type = ARG_INIT;
+//	expr->args[THIRD_ARG].type = ARG_INIT;
+//	expr->args[LABEL_ARG].type = ARG_INIT;
 	expr->args[OP_NAME].value = NULL;
 	expr->args[FIRST_ARG].value = NULL;
 	expr->args[SECOND_ARG].value = NULL;
@@ -44,9 +44,15 @@ void				expr_dtor(t_expr **expr)
 	{
 		if (*expr)
 		{
-			while (i < 6)
-				token_destructor(((t_token**)(&(expr[i++]->args->value))));
-		}
+			while (i < 6) {
+				t_arg  *arg = &((*expr)->args[i]);
+				t_token *token = arg->value;
+				token_destructor(&token);
+				token = NULL;
+				++i;
+
+			}
+			}
 		free(*expr);
 		*expr = NULL;
 	}

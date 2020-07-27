@@ -23,5 +23,6 @@ t_token			*prvt_parser_get_token_line_end(t_parser *parser,
 	token_type = token_get_type(token);
 	if (!(token_type == TOKEN_LFEED))
 		expr->type = EXPR_UNDEF;
+	expr_set_arg(expr, token, LINE_END, token_type);
 	return (token);
 }

@@ -46,12 +46,15 @@ void			codegen_dtor(t_codegen *code)
 {
 	if (code)
 	{
-		if (code->labels_free)
-			free(code->labels_free);
-		if (code->labels_ptrs)
+//		if (code->labels_free)
+//			free(code->labels_free);
+		if (code->labels_ptrs) {
+			ft_vector_free(code->labels_ptrs);
 			free(code->labels_ptrs);
-		if (code->header)
-			free(code->header);
+			code->labels_ptrs = NULL;
+		}
+		free(code->code);
+		code->code = NULL;
 		free(code);
 		code = NULL;
 	}
@@ -421,4 +424,5 @@ void			generate_code(t_hash_map *map, t_vector *text, char *filename)
 		codegen_codegen(codegen, text->items[index++]);
 	size = champ_exec_constructor(codegen);
 	write_code_to_file(codegen->exec, size, filename);
+	codegen_dtor(codegen);
 }

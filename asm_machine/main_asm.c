@@ -13,6 +13,7 @@
 #include "token.h"
 #include "analyser.h"
 #include "codegen.h"
+#include "parser/prvt_expr.h"
 
 char				*read_code(int fd)
 {
@@ -43,14 +44,15 @@ char				*read_code(int fd)
 
 
 
-void				ft_del_text(t_vector *v, void (*del)(void*))
+void				ft_del_text(t_vector *v, void (*del)(void**))
 {
 	int 			i;
 
 	i = 0;
-	while (i < v->total)
+	while (i < v->capacity)
 	{
-		del(v->items[i]);
+//		del(&(v->items[i]));
+		expr_dtor(&((v->items[i])));
 		++i;
 	}
 	ft_memdel((void **)&v->items);
@@ -78,7 +80,7 @@ int					main(int ac, char **av)
 		analyser_singleton_instance(ANALYSER_DESTRUCT);
 		ft_hash_map_dtor(&map);
 		ft_vector_free(&vtr);
-		ft_vector_free(text);
+		ft_del_text(text, expr_dtor);
 		free(text);
 
 		++count;
