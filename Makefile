@@ -260,7 +260,7 @@ ifeq ($(DEBUGMODE), 1)
 	FLAGS		:= $(CFLAGS)
 	DEBUGMSG	:= $(PREFIX)⚠️  \033[1;33mDebug mode $(GREEN)enabled.$(RST)\n
 else
-	FLAGS		:= #$(CFLAGS)
+	FLAGS		:= -g
 	DEBUGMSG	:= $(PREFIX)⚠️  \033[1;33mDebug mode $(RED)disabled.$(RST)\n
 endif
 MLX_FLAGS		:= -L./minilibx -lmlx  -framework OpenGL -framework AppKit

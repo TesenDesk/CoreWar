@@ -37,8 +37,19 @@ t_expr				*expr_ctor(void)
 
 void				expr_dtor(t_expr **expr)
 {
-	free(*expr);
-	*expr = NULL;
+	int 			i;
+
+	i = 0;
+	if (expr)
+	{
+		if (*expr)
+		{
+			while (i < 6)
+				token_destructor(((t_token**)(&(expr[i++]->args->value))));
+		}
+		free(*expr);
+		*expr = NULL;
+	}
 }
 
 void				*expr_get_arg_value(t_expr *expr, int index)

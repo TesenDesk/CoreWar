@@ -14,10 +14,16 @@
 
 void				token_destructor(t_token **token)
 {
-	free(*token);
-	(*token)->token_ptr[0] = NULL;
-	(*token)->token_ptr[1] = NULL;
-	*token = NULL;
+	if (token) {
+		if (*token) {
+			free((*token)->val);
+			(*token)->val = NULL;
+			(*token)->token_ptr[0] = NULL;
+			(*token)->token_ptr[1] = NULL;
+		}
+		free(*token);
+		*token = NULL;
+	}
 }
 
 int					token_get_type(t_token *token)

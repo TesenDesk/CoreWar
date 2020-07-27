@@ -28,5 +28,6 @@ t_analyser			*prvt_analyser_ctor(t_analyser **analyser)
 void				prvt_analyser_dtor(t_analyser **analyser)
 {
 	(*analyser)->parser = parser_singleton_instance(PARSER_DESTRUCT);
+	lexer_singleton_instance(LEXER_DESTRUCT);
 	ft_memdel((void **)analyser);
 }

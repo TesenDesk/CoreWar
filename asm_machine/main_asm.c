@@ -41,6 +41,23 @@ char				*read_code(int fd)
 	return (buf);
 }
 
+
+
+void				ft_del_text(t_vector *v, void (*del)(void*))
+{
+	int 			i;
+
+	i = 0;
+	while (i < v->total)
+	{
+		del(v->items[i]);
+		++i;
+	}
+	ft_memdel((void **)&v->items);
+	return ;
+}
+
+
 int					main(int ac, char **av)
 {
 	t_hash_map		*map;
@@ -59,6 +76,11 @@ int					main(int ac, char **av)
 			O_RDONLY))));
 		generate_code(map, text, av[count]);
 		analyser_singleton_instance(ANALYSER_DESTRUCT);
+		ft_hash_map_dtor(&map);
+		ft_vector_free(&vtr);
+		ft_vector_free(text);
+		free(text);
+
 		++count;
 	}
 	return (SUCCESS);

@@ -39,3 +39,4 @@ t_token				*token_constructor(int type, void *ptr[2])
 	token->get_type = token_get_type;
 	return (token);
 }
+

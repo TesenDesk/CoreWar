@@ -21,7 +21,7 @@ t_vector		*analyse_text(t_analyser *analyser, t_vector *vector,
 
 	expr_type = 0;
 	expr = NULL;
-	if (!(expr_text = (t_vector*)malloc(sizeof(t_vector))))
+	if (!(expr_text = (t_vector*)ft_memalloc(sizeof(t_vector))))
 		exit(-1);
 	if (ft_vector_init(expr_text) == FAILURE)
 		exit(-1);
