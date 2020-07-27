@@ -14,6 +14,7 @@
 # define LEXER_H
 
 # include "token.h"
+# include "ft_printf.h"
 
 enum					e_lexer_instantiation_status
 {

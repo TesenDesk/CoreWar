@@ -58,9 +58,9 @@ void							*ft_memalloc(size_t size);
 char							*ft_strdup(const char *s1);
 int								ft_is_digit(int c);
 int								ft_atoi(const char *str);
-char							*ft_itoa(long long n);
-char							*ft_itoa_base(unsigned long long n, int base);
-char							*ft_itoa_base_upp(unsigned long long n,
+char							*ft_itoa_pf(long long n);
+char							*ft_itoa_base_pf(unsigned long long n, int base);
+char							*ft_itoa_base_upp_pf(unsigned long long n,
 								int base);
 void							ft_ftoa(t_args *list);
 char							*ft_utf8_coder(unsigned int sym, t_args *list);

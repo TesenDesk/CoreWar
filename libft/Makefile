@@ -256,15 +256,15 @@ LIB_FLAGS =	-L$(LIB_DIR) -lft
 all:		$(NAME)
 		@echo "$(PREFIX)✅  $(GREEN)Done.$(RST)"
 
-$(NAME):	$(PRNTF) $(OBJ) $(HEADER)
+$(NAME):	 $(OBJ) $(HEADER)
 		@printf "%-95c\r$(PREFIX)✅  $(GREEN)All s accepted.$(RST)\n" ' '
 		@echo "$(PREFIX)📦  Packaging files into library file..."
-		cp $(PRNTF) $(NAME)
+		#cp $(PRNTF) $(NAME)
 		@ar rc $(NAME) $(OBJ)
 		@ranlib $(NAME)
 
-$(PRNTF): force
-		make -C $(PRNTF_DIR)
+#$(PRNTF): force
+		#make -C $(PRNTF_DIR)
 #--REMOVE this rule from $(NAME) if you compile lib into another project.--#
 
 deb_msg:

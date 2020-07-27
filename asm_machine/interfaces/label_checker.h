@@ -13,6 +13,7 @@
 #ifndef LABEL_CHECKER_H
 # define LABEL_CHECKER_H
 
+# include "ft_printf.h"
 # include "token.h"
 # include "expr.h"
 

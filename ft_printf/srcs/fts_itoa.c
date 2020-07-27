@@ -48,7 +48,7 @@ char			*ft_itoa(long long n)
 	return (result);
 }
 
-char			*ft_itoa_base(unsigned long long n, int base)
+char			*ft_itoa_base_pf(unsigned long long n, int base)
 {
 	char					*result;
 	unsigned int			len;
@@ -69,7 +69,7 @@ char			*ft_itoa_base(unsigned long long n, int base)
 	return (result);
 }
 
-char			*ft_itoa_base_upp(unsigned long long n, int base)
+char			*ft_itoa_base_upp_pf(unsigned long long n, int base)
 {
 	char					*result;
 	char					*l;

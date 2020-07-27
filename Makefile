@@ -14,6 +14,7 @@ COREWAR_MAIN	:= virtual_machine/src/corwar/corwar.c
 LABEL       :=	CoreWar
 WORKDIR     :=  ./
 LIBDIR      :=	./libft/
+LIBPRINT	:=  ./ft_printf/
 OPERATION_INTERFACE := operation_interface
 HEADERDIR   :=	$(WORKDIR)#includes/
 LIB         :=  $(LIBDIR)libft.a
@@ -239,6 +240,7 @@ VISUAL_DIR_OBJ := $(addprefix $(VM_DIR)src/visual/, $(VISUAL_OBJ))
 
 CFLAGS      :=  -Wall -Wextra -Werror -g
 LIBFLAGS    :=  -L$(LIBDIR) -lft
+LIBPRINTFLAGS := -L$(LIBPRINT) -lftprintf
 HEADER      :=  $(HEADERDIR)ms.h
 ASM_INTERFACE =	$(ASM_DIR)interfaces/
 COREWAR_INTERFACE =	$(WORKDIR)virtual_machine/interfaces/
@@ -289,33 +291,34 @@ debmsg:
 # 		@cc -c $(FLAGS)  $< -o $@
 
 $(ASM_NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(CHK_DIR_OBJ) $(ANALYSER_DIR_OBJ) $(CODEGEN_DIR_OBJ)  $(ASM_DIR)$(ASM_MAIN)
-		@printf "$(PREFIX)📦  Building $(ASM_NAME)...\n"
-		@printf "Building $(LEX_DIR_OBJ).$(LEX_OBJ).\n"
+		@#printf "$(PREFIX)📦  Building $(ASM_NAME)...\n"
+		@#printf "Building $(LEX_DIR_OBJ).$(LEX_OBJ).\n"
 
 
 #		@gcc $(FLAGS) -o $(ASM_NAME) $(LEX_DIR_SRC) $(LIBFLAGS) -I$(HEADERDIR)
 		# @cc $(FLAGS) -o $(ASM_NAME) $(LEX_DIR_SRC) $(MLX_FLAGS) -I$(HEADERDIR) ##todo: add '$(LIBFLAGS)'
 		make -C $(LIBDIR)
-		gcc  -I$(ASM_INTERFACE) -I$(OPERATION_INTERFACE)  -I$(LIBDIR) $^ -o $@ $(LIBFLAGS)
+		make -C ./ft_printf/
+		gcc  -I$(ASM_INTERFACE) -I$(OPERATION_INTERFACE)  -I$(LIBDIR) -I$(LIBPRINT)includes $^ -o $@ $(LIBFLAGS) $(LIBPRINTFLAGS)
 
 
 $(LEX_DIR_OBJ): %.o:  %.c
-		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR) -I$(OPERATION_INTERFACE) -c $< -o $@
+		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT)includes/ -I$(OPERATION_INTERFACE) -c $< -o $@
 
 $(PARS_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE) -c  $<  -o $@
+		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT)includes/ -I$(OPERATION_INTERFACE) -c  $<  -o $@
 
 $(CHK_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR) -I$(OPERATION_INTERFACE) -c $<  -o $@
+		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT)includes/ -I$(OPERATION_INTERFACE) -c $<  -o $@
 
 $(ANALYSER_DIR_OBJ): %.o: %.c
-		gcc -I$(ASM_INTERFACE) -I$(LIBDIR) -I$(OPERATION_INTERFACE) -c $< -o $@
+		gcc -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT)includes/  -I$(OPERATION_INTERFACE) -c $< -o $@
 
 $(CODEGEN_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $<  -o $@
+		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT)includes/  -I$(OPERATION_INTERFACE)  -c $<  -o $@
 
 $(VISUAL_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)   -c $<  -o $@
+		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT)includes/  -I$(OPERATION_INTERFACE)   -c $<  -o $@
 
 $(COREWAR_NAME): $(VM_DIR_OBJ) $(VM_ARENA_DIR_OBJ) $(VM_ARENA_PLAYER_DIR_OBJ) \
 		$(VM_CARRIAGE_DIR_OBJ) $(VM_CARRIAGE_OP_DIR_OBJ) \
@@ -323,37 +326,38 @@ $(COREWAR_NAME): $(VM_DIR_OBJ) $(VM_ARENA_DIR_OBJ) $(VM_ARENA_PLAYER_DIR_OBJ) \
 		$(VM_PARAMS_VMP_PLAYER_DIR_OBJ) $(VM_PARAMS_VMP_PLAYER_FILE_DIR_OBJ) \
 		$(VISUAL_DIR_OBJ)
 #		@printf "$(PREFIX)📦  Building $(COREWAR_NAME)...\n"
-		make -C ./libft
-		gcc  -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  $^ -lncurses -o $@ $(LIBFLAGS)
+		make -C ./libft/
+		make -C ./ft_printf/
+		gcc  -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT)includes    -I$(OPERATION_INTERFACE)  $^ -lncurses -o $@ $(LIBFLAGS) $(LIBPRINTFLAGS)
 #$(LIB):
 		#make -C libft/
 
 $(VM_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $< -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT)includes/   -I$(OPERATION_INTERFACE)  -c $< -o $@
 $(VM_ARENA_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $< -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT)includes/   -I$(OPERATION_INTERFACE)  -c $< -o $@
 $(VM_ARENA_PLAYER_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $< -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT)includes/  -I$(OPERATION_INTERFACE)  -c $< -o $@
 $(VM_ARENA_PLAYER_CODE_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $< -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)   -I$(LIBPRINT)includes/  -I$(OPERATION_INTERFACE)  -c $< -o $@
 $(VM_CARRIAGE_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $< -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)   -I$(LIBPRINT)includes/  -I$(OPERATION_INTERFACE)  -c $< -o $@
 $(VM_CARRIAGE_ARG_TYPES_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $< -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)   -I$(LIBPRINT)includes/  -I$(OPERATION_INTERFACE)  -c $< -o $@
 $(VM_CARRIAGE_OP_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $< -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)   -I$(LIBPRINT)includes/  -I$(OPERATION_INTERFACE)  -c $< -o $@
 $(VM_COREWAR_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $< -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)   -I$(LIBPRINT)includes/  -I$(OPERATION_INTERFACE)  -c $< -o $@
 $(VM_ERRORS_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $< -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)   -I$(LIBPRINT)includes/  -I$(OPERATION_INTERFACE)  -c $< -o $@
 $(VM_PARAMS_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $< -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)   -I$(LIBPRINT)includes/  -I$(OPERATION_INTERFACE)  -c $< -o $@
 $(VM_PARAMS_VMP_PLAYER_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $< -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)   -I$(LIBPRINT)includes/ -I$(OPERATION_INTERFACE)  -c $< -o $@
 $(VM_PARAMS_VMP_PLAYER_FILE_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $< -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)   -I$(LIBPRINT)includes/  -I$(OPERATION_INTERFACE)  -c $< -o $@
 $(VISUAL_DIR_OBJ): %.o: %.c
-		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(OPERATION_INTERFACE)  -c $<  -o $@
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)    -I$(LIBPRINT)includes/ -I$(OPERATION_INTERFACE)  -c $<  -o $@
 
 
 # $(PARS_DIR_OBJ): %.o:  %.c
@@ -368,6 +372,8 @@ $(VISUAL_DIR_OBJ): %.o: %.c
 # 		@make -C $(LIBDIR) DEBUGMODE=$(DEBUGMODE)
 
 clean: deljunk
+		make -C libft/ fclean
+		make -C ft_printf/ fclean
 		rm -rf $(ASM_DIR)lexer/*.o
 		rm -rf $(ASM_DIR)parser/*.o
 		rm -rf $(ASM_DIR)checker/*.o

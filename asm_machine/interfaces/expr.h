@@ -13,6 +13,7 @@
 #ifndef EXPR_H
 # define EXPR_H
 
+# include "ft_printf.h"
 # include "token.h"
 # include "expr_defines.h"
 

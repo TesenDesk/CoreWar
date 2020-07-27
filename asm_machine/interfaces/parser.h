@@ -14,6 +14,7 @@
 # define PARSER_H
 
 # include "expr.h"
+# include "ft_printf.h"
 
 enum							e_parser_instantiation_status
 {

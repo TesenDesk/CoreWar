@@ -13,6 +13,8 @@
 #ifndef VM_H
 # define VM_H
 
+# include "ft_printf.h"
+
 enum			e_vm_singleton
 {
 	VM_INSTANTIATE,

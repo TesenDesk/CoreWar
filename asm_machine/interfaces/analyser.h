@@ -19,6 +19,7 @@
 # include "parser.h"
 # include "token.h"
 # include "text.h"
+# include "ft_printf.h"
 
 typedef struct s_analyser	t_analyser;
 
