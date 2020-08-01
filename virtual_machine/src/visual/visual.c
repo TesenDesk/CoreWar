@@ -117,12 +117,18 @@ int     chose_color(t_arena *arena, int index, t_vm *vm, int i)
 		ans = (COLOR_PAIR(arena->colormap[index % MEM_SIZE].cell_index));
 	else if (arena->colormap[index % MEM_SIZE].player_index == arena->colormap[index % MEM_SIZE].cell_index)
 		ans =  (COLOR_PAIR(arena->colormap[index % MEM_SIZE].cell_index + HOME_OFFSET));
-	else if (arena->colormap[index % MEM_SIZE].cell_index != NEUTRAL_COL)
-		ans =  (COLOR_PAIR(arena->colormap[index % MEM_SIZE].cell_index + OUT_OFFSET));
-	else
-		ans = (COLOR_PAIR(NEUTRAL_COL));
+//	else
+	else {
+//	else if (arena->colormap[index % MEM_SIZE].cell_index != NEUTRAL_COL)
+		ans = (COLOR_PAIR(
+			arena->colormap[index % MEM_SIZE].cell_index + OUT_OFFSET));
+	}
+//	else {
+//		getch();
+//		ans = (COLOR_PAIR(NEUTRAL_COL));
+//	}
 	if (arena->colormap[index % MEM_SIZE].store_index == 1)
-		ans |= WA_BOLD;
+		ans |= A_BOLD;
 	return (ans);
 }
 
@@ -133,20 +139,22 @@ void    rebuild_color_map(t_arena *arena, t_vm *vm)
 
 	index = 0;
 	iter = vm->carriage_head;
+	t_carriage  *carriage_cur;
 	while (iter != NULL)
 	{
-		arena->colormap[((t_carriage*)iter->content)->arena_position % MEM_SIZE].player_index
-		= ((t_carriage*)iter->content)->player_name;
-		arena->carriage_num[((t_carriage *) iter->content)->player_name - 1] += 1;
-		if (((t_carriage *) iter->content)->was_store == TRUE)
+		carriage_cur = iter->content;
+		arena->colormap[((t_carriage*)carriage_cur)->arena_position % MEM_SIZE].player_index
+		= ((t_carriage*)carriage_cur)->player_name;
+		arena->carriage_num[((t_carriage *)carriage_cur)->player_name - 1] += 1;
+		if (((t_carriage *)carriage_cur)->was_store == TRUE)
 		{
 			while (index < 4)
 			{
 				arena->colormap[
-					(((t_carriage *) iter->content)->stor_pos +
-					index) % MEM_SIZE].cell_index = ((t_carriage *) iter->content)->player_name;
+					((carriage_cur)->stor_pos +
+					index) % MEM_SIZE].cell_index = (carriage_cur)->player_name;
 				arena->colormap[
-					(((t_carriage *) iter->content)->stor_pos +
+					((carriage_cur)->stor_pos +
 					 index) % MEM_SIZE].store_index = 1;
 				++index;
 			}
@@ -210,7 +218,9 @@ void    draw_arena(t_vm *vm)
 		while (j < SQRT_MAP) {
 			int col = chose_color(vm->arena, (i* 64 + j)%MEM_SIZE, vm, i);
 			wattron(vm->wins->arena, col);
+//			wattron(vm->wins->arena, COLOR_PAIR(P_1_L_HOME));
 			wprintw(vm->wins->arena, "%.2x", (unsigned char)vm->arena->data[(i*64 + j++) % MEM_SIZE]);
+//			wattroff(vm->wins->arena, COLOR_PAIR(P_1_L_HOME));
 			wattroff(vm->wins->arena, col);
 			waddch(vm->wins->arena, ' ');
 		}
@@ -223,6 +233,8 @@ void    draw_arena(t_vm *vm)
 void    erase_windows(t_vm *vm)
 {
 	int i;
+//	t_carriage  *carriage_cur;
+//	t_list 		*iter;
 
 	i = 0;
 	werase(vm->wins->arena);
@@ -232,12 +244,23 @@ void    erase_windows(t_vm *vm)
 	{
 		vm->arena->colormap[i].player_index = 0;
 		vm->arena->colormap[i].store_index = 0;
+//		vm->arena->colormap[i].
 
 		++i;
 	}
 	i = 0;
 	while (i < 4)
 		vm->arena->carriage_num[i++] = 0;
+//	carriage_cur = vm->carriage_head;
+//	iter = vm->carriage_head;
+//	while (iter != NULL)
+//	{
+//		carriage_cur = (t_carriage*)iter->content;
+//		carriage_cur->was_store = 0;
+//		carriage_cur->stor_pos = 0;
+//		iter = iter->next;
+//		carriage_cur = carriage_cur->next;
+//	}
 }
 
 

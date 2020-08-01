@@ -10,13 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_vm.h"
+#include "prvt_vm.h"
 #include "visual.h"
 #include "arena/prvt_arena.h"
 #include "ncurses.h"
+#include "carriage/prvt_carriage.h"
 #include "visual.h"
 
-#include "visual/prvt_visual.h"
+//#include "prvt_visual.h"
 
 
 
@@ -158,5 +159,16 @@ void			vm_play_visual(t_vm *self)
 		{
 			;
 		}
+//		t_list  *new;
+//		t_carriage  *nn;
+//		new = self->carriage_head;
+//		while (new)
+//		{
+//			nn = new->content;
+//			nn->was_store = 0;
+//			nn->stor_pos = 0;
+//			new = new->next;
+//
+//		}
 	}
 }

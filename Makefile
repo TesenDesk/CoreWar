@@ -254,6 +254,7 @@ BOLD =		\033[1m
 CYAN =		\033[1;36m
 PREFIX =	[$(CYAN)$(LABEL)$(RST)]:\t
 
+FLAGS := $(CFLAGS)
 #======================Debug & Flags===========================================#
 # -- WARN! Delete this message from rules if you using library from another prj#
 ifeq ($(DEBUGMODE), 1)
