@@ -24,7 +24,8 @@
 # include "player/prvt_player.h"
 
 # define EIGHT_BITS		8
-# define DUMP_LINE_SIZE	32
+//# define DUMP_LINE_SIZE	32
+# define DUMP_LINE_SIZE	64
 
 typedef struct			s_arena
 {
