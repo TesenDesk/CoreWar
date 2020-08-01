@@ -189,9 +189,6 @@ EXPANSION =	ft_isspace.c \
 			ft_dlstmerge.c \
 			ft_memrcmp.c \
 			ft_intrcmp.c \
-			ft_get_next_line.c \
-			ft_getline.c \
-			get_next_line.c \
 			ft_free_ptr_ar.c \
 			ft_isdigitstr.c \
 			ft_strint_ou_flow.c \
@@ -229,7 +226,6 @@ EXPANSION =	ft_isspace.c \
 			ft_vector_get_curr.c \
 			ft_vector_traversal.c \
 			ft_strsearch.c \
-			ft_linedelone.c \
 			ft_strclen.c \
 			ft_strrejoin.c \
 			ft_str_to_uintmax.c \

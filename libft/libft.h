@@ -32,7 +32,7 @@
 # include <wchar.h>
 # include <fcntl.h>
 # include <stdio.h>
-# include "get_next_line.h"
+//# include "get_next_line.h"
 
 /*
 ** MAX_SIZE is a MACRO SIZE_MAX of stdint.h, which is forbidden to interfaces
@@ -609,9 +609,9 @@ void						ft_dlstmerge(t_dlist **head_dst,
 int							ft_memrcmp(const void *min, const void *sub,
 								size_t size);
 int							ft_intrcmp(const void *min, const void *sub);
-int							ft_get_next_line(const int fd, char **line);
+//int							ft_get_next_line(const int fd, char **line);
 int							ft_getline(int fd, char **line);
-int							get_next_line(const int fd, char **line);
+//int							get_next_line(const int fd, char **line);
 void						ft_free_ptr_ar(void ***ar);
 int							ft_isdigitstr(char *str);
 int							ft_strint_ou_flow(char *str, int *nbr);

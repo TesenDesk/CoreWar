@@ -19,8 +19,9 @@ void				ft_hash_map_dtor(t_hash_map **map_input)
 
 	map = *map_input;
 	i = 0;
-	while (i < map->arr_size)
+	while (i < map->arr_size) {
 		ft_keystr_avl_del(&(map->data[i++]));
+	}
 	free(map->data);
 	map->data = NULL;
 	free(map);
