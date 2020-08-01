@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 12:14:40 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/08/01 12:31:29 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/01 12:37:44 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@
 # include "libft.h"
 # include "visual.h"
 # include "op.h"
+# include "../arena/prvt_arena.h"
+# include "../_vm.h"
+# include "../carriage/prvt_carriage.h"
+# include "../arena/player/prvt_player.h"
+# include "../vm_params/prvt_vm_params.h"
+# include "op.h"
+# include <ncurses.h>
 
 # define EXTERNAL_COLOR_OFFSET	4
 # define COLOR_GRAY				8
