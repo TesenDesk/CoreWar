@@ -6,7 +6,7 @@
 /*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 23:20:21 by yurezz            #+#    #+#             */
-/*   Updated: 2020/04/03 23:20:22 by yurezz           ###   ########.fr       */
+/*   Updated: 2020/08/01 19:59:43 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,13 @@ void			vm_play(t_vm *self)
 	self->global_counter = 1;
 	while (TRUE)
 	{
-		if (vm_verbosity_lvl() & 2)
-			ft_printf("It is now cycle %i\n", self->global_counter);
 		if (self->cycles_to_dump == 0)
 		{
 			arena_print_dump(self->arena);
 			break ;
 		}
+		if (vm_verbosity_lvl() & 2)
+			ft_printf("It is now cycle %i\n", self->global_counter);
 		vm_next_cycle(self);
 		if (self->cycles_to_die <= self->cycles_counter)
 		{

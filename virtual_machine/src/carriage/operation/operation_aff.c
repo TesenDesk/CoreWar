@@ -20,7 +20,7 @@ void			operation_aff(t_carriage *self)
 	if (operation_precheck_args(self, &aff) == SUCCESS
 		&& aff.type_codes[ARG_1] == REG_CODE)
 	{
-		ft_printf("%c", self->registers[aff.args[ARG_1]]);
+//		ft_printf("%c", self->registers[aff.args[ARG_1]]);
 	}
 	self->arena_position = (self->arena_position + aff.op_len) % MEM_SIZE;
 }
