@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hash_map_dtor.c                                 :+:      :+:    :+:   */
+/*   init_curses.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/28 15:26:51 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/08/01 16:29:15 by ftothmur         ###   ########.fr       */
+/*   Created: 2020/08/01 12:53:41 by ftothmur          #+#    #+#             */
+/*   Updated: 2020/08/01 13:24:47 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "prvt_visual.h"
 
-void				ft_hash_map_dtor(t_hash_map **map_input)
+/*
+**	initscr();			Start curses mode
+**	cbreak();			Line buffering disabled, Pass on
+**						everty thing to me
+*/
+
+void	init_curses(void)
 {
-	t_hash_map		*map;
-	size_t			i;
-
-	map = *map_input;
-	i = 0;
-	while (i < map->arr_size)
+	initscr();
+	cbreak();
+	if (has_colors() == FALSE)
 	{
-		ft_keystr_avl_del(&(map->data[i++]));
+		endwin();
+		ft_printf("Your terminal does not support color\n");
+		exit(1);
 	}
-	free(map->data);
-	map->data = NULL;
-	free(map);
-	*map_input = NULL;
-	return ;
+	start_color();
 }

@@ -1,4 +1,6 @@
 #include "prvt_codegen.h"
+//#include <fcntl.h>
+#include <fcntl.h>
 
 static void		rotate_four_bytes(unsigned int *p)
 {
@@ -400,7 +402,7 @@ void		write_code_to_file(char *exec, int code_size, char *filename)
 	root = ft_strncpy(root, filename, ft_strlen(filename) - 2);
 	new_name = ft_strjoin(root, ".cor");
 	free(root);
-	if (!(fd = open(new_name, O_WRONLY | O_CREAT, S_IWRITE | S_IREAD)))
+	if (!(fd = open(new_name, O_WRONLY | O_CREAT, S_IWUSR | S_IRUSR)))
 	{
 		ft_printf("can' open/create a file\n");
 		exit(-1);

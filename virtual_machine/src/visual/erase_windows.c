@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hash_map_dtor.c                                 :+:      :+:    :+:   */
+/*   erase_windows.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/28 15:26:51 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/08/01 16:29:15 by ftothmur         ###   ########.fr       */
+/*   Created: 2020/08/01 12:50:13 by ftothmur          #+#    #+#             */
+/*   Updated: 2020/08/01 13:23:05 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "prvt_visual.h"
 
-void				ft_hash_map_dtor(t_hash_map **map_input)
+void		erase_windows(t_vm *vm)
 {
-	t_hash_map		*map;
-	size_t			i;
+	int		i;
 
-	map = *map_input;
 	i = 0;
-	while (i < map->arr_size)
+	werase(vm->wins->arena);
+	werase(vm->wins->info);
+	werase(vm->wins->champ);
+	while (i < MEM_SIZE)
 	{
-		ft_keystr_avl_del(&(map->data[i++]));
+		vm->arena->colormap[i].player_index = 0;
+		vm->arena->colormap[i].store_index = 0;
+		++i;
 	}
-	free(map->data);
-	map->data = NULL;
-	free(map);
-	*map_input = NULL;
-	return ;
+	i = 0;
+	while (i < 4)
+		vm->arena->carriage_num[i++] = 0;
 }

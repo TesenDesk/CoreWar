@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clear_struct.c                                  :+:      :+:    :+:   */
+/*   create_newwin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/05 18:27:37 by cmissy            #+#    #+#             */
-/*   Updated: 2019/12/05 18:27:38 by cmissy           ###   ########.fr       */
+/*   Created: 2020/08/01 12:39:34 by ftothmur          #+#    #+#             */
+/*   Updated: 2020/08/01 13:28:34 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "prvt_visual.h"
 
-void	ft_clear_struct(t_args **first)
+WINDOW		*create_newwin(int height, int width, int starty, int startx)
 {
-	t_args		*tmp;
-	t_args		*tmp_1;
+	WINDOW	*local_win;
 
-	tmp = *first;
-	while (tmp)
-	{
-		tmp_1 = tmp->next;
-		if (tmp->string)
-			free(tmp->string);
-		free(tmp);
-		tmp = tmp_1;
-	}
-	first = NULL;
+	local_win = newwin(height, width, starty, startx);
+	return (local_win);
 }
