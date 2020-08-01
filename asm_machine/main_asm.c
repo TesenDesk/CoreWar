@@ -79,7 +79,7 @@ int					main(int ac, char **av)
 		generate_code(map, text, av[count]);
 		analyser_singleton_instance(ANALYSER_DESTRUCT);
 		ft_hash_map_dtor_full(&map, token_destructor);
-		ft_vector_free(&vtr);
+		ft_vector_free_data(&vtr, label_dtor);
 		ft_del_text(text, expr_dtor);
 		free(text);
 

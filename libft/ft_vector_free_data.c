@@ -14,10 +14,15 @@
 
 void			ft_vector_free_data(t_vector *v, void (*fptr)(void **))
 {
+	int 		tmp;
+
+	tmp = v->capacity;
 	if (!v || !fptr)
 		return ;
 	if (fptr)
-		while (v->total)
-			(*fptr)((void **)(v->items + --v->total));
+		while (v->total) {
+			(*fptr)((void **) (v->items + --tmp));
+			v->items[tmp + 1] = NULL;
+		}
 	return ;
 }

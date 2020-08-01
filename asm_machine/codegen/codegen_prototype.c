@@ -52,7 +52,7 @@ void			codegen_dtor(t_codegen *code)
 //			free(code->labels_free);
 		if (code->labels_ptrs) {
 //			ft_vector_free(code->labels_ptrs);
-			ft_vector_free_full(code->labels_ptrs, label_dtor);
+			ft_vector_free_data(code->labels_ptrs, label_dtor);
 			free(code->labels_ptrs);
 			code->labels_ptrs = NULL;
 		}
@@ -69,8 +69,9 @@ void 		label_dtor(void **data)
 	{
 		if (*data)
 		{
-			free((*((t_label_data**)data))->name);
+//			free((*((t_label_data**)data))->name);
 			free(*data);
+			*data = NULL;
 		}
 	}
 
