@@ -17,3 +17,11 @@ void				ft_vector_free(t_vector *v)
 	ft_memdel((void **)&v->items);
 	return ;
 }
+
+
+void				ft_vector_free_full(t_vector *v, delfptr f)
+{
+	f((void**)&(v->items));
+//	ft_memdel((void **)&v->items);
+	return ;
+}

@@ -94,6 +94,8 @@
 # define REMOVE_SIGN		1
 # define RADIX_CYPHERS_STR	"0123456789abcdefghijklmnopqrstuvwxyz"
 
+
+typedef  void(*delfptr)(void**) ;
 /*
 ** BIN_CHECK is number of bites should be cheked if the variable is binary.
 ** It is for the ft_isbinary() function.
@@ -642,7 +644,9 @@ t_keystr_avl_t				*ft_keystr_avl_remove(t_keystr_avl_t *p, void *key);
 void						ft_keystr_avl_tree_traversal(t_keystr_avl_t *root,
 								void f(t_keystr_avl_t *vertex));
 void						ft_keystr_avl_del(t_keystr_avl_t **root_input);
+void						ft_keystr_avl_del_full(t_keystr_avl_t **root_incoming, void (del)(void **));
 void						ft_vector_free(t_vector *v);
+void						ft_vector_free_full(t_vector *v, void (del)(void **));
 void						ft_vector_free_data(t_vector *v,
 								void (*fptr)(void **));
 int							ft_vector_delete(t_vector *v, int index);
@@ -665,6 +669,7 @@ int							ft_str_to_intmax(char *str, char **endptr,
 								int radix, intmax_t *nbr);
 t_hash_map					*ft_hash_map_ctor(size_t arr_size);
 void						ft_hash_map_dtor(t_hash_map **map_input);
+void						ft_hash_map_dtor_full(t_hash_map **map_input, void (del)(void **));
 void						*ft_hash_map_get(t_hash_map *map, void *key);
 unsigned long long			ft_hash_map_hashcode(unsigned char *str);
 int							ft_hash_map_set(t_hash_map **map, void *key,

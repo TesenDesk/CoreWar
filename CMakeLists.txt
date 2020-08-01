@@ -9,8 +9,8 @@ include_directories(asm_machine/codegen)
 include_directories(asm_machine/interfaces)
 include_directories(asm_machine/lexer)
 include_directories(asm_machine/parser)
+include_directories(ft_printf/prntf)
 include_directories(libft)
-include_directories(libft/ft_printf/includes)
 include_directories(operation_interface)
 include_directories(virtual_machine/interfaces)
 include_directories(virtual_machine/src)
@@ -83,7 +83,15 @@ add_executable(corewar
         asm_machine/parser/parser_singleton_instance.c
         asm_machine/parser/parser_xtor_private.h
         asm_machine/parser/prvt_expr.h
+        asm_machine/parser/prvt_find_1_0_layer_op.c
+        asm_machine/parser/prvt_find_1_1_layer_op.c
+        asm_machine/parser/prvt_find_2_0_layer_op.c
+        asm_machine/parser/prvt_find_2_1_layer_op.c
+        asm_machine/parser/prvt_find_parser_op0_state.c
         asm_machine/parser/prvt_parser_change_state.c
+        asm_machine/parser/prvt_parser_find_next_to_init_st.c
+        asm_machine/parser/prvt_parser_find_next_to_op01_st.c
+        asm_machine/parser/prvt_parser_find_next_to_op2_st.c
         asm_machine/parser/prvt_parser_get_token_eof.c
         asm_machine/parser/prvt_parser_get_token_init.c
         asm_machine/parser/prvt_parser_get_token_line_end.c
@@ -106,22 +114,43 @@ add_executable(corewar
         asm_machine/parser/prvt_parser_get_token_op2_logc.c
         asm_machine/parser/prvt_parser_get_token_op2_stri.c
         asm_machine/parser/prvt_parser_xtor.c
-        asm_machine/main_asm.c
-        libft/ft_printf/includes/ft_printf.h
-        libft/ft_printf/srcs/fields_parsers.c
-        libft/ft_printf/srcs/ft_atoi.c
-        libft/ft_printf/srcs/ft_clear_struct.c
-        libft/ft_printf/srcs/ft_ftoa.c
-        libft/ft_printf/srcs/ft_parse_format.c
-        libft/ft_printf/srcs/ft_parse_len.c
-        libft/ft_printf/srcs/ft_precision_f.c
-        libft/ft_printf/srcs/ft_print_arg.c
-        libft/ft_printf/srcs/ft_print_result.c
-        libft/ft_printf/srcs/ft_printf.c
-        libft/ft_printf/srcs/ft_put_bits.c
-        libft/ft_printf/srcs/ft_utf8_coder.c
-        libft/ft_printf/srcs/fts_itoa.c
-        libft/ft_printf/srcs/sec_fts.c
+#        asm_machine/main_asm.c
+        ft_printf/prntf/adjust_prec_analize_cell.c
+        ft_printf/prntf/adjust_prec_norm_form.c
+        ft_printf/prntf/adjust_prec_rebuild_func.c
+        ft_printf/prntf/adjust_prec_sci_form.c
+        ft_printf/prntf/adjust_prec_utility_func.c
+        ft_printf/prntf/char_manager.c
+        ft_printf/prntf/chose_content.c
+        ft_printf/prntf/chose_content2.c
+        ft_printf/prntf/content_decision_maker.c
+        ft_printf/prntf/distinct_types.c
+        ft_printf/prntf/fill_spec_func1.c
+        ft_printf/prntf/fill_spec_func2.c
+        ft_printf/prntf/ft_itoa_base.c
+        ft_printf/prntf/ft_printf.c
+        ft_printf/prntf/ft_printf.h
+        ft_printf/prntf/ldouble_inf_nan.c
+        ft_printf/prntf/ldouble_manager1.c
+        ft_printf/prntf/ldouble_manager2.c
+        ft_printf/prntf/ldouble_utilities.c
+        ft_printf/prntf/libft_func_1.c
+        ft_printf/prntf/libft_func_2.c
+        ft_printf/prntf/long_arythmetic1.c
+        ft_printf/prntf/long_arythmetic2.c
+        ft_printf/prntf/long_arythmetic3.c
+        ft_printf/prntf/long_arythmetic4.c
+        ft_printf/prntf/long_arythmetic5.c
+        ft_printf/prntf/manage_str.c
+        ft_printf/prntf/num_manager.c
+        ft_printf/prntf/num_manager_utilities.c
+        ft_printf/prntf/print_func.c
+        ft_printf/prntf/put_buf_ld_sci_form.c
+        ft_printf/prntf/put_into_buf_func1.c
+        ft_printf/prntf/put_into_buf_ldouble.c
+        ft_printf/prntf/put_into_buf_ldouble_utilities.c
+        ft_printf/prntf/put_into_buf_utf.c
+        ft_printf/prntf/str_manager.c
         libft/ft_abs.c
         libft/ft_atoi.c
         libft/ft_atol.c
@@ -165,8 +194,7 @@ add_executable(corewar
         libft/ft_fit_size.c
         libft/ft_free_ptr_ar.c
         libft/ft_ft_wcsnew.c
-        libft/ft_get_next_line.c
-        libft/ft_getline.c
+#        libft/ft_getline.c
         libft/ft_hash_map_ctor.c
         libft/ft_hash_map_dtor.c
         libft/ft_hash_map_get.c
@@ -197,7 +225,7 @@ add_executable(corewar
         libft/ft_itoa.c
         libft/ft_itostr.c
         libft/ft_keystr_avl_tree_traversal.c
-        libft/ft_linedelone.c
+#        libft/ft_linedelone.c
         libft/ft_lldiv_mod.c
         libft/ft_lstadd.c
         libft/ft_lstaddtip.c
@@ -249,7 +277,7 @@ add_executable(corewar
         libft/ft_putwchar_fd.c
         libft/ft_putwcs.c
         libft/ft_putwcs_fd.c
-        libft/ft_putwstr.c
+#        libft/ft_putwstr.c
         libft/ft_quicksort.c
         libft/ft_read_file.c
         libft/ft_realloc.c
@@ -335,7 +363,7 @@ add_executable(corewar
         libft/ft_wcsncpy.c
         libft/ft_wcsnew.c
         libft/ft_wcsnlen.c
-        libft/get_next_line.c
+#        libft/get_next_line.c
         libft/get_next_line.h
         libft/libft.h
         operation_interface/op.h
@@ -406,8 +434,22 @@ add_executable(corewar
         virtual_machine/src/corwar/prvt_corwar.h
         virtual_machine/src/errors/errors.c
         virtual_machine/src/errors/prvt_errors.h
+        virtual_machine/src/visual/chose_color.c
+        virtual_machine/src/visual/create_newwin.c
+        virtual_machine/src/visual/destroy_win.c
+        virtual_machine/src/visual/draw_arena.c
+        virtual_machine/src/visual/draw_basic_info.c
+        virtual_machine/src/visual/draw_champ_info.c
+        virtual_machine/src/visual/erase_windows.c
+        virtual_machine/src/visual/init_colormap.c
+        virtual_machine/src/visual/init_colors.c
+        virtual_machine/src/visual/init_curses.c
+        virtual_machine/src/visual/init_wins.c
+        virtual_machine/src/visual/print_windows.c
+        virtual_machine/src/visual/print_winner_visual.c
+        virtual_machine/src/visual/process_keys.c
         virtual_machine/src/visual/prvt_visual.h
-        virtual_machine/src/visual/visual.c
+        virtual_machine/src/visual/rebuild_color_map.c
         virtual_machine/src/vm_params/vmp_player/file/file_code_size.c
         virtual_machine/src/vm_params/vmp_player/file/file_data_check_valid.c
         virtual_machine/src/vm_params/vmp_player/file/file_data_code.c
@@ -459,4 +501,4 @@ add_executable(corewar
         virtual_machine/src/vm_play.c
         virtual_machine/src/vm_singleton.c
         virtual_machine/src/vm_verbosity_lvl.c
-        main_vm.c)
+        )

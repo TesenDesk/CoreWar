@@ -12,9 +12,11 @@
 
 #include "prvt_visual.h"
 
+
 int		chose_color(t_arena *arena, int index, t_vm *vm, int i)
 {
 	int ans;
+
 
 	if (arena->colormap[index % MEM_SIZE].player_index == 0)
 		ans = (COLOR_PAIR(arena->colormap[index % MEM_SIZE].cell_index));

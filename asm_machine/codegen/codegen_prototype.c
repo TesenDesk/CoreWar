@@ -51,15 +51,29 @@ void			codegen_dtor(t_codegen *code)
 //		if (code->labels_free)
 //			free(code->labels_free);
 		if (code->labels_ptrs) {
-			ft_vector_free(code->labels_ptrs);
+//			ft_vector_free(code->labels_ptrs);
+			ft_vector_free_full(code->labels_ptrs, label_dtor);
 			free(code->labels_ptrs);
 			code->labels_ptrs = NULL;
 		}
+		free(code->exec);
 		free(code->code);
 		code->code = NULL;
 		free(code);
 		code = NULL;
 	}
+}
+void 		label_dtor(void **data)
+{
+	if (data)
+	{
+		if (*data)
+		{
+			free((*((t_label_data**)data))->name);
+			free(*data);
+		}
+	}
+
 }
 
 static void		codegen_add_champ_name(char *dst, t_header *header)
