@@ -127,6 +127,21 @@ VM_ARENA_SRC := arena_carriage_list_new.c \
 				arena_set_named_player.c \
 				arena_set_unnamed_player.c \
 				arena_write_four_bytes_to_data.c \
+				arena_get_player_index.c \
+				arena_get_cell_index.c \
+				arena_get_store_index.c \
+				arena_get_data_by_address.c \
+				arena_get_player.c \
+				arena_get_nb_players.c \
+				arena_set_player_index.c \
+				arena_set_store_index.c \
+				arena_set_carriage_num.c \
+				arena_get_player_code_size.c \
+				arena_set_cell_index.c \
+				arena_set_color_is_set.c \
+				arena_get_color_is_set.c \
+				arena_get_last_live_player.c \
+				arena_get_carriage_num.c \
 				prvt_arena_players_new.c \
 				prvt_arena_set_smallest_unoccupied_name.c
 VM_ARENA_OBJ := $(patsubst %.c, %.o, $(VM_ARENA_SRC))

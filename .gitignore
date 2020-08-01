@@ -54,6 +54,7 @@ dkms.conif
 # other
 .DS_Store
 .idea
+CMakeLists.txt
 cmake-build-debug
 a.out
 .vscode

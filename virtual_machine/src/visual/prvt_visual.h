@@ -13,16 +13,17 @@
 #ifndef PRVT_VISUAL_H
 # define PRVT_VISUAL_H
 
+# include <ncurses.h>
 # include "libft.h"
 # include "visual.h"
 # include "op.h"
-# include "../arena/prvt_arena.h"
+# include "arena.h"
+//# include "../arena/prvt_arena.h"
 # include "../_vm.h"
 # include "../carriage/prvt_carriage.h"
 # include "../arena/player/prvt_player.h"
 # include "../vm_params/prvt_vm_params.h"
 # include "op.h"
-# include <ncurses.h>
 
 # define EXTERNAL_COLOR_OFFSET	4
 # define COLOR_GRAY				8
