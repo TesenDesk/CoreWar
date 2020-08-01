@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 12:14:40 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/08/01 12:37:44 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/01 13:40:57 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,21 @@
 
 # define HOME_OFFSET			4
 # define OUT_OFFSET				8
+
+void		print_winner_visual(t_vm *vm);
+void		print_windows(t_vm *vm);
+void		init_curses(void);
+void		init_colormap(t_arena *arena, t_vm *vm, int ofset_outer);
+void		init_colors(void);
+t_wins		*init_wins(void);
+void		process_keys(t_vm *self);
+WINDOW		*create_newwin(int height, int width, int starty, int startx);
+int			chose_color(t_arena *arena, int index, t_vm *vm, int i);
+void		draw_basic_info(t_vm *vm);
+void		draw_champ_info(t_vm *vm);
+void		draw_arena(t_vm *vm);
+static void	rebuild_color_map_util(t_arena *arena, t_list *iter, int *index);
+void		erase_windows(t_vm *vm);
+void		destroy_win(WINDOW *local_win);
 
 #endif
