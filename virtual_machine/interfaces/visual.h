@@ -8,16 +8,17 @@
 #include "arena.h"
 #include "vm.h"
 
-typedef struct  s_wins
-{
-	WINDOW      *arena;
-	WINDOW      *info;
-	WINDOW      *champ;
-	WINDOW      *win;
-//	WINDOW      *help;
-}               t_wins;
+typedef struct s_wins			t_wins;
+typedef struct s_color_mapcell	t_color_mapcell;
 
-
+// typedef struct  s_wins
+// {
+// 	WINDOW      *arena;
+// 	WINDOW      *info;
+// 	WINDOW      *champ;
+// 	WINDOW      *win;
+// //	WINDOW      *help;
+// }               t_wins;
 
 typedef struct          s_color_mapcell
 {

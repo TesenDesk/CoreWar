@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm_play.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurezz <yurezz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 23:20:21 by yurezz            #+#    #+#             */
-/*   Updated: 2020/08/01 19:59:43 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/02 12:43:45 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include "arena/prvt_arena.h"
 #include "ncurses.h"
 #include "carriage/prvt_carriage.h"
-#include "visual.h"
+// #include "visual.h"
 
-//#include "prvt_visual.h"
+#include "visual/prvt_visual.h"
 
 
 

@@ -110,7 +110,9 @@ VM_SRC := prvt_vm_destroy.c \
 			vm_num_of_carriages_and_increase.c \
 			vm_play.c \
 			vm_singleton.c \
-			vm_verbosity_lvl.c
+			vm_verbosity_lvl.c \
+			vm_get_arena.c \
+			vm_get_wins.c
 VM_OBJ := $(patsubst %.c, %.o, $(VM_SRC))
 VM_DIR_OBJ := $(addprefix $(VM_DIR)src/, $(VM_OBJ))
 
