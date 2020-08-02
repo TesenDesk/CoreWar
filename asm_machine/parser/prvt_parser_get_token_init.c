@@ -40,8 +40,10 @@ static void			find_arg_num(int token_type, char *arg_num)
 	else if (token_type >= TOKEN_CHNAME
 	&& token_type <= TOKEN_LFORK)
 		*arg_num = OP_NAME;
+	else if (token_type == TOKEN_LFEED)
+		*arg_num = LINE_END;
 	else
-		*arg_num = UNDEF_ARG;
+		*arg_num = JUNK;
 }
 
 t_token				*prvt_parser_get_token_init(t_parser *parser,

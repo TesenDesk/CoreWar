@@ -32,6 +32,8 @@ t_expr				*expr_ctor(void)
 	expr->args[SECOND_ARG].value = NULL;
 	expr->args[THIRD_ARG].value = NULL;
 	expr->args[LABEL_ARG].value = NULL;
+	expr->args[LINE_END].value = NULL;
+	expr->args[JUNK].value = NULL;
 	return (expr);
 }
 
