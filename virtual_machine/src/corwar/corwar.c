@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   corwar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 22:35:40 by yurezz            #+#    #+#             */
-/*   Updated: 2020/07/13 18:41:34 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/02 12:48:12 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prvt_corwar.h"
-#include "../_vm.h"
+#include "../prvt_vm.h"
 #include "../vm_params/prvt_vm_params.h"
 
 

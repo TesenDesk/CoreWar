@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 12:14:40 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/08/02 12:13:04 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/02 12:47:32 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "visual.h"
 # include "op.h"
 # include "../arena/prvt_arena.h"
-# include "../_vm.h"
+# include "../prvt_vm.h"
 # include "../carriage/prvt_carriage.h"
 # include "../arena/player/prvt_player.h"
 # include "../vm_params/prvt_vm_params.h"
@@ -49,14 +49,22 @@
 # define HOME_OFFSET			4
 # define OUT_OFFSET				8
 
-typedef struct					s_wins
-{
-	WINDOW					*arena;
-	WINDOW					*info;
-	WINDOW					*champ;
-	WINDOW					*win;
-//	WINDOW					*help;
-}								t_wins;
+// typedef struct					s_wins
+// {
+// 	WINDOW					*arena;
+// 	WINDOW					*info;
+// 	WINDOW					*champ;
+// 	WINDOW					*win;
+// //	WINDOW					*help;
+// }								t_wins;
+
+// typedef struct					s_color_mapcell
+// {
+// 	int						player_index;
+// 	int						cell_index;
+// 	int						store_index;
+
+// }								t_color_mapcell;
 
 void		print_winner_visual(t_vm *vm);
 void		print_windows(t_vm *vm);
