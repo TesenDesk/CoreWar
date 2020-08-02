@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prvt_arena.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 19:08:09 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/04 19:08:35 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/02 13:21:25 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 //# define DUMP_LINE_SIZE	32
 # define DUMP_LINE_SIZE	64
 
+// typedef void*			t_color_mapcell;
+
 typedef struct			s_arena
 {
 	t_player			**players;
@@ -45,5 +47,11 @@ typedef struct			s_arena
 
 t_player				**prvt_arena_players_new(int num_players);
 void					prvt_arena_set_smallest_unoccupied_name(t_arena *self);
+
+// TODO: 	t_color_mapcell     colormap[MEM_SIZE]; 
+// t_color_mapcell должен быть приватным, но для работы с массмвом нужно знать 
+// размер его элементов, но это недопустимо для ООП. Выход -- заменить ё
+// объявлением типа указателей на войддля данного класа, но заццепленность кода
+// пока это не позволяет
 
 #endif
