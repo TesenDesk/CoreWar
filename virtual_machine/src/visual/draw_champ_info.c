@@ -17,18 +17,18 @@ void		draw_champ_info(t_vm *vm)
 	int		i;
 
 	i = 0;
-	while (i < (unsigned int)vm->arena->nb_players)
+	while (i < (unsigned int)arena_get_nb_players(vm->arena))
 	{
 		wattron(vm->wins->champ, COLOR_PAIR(P_1_HOME + i) | A_BOLD);
 		wmove(vm->wins->champ, i * 3 + 1, 1);
 		wprintw(vm->wins->champ, "P_%d_name: %40s", i + 1,
-			vm->arena->players[i]->text_name);
+			arena_get_player(vm->arena, i)->text_name);
 		wmove(vm->wins->champ, i * 3 + 2, 1);
 		wprintw(vm->wins->champ, "P_%d_comment: %37s", i + 1,
-			vm->arena->players[i]->text_comment);
+			arena_get_player(vm->arena, i)->text_comment);
 		wmove(vm->wins->champ, i * 3 + 3, 1);
 		wprintw(vm->wins->champ, "carriage_num: %36d",
-			vm->arena->carriage_num[i]);
+			arena_get_carriage_num(vm->arena, i));
 		wattroff(vm->wins->champ, COLOR_PAIR(P_1_HOME + i) | A_BOLD);
 		++i;
 	}

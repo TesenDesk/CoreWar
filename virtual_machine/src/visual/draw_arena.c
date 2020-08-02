@@ -30,7 +30,7 @@ void		draw_arena(t_vm *vm)
 			col = chose_color(vm->arena, (i * 64 + j) % MEM_SIZE, vm, i);
 			wattron(vm->wins->arena, col);
 			wprintw(vm->wins->arena, "%.2x",
-				(unsigned char)vm->arena->data[(i * 64 + j++) % MEM_SIZE]);
+				(unsigned char)arena_get_data_by_address(vm->arena, (i * 64 + j++) % MEM_SIZE));//vm->arena->data[(i * 64 + j++) % MEM_SIZE]);
 			wattroff(vm->wins->arena, col);
 			waddch(vm->wins->arena, ' ');
 		}

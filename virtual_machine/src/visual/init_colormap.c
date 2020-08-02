@@ -21,17 +21,18 @@ void				init_colormap(t_arena *arena, t_vm *vm, int ofset_outer)
 	int				pos;
 
 	col = P_1_HOME;
-	tmp = *(arena->players);
+	//tmp = *(arena->players); //TODO: Так можно? (см.коммент на строке 29)
 	offset = 0;
 	pos = offset;
-	while (col <= arena->nb_players)
+	while (col <= arena_get_nb_players(arena))
 	{
-		while (pos < offset + tmp->code_size)
-			arena->colormap[pos++ % MEM_SIZE].cell_index = col;
+		//while (pos < offset + tmp->code_size)
+		while (pos < offset + arena_get_player_code_size(arena, 0)) //TODO: Можно оптимизировать!! Не вызывать get каждый раз!!!
+			arena_set_cell_index(arena, pos++ % MEM_SIZE, col);
 		while (pos < offset + ofset_outer)
-			arena->colormap[pos++ % MEM_SIZE].cell_index = NEUTRAL_COL;
+			arena_set_cell_index(arena, pos++ % MEM_SIZE, NEUTRAL_COL);
 		offset += ofset_outer;
 		++col;
 	}
-	arena->color_is_set = 1;
+	arena_set_color_is_set(arena, 1);
 }

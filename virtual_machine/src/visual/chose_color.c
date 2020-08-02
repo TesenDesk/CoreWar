@@ -12,26 +12,25 @@
 
 #include "prvt_visual.h"
 
-
 int		chose_color(t_arena *arena, int index, t_vm *vm, int i)
 {
 	int ans;
 
-
-	if (arena->colormap[index % MEM_SIZE].player_index == 0)
-		ans = (COLOR_PAIR(arena->colormap[index % MEM_SIZE].cell_index));
-	else if (arena->colormap[index % MEM_SIZE].player_index ==
-		arena->colormap[index % MEM_SIZE].cell_index)
-		ans = (COLOR_PAIR(arena->colormap[index % MEM_SIZE].cell_index +
+	//TODO: Можно оптимизировать вызовы get через общие переменные.
+	if (arena_get_player_index(arena, index % MEM_SIZE) == 0)
+		ans = (COLOR_PAIR(arena_get_cell_index(arena, index % MEM_SIZE)));
+	else if (arena_get_player_index(arena, index % MEM_SIZE) ==
+		arena_get_cell_index(arena, index % MEM_SIZE))
+		ans = (COLOR_PAIR(arena_get_cell_index(arena, index % MEM_SIZE) +
 			HOME_OFFSET));
-	else if (arena->colormap[index % MEM_SIZE].cell_index != NEUTRAL_COL)
+	else if (arena_get_cell_index(arena, index % MEM_SIZE) != NEUTRAL_COL)
 	{
-		ans = (COLOR_PAIR(arena->colormap[index % MEM_SIZE].cell_index +
+		ans = (COLOR_PAIR(arena_get_cell_index(arena, index % MEM_SIZE) +
 			OUT_OFFSET));
 	}
 	else
 		ans = (COLOR_PAIR(NEUTRAL_COL));
-	if (arena->colormap[index % MEM_SIZE].store_index == 1)
+	if (arena_get_store_index(arena, index % MEM_SIZE) == 1)
 		ans |= WA_BOLD;
 	return (ans);
 }

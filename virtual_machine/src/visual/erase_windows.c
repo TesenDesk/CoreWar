@@ -22,11 +22,11 @@ void		erase_windows(t_vm *vm)
 	werase(vm->wins->champ);
 	while (i < MEM_SIZE)
 	{
-		vm->arena->colormap[i].player_index = 0;
-		vm->arena->colormap[i].store_index = 0;
+		arena_set_player_index(vm->arena, i, 0);
+		arena_set_store_index(vm->arena, i, 0);
 		++i;
 	}
 	i = 0;
 	while (i < 4)
-		vm->arena->carriage_num[i++] = 0;
+		arena_set_carriage_num(vm->arena, i++, 0);
 }
