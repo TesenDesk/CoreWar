@@ -31,6 +31,7 @@ t_vector		*analyse_text(t_analyser *analyser, t_vector *vector,
 		if (ft_vector_add(expr_text, expr) == FAILURE)
 			exit(-1);
 		expr_type = expr_get_type((t_expr*)ft_vector_get_curr(expr_text));
+		printf("aa %d\n", expr_type);
 		analyser->prvt_change_state(analyser, expr_type);
 		if (analyser->state == ANALYSER_ERROR_ST)
 			exit(-1);

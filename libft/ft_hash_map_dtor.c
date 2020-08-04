@@ -38,6 +38,7 @@ void				ft_hash_map_dtor_full(t_hash_map **map_input, delfptr f)
 
 	map = *map_input;
 	i = 0;
+//	f = NULL;
 	while (i < map->arr_size)
 	{
 		ft_keystr_avl_del_full(&(map->data[i++]), f);

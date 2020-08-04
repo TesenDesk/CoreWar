@@ -27,7 +27,7 @@ typedef struct		s_expr
 	int				arg_size;
 	int				size;
 	void			*name;
-	t_arg			args[7];
+	t_arg			args[6];
 }					t_expr;
 
 #endif

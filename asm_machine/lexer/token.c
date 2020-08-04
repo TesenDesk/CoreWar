@@ -25,7 +25,7 @@ t_token				*token_constructor(int type, void *ptr[2])
 	if (!(token = (t_token*)malloc(sizeof(t_token))))
 		exit(-1);
 	if (ptr[1] - ptr[0] < 0)
-		token->val = "";
+		token->val = ft_memalloc(1);
 	else
 	{
 		size = ptr[1] - ptr[0] + 2;

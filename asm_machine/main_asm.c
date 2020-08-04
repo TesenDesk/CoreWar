@@ -49,7 +49,7 @@ void				ft_del_text(t_vector *v, void (*del)(void**))
 	int 			i;
 
 	i = 0;
-	while (i < v->capacity)
+	while (i < v->total)
 	{
 //		del(&(v->items[i]));
 		expr_dtor(&((v->items[i])));
@@ -81,7 +81,8 @@ int					main(int ac, char **av)
 		text = analyse_text(analyser, &vtr, map, buf);
 		generate_code(map, text, av[count]);
 		analyser_singleton_instance(ANALYSER_DESTRUCT);
-		ft_hash_map_dtor_full(&map, token_destructor);
+		ft_hash_map_dtor(&map);
+//		ft_hash_map_dtor_full(&map, token_destructor);
 		ft_vector_free_data(&vtr, label_dtor);
 		ft_del_text(text, expr_dtor);
 		free(text);
