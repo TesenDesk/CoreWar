@@ -52,11 +52,13 @@ void			codegen_dtor(t_codegen *code)
 //			free(code->labels_free);
 		if (code->labels_ptrs) {
 //			ft_vector_free(code->labels_ptrs);
+			printf("!!!!!!!!!!!!!!!!!!!!!!!!!%d\n", code->labels_ptrs->total);
 			ft_vector_free_data(code->labels_ptrs, label_dtor);
 			free(code->labels_ptrs);
 			code->labels_ptrs = NULL;
 		}
 		free(code->exec);
+		code->exec = NULL;
 		free(code->code);
 		code->code = NULL;
 		free(code);
@@ -69,7 +71,9 @@ void 		label_dtor(void **data)
 	{
 		if (*data)
 		{
-//			free((*((t_label_data**)data))->name);
+			printf("%s\n", (*((t_label_data**)data))->name);
+			free((*((t_label_data**)data))->name);
+			(*((t_label_data**)data))->name = NULL;
 			free(*data);
 			*data = NULL;
 		}
@@ -423,6 +427,7 @@ void		write_code_to_file(char *exec, int code_size, char *filename)
 		exit(-1);
 	}
 	write(fd, exec, code_size);
+	free(new_name);
 }
 
 void			generate_code(t_hash_map *map, t_vector *text, char *filename)

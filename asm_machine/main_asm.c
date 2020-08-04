@@ -66,22 +66,26 @@ int					main(int ac, char **av)
 	t_vector		*text;
 	t_analyser		*analyser;
 	t_vector		vtr;
+	char            *buf;
 	int				count;
 
 	count = 1;
+	buf = NULL;
 	while (count < ac)
 	{
 		map = ft_hash_map_ctor(HASH_CONST);
 		ft_vector_init(&vtr);
 		analyser = analyser_singleton_instance(ANALYSER_INSTANTIATE);
-		text = analyse_text(analyser, &vtr, map, (read_code(open(av[count],
-			O_RDONLY))));
+		buf = (read_code(open(av[count],
+		                      O_RDONLY)));
+		text = analyse_text(analyser, &vtr, map, buf);
 		generate_code(map, text, av[count]);
 		analyser_singleton_instance(ANALYSER_DESTRUCT);
 		ft_hash_map_dtor_full(&map, token_destructor);
 		ft_vector_free_data(&vtr, label_dtor);
 		ft_del_text(text, expr_dtor);
 		free(text);
+		free(buf);
 
 		++count;
 	}

@@ -19,7 +19,7 @@
 int			expr_set_arg(t_expr *expr, t_token *token,
 					int args_number, int arg_type)
 {
-	printf("!!!%d\n", args_number);
+//	printf("!!!%d\n", args_number);
 	if (args_number == JUNK || args_number == LINE_END) {
 		if (expr->args[args_number].value != NULL)
 		{

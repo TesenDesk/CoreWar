@@ -20,9 +20,14 @@ void			ft_vector_free_data(t_vector *v, void (*fptr)(void **))
 	if (!v || !fptr)
 		return ;
 	if (fptr)
-		while (v->total) {
-			(*fptr)((void **) (v->items + --tmp));
-			v->items[tmp + 1] = NULL;
+		while (tmp)
+		{
+//			printf("%d\n", tmp);
+			(*fptr)((void **) (v->items[tmp]));
+			v->items[tmp] = NULL;
+			--tmp;
 		}
+	free(v->items);
+		v->items = NULL;
 	return ;
 }
