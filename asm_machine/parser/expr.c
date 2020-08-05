@@ -46,7 +46,7 @@ void				expr_dtor(t_expr **expr)
 	{
 		if (*expr)
 		{
-			while (i < 6) {
+			while (i < 7) {
 				t_arg  *arg = &((*expr)->args[i]);
 				t_token *token = arg->value;
 				token_destructor(&token);

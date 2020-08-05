@@ -151,7 +151,7 @@ static void		write_address_to_free_label(t_codegen *data, t_expr *label)
 	t_token		*token;
 
 	token = expr_get_arg_value(label, LABEL_ARG);
-	if (!(tmp = (t_code_addr*)malloc(sizeof(t_code_addr))))
+	if (!(tmp = (t_code_addr*)ft_memalloc(sizeof(t_code_addr))))
 		exit(-1);
 	tmp->addr = data->add;
 	ft_hash_map_set_content(data->labels_free, token_get_value(token), (tmp));

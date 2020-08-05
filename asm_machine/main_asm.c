@@ -56,6 +56,7 @@ void				ft_del_text(t_vector *v, void (*del)(void**))
 		++i;
 	}
 	ft_memdel((void **)&v->items);
+	v->items = NULL;
 	return ;
 }
 
