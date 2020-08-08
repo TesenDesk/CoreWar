@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 12:14:40 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/08/08 16:19:57 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/08 17:09:31 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include "../carriage/prvt_carriage.h"
 //# include "../arena/player/prvt_player.h"
 # include "../vm_params/prvt_vm_params.h"
-# include "op.h"
 
 # define EXTERNAL_COLOR_OFFSET	4
 # define COLOR_GRAY				8
