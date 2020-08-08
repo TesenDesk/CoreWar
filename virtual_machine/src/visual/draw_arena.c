@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 12:49:20 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/08/08 14:59:52 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/08 15:09:37 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		draw_arena(t_vm *vm)
 			col = chose_color(vm_get_arena(vm), (i * 64 + j) % MEM_SIZE, vm, i);
 			wattron(vm_get_wins(vm)->arena, col);
 			wprintw(vm_get_wins(vm)->arena, "%.2x",
-				arena_get_cell(vm, (i * 64 + j++) % MEM_SIZE));
+				arena_get_cell(vm_get_arena(vm), (i * 64 + j++) % MEM_SIZE));
 			wattroff(vm_get_wins(vm)->arena, col);
 			waddch(vm_get_wins(vm)->arena, ' ');
 		}
