@@ -114,7 +114,9 @@ VM_SRC := prvt_vm_destroy.c \
 			vm_get_arena.c \
 			vm_get_wins.c \
 			vm_get_cycles_counter.c \
-			vm_get_global_counter.c
+			vm_get_global_counter.c \
+			vm_get_cycles_to_die.c \
+			vm_get_speed.c
 VM_OBJ := $(patsubst %.c, %.o, $(VM_SRC))
 VM_DIR_OBJ := $(addprefix $(VM_DIR)src/, $(VM_OBJ))
 

@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:04:08 by yurezz            #+#    #+#             */
-/*   Updated: 2020/08/08 16:31:58 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/08 16:37:26 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ t_arena			*vm_get_arena(t_vm *self);
 t_wins			*vm_get_wins(t_vm *self);
 unsigned int	vm_get_cycles_counter(t_vm *self);
 int				vm_get_global_counter(t_vm *self);
+unsigned int	vm_get_cycles_to_die(t_vm *self);
+int				vm_get_speed(t_vm *self);
 
 // TODO: перенести # include "ft_printf.h" в приватный интерфейс.
 #endif
