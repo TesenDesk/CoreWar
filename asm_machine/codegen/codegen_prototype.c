@@ -41,6 +41,10 @@ t_codegen		*codegen_ctor(t_hash_map *labels_free,
 	ft_vector_init(code->labels_ptrs);
 	code->header = header;
 	code->code = ft_memalloc(sizeof(char) * 1000000);
+	if (!(code->junk_container = (t_vector*)ft_memalloc(sizeof(t_vector))))
+		exit(-1);
+	if (ft_vector_init(code->junk_container) == FAILURE)
+		exit(-1);
 	return (code);
 }
 
@@ -48,15 +52,13 @@ void			codegen_dtor(t_codegen *code)
 {
 	if (code)
 	{
-//		if (code->labels_free)
-//			free(code->labels_free);
 		if (code->labels_ptrs) {
-//			ft_vector_free(code->labels_ptrs);
-			printf("!!!!!!!!!!!!!!!!!!!!!!!!!%d\n", code->labels_ptrs->total);
 			ft_vector_free_data(code->labels_ptrs, label_dtor);
 			free(code->labels_ptrs);
 			code->labels_ptrs = NULL;
 		}
+		ft_vector_free_data(code->junk_container, ft_memdel);
+		free(code->junk_container);
 		free(code->exec);
 		code->exec = NULL;
 		free(code->code);
@@ -154,6 +156,12 @@ static void		write_address_to_free_label(t_codegen *data, t_expr *label)
 	if (!(tmp = (t_code_addr*)ft_memalloc(sizeof(t_code_addr))))
 		exit(-1);
 	tmp->addr = data->add;
+//	t_token *a = ft_hash_map_get(data->labels_free, token_get_value(token));
+//	token_destructor(&a);
+//	a = NULL;
+//	ft_hash_map_dtor(&map);
+//	printf("%s   %s\n",token_get_value(token),  a);
+	ft_vector_add(data->junk_container, tmp);
 	ft_hash_map_set_content(data->labels_free, token_get_value(token), (tmp));
 }
 
@@ -334,12 +342,15 @@ static void			codegen_ending(t_codegen *data)
 	int				add;
 	int				tmp;
 	int				cell_size;
+	t_code_addr     *addr;
 
 	i = -1;
 	while ((ld = ft_vector_get(data->labels_ptrs, ++i)))
 	{
-		add = (int)(((t_code_addr*)ft_hash_map_get(data->labels_free,
-		ld->name))->addr);
+		addr = (t_code_addr*)ft_hash_map_get(data->labels_free,ld->name);
+		add = (int)(addr->addr);
+//		add = (int)(((t_code_addr*)ft_hash_map_get(data->labels_free,
+//		ld->name))->addr);
 		tmp = (add - ld->instruction_begining);
 		if (ld->param_type == TOKEN_TIND_LAB)
 			tmp %= IDX_MOD;
@@ -349,6 +360,8 @@ static void			codegen_ending(t_codegen *data)
 			ft_memcpy(&(data->code[ld->add]), (short *)&tmp, cell_size);
 		else
 			ft_memcpy(&(data->code[ld->add]), &tmp, cell_size);
+//		free(addr);
+//		addr = NULL;
 	}
 }
 
