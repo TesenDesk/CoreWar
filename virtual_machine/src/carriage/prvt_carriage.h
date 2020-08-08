@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prvt_carriage.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 20:37:41 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/04 20:37:53 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/08 18:27:34 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ typedef struct		s_carriage
 	int				is_correct_op_code;
 	int				arena_position;
 	int				registers[REG_NUMBER];
-	int             was_store;
-	int             was_live;
-	unsigned int             stor_pos;
+	int				was_store;
+	int				was_live;
+	unsigned int	stor_pos;
 }					t_carriage;
 
 void				prvt_carriage_set_op_code(t_carriage *self, t_arena *arena);

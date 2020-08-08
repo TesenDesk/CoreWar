@@ -180,7 +180,10 @@ VM_CARRIAGE_SRC := 	carriage_destroy.c \
 					carriage_take_step.c \
 					prvt_carriage_set_cycles_to_perform_op.c \
 					prvt_carriage_set_is_correct_op_code.c \
-					prvt_carriage_set_op_code.c
+					prvt_carriage_set_op_code.c \
+					carriage_get_arena_position.c \
+					carriage_get_player_name.c \
+					carriage_get_stor_pos.c
 VM_CARRIAGE_OBJ := $(patsubst %.c, %.o, $(VM_CARRIAGE_SRC))
 VM_CARRIAGE_DIR_OBJ := $(addprefix $(VM_DIR)src/carriage/, $(VM_CARRIAGE_OBJ))
 
