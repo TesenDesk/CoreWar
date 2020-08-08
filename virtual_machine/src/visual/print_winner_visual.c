@@ -20,7 +20,7 @@ void	print_winner_visual(t_vm *vm) //TODO: Оптимизировать надо
 //	wattron(vm->wins->win, COLOR_PAIR(P_1_HOME + vm->arena->players[
 //		vm->arena->last_live_player - 1]->name - 1) | A_BOLD);
 
-	wattron(vm->wins->win, COLOR_PAIR(P_1_HOME + arena_get_player(vm->arena, arena_get_last_live_player(vm->arena) - 1)->name - 1) | A_BOLD);
+	wattron(vm->wins->win, COLOR_PAIR(P_1_HOME + player_get_name(arena_get_player(vm->arena, arena_get_last_live_player(vm->arena) - 1)) - 1) | A_BOLD);
 	wmove(vm->wins->win, 1, 1);
 
 //	WARN // OLD CODE // DELETE IT // IF NEW CODE WORKS //
@@ -29,14 +29,14 @@ void	print_winner_visual(t_vm *vm) //TODO: Оптимизировать надо
 //		vm->arena->players[vm->arena->last_live_player - 1]->name);
 
 	wprintw(vm->wins->win, "%-20s(PLAYER #%d) WON!\n",
-			arena_get_player(vm->arena, arena_get_last_live_player(vm->arena) - 1)->text_name,
-			arena_get_player(vm->arena, arena_get_last_live_player(vm->arena) - 1)->name);
+			player_get_text_name(arena_get_player(vm->arena, arena_get_last_live_player(vm->arena) - 1)),
+			player_get_name(arena_get_player(vm->arena, arena_get_last_live_player(vm->arena) - 1)));
 
 //	WARN // OLD CODE // DELETE IT // IF NEW CODE WORKS //
 //	wattroff(vm->wins->win, COLOR_PAIR(P_1_HOME + vm->arena->players[
 //		vm->arena->last_live_player - 1]->name - 1) | A_BOLD);
 
-	wattroff(vm->wins->win, COLOR_PAIR(P_1_HOME + arena_get_player(vm->arena, arena_get_last_live_player(vm->arena) - 1)->name - 1) | A_BOLD);
+	wattroff(vm->wins->win, COLOR_PAIR(P_1_HOME + player_get_name(arena_get_player(vm->arena, arena_get_last_live_player(vm->arena) - 1)) - 1) | A_BOLD);
 
 	//END OF CODE UPDATE//
 

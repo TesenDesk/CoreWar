@@ -28,4 +28,8 @@ char			*player_code(t_player *self);
 int				player_code_size(t_player *self);
 void			player_live_verbosity(t_player *self);
 
+char			*player_get_text_name(t_player *player);
+char			*player_get_text_comment(t_player *player);
+int				player_get_name(t_player *player);
+
 #endif

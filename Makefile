@@ -162,7 +162,10 @@ VM_ARENA_PLAYER_SRC := player_code.c \
 				player_name.c \
 				player_new.c \
 				player_print_winner.c \
-				player_set_name.c
+				player_set_name.c \
+				player_get_name.c \
+				player_get_text_name.c \
+				player_get_text_comment.c
 
 VM_ARENA_PLAYER_OBJ := $(patsubst %.c, %.o, $(VM_ARENA_PLAYER_SRC))
 VM_ARENA_PLAYER_DIR_OBJ := $(addprefix $(VM_DIR)src/arena/player/, $(VM_ARENA_PLAYER_OBJ))
