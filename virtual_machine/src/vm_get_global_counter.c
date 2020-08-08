@@ -6,7 +6,13 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/08 16:00:39 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/08/08 16:00:40 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/08 16:31:49 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "prvt_vm.h"
+
+int			vm_get_global_counter(t_vm *self)
+{
+	return (self->global_counter);
+}

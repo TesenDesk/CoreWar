@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 12:46:53 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/08/08 16:25:25 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/08 16:31:44 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void			draw_basic_info(t_vm *vm)
 	wprintw(vm_get_wins(vm)->info, " CURRENT_COUNTER: %zu\n",
 		vm_get_cycles_counter(vm));
 	wmove(vm_get_wins(vm)->info, 3, 1);
-	wprintw(vm_get_wins(vm)->info, " GLOBAL_COUNTER:  %d\n", vm->global_counter);
+	wprintw(vm_get_wins(vm)->info, " GLOBAL_COUNTER:  %d\n", vm_get_global_counter(vm));
 	wmove(vm_get_wins(vm)->info, 4, 1);
 	wprintw(vm_get_wins(vm)->info, " CYCLES_DELTA:    %d\n", CYCLE_DELTA);
 	wmove(vm_get_wins(vm)->info, 5, 1);
