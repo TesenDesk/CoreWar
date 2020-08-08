@@ -60,6 +60,7 @@ typedef struct		s_codegen
 	t_hash_map		*labels_free;
 	t_vector		*labels_ptrs;
 	t_header		*header;
+	t_vector        *junk_container;
 }					t_codegen;
 
 #endif
