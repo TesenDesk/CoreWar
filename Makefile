@@ -145,7 +145,8 @@ VM_ARENA_SRC := arena_carriage_list_new.c \
 				arena_get_last_live_player.c \
 				arena_get_carriage_num.c \
 				prvt_arena_players_new.c \
-				prvt_arena_set_smallest_unoccupied_name.c
+				prvt_arena_set_smallest_unoccupied_name.c \
+				arena_get_cell.c
 VM_ARENA_OBJ := $(patsubst %.c, %.o, $(VM_ARENA_SRC))
 VM_ARENA_DIR_OBJ := $(addprefix $(VM_DIR)src/arena/, $(VM_ARENA_OBJ))
 

@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:05:37 by yurezz            #+#    #+#             */
-/*   Updated: 2020/08/08 13:38:57 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/08 13:48:31 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ void			arena_set_cell_index(t_arena *self, int mapcell_index,
 void			arena_set_color_is_set(t_arena *self, int color_is_set);
 int				arena_get_color_is_set(t_arena *self);
 int				arena_get_last_live_player(t_arena *self);
+unsigned char	arena_get_cell(t_arena *self, int index);
 
 #endif
