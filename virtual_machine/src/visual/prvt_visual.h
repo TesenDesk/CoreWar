@@ -19,7 +19,7 @@
 # include "op.h"
 # include "../prvt_vm.h"
 # include "../carriage/prvt_carriage.h"
-# include "../arena/player/prvt_player.h"
+//# include "../arena/player/prvt_player.h"
 # include "../vm_params/prvt_vm_params.h"
 # include "op.h"
 
