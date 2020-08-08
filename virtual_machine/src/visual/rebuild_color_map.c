@@ -6,11 +6,12 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 12:45:21 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/08/01 16:21:57 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/08 17:59:12 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prvt_visual.h"
+// # include "../prvt_vm.h"
 
 /*
 **		while (index < 4)
@@ -80,3 +81,4 @@ void		rebuild_color_map(t_arena *arena, t_vm *vm)
 		iter = iter->next;
 	}
 }
+// TODO: это метод класса vm. Нужно перекинуть его туда

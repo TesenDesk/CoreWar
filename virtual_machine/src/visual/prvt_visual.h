@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 12:14:40 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/08/08 17:40:19 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/08 17:43:19 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "libft.h"
 # include "visual.h"
 # include "op.h"
-# include "../prvt_vm.h"
+// # include "../prvt_vm.h"
 # include "../carriage/prvt_carriage.h"
 //# include "../arena/player/prvt_player.h"
 # include "../vm_params/prvt_vm_params.h"
