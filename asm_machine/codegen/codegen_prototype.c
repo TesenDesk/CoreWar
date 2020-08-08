@@ -52,16 +52,11 @@ void			codegen_dtor(t_codegen *code)
 {
 	if (code)
 	{
-//		if (code->labels_free)
-//			free(code->labels_free);
 		if (code->labels_ptrs) {
-//			ft_vector_free(code->labels_ptrs);
-			printf("!!!!!!!!!!!!!!!!!!!!!!!!!%d\n", code->labels_ptrs->total);
 			ft_vector_free_data(code->labels_ptrs, label_dtor);
 			free(code->labels_ptrs);
 			code->labels_ptrs = NULL;
 		}
-//		ft_hash_map_dtor(&(code->labels_free));
 		ft_vector_free_data(code->junk_container, ft_memdel);
 		free(code->junk_container);
 		free(code->exec);
@@ -165,7 +160,7 @@ static void		write_address_to_free_label(t_codegen *data, t_expr *label)
 //	token_destructor(&a);
 //	a = NULL;
 //	ft_hash_map_dtor(&map);
-//	printf("%p   %p\n",token,  a);
+//	printf("%s   %s\n",token_get_value(token),  a);
 	ft_vector_add(data->junk_container, tmp);
 	ft_hash_map_set_content(data->labels_free, token_get_value(token), (tmp));
 }
@@ -365,8 +360,8 @@ static void			codegen_ending(t_codegen *data)
 			ft_memcpy(&(data->code[ld->add]), (short *)&tmp, cell_size);
 		else
 			ft_memcpy(&(data->code[ld->add]), &tmp, cell_size);
-		free(addr);
-		addr = NULL;
+//		free(addr);
+//		addr = NULL;
 	}
 }
 

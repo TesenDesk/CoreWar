@@ -19,23 +19,16 @@
 int			expr_set_arg(t_expr *expr, t_token *token,
 					int args_number, int arg_type)
 {
-//	printf("!!!%d\n", args_number);
-	if (args_number == JUNK || args_number == LINE_END) {
+	if (args_number == JUNK || args_number == LINE_END)
+	{
 		if (expr->args[args_number].value != NULL)
 		{
-			printf("!!!!!!!!!!!!, %d\n", args_number);
 			token_destructor(&(expr->args[args_number].value));
 			expr->args[args_number].value = NULL;
 		}
-
-//		token_destructor(&token);
-//		token = NULL;
-//		token_destructor(&token);
-//		token = NULL;
 	/*
 	 * ТЕРЯЕМ ТОКЕНЫ ЗДЕСЬ
 	 */
-//		return (SUCCESS);
 	}
 	expr->args[args_number].type = arg_type;
 	expr->args[args_number].value = (void *)token;

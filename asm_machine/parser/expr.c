@@ -22,11 +22,13 @@ t_expr				*expr_ctor(void)
 		exit(-1);
 	}
 	expr->type = EXPR_INIT;
-//	expr->args[OP_NAME].type = ARG_INIT;
-//	expr->args[FIRST_ARG].type = ARG_INIT;
-//	expr->args[SECOND_ARG].type = ARG_INIT;
-//	expr->args[THIRD_ARG].type = ARG_INIT;
-//	expr->args[LABEL_ARG].type = ARG_INIT;
+	expr->args[OP_NAME].type = ARG_INIT;
+	expr->args[FIRST_ARG].type = ARG_INIT;
+	expr->args[SECOND_ARG].type = ARG_INIT;
+	expr->args[THIRD_ARG].type = ARG_INIT;
+	expr->args[LABEL_ARG].type = ARG_INIT;
+	expr->args[LINE_END].type = NULL;
+	expr->args[JUNK].type = NULL;
 	expr->args[OP_NAME].value = NULL;
 	expr->args[FIRST_ARG].value = NULL;
 	expr->args[SECOND_ARG].value = NULL;
