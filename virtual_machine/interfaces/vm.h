@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:04:08 by yurezz            #+#    #+#             */
-/*   Updated: 2020/08/08 16:37:26 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/08 17:38:39 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ unsigned int	vm_get_cycles_counter(t_vm *self);
 int				vm_get_global_counter(t_vm *self);
 unsigned int	vm_get_cycles_to_die(t_vm *self);
 int				vm_get_speed(t_vm *self);
+
+void			vm_set_key(t_vm *self, int key);
+void			vm_set_speed(t_vm *self, int key);
+void			vm_set_urgent_break(t_vm *self, int urgent_break);
 
 // TODO: перенести # include "ft_printf.h" в приватный интерфейс.
 #endif

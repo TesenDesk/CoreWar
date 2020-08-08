@@ -6,35 +6,36 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 12:55:24 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/08/01 12:55:35 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/08 17:40:14 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prvt_visual.h"
 
-void		process_keys(t_vm *self)
+void		process_keys(t_vm *vm)
 {
 	int		c;
 
 	c = getch();
-	self->key = c;
+	vm_set_key(vm, c);
 	if (c == 65)
 	{
-		wattron(self->wins->info, COLOR_PAIR(B_INFO) | A_BOLD);
-		self->speed += 1;
-		if (self->speed > 10)
-			self->speed = 10;
-		wattroff(self->wins->info, COLOR_PAIR(B_INFO) | A_BOLD);
+		wattron(vm_get_wins(vm)->info, COLOR_PAIR(B_INFO) | A_BOLD);
+		vm_set_speed(vm, vm_get_speed(vm) + 1);
+		// vm->speed += 1;
+		if (vm_get_speed(vm) > 10)
+			vm_set_speed(vm, 10);
+		wattroff(vm_get_wins(vm)->info, COLOR_PAIR(B_INFO) | A_BOLD);
 	}
 	else if (c == 66)
 	{
-		wattron(self->wins->info, COLOR_PAIR(B_INFO) | A_BOLD);
-		self->speed -= 1;
-		if (self->speed < 1)
-			self->speed = 1;
-		wattroff(self->wins->info, COLOR_PAIR(B_INFO) | A_BOLD);
+		wattron(vm_get_wins(vm)->info, COLOR_PAIR(B_INFO) | A_BOLD);
+		vm_set_speed(vm, vm_get_speed(vm) - 1);
+		if (vm_get_speed(vm) < 1)
+			vm_set_speed(vm, 1);
+		wattroff(vm_get_wins(vm)->info, COLOR_PAIR(B_INFO) | A_BOLD);
 	}
 	else if (c == 120)
-		self->urgent_break = TRUE;
+		vm_set_urgent_break(vm, TRUE);
 	getch();
 }
