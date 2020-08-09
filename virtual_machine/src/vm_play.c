@@ -6,18 +6,18 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 23:20:21 by yurezz            #+#    #+#             */
-/*   Updated: 2020/08/02 12:43:45 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/09 14:59:14 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prvt_vm.h"
 #include "visual.h"
-#include "arena/prvt_arena.h"
+#include "prvt_arena.h"
 #include "ncurses.h"
-#include "carriage/prvt_carriage.h"
+#include "prvt_carriage.h"
 // #include "visual.h"
 
-#include "visual/prvt_visual.h"
+#include "prvt_visual.h"
 
 
 

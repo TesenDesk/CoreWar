@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 19:08:09 by cmissy            #+#    #+#             */
-/*   Updated: 2020/08/02 13:51:26 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/09 15:01:00 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "carriage.h"
 # include "arena.h"
 # include "visual.h"
-# include "player/prvt_player.h"
+# include "prvt_player.h"
 
 # define EIGHT_BITS		8
 //# define DUMP_LINE_SIZE	32

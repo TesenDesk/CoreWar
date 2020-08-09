@@ -6,14 +6,13 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 22:35:40 by yurezz            #+#    #+#             */
-/*   Updated: 2020/08/02 12:48:12 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/09 15:07:06 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prvt_corwar.h"
-#include "../prvt_vm.h"
-#include "../vm_params/prvt_vm_params.h"
-
+#include "prvt_vm.h"
+#include "prvt_vm_params.h"
 
 static void		prvt_corwar_precondition_check(int argc)
 {
