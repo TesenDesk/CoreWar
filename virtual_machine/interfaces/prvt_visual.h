@@ -79,6 +79,8 @@ void		draw_basic_info(t_vm *vm);
 void		draw_champ_info(t_vm *vm);
 void		draw_arena(t_vm *vm);
 static void	rebuild_color_map_util(t_arena *arena, t_list *iter, int *index);
+
+void		rebuild_color_map(t_arena *arena, t_vm *vm); //fixme func never used?
 void		erase_windows(t_vm *vm);
 void		destroy_win(WINDOW *local_win);
 

@@ -28,8 +28,16 @@ int		chose_color(t_arena *arena, int index, t_vm *vm, int i)
 		ans = (COLOR_PAIR(arena_get_cell_index(arena, index % MEM_SIZE) +
 			OUT_OFFSET));
 	}
-	else
+	else {
+		if (vm->global_counter > 4000)
+		{
+			printf("cell_index:%d, neutral:%d\n", arena_get_cell_index(arena, index % MEM_SIZE), NEUTRAL_COL);
+			printf("player_index:%d, neutral:%d\n", arena_get_player_index(arena, index % MEM_SIZE));
+			exit(-1);
+
+		}
 		ans = (COLOR_PAIR(NEUTRAL_COL));
+	}
 	if (arena_get_store_index(arena, index % MEM_SIZE) == 1)
 		ans |= WA_BOLD;
 	return (ans);

@@ -28,6 +28,10 @@ void		draw_arena(t_vm *vm)
 		while (j < SQRT_MAP)
 		{
 			col = chose_color(vm_get_arena(vm), (i * 64 + j) % MEM_SIZE, vm, i);
+//			if (vm->global_counter > 4000)
+//			{
+//				if (col == )
+//			}
 			wattron(vm_get_wins(vm)->arena, col);
 			wprintw(vm_get_wins(vm)->arena, "%.2x",
 				arena_get_cell(vm_get_arena(vm), (i * 64 + j++) % MEM_SIZE));
