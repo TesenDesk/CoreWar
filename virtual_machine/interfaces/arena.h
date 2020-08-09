@@ -62,5 +62,7 @@ void			arena_set_color_is_set(t_arena *self, int color_is_set);
 int				arena_get_color_is_set(t_arena *self);
 int				arena_get_last_live_player(t_arena *self);
 unsigned char	arena_get_cell(t_arena *self, int index);
+void			arena_change_carriage_num(t_arena *self, int index,
+					int change_by);
 
 #endif

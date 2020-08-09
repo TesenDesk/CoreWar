@@ -151,6 +151,7 @@ VM_ARENA_SRC := arena_carriage_list_new.c \
 				arena_get_color_is_set.c \
 				arena_get_last_live_player.c \
 				arena_get_carriage_num.c \
+				arena_change_carriage_num.c \
 				prvt_arena_players_new.c \
 				prvt_arena_set_smallest_unoccupied_name.c \
 				arena_get_cell.c
