@@ -39,7 +39,7 @@
 // 	}
 // }
 
-void		rebuild_color_map(t_arena *arena, t_vm *vm)
+void		rebuild_color_map(t_arena *arena, t_vm *vm) //fixme func never used?
 {
 	t_list	*iter;
 	int		index;
@@ -53,8 +53,7 @@ void		rebuild_color_map(t_arena *arena, t_vm *vm)
 		arena_set_player_index(arena, ((t_carriage*)iter->content)->arena_position % MEM_SIZE, ((t_carriage*)iter->content)->player_name);
 //		arena->carriage_num[((t_carriage *)iter->content)->player_name - 1] +=
 //			1; //TODO: old code, delete it
-		// WARN!!!!!!!! BAD CODE AHEAD! TODO: NEED TO FIX IT //
-		arena_set_carriage_num(arena, ((t_carriage *)iter->content)->player_name - 1, arena_get_carriage_num(arena, ((t_carriage *)iter->content)->player_name - 1) +1);
+		arena_change_carriage_num(arena, ((t_carriage *)iter->content)->player_name - 1, 1);
 
 		if (((t_carriage *)iter->content)->was_store == TRUE)
 		{
