@@ -27,7 +27,7 @@ void				init_colormap(t_arena *arena, t_vm *vm, int ofset_outer)
 	while (col <= arena_get_nb_players(arena))
 	{
 		//while (pos < offset + tmp->code_size)
-		while (pos < offset + arena_get_player_code_size(arena, 0)) //TODO: Можно оптимизировать!! Не вызывать get каждый раз!!!
+		while (pos < offset + arena_get_player_code_size(arena, col - 1)) //TODO: Можно оптимизировать!! Не вызывать get каждый раз!!!
 			arena_set_cell_index(arena, pos++ % MEM_SIZE, col);
 		while (pos < offset + ofset_outer)
 			arena_set_cell_index(arena, pos++ % MEM_SIZE, NEUTRAL_COL);

@@ -154,6 +154,8 @@ void			vm_play_visual(t_vm *self)
 		if (self->urgent_break == FALSE) {
 			print_windows(self);
 			usleep(100000 / (self->speed*2));
+			if (self->global_counter > 10000)
+				exit(-1);
 		}
 		else
 		{

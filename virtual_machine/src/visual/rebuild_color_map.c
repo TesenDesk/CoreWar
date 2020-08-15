@@ -59,18 +59,16 @@ void		rebuild_color_map(t_arena *arena, t_vm *vm) //fixme func never used?
 		{
 			while (index < 4)
 			{
-				// rebuild_color_map_util(arena, iter, &index); // <- not my comment. it was here before
-
-//				arena->colormap[
-//					(((t_carriage *) iter->content)->stor_pos +
-//					index) % MEM_SIZE].cell_index =
-//					((t_carriage *) iter->content)->player_name;
-//				arena->colormap[
-//					(((t_carriage *) iter->content)->stor_pos +
-//					 index) % MEM_SIZE].store_index = 1; //TODO: old code, delete it
-
-				arena_set_cell_index(arena, (((t_carriage *) iter->content)->stor_pos + index) % MEM_SIZE, ((t_carriage *) iter->content)->player_name);
-				arena_set_store_index(arena, (((t_carriage *) iter->content)->stor_pos + index) % MEM_SIZE, 1);
+				int pos = (((t_carriage *) iter->content)->stor_pos - 0);
+//				if (pos < ((t_carriage*) iter->content)->arena_position)
+//				{
+//					pos -= 5;;
+//				}
+				unsigned  int coord = pos - index;
+				arena_set_cell_index(arena, (coord) %MEM_SIZE, ((t_carriage *) iter->content)->player_name);
+				arena_set_store_index(arena, (coord) % MEM_SIZE, 1);
+//				arena_set_cell_index(arena, (((t_carriage *) iter->content)->stor_pos - index - 2) % MEM_SIZE, ((t_carriage *) iter->content)->player_name);
+//				arena_set_store_index(arena, (((t_carriage *) iter->content)->stor_pos - index - 2) % MEM_SIZE, 1);
 
 				++index;
 			}
