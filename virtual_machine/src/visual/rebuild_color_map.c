@@ -64,9 +64,9 @@ void		rebuild_color_map(t_arena *arena, t_vm *vm) //fixme func never used?
 //				{
 //					pos -= 5;;
 //				}
-				unsigned  int coord = pos - index;
-				arena_set_cell_index(arena, (coord) %MEM_SIZE, ((t_carriage *) iter->content)->player_name);
-				arena_set_store_index(arena, (coord) % MEM_SIZE, 1);
+				unsigned  int coord = pos;
+				arena_set_cell_index(arena, (coord + index) %MEM_SIZE, ((t_carriage *) iter->content)->player_name);
+				arena_set_store_index(arena, (coord + index) % MEM_SIZE, 1);
 //				arena_set_cell_index(arena, (((t_carriage *) iter->content)->stor_pos - index - 2) % MEM_SIZE, ((t_carriage *) iter->content)->player_name);
 //				arena_set_store_index(arena, (((t_carriage *) iter->content)->stor_pos - index - 2) % MEM_SIZE, 1);
 

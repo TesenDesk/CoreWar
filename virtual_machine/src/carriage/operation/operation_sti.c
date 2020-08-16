@@ -47,5 +47,5 @@ void				operation_sti(t_carriage *self)
 	}
 	self->arena_position = (self->arena_position + op.op_len) % MEM_SIZE;
 	self->was_store = TRUE;
-	self->stor_pos = position % MEM_SIZE;
+	self->stor_pos = position;
 }
