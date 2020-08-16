@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prvt_parser_get_token_init.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 13:58:43 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/17 16:31:09 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/16 14:57:08 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,15 @@ static void			find_arg_num(int token_type, char *arg_num)
 		*arg_num = JUNK;
 }
 
+/*
+**	if ((token = lexer_form_token(lexer, text)) == NULL) {
+**		token_destructor(&token);
+**		return (NULL);
+**		free(*token);
+**		exit(-1);;
+**	}
+*/
+
 t_token				*prvt_parser_get_token_init(t_parser *parser,
 					t_lexer *lexer, t_expr *expr, char const **text)
 {
@@ -55,12 +64,8 @@ t_token				*prvt_parser_get_token_init(t_parser *parser,
 	char			arg_num;
 
 	arg_num = 0;
-	if ((token = lexer_form_token(lexer, text)) == NULL) {
-//		token_destructor(&token);
-//		return (NULL);
-//		free(*token);
-		exit(-1);;
-	}
+	if ((token = lexer_form_token(lexer, text)) == NULL)
+		exit(-1);
 	token_type = token_get_type(token);
 	find_arg_num(token_type, &arg_num);
 	if (!expr_types[TOKEN_LFORK])
