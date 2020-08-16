@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 14:48:44 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/19 19:29:58 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/16 15:37:43 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void			fill_expr_ar_num(int expr_ar_num[COUNT_EXPR])
 
 static t_expr		*expr_fill_arg_num(t_expr *expr)
 {
-	static int expr_ar_num[COUNT_EXPR];
+	static int		expr_ar_num[COUNT_EXPR];
 
 	if (!(expr_ar_num[EXPR_OP_AFCT]))
 		fill_expr_ar_num(expr_ar_num);
@@ -35,7 +35,7 @@ static t_expr		*expr_fill_arg_num(t_expr *expr)
 }
 
 t_expr				*parser_form_expr(t_parser *parser, char const **text,
-					t_hash_map *map, t_vector *label_vector)
+		t_hash_map *map, t_vector *label_vector)
 {
 	t_expr			*expr;
 	t_token			*token;
@@ -45,19 +45,16 @@ t_expr				*parser_form_expr(t_parser *parser, char const **text,
 	while (TRUE)
 	{
 		token = parser->get_token[parser->state](parser,
-		lexer_singleton_instance(LEXER_INSTANTIATE), expr, text);
+				lexer_singleton_instance(LEXER_INSTANTIATE), expr, text);
 		if ((token_type = token_get_type(token)) == TOKEN_LABEL_WORD)
-		{
 			if (label_checker_put_to_map_label_word(&map, token) == FAILURE)
-//				return (NULL);
+				exit(-1);
+		else if (token_type == TOKEN_TIND_LAB || token_type == TOKEN_TDIR_LAB)
+		{
+			if (label_checker_put_to_map_label_ptr(label_vector, token)
+					== FAILURE)
 				exit(-1);
 		}
-		else if (token_type == TOKEN_TIND_LAB || token_type == TOKEN_TDIR_LAB)
-			if (label_checker_put_to_map_label_ptr(label_vector, token)
-			== FAILURE) {
-//				return (NULL);
-				exit(-1);
-			}
 		parser->change_state(parser, token_type);
 		if (parser->state == PARSER_FINISH_ST || parser->state == PARSER_ERROR)
 			break ;
