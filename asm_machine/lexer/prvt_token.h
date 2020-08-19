@@ -13,6 +13,7 @@
 #ifndef PRVT_TOKEN_H
 # define PRVT_TOKEN_H
 
+
 # include "token.h"
 
 typedef struct		s_token

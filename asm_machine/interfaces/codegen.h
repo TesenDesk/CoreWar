@@ -30,6 +30,7 @@ typedef struct				s_label_data
 //	t_vector                *junk_container;
 }							t_label_data;
 
+
 void						generate_code(t_hash_map *map, t_vector *text,
 							char *filename);
 

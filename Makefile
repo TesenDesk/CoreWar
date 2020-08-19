@@ -5,6 +5,14 @@
 		makevisual
 
 #======================Folders & Files=========================================#
+
+
+ASM_INTERFACE_HEADER  :=
+
+PRVT_ANALYZER_HEADER  := asm_machine/analyser/prvt_analyser.h \
+						 asm_machine/analyzer/prvt_analyzer_xtor.h \
+						 asm_machine/analyzer/prvt_text.h
+
 ASM_NAME        :=  asm
 COREWAR_NAME	:= 	corewar
 ASM_DIR			:=  ./asm_machine/
@@ -292,6 +300,42 @@ ASM_INTERFACE =	$(ASM_DIR)interfaces/
 COREWAR_INTERFACE =	$(WORKDIR)virtual_machine/interfaces/
 
 
+#======================HEADERS_DEPENDENCIES====================================#
+ASM_INTERFACE_HEADER  := $(ASM_INTERFACE)analyser.h \
+						 $(ASM_INTERFACE)codegen.h \
+						 $(ASM_INTERFACE)expr.h \
+						 $(ASM_INTERFACE)expr_defines.h \
+						 $(ASM_INTERFACE)label_checker.h \
+						 $(ASM_INTERFACE)lexer.h \
+						 $(ASM_INTERFACE)main_asm.h \
+						 $(ASM_INTERFACE)parser.h \
+						 $(ASM_INTERFACE)text.h \
+						 $(ASM_INTERFACE)token.h \
+						 $(ASM_INTERFACE)token_defines.h
+
+PRVT_ANALYZER_HEADER  := $(ASM_DIR)analyser/prvt_analyser.h \
+						 $(ASM_DIR)analyser/prvt_analyser_xtor.h \
+						 $(ASM_DIR)analyser/prvt_text.h
+
+PRVT_CHECKER_HEADER    := $(ASM_DIR)checker/label_checker_private.h
+
+PRVT_CODEGEN_HEADER    := $(ASM_DIR)codegen/codegen_prototype.h \
+						  $(ASM_DIR)codegen/prvt_codegen.h
+
+PRVT_LEXER_HEADER    := $(ASM_DIR)lexer/prvt_lexer.h \
+						$(ASM_DIR)lexer/prvt_lexer_utils.h \
+						$(ASM_DIR)lexer/prvt_lexer_xtor.h \
+						$(ASM_DIR)lexer/prvt_token.h
+
+PRVT_PARSER_HEADER    := $(ASM_DIR)parser/parser_private.h \
+							$(ASM_DIR)parser/parser_xtor_private.h \
+							$(ASM_DIR)parser/prvt_expr.h
+#							$(ASM_DIR)parser/
+#							$(ASM_DIR)parser/
+#							$(ASM_DIR)parser/
+
+
+
 #======================COLORS & Co=============================================#
 GREEN =		\033[1;32m
 RED =		\033[1;31m
@@ -314,7 +358,8 @@ MLX_FLAGS		:= -L./minilibx -lmlx  -framework OpenGL -framework AppKit
 
 #======================Rules===================================================#
 
-all: debmsg $(ASM_NAME) $(COREWAR_NAME)##Todo: Add 'liba' rule BEFORE '$(ASM_NAME)'
+
+all: debmsg $(ASM_NAME) $(COREWAR_NAME)  ##Todo: Add 'liba' rule BEFORE '$(ASM_NAME)'
 		@echo "$(PREFIX)✅  $(GREEN)All files up-to-date or \
 rebuilded.$(RST)"
 
@@ -337,7 +382,10 @@ debmsg:
 # $(PARS_DIR_OBJ): %.o: %.c
 # 		@cc -c $(FLAGS)  $< -o $@
 
-$(ASM_NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(CHK_DIR_OBJ) $(ANALYSER_DIR_OBJ) $(CODEGEN_DIR_OBJ)  $(ASM_DIR)$(ASM_MAIN)
+
+$(ASM_NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(CHK_DIR_OBJ) $(ANALYSER_DIR_OBJ) $(CODEGEN_DIR_OBJ)  $(ASM_DIR)$(ASM_MAIN) \
+			$(ASM_INTERFACE_HEADER) $(PRVT_ANALYZER_HEADER) $(PRVT_CHECKER_HEADER) $(PRVT_CODEGEN_HEADER) \
+			$(PRVT_LEXER_HEADER) $(PRVT_PARSER_HEADER)
 		@#printf "$(PREFIX)📦  Building $(ASM_NAME)...\n"
 		@#printf "Building $(LEX_DIR_OBJ).$(LEX_OBJ).\n"
 
@@ -357,7 +405,7 @@ $(PARS_DIR_OBJ): %.o: %.c
 $(CHK_DIR_OBJ): %.o: %.c
 		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) -I$(OPERATION_INTERFACE) -c $<  -o $@ -g
 
-$(ANALYSER_DIR_OBJ): %.o: %.c
+$(ANALYSER_DIR_OBJ): %.o: %.c $(PPP)
 		gcc -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT)  -I$(OPERATION_INTERFACE) -c $< -o $@ -g
 
 $(CODEGEN_DIR_OBJ): %.o: %.c

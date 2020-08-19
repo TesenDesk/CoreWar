@@ -9,7 +9,7 @@ OBJ := $(patsubst %.c,%.o,$(SEARCH))
 
 all:  $(NAME)
 
-$(NAME): $(OBJ) 
+$(NAME): $(OBJ)
 	ar rc  $@ $^
 	ranlib $@
 

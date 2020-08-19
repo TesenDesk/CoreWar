@@ -23,6 +23,14 @@
 
 typedef struct s_analyser	t_analyser;
 
+
+
+
+
+
+
+
+
 enum					e_analyser_instantiation_status
 {
 	ANALYSER_INSTANTIATE,

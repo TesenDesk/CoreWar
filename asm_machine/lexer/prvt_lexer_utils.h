@@ -13,6 +13,7 @@
 #ifndef PRVT_LEXER_UTILS_H
 # define PRVT_LEXER_UTILS_H
 
+
 # include "lexer.h"
 
 int				lexer_utils_is_line_feed(char c);

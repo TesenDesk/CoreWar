@@ -13,6 +13,7 @@
 #ifndef CORE_TEXT_H
 # define CORE_TEXT_H
 
+
 typedef struct s_text	t_text;
 
 #endif

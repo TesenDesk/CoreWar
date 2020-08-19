@@ -13,6 +13,7 @@
 #ifndef TOKEN_DEFINES_H
 # define TOKEN_DEFINES_H
 
+
 enum			e_token_types
 {
 	NO_TOKEN = -1,

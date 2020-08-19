@@ -13,6 +13,7 @@
 #ifndef CODEGEN_PROTOTYPE_H
 # define CODEGEN_PROTOTYPE_H
 
+
 # include "codegen.h"
 
 typedef union		u_code_addr

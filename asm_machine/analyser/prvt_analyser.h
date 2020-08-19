@@ -20,6 +20,9 @@
 # include "token.h"
 # include "token_defines.h"
 
+
+
+
 enum			e_analyser_defines
 {
 	ANALYSER_ERROR_ST = -1,

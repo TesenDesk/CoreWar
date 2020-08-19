@@ -19,4 +19,6 @@ typedef struct	s_text
 	void		*dummy;
 }				t_text;
 
+
+
 #endif

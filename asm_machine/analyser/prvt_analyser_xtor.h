@@ -15,6 +15,7 @@
 
 # include "prvt_analyser.h"
 
+
 t_analyser		*prvt_analyser_ctor(t_analyser **analyser);
 void			prvt_analyser_dtor(t_analyser **analyser);
 
