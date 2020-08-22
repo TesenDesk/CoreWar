@@ -406,7 +406,7 @@ debmsg:
 # 		@cc -c $(FLAGS)  $< -o $@
 
 
-$(ASM_NAME): $(ASM_DIR_COMMON) $(ASM_HEADER_DIR_COMMON)
+$(ASM_NAME): $(ASM_DIR_COMMON) #$(ASM_HEADER_DIR_COMMON)
 		@#printf "$(PREFIX)📦  Building $(ASM_NAME)...\n"
 		@#printf "Building $(LEX_DIR_OBJ).$(LEX_OBJ).\n"
 
@@ -424,7 +424,7 @@ $(ASM_NAME): $(ASM_DIR_COMMON) $(ASM_HEADER_DIR_COMMON)
 $(LEX_DIR_OBJ): %.o:  %.c
 		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE) -c $< -o $@ -g
-$(PARS_DIR_OBJ): %.o: %.c
+$(PARS_DIR_OBJ): %.o: %.c ./asm_machine/parser/parser_private.h ./asm_machine/parser/parser_xtor_private.h
 		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE) -c  $<  -o $@ -g
 
@@ -432,9 +432,55 @@ $(CHK_DIR_OBJ): %.o: %.c
 		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE) -c $<  -o $@ -g
 
-$(ANALYSER_DIR_OBJ): %.o: %.c $(PPP)
+
+
+DEPDIR := asm_machine/analyser/
+#DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.d
+
+#COMPILE.c = $(CC) $(DEPFLAGS) $(CFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
+
+#$(OBJDIR)/%.o : %.c $(DEPDIR)/%.d | $(DEPDIR)
+#        $(COMPILE.c) $(OUTPUT_OPTION) $<
+
+#$(DEPDIR): ; @mkdir -p $@
+
+#DEPFILES := $(SRCS:.c=.d)
+#PARS_OBJ				:=  $(patsubst %.c, %.o, $(PARS_SRC))
+ANALYSER_DEPSRC := $(addprefix $(ASM_DIR)analyser/, $(ANALYSER_SRC))
+ANALYSER_DEPFILES := $(ANALYSER_DEPSRC:.c=.d)
+#DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.d
+
+#-o $@ -g
+
+
+#DEPS := $(OBJS:.o=.d)
+
+-include $(DEPS)
+
+#%.o: %.c
+#    $(CC) $(CFLAGS) -MM -MT $@ -MF $(patsubst %.o,%.d,$@) $<
+#    $(CC) $(CFLAGS) -o $@ $<
+
+
+$(ANALYSER_DIR_OBJ): %.o: %.c #$(ANALYSER_DEPFILES)
 		gcc -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
-			-I$(OPERATION_INTERFACE) -c $< -o $@ -g
+			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
+		gcc -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
+			-I$(OPERATION_INTERFACE) -c $< -o $@
+
+#        rm -f ./asm_machine/analyser/.depend
+#depend: .depend
+#
+#.depend: $(ANALYSER_DEPSRC)
+#        gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
+#        -I$(OPERATION_INTERFACE) -MM -c $^ > ./asm_machine/.depend
+#include .depend
+
+
+#$(DEPDIR): ; @mkdir -p $@
+#DEPFILES := $(addprefix $(ASM_DIR)analyser/, $(ANALYSER_SRC):%.c=$(DEPDIR)/%.d)
+#$(ANALYSER_DEPFILES):
+#include $(wildcard $(ANALYSER_DEPFILES))
 
 $(CODEGEN_DIR_OBJ): %.o: %.c
 		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
