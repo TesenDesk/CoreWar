@@ -6,7 +6,7 @@
 #    By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/22 12:48:06 by ftothmur          #+#    #+#              #
-#    Updated: 2020/08/22 12:50:18 by ftothmur         ###   ########.fr        #
+#    Updated: 2020/08/22 13:02:59 by ftothmur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,6 +90,8 @@ PARS_SRC				:=	prvt_parser_change_state.c \
 							prvt_parser_get_token_op2_stri.c \
 							prvt_parser_xtor.c \
 							expr.c \
+							expr_xtor.c \
+							expr_get_arg_x.c \
 							arg_getters.c \
 							expr_set_arg.c \
 							expr_set_size.c \
