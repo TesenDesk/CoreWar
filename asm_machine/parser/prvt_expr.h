@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expr_private.h                                     :+:      :+:    :+:   */
+/*   prvt_expr.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 16:25:58 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/19 18:34:48 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/22 12:57:29 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXPR_PRIVATE_H
-# define EXPR_PRIVATE_H
-
+#ifndef PRVT_EXPR_H
+# define PRVT_EXPR_H
 
 # include "expr.h"
 
