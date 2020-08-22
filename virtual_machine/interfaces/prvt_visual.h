@@ -22,6 +22,10 @@
 # include "prvt_vm.h"
 # include "prvt_carriage.h"
 //# include "../arena/player/prvt_player.h"
+
+
+
+
 # include "prvt_vm_params.h"
 
 # define EXTERNAL_COLOR_OFFSET	4

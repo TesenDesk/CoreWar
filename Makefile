@@ -318,7 +318,7 @@ VISUAL_SRC				:=		chose_color.c \
 VISUAL_OBJ				:= $(patsubst %.c, %.o, $(VISUAL_SRC))
 VISUAL_DIR_OBJ			:= $(addprefix $(VM_DIR)src/visual/, $(VISUAL_OBJ))
 
-CFLAGS					:=  -Wall -Wextra -Werror -g
+CFLAGS					:=  -Wall -Wextra -Werror
 LIBFLAGS				:=  -L$(LIBDIR) -lft
 LIBPRINTFLAGS			:= -Lft_printf/ -lftprintf
 HEADER					:=  $(HEADERDIR)ms.h
@@ -406,13 +406,9 @@ debmsg:
 # 		@cc -c $(FLAGS)  $< -o $@
 
 
-$(ASM_NAME): $(ASM_DIR_COMMON) #$(ASM_HEADER_DIR_COMMON)
+$(ASM_NAME): $(ASM_DIR_COMMON)
 		@#printf "$(PREFIX)📦  Building $(ASM_NAME)...\n"
 		@#printf "Building $(LEX_DIR_OBJ).$(LEX_OBJ).\n"
-
-
-#		@gcc $(FLAGS) -o $(ASM_NAME) $(LEX_DIR_SRC) $(LIBFLAGS) -I$(HEADERDIR)
-		# @cc $(FLAGS) -o $(ASM_NAME) $(LEX_DIR_SRC) $(MLX_FLAGS) -I$(HEADERDIR)
 		##todo: add '$(LIBFLAGS)'
 		make -C $(LIBDIR)
 		make -C ./ft_printf/
@@ -421,68 +417,52 @@ $(ASM_NAME): $(ASM_DIR_COMMON) #$(ASM_HEADER_DIR_COMMON)
 			-g
 
 
+LEXER_DEPSRC := $(addprefix $(ASM_DIR)lexer/, $(LEX_SRC))
+LEXER_DEPFILES := $(LEXER_DEPSRC:.c=.d)
+-include $(LEXER_DEPFILES)
 $(LEX_DIR_OBJ): %.o:  %.c
+		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
+			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
 		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE) -c $< -o $@ -g
+
+
+PARSER_DEPSRC := $(addprefix $(ASM_DIR)parser/, $(PARS_SRC))
+PARSER_DEPFILES := $(PARSER_DEPSRC:.c=.d)
+-include $(PARS_DEPFILES)
 $(PARS_DIR_OBJ): %.o: %.c ./asm_machine/parser/parser_private.h ./asm_machine/parser/parser_xtor_private.h
+		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
+			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
 		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE) -c  $<  -o $@ -g
 
+
+CHECKER_DEPSRC := $(addprefix $(ASM_DIR)checker/, $(CHK_SRC))
+CHECKER_DEPFILES := $(CHECKER_DEPSRC:.c=.d)
+-include $(CHECKER_DEPFILES)
 $(CHK_DIR_OBJ): %.o: %.c
+		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
+			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
 		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE) -c $<  -o $@ -g
 
 
-
-DEPDIR := asm_machine/analyser/
-#DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.d
-
-#COMPILE.c = $(CC) $(DEPFLAGS) $(CFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
-
-#$(OBJDIR)/%.o : %.c $(DEPDIR)/%.d | $(DEPDIR)
-#        $(COMPILE.c) $(OUTPUT_OPTION) $<
-
-#$(DEPDIR): ; @mkdir -p $@
-
-#DEPFILES := $(SRCS:.c=.d)
-#PARS_OBJ				:=  $(patsubst %.c, %.o, $(PARS_SRC))
 ANALYSER_DEPSRC := $(addprefix $(ASM_DIR)analyser/, $(ANALYSER_SRC))
 ANALYSER_DEPFILES := $(ANALYSER_DEPSRC:.c=.d)
-#DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.d
-
-#-o $@ -g
-
-
-#DEPS := $(OBJS:.o=.d)
-
--include $(DEPS)
-
-#%.o: %.c
-#    $(CC) $(CFLAGS) -MM -MT $@ -MF $(patsubst %.o,%.d,$@) $<
-#    $(CC) $(CFLAGS) -o $@ $<
-
-
+-include $(ANALYSER_DEPFILES)
 $(ANALYSER_DIR_OBJ): %.o: %.c #$(ANALYSER_DEPFILES)
-		gcc -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
+		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
-		gcc -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
+		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE) -c $< -o $@
 
-#        rm -f ./asm_machine/analyser/.depend
-#depend: .depend
-#
-#.depend: $(ANALYSER_DEPSRC)
-#        gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
-#        -I$(OPERATION_INTERFACE) -MM -c $^ > ./asm_machine/.depend
-#include .depend
 
-
-#$(DEPDIR): ; @mkdir -p $@
-#DEPFILES := $(addprefix $(ASM_DIR)analyser/, $(ANALYSER_SRC):%.c=$(DEPDIR)/%.d)
-#$(ANALYSER_DEPFILES):
-#include $(wildcard $(ANALYSER_DEPFILES))
-
+CODEGEN_DEPSRC := $(addprefix $(ASM_DIR)codegen/, $(CODEGEN_SRC))
+CODEGEN_DEPFILES := $(CODEGEN_DEPSRC:.c=.d)
+-include $(CODEGEN_DEPFILES)
 $(CODEGEN_DIR_OBJ): %.o: %.c
+		gcc -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
+			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
 		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE)  -c $<  -o $@ -g
 
@@ -501,46 +481,113 @@ $(COREWAR_NAME): $(VM_DIR_OBJ) $(VM_ARENA_DIR_OBJ) $(VM_ARENA_PLAYER_DIR_OBJ) \
 		gcc  -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE)  $^ -lncurses -o $@ $(LIBFLAGS) \
 			$(LIBPRINTFLAGS) -g
-#$(LIB):
-		#make -C libft/
 
+
+VM_DEPSRC := $(addprefix $(VM_DIR)src/, $(VM_SRC))
+VM_DEPFILES := $(VM_DEPSRC:.c=.d)
+-include $(VM_DEPFILES)
 $(VM_DIR_OBJ): %.o: %.c
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
+			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE)  -c $< -o $@ -g
+
+
+VM_ARENA_DEPSRC := $(addprefix $(VM_DIR)src/arena/, $(VM_ARENA_SRC))
+VM_ARENA_DEPFILES := $(VM_ARENA_DEPSRC:.c=.d)
+-include $(VM_ARENA_DEPFILES)
 $(VM_ARENA_DIR_OBJ): %.o: %.c
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
+			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE)  -c $< -o $@ -g
+
+VM_ARENA_PLAYER_DEPSRC := $(addprefix $(VM_DIR)src/arena/player/, $(VM_ARENA_PLAYER_SRC))
+VM_ARENA_PLAYER_DEPFILES := $(VM_ARENA_PLAYER_DEPSRC:.c=.d)
+-include $(VM_ARENA_PLAYER_DEPFILES)
 $(VM_ARENA_PLAYER_DIR_OBJ): %.o: %.c
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
-			-I$(OPERATION_INTERFACE)  -c $< -o $@ -g
-$(VM_ARENA_PLAYER_CODE_DIR_OBJ): %.o: %.c
+			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE)  -c $< -o $@ -g
+
+
+VM_CARRIAGE_DEPSRC := $(addprefix $(VM_DIR)src/carriage/, $(VM_CARRIAGE_SRC))
+VM_CARRIAGE_DEPFILES := $(VM_CARRIAGE_DEPSRC:.c=.d)
+-include $(VM_CARRIAGE_DEPFILES)
 $(VM_CARRIAGE_DIR_OBJ): %.o: %.c
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
-			-I$(OPERATION_INTERFACE)  -c $< -o $@ -g
-$(VM_CARRIAGE_ARG_TYPES_DIR_OBJ): %.o: %.c
+			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE)  -c $< -o $@ -g
+
+
+VM_CARRIAGE_OP_DEPSRC := $(addprefix $(VM_DIR)src/carriage/operation/, $(VM_CARRIAGE_OP_SRC))
+VM_CARRIAGE_OP_DEPFILES := $(VM_CARRIAGE_OP_DEPSRC:.c=.d)
+-include $(VM_CARRIAGE_OP_DEPFILES)
 $(VM_CARRIAGE_OP_DIR_OBJ): %.o: %.c
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
+			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE)  -c $< -o $@ -g
+
+
+VM_COREWAR_DEPSRC := $(addprefix $(VM_DIR)src/corwar/, $(VM_COREWAR_SRC))
+VM_COREWAR_DEPFILES := $(VM_COREWAR_DEPSRC:.c=.d)
+-include $(VM_COREWAR_DEPFILES)
 $(VM_COREWAR_DIR_OBJ): %.o: %.c
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
+			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE)  -c $< -o $@ -g
+
+
+VM_ERRORS_DEPSRC := $(addprefix $(VM_DIR)src/errors/, $(VM_ERRORS_SRC))
+VM_ERRORS_DEPFILES := $(VM_ERRORS_DEPSRC:.c=.d)
+-include $(VM_ERRORS_DEPFILES)
 $(VM_ERRORS_DIR_OBJ): %.o: %.c
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
+			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE)  -c $< -o $@ -g
+
+
+VM_PARAMS_DEPSRC := $(addprefix $(VM_DIR)src/vm_params/, $(VM_PARAMS_SRC))
+VM_PARAMS_DEPFILES := $(VM_PARAMS_DEPSRC:.c=.d)
+-include $(VM_PARAMS_DEPFILES)
 $(VM_PARAMS_DIR_OBJ): %.o: %.c
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
+			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE)  -c $< -o $@ -g
+
+
+VM_PARAMS_VMP_PLAYER_DEPSRC := $(addprefix $(VM_DIR)src/vm_params/vmp_player/, $(VM_PARAMS_VMP_PLAYER_SRC))
+VM_PARAMS_VMP_PLAYER_DEPFILES := $(VM_PARAMS_VMP_PLAYER_DEPSRC:.c=.d)
+-include $(VM_PARAMS_VMP_PLAYER_DEPFILES)
 $(VM_PARAMS_VMP_PLAYER_DIR_OBJ): %.o: %.c
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
-			-I$(OPERATION_INTERFACE)  -c $< -o $@ -g
-$(VM_PARAMS_VMP_PLAYER_FILE_DIR_OBJ): %.o: %.c
+			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE)  -c $< -o $@ -g
+
+
+VM_PARAMS_VMP_PLAYER_FILE_DEPSRC := $(addprefix $(VM_DIR)src/vm_params/vmp_player/file/, $(VM_PARAMS_VMP_PLAYER_FILE_SRC))
+VM_PARAMS_VMP_PLAYER_FILE_DEPFILES := $(VM_PARAMS_VMP_PLAYER_FILE_DEPSRC:.c=.d)
+-include $(VM_PARAMS_VMP_PLAYER_FILE_DEPFILES)
+$(VM_PARAMS_VMP_PLAYER_FILE_DIR_OBJ): %.o: %.c
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
+			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
+			-I$(OPERATION_INTERFACE)  -c $< -o $@ -g
+
+
+VM_VISUAL_DEPSRC := $(addprefix $(VM_DIR)src/visual/, $(VISUAL_SRC))
+VM_VISUAL_DEPFILES:= $(VM_VISUAL_DEPSRC:.c=.d)
+-include $(VM_VISUAL_DEPFILES)
 $(VISUAL_DIR_OBJ): %.o: %.c
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
+			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE)  -c $<  -o $@ -g
 
@@ -559,21 +606,37 @@ clean: deljunk
 		make -C libft/ fclean
 		make -C ft_printf/ fclean
 		rm -rf $(ASM_DIR)lexer/*.o
+		rm -rf $(ASM_DIR)lexer/*.d
 		rm -rf $(ASM_DIR)parser/*.o
+		rm -rf $(ASM_DIR)parser/*.d
 		rm -rf $(ASM_DIR)checker/*.o
+		rm -rf $(ASM_DIR)checker/*.d
 		rm -rf $(ASM_DIR)analyser/*.o
+		rm -rf $(ASM_DIR)analyser/*.d
 		rm -rf $(ASM_DIR)codegen/*.o
+		rm -rf $(ASM_DIR)codegen/*.d
 		rm -rf virtual_machine/src/*.o
+		rm -rf virtual_machine/src/*.d
 		rm -rf virtual_machine/src/arena/*.o
+		rm -rf virtual_machine/src/arena/*.d
 		rm -rf virtual_machine/src/arena/player/*.o
+		rm -rf virtual_machine/src/arena/player/*.d
 		rm -rf virtual_machine/src/carriage/*.o
+		rm -rf virtual_machine/src/carriage/*.D
 		rm -rf virtual_machine/src/carriage/operation/*.o
+		rm -rf virtual_machine/src/carriage/operation/*.d
 		rm -rf virtual_machine/src/corwar/*.o
+		rm -rf virtual_machine/src/corwar/*.d
 		rm -rf virtual_machine/src/errors/*.o
+		rm -rf virtual_machine/src/errors/*.d
 		rm -rf virtual_machine/src/vm_params/*.o
+		rm -rf virtual_machine/src/vm_params/*.d
 		rm -rf virtual_machine/src/vm_params/vmp_player/*.o
+		rm -rf virtual_machine/src/vm_params/vmp_player/*.d
 		rm -rf virtual_machine/src/vm_params/vmp_player/file/*.o
+		rm -rf virtual_machine/src/vm_params/vmp_player/file/*.d
 		rm -rf virtual_machine/src/visual/*.o
+		rm -rf virtual_machine/src/visual/*.d
 		@make -C $(LIBDIR) clean
 
 delfile:

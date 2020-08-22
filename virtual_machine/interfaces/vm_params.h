@@ -16,6 +16,7 @@
 # include "vmp_player.h"
 # include "arena.h"
 
+
 typedef struct s_vm_params	t_vm_params;
 
 t_vm_params		*vm_params_new(int argc, char *argv[]);

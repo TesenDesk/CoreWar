@@ -17,6 +17,14 @@
 # include "errors.h"
 # include "vm.h"
 
+
+
+
+
+
+
+
+
 static char		*g_error_messages[ERRMSGCOUNT] =
 {
 	"Usage: ./corewar [-d N -v N] [[-n number] <champion1.cor> <...>]\n"

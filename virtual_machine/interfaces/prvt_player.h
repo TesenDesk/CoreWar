@@ -19,6 +19,11 @@
 # include "vmp_player.h"
 # include "vm.h"
 
+
+
+
+
+
 typedef struct		s_player
 {
 	int				name;

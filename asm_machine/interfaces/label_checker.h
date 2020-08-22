@@ -18,6 +18,9 @@
 # include "token.h"
 # include "expr.h"
 
+
+
+
 int				label_checker_put_to_map_label_word(
 					t_hash_map **map_of_label_words, t_token *token);
 int				label_checker_put_to_map_label_ptr(

@@ -35,9 +35,15 @@ enum			e_analyser_defines
 
 typedef struct s_analyser	t_analyser;
 
+
+
+
+
+
 struct			s_analyser
 {
 	int			state;
+
 	t_parser	*parser;
 	int			(*analyse_text)(t_analyser *analyser, char *text);
 	void		(*prvt_change_state)(t_analyser *analyser, int expr_type);
@@ -46,7 +52,9 @@ struct			s_analyser
 };
 
 void			prvt_analyser_change_state(t_analyser *analyser, int expr_type);
-t_expr			*prvt_analyser_get_expr(t_vector *label_vector, t_hash_map *map,
+t_expr			*prvt_analyser_get_expr(t_vector *label_vector, t_hash_map *map
+								 ,
+//)
 										char const **text);
 
 #endif

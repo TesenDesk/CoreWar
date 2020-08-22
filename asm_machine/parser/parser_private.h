@@ -67,6 +67,12 @@ int					prvt_parser_find_next_to_op01_st(t_parser *parser,
 int					prvt_parser_find_next_to_op2_st(t_parser *parser,
 							int token_type);
 
+
+
+
+
+
+
 int					prvt_find_parser_op0_state(int token_type);
 int					prvt_find_1_0_layer_op(t_parser *parser, int token_type);
 int					prvt_find_1_1_layer_op(t_parser *parser, int token_type);
@@ -112,6 +118,9 @@ t_token				*prvt_parser_get_token_op1_stor(t_parser *parser,
 							t_lexer *lexer, t_expr *expr, char const **text);
 t_token				*prvt_parser_get_token_op0_afct(t_parser *parser,
 							t_lexer *lexer, t_expr *expr, char const **text);
+
+
+
 t_token				*prvt_parser_get_token_line_end(t_parser *parser,
 							t_lexer *lexer, t_expr *expr, char const **text);
 

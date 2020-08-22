@@ -19,6 +19,11 @@
 # include "vm.h"
 # include "prvt_carriage.h"
 
+
+
+
+
+
 # define NUM_OF_OPERATIONS	DEAD_LINE - 1
 # define TYPE_CODE_SIZE		(MAX_ARGS_NUMBER*2)/8+((MAX_ARGS_NUMBER*2)%8)?1:0
 # define OP_CODE_SIZE		1

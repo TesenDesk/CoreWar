@@ -53,4 +53,5 @@ void	print_winner_visual(t_vm *vm) //TODO: Оптимизировать надо
 	box(vm_get_wins(vm)->win, 0, 0);
 	wrefresh(vm_get_wins(vm)->win);
 	nodelay(stdscr, FALSE);
+	getch();
 }

@@ -19,6 +19,7 @@
 # define PNAME_MOCK			0
 # define PFILE_MOCK			(void *)0
 
+
 typedef struct s_vmp_player	t_vmp_player;
 
 t_vmp_player	*vmp_player_new(int p_name, char *player_file);
