@@ -6,7 +6,7 @@
 #    By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/22 12:48:06 by ftothmur          #+#    #+#              #
-#    Updated: 2020/08/22 13:02:59 by ftothmur         ###   ########.fr        #
+#    Updated: 2020/08/23 13:46:30 by ftothmur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,7 +115,15 @@ ANALYSER_OBJ			:=  $(patsubst %.c, %.o, $(ANALYSER_SRC))
 ANALYSER_DIR_OBJ		:=  $(addprefix $(ASM_DIR)analyser/, $(ANALYSER_OBJ))
 
 
-CODEGEN_SRC				:=	codegen_prototype.c
+CODEGEN_SRC				:=	codegen_prototype.c \
+							codegen_rotate_bytes.c \
+							codegen_xtor.c \
+							codegen_general.c \
+							codegen_filling.c \
+							codegen_add.c \
+							codegen_bits.c \
+							codegen_comment.c \
+							codegen_header_init.c
 CODEGEN_OBJ				:=  $(patsubst %.c, %.o, $(CODEGEN_SRC))
 CODEGEN_DIR_OBJ			:=  $(addprefix $(ASM_DIR)codegen/, $(CODEGEN_OBJ))
 
