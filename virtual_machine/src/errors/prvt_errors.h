@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prvt_errors.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:10:49 by yurezz            #+#    #+#             */
-/*   Updated: 2020/07/14 16:10:40 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/23 14:01:42 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,6 @@
 # include "libft.h"
 # include "errors.h"
 # include "vm.h"
-
-
-
-
-
-
-
-
 
 static char		*g_error_messages[ERRMSGCOUNT] =
 {
