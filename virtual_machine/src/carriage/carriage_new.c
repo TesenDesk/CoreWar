@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   carriage_new.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 20:36:25 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/04 20:36:25 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/23 14:02:30 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_carriage		*carriage_new(int p_name, t_arena *arena,
 		arena_position = arena_position % MEM_SIZE;
 	self->arena_position = arena_position;
 	self->was_store = 0;
-	self->was_live =  0;
-	self->stor_pos =  0;
+	self->was_live = 0;
+	self->stor_pos = 0;
 	return (self);
 }
