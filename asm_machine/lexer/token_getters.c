@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_getters.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/19 20:16:34 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/19 20:16:34 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/23 14:48:19 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void				token_destructor(t_token **token)
 {
-	if (token) {
-		if (*token) {
+	if (token)
+	{
+		if (*token)
+		{
 			free((*token)->val);
 			(*token)->val = NULL;
 			(*token)->token_ptr[0] = NULL;

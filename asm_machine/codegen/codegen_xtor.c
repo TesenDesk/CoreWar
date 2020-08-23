@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/23 13:14:57 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/08/23 13:18:29 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/23 14:55:35 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void			codegen_dtor(t_codegen *code)
 {
 	if (code)
 	{
-		if (code->labels_ptrs) {
+		if (code->labels_ptrs)
+		{
 			ft_vector_free_data(code->labels_ptrs, label_dtor);
 			free(code->labels_ptrs);
 			code->labels_ptrs = NULL;
@@ -50,7 +51,8 @@ void			codegen_dtor(t_codegen *code)
 		code = NULL;
 	}
 }
-void 		label_dtor(void **data)
+
+void			label_dtor(void **data)
 {
 	if (data)
 	{

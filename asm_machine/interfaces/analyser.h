@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   analyser.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 21:05:30 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/19 19:24:10 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/23 14:54:04 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,7 @@
 # include "text.h"
 # include "ft_printf.h"
 
-
 typedef struct s_analyser	t_analyser;
-
-
-
-
-
-
-
-
 
 enum					e_analyser_instantiation_status
 {

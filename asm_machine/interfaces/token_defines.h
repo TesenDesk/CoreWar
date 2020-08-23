@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   token_defines.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 21:07:15 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/14 21:09:07 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/23 14:55:58 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKEN_DEFINES_H
 # define TOKEN_DEFINES_H
-
 
 enum			e_token_types
 {

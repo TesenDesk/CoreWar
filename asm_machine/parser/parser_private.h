@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 16:17:20 by cmissy            #+#    #+#             */
-/*   Updated: 2020/08/22 13:04:53 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/23 14:46:01 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,6 @@ int					prvt_parser_find_next_to_op01_st(t_parser *parser,
 int					prvt_parser_find_next_to_op2_st(t_parser *parser,
 							int token_type);
 
-
-
-
-
-
-
 int					prvt_find_parser_op0_state(int token_type);
 int					prvt_find_1_0_layer_op(t_parser *parser, int token_type);
 int					prvt_find_1_1_layer_op(t_parser *parser, int token_type);
@@ -118,8 +112,6 @@ t_token				*prvt_parser_get_token_op1_stor(t_parser *parser,
 							t_lexer *lexer, t_expr *expr, char const **text);
 t_token				*prvt_parser_get_token_op0_afct(t_parser *parser,
 							t_lexer *lexer, t_expr *expr, char const **text);
-
-
 
 t_token				*prvt_parser_get_token_line_end(t_parser *parser,
 							t_lexer *lexer, t_expr *expr, char const **text);

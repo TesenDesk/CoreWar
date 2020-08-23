@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   prvt_token.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 21:53:04 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/14 21:53:04 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/23 14:41:01 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRVT_TOKEN_H
 # define PRVT_TOKEN_H
-
 
 # include "token.h"
 

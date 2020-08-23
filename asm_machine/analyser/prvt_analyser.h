@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prvt_analyser.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 18:45:08 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/19 19:48:47 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/23 14:59:18 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@
 # include "token.h"
 # include "token_defines.h"
 
-
-
-
 enum			e_analyser_defines
 {
 	ANALYSER_ERROR_ST = -1,
@@ -34,11 +31,6 @@ enum			e_analyser_defines
 };
 
 typedef struct s_analyser	t_analyser;
-
-
-
-
-
 
 struct			s_analyser
 {
@@ -53,7 +45,7 @@ struct			s_analyser
 
 void			prvt_analyser_change_state(t_analyser *analyser, int expr_type);
 t_expr			*prvt_analyser_get_expr(t_vector *label_vector, t_hash_map *map
-								 ,
+								,
 //)
 										char const **text);
 

@@ -3,20 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 21:10:57 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/14 21:12:00 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/23 14:50:46 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-
 # include "expr.h"
 # include "ft_printf.h"
-
 
 enum							e_parser_instantiation_status
 {

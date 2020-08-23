@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 20:54:51 by cmissy            #+#    #+#             */
-/*   Updated: 2020/08/23 13:40:55 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/23 14:58:41 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define IND_PARAM_SIZE	2
 # define DIR_PARAM_SIZE	4
 
-enum				e_t_opcodes
+enum			e_t_opcodes
 {
 	NO_OPCODE = 0,
 	OP_LIVE_CODE,
@@ -49,7 +49,7 @@ enum				e_t_opcodes
 	OP_NUM_OF_CODES,
 };
 
-typedef struct		s_codegen
+typedef struct	s_codegen
 {
 	int				add;
 	char			*code;
@@ -62,34 +62,35 @@ typedef struct		s_codegen
 	t_vector		*labels_ptrs;
 	t_header		*header;
 	t_vector		*junk_container;
-}					t_codegen;
+}				t_codegen;
 
-void		rotate_four_bytes(unsigned int *p);
-void		rotate_two_bytes(unsigned short *p);
-void		rotate_bytes(unsigned int *p, int size);
+void			rotate_four_bytes(unsigned int *p);
+void			rotate_two_bytes(unsigned short *p);
+void			rotate_bytes(unsigned int *p, int size);
 
-void		generate_code(t_hash_map *map, t_vector *text, char *filename);
-void		write_code_to_file(char *exec, int code_size, char *filename);
-int			ar_len(char *ar);
-void		init_header(t_header *header, t_vector *text);
-void		codegen_ending(t_codegen *data);
-void		codegen_codegen(t_codegen *data, t_expr *q);
-void		do_something_in_cycle(t_codegen *data, t_expr *q);
-void		map_expr_to_code(t_expr *expr);
-void		fill_codes(int array_of_codes[NUM_OF_TOKENS]);
-void		add_param(t_codegen *data, t_arg *param, char dir_type);
-void		fill_dirind_param(t_codegen *data, t_arg *param, char dir_type);
-void		cut_num_arg(int *num_arg, int param_type, char dir_type);
-void		fill_empty_cell(t_codegen *data, int size);
-int			bytesize(int num);
-void		add_address_to_arg_label(t_codegen *data, t_arg *arg, int shift);
-void		write_address_to_free_label(t_codegen *data, t_expr *label);
-void		recast_params_types(t_codegen *data, t_expr *q);
-void		add_params_types(t_codegen *data, int first_arg, int second_arg,
+void			generate_code(t_hash_map *map, t_vector *text, char *filename);
+void			write_code_to_file(char *exec, int code_size, char *filename);
+int				ar_len(char *ar);
+void			init_header(t_header *header, t_vector *text);
+void			codegen_ending(t_codegen *data);
+void			codegen_codegen(t_codegen *data, t_expr *q);
+void			do_something_in_cycle(t_codegen *data, t_expr *q);
+void			map_expr_to_code(t_expr *expr);
+void			fill_codes(int array_of_codes[NUM_OF_TOKENS]);
+void			add_param(t_codegen *data, t_arg *param, char dir_type);
+void			fill_dirind_param(t_codegen *data, t_arg *param, char dir_type);
+void			cut_num_arg(int *num_arg, int param_type, char dir_type);
+void			fill_empty_cell(t_codegen *data, int size);
+int				bytesize(int num);
+void			add_address_to_arg_label(t_codegen *data, t_arg *arg,
+		int shift);
+void			write_address_to_free_label(t_codegen *data, t_expr *label);
+void			recast_params_types(t_codegen *data, t_expr *q);
+void			add_params_types(t_codegen *data, int first_arg, int second_arg,
 		int third_arg);
-void		ft_printbits(char n, int count);
-int			ft_checkbit(char n, int pos);
-void		codegen_add_champ_comment(char *dst, t_header *header);
-void		codegen_add_champ_name(char *dst, t_header *header);
+void			ft_printbits(char n, int count);
+int				ft_checkbit(char n, int pos);
+void			codegen_add_champ_comment(char *dst, t_header *header);
+void			codegen_add_champ_name(char *dst, t_header *header);
 
 #endif

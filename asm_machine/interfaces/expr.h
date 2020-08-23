@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expr.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 21:14:42 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/19 20:21:09 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/23 14:54:09 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 typedef struct s_expr		t_expr;
 typedef struct s_arg		t_arg;
-
 
 typedef enum		e_arg_number
 {
