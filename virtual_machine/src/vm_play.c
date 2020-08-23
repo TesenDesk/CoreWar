@@ -11,19 +11,14 @@
 /* ************************************************************************** */
 
 #include "prvt_vm.h"
-#include "visual.h"
 #include "prvt_arena.h"
 #include "ncurses.h"
 #include "prvt_carriage.h"
-// #include "visual.h"
-
 #include "prvt_visual.h"
-
-
 
 void			destroy_dead_carriages(t_list **head, int c_t_d, int cntr)
 {
-	t_list		*current;
+	t_list		*current; //TODO: Norme err: func too big
 	t_list		*previous;
 
 	current = *head;
@@ -84,8 +79,7 @@ void			vm_next_cycle(t_vm *self)
 	}
 }
 
-
-void			vm_play(t_vm *self)
+void			vm_play(t_vm *self) //TODO: Norme err: func too big
 {
 	arena_players_introducing(self->arena);
 	self->cycles_to_die = CYCLE_TO_DIE;
@@ -115,8 +109,7 @@ void			vm_play(t_vm *self)
 	}
 }
 
-
-void			vm_play_visual(t_vm *self)
+void			vm_play_visual(t_vm *self) //TODO: Norme err: func too big
 {
 	init_curses();
 	self->wins = init_wins();
@@ -129,7 +122,8 @@ void			vm_play_visual(t_vm *self)
 	nodelay(stdscr, TRUE);
 	while (TRUE)
 	{
-		if (self->urgent_break == FALSE) {
+		if (self->urgent_break == FALSE)
+		{
 			process_keys(self);
 			erase_windows(self);
 		}
@@ -151,10 +145,12 @@ void			vm_play_visual(t_vm *self)
 		self->global_counter += 1;
 		self->cycles_counter += 1;
 		self->cycles_to_dump -= 1;
-		if (self->urgent_break == FALSE) {
+		if (self->urgent_break == FALSE)
+		{
 			print_windows(self);
-			usleep(100000 / (self->speed*2));
-			if (self->global_counter > 10000) {
+			usleep(100000 / (self->speed * 2));
+			if (self->global_counter > 10000)
+			{
 				print_winner_visual(self);
 				exit(-1);
 			}

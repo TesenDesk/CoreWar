@@ -14,11 +14,10 @@
 
 void		rebuild_color_map(t_arena *arena, t_vm *vm)
 {
-	t_list			*iter;
+	t_list			*iter; //TODO: Norme error: func has 27 lines
 	int				index;
 	unsigned int	coord;
 
-	coord = 0;
 	index = 0;
 	iter = vm->carriage_head;
 	while (iter != NULL)
@@ -33,7 +32,7 @@ void		rebuild_color_map(t_arena *arena, t_vm *vm)
 			while (index < 4)
 			{
 				coord = (((t_carriage *)iter->content)->stor_pos);
-				arena_set_cell_index(arena, (coord + index) %MEM_SIZE,
+				arena_set_cell_index(arena, (coord + index) % MEM_SIZE,
 						((t_carriage *)iter->content)->player_name);
 				arena_set_store_index(arena, (coord + index) % MEM_SIZE, 1);
 				++index;
@@ -44,5 +43,8 @@ void		rebuild_color_map(t_arena *arena, t_vm *vm)
 	}
 }
 
-// TODO: Это метод очевидно класса vm. Нужно его туда перенести. 
-// TODO: Нужно вставить геттеры и сеттеры, они готовы, но код слишком запутанный, не могу вставит без ошибок
+/*
+**TODO: Это метод очевидно класса vm. Нужно его туда перенести.
+**TODO: Нужно вставить геттеры и сеттеры, они готовы, но код слишком
+** запутанный, не могу вставит без ошибок
+*/

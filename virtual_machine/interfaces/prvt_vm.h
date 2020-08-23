@@ -44,8 +44,6 @@ typedef struct				s_vm
 	int			key;
 }							t_vm;
 
-
-
 t_vm						*prvt_vm_new(int argc, char **argv);
 void						prvt_vm_destroy(t_vm **self);
 

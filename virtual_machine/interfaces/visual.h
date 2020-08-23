@@ -11,39 +11,12 @@
 /* ************************************************************************** */
 
 #ifndef VISUAL_H
-#define VISUAL_H
-
-// #include "libft.h"
-// #include <ncurses.h>
-// #include "arena.h"
-// #include "vm.h"
-
-
-
-
-
-
-
-
-
-
-
-
-
+# define VISUAL_H
 
 typedef struct s_vm				t_vm;
 typedef struct s_wins			t_wins;
 typedef struct s_color_mapcell	t_color_mapcell;
-typedef struct _win_st			WINDOW;
-
-// typedef struct  s_wins
-// {
-// 	WINDOW      *arena;
-// 	WINDOW      *info;
-// 	WINDOW      *champ;
-// 	WINDOW      *win;
-// //	WINDOW      *help;
-// }               t_wins;
+typedef struct _win_st			WINDOW;  //todo: Norme error: visual.h may not compile or is invalid for some reasons. (???)
 
 typedef struct			s_color_mapcell
 {
@@ -52,8 +25,6 @@ typedef struct			s_color_mapcell
 	int					store_index;
 
 }						t_color_mapcell;
-
-
 
 t_wins		*init_wins(void);
 void		destroy_win(WINDOW *local_win);

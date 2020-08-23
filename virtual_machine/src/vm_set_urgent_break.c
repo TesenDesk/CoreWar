@@ -15,5 +15,5 @@
 void			vm_set_urgent_break(t_vm *self, int urgent_break)
 {
 	self->urgent_break = urgent_break;
-	return;
+	return ;
 }

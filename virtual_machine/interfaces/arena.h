@@ -12,7 +12,7 @@
 
 #ifndef ARENA_H
 # define ARENA_H
-#include "vm.h"
+# include "vm.h"
 
 typedef struct s_vm_params	t_vm_params;
 typedef struct s_player		t_player;

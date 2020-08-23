@@ -15,5 +15,5 @@
 void			vm_set_speed(t_vm *self, int speed)
 {
 	self->speed = speed;
-	return;
+	return ;
 }

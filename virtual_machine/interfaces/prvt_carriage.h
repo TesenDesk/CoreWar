@@ -20,9 +20,6 @@
 # include "arena.h"
 # include "carriage.h"
 
-
-
-
 typedef struct		s_carriage
 {
 	t_arena			*arena;

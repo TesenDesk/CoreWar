@@ -12,7 +12,7 @@
 
 #include "prvt_arena.h"
 
-int arena_get_carriage_num(t_arena *self, int index)
+int	arena_get_carriage_num(t_arena *self, int index)
 {
 	return (self->carriage_num[index]);
 }
