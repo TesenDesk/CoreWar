@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 12:46:53 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/08/08 16:38:08 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/23 15:49:00 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void			draw_basic_info(t_vm *vm)
 {
-	t_wins      *info_win;
+	t_wins		*info_win;
 
 	info_win = vm_get_wins(vm);
 	wattron(info_win->info, COLOR_PAIR(B_INFO) | A_BOLD);
@@ -40,4 +40,5 @@ void			draw_basic_info(t_vm *vm)
 		"                 PRESS 'x' TO GO TO JUMP TO THE END");
 	wattroff(info_win->info, COLOR_PAIR(B_INFO) | A_BOLD);
 }
+
 // TODO: Скорее всего vm_get_wins(vm) можно сделать один раз, записать жто в переменную и передавать именно ее значение, и не вызывать расчет много-много раз

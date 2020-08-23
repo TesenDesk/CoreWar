@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 12:55:24 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/08/08 17:40:14 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/23 15:44:37 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void		process_keys(t_vm *vm)
 	{
 		wattron(vm_get_wins(vm)->info, COLOR_PAIR(B_INFO) | A_BOLD);
 		vm_set_speed(vm, vm_get_speed(vm) + 1);
-		// vm->speed += 1;
 		if (vm_get_speed(vm) > 10)
 			vm_set_speed(vm, 10);
 		wattroff(vm_get_wins(vm)->info, COLOR_PAIR(B_INFO) | A_BOLD);
