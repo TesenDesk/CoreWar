@@ -17,8 +17,8 @@ void		print_windows(t_vm *vm)
 	if (!(arena_get_color_is_set(vm_get_arena(vm))))
 	{
 		init_colors();
-		init_colormap(vm_get_arena(vm), vm, (MEM_SIZE /
-			arena_get_nb_players(vm_get_arena(vm))));
+		init_colormap(vm_get_arena(vm),
+				(MEM_SIZE / arena_get_nb_players(vm_get_arena(vm))));
 	}
 	draw_arena(vm);
 	draw_basic_info(vm);

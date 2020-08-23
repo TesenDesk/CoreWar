@@ -12,7 +12,7 @@
 
 #include "prvt_file.h"
 
-void		*file_data_code(t_i_file *self) //TODO: Norme err: func has 30 lines
+void		*file_data_code(t_i_file *self)
 {
 	char				*code_in_data;
 	char				*code;
@@ -20,21 +20,13 @@ void		*file_data_code(t_i_file *self) //TODO: Norme err: func has 30 lines
 	unsigned int		code_size;
 
 	code_in_data = (char*)(self->data)
-		+ MAGIC_LENGTH
-		+ PROG_NAME_LENGTH
-		+ NULL_LENGTH
-		+ CHAMP_SIZE_LENGTH
-		+ COMMENT_LENGTH
-		+ NULL_LENGTH;
-	code_size_in_data = (char*)(self->data)
-		+ MAGIC_LENGTH
-		+ PROG_NAME_LENGTH
+		+ MAGIC_LENGTH + PROG_NAME_LENGTH + NULL_LENGTH
+		+ CHAMP_SIZE_LENGTH + COMMENT_LENGTH + NULL_LENGTH;
+	code_size_in_data = (char*)(self->data) + MAGIC_LENGTH + PROG_NAME_LENGTH
 		+ NULL_LENGTH;
 	code_size = *(unsigned int*)code_size_in_data;
-	code_size = (int)((code_size << 24)
-		| ((code_size & 0xff00) << 8)
-		| ((code_size & 0xff0000) >> 8)
-		| (code_size >> 24));
+	code_size = (int)((code_size << 24) | ((code_size & 0xff00) << 8)
+		| ((code_size & 0xff0000) >> 8) | (code_size >> 24));
 	if (code_size)
 	{
 		if (!(code = ft_memalloc(code_size)))
