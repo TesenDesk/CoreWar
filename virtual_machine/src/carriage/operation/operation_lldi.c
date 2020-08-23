@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operation_lldi.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 17:13:21 by cmissy            #+#    #+#             */
-/*   Updated: 2020/08/01 19:40:54 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/23 13:58:54 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void			print_op_log(t_carriage *self, int *args)
 {
 	if (vm_verbosity_lvl() & 4)
 	{
-		ft_printf("P %4i | lldi %i %i r%i\n", self->num, args[ARG_1], args[ARG_2],
-				args[ARG_3] + 1);
+		ft_printf("P %4i | lldi %i %i r%i\n", self->num, args[ARG_1],
+				args[ARG_2], args[ARG_3] + 1);
 		ft_printf("       | -> load from %i + %i = %i (with pc %i)\n",
 			args[ARG_1], args[ARG_2], args[ARG_1] + args[ARG_2],
 			self->arena_position + args[ARG_1] + args[ARG_2]);
