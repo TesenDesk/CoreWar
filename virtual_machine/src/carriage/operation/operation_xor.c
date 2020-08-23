@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operation_xor.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 17:17:30 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/13 17:18:39 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/23 13:55:27 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void		perform_op(t_carriage *self, int *args)
 {
 	if (vm_verbosity_lvl() & 4)
 	{
-		ft_printf("P %4i | xor %i %i r%i\n", self->num, args[ARG_1], args[ARG_2],
-				args[ARG_3] + 1);
+		ft_printf("P %4i | xor %i %i r%i\n", self->num, args[ARG_1],
+				args[ARG_2], args[ARG_3] + 1);
 	}
 }
 
