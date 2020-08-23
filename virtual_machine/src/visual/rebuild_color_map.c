@@ -14,11 +14,10 @@
 
 void		rebuild_color_map(t_arena *arena, t_vm *vm)
 {
-	t_list			*iter; //TODO: Norme error: func has 27 lines
+	t_list			*iter;
 	int				index;
 	unsigned int	coord;
 
-	index = 0;
 	iter = vm->carriage_head;
 	while (iter != NULL)
 	{
@@ -29,15 +28,14 @@ void		rebuild_color_map(t_arena *arena, t_vm *vm)
 				((t_carriage *)iter->content)->player_name - 1, 1);
 		if (((t_carriage *)iter->content)->was_store == TRUE)
 		{
+			index = 0;
 			while (index < 4)
 			{
 				coord = (((t_carriage *)iter->content)->stor_pos);
 				arena_set_cell_index(arena, (coord + index) % MEM_SIZE,
 						((t_carriage *)iter->content)->player_name);
-				arena_set_store_index(arena, (coord + index) % MEM_SIZE, 1);
-				++index;
+				arena_set_store_index(arena, (coord + index++) % MEM_SIZE, 1);
 			}
-			index = 0;
 		}
 		iter = iter->next;
 	}
