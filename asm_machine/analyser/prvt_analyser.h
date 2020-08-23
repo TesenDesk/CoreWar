@@ -45,8 +45,6 @@ struct			s_analyser
 
 void			prvt_analyser_change_state(t_analyser *analyser, int expr_type);
 t_expr			*prvt_analyser_get_expr(t_vector *label_vector, t_hash_map *map
-								,
-//)
-										char const **text);
+								, char const **text);
 
 #endif
