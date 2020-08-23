@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prvt_lexer.h"
+#include "prvt_lexer.h" //TODO: Norme error: Too many functions in the file
 
-static int			term_is_op(char const *text)
+static int		term_is_op(char const *text)
 {
 	static char		*cmds_arr[16] = {
 		LFORK_NAME, FORK_NAME, LIVE_NAME, LLDI_NAME, ZJMP_NAME, ADD_NAME,
@@ -90,7 +90,6 @@ static int		find_op_type(char const *text)
 {
 	int			op_code;
 
-	op_code = 0;
 	if ((op_code = find_op5_type(text)))
 		;
 	else if ((op_code = find_op4_type(text)))
@@ -106,8 +105,7 @@ int				lexer_get_term_init(t_lexer *lexer, char const **text,
 									int *type, void *token_ptr[2])
 {
 	int			op_len;
-
-	op_len = 0;
+//TODO: Norme error: function too big
 	while (**text == ' ' || **text == '\t')
 		++(*text);
 	if (!(**text))

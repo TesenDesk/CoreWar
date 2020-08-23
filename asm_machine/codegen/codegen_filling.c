@@ -12,7 +12,11 @@
 
 #include "prvt_codegen.h"
 
-void		fill_empty_cell(t_codegen *data, int size)
+/*
+** TODO: Func never used.
+*/
+
+void			fill_empty_cell(t_codegen *data, int size)
 {
 	while (size)
 	{
@@ -45,7 +49,7 @@ void			fill_dirind_param(t_codegen *data, t_arg *param,
 	data->add += cell_size;
 }
 
-void		fill_codes(int array_of_codes[NUM_OF_TOKENS])
+void			fill_codes(int array_of_codes[NUM_OF_TOKENS])
 {
 	array_of_codes[TOKEN_AFF] = OP_AFF_CODE;
 	array_of_codes[TOKEN_ST] = OP_ST_CODE;

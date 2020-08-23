@@ -40,7 +40,6 @@ void			codegen_ending(t_codegen *data)
 {
 	int				i;
 	t_label_data	*ld;
-	int				add;
 	int				tmp;
 	int				cell_size;
 	t_code_addr		*addr;
@@ -48,11 +47,8 @@ void			codegen_ending(t_codegen *data)
 	i = -1;
 	while ((ld = ft_vector_get(data->labels_ptrs, ++i)))
 	{
-		addr = (t_code_addr*)ft_hash_map_get(data->labels_free,ld->name);
-		add = (int)(addr->addr);
-//		add = (int)(((t_code_addr*)ft_hash_map_get(data->labels_free,
-//		ld->name))->addr);
-		tmp = (add - ld->instruction_begining);
+		addr = (t_code_addr*)ft_hash_map_get(data->labels_free, ld->name);
+		tmp = (int)(addr->addr - ld->instruction_begining);
 		if (ld->param_type == TOKEN_TIND_LAB)
 			tmp %= IDX_MOD;
 		cell_size = (ld->param_type == TOKEN_TDIR_LAB && ld->size == 1) ? 4 : 2;
@@ -61,12 +57,10 @@ void			codegen_ending(t_codegen *data)
 			ft_memcpy(&(data->code[ld->add]), (short *)&tmp, cell_size);
 		else
 			ft_memcpy(&(data->code[ld->add]), &tmp, cell_size);
-//		free(addr);
-//		addr = NULL;
 	}
 }
 
-void		write_code_to_file(char *exec, int code_size, char *filename)
+void			write_code_to_file(char *exec, int code_size, char *filename)
 {
 	int		fd;
 	char	*root;
@@ -95,12 +89,10 @@ void			generate_code(t_hash_map *map, t_vector *text, char *filename)
 {
 	t_codegen	*codegen;
 	t_header	header;
-	int			fd;
 	int			index;
 	int			size;
 
 	index = 2;
-	size = 0;
 	init_header(&header, text);
 	codegen = codegen_ctor(map, &header);
 	while (index < text->total)
