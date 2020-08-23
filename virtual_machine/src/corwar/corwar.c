@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 22:35:40 by yurezz            #+#    #+#             */
-/*   Updated: 2020/08/09 15:07:06 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/23 13:54:28 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void		prvt_corwar_precondition_check(int argc)
 	return ;
 }
 
-int             _corewar_chose_regime(t_vm *this)
+int				prvt_corewar_chose_regime(t_vm *this)
 {
 	if (this->params->ncurses == TRUE)
 		return (VISUAL_MODE);
@@ -43,12 +43,12 @@ int             _corewar_chose_regime(t_vm *this)
 
 int				main(int argc, char *argv[])
 {
-	t_vm		*this;
-	static      vm_play_fptr vmptf[2] = {vm_play, vm_play_visual};
+	t_vm				*this;
+	static vm_play_fptr	vmptf[2] = {vm_play, vm_play_visual};
 
 	prvt_corwar_precondition_check(argc);
 	this = vm_singleton(VM_INSTANTIATE, argc - 1, argv + 1);
-	vmptf[_corewar_chose_regime(this)](this);
+	vmptf[prvt_corewar_chose_regime(this)](this);
 	(void)vm_singleton(VM_DESTRUCT, 0, NULL);
 	return (SUCCESS);
 }
