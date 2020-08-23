@@ -143,11 +143,9 @@ void			vm_play_visual(t_vm *self)
 		{
 			if (vm_check(self) == FAILURE)
 			{
-//				printf("DSDdddsfsdfhjdbdjsfbdfvbiludvbeaiuwlfcbewilfbewifbdsziuufvbewifcbesilfbesdivbewifbezbvewbi\n");;
 				print_winner_visual(self);
 				getch();
 				exit(-1);
-//				break ;
 			}
 		}
 		self->global_counter += 1;
@@ -161,21 +159,5 @@ void			vm_play_visual(t_vm *self)
 				exit(-1);
 			}
 		}
-		else
-		{
-			;
-		}
-//		t_list  *new;
-//		t_carriage  *nn;
-//		new = self->carriage_head;
-//		while (new)
-//		{
-//			nn = new->content;
-//			nn->was_store = 0;
-//			nn->stor_pos = 0;
-//			new = new->next;
-//
-//		}
 	}
-//	exit(-1);
 }

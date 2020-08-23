@@ -43,28 +43,20 @@ void		rebuild_color_map(t_arena *arena, t_vm *vm) //fixme func never used?
 {
 	t_list	*iter;
 	int		index;
+	unsigned int coord;
 
+	coord = 0;
 	index = 0;
 	iter = vm->carriage_head;
 	while (iter != NULL)
 	{
-//		arena->colormap[((t_carriage*)iter->content)->arena_position %
-//			MEM_SIZE].player_index = ((t_carriage*)iter->content)->player_name; //TODO: old code, delete it
 		arena_set_player_index(arena, ((t_carriage*)iter->content)->arena_position % MEM_SIZE, ((t_carriage*)iter->content)->player_name);
-//		arena->carriage_num[((t_carriage *)iter->content)->player_name - 1] +=
-//			1; //TODO: old code, delete it
 		arena_change_carriage_num(arena, ((t_carriage *)iter->content)->player_name - 1, 1);
-
 		if (((t_carriage *)iter->content)->was_store == TRUE)
 		{
 			while (index < 4)
 			{
-				int pos = (((t_carriage *) iter->content)->stor_pos - 0);
-//				if (pos < ((t_carriage*) iter->content)->arena_position)
-//				{
-//					pos -= 5;;
-//				}
-				unsigned  int coord = pos;
+				coord = (((t_carriage *) iter->content)->stor_pos);
 				arena_set_cell_index(arena, (coord + index) %MEM_SIZE, ((t_carriage *) iter->content)->player_name);
 				arena_set_store_index(arena, (coord + index) % MEM_SIZE, 1);
 //				arena_set_cell_index(arena, (((t_carriage *) iter->content)->stor_pos - index - 2) % MEM_SIZE, ((t_carriage *) iter->content)->player_name);

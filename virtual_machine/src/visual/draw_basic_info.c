@@ -14,48 +14,30 @@
 
 void			draw_basic_info(t_vm *vm)
 {
-	// wattron(vm_get_wins(vm)->info, COLOR_PAIR(B_INFO) | A_BOLD);
-	// wmove(vm_get_wins(vm)->info, 1, 1);
-	// wprintw(vm_get_wins(vm)->info, " CYCLES_TO_DIE:   %zu\n",
-	// 	(unsigned int)vm->cycles_to_die);
-	// wmove(vm_get_wins(vm)->info, 2, 1);
-	// wprintw(vm_get_wins(vm)->info, " CURRENT_COUNTER: %zu\n",
-	// 	(unsigned int)vm->cycles_counter);
-	// wmove(vm_get_wins(vm)->info, 3, 1);
-	// wprintw(vm_get_wins(vm)->info, " GLOBAL_COUNTER:  %d\n", vm->global_counter);
-	// wmove(vm_get_wins(vm)->info, 4, 1);
-	// wprintw(vm_get_wins(vm)->info, " CYCLES_DELTA:    %d\n", CYCLE_DELTA);
-	// wmove(vm_get_wins(vm)->info, 5, 1);
-	// wprintw(vm_get_wins(vm)->info, " GAME_SPEED:      %d\n", vm->speed);
-	// wmove(vm_get_wins(vm)->info, 6, 1);
-	// wprintw(vm_get_wins(vm)->info,
-	// 	" TO SPEED_UP PUSH UP_ARROW, "
-	// 	"TO SPEED_DOWN PUSH DOWN_ARROW(MIN 1 MAX 10)");
-	// wmove(vm_get_wins(vm)->info, 7, 1);
-	// wprintw(vm_get_wins(vm)->info,
-	// 	"                 PRESS 'x' TO GO TO JUMP TO THE END");
-	// wattroff(vm_get_wins(vm)->info, COLOR_PAIR(B_INFO) | A_BOLD);
-	wattron(vm_get_wins(vm)->info, COLOR_PAIR(B_INFO) | A_BOLD);
-	wmove(vm_get_wins(vm)->info, 1, 1);
-	wprintw(vm_get_wins(vm)->info, " CYCLES_TO_DIE:   %zu\n",
+	t_wins      *info_win;
+
+	info_win = vm_get_wins(vm);
+	wattron(vm->wins->info, COLOR_PAIR(B_INFO) | A_BOLD);
+	wmove(vm->wins->info, 1, 1);
+	wprintw(vm->wins->info, " CYCLES_TO_DIE:   %zu\n",
 		vm_get_cycles_to_die(vm));
-	wmove(vm_get_wins(vm)->info, 2, 1);
-	wprintw(vm_get_wins(vm)->info, " CURRENT_COUNTER: %zu\n",
+	wmove(vm->wins->info, 2, 1);
+	wprintw(vm->wins->info, " CURRENT_COUNTER: %zu\n",
 		vm_get_cycles_counter(vm));
-	wmove(vm_get_wins(vm)->info, 3, 1);
-	wprintw(vm_get_wins(vm)->info, " GLOBAL_COUNTER:  %d\n",
+	wmove(vm->wins->info, 3, 1);
+	wprintw(vm->wins->info, " GLOBAL_COUNTER:  %d\n",
 		vm_get_global_counter(vm));
-	wmove(vm_get_wins(vm)->info, 4, 1);
-	wprintw(vm_get_wins(vm)->info, " CYCLES_DELTA:    %d\n", CYCLE_DELTA);
-	wmove(vm_get_wins(vm)->info, 5, 1);
-	wprintw(vm_get_wins(vm)->info, " GAME_SPEED:      %d\n", vm_get_speed(vm));
-	wmove(vm_get_wins(vm)->info, 6, 1);
-	wprintw(vm_get_wins(vm)->info,
+	wmove(vm->wins->info, 4, 1);
+	wprintw(vm->wins->info, " CYCLES_DELTA:    %d\n", CYCLE_DELTA);
+	wmove(vm->wins->info, 5, 1);
+	wprintw(vm->wins->info, " GAME_SPEED:      %d\n", vm_get_speed(vm));
+	wmove(vm->wins->info, 6, 1);
+	wprintw(vm->wins->info,
 		" TO SPEED_UP PUSH UP_ARROW, "
 		"TO SPEED_DOWN PUSH DOWN_ARROW(MIN 1 MAX 10)");
-	wmove(vm_get_wins(vm)->info, 7, 1);
-	wprintw(vm_get_wins(vm)->info,
+	wmove(vm->wins->info, 7, 1);
+	wprintw(vm->wins->info,
 		"                 PRESS 'x' TO GO TO JUMP TO THE END");
-	wattroff(vm_get_wins(vm)->info, COLOR_PAIR(B_INFO) | A_BOLD);
+	wattroff(vm->wins->info, COLOR_PAIR(B_INFO) | A_BOLD);
 }
 // TODO: Скорее всего vm_get_wins(vm) можно сделать один раз, записать жто в переменную и передавать именно ее значение, и не вызывать расчет много-много раз
