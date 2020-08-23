@@ -14,23 +14,22 @@
 
 int		chose_color(t_arena *arena, int index, t_vm *vm, int i)
 {
-	int ans;
-	int player_index;
-	int cell_index;
+	int	ans;
+	int	player_index;
+	int	cell_index;
 
-	player_index =  arena_get_player_index(arena, index % MEM_SIZE);
+	player_index = arena_get_player_index(arena, index % MEM_SIZE);
 	cell_index = arena_get_cell_index(arena, index % MEM_SIZE);
-	//TODO: Можно оптимизировать вызовы get через общие переменные.
 	if (player_index == 0)
 		ans = (COLOR_PAIR(cell_index));
 	else if (player_index == cell_index && cell_index != NEUTRAL_COL)
 		ans = (COLOR_PAIR(cell_index + HOME_OFFSET));
-	else if (player_index != cell_index  && cell_index != NEUTRAL_COL)
+	else if (player_index != cell_index && cell_index != NEUTRAL_COL)
 	{
 		ans = (COLOR_PAIR(arena_get_cell_index(arena, index % MEM_SIZE) +
 			OUT_OFFSET));
 	}
-	else if(player_index != cell_index && cell_index == NEUTRAL_COL)
+	else if (player_index != cell_index && cell_index == NEUTRAL_COL)
 		ans = (COLOR_PAIR(arena_get_cell_index(arena, index % MEM_SIZE)));
 	else if (player_index == cell_index && cell_index == NEUTRAL_COL)
 	{
@@ -41,3 +40,9 @@ int		chose_color(t_arena *arena, int index, t_vm *vm, int i)
 		ans |= WA_BOLD;
 	return (ans);
 }
+
+/*
+** TODO: что делает строка 36?
+** TODO: *vm & i never used
+** TODO: теоретически ans может быть возвращен неинициализированным
+*/

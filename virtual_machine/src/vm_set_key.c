@@ -15,5 +15,5 @@
 void			vm_set_key(t_vm *self, int key)
 {
 	self->key = key;
-	return;
+	return ;
 }

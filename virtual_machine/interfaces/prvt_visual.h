@@ -21,10 +21,6 @@
 # include "vm.h"
 # include "prvt_vm.h"
 # include "prvt_carriage.h"
-//# include "../arena/player/prvt_player.h"
-
-
-
 
 # include "prvt_vm_params.h"
 
@@ -53,39 +49,31 @@
 # define HOME_OFFSET			4
 # define OUT_OFFSET				8
 
-typedef struct					s_wins
+typedef struct	s_wins
 {
-	WINDOW					*arena;
-	WINDOW					*info;
-	WINDOW					*champ;
-	WINDOW					*win;
-//	WINDOW					*help;
-}								t_wins;
+	WINDOW	*arena;
+	WINDOW	*info;
+	WINDOW	*champ;
+	WINDOW	*win;
+}				t_wins;
 
-// typedef struct					s_color_mapcell
-// {
-// 	int						player_index;
-// 	int						cell_index;
-// 	int						store_index;
+void			print_winner_visual(t_vm *vm);
+void			print_windows(t_vm *vm);
+void			init_curses(void);
+void			init_colormap(t_arena *arena, t_vm *vm, int ofset_outer);
+void			init_colors(void);
+t_wins			*init_wins(void);
+void			process_keys(t_vm *self);
+WINDOW			*create_newwin(int height, int width, int starty, int startx);
+int				chose_color(t_arena *arena, int index, t_vm *vm, int i);
+void			draw_basic_info(t_vm *vm);
+void			draw_champ_info(t_vm *vm);
+void			draw_arena(t_vm *vm);
+static void		rebuild_color_map_util(t_arena *arena,
+									t_list *iter, int *index);
 
-// }								t_color_mapcell;
-
-void		print_winner_visual(t_vm *vm);
-void		print_windows(t_vm *vm);
-void		init_curses(void);
-void		init_colormap(t_arena *arena, t_vm *vm, int ofset_outer);
-void		init_colors(void);
-t_wins		*init_wins(void);
-void		process_keys(t_vm *self);
-WINDOW		*create_newwin(int height, int width, int starty, int startx);
-int			chose_color(t_arena *arena, int index, t_vm *vm, int i);
-void		draw_basic_info(t_vm *vm);
-void		draw_champ_info(t_vm *vm);
-void		draw_arena(t_vm *vm);
-static void	rebuild_color_map_util(t_arena *arena, t_list *iter, int *index);
-
-void		rebuild_color_map(t_arena *arena, t_vm *vm); //fixme func never used?
-void		erase_windows(t_vm *vm);
-void		destroy_win(WINDOW *local_win);
+void			rebuild_color_map(t_arena *arena, t_vm *vm);
+void			erase_windows(t_vm *vm);
+void			destroy_win(WINDOW *local_win);
 
 #endif

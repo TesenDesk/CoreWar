@@ -12,7 +12,7 @@
 
 #include "prvt_visual.h"
 
-void	print_winner_visual(t_vm *vm) //TODO: Оптимизировать надо ли нам? Одинаковых вызовов многовато, однако.
+void	print_winner_visual(t_vm *vm)
 {
 	t_wins *wins;
 

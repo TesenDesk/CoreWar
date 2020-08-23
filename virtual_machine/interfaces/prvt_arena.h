@@ -23,19 +23,8 @@
 # include "visual.h"
 # include "prvt_player.h"
 
-
-
-
-
-
-
-
-
 # define EIGHT_BITS		8
-//# define DUMP_LINE_SIZE	32
 # define DUMP_LINE_SIZE	64
-
-// typedef void*			t_color_mapcell;
 
 typedef struct			s_arena
 {
@@ -44,22 +33,21 @@ typedef struct			s_arena
 	int					last_live_player;
 	int					nb_players;
 	char				*data;
-	t_color_mapcell     colormap[MEM_SIZE];
-	int                 carriage_num[4];
-//	int                 was_store;
-//	int                 was_live;
-//	int                 stor_pos;
-	int                 color_is_set;
+	t_color_mapcell		colormap[MEM_SIZE];
+	int					carriage_num[4];
+	int					color_is_set;
 	int					size;
 }						t_arena;
 
 t_player				**prvt_arena_players_new(int num_players);
 void					prvt_arena_set_smallest_unoccupied_name(t_arena *self);
 
-// TODO: 	t_color_mapcell     colormap[MEM_SIZE]; 
-// t_color_mapcell должен быть приватным, но для работы с массмвом нужно знать 
-// размер его элементов, но это недопустимо для ООП. Выход -- заменить ё
-// объявлением типа указателей на войддля данного класа, но заццепленность кода
-// пока это не позволяет
+// TODO: 	t_color_mapcell     colormap[MEM_SIZE];
+/*
+** t_color_mapcell должен быть приватным, но для работы с массмвом нужно знать
+** размер его элементов, но это недопустимо для ООП. Выход -- заменить ё
+** объявлением типа указателей на войддля данного класа, но заццепленность кода
+** пока это не позволяет
+*/
 
 #endif
