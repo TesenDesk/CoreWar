@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 15:26:51 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/08/01 17:33:24 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/23 15:26:08 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void				ft_hash_map_dtor(t_hash_map **map_input)
 }
 
 
-void				ft_hash_map_dtor_full(t_hash_map **map_input, delfptr f)
+void				ft_hash_map_dtor_full(t_hash_map **map_input, t_delfptr f)
 {
 	t_hash_map		*map;
 	size_t			i;

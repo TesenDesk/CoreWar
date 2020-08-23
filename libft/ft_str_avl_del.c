@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 15:52:52 by ftothmur          #+#    #+#             */
-/*   Updated: 2019/11/03 18:59:39 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/23 15:24:56 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void					ft_keystr_avl_del(t_keystr_avl_t **root_incoming)
 
 //void				token_destructor(t_token **token)
 
-void					ft_keystr_avl_del_full(t_keystr_avl_t **root_incoming, delfptr f)
+void					ft_keystr_avl_del_full(t_keystr_avl_t **root_incoming,
+		t_delfptr f)
 {
 	t_keystr_avl_t		*root;
 

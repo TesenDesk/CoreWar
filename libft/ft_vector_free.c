@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 21:41:10 by ftothmur          #+#    #+#             */
-/*   Updated: 2019/11/09 21:43:22 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/23 15:25:37 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@ void				ft_vector_free(t_vector *v)
 }
 
 
-void				ft_vector_free_full(t_vector *v, delfptr f)
+void				ft_vector_free_full(t_vector *v, t_delfptr f)
 {
 	f((void**)(&(v->items)));
-//	ft_memdel((void **)&v->items);
 	return ;
 }

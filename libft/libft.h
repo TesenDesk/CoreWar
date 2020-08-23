@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 15:05:36 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/07/15 18:47:42 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/23 15:09:41 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 # include <wchar.h>
 # include <fcntl.h>
 # include <stdio.h>
-//# include "get_next_line.h"
 
 /*
 ** MAX_SIZE is a MACRO SIZE_MAX of stdint.h, which is forbidden to interfaces
@@ -94,8 +93,6 @@
 # define REMOVE_SIGN		1
 # define RADIX_CYPHERS_STR	"0123456789abcdefghijklmnopqrstuvwxyz"
 
-
-typedef  void(*delfptr)(void**) ;
 /*
 ** BIN_CHECK is number of bites should be cheked if the variable is binary.
 ** It is for the ft_isbinary() function.
@@ -221,6 +218,8 @@ typedef  void(*delfptr)(void**) ;
 **						FUNC_DEFS
 */
 # define CMP(s1, s2) ft_strcmp(s1, s2)
+
+typedef void(*t_delfptr)(void**);
 
 /*
 **	Data structures.
@@ -611,9 +610,7 @@ void						ft_dlstmerge(t_dlist **head_dst,
 int							ft_memrcmp(const void *min, const void *sub,
 								size_t size);
 int							ft_intrcmp(const void *min, const void *sub);
-//int							ft_get_next_line(const int fd, char **line);
 int							ft_getline(int fd, char **line);
-//int							get_next_line(const int fd, char **line);
 void						ft_free_ptr_ar(void ***ar);
 int							ft_isdigitstr(char *str);
 int							ft_strint_ou_flow(char *str, int *nbr);
@@ -642,13 +639,15 @@ t_keystr_avl_t				*ft_keystr_avl_search(t_keystr_avl_t *p, void *key);
 t_keystr_avl_t				*ft_keystr_avl_findmin(t_keystr_avl_t *p);
 t_keystr_avl_t				*ft_keystr_avl_remove(t_keystr_avl_t *p, void *key);
 void						ft_keystr_avl_tree_traversal(t_keystr_avl_t *root,
-								void f(t_keystr_avl_t *vertex));
+		void f(t_keystr_avl_t *vertex));
 void						ft_keystr_avl_del(t_keystr_avl_t **root_input);
-void						ft_keystr_avl_del_full(t_keystr_avl_t **root_incoming, void (del)(void **));
+void						ft_keystr_avl_del_full(
+		t_keystr_avl_t **root_incoming, void (del)(void **));
 void						ft_vector_free(t_vector *v);
-void						ft_vector_free_full(t_vector *v, void (del)(void **));
+void						ft_vector_free_full(t_vector *v,
+		void (del)(void **));
 void						ft_vector_free_data(t_vector *v,
-								void (*fptr)(void **));
+		void (*fptr)(void **));
 int							ft_vector_delete(t_vector *v, int index);
 void						*ft_vector_get(t_vector *v, int index);
 void						*ft_vector_get_curr(t_vector *v);
@@ -658,26 +657,27 @@ int							ft_vector_resize(t_vector *v, ssize_t capacity);
 int							ft_vector_total(t_vector *v);
 int							ft_vector_init(t_vector *v);
 int							ft_vector_traversal(t_vector *v,
-								int (*fptr)(void *specific_item));
+		int (*fptr)(void *specific_item));
 void						**ft_void_arithm(void **ptr, int offset);
 char						*ft_strrejoin(char const *s1, char const *s2);
 int							ft_strsearch(char const *str, char c);
 size_t						ft_strclen(char const *str, char c);
 int							ft_str_to_uintmax(char *str, char **endptr,
-								int radix, uintmax_t *nbr);
+		int radix, uintmax_t *nbr);
 int							ft_str_to_intmax(char *str, char **endptr,
-								int radix, intmax_t *nbr);
+		int radix, intmax_t *nbr);
 t_hash_map					*ft_hash_map_ctor(size_t arr_size);
 void						ft_hash_map_dtor(t_hash_map **map_input);
-void						ft_hash_map_dtor_full(t_hash_map **map_input, void (del)(void **));
+void						ft_hash_map_dtor_full(t_hash_map **map_input,
+		void (del)(void **));
 void						*ft_hash_map_get(t_hash_map *map, void *key);
 unsigned long long			ft_hash_map_hashcode(unsigned char *str);
 int							ft_hash_map_set(t_hash_map **map, void *key,
-								void *content);
+		void *content);
 int							ft_hash_map_set_content(t_hash_map *map, void *key,
-								void *new_content);
+		void *new_content);
 int							ft_hash_map_put_to_map(t_hash_map **map_input,
-								t_pair *pair);
+		t_pair *pair);
 
 /*
 ** Forbidden in libft project
