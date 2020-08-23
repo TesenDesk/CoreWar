@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 21:54:22 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/19 20:15:05 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/23 14:40:33 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,3 @@ t_token				*token_constructor(int type, void *ptr[2])
 	token->get_type = token_get_type;
 	return (token);
 }
-

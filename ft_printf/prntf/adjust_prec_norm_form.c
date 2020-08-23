@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   adjust_prec_norm_form.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mstygg <mstygg@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:42:34 by mstygg            #+#    #+#             */
-/*   Updated: 2020/08/01 17:37:36 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/23 14:42:39 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void			adjust_fnum_prec(t_buf_struct *buf_s, t_dec_frac *l_num)
 {
 	if (B_AR_CUR.type == 'f')
-		adjust_double_norm_form(l_num, B_AR_CUR.prec,
-		(count_size_fnum(l_num->frac.l_num[l_num->frac.filled - 1]) +
-		B_AR_CUR.ld_zeros), &(B_AR_CUR.ld_zeros));
+			adjust_double_norm_form(l_num, B_AR_CUR.prec,
+			(count_size_fnum(l_num->frac.l_num[l_num->frac.filled - 1])
+			+ B_AR_CUR.ld_zeros), &(B_AR_CUR.ld_zeros));
 	else if (B_AR_CUR.type == 'e')
 		adjust_double_sci_form(buf_s, l_num);
 }
@@ -47,9 +47,7 @@ void			adjust_double_norm_form(t_dec_frac *l_num, int prec,
 		int count_prec, int *ld_zeros)
 {
 	int			index;
-	// ULL			tmp_num;
 
-	// tmp_num = 0;
 	l_num->frac.cur = l_num->frac.filled - 1;
 	index = l_num->frac.cur;
 	if (*ld_zeros > prec)
