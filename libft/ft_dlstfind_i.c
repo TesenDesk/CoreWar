@@ -28,7 +28,7 @@ int				ft_dlstfind_i(t_dlist *head, void *data_ref,
 	int			index;
 
 	if (!head || !data_ref || !cmp)
-		return (FAILURE);
+		return (FAIL);
 	curr = head;
 	result = 0;
 	index = 0;
@@ -39,5 +39,5 @@ int				ft_dlstfind_i(t_dlist *head, void *data_ref,
 		curr = curr->next;
 		++index;
 	}
-	return (!result ? index : FAILURE);
+	return (!result ? index : FAIL);
 }

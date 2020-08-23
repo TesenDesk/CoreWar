@@ -33,7 +33,7 @@ typedef struct				s_vm
 	char		speed;
 	int			cycles_to_die;
 	int			cycles_to_dump;
-	int			cycles_counter;
+	int			c_counter;
 	int			global_counter;
 	int			num_of_live_ops;
 	int			num_checks;
@@ -46,5 +46,7 @@ typedef struct				s_vm
 
 t_vm						*prvt_vm_new(int argc, char **argv);
 void						prvt_vm_destroy(t_vm **self);
+void						my_stupid_func_fuck_norm(t_vm *self);
+void						vm_play_visual_iter(t_vm *self);
 
 #endif

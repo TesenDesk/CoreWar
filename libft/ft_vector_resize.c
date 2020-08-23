@@ -22,5 +22,5 @@ int					ft_vector_resize(t_vector *v, ssize_t capacity)
 		v->capacity = capacity;
 		return (SUCCESS);
 	}
-	return (FAILURE);
+	return (FAIL);
 }

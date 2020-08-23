@@ -150,11 +150,12 @@ VM_SRC					:= prvt_vm_destroy.c \
 							vm_increase_num_of_live_ops.c \
 							vm_num_of_carriages_and_increase.c \
 							vm_play.c \
+							vm_play_util.c \
 							vm_singleton.c \
 							vm_verbosity_lvl.c \
 							vm_get_arena.c \
 							vm_get_wins.c \
-							vm_get_cycles_counter.c \
+							vm_get_c_counter.c \
 							vm_get_global_counter.c \
 							vm_get_cycles_to_die.c \
 							vm_get_speed.c \

@@ -16,7 +16,7 @@ void			prvt_file_open(t_i_file *self)
 {
 	if (self->is_opened == TRUE)
 		ft_raise(__FILE__, __LINE__, EDOUBLEOPENNING);
-	if ((self->fd = open(self->file_name, O_RDONLY)) == FAILURE)
+	if ((self->fd = open(self->file_name, O_RDONLY)) == FAIL)
 		ft_raise(__FILE__, __LINE__, EBADFILENAME);
 	self->is_opened = TRUE;
 	return ;

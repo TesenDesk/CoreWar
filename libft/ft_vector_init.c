@@ -16,7 +16,7 @@ int					ft_vector_init(t_vector *v)
 {
 	if (!v || !(v->items = (void **)ft_memalloc(sizeof(*(v->items)) *
 			VECTOR_INIT_CAP)))
-		return (FAILURE);
+		return (FAIL);
 	v->capacity = VECTOR_INIT_CAP;
 	v->total = 0;
 	return (SUCCESS);

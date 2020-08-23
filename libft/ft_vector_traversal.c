@@ -19,8 +19,8 @@ int			ft_vector_traversal(t_vector *v, int (*fptr)(void *specific_item))
 	index = 0;
 	while (index < v->total)
 	{
-		if (fptr(v->items[index]) == FAILURE)
-			return (FAILURE);
+		if (fptr(v->items[index]) == FAIL)
+			return (FAIL);
 		++index;
 	}
 	return (SUCCESS);

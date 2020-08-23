@@ -15,7 +15,7 @@
 int					ft_vector_set(t_vector *v, int index, void *item)
 {
 	if (!v || index < 0 || v->total <= index)
-		return (FAILURE);
+		return (FAIL);
 	v->items[index] = item;
 	return (SUCCESS);
 }

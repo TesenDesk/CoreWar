@@ -36,7 +36,7 @@ static t_expr		*expr_fill_arg_num(t_expr *expr)
 
 static void			check_putting_to_map(t_hash_map **map, t_token *token)
 {
-	if (label_checker_put_to_map_label_word(map, token) == FAILURE)
+	if (label_checker_put_to_map_label_word(map, token) == FAIL)
 		exit(-1);
 }
 
@@ -57,7 +57,7 @@ t_expr				*parser_form_expr(t_parser *parser, char const **text,
 		else if (token_type == TOKEN_TIND_LAB || token_type == TOKEN_TDIR_LAB)
 		{
 			if (label_checker_put_to_map_label_ptr(label_vector, token)
-					== FAILURE)
+					== FAIL)
 				exit(-1);
 		}
 		parser->change_state(parser, token_type);

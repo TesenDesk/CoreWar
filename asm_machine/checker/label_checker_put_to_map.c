@@ -28,9 +28,9 @@ int					label_checker_put_to_map_label_word(
 	pair.key = token_get_value(token);
 	pair.content = token_get_token_ptr(token, 0);
 	if (ft_hash_map_get(*map_of_label_words, pair.key))
-		return (FAILURE);
-	if (ft_hash_map_set(map_of_label_words, pair.key, pair.content) == FAILURE)
-		return (FAILURE);
+		return (FAIL);
+	if (ft_hash_map_set(map_of_label_words, pair.key, pair.content) == FAIL)
+		return (FAIL);
 	return (SUCCESS);
 }
 
@@ -51,7 +51,7 @@ int					label_checker_put_to_map_label_ptr(
 		exit(-1);
 	data->name = token_get_value(token);
 	data->add = (unsigned int)token_get_token_ptr(token, 0);
-	if (ft_vector_add(added_label_ptrs, data) == FAILURE)
-		return (FAILURE);
+	if (ft_vector_add(added_label_ptrs, data) == FAIL)
+		return (FAIL);
 	return (SUCCESS);
 }

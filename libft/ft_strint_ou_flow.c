@@ -25,7 +25,7 @@ int					ft_strint_ou_flow(char *str, int *nbr)
 	char			*tip;
 
 	if (!str || !nbr)
-		return (FAILURE);
+		return (FAIL);
 	if ((*nbr = ft_atoi(str)) == INT_MAX || *nbr == INT_MIN)
 	{
 		top = str;
@@ -35,7 +35,7 @@ int					ft_strint_ou_flow(char *str, int *nbr)
 		if ((ft_strncmp("214748364", top, tip - top)) ||
 				(*(top + 9) != '7' && (*nbr > 0)) ||
 				(*(top + 9) != '8' && (*nbr < 0)))
-			return (FAILURE);
+			return (FAIL);
 	}
 	return (SUCCESS);
 }

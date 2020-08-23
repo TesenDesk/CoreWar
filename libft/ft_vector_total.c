@@ -17,5 +17,5 @@ int					ft_vector_total(t_vector *v)
 	if (v)
 		return (v->total);
 	else
-		return (FAILURE);
+		return (FAIL);
 }

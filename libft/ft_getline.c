@@ -15,8 +15,8 @@
 static int				initialize(int fd, char **line, t_buffer *buf)
 {
 	if (fd < 0 || !line || BUFF_SIZE <= 0 || BUFF_SIZE > 8388608 ||
-			read(fd, NULL, 0) == FAILURE)
-		return (FAILURE);
+			read(fd, NULL, 0) == FAIL)
+		return (FAIL);
 	if ((*buf->data && (buf->data + buf->load - 1 > buf->tip) &&
 				fd != buf->fd) ||
 			(*buf->data && (buf->data + buf->load - 1 == buf->tip)) ||
@@ -105,6 +105,6 @@ int						ft_getline(int fd, char **line)
 	else
 		buf.state = ERRONEOUS_END;
 	if (buf.state == ERRONEOUS_END)
-		buf.size = FAILURE;
+		buf.size = FAIL;
 	return (buf.size);
 }

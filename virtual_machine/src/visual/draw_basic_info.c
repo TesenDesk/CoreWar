@@ -23,7 +23,7 @@ void			draw_basic_info(t_vm *vm)
 		vm_get_cycles_to_die(vm));
 	wmove(info_win->info, 2, 1);
 	wprintw(info_win->info, " CURRENT_COUNTER: %zu\n",
-		vm_get_cycles_counter(vm));
+		vm_get_c_counter(vm));
 	wmove(info_win->info, 3, 1);
 	wprintw(info_win->info, " GLOBAL_COUNTER:  %d\n",
 		vm_get_global_counter(vm));

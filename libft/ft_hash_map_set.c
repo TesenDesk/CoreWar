@@ -17,7 +17,7 @@ int					ft_hash_map_set(t_hash_map **map, void *key, void *content)
 	t_pair *pair;
 
 	if (!(pair = malloc(sizeof(t_pair))))
-		return (FAILURE);
+		return (FAIL);
 	pair->key = key;
 	pair->content = content;
 	return (ft_hash_map_put_to_map(map, pair));

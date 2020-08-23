@@ -23,12 +23,12 @@ t_vector		*analyse_text(t_analyser *analyser, t_vector *vector,
 	expr = NULL;
 	if (!(expr_text = (t_vector*)ft_memalloc(sizeof(t_vector))))
 		exit(-1);
-	if (ft_vector_init(expr_text) == FAILURE)
+	if (ft_vector_init(expr_text) == FAIL)
 		exit(-1);
 	while (analyser->state != ANALYSER_FINISH_ST)
 	{
 		expr = analyser->prvt_get_expr(vector, map, (((char const**)&text)));
-		if (ft_vector_add(expr_text, expr) == FAILURE)
+		if (ft_vector_add(expr_text, expr) == FAIL)
 			exit(-1);
 		expr_type = expr_get_type((t_expr*)ft_vector_get_curr(expr_text));
 		analyser->prvt_change_state(analyser, expr_type);

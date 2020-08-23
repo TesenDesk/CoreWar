@@ -60,5 +60,5 @@ int			ft_error(int error_no, int line, char *file)
 	ft_putnbr_fd(line, STDERR_FILENO);
 	ft_putstr_fd(". ", STDERR_FILENO);
 	ft_putendl_fd(err_message, STDERR_FILENO);
-	return (FAILURE);
+	return (FAIL);
 }

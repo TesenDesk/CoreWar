@@ -37,7 +37,7 @@ static int		parse_the_arg(t_carriage *self, t_op *op, int i)
 	{
 		op->args[i] = arena_get_n_bytes_from(self->arena, pos, T_REG_SIZE) - 1;
 		if (op->args[i] < 0 || op->args[i] >= 16)
-			result = FAILURE;
+			result = FAIL;
 		op->op_len += T_REG_SIZE;
 	}
 	else if (op->type_codes[i] == DIR_CODE)
@@ -51,7 +51,7 @@ static int		parse_the_arg(t_carriage *self, t_op *op, int i)
 		op->op_len += T_IND_SIZE;
 	}
 	else
-		result = FAILURE;
+		result = FAIL;
 	return (result);
 }
 
@@ -71,9 +71,9 @@ int				operation_precheck_args(t_carriage *self, t_op *op)
 	{
 		op->type_codes[i] = (arg_type_code >>
 		(type_code_size * BITS_PER_BYTE - TWO_BITS * (i + 1))) & TWO_BITS_MASK;
-		if (parse_the_arg(self, op, i) == FAILURE
+		if (parse_the_arg(self, op, i) == FAIL
 		|| is_correct_type_for_op(op, i) == FALSE)
-			result = FAILURE;
+			result = FAIL;
 		i++;
 	}
 	return (result);

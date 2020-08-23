@@ -19,7 +19,7 @@ int				ft_realloc_safe(void **buf1, size_t size1, size_t size2)
 	buf2 = NULL;
 	if ((size2 && size1 && *buf1) || (size2 && !size1 && !*buf1))
 		if (!(buf2 = ft_memalloc(size2)))
-			return (FAILURE);
+			return (FAIL);
 	if (*buf1 && buf2 && size1 && size2)
 		(void)ft_memcpy(buf2, *buf1, size1 > size2 ? size2 : size1);
 	free(*buf1);

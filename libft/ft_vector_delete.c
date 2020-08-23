@@ -17,7 +17,7 @@ int					ft_vector_delete(t_vector *v, int index)
 	int				i;
 
 	if (!v || index < 0 || index >= v->total)
-		return (FAILURE);
+		return (FAIL);
 	v->items[index] = NULL;
 	i = index;
 	while (i < v->total - 1)
@@ -28,7 +28,7 @@ int					ft_vector_delete(t_vector *v, int index)
 	}
 	--v->total;
 	if (v->total > 0 && v->total == v->capacity / 4)
-		if (ft_vector_resize(v, v->capacity / 2) == FAILURE)
-			return (FAILURE);
+		if (ft_vector_resize(v, v->capacity / 2) == FAIL)
+			return (FAIL);
 	return (SUCCESS);
 }

@@ -26,7 +26,7 @@ static int		file_check_data_size(t_i_file *self)
 		+ COMMENT_LENGTH
 		+ NULL_LENGTH;
 	if (self->total < min_size)
-		return (FAILURE);
+		return (FAIL);
 	pointer_code_size = (char*)(self->data)
 			+ MAGIC_LENGTH
 			+ PROG_NAME_LENGTH
@@ -36,7 +36,7 @@ static int		file_check_data_size(t_i_file *self)
 			| ((code_size & 0xff0000) >> 8) | (code_size >> 24));
 	data_file_size = min_size + code_size;
 	if (code_size > CHAMP_MAX_SIZE || data_file_size != self->total)
-		return (FAILURE);
+		return (FAIL);
 	return (SUCCESS);
 }
 
@@ -59,7 +59,7 @@ static int		file_data_check_nulls(t_i_file *self)
 	first_null = *((int*)pointer_first_null);
 	second_null = *((int*)pointer_second_null);
 	if (first_null || second_null)
-		return (FAILURE);
+		return (FAIL);
 	return (SUCCESS);
 }
 
@@ -73,7 +73,7 @@ static int		file_data_magic_header_check(t_i_file *self)
 			| ((data_magic_header & 0xff0000) >> 8)
 			| (data_magic_header >> 24));
 	if (data_magic_header != COREWAR_EXEC_MAGIC)
-		return (FAILURE);
+		return (FAIL);
 	return (SUCCESS);
 }
 

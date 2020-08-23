@@ -15,49 +15,13 @@
 #include "ncurses.h"
 #include "prvt_carriage.h"
 #include "prvt_visual.h"
-//TODO: Norme err: too many funcs in the file
-t_list			*destroy_carriage(t_list **head, t_list *current,
-						t_list *previous)
-{
-	if (previous == NULL)
-	{
-		*head = current->next;
-		ft_lstdelone(&current, carriage_destroy);
-		return (*head);
-	}
-	else
-	{
-		previous->next = current->next;
-		ft_lstdelone(&current, carriage_destroy);
-		return (previous->next);
-	}
-}
-
-void			destroy_dead_carriages(t_list **head, int c_t_d, int cntr)
-{
-	t_list		*current;
-	t_list		*previous;
-
-	current = *head;
-	previous = NULL;
-	while (current)
-	{
-		if (carriage_is_alive(current->content, c_t_d, cntr) == FALSE)
-			current = destroy_carriage(head, current, previous);
-		else
-		{
-			previous = current;
-			current = current->next;
-		}
-	}
-}
 
 int				vm_check(t_vm *self)
 {
 	destroy_dead_carriages(&(self->carriage_head),
 			self->cycles_to_die, self->global_counter);
 	if (self->carriage_head == NULL)
-		return (FAILURE);
+		return (FAIL);
 	self->num_checks += 1;
 	if (self->num_checks >= MAX_CHECKS || self->num_of_live_ops >= NBR_LIVE)
 	{
@@ -67,7 +31,7 @@ int				vm_check(t_vm *self)
 			ft_printf("Cycle to die is now %i\n", self->cycles_to_die);
 	}
 	self->num_of_live_ops = 0;
-	self->cycles_counter = 0;
+	self->c_counter = 0;
 	return (SUCCESS);
 }
 
@@ -87,7 +51,7 @@ void			vm_play(t_vm *self)
 {
 	arena_players_introducing(self->arena);
 	self->cycles_to_die = CYCLE_TO_DIE;
-	self->cycles_counter = 1;
+	self->c_counter = 1;
 	self->global_counter = 1;
 	while (TRUE)
 	{
@@ -99,29 +63,21 @@ void			vm_play(t_vm *self)
 		if (vm_verbosity_lvl() & 2)
 			ft_printf("It is now cycle %i\n", self->global_counter);
 		vm_next_cycle(self);
-		if (self->cycles_to_die <= self->cycles_counter &&
-							vm_check(self) == FAILURE)
+		if (self->cycles_to_die <= self->c_counter &&
+							vm_check(self) == FAIL)
 		{
 			arena_print_winner(self->arena);
 			break ;
 		}
 		self->global_counter += 1;
-		self->cycles_counter += 1;
+		self->c_counter += 1;
 		self->cycles_to_dump -= 1;
 	}
 }
 
-void			vm_play_visual(t_vm *self) //TODO: Norme err: func too big
+void			vm_play_visual(t_vm *self)
 {
-	init_curses();
-	self->wins = init_wins();
-	arena_players_introducing(self->arena);
-	self->cycles_to_die = CYCLE_TO_DIE;
-	self->cycles_counter = 1;
-	self->global_counter = 1;
-	cbreak();
-	noecho();
-	nodelay(stdscr, TRUE);
+	my_stupid_func_fuck_norm(self);
 	while (TRUE)
 	{
 		if (self->urgent_break == FALSE)
@@ -135,27 +91,15 @@ void			vm_play_visual(t_vm *self) //TODO: Norme err: func too big
 			break ;
 		}
 		vm_next_cycle(self);
-		if (self->cycles_to_die <= self->cycles_counter)
-		{
-			if (vm_check(self) == FAILURE)
-			{
-				print_winner_visual(self);
-				getch();
-				exit(-1);
-			}
-		}
-		self->global_counter += 1;
-		self->cycles_counter += 1;
-		self->cycles_to_dump -= 1;
+		if (self->cycles_to_die <= self->c_counter && vm_check(self) == FAIL)
+			print_winner_visual(self);
+		vm_play_visual_iter(self);
 		if (self->urgent_break == FALSE)
 		{
 			print_windows(self);
 			usleep(100000 / (self->speed * 2));
 			if (self->global_counter > 10000)
-			{
 				print_winner_visual(self);
-				exit(-1);
-			}
 		}
 	}
 }

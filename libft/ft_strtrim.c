@@ -17,7 +17,7 @@
 ** at the end. Allocates space in the heap for this such a substring and the end
 ** character (zero byte). Copies the substring to the selected place. The
 ** incoming string must exist.
-**	Returns a pointer to the received copy, or to NULL in case of failure.
+**	Returns a pointer to the received copy, or to NULL in case of FAIL.
 */
 
 char	*ft_strtrim(char const *src)

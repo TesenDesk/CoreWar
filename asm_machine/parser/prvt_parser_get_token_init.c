@@ -80,7 +80,7 @@ t_token				*prvt_parser_get_token_init(t_parser *parser,
 	}
 	else
 		expr->type = EXPR_UNDEF;
-	if (expr_set_arg(expr, token, arg_num, token_type) == FAILURE)
+	if (expr_set_arg(expr, token, arg_num, token_type) == FAIL)
 		return (NULL);
 	return (token);
 }

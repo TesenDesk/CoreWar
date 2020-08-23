@@ -41,7 +41,7 @@ static int		prepare(char *str, uintmax_t *nbr, t_ui *radix, int *issign)
 	{
 		if (str)
 			*str = '\0';
-		return (FAILURE);
+		return (FAIL);
 	}
 	if (!*radix)
 		*radix = 10;

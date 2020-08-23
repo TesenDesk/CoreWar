@@ -26,7 +26,7 @@ t_codegen		*codegen_ctor(t_hash_map *labels_free,
 	code->code = ft_memalloc(sizeof(char) * 1000000);
 	if (!(code->junk_container = (t_vector*)ft_memalloc(sizeof(t_vector))))
 		exit(-1);
-	if (ft_vector_init(code->junk_container) == FAILURE)
+	if (ft_vector_init(code->junk_container) == FAIL)
 		exit(-1);
 	return (code);
 }

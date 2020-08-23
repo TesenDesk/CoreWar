@@ -23,7 +23,7 @@ int					label_checker_inclusion_of_maps(t_vector *label_ptr_keys,
 	{
 		curr_label_name = label_ptr_keys->items[i];
 		if (ft_hash_map_get(map_of_label_words, curr_label_name) == NULL)
-			return (FAILURE);
+			return (FAIL);
 		++i;
 	}
 	return (SUCCESS);

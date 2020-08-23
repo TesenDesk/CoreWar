@@ -124,7 +124,7 @@
 
 # define ERROR				(-1)
 
-# define FAILURE			(-1)
+# define FAIL			(-1)
 # define SUCCESS			0
 
 # define TRUE				1

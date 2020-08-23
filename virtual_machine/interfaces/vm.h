@@ -30,6 +30,7 @@ typedef struct s_list		t_list;
 t_vm			*vm_singleton(int instantiation_status, int argc, char *argv[]);
 void			vm_play(t_vm *self);
 void			vm_play_visual(t_vm *self);
+void			vm_play_visual_iter(t_vm *self);
 int				vm_global_counter();
 void			vm_increase_num_of_live_ops();
 void			vm_add_new_carriage_node(t_list *new_node);
@@ -39,7 +40,7 @@ void			vm_carriage_list_destruct(t_list **carriage_list);
 
 t_arena			*vm_get_arena(t_vm *self);
 t_wins			*vm_get_wins(t_vm *self);
-unsigned int	vm_get_cycles_counter(t_vm *self);
+unsigned int	vm_get_c_counter(t_vm *self);
 int				vm_get_global_counter(t_vm *self);
 unsigned int	vm_get_cycles_to_die(t_vm *self);
 int				vm_get_speed(t_vm *self);

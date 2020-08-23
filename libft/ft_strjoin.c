@@ -16,7 +16,7 @@
 **	Creates a string in the heap that is a concatenation of strings in which s1
 ** values precede s2.
 **	Returns a pointer to the received string, or a pointer to NULL, in case of
-** failure.
+** FAIL.
 */
 
 char	*ft_strjoin(char const *s1, char const *s2)

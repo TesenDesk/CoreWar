@@ -21,7 +21,7 @@ int						ft_hash_map_put_to_map(t_hash_map **map_input,
 	map = *map_input;
 	index = ft_hash_map_hashcode((U_CHAR*)pair->key) % map->arr_size;
 	if (!(map->data[index] = ft_keystr_avl_insert(map->data[index], pair)))
-		return (FAILURE);
+		return (FAIL);
 	++map->map_size;
 	return (SUCCESS);
 }

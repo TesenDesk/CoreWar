@@ -38,4 +38,5 @@ void	print_winner_visual(t_vm *vm)
 	wrefresh(wins->win);
 	nodelay(stdscr, FALSE);
 	getch();
+	exit(0);
 }

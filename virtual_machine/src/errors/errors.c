@@ -22,5 +22,5 @@ int				ft_raise(char *file_name, int line_nb, int errmsg_index)
 	ft_putendl_fd(".", STDERR);
 	ft_putendl_fd(g_error_messages[errmsg_index], STDERR);
 	vm_singleton(VM_DESTRUCT, 0, NULL);
-	exit(FAILURE);
+	exit(FAIL);
 }

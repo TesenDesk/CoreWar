@@ -23,7 +23,7 @@ t_token				*prvt_parser_get_token_op2_stri(t_parser *parser,
 	if (token_type != TOKEN_TREG &&
 			token_type != TOKEN_TDIR_INT && token_type != TOKEN_TDIR_LAB)
 		expr->type = EXPR_UNDEF;
-	if (expr_set_arg(expr, token, THIRD_ARG, token_type) == FAILURE)
+	if (expr_set_arg(expr, token, THIRD_ARG, token_type) == FAIL)
 		return (NULL);
 	return (token);
 }

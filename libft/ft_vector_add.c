@@ -16,8 +16,8 @@ int					ft_vector_add(t_vector *v, void *item)
 {
 	if (!v ||
 			(v->capacity == v->total &&
-			ft_vector_resize(v, (ssize_t)v->capacity * 2) == FAILURE))
-		return (FAILURE);
+			ft_vector_resize(v, (ssize_t)v->capacity * 2) == FAIL))
+		return (FAIL);
 	v->items[v->total++] = item;
 	return (SUCCESS);
 }

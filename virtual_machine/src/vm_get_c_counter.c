@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_get_cycles_counter.c                            :+:      :+:    :+:   */
+/*   vm_get_c_counter.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "prvt_vm.h"
 
-unsigned int	vm_get_cycles_counter(t_vm *self)
+unsigned int	vm_get_c_counter(t_vm *self)
 {
-	return (self->cycles_counter);
+	return (self->c_counter);
 }

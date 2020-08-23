@@ -20,7 +20,7 @@ int						ft_hash_map_set_content(t_hash_map *map, void *key,
 
 	index = ft_hash_map_hashcode((unsigned char *)key) % map->arr_size;
 	if (!(avl_tmp = ft_keystr_avl_search(map->data[index], key)))
-		return (FAILURE);
+		return (FAIL);
 	avl_tmp->pair->content = new_content;
 	return (SUCCESS);
 }

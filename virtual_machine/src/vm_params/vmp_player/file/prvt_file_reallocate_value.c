@@ -19,7 +19,7 @@ void			prvt_file_reallocate_value(t_i_file *self)
 	new_capacity = 2 * self->capacity;
 	if (new_capacity > INT_MAX)
 		ft_raise(__FILE__, __LINE__, ENOMEMORY);
-	if (ft_realloc_safe(&(self->data), self->capacity, new_capacity) == FAILURE)
+	if (ft_realloc_safe(&(self->data), self->capacity, new_capacity) == FAIL)
 		ft_raise(__FILE__, __LINE__, ENOMEMORY);
 	self->capacity = new_capacity;
 	return ;

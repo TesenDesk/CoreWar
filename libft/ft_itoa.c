@@ -17,7 +17,7 @@
 ** possibly a sign), symbolizing the decimal representation of this number.
 ** The resulting string must be stored on the heap and occupy the minimum
 ** number of bytes.
-**	Returns a pointer to a string or to NULL in case of failure.
+**	Returns a pointer to a string or to NULL in case of FAIL.
 */
 
 char		*ft_itoa(int nbr)

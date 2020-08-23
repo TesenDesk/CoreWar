@@ -67,7 +67,7 @@ static int		check_sign(char **input_str, int radix, int *sign)
 	if (*str == '-' || *str == '+')
 	{
 		if (radix != 10)
-			return (FAILURE);
+			return (FAIL);
 		else
 			*sign = *str++ == '-' ? -1 : 1;
 	}
@@ -93,11 +93,11 @@ int				ft_str_to_uintmax(char *str, char **endptr,
 	uintmax_t		appendix;
 
 	if (!str || !endptr || radix < 0 || radix == 1 || radix > 36 || !nbr)
-		return (FAILURE);
+		return (FAIL);
 	str = (char *)ft_spskip(str);
 	set_radix_if_absent(&str, &radix);
 	if (check_sign(&str, radix, &sign))
-		return (FAILURE);
+		return (FAIL);
 	while (*str == '0')
 		++str;
 	final_initialization(&nbr, radix, &cut_off, &cut_lim);
@@ -105,7 +105,7 @@ int				ft_str_to_uintmax(char *str, char **endptr,
 	{
 		appendix = ft_tolower(*str) - (ft_isdigit(*str) ? '0' : ('a' - 10));
 		if (*nbr > cut_off || (*nbr == cut_off && appendix > cut_lim))
-			return (FAILURE);
+			return (FAIL);
 		*nbr = (*nbr * radix) + appendix;
 		++str;
 	}
