@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vmp_player.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/05 19:32:47 by yurezz            #+#    #+#             */
-/*   Updated: 2020/07/13 16:06:10 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/23 13:59:41 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 # define PNAME_MOCK			0
 # define PFILE_MOCK			(void *)0
-
 
 typedef struct s_vmp_player	t_vmp_player;
 
