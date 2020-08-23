@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:10:01 by yurezz            #+#    #+#             */
-/*   Updated: 2020/08/09 14:53:57 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/23 14:00:48 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@
 # include "op.h"
 # include "vm.h"
 # include "prvt_carriage.h"
-
-
-
-
-
 
 # define NUM_OF_OPERATIONS	DEAD_LINE - 1
 # define TYPE_CODE_SIZE		(MAX_ARGS_NUMBER*2)/8+((MAX_ARGS_NUMBER*2)%8)?1:0
