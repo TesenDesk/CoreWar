@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   text.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 21:12:20 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/14 21:15:31 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/23 14:56:54 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CORE_TEXT_H
 # define CORE_TEXT_H
-
 
 typedef struct s_text	t_text;
 

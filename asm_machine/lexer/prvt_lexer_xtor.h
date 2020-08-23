@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   prvt_lexer_xtor.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:14:25 by yurezz            #+#    #+#             */
-/*   Updated: 2020/07/15 12:50:56 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/23 14:55:48 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRVT_LEXER_XTOR_H
 # define PRVT_LEXER_XTOR_H
-
 
 # include "lexer.h"
 

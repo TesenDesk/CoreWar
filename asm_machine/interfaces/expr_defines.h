@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   expr_defines.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 21:06:45 by cmissy            #+#    #+#             */
-/*   Updated: 2020/07/14 21:06:56 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/23 14:53:04 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXPR_DEFINES_H
 # define EXPR_DEFINES_H
-
 
 typedef enum		e_expr_defines
 {

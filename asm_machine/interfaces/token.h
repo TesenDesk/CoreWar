@@ -6,13 +6,12 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 21:12:55 by cmissy            #+#    #+#             */
-/*   Updated: 2020/08/16 14:35:06 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/23 14:47:19 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKEN_H
 # define TOKEN_H
-
 
 # include "libft.h"
 # include "ft_printf.h"

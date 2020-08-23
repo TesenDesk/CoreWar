@@ -3,25 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   prvt_lexer.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 17:46:31 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/07/14 21:45:45 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/23 14:46:22 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRVT_LEXER_H
 # define PRVT_LEXER_H
 
-
 # include "lexer.h"
 # include "prvt_lexer_utils.h"
-
-
-
-
-
-
 
 # define TOKEN_START_PTR	0
 # define TOKEN_END_PTR		1
