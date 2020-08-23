@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 22:37:19 by yurezz            #+#    #+#             */
-/*   Updated: 2020/08/23 13:57:45 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/23 14:13:59 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,7 @@
 
 # define DEFAULT_MODE 0
 # define VISUAL_MODE 1
+
+typedef void				(*t_vm_play_fptr)(t_vm *);
 
 #endif

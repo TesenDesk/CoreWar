@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:04:08 by yurezz            #+#    #+#             */
-/*   Updated: 2020/08/23 14:05:03 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/23 14:16:12 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_vm			t_vm;
 typedef struct s_arena		t_arena;
 typedef struct s_wins		t_wins;
 typedef void				(*t_vm_play_fptr)(t_vm *);
+typedef struct s_list		t_list;
 
 t_vm			*vm_singleton(int instantiation_status, int argc, char *argv[]);
 void			vm_play(t_vm *self);

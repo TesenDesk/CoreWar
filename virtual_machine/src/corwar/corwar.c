@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 22:35:40 by yurezz            #+#    #+#             */
-/*   Updated: 2020/08/23 14:05:34 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/23 14:14:05 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int				prvt_corewar_chose_regime(t_vm *this)
 
 int				main(int argc, char *argv[])
 {
-	t_vm				*this;
+	t_vm					*this;
 	static t_vm_play_fptr	vmptf[2] = {vm_play, vm_play_visual};
 
 	prvt_corwar_precondition_check(argc);
