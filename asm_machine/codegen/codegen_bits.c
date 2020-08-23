@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prvt_corwar.h                                      :+:      :+:    :+:   */
+/*   codegen_bits.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/03 22:37:19 by yurezz            #+#    #+#             */
-/*   Updated: 2020/08/23 14:13:59 by ftothmur         ###   ########.fr       */
+/*   Created: 2020/08/23 13:43:04 by ftothmur          #+#    #+#             */
+/*   Updated: 2020/08/23 13:44:04 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRVT_CORWAR_H
-# define PRVT_CORWAR_H
+#include "prvt_codegen.h"
 
-# include "libft.h"
-# include "errors.h"
-# include "corwar.h"
-# include "op.h"
-# include "vm.h"
+int				ft_checkbit(char n, int pos)
+{
+	return ((n & (1 << pos)) != 0);
+}
 
-# define DEFAULT_MODE 0
-# define VISUAL_MODE 1
-
-typedef void				(*t_vm_play_fptr)(t_vm *);
-
-#endif
+void			ft_printbits(char n, int count)
+{
+	while (count--)
+	{
+		ft_printf("%c", ft_checkbit(n, count) + '0');
+		if (!(count % 4 && count))
+			ft_putchar(' ');
+	}
+	ft_putchar('\n');
+}
