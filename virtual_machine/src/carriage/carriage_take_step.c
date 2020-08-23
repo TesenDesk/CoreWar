@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   carriage_take_step.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmissy <cmissy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 20:38:37 by cmissy            #+#    #+#             */
-/*   Updated: 2020/08/01 20:01:51 by cmissy           ###   ########.fr       */
+/*   Updated: 2020/08/23 14:03:13 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void		carriage_take_step(t_carriage *self)
 		prvt_carriage_set_is_correct_op_code(self);
 		prvt_carriage_set_cycles_to_perform_op(self);
 	}
-
 	if (self->cycles_to_perform_op > 0)
 		self->cycles_to_perform_op -= 1;
 	if (self->cycles_to_perform_op == 0)
