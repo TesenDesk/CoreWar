@@ -12,17 +12,15 @@
 
 #include "prvt_visual.h"
 
-void				init_colormap(t_arena *arena, t_vm *vm, int ofset_outer)
-{
-	int				col;
-	int				offset;
-	int				pos;
+void				init_colormap(t_arena *arena, int ofset_outer) {
+	int col;
+	int offset;
+	int pos;
 
 	col = P_1_HOME;
 	offset = 0;
 	pos = offset;
-	while (col <= arena_get_nb_players(arena))
-	{
+	while (col <= arena_get_nb_players(arena)) {
 		while (pos < offset + arena_get_player_code_size(arena, col - 1))
 			arena_set_cell_index(arena, pos++ % MEM_SIZE, col);
 		while (pos < offset + ofset_outer)
@@ -32,7 +30,3 @@ void				init_colormap(t_arena *arena, t_vm *vm, int ofset_outer)
 	}
 	arena_set_color_is_set(arena, 1);
 }
-
-/*
-** TODO: *vm never used
-*/

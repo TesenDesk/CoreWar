@@ -15,10 +15,27 @@
 #include "ncurses.h"
 #include "prvt_carriage.h"
 #include "prvt_visual.h"
+//TODO: Norme err: too many funcs in the file
+t_list			*destroy_carriage(t_list **head, t_list *current,
+						t_list *previous)
+{
+	if (previous == NULL)
+	{
+		*head = current->next;
+		ft_lstdelone(&current, carriage_destroy);
+		return (*head);
+	}
+	else
+	{
+		previous->next = current->next;
+		ft_lstdelone(&current, carriage_destroy);
+		return (previous->next);
+	}
+}
 
 void			destroy_dead_carriages(t_list **head, int c_t_d, int cntr)
 {
-	t_list		*current; //TODO: Norme err: func too big
+	t_list		*current;
 	t_list		*previous;
 
 	current = *head;
@@ -26,20 +43,7 @@ void			destroy_dead_carriages(t_list **head, int c_t_d, int cntr)
 	while (current)
 	{
 		if (carriage_is_alive(current->content, c_t_d, cntr) == FALSE)
-		{
-			if (previous == NULL)
-			{
-				*head = current->next;
-				ft_lstdelone(&current, carriage_destroy);
-				current = *head;
-			}
-			else
-			{
-				previous->next = current->next;
-				ft_lstdelone(&current, carriage_destroy);
-				current = previous->next;
-			}
-		}
+			current = destroy_carriage(head, current, previous);
 		else
 		{
 			previous = current;
@@ -79,7 +83,7 @@ void			vm_next_cycle(t_vm *self)
 	}
 }
 
-void			vm_play(t_vm *self) //TODO: Norme err: func too big
+void			vm_play(t_vm *self)
 {
 	arena_players_introducing(self->arena);
 	self->cycles_to_die = CYCLE_TO_DIE;
@@ -95,13 +99,11 @@ void			vm_play(t_vm *self) //TODO: Norme err: func too big
 		if (vm_verbosity_lvl() & 2)
 			ft_printf("It is now cycle %i\n", self->global_counter);
 		vm_next_cycle(self);
-		if (self->cycles_to_die <= self->cycles_counter)
+		if (self->cycles_to_die <= self->cycles_counter &&
+							vm_check(self) == FAILURE)
 		{
-			if (vm_check(self) == FAILURE)
-			{
-				arena_print_winner(self->arena);
-				break ;
-			}
+			arena_print_winner(self->arena);
+			break ;
 		}
 		self->global_counter += 1;
 		self->cycles_counter += 1;
