@@ -58,9 +58,6 @@ void			label_dtor(void **data)
 	{
 		if (*data)
 		{
-//			printf("%s\n", (*((t_label_data**)data))->name);
-//			free((*((t_label_data**)data))->name);
-//			(*((t_label_data**)data))->name = NULL;
 			free(*data);
 			*data = NULL;
 		}

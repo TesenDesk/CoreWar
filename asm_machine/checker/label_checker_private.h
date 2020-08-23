@@ -13,10 +13,6 @@
 #ifndef LABEL_CHECKER_PRIVATE_H
 # define LABEL_CHECKER_PRIVATE_H
 
-
-
-
-
 # include "label_checker.h"
 
 #endif

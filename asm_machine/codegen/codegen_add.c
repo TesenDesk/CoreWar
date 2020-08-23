@@ -21,11 +21,6 @@ void		write_address_to_free_label(t_codegen *data, t_expr *label)
 	if (!(tmp = (t_code_addr*)ft_memalloc(sizeof(t_code_addr))))
 		exit(-1);
 	tmp->addr = data->add;
-//	t_token *a = ft_hash_map_get(data->labels_free, token_get_value(token));
-//	token_destructor(&a);
-//	a = NULL;
-//	ft_hash_map_dtor(&map);
-//	printf("%s   %s\n",token_get_value(token),  a);
 	ft_vector_add(data->junk_container, tmp);
 	ft_hash_map_set_content(data->labels_free, token_get_value(token), (tmp));
 }
@@ -46,11 +41,9 @@ void		add_address_to_arg_label(t_codegen *data, t_arg *arg, int shift)
 
 void		add_param(t_codegen *data, t_arg *param, char dir_type)
 {
-	int			arg;
 	int			shift;
 	int			arg_type;
 
-	arg = 0;
 	arg_type = arg_get_type(param);
 	if (arg_type == TOKEN_TIND_LAB || arg_type == TOKEN_TDIR_LAB)
 	{
