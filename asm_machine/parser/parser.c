@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 14:48:44 by cmissy            #+#    #+#             */
-/*   Updated: 2020/08/22 13:12:13 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/23 13:05:04 by ftothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_expr		*expr_fill_arg_num(t_expr *expr)
 
 static void			check_putting_to_map(t_hash_map **map, t_token *token)
 {
-	if (label_checker_put_to_map_label_word(&map, token) == FAILURE)
+	if (label_checker_put_to_map_label_word(map, token) == FAILURE)
 		exit(-1);
 }
 
