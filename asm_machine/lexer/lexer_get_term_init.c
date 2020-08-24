@@ -101,6 +101,18 @@ static int		find_op_type(char const *text)
 	return (op_code);
 }
 
+int				lexer_check_eof(int *type, char const **text, void *token_ptr[2])
+{
+	if (!(**text))
+	{
+		*type = TOKEN_EOF;
+		token_ptr[0] = (void*)*text;
+		token_ptr[1] = (void*)*text;
+		return (EOF_CODE);
+	}
+	return (COMMENT_CHAR_CODE);
+}
+
 int				lexer_get_term_init(t_lexer *lexer, char const **text,
 									int *type, void *token_ptr[2])
 {
@@ -108,6 +120,8 @@ int				lexer_get_term_init(t_lexer *lexer, char const **text,
 //TODO: Norme error: function too big
 	while (**text == ' ' || **text == '\t')
 		++(*text);
+//	if (lexer_check_eof(type, text, token_ptr) == EOF_CODE)
+//		return EOF_CODE;
 	if (!(**text))
 	{
 		*type = TOKEN_EOF;
