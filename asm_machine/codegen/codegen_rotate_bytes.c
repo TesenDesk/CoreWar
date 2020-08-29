@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "prvt_codegen.h"
+#include "expr.h"
 
 void		rotate_four_bytes(unsigned int *p)
 {

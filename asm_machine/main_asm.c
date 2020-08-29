@@ -109,20 +109,16 @@ int					main(int ac, char **av)
 	{
 		main_asm.map = ft_hash_map_ctor(HASH_CONST);
 		ft_vector_init(&main_asm.vtr);
-        write(1,"111\n", 5);
-
 		main_asm.analyser = analyser_singleton_instance(ANALYSER_INSTANTIATE);
-        write(1,"222\n", 5);
 		main_asm.buf = (read_code(open(av[main_asm.count], O_RDONLY)));
 		main_asm.text = analyse_text(main_asm.analyser, &main_asm.vtr,
 				main_asm.map, main_asm.buf);
-        write(1,"333\n", 5);
 		generate_code(main_asm.map, main_asm.text, av[main_asm.count]);
-        write(1,"444\n", 5);
 		analyser_singleton_instance(ANALYSER_DESTRUCT);
 		free_resourses(&main_asm.map, &main_asm.vtr, &main_asm.text,
 				&main_asm.buf);
 		++main_asm.count;
 	}
+//	printf("SUCESS\n");
 	return (SUCCESS);
 }

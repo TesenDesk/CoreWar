@@ -74,7 +74,7 @@ int				champ_exec_constructor(t_codegen *data)
 	codegen_ending(data);
 	total_size = (PROG_NAME_LENGTH + COMMENT_LENGTH) + 16 + data->code_size;
 	if (!(data->exec = ft_memalloc(total_size)))
-		return (0);
+		exit(-1);
 	rotate_four_bytes(&data->header->magic);
 	ft_memcpy(&data->exec[i], &data->header->magic, 4);
 	i += 4;
