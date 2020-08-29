@@ -60,7 +60,7 @@ typedef struct	s_wins
 void			print_winner_visual(t_vm *vm);
 void			print_windows(t_vm *vm);
 void			init_curses(void);
-void 			init_colormap(t_arena *arena, int ofset_outer);
+void			init_colormap(t_arena *arena, int ofset_outer);
 void			init_colors(void);
 t_wins			*init_wins(void);
 void			process_keys(t_vm *self);

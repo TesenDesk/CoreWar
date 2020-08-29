@@ -31,8 +31,6 @@ void					ft_keystr_avl_del(t_keystr_avl_t **root_incoming)
 	return ;
 }
 
-//void				token_destructor(t_token **token)
-
 void					ft_keystr_avl_del_full(t_keystr_avl_t **root_incoming,
 		t_delfptr f)
 {

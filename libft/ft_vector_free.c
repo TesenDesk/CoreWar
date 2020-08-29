@@ -18,7 +18,6 @@ void				ft_vector_free(t_vector *v)
 	return ;
 }
 
-
 void				ft_vector_free_full(t_vector *v, t_delfptr f)
 {
 	f((void**)(&(v->items)));

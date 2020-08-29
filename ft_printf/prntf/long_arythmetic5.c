@@ -43,17 +43,12 @@ void		make_ld_dec(t_float_part *p_n, t_dec_frac *l_num)
 size_t		make_ld_frac(t_float_part *p_n, t_dec_frac *l_num)
 {
 	int			ten_power;
-	// int			temp_pow;
-	// t_long_num	tmp_l_num;
 	int			i;
 	ULL			count_gap;
 
 	ten_power = p_n->frac_length - 1;
-	// temp_pow = 0;
 	count_gap = p_n->frac_part;
 	i = 0;
-	// tmp_l_num.filled = 1;
-	// tmp_l_num.l_num[0] = 1;
 	while (!(count_gap & (1UL << 63)))
 	{
 		++i;
