@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:04:08 by yurezz            #+#    #+#             */
-/*   Updated: 2020/08/23 14:16:12 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/29 19:01:03 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,5 @@ void			vm_set_key(t_vm *self, int key);
 void			vm_set_speed(t_vm *self, int key);
 void			vm_set_urgent_break(t_vm *self, int urgent_break);
 
-/*
-**TODO: перенести # include "ft_printf.h" в приватный интерфейс.
-*/
-
+// TODO: перенести # include "ft_printf.h" в приватный интерфейс.
 #endif

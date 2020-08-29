@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 23:20:21 by yurezz            #+#    #+#             */
-/*   Updated: 2020/08/09 14:59:14 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/29 18:00:53 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static t_list	*destroy_carriage(t_list **head, t_list *current,
 	}
 }
 
-void			destroy_dead_carriages(t_list **head, int c_t_d, int cntr)
+void			destroy_dead_carriages(t_list **head, int c_t_d, int cntr,
+				int verb_lvl)
 {
 	t_list		*current;
 	t_list		*previous;
@@ -43,7 +44,14 @@ void			destroy_dead_carriages(t_list **head, int c_t_d, int cntr)
 	while (current)
 	{
 		if (carriage_is_alive(current->content, c_t_d, cntr) == FALSE)
+		{
+			if (verb_lvl & 8)
+				ft_printf("Process %i hasn't lived for %i cycles (CTD %i)\n",
+					((t_carriage*)(current->content))->num,
+					cntr - ((t_carriage*)(current->content))->last_live_cycle,
+					c_t_d);
 			current = destroy_carriage(head, current, previous);
+		}
 		else
 		{
 			previous = current;

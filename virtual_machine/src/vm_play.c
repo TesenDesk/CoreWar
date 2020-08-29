@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 23:20:21 by yurezz            #+#    #+#             */
-/*   Updated: 2020/08/09 14:59:14 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/29 18:17:39 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@
 int				vm_check(t_vm *self)
 {
 	destroy_dead_carriages(&(self->carriage_head),
-			self->cycles_to_die, self->global_counter);
-	if (self->carriage_head == NULL)
-		return (FAIL);
+			self->cycles_to_die, self->global_counter, self->verbosity_lvl);
 	self->num_checks += 1;
 	if (self->num_checks >= MAX_CHECKS || self->num_of_live_ops >= NBR_LIVE)
 	{
@@ -30,6 +28,8 @@ int				vm_check(t_vm *self)
 		if (vm_verbosity_lvl() & 2)
 			ft_printf("Cycle to die is now %i\n", self->cycles_to_die);
 	}
+	if (self->carriage_head == NULL)
+		return (FAIL);
 	self->num_of_live_ops = 0;
 	self->c_counter = 0;
 	return (SUCCESS);

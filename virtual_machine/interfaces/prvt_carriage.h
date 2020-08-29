@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 20:37:41 by cmissy            #+#    #+#             */
-/*   Updated: 2020/08/08 18:27:34 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/29 18:00:00 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ typedef struct		s_carriage
 void				prvt_carriage_set_op_code(t_carriage *self, t_arena *arena);
 void				prvt_carriage_set_is_correct_op_code(t_carriage *self);
 void				prvt_carriage_set_cycles_to_perform_op(t_carriage *self);
-void				destroy_dead_carriages(t_list **head, int c_t_d, int cntr);
+void				destroy_dead_carriages(t_list **head, int c_t_d, int cntr,
+					int verb_lvl);
 //void				destroy_dead_carriages(t_list **head, int c_t_d, int cntr);
 
 #endif
