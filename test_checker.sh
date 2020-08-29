@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd gliperal-checker || exit 1
 
 export TERM=xterm-256color

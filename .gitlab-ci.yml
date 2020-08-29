@@ -21,6 +21,6 @@ basic_test:
 checker-test:
   stage: test
   before_script:
-    - apk add --update vim-common && rm -rf /var/cache/apk/*
+    - yum install vim-common
   script:
     - sh test_checker.sh
