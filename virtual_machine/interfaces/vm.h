@@ -48,5 +48,8 @@ void			vm_set_key(t_vm *self, int key);
 void			vm_set_speed(t_vm *self, int key);
 void			vm_set_urgent_break(t_vm *self, int urgent_break);
 
-// TODO: перенести # include "ft_printf.h" в приватный интерфейс.
+/*
+**TODO: перенести # include "ft_printf.h" в приватный интерфейс.
+*/
+
 #endif

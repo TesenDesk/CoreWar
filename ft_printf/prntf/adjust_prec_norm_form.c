@@ -15,7 +15,7 @@
 void			adjust_fnum_prec(t_buf_struct *buf_s, t_dec_frac *l_num)
 {
 	if (B_AR_CUR.type == 'f')
-			adjust_double_norm_form(l_num, B_AR_CUR.prec,
+		adjust_double_norm_form(l_num, B_AR_CUR.prec,
 			(count_size_fnum(l_num->frac.l_num[l_num->frac.filled - 1])
 			+ B_AR_CUR.ld_zeros), &(B_AR_CUR.ld_zeros));
 	else if (B_AR_CUR.type == 'e')

@@ -42,11 +42,9 @@ size_t	count_args(char const *format)
 {
 	size_t		i;
 	U_CHAR		*tmp;
-	// U_CHAR		*check;
 
 	i = 0;
 	tmp = (U_CHAR*)format;
-	// check = NULL;
 	while (*tmp)
 	{
 		if (*tmp == '%')
@@ -117,8 +115,6 @@ void	fill_arg_ar(t_buf_struct *buf_s, U_CHAR *format, va_list *ap)
 
 int		process_arg(t_buf_struct *buf_s, U_CHAR **format_str, va_list *ap)
 {
-	// size_t			index;
-
 	++(*format_str);
 	fill_params(format_str, buf_s->arg_ar, buf_s->ar_current);
 	fill_type(*format_str, buf_s->arg_ar, buf_s->ar_current);

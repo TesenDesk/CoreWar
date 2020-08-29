@@ -132,14 +132,12 @@ t_long_num			*long_add(t_long_num *l_num, t_long_num *l_num2)
 {
 	size_t			pos;
 	size_t			max_size;
-	// ULL				temp_cur;
 	ULL				temp_remain;
 
 	max_size = (((*l_num).filled > (*l_num2).filled) ?
 				((*l_num).filled) : ((*l_num2).filled));
 	(*l_num).filled = max_size;
 	pos = 0;
-	// temp_cur = 0;
 	temp_remain = 0;
 	while (pos < max_size || temp_remain)
 	{

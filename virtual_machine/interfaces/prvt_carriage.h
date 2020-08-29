@@ -40,5 +40,6 @@ typedef struct		s_carriage
 void				prvt_carriage_set_op_code(t_carriage *self, t_arena *arena);
 void				prvt_carriage_set_is_correct_op_code(t_carriage *self);
 void				prvt_carriage_set_cycles_to_perform_op(t_carriage *self);
+void				destroy_dead_carriages(t_list **head, int c_t_d, int cntr);
 
 #endif
