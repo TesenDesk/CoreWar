@@ -22,8 +22,8 @@ void		process_keys(t_vm *vm)
 	{
 		wattron(vm_get_wins(vm)->info, COLOR_PAIR(B_INFO) | A_BOLD);
 		vm_set_speed(vm, vm_get_speed(vm) + 1);
-		if (vm_get_speed(vm) > 10)
-			vm_set_speed(vm, 10);
+		if (vm_get_speed(vm) > 100)
+			vm_set_speed(vm, 100);
 		wattroff(vm_get_wins(vm)->info, COLOR_PAIR(B_INFO) | A_BOLD);
 	}
 	else if (c == 66)

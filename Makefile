@@ -311,7 +311,6 @@ VM_PARAMS_VMP_PLAYER_FILE_DIR_OBJ	:= $(addprefix \
 
 VISUAL_SRC				:=		chose_color.c \
 							create_newwin.c \
-							destroy_win.c \
 							draw_arena.c \
 							draw_basic_info.c \
 							draw_champ_info.c \

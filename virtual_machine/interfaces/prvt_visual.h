@@ -74,6 +74,6 @@ static void		rebuild_color_map_util(t_arena *arena,
 
 void			rebuild_color_map(t_arena *arena, t_vm *vm);
 void			erase_windows(t_vm *vm);
-void			destroy_win(WINDOW *local_win);
+//void			destroy_win(WINDOW *local_win);
 
 #endif
