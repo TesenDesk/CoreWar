@@ -15,7 +15,8 @@
 static void			print_op_log(t_carriage *self, int *args)
 {
 	if (vm_verbosity_lvl() & 4)
-		ft_printf("P %4i | lld %i r%i\n", self->num, args[ARG_1], args[ARG_2] + 1);
+		ft_printf("P %4i | lld %i r%i\n", self->num, args[ARG_1], args[ARG_2]
+									+ 1);
 }
 
 void				operation_lld(t_carriage *self)

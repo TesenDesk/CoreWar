@@ -16,7 +16,7 @@
 typedef struct s_vm				t_vm;
 typedef struct s_wins			t_wins;
 typedef struct s_color_mapcell	t_color_mapcell;
-typedef struct _win_st			WINDOW;  //todo: Norme error: visual.h may not compile or is invalid for some reasons. (???)
+typedef struct _win_st			WINDOW;
 
 typedef struct			s_color_mapcell
 {

@@ -15,11 +15,9 @@
 void		fill_content(t_arg_opt *opt, size_t arg_pos, va_list *ap_origin)
 {
 	int					index;
-	// int					index2;
 	va_list				ap;
 
 	index = 0;
-	// index2 = 0;
 	if (!(opt[index].param_active))
 		chose_content(opt, arg_pos, ap_origin);
 	else
