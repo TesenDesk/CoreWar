@@ -13,7 +13,12 @@ build:
     - make re
 
 # run tests using the binary built before
-test:
+basic_test:
   stage: test
   script:
     - sh corewar-tests.sh
+
+checker-test:
+  stage: test
+  script:
+    - sh test_checker.sh
