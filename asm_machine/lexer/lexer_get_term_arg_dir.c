@@ -13,7 +13,7 @@
 #include "prvt_lexer.h"
 
 int				lexer_get_term_arg_dir_int(t_lexer *lexer, char const **text,
-				int *type, void *token_ptr[2])
+				int *type, void *token_ptr[2]) //TODO: TOO BIG
 {
 	int			sign;
 

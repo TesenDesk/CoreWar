@@ -43,17 +43,15 @@ int				lexer_utils_is_eof(char c)
 long long		lexer_utils_trim_not_eof_not_line_feed_not_quotatuion_mark(
 				const char **text)
 {
-    long long   counter;
+	long long	counter;
 
-    counter = 0;
+	counter = 0;
 	while (
 		!lexer_utils_is_eof(**text) &&
-//		!lexer_utils_is_line_feed(**text) &&
 		!lexer_utils_is_quotation_mark(**text))
 	{
 		++(*text);
 		counter += 1;
 	}
-//	printf("counter:%d\n", counter);
 	return (counter);
 }

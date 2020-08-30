@@ -24,11 +24,11 @@
 # define DIR_CODE				2
 # define IND_CODE				3
 
-# define MAX_ARGS_NUMBER			4
-# define MAX_PLAYERS				4
+# define MAX_ARGS_NUMBER		4
+# define MAX_PLAYERS			4
 # define MEM_SIZE				(4*1024)
-# define SQRT_MAP               64
-# define IDX_MOD					(MEM_SIZE / 8)
+# define SQRT_MAP				64
+# define IDX_MOD				(MEM_SIZE / 8)
 # define CHAMP_MAX_SIZE			(MEM_SIZE / 6)
 
 # define COMMENT_CHAR			'#'
@@ -36,18 +36,16 @@
 # define DIRECT_CHAR				'%'
 # define SEPARATOR_CHAR			','
 
-# define LABEL_CHARS				"abcdefghijklmnopqrstuvwxyz_0123456789"
+# define LABEL_CHARS			"abcdefghijklmnopqrstuvwxyz_0123456789"
 
-# define NAME_CMD_STRING			".name"
+# define NAME_CMD_STRING		".name"
 # define COMMENT_CMD_STRING		".comment"
 
-# define REG_MIN_NUMBER             0
-//# define REG_MAX_NUMBER				100
-//# define REG_NUMBER (REG_MAX_NUMBER - REG_MIN_NUMBER)
+# define REG_MIN_NUMBER			0
 # define REG_NUMBER 16
 
 # define CYCLE_TO_DIE			1536
-# define CYCLE_DELTA				50
+# define CYCLE_DELTA			50
 # define NBR_LIVE				21
 # define MAX_CHECKS				10
 

@@ -19,7 +19,8 @@ int				lexer_get_term_arg_reg(t_lexer *lexer, char const **text,
 
 	*type = TOKEN_TREG;
 	(void)lexer;
-	if (!ft_isdigit(**text) || (num = ft_atol(*text)) < REG_MIN_NUMBER || num > REG_NUMBER)
+	if (!ft_isdigit(**text) || (num = ft_atol(*text)) < REG_MIN_NUMBER ||
+			num > REG_NUMBER)
 	{
 		*type = TOKEN_UNDEF;
 		return (TERM_UNDEFINED_CODE);
