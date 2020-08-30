@@ -59,7 +59,7 @@ void				ft_del_text(t_vector *v, void (*del)(void**))
 	i = 0;
 	while (i < v->total)
 	{
-		expr_dtor(&((v->items[i])));
+		expr_dtor((t_expr **)&((v->items[i])));
 		++i;
 	}
 	ft_memdel((void **)&v->items);
@@ -93,7 +93,7 @@ static void			free_resourses(t_hash_map **map, t_vector *vtr,
 {
 	ft_hash_map_dtor(map);
 	ft_vector_free_data(vtr, label_dtor);
-	ft_del_text(*text, expr_dtor);
+	ft_del_text(*text, (void (*)(void **))expr_dtor);
 	ft_memdel((void **)text);
 	ft_memdel((void **)buf);
 	return ;
@@ -119,6 +119,5 @@ int					main(int ac, char **av)
 				&main_asm.buf);
 		++main_asm.count;
 	}
-//	printf("SUCESS\n");
 	return (SUCCESS);
 }

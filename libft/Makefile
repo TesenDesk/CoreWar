@@ -253,7 +253,7 @@ all:		$(NAME)
 		@echo "$(PREFIX)✅  $(GREEN)Done.$(RST)"
 
 $(NAME):	 $(OBJ) $(HEADER)
-		@printf "%-95c\r$(PREFIX)✅  $(GREEN)All s accepted.$(RST)\n" ' '
+		@printf "%-95c\r$(PREFIX)✅  $(GREEN)All files accepted.$(RST)\n" ' '
 		@echo "$(PREFIX)📦  Packaging files into library file..."
 		#cp $(PRNTF) $(NAME)
 		@ar rc $(NAME) $(OBJ)
