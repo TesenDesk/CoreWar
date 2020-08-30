@@ -18,6 +18,7 @@ t_token			*prvt_parser_get_token_op1_stor(t_parser *parser,
 	t_token		*token;
 	int			token_type;
 
+	(void)parser;
 	if ((token = lexer_form_token(lexer, text)) == NULL)
 		return (NULL);
 	token_type = token_get_type(token);

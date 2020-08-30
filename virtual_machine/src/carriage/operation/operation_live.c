@@ -21,7 +21,6 @@ static void				print_op_log(t_carriage *self, int arg)
 void					operation_live(t_carriage *self)
 {
 	t_op				op;
-	int					arg;
 
 	op = g_op[OP_LIVE - 1];
 	op.op_len = OP_CODE_SIZE + op.t_dir_size;

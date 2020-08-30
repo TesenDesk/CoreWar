@@ -48,6 +48,7 @@ int				bytesize(int num)
 
 void			cut_num_arg(int *num_arg, int param_type, char dir_type)
 {
+	(void)dir_type;
 	if (param_type == TOKEN_TREG)
 	{
 		if (*num_arg > 255 || *num_arg < -256)

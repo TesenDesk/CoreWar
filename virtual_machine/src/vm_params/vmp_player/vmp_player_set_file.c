@@ -15,6 +15,7 @@
 static void		prvt_vmp_player_precondition_check(t_vmp_player *self,
 					char *file_name)
 {
+	(void)file_name;
 	if (self->file != PFILE_MOCK)
 		ft_raise(__FILE__, __LINE__, EDANGLINGPTR);
 	return ;

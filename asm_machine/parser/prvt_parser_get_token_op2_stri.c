@@ -18,6 +18,7 @@ t_token				*prvt_parser_get_token_op2_stri(t_parser *parser,
 	t_token			*token;
 	int				token_type;
 
+	(void)parser;
 	token = lexer_form_token(lexer, text);
 	token_type = token_get_type(token);
 	if (token_type != TOKEN_TREG &&
