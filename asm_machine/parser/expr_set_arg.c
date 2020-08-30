@@ -25,7 +25,7 @@ int			expr_set_arg(t_expr *expr, t_token *token,
 	{
 		if (expr->args[args_number].value != NULL)
 		{
-			token_destructor(&(expr->args[args_number].value));
+			token_destructor((t_token **)&(expr->args[args_number].value));
 			expr->args[args_number].value = NULL;
 		}
 	}
