@@ -14,6 +14,7 @@
 
 void		carriage_destroy(void *self, size_t size)
 {
+	(void)size;
 	free(self);
 	return ;
 }

@@ -18,6 +18,9 @@ int		chose_color(t_arena *arena, int index, t_vm *vm, int i)
 	int	player_index;
 	int	cell_index;
 
+	(void)vm;
+	(void)i;
+	ans = 0;
 	player_index = arena_get_player_index(arena, index % MEM_SIZE);
 	cell_index = arena_get_cell_index(arena, index % MEM_SIZE);
 	if (player_index == 0)

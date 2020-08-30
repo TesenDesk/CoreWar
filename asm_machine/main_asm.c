@@ -56,6 +56,7 @@ void				ft_del_text(t_vector *v, void (*del)(void**))
 {
 	int				i;
 
+	(void)del;
 	i = 0;
 	while (i < v->total)
 	{
