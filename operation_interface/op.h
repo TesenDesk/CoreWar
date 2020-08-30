@@ -41,7 +41,10 @@
 # define NAME_CMD_STRING			".name"
 # define COMMENT_CMD_STRING		".comment"
 
-# define REG_NUMBER				16
+# define REG_MIN_NUMBER             0
+//# define REG_MAX_NUMBER				100
+//# define REG_NUMBER (REG_MAX_NUMBER - REG_MIN_NUMBER)
+# define REG_NUMBER 100
 
 # define CYCLE_TO_DIE			1536
 # define CYCLE_DELTA				50

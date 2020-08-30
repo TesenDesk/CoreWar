@@ -82,6 +82,7 @@ void			write_code_to_file(char *exec, int code_size, char *filename)
 		exit(-1);
 	}
 	write(fd, exec, code_size);
+	ft_printf("Writing output program to %s\n", new_name);
 	free(new_name);
 }
 
