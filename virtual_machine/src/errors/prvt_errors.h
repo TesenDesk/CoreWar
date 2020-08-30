@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 17:10:49 by yurezz            #+#    #+#             */
-/*   Updated: 2020/08/23 14:01:42 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/08/30 17:05:37 by cmissy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ static char		*g_error_messages[ERRMSGCOUNT] =
 	"\t\t\t- 0 : Show only essentials\n"
 	"\t\t\t- 1 : Show lives\n"
 	"\t\t\t- 2 : Show cycles\n"
-	"\t\t\t- 4 : Show operations (Params are NOT litteral ...)\n",
+	"\t\t\t- 4 : Show operations (Params are NOT litteral ...)\n"
+	"\t\t\t- 8 : Show deaths\n"
+	"\t-curses : Ncurses output mode",
 	"Could not allocate memory.",
 	"Invalid argument.",
 	"Invalid command line argument. "
