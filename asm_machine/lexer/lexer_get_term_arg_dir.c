@@ -18,6 +18,7 @@ int				lexer_get_term_arg_dir_int(t_lexer *lexer, char const **text,
 	int			sign;
 
 	sign = 0;
+	(void)lexer;
 	if (**text == LABEL_CHAR)
 	{
 		++(*text);

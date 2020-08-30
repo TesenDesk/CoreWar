@@ -208,6 +208,7 @@ int				lexer_get_term_init(t_lexer *lexer, char const **text,
 	int         stupid_res;
 
 	stupid_res = 0;
+	(void)lexer;
 	while (**text == ' ' || **text == '\t')
 		++(*text);
     if ((stupid_res = lexer_get_term_little_chars(type,text, token_ptr)) != -2)

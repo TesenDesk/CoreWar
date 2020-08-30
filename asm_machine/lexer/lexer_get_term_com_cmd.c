@@ -24,6 +24,7 @@ int				lexer_get_term_com_cmd(t_lexer *lexer, char const **text,
 {
 	(void)lexer;
 	(void)token_ptr;
+	(void)type;
 	lexer_utils_trim_whitespace(text);
 	if (lexer_utils_is_quotation_mark(**text))
 	{
