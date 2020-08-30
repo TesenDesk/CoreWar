@@ -7,13 +7,30 @@ SRC := adjust_prec_analize_cell.c adjust_prec_norm_form.c adjust_prec_rebuild_fu
 SEARCH := $(addprefix $(SRC_PATH), $(SRC))
 OBJ := $(patsubst %.c,%.o,$(SEARCH))
 
-all:  $(NAME)
+GREEN					= \033[1;32m
+RED						= \033[1;31m
+RST						= \033[0m
+BOLD					= \033[1m
+CYAN					= \033[1;36m
+LABEL					= printf
+PREFIX					= [$(CYAN)$(LABEL)$(RST)]:\t
+
+ifeq ($(DEBUGMODE), 1)
+	FLAGS				:= $(CFLAGS)
+else
+	FLAGS				:= $(CFLAGS) -g
+endif
+
+all: $(NAME)
+	@printf "%-95c\r$(PREFIX)✅  $(GREEN)Done.$(RST)\n" ' '
 
 $(NAME): $(OBJ)
 	ar rc  $@ $^
 	ranlib $@
 
 %.o : %.c $(HEADER)
+	@printf "%-95c\r$(PREFIX)" ' '
+	@printf "🕐  Compiling file:\t%-30s\r" "$@"
 	gcc -c $< -I ./prntf $(CFLAGS)  -o $@ -g
 
 clean:

@@ -16,9 +16,9 @@ int				prvt_vm_params_flag_verbose(t_vm_params *self, char *param)
 {
 	long long	num;
 
-	num = ft_atol_pf(param);
+	num = ft_atol_pf((unsigned char*)param);
 	if (!(ft_arg_is_num(param)))
 		ft_raise(__FILE__, __LINE__, ENOARGVAL);
-	self->verbosity_lvl = num;
+	self->verbosity_lvl = (int)num;
 	return (FLAG_NUM_CODE);
 }

@@ -13,7 +13,7 @@
 #==========================P̶O̶N̶Y̶ PHONY==========================================#
 .PHONY: all clean fclean liba re debug delfile checkdir redebug d rd deljunk \
 		makevisual
-
+.SILENT:
 #============================Folders & Files===================================#
 #-------------------------------------ASM--------------------------------------#
 
@@ -34,7 +34,6 @@ WORKDIR					:= ./
 LIBDIR					:= ./libft/
 LIBPRINT				:= ./ft_printf/prntf
 OPERATION_INTERFACE 	:= operation_interface
-HEADERDIR				:=	$(WORKDIR)#includes/
 LIB						:=  $(LIBDIR)libft.a
 LEX_SRC					:= 	lexer.c \
 							lexer_get_term_arg_break.c \
@@ -326,10 +325,9 @@ VISUAL_SRC				:=		chose_color.c \
 VISUAL_OBJ				:= $(patsubst %.c, %.o, $(VISUAL_SRC))
 VISUAL_DIR_OBJ			:= $(addprefix $(VM_DIR)src/visual/, $(VISUAL_OBJ))
 
-CFLAGS					:=  -Wall -Wextra -Werror
-LIBFLAGS				:=  -L$(LIBDIR) -lft
+CFLAGS					:= -Wall -Wextra -Werror
+LIBFLAGS				:= -L$(LIBDIR) -lft
 LIBPRINTFLAGS			:= -Lft_printf/ -lftprintf
-HEADER					:=  $(HEADERDIR)ms.h
 ASM_INTERFACE			:=	$(ASM_DIR)interfaces/
 COREWAR_INTERFACE 		:=	$(WORKDIR)virtual_machine/interfaces/
 
@@ -374,287 +372,294 @@ BOLD					= \033[1m
 CYAN					= \033[1;36m
 PREFIX					= [$(CYAN)$(LABEL)$(RST)]:\t
 
-FLAGS					:= $(CFLAGS)
 #======================Debug & Flags===========================================#
 # -- WARN! Delete this message from rules if you using library from another prj#
 ifeq ($(DEBUGMODE), 1)
-	FLAGS				:= $(CFLAGS)
-	DEBUGMSG			:= $(PREFIX)⚠️ \
-							\033[1;33mDebug mode $(GREEN)enabled.$(RST)\n
+	FLAGS				:= -g #$(CFLAGS) TODO: РАЗКОММЕНТИРОВАТЬ КОГДА В ПРОЕКТЕ НЕ БУДЕТ ВАРНИНГОВ
+	DEBUGMSG			:= $(PREFIX)⚠️  \033[1;33m \
+							Debug mode $(GREEN)enabled.$(RST)\n
 else
-	FLAGS				:= -g
-	DEBUGMSG			:= $(PREFIX)⚠️ \
-							\033[1;33mDebug mode $(RED)disabled.$(RST)\n
+	FLAGS				:= #$(CFLAGS) TODO: РАЗКОММЕНТИРОВАТЬ КОГДА В ПРОЕКТЕ НЕ БУДЕТ ВАРНИНГОВ
+	DEBUGMSG			:= $(PREFIX)⚠️  \033[1;33m \
+							Debug mode $(RED)disabled.$(RST)\n
 endif
-MLX_FLAGS				:= -L./minilibx -lmlx  -framework OpenGL \
-							-framework AppKit
-#=================================Rules========================================#
-all: debmsg $(ASM_NAME) $(COREWAR_NAME)  ##Todo: Add 'liba' rule BEFORE '$(ASM_NAME)'
-		@echo "$(PREFIX)✅  $(GREEN)All files up-to-date or \
-rebuilded.$(RST)"
 
+#=================================Rules========================================#
+all: debmsg liba $(ASM_NAME) $(COREWAR_NAME)
+		@echo "$(PREFIX)✅  $(GREEN)All files up-to-date or \
+rebuilt.$(RST)"
 
 debmsg:
 		@printf "$(DEBUGMSG)"
 
-# $(ASM_NAME): $(LEX_DIR_OBJ) $(PARS_DIR_OBJ) $(ASM_MAIN) $(LIB)
-# 		@printf "$(PREFIX)📦  Building $(ASM_NAME)...\n"
-# 		@printf "Building $(LEX_DIR_OBJ).$(LEX_OBJ).\n"
-#
-#
-# #		@gcc $(FLAGS) -o $(ASM_NAME) $(LEX_DIR_SRC) $(LIBFLAGS) -I$(HEADERDIR)
-# 		# @cc $(FLAGS) -o $(ASM_NAME) $(LEX_DIR_SRC) $(MLX_FLAGS) -I$(HEADERDIR) 
-# ##todo: add '$(LIBFLAGS)'
-# 		@cc $(CFLAGS)  -o $@ $^ -I$(HEADERDIR) $(LIBFLAGS)
-#
-# $(LEX_DIR_OBJ): %.o:  %.c
-# 		@cc -c $(FLAGS)  $< -o $@
-#
-# $(PARS_DIR_OBJ): %.o: %.c
-# 		@cc -c $(FLAGS)  $< -o $@
-
-
 $(ASM_NAME): $(ASM_DIR_COMMON)
-		@#printf "$(PREFIX)📦  Building $(ASM_NAME)...\n"
-		@#printf "Building $(LEX_DIR_OBJ).$(LEX_OBJ).\n"
-		##todo: add '$(LIBFLAGS)'
-		make -C $(LIBDIR)
-		make -C ./ft_printf/
-		gcc  -I$(ASM_INTERFACE) -I$(OPERATION_INTERFACE)  -I$(LIBDIR) \
-			-I$(LIBPRINT) $(ASM_DIR_COMMON) -o $@ $(LIBFLAGS) $(LIBPRINTFLAGS) \
-			-g
-
+		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(OPERATION_INTERFACE)  -I$(LIBDIR) \
+			-I$(LIBPRINT) $(ASM_DIR_COMMON) -o $@ $(LIBFLAGS) $(LIBPRINTFLAGS)
+		printf "%-95c\r$(PREFIX)📦  Assembler file created.\n" ' '
 
 LEXER_DEPSRC := $(addprefix $(ASM_DIR)lexer/, $(LEX_SRC))
 LEXER_DEPFILES := $(LEXER_DEPSRC:.c=.d)
 -include $(LEXER_DEPFILES)
 $(LEX_DIR_OBJ): %.o:  %.c
+		printf "%-105c\r$(PREFIX)" ' '
+		printf "🕐  %s Compiling Lexer... (%s)\r" "[00%]" "$@"
 		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
 		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
-			-I$(OPERATION_INTERFACE) -c $< -o $@ -g
-
+			-I$(OPERATION_INTERFACE) -c $< -o $@
 
 PARSER_DEPSRC := $(addprefix $(ASM_DIR)parser/, $(PARS_SRC))
 PARSER_DEPFILES := $(PARSER_DEPSRC:.c=.d)
 -include $(PARS_DEPFILES)
 $(PARS_DIR_OBJ): %.o: %.c ./asm_machine/parser/parser_private.h ./asm_machine/parser/parser_xtor_private.h
+		printf "%-105c\r$(PREFIX)" ' '
+		printf "🕐  %s Compiling Parser... (%s)\r" "[06%]" "$@"
 		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
 		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
-			-I$(OPERATION_INTERFACE) -c  $<  -o $@ -g
-
+			-I$(OPERATION_INTERFACE) -c  $<  -o $@
 
 CHECKER_DEPSRC := $(addprefix $(ASM_DIR)checker/, $(CHK_SRC))
 CHECKER_DEPFILES := $(CHECKER_DEPSRC:.c=.d)
 -include $(CHECKER_DEPFILES)
 $(CHK_DIR_OBJ): %.o: %.c
+		printf "%-105c\r$(PREFIX)" ' '
+		printf "🕐  %s Compiling Checker... (%s)\r" "[12%]" "$@"
 		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
 		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
-			-I$(OPERATION_INTERFACE) -c $<  -o $@ -g
-
+			-I$(OPERATION_INTERFACE) -c $<  -o $@
 
 ANALYSER_DEPSRC := $(addprefix $(ASM_DIR)analyser/, $(ANALYSER_SRC))
 ANALYSER_DEPFILES := $(ANALYSER_DEPSRC:.c=.d)
 -include $(ANALYSER_DEPFILES)
 $(ANALYSER_DIR_OBJ): %.o: %.c #$(ANALYSER_DEPFILES)
+		printf "%-105c\r$(PREFIX)" ' '
+		printf "🕐  %s Compiling Analyser... (%s)\r" "[18%]" "$@"
 		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
 		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE) -c $< -o $@
 
-
 CODEGEN_DEPSRC := $(addprefix $(ASM_DIR)codegen/, $(CODEGEN_SRC))
 CODEGEN_DEPFILES := $(CODEGEN_DEPSRC:.c=.d)
 -include $(CODEGEN_DEPFILES)
 $(CODEGEN_DIR_OBJ): %.o: %.c
+		printf "%-105c\r$(PREFIX)" ' '
+		printf "🕐  %s Compiling Codegen... (%s)\r" "[25%]" "$@"
 		gcc -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
 		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
-			-I$(OPERATION_INTERFACE)  -c $<  -o $@ -g
-
-#$(VISUAL_DIR_OBJ): %.o: %.c
-#		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
-# -I$(OPERATION_INTERFACE)   -c $<  -o $@ -g
+			-I$(OPERATION_INTERFACE)  -c $<  -o $@
 
 $(COREWAR_NAME): $(VM_DIR_OBJ) $(VM_ARENA_DIR_OBJ) $(VM_ARENA_PLAYER_DIR_OBJ) \
 		$(VM_CARRIAGE_DIR_OBJ) $(VM_CARRIAGE_OP_DIR_OBJ) \
 		$(VM_COREWAR_DIR_OBJ) $(VM_ERRORS_DIR_OBJ) $(VM_PARAMS_DIR_OBJ) \
 		$(VM_PARAMS_VMP_PLAYER_DIR_OBJ) $(VM_PARAMS_VMP_PLAYER_FILE_DIR_OBJ) \
 		$(VISUAL_DIR_OBJ)
-#		@printf "$(PREFIX)📦  Building $(COREWAR_NAME)...\n"
-		make -C ./libft/
-		make -C ./ft_printf/
-		gcc  -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
+		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE)  $^ -lncurses -o $@ $(LIBFLAGS) \
-			$(LIBPRINTFLAGS) -g
+			$(LIBPRINTFLAGS)
+		printf "%-95c\r$(PREFIX)📦  Corewar file created.\n" ' '
 
 
 VM_DEPSRC := $(addprefix $(VM_DIR)src/, $(VM_SRC))
 VM_DEPFILES := $(VM_DEPSRC:.c=.d)
 -include $(VM_DEPFILES)
 $(VM_DIR_OBJ): %.o: %.c
+		printf "%-105c\r$(PREFIX)" ' '
+		printf "🕐  %s Compiling VM_OBJ... (%s)\r" "[31%]" "$@"
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
-			-I$(OPERATION_INTERFACE)  -c $< -o $@ -g
+			-I$(OPERATION_INTERFACE)  -c $< -o $@
 
 
 VM_ARENA_DEPSRC := $(addprefix $(VM_DIR)src/arena/, $(VM_ARENA_SRC))
 VM_ARENA_DEPFILES := $(VM_ARENA_DEPSRC:.c=.d)
 -include $(VM_ARENA_DEPFILES)
 $(VM_ARENA_DIR_OBJ): %.o: %.c
+		printf "%-125c\r$(PREFIX)" ' '
+		printf "🕐  %s Compiling VM_ARENA... (%s)\r" "[37%]" "$@"
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
-			-I$(OPERATION_INTERFACE)  -c $< -o $@ -g
+			-I$(OPERATION_INTERFACE)  -c $< -o $@
 
 VM_ARENA_PLAYER_DEPSRC := $(addprefix $(VM_DIR)src/arena/player/, $(VM_ARENA_PLAYER_SRC))
 VM_ARENA_PLAYER_DEPFILES := $(VM_ARENA_PLAYER_DEPSRC:.c=.d)
 -include $(VM_ARENA_PLAYER_DEPFILES)
 $(VM_ARENA_PLAYER_DIR_OBJ): %.o: %.c
+		printf "%-115c\r$(PREFIX)" ' '
+		printf "🕐  %s Compiling VM_A_PLAYER... (%s)\r" "[43%]" "$@"
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
-			-I$(OPERATION_INTERFACE)  -c $< -o $@ -g
+			-I$(OPERATION_INTERFACE)  -c $< -o $@
 
 
 VM_CARRIAGE_DEPSRC := $(addprefix $(VM_DIR)src/carriage/, $(VM_CARRIAGE_SRC))
 VM_CARRIAGE_DEPFILES := $(VM_CARRIAGE_DEPSRC:.c=.d)
 -include $(VM_CARRIAGE_DEPFILES)
 $(VM_CARRIAGE_DIR_OBJ): %.o: %.c
+		printf "%-125c\r$(PREFIX)" ' '
+		printf "🕐  %s Compiling VM_CARRIAGE... (%s)\r" "[50%]" "$@"
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
-			-I$(OPERATION_INTERFACE)  -c $< -o $@ -g
+			-I$(OPERATION_INTERFACE)  -c $< -o $@
 
 
 VM_CARRIAGE_OP_DEPSRC := $(addprefix $(VM_DIR)src/carriage/operation/, $(VM_CARRIAGE_OP_SRC))
 VM_CARRIAGE_OP_DEPFILES := $(VM_CARRIAGE_OP_DEPSRC:.c=.d)
 -include $(VM_CARRIAGE_OP_DEPFILES)
 $(VM_CARRIAGE_OP_DIR_OBJ): %.o: %.c
+		printf "%-125c\r$(PREFIX)" ' '
+		printf "🕐  %s Compiling VM_OP... (%s)\r" "[56%]" "$@"
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
-			-I$(OPERATION_INTERFACE)  -c $< -o $@ -g
+			-I$(OPERATION_INTERFACE)  -c $< -o $@
 
 
 VM_COREWAR_DEPSRC := $(addprefix $(VM_DIR)src/corwar/, $(VM_COREWAR_SRC))
 VM_COREWAR_DEPFILES := $(VM_COREWAR_DEPSRC:.c=.d)
 -include $(VM_COREWAR_DEPFILES)
 $(VM_COREWAR_DIR_OBJ): %.o: %.c
+		printf "%-125c\r$(PREFIX)" ' '
+		printf "🕐  %s Compiling VM_OBJ... (%s)\r" "[62%]" "$@"
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
-			-I$(OPERATION_INTERFACE)  -c $< -o $@ -g
+			-I$(OPERATION_INTERFACE)  -c $< -o $@
 
 
 VM_ERRORS_DEPSRC := $(addprefix $(VM_DIR)src/errors/, $(VM_ERRORS_SRC))
 VM_ERRORS_DEPFILES := $(VM_ERRORS_DEPSRC:.c=.d)
 -include $(VM_ERRORS_DEPFILES)
 $(VM_ERRORS_DIR_OBJ): %.o: %.c
+		printf "%-125c\r$(PREFIX)" ' '
+		printf "🕐  %s Compiling VM_ERRORS... (%s)\r" "[68%]" "$@"
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
-			-I$(OPERATION_INTERFACE)  -c $< -o $@ -g
+			-I$(OPERATION_INTERFACE)  -c $< -o $@
 
 
 VM_PARAMS_DEPSRC := $(addprefix $(VM_DIR)src/vm_params/, $(VM_PARAMS_SRC))
 VM_PARAMS_DEPFILES := $(VM_PARAMS_DEPSRC:.c=.d)
 -include $(VM_PARAMS_DEPFILES)
 $(VM_PARAMS_DIR_OBJ): %.o: %.c
+		printf "%-125c\r$(PREFIX)" ' '
+		printf "🕐  %s Compiling VM_PARAMS... (%s)\r" "[75%]" "$@"
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
-			-I$(OPERATION_INTERFACE)  -c $< -o $@ -g
+			-I$(OPERATION_INTERFACE)  -c $< -o $@
 
 
 VM_PARAMS_VMP_PLAYER_DEPSRC := $(addprefix $(VM_DIR)src/vm_params/vmp_player/, $(VM_PARAMS_VMP_PLAYER_SRC))
 VM_PARAMS_VMP_PLAYER_DEPFILES := $(VM_PARAMS_VMP_PLAYER_DEPSRC:.c=.d)
 -include $(VM_PARAMS_VMP_PLAYER_DEPFILES)
 $(VM_PARAMS_VMP_PLAYER_DIR_OBJ): %.o: %.c
+		printf "%-125c\r$(PREFIX)" ' '
+		printf "🕐  %s Compiling VM_P_PLAYER... (%s)\r" "[81%]" "$@"
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
-			-I$(OPERATION_INTERFACE)  -c $< -o $@ -g
+			-I$(OPERATION_INTERFACE)  -c $< -o $@
 
 
 VM_PARAMS_VMP_PLAYER_FILE_DEPSRC := $(addprefix $(VM_DIR)src/vm_params/vmp_player/file/, $(VM_PARAMS_VMP_PLAYER_FILE_SRC))
 VM_PARAMS_VMP_PLAYER_FILE_DEPFILES := $(VM_PARAMS_VMP_PLAYER_FILE_DEPSRC:.c=.d)
 -include $(VM_PARAMS_VMP_PLAYER_FILE_DEPFILES)
 $(VM_PARAMS_VMP_PLAYER_FILE_DIR_OBJ): %.o: %.c
+		printf "%-125c\r$(PREFIX)" ' '
+		printf "🕐  %s Compiling VM_FILES... (%s)\r" "[87%]" "$@"
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
-			-I$(OPERATION_INTERFACE)  -c $< -o $@ -g
+			-I$(OPERATION_INTERFACE)  -c $< -o $@
 
 
 VM_VISUAL_DEPSRC := $(addprefix $(VM_DIR)src/visual/, $(VISUAL_SRC))
 VM_VISUAL_DEPFILES:= $(VM_VISUAL_DEPSRC:.c=.d)
 -include $(VM_VISUAL_DEPFILES)
 $(VISUAL_DIR_OBJ): %.o: %.c
+		printf "%-130c\r$(PREFIX)" ' '
+		printf "🕐  %s Compiling VISUAL... (%s)\r" "[98%]" "$@"
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
 			-I$(OPERATION_INTERFACE) -MM -MT $@ -MF $(patsubst %.o, %.d, $@) $<
 		gcc $(FLAGS) -I$(COREWAR_INTERFACE) -I$(LIBDIR) -I$(LIBPRINT) \
-			-I$(OPERATION_INTERFACE)  -c $<  -o $@ -g
+			-I$(OPERATION_INTERFACE)  -c $<  -o $@
 
-# $(PARS_DIR_OBJ): %.o:  %.c
-# 		@cc -c $(FLAGS)  $< -o $@
+liba:
+		@printf "$(PREFIX)$(BOLD)🔎  Checkig \
+for libft and printf updates...$(RST)\n"
+		@make -C $(LIBDIR) DEBUG=$(DEBUGMODE)
+		make -C ./ft_printf/
 
-#$(LIB):
-		#make -C libft/
-
-# liba:
-# 	libfliba	@printf "$(PREFIX)$(BOLD)🔎  Checkig \
-# for libf up-to-dateates...$(RST)\n"
-# 		@make -C $(LIBDIR) DEBUGMODE=$(DEBUGMODE)
+deljunk:
+	echo "$(PREFIX)♻️  $(RED)Removing obj-files...$(RST)"
+	rm -rf $(ASM_DIR)lexer/*.o
+	rm -rf $(ASM_DIR)lexer/*.d
+	rm -rf $(ASM_DIR)parser/*.o
+	rm -rf $(ASM_DIR)parser/*.d
+	rm -rf $(ASM_DIR)checker/*.o
+	rm -rf $(ASM_DIR)checker/*.d
+	rm -rf $(ASM_DIR)analyser/*.o
+	rm -rf $(ASM_DIR)analyser/*.d
+	rm -rf $(ASM_DIR)codegen/*.o
+	rm -rf $(ASM_DIR)codegen/*.d
+	rm -rf virtual_machine/src/*.o
+	rm -rf virtual_machine/src/*.d
+	rm -rf virtual_machine/src/arena/*.o
+	rm -rf virtual_machine/src/arena/*.d
+	rm -rf virtual_machine/src/arena/player/*.o
+	rm -rf virtual_machine/src/arena/player/*.d
+	rm -rf virtual_machine/src/carriage/*.o
+	rm -rf virtual_machine/src/carriage/*.D
+	rm -rf virtual_machine/src/carriage/operation/*.o
+	rm -rf virtual_machine/src/carriage/operation/*.d
+	rm -rf virtual_machine/src/corwar/*.o
+	rm -rf virtual_machine/src/corwar/*.d
+	rm -rf virtual_machine/src/errors/*.o
+	rm -rf virtual_machine/src/errors/*.d
+	rm -rf virtual_machine/src/vm_params/*.o
+	rm -rf virtual_machine/src/vm_params/*.d
+	rm -rf virtual_machine/src/vm_params/vmp_player/*.o
+	rm -rf virtual_machine/src/vm_params/vmp_player/*.d
+	rm -rf virtual_machine/src/vm_params/vmp_player/file/*.o
+	rm -rf virtual_machine/src/vm_params/vmp_player/file/*.d
+	rm -rf virtual_machine/src/visual/*.o
+	rm -rf virtual_machine/src/visual/*.d
 
 clean: deljunk
-		make -C libft/ fclean
-		make -C ft_printf/ fclean
-		rm -rf $(ASM_DIR)lexer/*.o
-		rm -rf $(ASM_DIR)lexer/*.d
-		rm -rf $(ASM_DIR)parser/*.o
-		rm -rf $(ASM_DIR)parser/*.d
-		rm -rf $(ASM_DIR)checker/*.o
-		rm -rf $(ASM_DIR)checker/*.d
-		rm -rf $(ASM_DIR)analyser/*.o
-		rm -rf $(ASM_DIR)analyser/*.d
-		rm -rf $(ASM_DIR)codegen/*.o
-		rm -rf $(ASM_DIR)codegen/*.d
-		rm -rf virtual_machine/src/*.o
-		rm -rf virtual_machine/src/*.d
-		rm -rf virtual_machine/src/arena/*.o
-		rm -rf virtual_machine/src/arena/*.d
-		rm -rf virtual_machine/src/arena/player/*.o
-		rm -rf virtual_machine/src/arena/player/*.d
-		rm -rf virtual_machine/src/carriage/*.o
-		rm -rf virtual_machine/src/carriage/*.D
-		rm -rf virtual_machine/src/carriage/operation/*.o
-		rm -rf virtual_machine/src/carriage/operation/*.d
-		rm -rf virtual_machine/src/corwar/*.o
-		rm -rf virtual_machine/src/corwar/*.d
-		rm -rf virtual_machine/src/errors/*.o
-		rm -rf virtual_machine/src/errors/*.d
-		rm -rf virtual_machine/src/vm_params/*.o
-		rm -rf virtual_machine/src/vm_params/*.d
-		rm -rf virtual_machine/src/vm_params/vmp_player/*.o
-		rm -rf virtual_machine/src/vm_params/vmp_player/*.d
-		rm -rf virtual_machine/src/vm_params/vmp_player/file/*.o
-		rm -rf virtual_machine/src/vm_params/vmp_player/file/*.d
-		rm -rf virtual_machine/src/visual/*.o
-		rm -rf virtual_machine/src/visual/*.d
-		@make -C $(LIBDIR) clean
+		make -C $(LIBDIR) clean
 
 delfile:
-		@echo "$(PREFIX)♻️  $(RED)Removing executable file...$(RST)"
+		@echo "$(PREFIX)♻️  $(RED)Removing executable files...$(RST)"
 		@rm -f $(ASM_NAME)
 		@rm -f $(COREWAR_NAME)
 
-
-fclean: clean delfile
-		#@make -C $(LIBDIR) dellib
+fclean: deljunk delfile
+		@make -C $(LIBDIR) fclean
+		make -C ft_printf/ fclean
 
 re: fclean
 		@make all
+
+debug:
+	make DEBUGMODE=1
+
+d:
+	make DEBUGMODE=1
+
+rd:
+	make re DEBUGMODE=1
+
+red:
+	make re DEBUGMODE=1
+
+redebug:
+	make re DEBUGMODE=1
