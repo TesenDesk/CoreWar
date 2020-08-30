@@ -123,4 +123,10 @@ int					lexer_get_term_arg_break(t_lexer *lexer, char const **text,
 int					lexer_get_term_multi_arg(t_lexer *lexer, char const **text,
 						int *type, void *token_ptr[2]);
 
+int					term_is_op(char const *text);
+int					find_op2_type(char const *text);
+int					find_op3_type(char const *text);
+int					find_op4_type(char const *text);
+int					find_op5_type(char const *text);
+
 #endif

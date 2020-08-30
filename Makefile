@@ -54,7 +54,8 @@ LEX_SRC					:= 	lexer.c \
 							lexer_utils_2.c \
 							prvt_lexer_xtor.c \
 							token.c \
-							token_getters.c
+							token_getters.c \
+							lexer_terms_is_op.c
 LEX_OBJ					:=  $(patsubst %.c, %.o, $(LEX_SRC))
 LEX_DIR_OBJ				:=  $(addprefix $(ASM_DIR)lexer/, $(LEX_OBJ))
 PARS_SRC				:=	prvt_parser_change_state.c \

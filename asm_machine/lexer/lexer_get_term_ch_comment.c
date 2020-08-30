@@ -22,16 +22,16 @@
 int				lexer_get_term_ch_comment(t_lexer *lexer, char const **text,
 				int *type, void *token_ptr[2])
 {
-    long long   counter;
+	long long	counter;
 
 	(void)lexer;
 	token_ptr[TOKEN_START_PTR] = (void *)*text;
 	counter = lexer_utils_trim_not_eof_not_line_feed_not_quotatuion_mark(text);
 	if (counter > 2048)
-    {
-	    ft_printf("Champion comment too long (Max length 2048)\n");
-	    exit(-1);
-    }
+	{
+		ft_printf("Champion comment too long (Max length 2048)\n");
+		exit(-1);
+	}
 	if (lexer_utils_is_quotation_mark(**text))
 	{
 		*type = TOKEN_CHCOM;

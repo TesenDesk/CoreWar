@@ -12,7 +12,7 @@
 
 #include "prvt_visual.h"
 
-int		chose_color(t_arena *arena, int index, t_vm *vm, int i)
+int		chose_color(t_arena *arena, int index, t_vm *vm, int i) //TODO TOOBIG
 {
 	int	ans;
 	int	player_index;

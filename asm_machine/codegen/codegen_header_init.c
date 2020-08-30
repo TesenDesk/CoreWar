@@ -18,12 +18,12 @@ void			init_header(t_header *header, t_vector *text)
 {
 	char		*name;
 	char		*comment;
-    int         name_index;
-    int         com_index;
+	int			name_index;
+	int			com_index;
 
-    name_index = expr_get_type(text->items[0]) == EXPR_CH_NAME_LINE ?
-            0 : 1;
-    com_index = name_index == 0 ? 1 : 0 ;
+	name_index = expr_get_type(text->items[0]) == EXPR_CH_NAME_LINE ?
+			0 : 1;
+	com_index = name_index == 0 ? 1 : 0;
 	name = token_get_value(expr_get_arg_value(text->items[name_index], 0));
 	comment = token_get_value(expr_get_arg_value(text->items[com_index], 0));
 	ft_bzero(header->comment, COMMENT_LENGTH + 1);

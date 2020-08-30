@@ -102,7 +102,7 @@ static void			free_resourses(t_hash_map **map, t_vector *vtr,
 
 int					main(int ac, char **av)
 {
-    t_main_asm		main_asm;
+	t_main_asm		main_asm;
 
 	main_asm.count = 1;
 	main_asm.buf = NULL;
