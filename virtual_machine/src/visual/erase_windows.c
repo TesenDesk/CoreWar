@@ -20,6 +20,7 @@ void		erase_windows(t_vm *vm)
 	werase(vm_get_wins(vm)->arena);
 	werase(vm_get_wins(vm)->info);
 	werase(vm_get_wins(vm)->champ);
+	werase(vm_get_wins(vm)->hearts);
 	while (i < MEM_SIZE)
 	{
 		arena_set_player_index(vm_get_arena(vm), i, 0);

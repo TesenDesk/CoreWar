@@ -23,10 +23,13 @@ void		print_windows(t_vm *vm)
 	draw_arena(vm);
 	draw_basic_info(vm);
 	draw_champ_info(vm);
+//	draw_hearts(vm);
 	box(vm_get_wins(vm)->arena, 0, 0);
 	box(vm_get_wins(vm)->info, 0, 0);
 	box(vm_get_wins(vm)->champ, 0, 0);
+	box(vm_get_wins(vm)->hearts, 0, 0);
 	wrefresh(vm_get_wins(vm)->champ);
 	wrefresh(vm_get_wins(vm)->arena);
 	wrefresh(vm_get_wins(vm)->info);
+	wrefresh(vm_get_wins(vm)->hearts);
 }

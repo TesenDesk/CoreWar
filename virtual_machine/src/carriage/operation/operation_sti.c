@@ -30,6 +30,8 @@ void				operation_sti(t_carriage *self)
 	int				position;
 
 	op = g_op[OP_STI - 1];
+	position = 0;
+
 	if (operation_precheck_args(self, &op) == SUCCESS)
 	{
 		if (op.type_codes[ARG_2] == REG_CODE)

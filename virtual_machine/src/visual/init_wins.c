@@ -24,6 +24,8 @@ t_wins			*init_wins(void)
 		exit(-1);
 	if (!(wins->champ = create_newwin(14, 75, 10, SQRT_MAP * 3 + 4)))
 		exit(-1);
+	if (!(wins->hearts = create_newwin(37, 150,24 , SQRT_MAP * 3 + 4)))
+		exit(-1);
 	if (!(wins->win = create_newwin(4, 38, SQRT_MAP + 3, 1)))
 		exit(-1);
 	return (wins);

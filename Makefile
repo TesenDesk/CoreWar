@@ -375,11 +375,11 @@ PREFIX					= [$(CYAN)$(LABEL)$(RST)]:\t
 #======================Debug & Flags===========================================#
 # -- WARN! Delete this message from rules if you using library from another prj#
 ifeq ($(DEBUGMODE), 1)
-	FLAGS				:= -g $(CFLAGS) #TODO: РАЗКОММЕНТИРОВАТЬ КОГДА В ПРОЕКТЕ НЕ БУДЕТ ВАРНИНГОВ
+	FLAGS				:= -g #$(CFLAGS) #TODO: РАЗКОММЕНТИРОВАТЬ КОГДА В ПРОЕКТЕ НЕ БУДЕТ ВАРНИНГОВ
 	DEBUGMSG			:= $(PREFIX)⚠️  \033[1;33m \
 							Debug mode $(GREEN)enabled.$(RST)\n
 else
-	FLAGS				:= $(CFLAGS) #TODO: РАЗКОММЕНТИРОВАТЬ КОГДА В ПРОЕКТЕ НЕ БУДЕТ ВАРНИНГОВ
+	FLAGS				:= #$(CFLAGS) #TODO: РАЗКОММЕНТИРОВАТЬ КОГДА В ПРОЕКТЕ НЕ БУДЕТ ВАРНИНГОВ
 	DEBUGMSG			:= $(PREFIX)⚠️  \033[1;33m \
 							Debug mode $(RED)disabled.$(RST)\n
 endif
