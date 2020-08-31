@@ -12,7 +12,7 @@
 
 #include "prvt_visual.h"
 
-int		chose_color(t_arena *arena, int index, t_vm *vm, int i) //TODO TOOBIG
+int		chose_color(t_arena *arena, int index, t_vm *vm, int i)
 {
 	int	ans;
 	int	player_index;
@@ -20,7 +20,6 @@ int		chose_color(t_arena *arena, int index, t_vm *vm, int i) //TODO TOOBIG
 
 	(void)vm;
 	(void)i;
-	ans = 0;
 	player_index = arena_get_player_index(arena, index % MEM_SIZE);
 	cell_index = arena_get_cell_index(arena, index % MEM_SIZE);
 	if (player_index == 0)
@@ -28,13 +27,11 @@ int		chose_color(t_arena *arena, int index, t_vm *vm, int i) //TODO TOOBIG
 	else if (player_index == cell_index && cell_index != NEUTRAL_COL)
 		ans = (COLOR_PAIR(cell_index + HOME_OFFSET));
 	else if (player_index != cell_index && cell_index != NEUTRAL_COL)
-	{
 		ans = (COLOR_PAIR(arena_get_cell_index(arena, index % MEM_SIZE) +
 			OUT_OFFSET));
-	}
 	else if (player_index != cell_index && cell_index == NEUTRAL_COL)
 		ans = (COLOR_PAIR(arena_get_cell_index(arena, index % MEM_SIZE)));
-	else if (player_index == cell_index && cell_index == NEUTRAL_COL)
+	else
 	{
 		printf("dewfegjrifrseijgnfewiognserifbreisugbiweabguiersbgerjgvbersgv");
 		exit(-1);
@@ -46,6 +43,4 @@ int		chose_color(t_arena *arena, int index, t_vm *vm, int i) //TODO TOOBIG
 
 /*
 ** TODO: что делает строка 36?
-** TODO: *vm & i never used
-** TODO: теоретически ans может быть возвращен неинициализированным
 */
