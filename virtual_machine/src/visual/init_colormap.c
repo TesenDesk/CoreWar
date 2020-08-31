@@ -23,7 +23,8 @@ void				init_colormap(t_arena *arena, int ofset_outer)
 	pos = offset;
 	while (col <= arena_get_nb_players(arena))
 	{
-		while ((unsigned)pos < offset + arena_get_player_code_size(arena, col - 1))
+		while ((unsigned)pos < offset + arena_get_player_code_size(arena,
+															col - 1))
 			arena_set_cell_index(arena, pos++ % MEM_SIZE, col);
 		while (pos < offset + ofset_outer)
 			arena_set_cell_index(arena, pos++ % MEM_SIZE, NEUTRAL_COL);

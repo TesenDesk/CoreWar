@@ -16,15 +16,12 @@ static int		find_op_type(char const *text)
 {
 	int			op_code;
 
-	if ((op_code = find_op5_type(text)))
-		;
-	else if ((op_code = find_op4_type(text)))
-		;
-	else if ((op_code = find_op3_type(text)))
-		;
-	else if ((op_code = find_op2_type(text)))
-		;
-	return (op_code);
+	if (((op_code = find_op5_type(text)))
+			|| ((op_code = find_op4_type(text)))
+			|| ((op_code = find_op3_type(text)))
+			|| ((op_code = find_op2_type(text))))
+		return (op_code);
+	return (0);
 }
 
 int				lexer_get_term_init_header(char **text)
@@ -52,7 +49,7 @@ int				lexer_get_term_init_header(char **text)
 }
 
 int				lexer_get_term_little_chars(int *type, char **text,
-								void *token_ptr[2]) //TODO: Too big
+								void *token_ptr[2])
 {
 	if (!(**text))
 	{
@@ -75,8 +72,7 @@ int				lexer_get_term_little_chars(int *type, char **text,
 	{
 		*type = TOKEN_LFEED;
 		token_ptr[0] = (void*)*text;
-		token_ptr[1] = (void*)*text;
-		++(*text);
+		token_ptr[1] = (void*)(*text)++;
 		return (INIT_ST);
 	}
 	return (-2);

@@ -12,8 +12,14 @@
 
 #include "prvt_lexer.h"
 
+static int		fucken_norm_need_one_line(int *type)
+{
+	*type = TOKEN_UNDEF;
+	return (LABEL_CHAR_CODE);
+}
+
 int				lexer_get_term_arg_dir_int(t_lexer *lexer, char const **text,
-				int *type, void *token_ptr[2]) //TODO: TOO BIG
+				int *type, void *token_ptr[2])
 {
 	int			sign;
 
@@ -24,14 +30,14 @@ int				lexer_get_term_arg_dir_int(t_lexer *lexer, char const **text,
 		++(*text);
 		return (LABEL_CHAR_CODE);
 	}
-	if ((**text == '+' || **text == '-'))
+	if (**text == '+' || **text == '-')
 	{
 		sign = (**text == '+') ? 1 : -1;
 		*token_ptr = (void*)(*text)++;
 	}
 	if (ft_isdigit(**text))
 	{
-		if (!(sign))
+		if (!sign)
 			*token_ptr = (void*)*text;
 		while (ft_isdigit(**text))
 			++(*text);
@@ -39,8 +45,7 @@ int				lexer_get_term_arg_dir_int(t_lexer *lexer, char const **text,
 		*type = TOKEN_TDIR_INT;
 		return (INTEGER_CODE);
 	}
-	*type = TOKEN_UNDEF;
-	return (LABEL_CHAR_CODE);
+	return (fucken_norm_need_one_line(type));
 }
 
 int				lexer_get_term_arg_dir_label(t_lexer *lexer, char const **text,
