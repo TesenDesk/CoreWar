@@ -32,7 +32,7 @@ void		add_address_to_arg_label(t_codegen *data, t_arg *arg, int shift)
 	if (!(label = (t_label_data*)malloc(sizeof(t_label_data))))
 		exit(-1);
 	label->name = token_get_value(arg_get_value(arg));
-	label->add = data->add + shift;
+	label->codegen_add= data->add+ shift;
 	label->instruction_begining = data->cur_instruction_addr;
 	label->param_type = arg_get_type(arg);
 	label->size = data->cur_instruction_dirsize;
@@ -53,7 +53,7 @@ void		add_param(t_codegen *data, t_arg *param, char dir_type)
 		else
 			shift = 4;
 		add_address_to_arg_label(data, param, 0);
-		data->add += shift;
+		data->add+= shift;
 	}
 	else
 		fill_dirind_param(data, param, dir_type);

@@ -326,7 +326,7 @@ VISUAL_SRC				:=		chose_color.c \
 VISUAL_OBJ				:= $(patsubst %.c, %.o, $(VISUAL_SRC))
 VISUAL_DIR_OBJ			:= $(addprefix $(VM_DIR)src/visual/, $(VISUAL_OBJ))
 
-CFLAGS					:= -Wall -Wextra -Werror
+CFLAGS					:= -Wall -Wextra
 LIBFLAGS				:= -L$(LIBDIR) -lft
 LIBPRINTFLAGS			:= -Lft_printf/ -lftprintf
 ASM_INTERFACE			:=	$(ASM_DIR)interfaces/
@@ -412,7 +412,7 @@ $(LEX_DIR_OBJ): %.o:  %.c
 PARSER_DEPSRC := $(addprefix $(ASM_DIR)parser/, $(PARS_SRC))
 PARSER_DEPFILES := $(PARSER_DEPSRC:.c=.d)
 -include $(PARS_DEPFILES)
-$(PARS_DIR_OBJ): %.o: %.c ./asm_machine/parser/parser_private.h ./asm_machine/parser/parser_xtor_private.h
+$(PARS_DIR_OBJ): %.o: %.c
 		printf "%-105c\r$(PREFIX)" ' '
 		printf "🕐  %s Compiling Parser... (%s)\r" "[06%]" "$@"
 		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \

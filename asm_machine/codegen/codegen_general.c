@@ -54,9 +54,9 @@ void			codegen_ending(t_codegen *data)
 		cell_size = (ld->param_type == TOKEN_TDIR_LAB && ld->size == 1) ? 4 : 2;
 		rotate_bytes((unsigned int*)&tmp, cell_size);
 		if (cell_size == 2)
-			ft_memcpy(&(data->code[ld->add]), (short *)&tmp, cell_size);
+			ft_memcpy(&(data->code[ld->codegen_add]), (short *)&tmp, cell_size);
 		else
-			ft_memcpy(&(data->code[ld->add]), &tmp, cell_size);
+			ft_memcpy(&(data->code[ld->codegen_add]), &tmp, cell_size);
 	}
 }
 
