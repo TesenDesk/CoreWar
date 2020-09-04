@@ -120,5 +120,6 @@ int					main(int ac, char **av)
 				&main_asm.buf);
 		++main_asm.count;
 	}
+	printf("SUCESS\n");
 	return (SUCCESS);
 }

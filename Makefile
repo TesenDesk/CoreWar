@@ -380,7 +380,7 @@ ifeq ($(DEBUGMODE), 1)
 	DEBUGMSG			:= $(PREFIX)⚠️  \033[1;33m \
 							Debug mode $(GREEN)enabled.$(RST)\n
 else
-	FLAGS				:= $(CFLAGS)
+	FLAGS				:= -g $(CFLAGS)
 	DEBUGMSG			:= $(PREFIX)⚠️  \033[1;33m \
 							Debug mode $(RED)disabled.$(RST)\n
 endif

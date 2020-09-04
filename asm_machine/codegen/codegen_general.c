@@ -48,6 +48,11 @@ void			codegen_ending(t_codegen *data)
 	while ((ld = ft_vector_get(data->labels_ptrs, ++i)))
 	{
 		addr = (t_code_addr*)ft_hash_map_get(data->labels_free, ld->name);
+		if (!addr)
+		{
+			ft_printf("no free label %s\n", ((t_label_data *)data->labels_ptrs->items[i])->name);
+			exit(-1);
+		}
 		tmp = (int)(addr->addr - ld->instruction_begining);
 		if (ld->param_type == TOKEN_TIND_LAB)
 			tmp %= IDX_MOD;

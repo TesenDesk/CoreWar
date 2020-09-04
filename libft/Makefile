@@ -245,7 +245,7 @@ ifeq ($(DEBUG), 1)
 	DEBUGMSG	:= $(PREFIX)⚠️  \033[1;33mWarn! Debug mode enabled.$(RST)\n
 else
 	DEBUGMSG	:= $(PREFIX)⚠️  \033[1;33mDebug mode disabled.$(RST)\n
-	CC_FLAGS =	-Wall -Wextra -Werror
+	CC_FLAGS =	-Wall -Wextra -Werror -g
 endif
 LIB_FLAGS =	-L$(LIB_DIR) -lft
 #--------------------------RULES-------------------------#
