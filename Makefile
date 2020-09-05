@@ -376,11 +376,11 @@ PREFIX					= [$(CYAN)$(LABEL)$(RST)]:\t
 #======================Debug & Flags===========================================#
 # -- WARN! Delete this message from rules if you using library from another prj#
 ifeq ($(DEBUGMODE), 1)
-	FLAGS				:= $(CFLAGS)
+	FLAGS				:= -g $(CFLAGS)
 	DEBUGMSG			:= $(PREFIX)⚠️  \033[1;33m \
 							Debug mode $(GREEN)enabled.$(RST)\n
 else
-	FLAGS				:= -g $(CFLAGS)
+	FLAGS				:= $(CFLAGS)
 	DEBUGMSG			:= $(PREFIX)⚠️  \033[1;33m \
 							Debug mode $(RED)disabled.$(RST)\n
 endif
