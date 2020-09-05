@@ -362,9 +362,6 @@ PRVT_LEXER_HEADER		:= $(ASM_DIR)lexer/prvt_lexer.h \
 PRVT_PARSER_HEADER		:= $(ASM_DIR)parser/parser_private.h \
 							$(ASM_DIR)parser/parser_xtor_private.h \
 							$(ASM_DIR)parser/prvt_expr.h
-#							$(ASM_DIR)parser/
-#							$(ASM_DIR)parser/
-#							$(ASM_DIR)parser/
 #======================COLORS & Co=============================================#
 GREEN					= \033[1;32m
 RED						= \033[1;31m
