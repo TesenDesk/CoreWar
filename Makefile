@@ -6,7 +6,7 @@
 #    By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/22 12:48:06 by ftothmur          #+#    #+#              #
-#    Updated: 2020/08/30 16:20:13 by cmissy           ###   ########.fr        #
+#    Updated: 2020/09/05 21:15:15 by jjerde           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -362,9 +362,6 @@ PRVT_LEXER_HEADER		:= $(ASM_DIR)lexer/prvt_lexer.h \
 PRVT_PARSER_HEADER		:= $(ASM_DIR)parser/parser_private.h \
 							$(ASM_DIR)parser/parser_xtor_private.h \
 							$(ASM_DIR)parser/prvt_expr.h
-#							$(ASM_DIR)parser/
-#							$(ASM_DIR)parser/
-#							$(ASM_DIR)parser/
 #======================COLORS & Co=============================================#
 GREEN					= \033[1;32m
 RED						= \033[1;31m
@@ -412,7 +409,7 @@ $(LEX_DIR_OBJ): %.o:  %.c
 PARSER_DEPSRC := $(addprefix $(ASM_DIR)parser/, $(PARS_SRC))
 PARSER_DEPFILES := $(PARSER_DEPSRC:.c=.d)
 -include $(PARS_DEPFILES)
-$(PARS_DIR_OBJ): %.o: %.c ./asm_machine/parser/parser_private.h ./asm_machine/parser/parser_xtor_private.h
+$(PARS_DIR_OBJ): %.o: %.c
 		printf "%-105c\r$(PREFIX)" ' '
 		printf "🕐  %s Compiling Parser... (%s)\r" "[06%]" "$@"
 		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
@@ -619,7 +616,7 @@ deljunk:
 	rm -rf virtual_machine/src/arena/player/*.o
 	rm -rf virtual_machine/src/arena/player/*.d
 	rm -rf virtual_machine/src/carriage/*.o
-	rm -rf virtual_machine/src/carriage/*.D
+	rm -rf virtual_machine/src/carriage/*.d
 	rm -rf virtual_machine/src/carriage/operation/*.o
 	rm -rf virtual_machine/src/carriage/operation/*.d
 	rm -rf virtual_machine/src/corwar/*.o
@@ -637,6 +634,7 @@ deljunk:
 
 clean: deljunk
 		make -C $(LIBDIR) clean
+		make -C ft_printf/ clean
 
 delfile:
 		@echo "$(PREFIX)♻️  $(RED)Removing executable files...$(RST)"

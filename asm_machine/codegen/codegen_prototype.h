@@ -19,7 +19,7 @@ typedef union		u_code_addr
 {
 	void			*content;
 	unsigned int	addr;
-}					t_code_addr;
+}					t_c_add;
 
 int					champ_exec_constructor(t_codegen *data);
 void				label_dtor(void **data);

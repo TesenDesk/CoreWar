@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/23 13:29:22 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/08/23 13:40:51 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/09/05 21:05:19 by jjerde           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,26 @@ void			codegen_ending(t_codegen *data)
 	t_label_data	*ld;
 	int				tmp;
 	int				cell_size;
-	t_code_addr		*addr;
+	t_c_add			*addr;
 
 	i = -1;
 	while ((ld = ft_vector_get(data->labels_ptrs, ++i)))
 	{
-		addr = (t_code_addr*)ft_hash_map_get(data->labels_free, ld->name);
+		if (!(addr = (t_c_add *)ft_hash_map_get(data->labels_free, ld->name)))
+		{
+			ft_printf("no free label %s\n",
+				((t_label_data *)data->labels_ptrs->items[i])->name);
+			exit(-1);
+		}
 		tmp = (int)(addr->addr - ld->instruction_begining);
 		if (ld->param_type == TOKEN_TIND_LAB)
 			tmp %= IDX_MOD;
 		cell_size = (ld->param_type == TOKEN_TDIR_LAB && ld->size == 1) ? 4 : 2;
 		rotate_bytes((unsigned int*)&tmp, cell_size);
 		if (cell_size == 2)
-			ft_memcpy(&(data->code[ld->add]), (short *)&tmp, cell_size);
+			ft_memcpy(&(data->code[ld->codegen_add]), (short *)&tmp, cell_size);
 		else
-			ft_memcpy(&(data->code[ld->add]), &tmp, cell_size);
+			ft_memcpy(&(data->code[ld->codegen_add]), &tmp, cell_size);
 	}
 }
 

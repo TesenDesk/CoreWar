@@ -688,4 +688,7 @@ ssize_t						ft_read_file(int fd, char **line, ssize_t step);
 ** ft_lststrsplit.c ft_lsttoar.c ft_getfile.c, ft_itoa_base
 */
 
+char						*ft_strnstr2(const char *str,
+								const char *to_find, size_t size);
+
 #endif
