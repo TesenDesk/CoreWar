@@ -46,7 +46,7 @@ void			fill_dirind_param(t_codegen *data, t_arg *param,
 	}
 	else
 		ft_memcpy(&(data->code[data->add]), &num_arg, cell_size);
-	data->add+= cell_size;
+	data->add += cell_size;
 }
 
 void			fill_codes(int array_of_codes[NUM_OF_TOKENS])

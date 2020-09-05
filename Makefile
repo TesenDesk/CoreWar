@@ -326,7 +326,7 @@ VISUAL_SRC				:=		chose_color.c \
 VISUAL_OBJ				:= $(patsubst %.c, %.o, $(VISUAL_SRC))
 VISUAL_DIR_OBJ			:= $(addprefix $(VM_DIR)src/visual/, $(VISUAL_OBJ))
 
-CFLAGS					:= -Wall -Wextra
+CFLAGS					:= -Wall -Wextra -Werror
 LIBFLAGS				:= -L$(LIBDIR) -lft
 LIBPRINTFLAGS			:= -Lft_printf/ -lftprintf
 ASM_INTERFACE			:=	$(ASM_DIR)interfaces/
@@ -376,7 +376,7 @@ PREFIX					= [$(CYAN)$(LABEL)$(RST)]:\t
 #======================Debug & Flags===========================================#
 # -- WARN! Delete this message from rules if you using library from another prj#
 ifeq ($(DEBUGMODE), 1)
-	FLAGS				:= -g $(CFLAGS)
+	FLAGS				:= $(CFLAGS)
 	DEBUGMSG			:= $(PREFIX)⚠️  \033[1;33m \
 							Debug mode $(GREEN)enabled.$(RST)\n
 else

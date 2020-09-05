@@ -44,6 +44,7 @@ PART_1 =	ft_strcat.c \
 			ft_isdigit.c \
 			ft_isalnum.c \
 			ft_strnstr.c \
+			ft_strnstr2.c \
 			ft_bzero.c \
 			ft_strncat.c \
 			ft_strlen.c \

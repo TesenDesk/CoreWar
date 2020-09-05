@@ -26,7 +26,7 @@ static int		find_op_type(char const *text)
 
 int				lexer_get_term_init_header(char **text)
 {
-	if (ft_strnstr(NAME_CMD_STRING, *text, ft_strlen(NAME_CMD_STRING)))
+	if (ft_strnstr2(*text, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
 	{
 		if (*(*text + ft_strlen(NAME_CMD_STRING)) == ' '
 			|| *(*text + ft_strlen(NAME_CMD_STRING)) == '\t')
@@ -35,7 +35,7 @@ int				lexer_get_term_init_header(char **text)
 			return (NAME_CMD_STRING_CODE);
 		}
 	}
-	else if (ft_strnstr(COMMENT_CMD_STRING, *text,
+	else if (ft_strnstr2(*text, COMMENT_CMD_STRING,
 					ft_strlen(COMMENT_CMD_STRING)))
 	{
 		if (*(*text + ft_strlen(COMMENT_CMD_STRING)) == ' '

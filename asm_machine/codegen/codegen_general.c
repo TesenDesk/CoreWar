@@ -42,15 +42,15 @@ void			codegen_ending(t_codegen *data)
 	t_label_data	*ld;
 	int				tmp;
 	int				cell_size;
-	t_code_addr		*addr;
+	t_c_add		*addr;
 
 	i = -1;
 	while ((ld = ft_vector_get(data->labels_ptrs, ++i)))
 	{
-		addr = (t_code_addr*)ft_hash_map_get(data->labels_free, ld->name);
-		if (!addr)
+		if (!(addr = (t_c_add *)ft_hash_map_get(data->labels_free, ld->name)))
 		{
-			ft_printf("no free label %s\n", ((t_label_data *)data->labels_ptrs->items[i])->name);
+			ft_printf("no free label %s\n",
+				((t_label_data *)data->labels_ptrs->items[i])->name);
 			exit(-1);
 		}
 		tmp = (int)(addr->addr - ld->instruction_begining);
