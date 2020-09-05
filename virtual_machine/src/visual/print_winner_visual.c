@@ -38,5 +38,9 @@ void	print_winner_visual(t_vm *vm)
 	wrefresh(wins->win);
 	nodelay(stdscr, FALSE);
 	getch();
+	delwin(wins->win);
+	delwin(wins->arena);
+	delwin(wins->champ);
+	delwin(wins->info);
 	exit(0);
 }
