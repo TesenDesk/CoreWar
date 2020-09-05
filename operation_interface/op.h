@@ -42,7 +42,7 @@
 # define COMMENT_CMD_STRING		".comment"
 
 # define REG_MIN_NUMBER			0
-# define REG_NUMBER             1000
+# define REG_NUMBER             16
 
 # define CYCLE_TO_DIE			1536
 # define CYCLE_DELTA			50
