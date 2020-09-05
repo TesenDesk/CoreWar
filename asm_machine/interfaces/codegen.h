@@ -23,7 +23,9 @@ typedef struct s_codegen	t_codegen;
 typedef struct				s_label_data
 {
 	char					*name;
-	unsigned int			add;
+	unsigned int			codegen_add;
+	void					*add;
+
 	unsigned int			instruction_begining;
 	int						size;
 	int						param_type;

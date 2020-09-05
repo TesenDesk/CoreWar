@@ -6,7 +6,7 @@
 #    By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/22 12:48:06 by ftothmur          #+#    #+#              #
-#    Updated: 2020/08/30 16:20:13 by cmissy           ###   ########.fr        #
+#    Updated: 2020/09/05 21:15:15 by jjerde           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -376,11 +376,11 @@ PREFIX					= [$(CYAN)$(LABEL)$(RST)]:\t
 #======================Debug & Flags===========================================#
 # -- WARN! Delete this message from rules if you using library from another prj#
 ifeq ($(DEBUGMODE), 1)
-	FLAGS				:= -g $(CFLAGS)
+	FLAGS				:= $(CFLAGS)
 	DEBUGMSG			:= $(PREFIX)⚠️  \033[1;33m \
 							Debug mode $(GREEN)enabled.$(RST)\n
 else
-	FLAGS				:= $(CFLAGS)
+	FLAGS				:= -g $(CFLAGS)
 	DEBUGMSG			:= $(PREFIX)⚠️  \033[1;33m \
 							Debug mode $(RED)disabled.$(RST)\n
 endif
@@ -412,7 +412,7 @@ $(LEX_DIR_OBJ): %.o:  %.c
 PARSER_DEPSRC := $(addprefix $(ASM_DIR)parser/, $(PARS_SRC))
 PARSER_DEPFILES := $(PARSER_DEPSRC:.c=.d)
 -include $(PARS_DEPFILES)
-$(PARS_DIR_OBJ): %.o: %.c ./asm_machine/parser/parser_private.h ./asm_machine/parser/parser_xtor_private.h
+$(PARS_DIR_OBJ): %.o: %.c
 		printf "%-105c\r$(PREFIX)" ' '
 		printf "🕐  %s Compiling Parser... (%s)\r" "[06%]" "$@"
 		gcc $(FLAGS) -I$(ASM_INTERFACE) -I$(LIBDIR)  -I$(LIBPRINT) \
@@ -619,7 +619,7 @@ deljunk:
 	rm -rf virtual_machine/src/arena/player/*.o
 	rm -rf virtual_machine/src/arena/player/*.d
 	rm -rf virtual_machine/src/carriage/*.o
-	rm -rf virtual_machine/src/carriage/*.D
+	rm -rf virtual_machine/src/carriage/*.d
 	rm -rf virtual_machine/src/carriage/operation/*.o
 	rm -rf virtual_machine/src/carriage/operation/*.d
 	rm -rf virtual_machine/src/corwar/*.o
@@ -637,6 +637,7 @@ deljunk:
 
 clean: deljunk
 		make -C $(LIBDIR) clean
+		make -C ft_printf/ clean
 
 delfile:
 		@echo "$(PREFIX)♻️  $(RED)Removing executable files...$(RST)"

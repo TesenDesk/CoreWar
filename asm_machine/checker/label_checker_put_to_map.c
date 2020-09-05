@@ -50,7 +50,7 @@ int					label_checker_put_to_map_label_ptr(
 	if (!(data = (t_label_data*)ft_memalloc(sizeof(t_label_data))))
 		exit(-1);
 	data->name = token_get_value(token);
-	data->add = (unsigned int)token_get_token_ptr(token, 0);
+	data->add = token_get_token_ptr(token, 0);
 	if (ft_vector_add(added_label_ptrs, data) == FAIL)
 		return (FAIL);
 	return (SUCCESS);
