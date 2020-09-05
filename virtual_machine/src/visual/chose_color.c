@@ -33,6 +33,7 @@ int		chose_color(t_arena *arena, int index, t_vm *vm, int i)
 		ans = (COLOR_PAIR(arena_get_cell_index(arena, index % MEM_SIZE)));
 	else
 	{
+		printf("dewfegjrifrseijgnfewiognserifbreisugbiweabguiersbgerjgvbersgv");
 		exit(-1);
 	}
 	if (arena_get_store_index(arena, index % MEM_SIZE) == 1)

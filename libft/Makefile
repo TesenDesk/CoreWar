@@ -44,7 +44,6 @@ PART_1 =	ft_strcat.c \
 			ft_isdigit.c \
 			ft_isalnum.c \
 			ft_strnstr.c \
-			ft_strnstr2.c \
 			ft_bzero.c \
 			ft_strncat.c \
 			ft_strlen.c \
@@ -246,7 +245,7 @@ ifeq ($(DEBUG), 1)
 	DEBUGMSG	:= $(PREFIX)⚠️  \033[1;33mWarn! Debug mode enabled.$(RST)\n
 else
 	DEBUGMSG	:= $(PREFIX)⚠️  \033[1;33mDebug mode disabled.$(RST)\n
-	CC_FLAGS =	-Wall -Wextra -Werror -g
+	CC_FLAGS =	-Wall -Wextra -Werror
 endif
 LIB_FLAGS =	-L$(LIB_DIR) -lft
 #--------------------------RULES-------------------------#

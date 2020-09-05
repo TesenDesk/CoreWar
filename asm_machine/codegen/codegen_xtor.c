@@ -23,7 +23,7 @@ t_codegen		*codegen_ctor(t_hash_map *labels_free,
 		exit(-1);
 	ft_vector_init(code->labels_ptrs);
 	code->header = header;
-	code->code = ft_memalloc(sizeof(char) * 10000);
+	code->code = ft_memalloc(sizeof(char) * 1000000);
 	if (!(code->junk_container = (t_vector*)ft_memalloc(sizeof(t_vector))))
 		exit(-1);
 	if (ft_vector_init(code->junk_container) == FAIL)
