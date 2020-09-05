@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/23 13:34:39 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/08/23 13:40:49 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/09/05 21:05:18 by jjerde           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		write_address_to_free_label(t_codegen *data, t_expr *label)
 {
-	t_c_add	*tmp;
+	t_c_add		*tmp;
 	t_token		*token;
 
 	token = expr_get_arg_value(label, LABEL_ARG);
@@ -27,7 +27,7 @@ void		write_address_to_free_label(t_codegen *data, t_expr *label)
 
 void		add_address_to_arg_label(t_codegen *data, t_arg *arg, int shift)
 {
-	t_label_data *label;
+	t_label_data	*label;
 
 	if (!(label = (t_label_data*)malloc(sizeof(t_label_data))))
 		exit(-1);

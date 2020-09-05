@@ -6,7 +6,7 @@
 #    By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/22 12:48:06 by ftothmur          #+#    #+#              #
-#    Updated: 2020/08/30 16:20:13 by cmissy           ###   ########.fr        #
+#    Updated: 2020/09/05 21:15:15 by jjerde           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -619,7 +619,7 @@ deljunk:
 	rm -rf virtual_machine/src/arena/player/*.o
 	rm -rf virtual_machine/src/arena/player/*.d
 	rm -rf virtual_machine/src/carriage/*.o
-	rm -rf virtual_machine/src/carriage/*.D
+	rm -rf virtual_machine/src/carriage/*.d
 	rm -rf virtual_machine/src/carriage/operation/*.o
 	rm -rf virtual_machine/src/carriage/operation/*.d
 	rm -rf virtual_machine/src/corwar/*.o
@@ -637,6 +637,7 @@ deljunk:
 
 clean: deljunk
 		make -C $(LIBDIR) clean
+		make -C ft_printf/ clean
 
 delfile:
 		@echo "$(PREFIX)♻️  $(RED)Removing executable files...$(RST)"

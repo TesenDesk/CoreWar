@@ -6,7 +6,7 @@
 /*   By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/23 13:29:22 by ftothmur          #+#    #+#             */
-/*   Updated: 2020/08/23 13:40:51 by ftothmur         ###   ########.fr       */
+/*   Updated: 2020/09/05 21:05:19 by jjerde           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void			codegen_ending(t_codegen *data)
 	t_label_data	*ld;
 	int				tmp;
 	int				cell_size;
-	t_c_add		*addr;
+	t_c_add			*addr;
 
 	i = -1;
 	while ((ld = ft_vector_get(data->labels_ptrs, ++i)))
