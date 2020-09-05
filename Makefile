@@ -6,7 +6,7 @@
 #    By: ftothmur <ftothmur@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/22 12:48:06 by ftothmur          #+#    #+#              #
-#    Updated: 2020/09/05 21:15:15 by jjerde           ###   ########.fr        #
+#    Updated: 2020/09/05 22:17:24 by jjerde           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -376,11 +376,11 @@ PREFIX					= [$(CYAN)$(LABEL)$(RST)]:\t
 #======================Debug & Flags===========================================#
 # -- WARN! Delete this message from rules if you using library from another prj#
 ifeq ($(DEBUGMODE), 1)
-	FLAGS				:= $(CFLAGS)
+	FLAGS				:= -g $(CFLAGS)
 	DEBUGMSG			:= $(PREFIX)⚠️  \033[1;33m \
 							Debug mode $(GREEN)enabled.$(RST)\n
 else
-	FLAGS				:= -g $(CFLAGS)
+	FLAGS				:= $(CFLAGS)
 	DEBUGMSG			:= $(PREFIX)⚠️  \033[1;33m \
 							Debug mode $(RED)disabled.$(RST)\n
 endif
