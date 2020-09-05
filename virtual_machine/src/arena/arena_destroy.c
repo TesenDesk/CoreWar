@@ -29,6 +29,9 @@ static void		players_destroy(t_arena *self)
 
 void			arena_destroy(t_arena **self)
 {
+	int		c;
+
+	c = 0;
 	players_destroy(*self);
 	free((*self)->data);
 	ft_memdel((void **)self);
