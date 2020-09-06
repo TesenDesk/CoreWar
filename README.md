@@ -8,7 +8,6 @@
 - [x] Ассемблер (100% завершено)
 - [x] Виртуальная машина (100% завершено)
 - [x] Визуализация (100% завершено)
-- [ ] Дизассемблер?
 
 Чтобы запустить программу, сперва выполните `make`.    
 <details>
@@ -55,6 +54,9 @@
 
 Этот проект делали   
 
-< credits >
+- cmissy [@nikkyniknikita](https://gitlab.com/nikkyniknikita)
+- ftothmur [@zapisator](https://gitlab.com/zapisator)
+- jjerde [@tesen708](https://gitlab.com/tesen708)
+- mstygg [@ikira](https://gitlab.com/ikira)
 
 2020 Moscow, Russia
