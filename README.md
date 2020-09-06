@@ -25,11 +25,11 @@
 
 Дополнительные флаги виртуальной машины:
 
-<detalis>
+<details>
 <symmary>Дополнительные параметры компиляции</symmary>
 <code>make d</code> or <code>make debug</code> or <code>make DEBUGMODE=1</code> - собрать проект в режиме дебага    
 `make rd` or `make redebug` or `make re DEBUGMODE=1` - пересобрать проект принудительно в режиме дебага (все файлы будут пересобраны заново)    
-</detalis>
+</details>
 Этот проект делали   
 < credits >
 
