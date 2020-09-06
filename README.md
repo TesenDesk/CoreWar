@@ -52,6 +52,10 @@
  <li><code>-curses</code> - запустить в режиме Ncurses (визуализация)</li>
 </ul>
 
+## Скриншоты
+
+![img1](images/vm_visual_4.png)
+
 Этот проект делали   
 
 - cmissy [@nikkyniknikita](https://gitlab.com/nikkyniknikita)
